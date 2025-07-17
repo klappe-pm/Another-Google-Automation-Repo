@@ -1,0 +1,189 @@
+name: Code Quality Check
+description: A workflow to check code quality and standards
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Check file naming conventions
+      run: |
+        echo "Checking file naming conventions..."
+        
+        # Check for Google Apps Script files
+        find scripts/ -name "*.gs" | while read file; do
+          filename=$(basename "$file")
+          
+          # Check if filename follows convention: service-function-descriptor.gs
+          if [[ ! $filename =~ ^[a-z]+-[a-z]+-[a-z-]+\.gs$ ]]; then
+            echo "❌ File naming issue: $file"
+            echo "   Should follow pattern: service-function-descriptor.gs"
+            echo "   Example: gmail-export-pdf-markdown.gs"
+            exit 1
+          else
+            echo "✅ $file follows naming convention"
+          fi
+        done
+        
+    - name: Check for required script headers
+      run: |
+        echo "Checking for required script headers..."
+        
+        find scripts/ -name "*.gs" | while read file; do
+          # Check for required header elements
+          if ! grep -q "Title:" "$file"; then
+            echo "❌ Missing 'Title:' in header: $file"
+            exit 1
+          fi
+          
+          if ! grep -q "Service:" "$file"; then
+            echo "❌ Missing 'Service:' in header: $file"
+            exit 1
+          fi
+          
+          if ! grep -q "Purpose:" "$file"; then
+            echo "❌ Missing 'Purpose:' in header: $file"
+            exit 1
+          fi
+          
+          if ! grep -q "Author:" "$file"; then
+            echo "❌ Missing 'Author:' in header: $file"
+            exit 1
+          fi
+          
+          echo "✅ $file has required headers"
+        done
+        
+    - name: Check README files exist
+      run: |
+        echo "Checking for README files in service directories..."
+        
+        for dir in scripts/*/; do
+          if [ -d "$dir" ]; then
+            if [ ! -f "$dir/README.md" ]; then
+              echo "❌ Missing README.md in: $dir"
+              exit 1
+            else
+              echo "✅ README.md exists in: $dir"
+            fi
+          fi
+        done
+        
+    - name: Check for sensitive information
+      run: |
+        echo "Checking for potential sensitive information..."
+        
+        # Check for common patterns that might indicate sensitive data
+        if grep -r -i "api.key\|password\|secret\|token" scripts/ --include="*.gs" | grep -v "YOUR_API_KEY_HERE\|your-api-key\|placeholder"; then
+          echo "❌ Potential sensitive information found in scripts"
+          echo "Please review and replace with placeholders"
+          exit 1
+        fi
+        
+        echo "✅ No sensitive information detected"
+        
+    - name: Validate markdown files
+      run: |
+        echo "Checking markdown files..."
+        
+        # Basic markdown validation
+        find . -name "*.md" | while read file; do
+          # Check for basic markdown structure
+          if [ -s "$file" ]; then
+            echo "✅ $file is not empty"
+          else
+            echo "❌ $file is empty"
+            exit 1
+          fi
+        done
+        
+    - name: Check for TODO and FIXME comments
+      run: |
+        echo "Checking for TODO and FIXME comments..."
+        
+        if grep -r -i "TODO\|FIXME\|XXX" scripts/ --include="*.gs"; then
+          echo "⚠️  Found TODO/FIXME comments - consider addressing before merge"
+          # Don't fail the build for TODOs, just warn
+        else
+          echo "✅ No TODO/FIXME comments found"
+        fi
+
+  documentation-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Check documentation completeness
+      run: |
+        echo "Checking documentation completeness..."
+        
+        # Check main README
+        if [ ! -f "README.md" ]; then
+          echo "❌ Main README.md missing"
+          exit 1
+        fi
+        
+        # Check CONTRIBUTING guide
+        if [ ! -f "CONTRIBUTING.md" ]; then
+          echo "❌ CONTRIBUTING.md missing"
+          exit 1
+        fi
+        
+        # Check LICENSE
+        if [ ! -f "LICENSE.md" ]; then
+          echo "❌ LICENSE.md missing"
+          exit 1
+        fi
+        
+        echo "✅ Core documentation files present"
+        
+    - name: Link checker
+      run: |
+        echo "Checking for broken internal links..."
+        
+        # Simple check for markdown links that might be broken
+        find . -name "*.md" -exec grep -H "\[.*\](.*)" {} \; | while IFS: read -r file link; do
+          echo "Found link in $file: $link"
+        done
+        
+        echo "✅ Link check completed"
+
+  security-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Security scan
+      run: |
+        echo "Running basic security checks..."
+        
+        # Check for hardcoded credentials patterns
+        if grep -r -E "(password|passwd|pwd|secret|key|token|api_key)\s*=\s*['\"][^'\"]{8,}" scripts/ --include="*.gs"; then
+          echo "❌ Potential hardcoded credentials found"
+          exit 1
+        fi
+        
+        # Check for common insecure patterns
+        if grep -r -i "eval(" scripts/ --include="*.gs"; then
+          echo "⚠️  Found eval() usage - review for security implications"
+        fi
+        
+        echo "✅ Basic security check passed"

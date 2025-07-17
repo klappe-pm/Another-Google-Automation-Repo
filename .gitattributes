@@ -1,0 +1,57 @@
+# Git attributes for Workspace Automation repository
+
+# Google Apps Script files
+*.gs linguist-language=JavaScript
+*.gs text eol=lf
+
+# Markdown files
+*.md text eol=lf
+
+# Documentation files
+*.txt text eol=lf
+README* text eol=lf
+CONTRIBUTING* text eol=lf
+LICENSE* text eol=lf
+CHANGELOG* text eol=lf
+
+# JSON files (for any configuration)
+*.json text eol=lf
+
+# YAML files (for GitHub Actions)
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Shell scripts (if any)
+*.sh text eol=lf
+
+# Images (binary files)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg text eol=lf
+
+# Archive files
+*.zip binary
+*.tar.gz binary
+*.rar binary
+
+# Backup files (should be ignored anyway)
+*.bak binary
+*.backup binary
+
+# OS generated files (should be ignored)
+.DS_Store binary
+Thumbs.db binary
+
+# Ensure consistent line endings across platforms
+* text=auto
+
+# Export-ignore for files that shouldn't be included in archives
+.gitattributes export-ignore
+.gitignore export-ignore
+.github/ export-ignore
+draft-scripts/ export-ignore
+*.tmp export-ignore
+*.temp export-ignore

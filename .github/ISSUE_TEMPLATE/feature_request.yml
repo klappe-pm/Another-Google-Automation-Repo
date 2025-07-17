@@ -1,0 +1,134 @@
+name: Feature Request
+description: Suggest a new feature or enhancement
+title: "[FEATURE] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! Please provide as much detail as possible.
+
+  - type: dropdown
+    id: service
+    attributes:
+      label: Target Google Service
+      description: Which Google service would this feature target?
+      options:
+        - Gmail
+        - Google Drive
+        - Google Calendar
+        - Google Docs
+        - Google Sheets
+        - Google Tasks
+        - Google Chat
+        - Google Slides
+        - Multiple Services
+        - Utility/Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: Feature Type
+      description: What type of feature is this?
+      options:
+        - New Script
+        - Enhancement to Existing Script
+        - New Integration
+        - Performance Improvement
+        - Documentation Enhancement
+        - Repository Improvement
+    validations:
+      required: true
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: A clear and concise description of what you want to happen
+      placeholder: "Describe the feature you'd like to see"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve?
+      placeholder: "Is your feature request related to a problem? Please describe."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: How do you envision this feature working?
+      placeholder: "Describe the solution you'd like"
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Have you considered any alternative solutions?
+      placeholder: "Describe any alternative solutions or features you've considered"
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature to you?
+      options:
+        - Low - Nice to have
+        - Medium - Would be helpful
+        - High - Important for workflow
+        - Critical - Blocking current work
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: use-cases
+    attributes:
+      label: Use Cases
+      description: What are the main use cases for this feature?
+      options:
+        - label: Email management and automation
+        - label: File organization and processing
+        - label: Calendar and scheduling
+        - label: Document creation and formatting
+        - label: Data analysis and reporting
+        - label: Workflow automation
+        - label: Integration with external tools
+        - label: Bulk operations and processing
+
+  - type: textarea
+    id: technical-requirements
+    attributes:
+      label: Technical Requirements
+      description: Any specific technical requirements or constraints?
+      placeholder: |
+        - Required APIs
+        - Performance considerations
+        - Integration requirements
+        - Security considerations
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Usage Examples
+      description: Provide examples of how this feature would be used
+      placeholder: |
+        Example 1: ...
+        Example 2: ...
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution Interest
+      description: Are you interested in contributing to this feature?
+      options:
+        - label: I would like to implement this feature myself
+        - label: I can provide testing and feedback
+        - label: I can help with documentation
+        - label: I can provide use case examples
