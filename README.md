@@ -4,7 +4,7 @@
 
 ## 📊 Overview
 
-This comprehensive repository contains **80+ production-ready Google Apps Script tools** designed to automate, analyze, and optimize Google Workspace operations. Each script is thoroughly documented, tested, and follows consistent naming conventions and coding standards for enterprise-level deployment.
+This comprehensive repository contains **80+ production-ready Google Apps Script tools** designed to automate, analyze, and optimize Google Workspace operations. Each script is thoroughly documented, tested, and follows consistent naming conventions and coding standards for personal productivity deployment.
 
 **Total Scripts**: 80+ functional automation tools  
 **Services Covered**: 7 Google Workspace services
@@ -30,7 +30,7 @@ Workspace Automation/
 
 ## 🎯 Service Coverage & Capabilities
 
-### 📧 **Gmail Automation** (28 Scripts)
+### 📧 **Gmail Automation**
 **Most Comprehensive Service** - Advanced email management and analysis tools
 
 | Category | Scripts | Key Features |
@@ -46,7 +46,7 @@ Workspace Automation/
 - 24-month email data analysis with trend reporting
 - Advanced YAML metadata extraction and processing
 
-### 🗄️ **Drive Automation** (23 Scripts)
+### 🗄️ **Drive Automation**
 **File Management Powerhouse** - Comprehensive file organization and processing
 
 | Category | Scripts | Key Features |
@@ -63,7 +63,7 @@ Workspace Automation/
 - Automated weekly/daily note generation with calendar integration
 - Advanced markdown processing and link validation
 
-### 📅 **Calendar Integration** (5 Scripts)
+### 📅 **Calendar Integration**
 **Event Management & Analysis** - Calendar data export and workflow integration
 
 | Category | Scripts | Key Features |
@@ -73,12 +73,14 @@ Workspace Automation/
 | **Integration Tools** (1) | Obsidian export | Note-taking system integration |
 
 **Notable Capabilities:**
-- Export events to Obsidian with automatic markdown formatting
-- Calculate travel distances and times using Google Maps API
-- Generate daily notes with calendar event integration
+- Export Google Calendar meetings to [Obsidian.md](obsidian.md) formatted files, with automatic markdown formatting
+- Calculate travel distances and times using Google Maps API from Google Calendar event details
 - Comprehensive event analysis with duration and location metrics
+- GMail label usage analysis
+- Create Google Drive folder and file trees
+- Add metadata to Google Docs
 
-### 📄 **Docs Processing** (6 Scripts)
+### 📄 **Docs Processing**
 **Document Conversion & Management** - Advanced document automation
 
 | Category | Scripts | Key Features |
@@ -93,7 +95,7 @@ Workspace Automation/
 - Comment extraction and analysis for collaboration tracking
 - Batch formatting across multiple documents
 
-### 📊 **Sheets Automation** (6 Scripts)
+### 📊 **Sheets Automation**
 **Data Processing & Automation** - Spreadsheet workflow optimization
 
 | Category | Scripts | Key Features |
@@ -103,7 +105,7 @@ Workspace Automation/
 | **Indexing Tools** (2) | File/Folder indexing | Comprehensive data cataloging |
 | **Automation Tools** (1) | Date processing | Workflow automation |
 
-### ✅ **Tasks Management** (3 Scripts)
+### ✅ **Tasks Management**
 **Task Export & Integration** - Productivity workflow enhancement
 
 | Category | Scripts | Key Features |
@@ -111,7 +113,7 @@ Workspace Automation/
 | **Export Functions** (2) | Markdown/YAML, Todos | Structured task export, status tracking |
 | **Integration Tools** (1) | Obsidian export | Note-taking integration |
 
-### 💬 **Chat Processing** (1 Script)
+### 💬 **Chat Processing**
 **Message Export & Analysis** - Communication workflow integration
 
 | Category | Scripts | Key Features |
@@ -428,6 +430,7 @@ const DEBUG_CONFIG = {
 
 ### **Attribution**
 While not required, attribution is appreciated:
+
 ```
 Workspace Automation Scripts by Kevin Lappe
 GitHub: github.com/kevinlappe/workspace-automation
