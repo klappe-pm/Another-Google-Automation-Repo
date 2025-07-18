@@ -6,15 +6,12 @@ _AGAR: a gelatinous substance obtained from various kinds of red seaweed and use
 [![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/kevinlappe/workspace-automation/graphs/commit-activity)
 [![GitHub last commit](https://img.shields.io/github/last-commit/kevinlappe/workspace-automation.svg)](https://GitHub.com/kevinlappe/workspace-automation/commit/)
 
-Another Google Automation Repository (AGAR) is a curated collection of Google Apps Scripts that automate tasks and enhance functionality within the Google Workspace ecosystem. This repository offers a variety of scripts tailored for services such as Gmail, Drive, Calendar, Docs, Sheets, Tasks, and Chat.
+Another Google Automation Repo (AGAR) offers a collection of Google Apps Scripts. These scripts automate tasks and enhance functionality across the Google Workspace ecosystem. AGAR provides a variety of tailored solutions to help you optimize your workflow and boost productivity, whether you manage operations in Gmail, Drive, Calendar, Docs, Sheets, Tasks, or Chat.
 
-**Maintained by:** Kevin Lappe - like 'happy', not lap
-
+**Maintained by:** Kevin Lappe, _like happy_
 **License:** MIT License  
 
-**Use:** Both personal and commercial use at no cost
-
-## 🚀 Key Features by Service
+## 🚀 Key Features
 
 ### 📧 Gmail
 
@@ -23,11 +20,6 @@ Another Google Automation Repository (AGAR) is a curated collection of Google Ap
 | Advanced Email Management | Export to PDF, Markdown, Sheets | Multi-format exports, automated processing |
 | Automated Label Management | Analysis, Creation, Statistics | Smart labeling, bulk operations, analytics |
 | Trend Analysis | 24-month trends, Metadata | Temporal analysis, content processing |
-
-**Capabilities:**
-- Export emails to PDF, Markdown, and Sheets simultaneously
-- Automate label creation based on sender patterns
-- Analyze 24-month email data with trend reporting
 
 ### 📁 Google Drive
 
@@ -38,11 +30,6 @@ Another Google Automation Repository (AGAR) is a curated collection of Google Ap
 | Markdown Processing | Fix Links, Format | Content standardization, quality assurance |
 | Note Generation | Weekly/Daily Templates | Automated note creation, calendar integration |
 
-**Capabilities:**
-- Index thousands of files with automatic categorization
-- Manage YAML frontmatter in bulk for knowledge bases
-- Generate weekly/daily notes automatically with calendar integration
-
 ### 📅 Google Calendar
 
 | Category | Scripts | Key Features |
@@ -50,11 +37,6 @@ Another Google Automation Repository (AGAR) is a curated collection of Google Ap
 | Export Functions | Date ranges, Daily notes | Flexible export options, workflow integration |
 | Data Analysis | Duration, Distance metrics | Location-based analysis, travel time calculations |
 | Integration Tools | Obsidian export | Note-taking system integration |
-
-**Capabilities:**
-- Export Google Calendar meetings to Obsidian.md formatted files with automatic markdown formatting
-- Calculate travel distances and times using the Google Maps API from Google Calendar event details
-- Analyze events comprehensively with duration and location metrics
 
 ### 📄 Google Docs
 
@@ -64,10 +46,6 @@ Another Google Automation Repository (AGAR) is a curated collection of Google Ap
 | Content Management | Dynamic embedding, Formatting | Live content updates, style standardization |
 | Integration Tools | Obsidian export | Knowledge management integration |
 
-**Capabilities:**
-- Convert Google Docs to Markdown, including handling images
-- Embed content dynamically between documents
-- Extract and analyze comments for collaboration tracking
 
 ### 📊 Google Sheets
 
@@ -85,7 +63,7 @@ Another Google Automation Repository (AGAR) is a curated collection of Google Ap
 | Integration Tools | Obsidian export | Note-taking integration |
 | Chat Export | Daily details | Message archival and analysis |
 
-## 📁 Repository Architecture
+## 📁 Repo Architecture
 
 ```
 Workspace Automation/
@@ -113,10 +91,11 @@ Workspace Automation/
 1. **Navigate to Apps Script:** Go to [script.google.com](https://script.google.com)
 2. **Create a New Project:** Click "New Project"
 3. **Enable Required APIs:**
-   - Gmail API (for email scripts)
-   - Drive API (for file operations)
-   - Calendar API (for calendar scripts)
-   - Docs/Sheets APIs (as needed)
+   - Gmail API
+   - Drive API
+   - Calendar API
+   - Docs API
+   - Sheets API
 4. **Copy Script Code:** Paste from the repository
 5. **Configure Variables:** Update folder IDs and settings
 6. **Authorize Permissions:** Grant required access
