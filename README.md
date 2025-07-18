@@ -7,7 +7,9 @@
 Another Google Automation Repository (AGAR) is a curated collection of Google Apps Scripts that automate tasks and enhance functionality within the Google Workspace ecosystem. This repository offers a variety of scripts tailored for services such as Gmail, Drive, Calendar, Docs, Sheets, Tasks, and Chat.
 
 **Maintained by:** Kevin Lappe - like 'happy', not lap
+
 **License:** MIT License  
+
 **Use:** Both personal and commercial use at no cost
 
 ## 🚀 Key Features by Service
