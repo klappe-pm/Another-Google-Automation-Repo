@@ -1,4 +1,6 @@
-# Another Google Automation Repository (AGAR)
+# Another Google Automation Repo (AGAR)
+
+_AGAR: a gelatinous substance obtained from various kinds of red seaweed and used in biological culture media and as a thickener in foods._
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/kevinlappe/workspace-automation/graphs/commit-activity)
@@ -203,7 +205,7 @@ const DATE_RANGE = { start: '2025-01-01', end: '2025-12-31' };
 - ✅ **Commercial Use:** Allowed for business applications
 - ✅ **Modification:** Customize and adapt scripts as needed
 - ✅ **Distribution:** Share and redistribute freely
-- ✅ **Private Use:** Use internally within organizations
+- ✅ **Private Use:** Use for your own projects
 - ❌ **Liability:** No warranty or liability provided
 - ❌ **Support Guarantee:** Best-effort support only
 
@@ -228,7 +230,6 @@ Email: kevin@averageintelligence.ai
 ### Learning Resources
 - [Apps Script Tutorials](https://developers.google.com/apps-script/guides)
 - [API Reference Guides](https://developers.google.com/apps-script/reference)
-- [Best Practices](https://developers.google.com/apps-script/guides/best-practices)
 - [Troubleshooting Guide](https://developers.google.com/apps-script/guides/support/troubleshooting)
 
 ## 📊 Repository Info
