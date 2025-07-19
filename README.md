@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Another Google Automation Repository (AGAR)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
