@@ -1,0 +1,388 @@
+Security Scan Report - Fri Jul 18 15:57:09 PDT 2025
+======================================
+
+[1;33mInstalling shellcheck...[0m
+
+[0;34m🔍 Running Snyk Code analysis on entire project...[0m
+==================================================
+
+Testing /Users/kevinlappe/Documents/GitHub/Workspace Automation ...
+
+Open Issues
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: ba2c9d51-553e-4354-a538-b1bf0153433d
+   Path: tools/deploy-tools.js, line 130
+   Info: Unsanitized input from a command line argument flows into fs.readFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to read arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: 62ec49c1-2c31-498d-bf2b-e92515d670f0
+   Path: tools/deploy-tools.js, line 149
+   Info: Unsanitized input from a command line argument flows into fs.readFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to read arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: e5b3d876-b592-4551-89c7-1b8a66199573
+   Path: tools/deploy-tools.js, line 403
+   Info: Unsanitized input from a command line argument flows into fs.readFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to read arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: 3391afbb-813d-43a3-94b9-f84870aa24be
+   Path: tools/deploy-tools.js, line 155
+   Info: Unsanitized input from a command line argument flows into fs.writeFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to write to arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: 09bd2b3a-74b1-4ef3-91b6-d37c396ad5ce
+   Path: tools/deploy-tools.js, line 176
+   Info: Unsanitized input from a command line argument flows into fs.writeFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to write to arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: 7f15de22-025b-447b-92f5-192ea2e31983
+   Path: tools/deploy-tools.js, line 221
+   Info: Unsanitized input from a command line argument flows into fs.writeFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to write to arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: 63a8a531-9b8f-4b3d-a026-8692f9eb0982
+   Path: tools/deploy-tools.js, line 421
+   Info: Unsanitized input from a command line argument flows into fs.writeFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to write to arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: b3575ac8-fbce-4a20-85ae-369458b41e89
+   Path: tools/deploy-tools.js, line 477
+   Info: Unsanitized input from a command line argument flows into fs.writeFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to write to arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: a297f4b5-a423-4085-ac26-803d6e986f45
+   Path: tools/deploy-tools.js, line 488
+   Info: Unsanitized input from a command line argument flows into fs.writeFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to write to arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: e9de09b2-6b4c-45cf-9b85-c4dcc7f269d2
+   Path: tools/deploy-tools.js, line 384
+   Info: Unsanitized input from a command line argument flows into fs.readdirSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to list arbitrary directories.
+
+
+
+╭─────────────────────────────────────────────────────────────────────────────────╮
+│ Test Summary                                                                    │
+│                                                                                 │
+│   Organization:      klappe-pm                                                  │
+│   Test type:         Static code analysis                                       │
+│   Project path:      /Users/kevinlappe/Documents/GitHub/Workspace Automation    │
+│                                                                                 │
+│   Total issues:   10                                                            │
+│   Ignored issues: 0 [ 0 HIGH  0 MEDIUM  0 LOW ]                                 │
+│   Open issues:    10 [ 0 HIGH  10 MEDIUM  0 LOW ]                               │
+╰─────────────────────────────────────────────────────────────────────────────────╯
+    
+💡 Tip
+
+   To view ignored issues, use the --include-ignores option.
+                                                            
+
+[0;31m✗ Snyk Code analysis found issues or failed[0m
+
+[0;34m🔍 Running Snyk dependency analysis...[0m
+=======================================
+
+Testing /Users/kevinlappe/Documents/GitHub/Workspace Automation...
+
+Organization:      klappe-pm
+Package manager:   npm
+Target file:       package-lock.json
+Project name:      workspace-automation
+Open source:       no
+Project path:      /Users/kevinlappe/Documents/GitHub/Workspace Automation
+Local Snyk policy: found
+Licenses:          enabled
+
+✔ Tested 275 dependencies for known issues, no vulnerable paths found.
+
+Next steps:
+- Run `snyk monitor` to be notified about new related vulnerabilities.
+- Run `snyk test` as part of your CI/test.
+
+
+[0;32m✓ Snyk dependency analysis completed[0m
+
+[0;34m🐚 Analyzing shell scripts with shellcheck...[0m
+==============================================
+Checking: ./verify-setup.sh
+[0;31m  ✗ Issues found - see security/scan-results/shellcheck_verify-setup.sh_20250718_155709.txt[0m
+Checking: ./init-git.sh
+[0;32m  ✓ No issues found[0m
+Checking: ./security/Snyk/setup-snyk-security.sh
+[0;31m  ✗ Issues found - see security/scan-results/shellcheck_setup-snyk-security.sh_20250718_155709.txt[0m
+Checking: ./comprehensive-security-scan.sh
+[0;31m  ✗ Issues found - see security/scan-results/shellcheck_comprehensive-security-scan.sh_20250718_155709.txt[0m
+Checking: ./setup-ide.sh
+[0;32m  ✓ No issues found[0m
+Checking: ./setup-github-actions.sh
+[0;32m  ✓ No issues found[0m
+Checking: ./scan-all-scripts.sh
+[0;32m  ✓ No issues found[0m
+
+[0;34m📜 Analyzing Google Apps Script files...[0m
+========================================
+Found      121 Google Apps Script files
+[0;34mSetting up ESLint for .gs files...[0m
+Analyzing: ./scripts/tasks/Integration Tools/tasks-export-obsidian.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/tasks/Export Functions/tasks-export-markdown-yaml.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/tasks/Export Functions/tasks-export-todos-markdown.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/calendar/Analysis/calendar-analysis-duration-distance.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/calendar/Content/calendar-export-obsidian.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/calendar/Exports/calendar-export-distance-time.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/calendar/Exports/calendar-export-daily.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/calendar/Exports/calendar-export-date-range.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/sheets/Content Generation/sheets-create-markdown.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_sheets-create-markdown.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/sheets/Content Generation/sheets-create-tree-diagram.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/sheets/Automation Tools/sheets-process-date-automation.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/sheets/Data Processing/sheets-csv-combiner.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/sheets/Indexing Tools/sheets-index-general.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/sheets/Indexing Tools/sheets-index-folders-files.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/sheets/Utility Tools/sheets-utility-tab-sorter.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_sheets-utility-tab-sorter.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/sheets/Utility Tools/sheets-format-comprehensive-styling.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/chat/Exports/chat-export-daily-details.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_chat-export-daily-details.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/docs/Exports/docs-export-comments-sheets.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/docs/Exports/docs-export-markdown-advanced.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/docs/Exports/docs-export-file-list-to-sheets.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/docs/Content Management/docs-formatter.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_docs-formatter.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/docs/Content Management/docs-embed-content-block.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/docs/Content Management/docs-export-markdown-obsidian.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/photos/photos-export-albums-to-sheets.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_photos-export-albums-to-sheets.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/drive/Legacy Files/drive-index-v10-legacy.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/Legacy Files/drive-markdown-format-yaml-legacy.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/Legacy Files/drive-index-v100-legacy.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/Legacy Files/drive-notes-create-weekly-daily-vx-legacy.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/Legacy Files/drive-index-tree-v100-legacy.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_drive-index-tree-v100-legacy.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/drive/Utility Tools/drive-index-file-tree-generator.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/Utility Tools/drive-manager-comprehensive-indexer.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/Utility Tools/drive-utility-script-21.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_drive-utility-script-21.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/drive/Utility Tools/drive-utility-script-25.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/Utility Tools/drive-utility-deduplicate-files.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/Content Management/drive-markdown-move-update-metadata.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_drive-markdown-move-update-metadata.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/drive/Content Management/drive-index-all-files.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/Content Management/drive-notes-generate-weekly.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/Content Management/drive-notes-create-weekly-daily.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/Content Management/drive-index-docs-files.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/Content Management/drive-markdown-process-blank-links.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/Content Management/drive-markdown-lint-spacing.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/Content Management/drive-docs-find-by-alias.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/Content Management/drive-shortcuts-convert.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/Content Management/drive-index-markdown-files.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/YAML Management/drive-yaml-dataview-categories.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_drive-yaml-dataview-categories.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/drive/YAML Management/drive-yaml-finder.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/YAML Management/drive-yaml-folder-categories.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_drive-yaml-folder-categories.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/drive/YAML Management/drive-yaml-add-simple.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/YAML Management/drive-yaml-add-frontmatter-bulk.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/drive/YAML Management/drive-yaml-add-frontmatter-multi.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Analysis Tools/gmail-analysis-markdown-yaml-v2.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Analysis Tools/gmail-analysis-24months.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Analysis Tools/gmail-metadata-tools.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_gmail-metadata-tools.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/gmail/Analysis Tools/gmail-analysis-labels-data.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Analysis Tools/gmail-analysis-markdown-yaml.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Analysis Tools/gmail-analysis-metadata-misc.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-advanced-sheets.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-labels-to-sheets.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-emails-pdf-attachments.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_gmail-export-emails-pdf-attachments.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-docs-pdf.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_gmail-export-docs-pdf.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-weekly-threads.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-basic-sheets.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-pdf-markdown.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-pdf-only.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_gmail-export-pdf-only.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-transportation-emails-markdown.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_gmail-export-transportation-emails-markdown.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-export-to-sheets.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-count.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-statistics.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Label Management/gmail-utility-delete-all-labels.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-status-count.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-analysis.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Label Management/gmail-process-auto-label-by-sender.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_gmail-process-auto-label-by-sender.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-create-basic.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_gmail-labels-create-basic.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-date-processor.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_gmail-labels-date-processor.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/gmail/Label Management/gmail-analysis-label-statistics.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-delete-all.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-create-sender.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_gmail-labels-create-sender.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-unread-count.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Label Management/gmail-analysis-labeled-vs-unlabeled-count.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Legacy Files/gmail-labels-export-to-sheets-copy-legacy.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Legacy Files/email-export-pdf-md-sheets-copy-legacy.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Legacy Files/gmail-label-maker-copy-legacy.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_gmail-label-maker-copy-legacy.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/gmail/Legacy Files/email-labels-data-copy-legacy.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Legacy Files/gmail-labels-delete-all-copy-legacy.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Legacy Files/gmail-export-weekly-threads-copy-legacy.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Legacy Files/email-data-24months-copy-legacy.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Legacy Files/gmail-labels-analysis-copy-legacy.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Legacy Files/gmail-labels-date-processor-copy-legacy.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_gmail-labels-date-processor-copy-legacy.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/gmail/Utility Tools/gmail-utility-header-cleaner.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Utility Tools/gmail-utility-script-23.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_gmail-utility-script-23.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/gmail/Utility Tools/gmail-utility-script-17.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Utility Tools/gmail-utility-mark-read.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_gmail-utility-mark-read.gs_20250718_155709.txt[0m
+Analyzing: ./scripts/gmail/Utility Tools/sheets-utility-script-22.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Utility Tools/gmail-utility-md-linter.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/gmail/Utility Tools/gmail-utility-markdown-fixer.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./scripts/utility/utility-api-key-checker.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/30.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/45.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/34.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/41.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_41.gs_20250718_155709.txt[0m
+Analyzing: ./draft-scripts/35.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/50.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/40.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_40.gs_20250718_155709.txt[0m
+Analyzing: ./draft-scripts/31.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/44.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_44.gs_20250718_155709.txt[0m
+Analyzing: ./draft-scripts/49.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/38.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_38.gs_20250718_155709.txt[0m
+Analyzing: ./draft-scripts/28.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/39.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/29.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/48.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_48.gs_20250718_155709.txt[0m
+Analyzing: ./draft-scripts/36.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/43.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_43.gs_20250718_155709.txt[0m
+Analyzing: ./draft-scripts/26.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/32.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/47.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/33.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/46.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/37.gs
+[0;32m  ✓ No issues found[0m
+Analyzing: ./draft-scripts/42.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_42.gs_20250718_155709.txt[0m
+Analyzing: ./draft-scripts/27.gs
+[1;33m  ⚠ Issues found - see security/scan-results/eslint_27.gs_20250718_155709.txt[0m
+
+[0;34mGoogle Apps Script analysis complete:[0m
+Files with potential issues: 31
+
+[0;34m🔍 Scanning for common security patterns...[0m
+===========================================
+Checking for hardcoded secrets...
+[0;32m✓ No obvious hardcoded secrets found[0m
+
+Checking for SQL injection patterns...
+[0;32m✓ No obvious SQL injection patterns found[0m
+
+Checking for eval() usage...
+[0;31m⚠ Found eval() usage - potential security risk[0m
+
+========================================
+[0;34m📊 SECURITY SCAN SUMMARY[0m
+========================================
+Shell script issues: 3

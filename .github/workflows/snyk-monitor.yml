@@ -1,0 +1,59 @@
+name: Snyk Continuous Monitoring
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    # Monitor daily at 6 AM UTC
+    - cron: '0 6 * * *'
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  snyk-monitor:
+    name: Continuous Security Monitoring
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+          
+      - name: Monitor project with Snyk
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: monitor
+          args: >
+            --all-projects
+            --project-name="workspace-automation"
+            --org=${{ secrets.SNYK_ORG_ID }}
+            --target-reference=${{ github.ref }}
+            --project-environment=production
+            
+      - name: Notify on new vulnerabilities
+        if: failure()
+        run: |
+          echo "🚨 New security vulnerabilities detected in workspace-automation!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Please check the Snyk dashboard for details: https://app.snyk.io" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Next steps:**" >> $GITHUB_STEP_SUMMARY
+          echo "1. Review vulnerabilities in Snyk dashboard" >> $GITHUB_STEP_SUMMARY
+          echo "2. Apply available patches or updates" >> $GITHUB_STEP_SUMMARY
+          echo "3. Create issues for manual fixes if needed" >> $GITHUB_STEP_SUMMARY

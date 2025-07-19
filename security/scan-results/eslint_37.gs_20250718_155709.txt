@@ -1,0 +1,4 @@
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/draft-scripts/37.gs: line 17, col 10, Warning - 'onOpen' is defined but never used. (no-unused-vars)
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/draft-scripts/37.gs: line 24, col 10, Warning - 'generateFolderIndex' is defined but never used. (no-unused-vars)
+
+2 problems

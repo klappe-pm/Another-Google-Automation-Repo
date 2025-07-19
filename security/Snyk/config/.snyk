@@ -1,0 +1,43 @@
+# Snyk Configuration for Workspace Automation
+# https://docs.snyk.io/snyk-cli/test-for-vulnerabilities/the-.snyk-file
+
+version: v1.0.0
+
+# Language-specific settings
+language-settings:
+  javascript:
+    # Include development dependencies in scans
+    dev: true
+
+# Security patches to apply
+patches: {}
+
+# Vulnerabilities to ignore (temporary or false positives)
+ignore:
+  # Example format - replace with actual vulnerability IDs when needed
+  # 'SNYK-JS-PACKAGENAME-123456':
+  #   - '*':
+  #       reason: 'False positive - not applicable to our use case'
+  #       expires: '2025-12-31T23:59:59.999Z'
+  #       created: '2025-07-18T00:00:00.000Z'
+
+# Global exclusions
+exclude:
+  global:
+    # Exclude common non-security directories
+    - node_modules/
+    - '*.test.js'
+    - test/
+    - tests/
+    - docs/
+    - documentation/
+    - examples/
+    - templates/
+    - '*.md'
+    # Exclude legacy files (should be migrated or reviewed separately)
+    - 'scripts/*/Legacy Files/*'
+    - 'legacy-scripts/'
+    - '*-legacy.gs'
+    - '*-copy.gs'
+    # Exclude draft scripts that may not be production-ready
+    - 'draft-scripts/'

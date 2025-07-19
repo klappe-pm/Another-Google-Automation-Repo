@@ -1,0 +1,224 @@
+name: PR Security Validation
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+    types: [opened, synchronize, reopened]
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  security-check:
+    name: Pull Request Security Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout PR code
+        uses: actions/checkout@v4
+        with:
+          # Fetch enough history to compare with base branch
+          fetch-depth: 0
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+          
+      - name: Run Snyk security test on PR changes
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: >
+            --severity-threshold=high
+            --fail-on=all
+            --org=${{ secrets.SNYK_ORG_ID }}
+            
+      - name: Check for new .gs files
+        id: check_gas_files
+        run: |
+          # Get list of changed files
+          git diff --name-only origin/${{ github.base_ref }}...HEAD > changed_files.txt
+          
+          # Check if any .gs files were added or modified
+          if grep -q "\.gs$" changed_files.txt; then
+            echo "gas_files_changed=true" >> $GITHUB_OUTPUT
+            echo "### 📝 Google Apps Script Files Changed" >> gas_changes.md
+            echo "" >> gas_changes.md
+            echo "The following .gs files were modified in this PR:" >> gas_changes.md
+            echo "" >> gas_changes.md
+            grep "\.gs$" changed_files.txt | while read file; do
+              echo "- \`$file\`" >> gas_changes.md
+            done
+            echo "" >> gas_changes.md
+            echo "These files will be scanned for security issues." >> gas_changes.md
+          else
+            echo "gas_files_changed=false" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Security scan changed .gs files
+        if: steps.check_gas_files.outputs.gas_files_changed == 'true'
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+          
+          // Read changed files
+          const changedFiles = fs.readFileSync('changed_files.txt', 'utf8')
+            .split('\\n')
+            .filter(file => file.endsWith('.gs') && fs.existsSync(file));
+          
+          if (changedFiles.length === 0) {
+            console.log('No .gs files to scan');
+            process.exit(0);
+          }
+          
+          const securityPatterns = {
+            hardcodedSecrets: [
+              /(?i)(password|passwd|pwd|secret|key|token|api_key)\\s*=\\s*['\\\"][^'\\\"]{8,}['\\\"]/, 
+              /(?i)(client_secret|client_id|auth_token)\\s*=\\s*['\\\"][^'\\\"]{20,}['\\\"]/, 
+              /(?i)Bearer\\s+[A-Za-z0-9\\-_]{20,}/,
+              /(?i)(sk-|pk_)[a-zA-Z0-9]{20,}/
+            ],
+            insecurePatterns: [
+              /eval\\s*\\(/,
+              /innerHTML\\s*=/,
+              /document\\.write\\s*\\(/,
+              /new\\s+Function\\s*\\(/
+            ],
+            apiKeyExposure: [
+              /AIza[0-9A-Za-z\\-_]{35}/,
+              /[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com/
+            ]
+          };
+          
+          let vulnerabilities = [];
+          
+          changedFiles.forEach(filePath => {
+            console.log('Scanning:', filePath);
+            const content = fs.readFileSync(filePath, 'utf8');
+            const lines = content.split('\\n');
+            
+            lines.forEach((line, index) => {
+              const trimmedLine = line.trim();
+              if (trimmedLine.startsWith('//') || trimmedLine.startsWith('*')) return;
+              
+              // Check all security patterns
+              Object.entries(securityPatterns).forEach(([category, patterns]) => {
+                patterns.forEach(pattern => {
+                  if (pattern.test(line)) {
+                    vulnerabilities.push({
+                      file: filePath,
+                      line: index + 1,
+                      category: category,
+                      severity: category === 'hardcodedSecrets' || category === 'apiKeyExposure' ? 'CRITICAL' : 'HIGH',
+                      snippet: line.trim().substring(0, 100)
+                    });
+                  }
+                });
+              });
+            });
+          });
+          
+          if (vulnerabilities.length > 0) {
+            console.log('\\n🚨 Security vulnerabilities found in PR:');
+            vulnerabilities.forEach(vuln => {
+              console.log('[' + vuln.severity + '] ' + vuln.category + ' in ' + vuln.file + ':' + vuln.line);
+              console.log('  Code: ' + vuln.snippet);
+            });
+            
+            // Write summary for PR comment
+            let summary = '## 🚨 Security Issues Found\\n\\n';
+            summary += 'The following security vulnerabilities were detected in your changes:\\n\\n';
+            
+            vulnerabilities.forEach(vuln => {
+              summary += '**[' + vuln.severity + '] ' + vuln.category + '**\\n';
+              summary += '- File: \`' + vuln.file + '\` (line ' + vuln.line + ')\\n';
+              summary += '- Code: \`' + vuln.snippet + '\`\\n\\n';
+            });
+            
+            summary += '### 🛠️ Remediation Steps\\n\\n';
+            summary += '1. **Remove hardcoded credentials** - Use PropertiesService.getScriptProperties() instead\\n';
+            summary += '2. **Avoid insecure patterns** - Replace eval(), innerHTML assignments, etc.\\n';
+            summary += '3. **Secure API keys** - Store in script properties, not in code\\n\\n';
+            summary += 'Please fix these issues before merging.';
+            
+            fs.writeFileSync('security_summary.md', summary);
+            
+            console.error('❌ Security check failed! Please fix vulnerabilities before merging.');
+            process.exit(1);
+          } else {
+            console.log('✅ No security issues found in changed .gs files');
+            fs.writeFileSync('security_summary.md', '## ✅ Security Check Passed\\n\\nNo security vulnerabilities detected in the modified Google Apps Script files.');
+          }
+          "
+          
+      - name: Comment PR with security results
+        if: always() && steps.check_gas_files.outputs.gas_files_changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            let comment = '';
+            
+            // Add file changes summary
+            if (fs.existsSync('gas_changes.md')) {
+              comment += fs.readFileSync('gas_changes.md', 'utf8') + '\\n\\n';
+            }
+            
+            // Add security results
+            if (fs.existsSync('security_summary.md')) {
+              comment += fs.readFileSync('security_summary.md', 'utf8');
+            }
+            
+            if (comment) {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            }
+            
+      - name: Block merge on security issues
+        if: failure()
+        run: |
+          echo "::error::Security vulnerabilities detected. Please fix before merging."
+          exit 1
+
+  dependency-diff:
+    name: Check Dependency Changes
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.changed_files, 'package.json') || contains(github.event.pull_request.changed_files, 'package-lock.json')
+    
+    steps:
+      - name: Checkout PR code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          
+      - name: Check for new dependencies
+        run: |
+          if git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -q "package\\.json"; then
+            echo "📦 Package.json modified - checking for new dependencies"
+            
+            # Install dependencies to check for vulnerabilities
+            npm ci
+            
+            # Run Snyk test specifically for new dependencies
+            npx snyk test --severity-threshold=medium --fail-on=all
+          fi

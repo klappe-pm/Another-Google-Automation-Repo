@@ -1,0 +1,3 @@
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Utility Tools/sheets-utility-script-22.gs: line 52, col 10, Warning - 'analyzeGmailLabels' is defined but never used. (no-unused-vars)
+
+1 problem

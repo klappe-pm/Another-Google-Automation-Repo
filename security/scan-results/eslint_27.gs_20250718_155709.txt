@@ -1,0 +1,6 @@
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/draft-scripts/27.gs: line 73, col 10, Warning - 'processGmailEmails' is defined but never used. (no-unused-vars)
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/draft-scripts/27.gs: line 86, col 41, Error - Octal literals should not be used. (no-octal)
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/draft-scripts/27.gs: line 244, col 26, Error - Unnecessary escape character: \.. (no-useless-escape)
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/draft-scripts/27.gs: line 244, col 28, Error - Unnecessary escape character: \/. (no-useless-escape)
+
+4 problems
