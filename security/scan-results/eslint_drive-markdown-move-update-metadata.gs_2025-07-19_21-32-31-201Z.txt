@@ -1,0 +1,5 @@
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/drive/Content Management/drive-markdown-move-update-metadata.gs: line 11, col 10, Warning - 'moveMarkdownFiles' is defined but never used. (no-unused-vars)
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/drive/Content Management/drive-markdown-move-update-metadata.gs: line 23, col 16, Error - Do not access Object.prototype method 'hasOwnProperty' from target object. (no-prototype-builtins)
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/drive/Content Management/drive-markdown-move-update-metadata.gs: line 24, col 9, Error - 'file' is constant. (no-const-assign)
+
+3 problems
