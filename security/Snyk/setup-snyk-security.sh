@@ -176,10 +176,12 @@ print_status "Security directories created"
 # Create .gitignore entries for security reports (sensitive data)
 if [ -f ".gitignore" ]; then
     if ! grep -q "security/reports/" .gitignore; then
-        echo "" >> .gitignore
-        echo "# Security reports (may contain sensitive data)" >> .gitignore
-        echo "security/reports/*.json" >> .gitignore
-        echo "security/dashboard/*.html" >> .gitignore
+        {
+            echo ""
+            echo "# Security reports (may contain sensitive data)"
+            echo "security/reports/*.json"
+            echo "security/dashboard/*.html"
+        } >> .gitignore
         print_status "Updated .gitignore for security reports"
     fi
 else

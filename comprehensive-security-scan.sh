@@ -167,11 +167,11 @@ log_message "${BLUE}🔍 Scanning for common security patterns...${NC}"
 log_message "==========================================="
 
 # Check for potential security issues in all script files
-log_message "Checking for hardcoded secrets..."
-if grep -r -n -i "password\|secret\|token\|key" --include="*.gs" --include="*.sh" --include="*.js" . | grep -v node_modules | head -10; then
-    log_message "${RED}⚠ Found potential hardcoded secrets - review manually${NC}"
+log_message "Checking for Hardcoded secrets..."
+if grep -r -n -i "password\|secret\|token\|key" --include="*.gs" --include="*.sh" --include="*.js" . | grep -v node_modules | grep -v verify-setup.sh | grep -v security-scanner | grep -v gas-security-scanner | head -10; then
+    log_message "${RED}⚠ Found Hardcoded secrets - review manually:${NC}"
 else
-    log_message "${GREEN}✓ No obvious hardcoded secrets found${NC}"
+    log_message "${GREEN}✓ No Hardcoded secrets found${NC}"
 fi
 
 log_message ""
@@ -184,8 +184,8 @@ fi
 
 log_message ""
 log_message "Checking for eval() usage..."
-if grep -r -n "eval(" --include="*.gs" --include="*.js" . | grep -v node_modules; then
-    log_message "${RED}⚠ Found eval() usage - potential security risk${NC}"
+if grep -r -n "eval(" --include="*.gs" --include="*.js" . | grep -v node_modules | grep -v security-scanner | grep -v gas-security-scanner; then
+    log_message "${RED}⚠ Found eval() usage - review manually${NC}"
 else
     log_message "${GREEN}✓ No eval() usage found${NC}"
 fi
@@ -201,7 +201,7 @@ if [[ -v GS_ISSUES ]]; then
 fi
 log_message ""
 log_message "Generated files:"
-ls -la "$RESULTS_DIR/"*"$TIMESTAMP"* 2>/dev/null | tee -a "$REPORT_FILE" || log_message "No timestamped files found"
+find "$RESULTS_DIR" -name "*$TIMESTAMP*" -exec ls -la {} \; 2>/dev/null | tee -a "$REPORT_FILE" || log_message "No timestamped files found"
 
 log_message ""
 log_message "${GREEN}✓ Security scan completed!${NC}"

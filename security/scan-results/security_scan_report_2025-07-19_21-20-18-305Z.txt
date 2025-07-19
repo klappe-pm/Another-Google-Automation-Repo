@@ -1,0 +1,466 @@
+Security Scan Report - 2025-07-19T21:20:18.305Z
+======================================
+
+
+🔍 Running Snyk Code analysis...
+==================================
+
+Testing /Users/kevinlappe/Documents/GitHub/Workspace Automation ...
+
+Open Issues
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: ba2c9d51-553e-4354-a538-b1bf0153433d
+   Path: tools/deploy-tools.js, line 130
+   Info: Unsanitized input from a command line argument flows into fs.readFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to read arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: 62ec49c1-2c31-498d-bf2b-e92515d670f0
+   Path: tools/deploy-tools.js, line 149
+   Info: Unsanitized input from a command line argument flows into fs.readFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to read arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: e5b3d876-b592-4551-89c7-1b8a66199573
+   Path: tools/deploy-tools.js, line 403
+   Info: Unsanitized input from a command line argument flows into fs.readFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to read arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: 3391afbb-813d-43a3-94b9-f84870aa24be
+   Path: tools/deploy-tools.js, line 155
+   Info: Unsanitized input from a command line argument flows into fs.writeFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to write to arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: 09bd2b3a-74b1-4ef3-91b6-d37c396ad5ce
+   Path: tools/deploy-tools.js, line 176
+   Info: Unsanitized input from a command line argument flows into fs.writeFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to write to arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: 7f15de22-025b-447b-92f5-192ea2e31983
+   Path: tools/deploy-tools.js, line 221
+   Info: Unsanitized input from a command line argument flows into fs.writeFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to write to arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: 63a8a531-9b8f-4b3d-a026-8692f9eb0982
+   Path: tools/deploy-tools.js, line 421
+   Info: Unsanitized input from a command line argument flows into fs.writeFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to write to arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: b3575ac8-fbce-4a20-85ae-369458b41e89
+   Path: tools/deploy-tools.js, line 477
+   Info: Unsanitized input from a command line argument flows into fs.writeFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to write to arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: a297f4b5-a423-4085-ac26-803d6e986f45
+   Path: tools/deploy-tools.js, line 488
+   Info: Unsanitized input from a command line argument flows into fs.writeFileSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to write to arbitrary files.
+
+ ✗ [MEDIUM] Path Traversal
+   Finding ID: e9de09b2-6b4c-45cf-9b85-c4dcc7f269d2
+   Path: tools/deploy-tools.js, line 384
+   Info: Unsanitized input from a command line argument flows into fs.readdirSync, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to list arbitrary directories.
+
+
+
+╭─────────────────────────────────────────────────────────────────────────────────╮
+│ Test Summary                                                                    │
+│                                                                                 │
+│   Organization:                                                                 │
+│   Test type:         Static code analysis                                       │
+│   Project path:      /Users/kevinlappe/Documents/GitHub/Workspace Automation    │
+│                                                                                 │
+│   Total issues:   10                                                            │
+│   Ignored issues: 0 [ 0 HIGH  0 MEDIUM  0 LOW ]                                 │
+│   Open issues:    10 [ 0 HIGH  10 MEDIUM  0 LOW ]                               │
+╰─────────────────────────────────────────────────────────────────────────────────╯
+    
+💡 Tip
+
+   To view ignored issues, use the --include-ignores option.
+                                                            
+
+
+✅ Snyk Code analysis completed
+
+🔍 Running Snyk dependency analysis...
+=====================================
+
+Testing /Users/kevinlappe/Documents/GitHub/Workspace Automation...
+
+Organization:      klappe-pm
+Package manager:   npm
+Target file:       package-lock.json
+Project name:      workspace-automation
+Open source:       no
+Project path:      /Users/kevinlappe/Documents/GitHub/Workspace Automation
+Local Snyk policy: found
+Licenses:          enabled
+
+✔ Tested 275 dependencies for known issues, no vulnerable paths found.
+
+Next steps:
+- Run `snyk monitor` to be notified about new related vulnerabilities.
+- Run `snyk test` as part of your CI/test.
+
+
+
+✅ Snyk dependency analysis completed
+
+🐚 Analyzing shell scripts with shellcheck...
+============================================
+Found 7 shell scripts
+Checking: ./verify-setup.sh
+  ❌ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/shellcheck_verify-setup.sh_2025-07-19_21-20-18-305Z.txt
+Checking: ./init-git.sh
+  ✅ No issues found
+Checking: ./security/Snyk/setup-snyk-security.sh
+  ❌ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/shellcheck_setup-snyk-security.sh_2025-07-19_21-20-18-305Z.txt
+Checking: ./comprehensive-security-scan.sh
+  ❌ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/shellcheck_comprehensive-security-scan.sh_2025-07-19_21-20-18-305Z.txt
+Checking: ./setup-ide.sh
+  ✅ No issues found
+Checking: ./setup-github-actions.sh
+  ✅ No issues found
+Checking: ./scan-all-scripts.sh
+  ✅ No issues found
+
+📜 Analyzing Google Apps Script files...
+=======================================
+Found 96 Google Apps Script files
+Analyzing: ./scripts/tasks/Integration Tools/tasks-export-obsidian.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_tasks-export-obsidian.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/tasks/Export Functions/tasks-export-markdown-yaml.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_tasks-export-markdown-yaml.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/tasks/Export Functions/tasks-export-todos-markdown.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_tasks-export-todos-markdown.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/calendar/Analysis/calendar-analysis-duration-distance.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_calendar-analysis-duration-distance.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/calendar/Content/calendar-export-obsidian.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_calendar-export-obsidian.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/calendar/Exports/calendar-export-distance-time.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_calendar-export-distance-time.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/calendar/Exports/calendar-export-daily.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_calendar-export-daily.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/calendar/Exports/calendar-export-date-range.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_calendar-export-date-range.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/sheets/Content Generation/sheets-create-markdown.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-create-markdown.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/sheets/Content Generation/sheets-create-tree-diagram.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-create-tree-diagram.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/sheets/Automation Tools/sheets-process-date-automation.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-process-date-automation.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/sheets/Data Processing/sheets-csv-combiner.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-csv-combiner.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/sheets/Indexing Tools/sheets-index-general.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-index-general.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/sheets/Indexing Tools/sheets-index-folders-files.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-index-folders-files.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/sheets/Utility Tools/sheets-utility-tab-sorter.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-utility-tab-sorter.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/sheets/Utility Tools/sheets-format-comprehensive-styling.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-format-comprehensive-styling.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/chat/Exports/chat-export-daily-details.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_chat-export-daily-details.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/docs/Exports/docs-export-comments-sheets.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_docs-export-comments-sheets.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/docs/Exports/docs-export-markdown-advanced.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_docs-export-markdown-advanced.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/docs/Exports/docs-export-file-list-to-sheets.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_docs-export-file-list-to-sheets.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/docs/Content Management/docs-formatter.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_docs-formatter.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/docs/Content Management/docs-embed-content-block.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_docs-embed-content-block.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/docs/Content Management/docs-export-markdown-obsidian.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_docs-export-markdown-obsidian.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/photos/photos-export-albums-to-sheets.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_photos-export-albums-to-sheets.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Legacy Files/drive-index-v10-legacy.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-index-v10-legacy.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Legacy Files/drive-markdown-format-yaml-legacy.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-markdown-format-yaml-legacy.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Legacy Files/drive-index-v100-legacy.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-index-v100-legacy.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Legacy Files/drive-notes-create-weekly-daily-vx-legacy.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-notes-create-weekly-daily-vx-legacy.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Legacy Files/drive-index-tree-v100-legacy.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-index-tree-v100-legacy.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Utility Tools/drive-index-file-tree-generator.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-index-file-tree-generator.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Utility Tools/drive-manager-comprehensive-indexer.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-manager-comprehensive-indexer.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Utility Tools/drive-utility-script-21.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-utility-script-21.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Utility Tools/drive-utility-script-25.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-utility-script-25.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Utility Tools/drive-utility-deduplicate-files.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-utility-deduplicate-files.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Content Management/drive-markdown-move-update-metadata.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-markdown-move-update-metadata.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Content Management/drive-index-all-files.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-index-all-files.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Content Management/drive-notes-generate-weekly.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-notes-generate-weekly.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Content Management/drive-notes-create-weekly-daily.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-notes-create-weekly-daily.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Content Management/drive-index-docs-files.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-index-docs-files.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Content Management/drive-markdown-process-blank-links.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-markdown-process-blank-links.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Content Management/drive-markdown-lint-spacing.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-markdown-lint-spacing.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Content Management/drive-docs-find-by-alias.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-docs-find-by-alias.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Content Management/drive-shortcuts-convert.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-shortcuts-convert.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/Content Management/drive-index-markdown-files.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-index-markdown-files.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/YAML Management/drive-yaml-dataview-categories.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-yaml-dataview-categories.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/YAML Management/drive-yaml-finder.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-yaml-finder.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/YAML Management/drive-yaml-folder-categories.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-yaml-folder-categories.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/YAML Management/drive-yaml-add-simple.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-yaml-add-simple.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/YAML Management/drive-yaml-add-frontmatter-bulk.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-yaml-add-frontmatter-bulk.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/drive/YAML Management/drive-yaml-add-frontmatter-multi.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-yaml-add-frontmatter-multi.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Analysis Tools/gmail-analysis-markdown-yaml-v2.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-analysis-markdown-yaml-v2.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Analysis Tools/gmail-analysis-24months.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-analysis-24months.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Analysis Tools/gmail-metadata-tools.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-metadata-tools.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Analysis Tools/gmail-analysis-labels-data.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-analysis-labels-data.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Analysis Tools/gmail-analysis-markdown-yaml.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-analysis-markdown-yaml.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Analysis Tools/gmail-analysis-metadata-misc.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-analysis-metadata-misc.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-advanced-sheets.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-advanced-sheets.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-labels-to-sheets.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-labels-to-sheets.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-emails-pdf-attachments.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-emails-pdf-attachments.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-docs-pdf.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-docs-pdf.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-weekly-threads.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-weekly-threads.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-basic-sheets.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-basic-sheets.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-pdf-markdown.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-pdf-markdown.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-pdf-only.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-pdf-only.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Export Functions/gmail-export-transportation-emails-markdown.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-transportation-emails-markdown.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-export-to-sheets.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-export-to-sheets.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-count.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-count.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-statistics.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-statistics.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Label Management/gmail-utility-delete-all-labels.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-utility-delete-all-labels.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-status-count.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-status-count.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-analysis.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-analysis.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Label Management/gmail-process-auto-label-by-sender.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-process-auto-label-by-sender.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-create-basic.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-create-basic.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-date-processor.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-date-processor.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Label Management/gmail-analysis-label-statistics.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-analysis-label-statistics.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-delete-all.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-delete-all.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-create-sender.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-create-sender.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Label Management/gmail-labels-unread-count.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-unread-count.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Label Management/gmail-analysis-labeled-vs-unlabeled-count.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-analysis-labeled-vs-unlabeled-count.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Legacy Files/gmail-labels-export-to-sheets-copy-legacy.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-export-to-sheets-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Legacy Files/email-export-pdf-md-sheets-copy-legacy.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_email-export-pdf-md-sheets-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Legacy Files/gmail-label-maker-copy-legacy.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-label-maker-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Legacy Files/email-labels-data-copy-legacy.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_email-labels-data-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Legacy Files/gmail-labels-delete-all-copy-legacy.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-delete-all-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Legacy Files/gmail-export-weekly-threads-copy-legacy.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-weekly-threads-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Legacy Files/email-data-24months-copy-legacy.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_email-data-24months-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Legacy Files/gmail-labels-analysis-copy-legacy.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-analysis-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Legacy Files/gmail-labels-date-processor-copy-legacy.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-date-processor-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Utility Tools/gmail-utility-header-cleaner.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-utility-header-cleaner.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Utility Tools/gmail-utility-script-23.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-utility-script-23.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Utility Tools/gmail-utility-script-17.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-utility-script-17.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Utility Tools/gmail-utility-mark-read.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-utility-mark-read.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Utility Tools/sheets-utility-script-22.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-utility-script-22.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Utility Tools/gmail-utility-md-linter.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-utility-md-linter.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/gmail/Utility Tools/gmail-utility-markdown-fixer.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-utility-markdown-fixer.gs_2025-07-19_21-20-18-305Z.txt
+Analyzing: ./scripts/utility/utility-api-key-checker.gs
+  ⚠️ Issues found - see /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_utility-api-key-checker.gs_2025-07-19_21-20-18-305Z.txt
+
+🔍 Scanning for common security patterns...
+==========================================
+
+Checking for Hardcoded secrets...
+⚠️ Found Hardcoded secrets - review manually:
+./verify-setup.sh:186:    if grep -q "access_token" "$HOME/.clasprc.json" && grep -q "refresh_token" "$HOME/.clasprc.json"; then
+./verify-setup.sh:187:        print_status 0 "Credentials file has required tokens"
+./verify-setup.sh:189:        print_status 1 "Credentials file missing required tokens"
+./verify-setup.sh:236:echo "🔐 GitHub Secrets Setup:"
+./verify-setup.sh:237:echo "   1. Go to: https://github.com/$(git remote get-url origin | sed 's/.*github.com[:/]\([^/]*\/[^/]*\).*/\1/' | sed 's
+
+Checking for SQL injection patterns...
+✅ No SQL injection patterns found
+
+Checking for eval() usage...
+⚠️ Found eval() usage - review manually:
+./tools/security-scanner.js:276:                name: 'eval() usage',
+./security/Snyk/tools/gas-security-scanner.js:64:            description: 'Use of eval() function - potential code injection'
+./security/Snyk/tools/gas-security-scanner.js:326:        description: 'Replace eval(), innerHTML, and other dangerous functions with safer alternatives'
+
+
+========================================
+📊 SECURITY SCAN SUMMARY
+========================================
+Snyk issues: 2
+Shell script issues: 3
+Google Apps Script issues: 96
+Security pattern matches: 2
+
+Generated files:
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_calendar-analysis-duration-distance.gs_2025-07-19_21-20-18-305Z.txt (418 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_calendar-export-daily.gs_2025-07-19_21-20-18-305Z.txt (214 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_calendar-export-date-range.gs_2025-07-19_21-20-18-305Z.txt (202 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_calendar-export-distance-time.gs_2025-07-19_21-20-18-305Z.txt (405 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_calendar-export-obsidian.gs_2025-07-19_21-20-18-305Z.txt (420 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_chat-export-daily-details.gs_2025-07-19_21-20-18-305Z.txt (178 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_docs-embed-content-block.gs_2025-07-19_21-20-18-305Z.txt (216 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_docs-export-comments-sheets.gs_2025-07-19_21-20-18-305Z.txt (722 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_docs-export-file-list-to-sheets.gs_2025-07-19_21-20-18-305Z.txt (215 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_docs-export-markdown-advanced.gs_2025-07-19_21-20-18-305Z.txt (227 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_docs-export-markdown-obsidian.gs_2025-07-19_21-20-18-305Z.txt (643 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_docs-formatter.gs_2025-07-19_21-20-18-305Z.txt (1065 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-docs-find-by-alias.gs_2025-07-19_21-20-18-305Z.txt (758 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-index-all-files.gs_2025-07-19_21-20-18-305Z.txt (216 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-index-docs-files.gs_2025-07-19_21-20-18-305Z.txt (210 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-index-file-tree-generator.gs_2025-07-19_21-20-18-305Z.txt (864 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-index-markdown-files.gs_2025-07-19_21-20-18-305Z.txt (218 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-index-tree-v100-legacy.gs_2025-07-19_21-20-18-305Z.txt (184 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-index-v10-legacy.gs_2025-07-19_21-20-18-305Z.txt (214 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-index-v100-legacy.gs_2025-07-19_21-20-18-305Z.txt (810 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-manager-comprehensive-indexer.gs_2025-07-19_21-20-18-305Z.txt (1526 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-markdown-format-yaml-legacy.gs_2025-07-19_21-20-18-305Z.txt (438 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-markdown-lint-spacing.gs_2025-07-19_21-20-18-305Z.txt (234 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-markdown-move-update-metadata.gs_2025-07-19_21-20-18-305Z.txt (676 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-markdown-process-blank-links.gs_2025-07-19_21-20-18-305Z.txt (241 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-notes-create-weekly-daily-vx-legacy.gs_2025-07-19_21-20-18-305Z.txt (236 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-notes-create-weekly-daily.gs_2025-07-19_21-20-18-305Z.txt (232 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-notes-generate-weekly.gs_2025-07-19_21-20-18-305Z.txt (1254 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-shortcuts-convert.gs_2025-07-19_21-20-18-305Z.txt (218 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-utility-deduplicate-files.gs_2025-07-19_21-20-18-305Z.txt (224 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-utility-script-21.gs_2025-07-19_21-20-18-305Z.txt (1437 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-utility-script-25.gs_2025-07-19_21-20-18-305Z.txt (217 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-yaml-add-frontmatter-bulk.gs_2025-07-19_21-20-18-305Z.txt (637 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-yaml-add-frontmatter-multi.gs_2025-07-19_21-20-18-305Z.txt (641 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-yaml-add-simple.gs_2025-07-19_21-20-18-305Z.txt (1425 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-yaml-dataview-categories.gs_2025-07-19_21-20-18-305Z.txt (189 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-yaml-finder.gs_2025-07-19_21-20-18-305Z.txt (601 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_drive-yaml-folder-categories.gs_2025-07-19_21-20-18-305Z.txt (425 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_email-data-24months-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt (230 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_email-export-pdf-md-sheets-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt (649 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_email-labels-data-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt (226 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-analysis-24months.gs_2025-07-19_21-20-18-305Z.txt (224 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-analysis-label-statistics.gs_2025-07-19_21-20-18-305Z.txt (226 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-analysis-labeled-vs-unlabeled-count.gs_2025-07-19_21-20-18-305Z.txt (249 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-analysis-labels-data.gs_2025-07-19_21-20-18-305Z.txt (225 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-analysis-markdown-yaml-v2.gs_2025-07-19_21-20-18-305Z.txt (658 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-analysis-markdown-yaml.gs_2025-07-19_21-20-18-305Z.txt (649 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-analysis-metadata-misc.gs_2025-07-19_21-20-18-305Z.txt (217 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-advanced-sheets.gs_2025-07-19_21-20-18-305Z.txt (631 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-basic-sheets.gs_2025-07-19_21-20-18-305Z.txt (622 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-docs-pdf.gs_2025-07-19_21-20-18-305Z.txt (4556 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-emails-pdf-attachments.gs_2025-07-19_21-20-18-305Z.txt (1947 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-labels-to-sheets.gs_2025-07-19_21-20-18-305Z.txt (230 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-pdf-markdown.gs_2025-07-19_21-20-18-305Z.txt (622 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-pdf-only.gs_2025-07-19_21-20-18-305Z.txt (4556 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-transportation-emails-markdown.gs_2025-07-19_21-20-18-305Z.txt (206 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-weekly-threads-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt (221 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-export-weekly-threads.gs_2025-07-19_21-20-18-305Z.txt (213 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-label-maker-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt (1042 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-analysis-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt (224 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-analysis.gs_2025-07-19_21-20-18-305Z.txt (216 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-count.gs_2025-07-19_21-20-18-305Z.txt (226 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-create-basic.gs_2025-07-19_21-20-18-305Z.txt (1042 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-create-sender.gs_2025-07-19_21-20-18-305Z.txt (807 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-date-processor-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt (645 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-date-processor.gs_2025-07-19_21-20-18-305Z.txt (621 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-delete-all-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt (228 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-delete-all.gs_2025-07-19_21-20-18-305Z.txt (220 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-export-to-sheets-copy-legacy.gs_2025-07-19_21-20-18-305Z.txt (238 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-export-to-sheets.gs_2025-07-19_21-20-18-305Z.txt (230 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-statistics.gs_2025-07-19_21-20-18-305Z.txt (224 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-status-count.gs_2025-07-19_21-20-18-305Z.txt (233 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-labels-unread-count.gs_2025-07-19_21-20-18-305Z.txt (224 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-metadata-tools.gs_2025-07-19_21-20-18-305Z.txt (606 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-process-auto-label-by-sender.gs_2025-07-19_21-20-18-305Z.txt (839 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-utility-delete-all-labels.gs_2025-07-19_21-20-18-305Z.txt (228 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-utility-header-cleaner.gs_2025-07-19_21-20-18-305Z.txt (230 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-utility-mark-read.gs_2025-07-19_21-20-18-305Z.txt (612 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-utility-markdown-fixer.gs_2025-07-19_21-20-18-305Z.txt (417 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-utility-md-linter.gs_2025-07-19_21-20-18-305Z.txt (407 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-utility-script-17.gs_2025-07-19_21-20-18-305Z.txt (209 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_gmail-utility-script-23.gs_2025-07-19_21-20-18-305Z.txt (600 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_photos-export-albums-to-sheets.gs_2025-07-19_21-20-18-305Z.txt (1785 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-create-markdown.gs_2025-07-19_21-20-18-305Z.txt (1472 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-create-tree-diagram.gs_2025-07-19_21-20-18-305Z.txt (219 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-csv-combiner.gs_2025-07-19_21-20-18-305Z.txt (211 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-format-comprehensive-styling.gs_2025-07-19_21-20-18-305Z.txt (431 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-index-folders-files.gs_2025-07-19_21-20-18-305Z.txt (218 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-index-general.gs_2025-07-19_21-20-18-305Z.txt (209 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-process-date-automation.gs_2025-07-19_21-20-18-305Z.txt (214 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-utility-script-22.gs_2025-07-19_21-20-18-305Z.txt (216 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_sheets-utility-tab-sorter.gs_2025-07-19_21-20-18-305Z.txt (599 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_tasks-export-markdown-yaml.gs_2025-07-19_21-20-18-305Z.txt (600 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_tasks-export-obsidian.gs_2025-07-19_21-20-18-305Z.txt (573 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_tasks-export-todos-markdown.gs_2025-07-19_21-20-18-305Z.txt (603 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/eslint_utility-api-key-checker.gs_2025-07-19_21-20-18-305Z.txt (195 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/security_scan_report_2025-07-19_21-20-18-305Z.txt (47232 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/shellcheck_comprehensive-security-scan.sh_2025-07-19_21-20-18-305Z.txt (355 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/shellcheck_init-git.sh_2025-07-19_21-20-18-305Z.txt (0 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/shellcheck_scan-all-scripts.sh_2025-07-19_21-20-18-305Z.txt (0 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/shellcheck_setup-github-actions.sh_2025-07-19_21-20-18-305Z.txt (0 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/shellcheck_setup-ide.sh_2025-07-19_21-20-18-305Z.txt (0 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/shellcheck_setup-snyk-security.sh_2025-07-19_21-20-18-305Z.txt (305 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/shellcheck_verify-setup.sh_2025-07-19_21-20-18-305Z.txt (2024 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/snyk_code_2025-07-19_21-20-18-305Z.sarif (64448 bytes)
+  /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/snyk_deps_2025-07-19_21-20-18-305Z.json (3084 bytes)
+
+✅ Security scan completed!
+📋 Full report saved to: /Users/kevinlappe/Documents/GitHub/Workspace Automation/security/scan-results/security_scan_report_2025-07-19_21-20-18-305Z.txt
+
+📋 TO ADDRESS ISSUES:
+1. Review Snyk Code results for JavaScript/TypeScript security issues
+2. Check shellcheck results for shell script issues
+3. Review ESLint results for Google Apps Script issues
+4. Manually review any flagged security patterns

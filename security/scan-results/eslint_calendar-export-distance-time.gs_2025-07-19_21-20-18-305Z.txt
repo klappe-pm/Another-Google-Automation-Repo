@@ -1,0 +1,4 @@
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/calendar/Exports/calendar-export-distance-time.gs: line 20, col 10, Warning - 'exportAllCalendarEvents' is defined but never used. (no-unused-vars)
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/calendar/Exports/calendar-export-distance-time.gs: line 137, col 20, Warning - 'Calendar' is not defined. (no-undef)
+
+2 problems

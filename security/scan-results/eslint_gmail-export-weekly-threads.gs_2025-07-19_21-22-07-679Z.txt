@@ -1,0 +1,3 @@
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Export Functions/gmail-export-weekly-threads.gs: line 8, col 10, Warning - 'listEmails' is defined but never used. (no-unused-vars)
+
+1 problem

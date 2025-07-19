@@ -9,6 +9,34 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
+/**
+ * Validates and sanitizes file paths to prevent path traversal attacks
+ * @param {string} inputPath - The path to validate
+ * @param {string} basePath - Optional base path to restrict access to
+ * @returns {string} - Validated and resolved path
+ * @throws {Error} - If path is invalid or contains traversal attempts
+ */
+function validatePath(inputPath, basePath = process.cwd()) {
+  if (!inputPath || typeof inputPath !== 'string') {
+    throw new Error('Invalid path input: must be a non-empty string');
+  }
+  
+  // Prevent directory traversal attempts
+  if (inputPath.includes('..') || inputPath.includes('~') || inputPath.startsWith('/')) {
+    throw new Error('Path traversal attempt detected');
+  }
+  
+  // Resolve the path and ensure it's within the base directory
+  const resolvedPath = path.resolve(basePath, inputPath);
+  const resolvedBase = path.resolve(basePath);
+  
+  if (!resolvedPath.startsWith(resolvedBase)) {
+    throw new Error('Path outside of allowed directory');
+  }
+  
+  return resolvedPath;
+}
+
 class EnhancedGASDeploymentManager {
   constructor() {
     this.rootDir = process.cwd();
@@ -123,7 +151,8 @@ class EnhancedGASDeploymentManager {
   }
 
   getProjectConfig(projectPath) {
-    const configPath = path.join(projectPath, 'project-config.json');
+    const validatedProjectPath = validatePath(projectPath, this.rootDir);
+    const configPath = path.join(validatedProjectPath, 'project-config.json');
     if (!fs.existsSync(configPath)) {
       throw new Error(`Project config not found: ${configPath}`);
     }
@@ -142,7 +171,8 @@ class EnhancedGASDeploymentManager {
   }
 
   updateClaspJson(projectPath, scriptId) {
-    const claspPath = path.join(projectPath, '.clasp.json');
+    const validatedProjectPath = validatePath(projectPath, this.rootDir);
+    const claspPath = path.join(validatedProjectPath, '.clasp.json');
     let claspConfig = {};
     
     if (fs.existsSync(claspPath)) {
@@ -172,7 +202,8 @@ class EnhancedGASDeploymentManager {
       config.version = this.incrementVersion(config.version || '1.0.0');
     }
 
-    const configPath = path.join(projectPath, 'project-config.json');
+    const validatedProjectPath = validatePath(projectPath, this.rootDir);
+    const configPath = path.join(validatedProjectPath, 'project-config.json');
     fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
     
     console.log(`📝 Updated ${projectName} status: ${oldStatus} → ${newStatus}`);
@@ -217,13 +248,15 @@ class EnhancedGASDeploymentManager {
     // Keep only last 10 deployments
     config.deploymentHistory = config.deploymentHistory.slice(0, 10);
 
-    const configPath = path.join(projectPath, 'project-config.json');
+    const validatedProjectPath = validatePath(projectPath, this.rootDir);
+    const configPath = path.join(validatedProjectPath, 'project-config.json');
     fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
   }
 
   async updateStatusDashboard() {
-    if (!fs.existsSync(this.configDir)) {
-      fs.mkdirSync(this.configDir, { recursive: true });
+    const validatedConfigDir = validatePath(this.configDir, this.rootDir);
+    if (!fs.existsSync(validatedConfigDir)) {
+      fs.mkdirSync(validatedConfigDir, { recursive: true });
     }
 
     const projects = this.getProjects();
@@ -237,7 +270,7 @@ class EnhancedGASDeploymentManager {
     };
 
     projects.forEach(projectName => {
-      const projectPath = path.join(this.projectsDir, projectName);
+      const projectPath = validatePath(path.join(this.projectsDir, projectName), this.rootDir);
       try {
         const config = this.getProjectConfig(projectPath);
         const srcPath = path.join(projectPath, 'src');
@@ -256,7 +289,8 @@ class EnhancedGASDeploymentManager {
       }
     });
 
-    fs.writeFileSync(this.statusConfigPath, JSON.stringify(dashboard, null, 2));
+    const validatedStatusPath = validatePath(this.statusConfigPath, this.rootDir);
+    fs.writeFileSync(validatedStatusPath, JSON.stringify(dashboard, null, 2));
     console.log(`📊 Updated deployment status dashboard`);
   }
 
@@ -302,7 +336,8 @@ class EnhancedGASDeploymentManager {
     } else {
       // Show all projects status
       if (fs.existsSync(this.statusConfigPath)) {
-        const dashboard = JSON.parse(fs.readFileSync(this.statusConfigPath, 'utf8'));
+        const validatedStatusPath = validatePath(this.statusConfigPath, this.rootDir);
+        const dashboard = JSON.parse(fs.readFileSync(validatedStatusPath, 'utf8'));
         
         console.log(`\n📊 Deployment Status Dashboard`);
         console.log(`Last Updated: ${dashboard.repository.lastUpdated}`);
@@ -320,7 +355,7 @@ class EnhancedGASDeploymentManager {
         console.log(`📋 No status dashboard found. Projects need to be set up first.`);
         
         // Show available projects from scripts directory
-        const scriptsDir = path.join(this.rootDir, 'scripts');
+        const scriptsDir = validatePath(path.join(this.rootDir, 'scripts'), this.rootDir);
         if (fs.existsSync(scriptsDir)) {
           console.log(`\n📁 Available services in scripts directory:`);
           const services = fs.readdirSync(scriptsDir).filter(item => {
@@ -359,14 +394,16 @@ class EnhancedGASDeploymentManager {
       return [];
     }
     
-    return fs.readdirSync(this.projectsDir)
+    const validatedProjectsDir = validatePath(this.projectsDir, this.rootDir);
+    return fs.readdirSync(validatedProjectsDir)
       .filter(item => {
-        const itemPath = path.join(this.projectsDir, item);
+        const itemPath = path.join(validatedProjectsDir, item);
         return fs.statSync(itemPath).isDirectory();
       });
   }
 
   validateProject(projectPath) {
+    const validatedProjectPath = validatePath(projectPath, this.rootDir);
     const requiredFiles = [
       '.clasp.json',
       'appsscript.json', 
@@ -374,20 +411,21 @@ class EnhancedGASDeploymentManager {
     ];
     
     for (const file of requiredFiles) {
-      const filePath = path.join(projectPath, file);
+      const filePath = path.join(validatedProjectPath, file);
       if (!fs.existsSync(filePath)) {
-        throw new Error(`Missing required file: ${file} in ${projectPath}`);
+        throw new Error(`Missing required file: ${file} in ${validatedProjectPath}`);
       }
     }
 
-    const srcPath = path.join(projectPath, 'src');
+    const srcPath = path.join(validatedProjectPath, 'src');
     if (!fs.existsSync(srcPath) || fs.readdirSync(srcPath).length === 0) {
       throw new Error(`No source files found in ${srcPath}`);
     }
   }
 
   updateAppsScriptJson(projectPath, config) {
-    const appsscriptPath = path.join(projectPath, 'appsscript.json');
+    const validatedProjectPath = validatePath(projectPath, this.rootDir);
+    const appsscriptPath = path.join(validatedProjectPath, 'appsscript.json');
     let appsscript = {
       "timeZone": "America/Los_Angeles",
       "dependencies": {},
@@ -435,10 +473,11 @@ class EnhancedGASDeploymentManager {
   }
 
   async pushToGAS(projectPath) {
+    const validatedProjectPath = validatePath(projectPath, this.rootDir);
     const originalCwd = process.cwd();
     
     try {
-      process.chdir(projectPath);
+      process.chdir(validatedProjectPath);
       
       try {
         execSync('clasp login --status', { stdio: 'pipe' });

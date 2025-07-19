@@ -16,7 +16,7 @@ NC='\033[0m' # No Color
 
 # Function to print status
 print_status() {
-    if [ $1 -eq 0 ]; then
+    if [ "$1" -eq 0 ]; then
         echo -e "${GREEN}✅ $2${NC}"
     else
         echo -e "${RED}❌ $2${NC}"
@@ -43,7 +43,7 @@ echo "================================"
 print_info "Checking Node.js version..."
 if command -v node &> /dev/null; then
     NODE_VERSION=$(node --version)
-    NODE_MAJOR=$(echo $NODE_VERSION | cut -d'.' -f1 | tr -d 'v')
+    NODE_MAJOR=$(echo "$NODE_VERSION" | cut -d'.' -f1 | tr -d 'v')
     if [ "$NODE_MAJOR" -ge 18 ]; then
         print_status 0 "Node.js version: $NODE_VERSION"
     else
@@ -130,7 +130,7 @@ print_info "Checking tools directory..."
 if [ -d "tools" ]; then
     TOOL_COUNT=$(find tools -name "*.js" | wc -l)
     POPULATED_TOOLS=$(find tools -name "*.js" -size +0c | wc -l)
-    if [ $POPULATED_TOOLS -gt 0 ]; then
+    if [ "$POPULATED_TOOLS" -gt 0 ]; then
         print_status 0 "Tools directory exists ($POPULATED_TOOLS/$TOOL_COUNT tool files populated)"
     else
         print_status 1 "Tools directory exists but files are empty ($TOOL_COUNT files need content)"
@@ -145,13 +145,13 @@ fi
 print_info "Checking projects directory..."
 if [ -d "projects" ]; then
     PROJECT_COUNT=$(find projects -maxdepth 1 -type d | tail -n +2 | wc -l)
-    if [ $PROJECT_COUNT -gt 0 ]; then
+    if [ "$PROJECT_COUNT" -gt 0 ]; then
         print_status 0 "Projects directory exists ($PROJECT_COUNT project directories)"
         
         # List projects
         echo "   Projects found:"
-        find projects -maxdepth 1 -type d | tail -n +2 | while read dir; do
-            echo "   - $(basename $dir)"
+        find projects -maxdepth 1 -type d | tail -n +2 | while read -r dir; do
+            echo "   - $(basename "$dir")"
         done
     else
         print_warning "Projects directory exists but is empty (will be populated during migration)"
@@ -228,7 +228,7 @@ if [ ! -d "node_modules" ]; then
 fi
 
 PROJECTS_POPULATED=$(find projects -name "*.gs" 2>/dev/null | wc -l)
-if [ $PROJECTS_POPULATED -eq 0 ]; then
+if [ "$PROJECTS_POPULATED" -eq 0 ]; then
     echo "❓ NEEDED: Migrate existing scripts to new project structure"
 fi
 
@@ -271,7 +271,7 @@ if [ $OVERALL_SUCCESS -eq 0 ]; then
     if [ ! -d "node_modules" ]; then
         echo "  3. Run: npm install"
     fi
-    if [ $PROJECTS_POPULATED -eq 0 ]; then
+    if [ "$PROJECTS_POPULATED" -eq 0 ]; then
         echo "  4. Run migration: npm run migrate"
     fi
     echo "  5. Test deployment: npm run status"

@@ -1,0 +1,64 @@
+
+In ./verify-setup.sh line 19:
+    if [ $1 -eq 0 ]; then
+         ^-- SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    if [ "$1" -eq 0 ]; then
+
+
+In ./verify-setup.sh line 46:
+    NODE_MAJOR=$(echo $NODE_VERSION | cut -d'.' -f1 | tr -d 'v')
+                      ^-----------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    NODE_MAJOR=$(echo "$NODE_VERSION" | cut -d'.' -f1 | tr -d 'v')
+
+
+In ./verify-setup.sh line 133:
+    if [ $POPULATED_TOOLS -gt 0 ]; then
+         ^--------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    if [ "$POPULATED_TOOLS" -gt 0 ]; then
+
+
+In ./verify-setup.sh line 148:
+    if [ $PROJECT_COUNT -gt 0 ]; then
+         ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    if [ "$PROJECT_COUNT" -gt 0 ]; then
+
+
+In ./verify-setup.sh line 153:
+        find projects -maxdepth 1 -type d | tail -n +2 | while read dir; do
+                                                               ^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./verify-setup.sh line 154:
+            echo "   - $(basename $dir)"
+                                  ^--^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+            echo "   - $(basename "$dir")"
+
+
+In ./verify-setup.sh line 231:
+if [ $PROJECTS_POPULATED -eq 0 ]; then
+     ^-----------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+if [ "$PROJECTS_POPULATED" -eq 0 ]; then
+
+
+In ./verify-setup.sh line 274:
+    if [ $PROJECTS_POPULATED -eq 0 ]; then
+         ^-----------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    if [ "$PROJECTS_POPULATED" -eq 0 ]; then
+
+For more information:
+  https://www.shellcheck.net/wiki/SC2086 -- Double quote to prevent globbing ...
+  https://www.shellcheck.net/wiki/SC2162 -- read without -r will mangle backs...
