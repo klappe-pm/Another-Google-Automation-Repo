@@ -32,7 +32,11 @@
     "version:release": "node tools/repository/version-manager.js release",
     "version:notes": "node tools/repository/version-manager.js notes",
     "publication:check": "npm run repo:review && npm run repo:report",
-    "publication:prepare": "npm run repo:review && npm run version:bump-minor && npm run repo:report"
+    "publication:prepare": "npm run repo:review && npm run version:bump-minor && npm run repo:report",
+    "git:sync": "./tools/git-sync.sh interactive",
+    "git:sync-auto": "./tools/git-sync.sh auto",
+    "git:quick-sync": "./tools/quick-sync.sh",
+    "git:push-safe": "./tools/git-sync.sh auto 'Safe automated push with sync'"
   },
   "repository": {
     "type": "git",

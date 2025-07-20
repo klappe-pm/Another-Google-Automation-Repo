@@ -1,0 +1,5 @@
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Analysis Tools/gmail-analysis-markdown-yaml.gs: line 33, col 10, Warning - 'processEmails' is defined but never used. (no-unused-vars)
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Analysis Tools/gmail-analysis-markdown-yaml.gs: line 71, col 10, Warning - 'processEmailsByIds' is defined but never used. (no-unused-vars)
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Analysis Tools/gmail-analysis-markdown-yaml.gs: line 147, col 9, Warning - 'bracketedMarkdownFile' is assigned a value but never used. (no-unused-vars)
+
+3 problems

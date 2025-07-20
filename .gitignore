@@ -100,3 +100,12 @@ yarn-error.log*
 
 # Google Drive temp files
 ~$*
+
+# Backup and temporary files
+*.bak
+*.backup
+*~
+.DS_Store
+.DS_Store?
+*.bak
+.DS_Store

@@ -88,19 +88,37 @@ Another Google Automation Repository (AGAR) is a curated collection of Google Ap
 ## 📁 Repository Architecture
 
 ```
-Workspace Automation/
-├── scripts/
-│   ├── gmail/
-│   ├── drive/
-│   ├── calendar/
-│   ├── docs/
-│   ├── sheets/
-│   ├── tasks/
-│   ├── chat/
-│   └── slides/
-├── tools/
-├── templates/
-└── security/
+Workspace Automation/                 # ✨ Ultra-clean, minimal structure
+├── scripts/                         # 🎯 Google Apps Script Collection (121+ scripts)
+│   ├── gmail/                      # Email automation and management
+│   ├── drive/                      # File indexing and organization  
+│   ├── calendar/                   # Event export and analysis
+│   ├── docs/                       # Document conversion and processing
+│   ├── sheets/                     # Data processing and visualization
+│   ├── tasks/                      # Task management and export
+│   ├── chat/                       # Communication analysis
+│   └── slides/                     # Presentation automation (planned)
+├── tools/                          # 🛠️ All utilities and management tools
+│   ├── repository/                 # Review, reporting, versioning tools
+│   ├── git-sync.sh                 # Intelligent git automation
+│   ├── quick-sync.sh               # Quick git sync utility
+│   ├── templates/                  # Script and config templates
+│   ├── config/                     # Deployment configurations
+│   └── *.sh                        # Setup and maintenance scripts
+├── .github/workflows/              # 🤖 Enterprise-grade automation
+│   ├── daily-health-check.yml      # Daily monitoring and reporting
+│   ├── weekly-analysis.yml         # Weekly deep analysis
+│   └── release-automation.yml      # One-click releases
+├── docs/                           # 📚 Project documentation and analysis
+│   ├── security/                   # Security reviews and analysis
+│   ├── SECURITY_REVIEW.md          # Comprehensive security analysis
+│   └── STANDARDIZATION_ACTION_PLAN.md # Project planning
+├── reports/                        # 📊 Automated analytics and metrics
+├── README.md                       # 📖 Main documentation
+├── LICENSE.md                      # ⚖️ MIT License
+├── CONTRIBUTING.md                 # 🤝 Community guidelines
+├── CHANGELOG.md                    # 📅 Version history
+└── package.json                    # 📦 Project configuration
 ```
 
 ## 🚀 Quick Start Guide
@@ -133,6 +151,26 @@ Workspace Automation/
 const OUTPUT_FOLDER_ID = 'your-drive-folder-id-here';
 const TARGET_SPREADSHEET_ID = 'your-spreadsheet-id-here';
 const DATE_RANGE = { start: '2025-01-01', end: '2025-12-31' };
+```
+
+## 🚀 Repository Tools
+
+### Quick Git Sync
+```bash
+# Use npm scripts (recommended)
+npm run git:quick-sync     # Interactive git sync
+npm run git:sync-auto      # Automated git sync
+
+# Or call directly
+./tools/quick-sync.sh      # Interactive mode
+./tools/quick-sync.sh auto # Automated mode
+```
+
+### Repository Management
+```bash
+npm run repo:review        # Check publication readiness
+npm run repo:report        # Generate analytics
+npm run version:current    # Check current version
 ```
 
 ## 💡 Common Use Cases & Solutions

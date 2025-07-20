@@ -50,6 +50,18 @@ jobs:
       run: |
         echo "📊 Generating repository reports..."
         npm run repo:report || true
+        
+        # Create monthly security report with YYYY-MM naming
+        YEAR_MONTH=$(date '+%Y-%m')
+        if [ -f "reports/security-report-*.json" ]; then
+          # Find the latest security report and rename it
+          LATEST_SECURITY=$(ls -t reports/security-report-*.json | head -1)
+          if [ -f "$LATEST_SECURITY" ]; then
+            TIMESTAMP=$(date '+%Y-%m-%dT%H-%M-%S')
+            mv "$LATEST_SECURITY" "reports/${YEAR_MONTH}-security-report-${TIMESTAMP}.json"
+            echo "Renamed security report to use YYYY-MM format"
+          fi
+        fi
 
     - name: Get current version
       id: version

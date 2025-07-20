@@ -1,0 +1,3 @@
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Label Management/gmail-labels-status-count.gs: line 47, col 10, Warning - 'countEmailsWithAndWithoutLabels' is defined but never used. (no-unused-vars)
+
+1 problem

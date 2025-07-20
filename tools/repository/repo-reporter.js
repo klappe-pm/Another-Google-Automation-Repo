@@ -75,6 +75,7 @@ class RepositoryReporter {
     
     const security = {
       timestamp: this.timestamp,
+      reportMonth: new Date().toISOString().substring(0, 7), // YYYY-MM format
       vulnerabilities: await this.scanVulnerabilities(),
       dependencies: await this.analyzeDependencies(),
       sensitiveFiles: await this.checkSensitiveFiles(),
@@ -896,10 +897,17 @@ class RepositoryReporter {
 
   async saveReports(reports, dashboard) {
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const yearMonth = new Date().toISOString().substring(0, 7); // YYYY-MM format
     
-    // Save individual reports
+    // Save individual reports with YYYY-MM prefix for security reports
     Object.entries(reports).forEach(([name, report]) => {
-      const filename = `${name}-report-${timestamp}.json`;
+      let filename;
+      if (name === 'security') {
+        filename = `${yearMonth}-security-report-${timestamp}.json`;
+      } else {
+        filename = `${name}-report-${timestamp}.json`;
+      }
+      
       const filepath = path.join(this.reportsDir, filename);
       fs.writeFileSync(filepath, JSON.stringify(report, null, 2));
       console.log(`📄 ${name} report saved: ${filename}`);
