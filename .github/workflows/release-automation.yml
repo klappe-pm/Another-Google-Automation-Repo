@@ -1,0 +1,278 @@
+name: Release Automation
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: 'Release type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+        - patch
+        - minor
+        - major
+      create_release:
+        description: 'Create GitHub release'
+        required: false
+        default: true
+        type: boolean
+
+jobs:
+  prepare-release:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    
+    outputs:
+      new_version: ${{ steps.version.outputs.new_version }}
+      release_notes: ${{ steps.notes.outputs.release_notes }}
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run pre-release validation
+      id: validation
+      run: |
+        echo "🔍 Running pre-release validation..."
+        
+        # Run repository review
+        npm run repo:review
+        review_exit_code=$?
+        
+        if [ $review_exit_code -ne 0 ]; then
+          echo "❌ Repository review failed. Cannot proceed with release."
+          echo "validation_passed=false" >> $GITHUB_OUTPUT
+          exit 1
+        else
+          echo "✅ Repository review passed"
+          echo "validation_passed=true" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Bump version
+      id: version
+      run: |
+        echo "📈 Bumping version (${{ inputs.release_type }})..."
+        
+        OLD_VERSION=$(npm run version:current --silent)
+        NEW_VERSION=$(npm run version:bump-${{ inputs.release_type }} --silent | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+' | tail -1)
+        
+        echo "old_version=$OLD_VERSION" >> $GITHUB_OUTPUT
+        echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+        
+        echo "Version bumped: $OLD_VERSION → $NEW_VERSION"
+
+    - name: Generate release notes
+      id: notes
+      run: |
+        echo "📝 Generating release notes..."
+        
+        NEW_VERSION="${{ steps.version.outputs.new_version }}"
+        npm run version:notes "$NEW_VERSION"
+        
+        # Read the generated release notes
+        RELEASE_NOTES_FILE="reports/release-notes-$NEW_VERSION.md"
+        if [ -f "$RELEASE_NOTES_FILE" ]; then
+          echo "release_notes_path=$RELEASE_NOTES_FILE" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Update documentation
+      run: |
+        echo "📖 Updating release documentation..."
+        
+        # Update main README with new version
+        NEW_VERSION="${{ steps.version.outputs.new_version }}"
+        sed -i "s/Version: [0-9]\+\.[0-9]\+\.[0-9]\+/Version: $NEW_VERSION/g" README.md || true
+        sed -i "s/Last Major Update: .*/Last Major Update: $(date '+%B %d, %Y')/g" README.md || true
+
+    - name: Commit release changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action - Release"
+        
+        NEW_VERSION="${{ steps.version.outputs.new_version }}"
+        OLD_VERSION="${{ steps.version.outputs.old_version }}"
+        
+        git add .
+        git commit -m "release: Version $NEW_VERSION
+
+        - Bump version from $OLD_VERSION to $NEW_VERSION
+        - Generate release notes and documentation
+        - Update changelog and version history
+        - Automated release preparation
+        
+        Release Type: ${{ inputs.release_type }}
+        
+        [automated-release]" || echo "No changes to commit"
+        
+        git push
+
+    - name: Create Git tag
+      run: |
+        NEW_VERSION="${{ steps.version.outputs.new_version }}"
+        git tag -a "v$NEW_VERSION" -m "Release version $NEW_VERSION"
+        git push origin "v$NEW_VERSION"
+
+  create-github-release:
+    needs: prepare-release
+    runs-on: ubuntu-latest
+    if: ${{ inputs.create_release }}
+    
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        ref: main
+
+    - name: Create GitHub Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ needs.prepare-release.outputs.new_version }}
+        release_name: Release v${{ needs.prepare-release.outputs.new_version }}
+        body: |
+          # 🚀 Release v${{ needs.prepare-release.outputs.new_version }}
+          
+          **Release Type**: ${{ inputs.release_type }}
+          **Release Date**: ${{ github.event.head_commit.timestamp }}
+          
+          ## 📋 What's New
+          
+          This is an automated release with the following improvements:
+          
+          ### 🔧 Repository Management
+          - Automated health monitoring and reporting
+          - Comprehensive security and quality analysis
+          - Version management and release automation
+          - Professional documentation standards
+          
+          ### 📊 Key Metrics
+          - **Total Scripts**: 121+ Google Apps Script automation tools
+          - **Services Covered**: Gmail, Drive, Calendar, Docs, Sheets, Tasks, Chat, Slides
+          - **Documentation**: Complete README files for all services
+          - **Quality Score**: Publication-ready repository standards
+          
+          ## 📥 Installation & Usage
+          
+          1. **Clone the repository**:
+             ```bash
+             git clone https://github.com/kevinlappe/workspace-automation.git
+             cd workspace-automation
+             ```
+          
+          2. **Install dependencies**:
+             ```bash
+             npm install
+             ```
+          
+          3. **Run repository tools**:
+             ```bash
+             npm run repo:review    # Check repository health
+             npm run repo:report    # Generate analytics
+             npm run version:current # Check version
+             ```
+          
+          4. **Use automation scripts**:
+             - Browse `scripts/` directory for Google Apps Script tools
+             - Follow service-specific README files for setup instructions
+             - Copy desired scripts to your Google Apps Script projects
+          
+          ## 🔗 Resources
+          
+          - **Documentation**: See README.md and service-specific guides
+          - **License**: MIT License (commercial use allowed)
+          - **Support**: kevin@averageintelligence.ai
+          - **Repository**: https://github.com/kevinlappe/workspace-automation
+          
+          ## 🙏 Acknowledgments
+          
+          Thank you to the Google Apps Script community and all users who have contributed feedback and suggestions.
+          
+          ---
+          
+          **Full Changelog**: https://github.com/kevinlappe/workspace-automation/compare/v${{ needs.prepare-release.outputs.old_version }}...v${{ needs.prepare-release.outputs.new_version }}
+        draft: false
+        prerelease: false
+
+  post-release-tasks:
+    needs: [prepare-release, create-github-release]
+    runs-on: ubuntu-latest
+    if: always()
+    
+    permissions:
+      issues: write
+    
+    steps:
+    - name: Create post-release issue
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const version = '${{ needs.prepare-release.outputs.new_version }}';
+          const releaseType = '${{ inputs.release_type }}';
+          const success = '${{ needs.create-github-release.result }}' === 'success';
+          
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `🚀 Post-Release Tasks - v${version}`,
+            body: `# Post-Release Checklist - v${version}
+            
+            **Release Status**: ${success ? '✅ SUCCESS' : '⚠️ PARTIAL/FAILED'}
+            **Release Type**: ${releaseType}
+            **Release Date**: ${new Date().toISOString().split('T')[0]}
+            
+            ## ✅ Completed Tasks
+            ${success ? '- [x]' : '- [ ]'} Version bumped to v${version}
+            ${success ? '- [x]' : '- [ ]'} Git tag created
+            ${success ? '- [x]' : '- [ ]'} GitHub release published
+            - [x] Release notes generated
+            - [x] Documentation updated
+            
+            ## 📋 Manual Tasks (Complete These)
+            - [ ] **Announce release** on social media/communication channels
+            - [ ] **Update any external documentation** that references version numbers
+            - [ ] **Monitor for community feedback** and issues
+            - [ ] **Update project roadmap** based on this release
+            - [ ] **Consider blog post** for major releases
+            - [ ] **Notify key users** of significant changes
+            
+            ## 📊 Release Impact
+            - **Repository Health**: Check latest daily reports
+            - **Community Engagement**: Monitor stars, forks, and issues
+            - **Usage Analytics**: Track script adoption and feedback
+            
+            ## 🎯 Next Release Planning
+            - Review feedback from this release
+            - Plan next features or improvements
+            - Schedule next release based on development velocity
+            
+            ## 📁 Release Artifacts
+            - Release notes: \`reports/release-notes-${version}.md\`
+            - Version history: Run \`npm run version:history\`
+            - GitHub release: https://github.com/kevinlappe/workspace-automation/releases/tag/v${version}
+            
+            ---
+            *Close this issue after completing all manual post-release tasks.*
+            `,
+            labels: ['release', 'post-release', 'manual-tasks']
+          })

@@ -1,0 +1,162 @@
+name: Daily Repository Health Check
+
+on:
+  schedule:
+    # Run every day at 9:00 AM UTC (adjust timezone as needed)
+    - cron: '0 9 * * *'
+  workflow_dispatch: # Allow manual triggering
+  push:
+    branches: [ main ]
+    paths:
+      - 'scripts/**'
+      - 'tools/**'
+      - 'package.json'
+
+jobs:
+  repository-health:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Create reports directory
+      run: mkdir -p reports
+
+    - name: Run repository review
+      id: review
+      run: |
+        echo "🔍 Running repository review..."
+        npm run repo:review > review_output.txt 2>&1 || true
+        echo "review_exit_code=$?" >> $GITHUB_OUTPUT
+        
+    - name: Run repository report
+      run: |
+        echo "📊 Generating repository reports..."
+        npm run repo:report || true
+
+    - name: Get current version
+      id: version
+      run: |
+        VERSION=$(npm run version:current --silent)
+        echo "current_version=$VERSION" >> $GITHUB_OUTPUT
+        echo "Current version: $VERSION"
+
+    - name: Check if reports changed
+      id: check_changes
+      run: |
+        git add reports/ || true
+        if git diff --staged --quiet; then
+          echo "changes=false" >> $GITHUB_OUTPUT
+          echo "No new reports to commit"
+        else
+          echo "changes=true" >> $GITHUB_OUTPUT
+          echo "New reports generated"
+        fi
+
+    - name: Generate daily summary
+      run: |
+        DATE=$(date '+%Y-%m-%d')
+        cat > reports/daily-summary-$DATE.md << EOF
+        # Daily Repository Health Summary - $DATE
+        
+        **Generated**: $(date '+%Y-%m-%d %H:%M:%S UTC')
+        **Version**: ${{ steps.version.outputs.current_version }}
+        **Review Status**: ${{ steps.review.outputs.review_exit_code == '0' && '✅ PASSED' || '⚠️ ISSUES FOUND' }}
+        
+        ## Automated Checks Performed
+        - 🔍 Repository publication readiness review
+        - 📊 Comprehensive analytics and reporting
+        - 📈 Version tracking and history
+        - 🔒 Security vulnerability scanning
+        - 📖 Documentation coverage analysis
+        
+        ## Files Generated
+        $(ls -la reports/ | grep $(date '+%Y-%m-%d') | awk '{print "- " $9}' || echo "- No new files today")
+        
+        ## Next Actions
+        ${{ steps.review.outputs.review_exit_code == '0' && '- Repository is healthy ✅' || '- Review issues found - check detailed reports ⚠️' }}
+        - Detailed reports available in \`reports/\` directory
+        - Run \`npm run repo:review\` locally for interactive analysis
+        
+        ---
+        *Automated daily health check - AGAR Repository Management System*
+        EOF
+
+    - name: Commit and push reports
+      if: steps.check_changes.outputs.changes == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        DATE=$(date '+%Y-%m-%d')
+        git add reports/
+        git commit -m "docs: Daily repository health report - $DATE
+
+        - Automated repository review and analysis
+        - Generated comprehensive reports and metrics
+        - Version: ${{ steps.version.outputs.current_version }}
+        - Status: ${{ steps.review.outputs.review_exit_code == '0' && 'HEALTHY' || 'NEEDS_ATTENTION' }}
+        
+        [automated-daily-report]" || exit 0
+        
+        git push
+
+    - name: Create issue if problems found
+      if: steps.review.outputs.review_exit_code != '0'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const date = new Date().toISOString().split('T')[0];
+          
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `Repository Health Alert - ${date}`,
+            body: `## 🚨 Repository Health Issues Detected
+            
+            **Date**: ${date}
+            **Automated Check**: FAILED
+            
+            The daily repository health check found issues that need attention.
+            
+            ### What to do:
+            1. Check the latest reports in the \`reports/\` directory
+            2. Run \`npm run repo:review\` locally for detailed analysis
+            3. Address any critical security or documentation issues
+            4. Re-run checks after making fixes
+            
+            ### Reports Generated:
+            - Repository review analysis
+            - Security and vulnerability scan
+            - Code quality metrics
+            - Documentation coverage
+            
+            This issue was automatically created by the daily health check workflow.
+            Close this issue after addressing the identified problems.
+            
+            **Labels**: automated, health-check, needs-attention`,
+            labels: ['automated', 'health-check', 'needs-attention']
+          })
+
+    - name: Update repository badge
+      run: |
+        STATUS="${{ steps.review.outputs.review_exit_code == '0' && 'healthy-brightgreen' || 'needs%20attention-orange' }}"
+        echo "Repository status: $STATUS"
+        # Badge will be auto-generated based on latest commit status

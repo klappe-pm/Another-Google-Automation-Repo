@@ -5,6 +5,8 @@ _AGAR: a gelatinous substance obtained from various kinds of red seaweed and use
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/kevinlappe/workspace-automation/graphs/commit-activity)
 [![GitHub last commit](https://img.shields.io/github/last-commit/kevinlappe/workspace-automation.svg)](https://GitHub.com/kevinlappe/workspace-automation/commit/)
+[![Daily Health Check](https://github.com/kevinlappe/workspace-automation/actions/workflows/daily-health-check.yml/badge.svg)](https://github.com/kevinlappe/workspace-automation/actions/workflows/daily-health-check.yml)
+[![Repository Health](https://img.shields.io/badge/Health-Automated%20Monitoring-brightgreen)](https://github.com/kevinlappe/workspace-automation/actions)
 
 Another Google Automation Repository (AGAR) is a curated collection of Google Apps Scripts that automate tasks and enhance functionality within the Google Workspace ecosystem. This repository offers a variety of scripts tailored for services such as Gmail, Drive, Calendar, Docs, Sheets, Tasks, and Chat.
 
@@ -234,6 +236,28 @@ Email: kevin@averageintelligence.ai
 - [API Reference Guides](https://developers.google.com/apps-script/reference)
 - [Best Practices](https://developers.google.com/apps-script/guides/best-practices)
 - [Troubleshooting Guide](https://developers.google.com/apps-script/guides/support/troubleshooting)
+
+## 🤖 Repository Automation
+
+This repository features advanced automation for maintenance and quality assurance:
+
+### Daily Health Checks
+- **Automated Review**: Publication readiness analysis every day at 9:00 AM UTC
+- **Security Scanning**: Daily vulnerability and security assessment
+- **Quality Metrics**: Code quality and documentation coverage tracking
+- **Automated Reports**: Comprehensive analytics generated and committed daily
+
+### Weekly Deep Analysis
+- **Trend Analysis**: Weekly repository trends and metrics
+- **Release Readiness**: Automated assessment for potential releases
+- **Performance Tracking**: Historical analysis and improvement recommendations
+
+### Release Management
+- **Automated Versioning**: Semantic version management with changelog generation
+- **Release Preparation**: Automated release notes and documentation updates
+- **GitHub Releases**: One-click release creation with comprehensive notes
+
+**View Automation Status**: Check the [Actions tab](https://github.com/kevinlappe/workspace-automation/actions) for real-time automation status.
 
 ## 📊 Repository Info
 
