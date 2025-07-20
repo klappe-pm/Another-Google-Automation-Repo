@@ -1,0 +1,76 @@
+
+> workspace-automation@2.0.0 repo:report-overview
+> node tools/repository/repo-reporter.js overview
+
+📋 Generating Overview Report...
+{
+  "timestamp": "2025-07-20T06:10:15.400Z",
+  "repository": {
+    "name": "workspace-automation",
+    "version": "2.0.0",
+    "license": "MIT",
+    "description": "Google Apps Script automation tools with deployment status management"
+  },
+  "structure": {
+    "directories": 46,
+    "files": 675,
+    "maxDepth": 3,
+    "services": [
+      {
+        "name": "gmail",
+        "files": 2,
+        "hasReadme": true
+      },
+      {
+        "name": "drive",
+        "files": 2,
+        "hasReadme": true
+      },
+      {
+        "name": "calendar",
+        "files": 2,
+        "hasReadme": true
+      },
+      {
+        "name": "docs",
+        "files": 2,
+        "hasReadme": true
+      },
+      {
+        "name": "sheets",
+        "files": 2,
+        "hasReadme": true
+      },
+      {
+        "name": "tasks",
+        "files": 2,
+        "hasReadme": true
+      },
+      {
+        "name": "chat",
+        "files": 2,
+        "hasReadme": true
+      },
+      {
+        "name": "slides",
+        "files": 2,
+        "hasReadme": true
+      }
+    ]
+  },
+  "metrics": {
+    "totalScripts": 569,
+    "servicesWithDocumentation": 8,
+    "averageFileSize": 2682,
+    "lastModified": "2025-07-19 19:16:29 -0700"
+  },
+  "status": {
+    "isGitRepository": true,
+    "hasGitignore": true,
+    "hasLicense": true,
+    "hasReadme": true,
+    "hasPackageJson": true,
+    "branchCount": 2,
+    "uncommittedChanges": true
+  }
+}
