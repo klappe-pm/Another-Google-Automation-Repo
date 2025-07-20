@@ -1,0 +1,110 @@
+{
+  "projectName": "{{PROJECT_NAME}}",
+  "service": "{{SERVICE_NAME}}",
+  "version": "1.0.0",
+  "description": "{{PROJECT_DESCRIPTION}}",
+  "author": {
+    "name": "Kevin Lappe",
+    "email": "kevin@averageintelligence.ai",
+    "organization": "Average Intelligence"
+  },
+  "created": "{{CREATION_DATE}}",
+  "lastModified": "{{MODIFICATION_DATE}}",
+  "status": "draft",
+  "configuration": {
+    "googleAppsScript": {
+      "runtime": "V8",
+      "timeZone": "America/Los_Angeles",
+      "executionTimeout": 300,
+      "enableBetterStackTraces": true
+    },
+    "permissions": {
+      "scopes": [
+        "{{REQUIRED_SCOPES}}"
+      ],
+      "explicitScopes": true
+    },
+    "deployment": {
+      "type": "library",
+      "access": "DOMAIN",
+      "executeAs": "USER_DEPLOYING"
+    },
+    "triggers": {
+      "enabled": false,
+      "types": []
+    }
+  },
+  "dependencies": {
+    "libraries": [],
+    "externalServices": [],
+    "requiredFiles": []
+  },
+  "documentation": {
+    "readme": "README.md",
+    "changelog": "CHANGELOG.md",
+    "examples": "examples/",
+    "api": "docs/api.md"
+  },
+  "testing": {
+    "enabled": true,
+    "framework": "google-apps-script-test",
+    "testFiles": ["test/*.gs"],
+    "coverage": {
+      "enabled": false,
+      "threshold": 80
+    }
+  },
+  "build": {
+    "sourceDirectory": "src/",
+    "outputDirectory": "dist/",
+    "transpile": false,
+    "minify": false,
+    "bundler": "clasp"
+  },
+  "quality": {
+    "linting": {
+      "enabled": true,
+      "rules": "standard",
+      "ignoreFiles": ["*.min.js"]
+    },
+    "formatting": {
+      "enabled": true,
+      "style": "google"
+    },
+    "security": {
+      "scan": true,
+      "excludePatterns": ["test/*", "examples/*"]
+    }
+  },
+  "automation": {
+    "deployment": {
+      "auto": false,
+      "environments": ["development", "staging", "production"]
+    },
+    "backup": {
+      "enabled": true,
+      "frequency": "daily",
+      "retention": "30 days"
+    },
+    "monitoring": {
+      "enabled": false,
+      "notifications": []
+    }
+  },
+  "metadata": {
+    "tags": ["{{TAGS}}"],
+    "category": "{{CATEGORY}}",
+    "complexity": "{{COMPLEXITY}}",
+    "maintenanceLevel": "active",
+    "licenseType": "MIT",
+    "publicRepository": true
+  },
+  "templates": {
+    "used": {
+      "appsscript": "appsscript.template.json",
+      "clasp": "clasp.template.json",
+      "scriptHeader": "script-header.template.js"
+    },
+    "customizations": []
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "timeZone": "America/Los_Angeles",
+  "dependencies": {
+    "enabledAdvancedServices": [
+      {
+        "userSymbol": "{{SERVICE_SYMBOL}}",
+        "serviceId": "{{SERVICE_ID}}",
+        "version": "{{SERVICE_VERSION}}"
+      }
+    ],
+    "libraries": []
+  },
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "executionApi": {
+    "access": "DOMAIN"
+  },
+  "oauthScopes": [
+    "{{OAUTH_SCOPES}}"
+  ],
+  "webapp": {
+    "access": "DOMAIN",
+    "executeAs": "USER_DEPLOYING"
+  },
+  "urlFetchWhitelist": [
+    "{{ALLOWED_DOMAINS}}"
+  ],
+  "addOns": {
+    "calendar": {
+      "eventAccess": "METADATA",
+      "calendarAccess": "READ_WRITE",
+      "conferenceSolution": []
+    },
+    "drive": {
+      "driveAccess": "FULL"
+    },
+    "gmail": {
+      "contextualTriggers": [],
+      "composeTrigger": {
+        "selectActions": [],
+        "draftAccess": "METADATA"
+      },
+      "oauthScopes": [
+        "https://www.googleapis.com/auth/gmail.readonly",
+        "https://www.googleapis.com/auth/gmail.modify"
+      ]
+    },
+    "sheets": {
+      "macros": []
+    },
+    "docs": {
+      "linkPreviewTriggers": []
+    },
+    "slides": {
+      "macros": []
+    }
+  },
+  "sheets": {
+    "macros": [
+      {
+        "menuName": "{{MENU_NAME}}",
+        "functionName": "{{FUNCTION_NAME}}"
+      }
+    ]
+  }
+}

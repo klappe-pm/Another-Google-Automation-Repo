@@ -8,11 +8,10 @@ _AGAR: a gelatinous substance obtained from various kinds of red seaweed and use
 [![Daily Health Check](https://github.com/kevinlappe/workspace-automation/actions/workflows/daily-health-check.yml/badge.svg)](https://github.com/kevinlappe/workspace-automation/actions/workflows/daily-health-check.yml)
 [![Repository Health](https://img.shields.io/badge/Health-Automated%20Monitoring-brightgreen)](https://github.com/kevinlappe/workspace-automation/actions)
 
-Another Google Automation Repository (AGAR) is a curated collection of Google Apps Scripts that automate tasks and enhance functionality within the Google Workspace ecosystem. This repository offers a variety of scripts tailored for services such as Gmail, Drive, Calendar, Docs, Sheets, Tasks, and Chat.
+Another Google Automation Repository (AGAR) is a curated collection of Google Apps Scripts that automate tasks and enhance functionality within the Google Workspace ecosystem. This repository offers a variety of scripts tailored for services including Gmail, Drive, Calendar, Docs, Sheets, Tasks, and Chat.
 
 **Maintained by:** Kevin Lappe  
 **License:** MIT License  
-**Use:** Both personal and commercial use at no cost
 
 ## 🚀 Key Features by Service
 
@@ -24,7 +23,7 @@ Another Google Automation Repository (AGAR) is a curated collection of Google Ap
 | Automated Label Management | Analysis, Creation, Statistics | Smart labeling, bulk operations, analytics |
 | Trend Analysis | 24-month trends, Metadata | Temporal analysis, content processing |
 
-**Capabilities:**
+#### Capabilities
 - Export emails to PDF, Markdown, and Sheets simultaneously
 - Automate label creation based on sender patterns
 - Analyze 24-month email data with trend reporting
@@ -38,7 +37,7 @@ Another Google Automation Repository (AGAR) is a curated collection of Google Ap
 | Markdown Processing | Fix Links, Format | Content standardization, quality assurance |
 | Note Generation | Weekly/Daily Templates | Automated note creation, calendar integration |
 
-**Capabilities:**
+#### Capabilities
 - Index thousands of files with automatic categorization
 - Manage YAML frontmatter in bulk for knowledge bases
 - Generate weekly/daily notes automatically with calendar integration
@@ -51,7 +50,7 @@ Another Google Automation Repository (AGAR) is a curated collection of Google Ap
 | Data Analysis | Duration, Distance metrics | Location-based analysis, travel time calculations |
 | Integration Tools | Obsidian export | Note-taking system integration |
 
-**Capabilities:**
+#### Capabilities
 - Export Google Calendar meetings to Obsidian.md formatted files with automatic markdown formatting
 - Calculate travel distances and times using the Google Maps API from Google Calendar event details
 - Analyze events comprehensively with duration and location metrics
@@ -64,7 +63,7 @@ Another Google Automation Repository (AGAR) is a curated collection of Google Ap
 | Content Management | Dynamic embedding, Formatting | Live content updates, style standardization |
 | Integration Tools | Obsidian export | Knowledge management integration |
 
-**Capabilities:**
+#### Capabilities
 - Convert Google Docs to Markdown, including handling images
 - Embed content dynamically between documents
 - Extract and analyze comments for collaboration tracking
@@ -191,21 +190,21 @@ npm run version:current    # Check current version
 
 ```javascript
 /**
- * Every script includes comprehensive metadata:
+ * Scripts include metadata:
  * Title: Descriptive Script Name
  * Service: Google Service
  * Purpose: Primary function and goal
- * Created: Creation date
- * Updated: Last modification date
- * Author: Kevin Lappe
- * Contact: kevin@averageintelligence.ai
+ * Created: Creation date {{yyyy-MM-dd}}
+ * Updated: Last modification date {{yyyy-MM-dd}}
+ * Author: 
+ * Contact: {{email}}
  * License: MIT
  */
 
 /*
 #### Script Summary:
-- Purpose: Detailed purpose explanation
-- Description: What the script does
+- Purpose: Why this script?
+- Description: What does the script do?
 - Problem Solved: Specific problem addressed
 - Successful Execution: Expected outcomes
 */
@@ -218,10 +217,10 @@ npm run version:current    # Check current version
 ```javascript
 // Common OAuth scopes across scripts:
 // Scripts request minimal necessary permissions
-- https://www.googleapis.com/auth/gmail.readonly
+- https://www.googleapis.com/auth/gmail
 - https://www.googleapis.com/auth/drive.file
-- https://www.googleapis.com/auth/calendar.readonly
-- https://www.googleapis.com/auth/documents.readonly
+- https://www.googleapis.com/auth/calendar
+- https://www.googleapis.com/auth/documents
 - https://www.googleapis.com/auth/spreadsheets
 ```
 
@@ -241,7 +240,7 @@ npm run version:current    # Check current version
 
 ## 📄 License & Attribution
 
-**License:** MIT License - Complete freedom for commercial and personal use. See the [LICENSE](LICENSE) file for details.
+**License:** MIT License - See the [LICENSE](LICENSE) file for details.
 
 ### License Summary
 - ✅ **Commercial Use:** Allowed for business applications
@@ -249,7 +248,7 @@ npm run version:current    # Check current version
 - ✅ **Distribution:** Share and redistribute freely
 - ✅ **Private Use:** Use internally within organizations
 - ❌ **Liability:** No warranty or liability provided
-- ❌ **Support Guarantee:** Best-effort support only
+- ❌ **Support Guarantee:** Issues will be reviewed within a month of submission
 
 ### Attribution
 
@@ -270,13 +269,12 @@ Email: kevin@averageintelligence.ai
 - [Apps Script IDE](https://script.google.com)
 
 ### Learning Resources
-- [Apps Script Tutorials](https://developers.google.com/apps-script/guides)
+- [Google Apps Scrip Developers](https://developers.google.com/apps-script)
 - [API Reference Guides](https://developers.google.com/apps-script/reference)
-- [Best Practices](https://developers.google.com/apps-script/guides/best-practices)
 - [Troubleshooting Guide](https://developers.google.com/apps-script/guides/support/troubleshooting)
+- [StackOverlfow] (https://stackoverflow.com/questions/tagged/google-apps-script)
 
 ## 🤖 Repository Automation
-
 This repository features advanced automation for maintenance and quality assurance:
 
 ### Daily Health Checks
@@ -295,13 +293,9 @@ This repository features advanced automation for maintenance and quality assuran
 - **Release Preparation**: Automated release notes and documentation updates
 - **GitHub Releases**: One-click release creation with comprehensive notes
 
-**View Automation Status**: Check the [Actions tab](https://github.com/kevinlappe/workspace-automation/actions) for real-time automation status.
-
 ## 📊 Repository Info
-
-- **Repository Maintained Since:** 2023
-- **Last Major Update:** July 19, 2025
-- **Next Review Cycle:** October 2025
-- **Version:** 2.0
+- **Repository Maintained Since:** 2025
+- **Last Major Update:** 2025-07-19
+- **Next Review Cycle:** 2025-10-31
 
 **⭐ Star this repository if you find it helpful!**

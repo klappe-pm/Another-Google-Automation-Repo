@@ -1,0 +1,41 @@
+{
+  "scriptId": "{{SCRIPT_ID}}",
+  "parentId": ["{{PARENT_ID}}"],
+  "rootDir": "{{ROOT_DIR}}",
+  "projectId": "{{PROJECT_ID}}",
+  "fileExtension": "gs",
+  "filePushOrder": [
+    "{{MAIN_FILE}}.gs"
+  ],
+  "ignoredFilePatterns": [
+    "**/**~",
+    "**/.nyc_output",
+    "**/coverage",
+    "**/node_modules/**",
+    "**/.git/**",
+    "**/.DS_Store",
+    "**/test/**",
+    "**/tests/**",
+    "**/*.test.js",
+    "**/*.spec.js",
+    "**/README.md",
+    "**/package.json",
+    "**/package-lock.json",
+    "**/yarn.lock",
+    "**/.eslintrc.*",
+    "**/.gitignore",
+    "**/tsconfig.json",
+    "**/*.md",
+    "**/docs/**",
+    "**/examples/**"
+  ],
+  "deploymentConfig": {
+    "description": "{{DEPLOYMENT_DESCRIPTION}}",
+    "versionNumber": "{{VERSION_NUMBER}}",
+    "manifestFileName": "appsscript.json"
+  },
+  "settings": {
+    "timezone": "America/Los_Angeles",
+    "locale": "en_US"
+  }
+}

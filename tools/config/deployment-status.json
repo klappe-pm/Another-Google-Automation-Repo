@@ -1,0 +1,122 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-07-20T00:00:00.000Z",
+  "deploymentStatuses": {
+    "idea": {
+      "description": "Initial concept, not yet implemented",
+      "allowedOperations": ["edit", "delete", "promote"],
+      "nextStatus": "draft"
+    },
+    "draft": {
+      "description": "In development, functional but not tested",
+      "allowedOperations": ["edit", "test", "promote", "demote"],
+      "nextStatus": "beta",
+      "previousStatus": "idea"
+    },
+    "beta": {
+      "description": "Testing phase, limited deployment",
+      "allowedOperations": ["test", "promote", "demote"],
+      "nextStatus": "public",
+      "previousStatus": "draft"
+    },
+    "public": {
+      "description": "Production ready, fully deployed",
+      "allowedOperations": ["maintain", "demote"],
+      "previousStatus": "beta"
+    },
+    "deprecated": {
+      "description": "No longer maintained, scheduled for removal",
+      "allowedOperations": ["archive", "delete"],
+      "previousStatus": ["public", "beta", "draft"]
+    }
+  },
+  "scripts": {
+    "calendar": {
+      "calendar-export-events.gs": {
+        "status": "public",
+        "lastModified": "2025-07-19T00:00:00.000Z",
+        "version": "2.1.0",
+        "deploymentDate": "2025-07-01T00:00:00.000Z",
+        "notes": "Stable export functionality"
+      },
+      "calendar-import-events.gs": {
+        "status": "beta",
+        "lastModified": "2025-07-18T00:00:00.000Z",
+        "version": "1.2.0",
+        "notes": "Testing import validation"
+      }
+    },
+    "gmail": {
+      "gmail-export-threads.gs": {
+        "status": "public",
+        "lastModified": "2025-07-19T00:00:00.000Z", 
+        "version": "3.0.0",
+        "deploymentDate": "2025-06-15T00:00:00.000Z",
+        "notes": "Core functionality, widely used"
+      },
+      "gmail-analysis-labels.gs": {
+        "status": "draft",
+        "lastModified": "2025-07-20T00:00:00.000Z",
+        "version": "0.5.0",
+        "notes": "Needs performance optimization"
+      }
+    },
+    "drive": {
+      "drive-export-structure.gs": {
+        "status": "public", 
+        "lastModified": "2025-07-19T00:00:00.000Z",
+        "version": "2.5.0",
+        "deploymentDate": "2025-07-10T00:00:00.000Z",
+        "notes": "Essential tool for file organization"
+      }
+    },
+    "sheets": {
+      "sheets-create-markdown.gs": {
+        "status": "beta",
+        "lastModified": "2025-07-18T00:00:00.000Z",
+        "version": "1.1.0",
+        "notes": "Testing markdown formatting"
+      }
+    },
+    "docs": {
+      "docs-export-markdown.gs": {
+        "status": "draft",
+        "lastModified": "2025-07-17T00:00:00.000Z",
+        "version": "0.8.0",
+        "notes": "Needs formatting improvements"
+      }
+    },
+    "tasks": {
+      "tasks-export-obsidian.gs": {
+        "status": "idea",
+        "lastModified": "2025-07-16T00:00:00.000Z",
+        "version": "0.1.0",
+        "notes": "Initial concept for task management integration"
+      }
+    }
+  },
+  "statistics": {
+    "totalScripts": 0,
+    "byStatus": {
+      "idea": 0,
+      "draft": 0, 
+      "beta": 0,
+      "public": 0,
+      "deprecated": 0
+    },
+    "lastScan": "2025-07-20T00:00:00.000Z"
+  },
+  "configuration": {
+    "autoScan": true,
+    "scanInterval": "daily",
+    "backupOnStatusChange": true,
+    "requireReviewForPromotion": true,
+    "allowedStatusTransitions": {
+      "idea": ["draft", "deprecated"],
+      "draft": ["idea", "beta", "deprecated"],
+      "beta": ["draft", "public", "deprecated"],
+      "public": ["beta", "deprecated"],
+      "deprecated": []
+    }
+  }
+}
