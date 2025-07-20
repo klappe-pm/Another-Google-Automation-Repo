@@ -1,0 +1,5 @@
+{
+  "ok": false,
+  "error": "Snyk was unable to find supported files.",
+  "path": "./node_modules/@google/clasp/docs/Gitpod/Code.gs"
+}

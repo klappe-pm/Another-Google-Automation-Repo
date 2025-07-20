@@ -1,0 +1,5 @@
+{
+  "ok": false,
+  "error": "Snyk was unable to find supported files.",
+  "path": "./scripts/sheets/Data Processing/sheets-csv-combiner.gs"
+}

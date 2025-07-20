@@ -1,0 +1,5 @@
+{
+  "ok": false,
+  "error": "Snyk was unable to find supported files.",
+  "path": "./scripts/drive/Legacy Files/drive-index-v10-legacy.gs"
+}

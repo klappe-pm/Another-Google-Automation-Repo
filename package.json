@@ -1,0 +1,63 @@
+{
+  "name": "workspace-automation",
+  "version": "2.0.0",
+  "description": "Google Apps Script automation tools with deployment status management",
+  "scripts": {
+    "setup": "node tools/setup-projects.js",
+    "migrate": "node tools/migrate-projects.js", 
+    "deploy": "node tools/deploy-tools.js deploy-all public",
+    "deploy-beta": "node tools/deploy-tools.js deploy-all beta",
+    "deploy-public": "node tools/deploy-tools.js deploy-all public",
+    "status": "node tools/deploy-tools.js status",
+    "dashboard": "node tools/deploy-tools.js dashboard",
+    "validate": "node tools/validate-projects.js",
+    "set-status": "node tools/deploy-tools.js set-status",
+    "verify": "./verify-setup.sh",
+    "security:scan": "node tools/security-scanner.js",
+    "security:dashboard": "node tools/security-dashboard.js",
+    "security:gas-scan": "node tools/gas-security-scanner.js",
+    "snyk:test": "snyk test --all-projects",
+    "snyk:monitor": "snyk monitor --all-projects",
+    "snyk:wizard": "snyk wizard",
+    "repo:review": "node tools/repository/repo-review.js",
+    "repo:report": "node tools/repository/repo-reporter.js",
+    "repo:report-overview": "node tools/repository/repo-reporter.js overview",
+    "repo:report-security": "node tools/repository/repo-reporter.js security",
+    "repo:report-code": "node tools/repository/repo-reporter.js code",
+    "version:current": "node tools/repository/version-manager.js current",
+    "version:bump": "node tools/repository/version-manager.js bump",
+    "version:bump-minor": "node tools/repository/version-manager.js bump minor",
+    "version:bump-major": "node tools/repository/version-manager.js bump major",
+    "version:history": "node tools/repository/version-manager.js history",
+    "version:release": "node tools/repository/version-manager.js release",
+    "version:notes": "node tools/repository/version-manager.js notes",
+    "publication:check": "npm run repo:review && npm run repo:report",
+    "publication:prepare": "npm run repo:review && npm run version:bump-minor && npm run repo:report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kevinlappe/workspace-automation.git"
+  },
+  "keywords": [
+    "google-apps-script",
+    "automation",
+    "workspace",
+    "gmail",
+    "calendar",
+    "drive"
+  ],
+  "author": "Kevin Lappe <kevin.lappe@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@google/clasp": "^2.4.2",
+    "googleapis": "^126.0.1"
+  },
+  "devDependencies": {
+    "@actions/core": "^1.10.0",
+    "eslint": "^8.57.0",
+    "snyk": "^1.1291.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

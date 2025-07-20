@@ -64,7 +64,11 @@ ehthumbs.db
 Thumbs.db
 
 # Google Apps Script
-*.json
+# Specific JSON files to ignore
+credentials.json
+service-account.json
+secrets.json
+config.json
 .clasp.json
 .clasprc.json
 

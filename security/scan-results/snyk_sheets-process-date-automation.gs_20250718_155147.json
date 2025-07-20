@@ -1,0 +1,5 @@
+{
+  "ok": false,
+  "error": "Snyk was unable to find supported files.",
+  "path": "./scripts/sheets/Automation Tools/sheets-process-date-automation.gs"
+}
