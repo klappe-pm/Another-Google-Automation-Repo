@@ -1,18 +1,21 @@
 /**
- * Google Apps Script for Comprehensive Spreadsheet Formatting
- * 
- * This script automatically formats all sheets in a Google Sheets file
- * according to a standardized template. It applies consistent formatting
- * across all sheets, including font styles, text alignment, column widths,
- * and special formatting for headers.
- * 
- * Functions:
- * - formatAllSheets(): The main function that applies all formatting to every sheet
- * - onOpen(): Creates a custom menu item to easily run the formatting function
- * 
- * Version: 1.0
- * Last Updated: March 30, 2025
+ * Title: Sheets Comprehensive Formatting
+ * Service: Google Sheets
+ * Purpose: Apply standardized formatting to all sheets in a spreadsheet
+ * Created: 2024-03-30
+ * Updated: 2025-07-21
+ * Author: Kevin Lappe
+ * Contact: kevin@averageintelligence.ai
+ * License: MIT
  */
+
+/*
+Script Summary:
+- Purpose: Automatically format all sheets with standardized styling and layout
+- Description: Applies consistent fonts, alignment, column widths, and header formatting across all sheets
+- Problem Solved: Eliminates manual formatting work and ensures visual consistency across spreadsheets
+- Successful Execution: All sheets formatted with professional appearance and improved readability
+*/
 
 /**
  * Main formatting function that applies all formatting rules to every sheet

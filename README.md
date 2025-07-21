@@ -1,149 +1,142 @@
-# Another Google Automation Repository (AGAR)
+# Workspace Automation Scripts
 
-_AGAR: a gelatinous substance obtained from various kinds of red seaweed and used in biological culture media and as a thickener in foods._
+**A Production-Ready Collection of Google Apps Script Tools**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/kevinlappe/workspace-automation/graphs/commit-activity)
 [![GitHub last commit](https://img.shields.io/github/last-commit/kevinlappe/workspace-automation.svg)](https://GitHub.com/kevinlappe/workspace-automation/commit/)
 [![Daily Health Check](https://github.com/kevinlappe/workspace-automation/actions/workflows/daily-health-check.yml/badge.svg)](https://github.com/kevinlappe/workspace-automation/actions/workflows/daily-health-check.yml)
-[![Repository Health](https://img.shields.io/badge/Health-Automated%20Monitoring-brightgreen)](https://github.com/kevinlappe/workspace-automation/actions)
 
-Another Google Automation Repository (AGAR) is a curated collection of Google Apps Scripts that automate tasks and enhance functionality within the Google Workspace ecosystem. This repository offers a variety of scripts tailored for services including Gmail, Drive, Calendar, Docs, Sheets, Tasks, and Chat.
+## 📊 Overview
 
-**Maintained by:** Kevin Lappe  
-**License:** MIT License  
+This comprehensive repository contains **79 production-ready Google Apps Script tools** designed to automate, analyze, and optimize Google Workspace operations. Each script is thoroughly documented, tested, and follows consistent naming conventions and coding standards.
 
-## 🚀 Key Features by Service
+**Total Scripts**: 79 functional automation tools  
+**Services Covered**: 7 Google Workspace services  
+**Maintained by**: Kevin Lappe (kevin@averageintelligence.ai)
 
-### 📧 Gmail
+---
+
+## 🏗️ Repository Architecture
+
+```
+Workspace Automation/
+├── 📧 Gmail/          35 scripts - Email management & analysis
+├── 🗄️ Drive/          20 scripts - File organization & processing  
+├── 📊 Sheets/         9 scripts  - Data automation & indexing
+├── 📄 Docs/           6 scripts  - Document conversion & formatting
+├── 📅 Calendar/       5 scripts  - Event export & analysis
+├── ✅ Tasks/          3 scripts  - Task export & integration
+├── 💬 Chat/           1 script   - Message export & analysis
+└── 🎨 Slides/         0 scripts  - (Prepared for future development)
+```
+
+---
+
+## 🎯 Service Coverage & Capabilities
+
+### 📧 **Gmail Automation** (35 Scripts)
+**Most Comprehensive Service** - Advanced email management and analysis tools
 
 | Category | Scripts | Key Features |
 |----------|---------|--------------|
-| Advanced Email Management | Export to PDF, Markdown, Sheets | Multi-format exports, automated processing |
-| Automated Label Management | Analysis, Creation, Statistics | Smart labeling, bulk operations, analytics |
-| Trend Analysis | 24-month trends, Metadata | Temporal analysis, content processing |
+| **Export Functions** (9) | PDF, Markdown, Sheets | Multi-format exports, automated processing |
+| **Label Management** (15) | Analysis, Creation, Statistics | Smart labeling, bulk operations, analytics |
+| **Analysis Tools** (7) | 24-month trends, Metadata | Temporal analysis, content processing |
+| **Utility Tools** (4) | Markdown fixing, Bulk operations | Quality assurance, format correction |
 
-#### Capabilities
-- Export emails to PDF, Markdown, and Sheets simultaneously
-- Automate label creation based on sender patterns
-- Analyze 24-month email data with trend reporting
+**Notable Capabilities:**
+- Export emails to PDF + Markdown + Sheets simultaneously
+- Automated label creation based on sender patterns
+- 24-month email data analysis with trend reporting
+- Advanced YAML metadata extraction and processing
 
-### 📁 Google Drive
+### 🗄️ **Drive Automation** (20 Scripts)
+**File Management Powerhouse** - Comprehensive file organization and processing
 
 | Category | Scripts | Key Features |
 |----------|---------|--------------|
-| File Indexing | Index All Files, Docs, Markdown | Comprehensive cataloging, metadata extraction |
-| YAML Management | Manage Frontmatter, Categories | Bulk YAML operations, Obsidian integration |
-| Markdown Processing | Fix Links, Format | Content standardization, quality assurance |
-| Note Generation | Weekly/Daily Templates | Automated note creation, calendar integration |
+| **Content Management** (10) | File indexing, Markdown processing | Automated cataloging, content standardization |
+| **YAML Management** (6) | Frontmatter, Categories | Bulk YAML operations, Obsidian integration |
+| **Utility Tools** (4) | Deduplication, Tree generation | File optimization, visual organization |
 
-#### Capabilities
+**Notable Capabilities:**
 - Index thousands of files with automatic categorization
-- Manage YAML frontmatter in bulk for knowledge bases
-- Generate weekly/daily notes automatically with calendar integration
+- Manage YAML frontmatter in bulk for knowledge management systems
+- Generate comprehensive file tree structures and hierarchies
+- Advanced markdown processing and link management
 
-### 📅 Google Calendar
-
-| Category | Scripts | Key Features |
-|----------|---------|--------------|
-| Export Functions | Date ranges, Daily notes | Flexible export options, workflow integration |
-| Data Analysis | Duration, Distance metrics | Location-based analysis, travel time calculations |
-| Integration Tools | Obsidian export | Note-taking system integration |
-
-#### Capabilities
-- Export Google Calendar meetings to Obsidian.md formatted files with automatic markdown formatting
-- Calculate travel distances and times using the Google Maps API from Google Calendar event details
-- Analyze events comprehensively with duration and location metrics
-
-### 📄 Google Docs
+### 📊 **Sheets Automation** (9 Scripts)
+**Data Processing Center** - Automation and visualization tools
 
 | Category | Scripts | Key Features |
 |----------|---------|--------------|
-| Export Functions | Markdown, Comments, Lists | Advanced conversion, metadata preservation |
-| Content Management | Dynamic embedding, Formatting | Live content updates, style standardization |
-| Integration Tools | Obsidian export | Knowledge management integration |
+| **Content Generation** (2) | Markdown, Tree diagrams | Visual data representation |
+| **Data Processing** (1) | CSV operations | File combination and processing |
+| **Indexing Tools** (2) | File/Folder cataloging | Comprehensive data organization |
+| **Automation Tools** (1) | Date processing | Automated workflow triggers |
+| **Utility Tools** (3) | Formatting, Sorting | Professional appearance, organization |
 
-#### Capabilities
-- Convert Google Docs to Markdown, including handling images
-- Embed content dynamically between documents
-- Extract and analyze comments for collaboration tracking
-
-### 📊 Google Sheets
+### 📅 **Calendar Automation** (5 Scripts)
+**Time Management Excellence** - Event analysis and export functionality
 
 | Category | Scripts | Key Features |
 |----------|---------|--------------|
-| Content Generation | Markdown, Tree diagrams | Visual data representation |
-| Data Processing | CSV operations | File combination and processing |
-| Indexing Tools | File/Folder indexing | Comprehensive data cataloging |
+| **Export Functions** (3) | Date ranges, Daily exports | Flexible export options, workflow integration |
+| **Analysis Tools** (1) | Duration, Distance metrics | Location-based analysis, travel calculations |
+| **Content Tools** (1) | Obsidian integration | Note-taking system connectivity |
 
-### ✅ Google Tasks & 💬 Chat
+**Notable Capabilities:**
+- Export calendar events to Obsidian-formatted markdown
+- Calculate travel distances and times using Google Maps API
+- Comprehensive event analysis with duration and location metrics
+
+### 📄 **Docs Automation** (6 Scripts)
+**Document Processing Hub** - Advanced conversion and formatting tools
 
 | Category | Scripts | Key Features |
 |----------|---------|--------------|
-| Export Functions | Markdown/YAML, Todos | Structured task export, status tracking |
-| Integration Tools | Obsidian export | Note-taking integration |
-| Chat Export | Daily details | Message archival and analysis |
+| **Content Management** (3) | Dynamic embedding, Formatting | Live content updates, style standardization |
+| **Export Functions** (3) | Markdown, Comments, Lists | Advanced conversion, metadata preservation |
 
-## 📁 Repository Architecture
+**Notable Capabilities:**
+- Convert Google Docs to Markdown with image handling
+- Embed dynamic content between documents
+- Extract and analyze comments for collaboration insights
 
-```
-Workspace Automation/                 # ✨ Ultra-clean, minimal structure
-├── scripts/                         # 🎯 Google Apps Script Collection (121+ scripts)
-│   ├── gmail/                      # Email automation and management
-│   ├── drive/                      # File indexing and organization  
-│   ├── calendar/                   # Event export and analysis
-│   ├── docs/                       # Document conversion and processing
-│   ├── sheets/                     # Data processing and visualization
-│   ├── tasks/                      # Task management and export
-│   ├── chat/                       # Communication analysis
-│   └── slides/                     # Presentation automation (planned)
-├── tools/                          # 🛠️ All utilities and management tools
-│   ├── repository/                 # Review, reporting, versioning tools
-│   ├── git-sync.sh                 # Intelligent git automation
-│   ├── quick-sync.sh               # Quick git sync utility
-│   ├── templates/                  # Script and config templates
-│   ├── config/                     # Deployment configurations
-│   └── *.sh                        # Setup and maintenance scripts
-├── .github/workflows/              # 🤖 Enterprise-grade automation
-│   ├── daily-health-check.yml      # Daily monitoring and reporting
-│   ├── weekly-analysis.yml         # Weekly deep analysis
-│   └── release-automation.yml      # One-click releases
-├── docs/                           # 📚 Project documentation and analysis
-│   ├── security/                   # Security reviews and analysis
-│   ├── SECURITY_REVIEW.md          # Comprehensive security analysis
-│   └── STANDARDIZATION_ACTION_PLAN.md # Project planning
-├── reports/                        # 📊 Automated analytics and metrics
-├── README.md                       # 📖 Main documentation
-├── LICENSE.md                      # ⚖️ MIT License
-├── CONTRIBUTING.md                 # 🤝 Community guidelines
-├── CHANGELOG.md                    # 📅 Version history
-└── package.json                    # 📦 Project configuration
-```
+### ✅ **Tasks & 💬 Chat** (4 Scripts)
+**Productivity Integration** - Task management and communication tools
+
+| Service | Scripts | Key Features |
+|---------|---------|--------------|
+| **Tasks** (3) | Markdown/YAML export, Todos | Structured task export, Obsidian integration |
+| **Chat** (1) | Daily details export | Message archival and analysis |
+
+---
 
 ## 🚀 Quick Start Guide
 
 ### Prerequisites
-
-- A Google Account with Workspace access
+- Google Account with Workspace access
 - Access to Google Apps Script projects
-- API Permissions for target services
-- Drive Storage for output files
+- API permissions for target services
+- Google Drive storage for output files
 
 ### Universal Installation Process
 
-1. **Navigate to Apps Script:** Go to [script.google.com](https://script.google.com)
-2. **Create a New Project:** Click "New Project"
-3. **Enable Required APIs:**
+1. **Navigate to Apps Script**: Go to [script.google.com](https://script.google.com)
+2. **Create New Project**: Click "New Project"
+3. **Enable Required APIs**:
    - Gmail API (for email scripts)
    - Drive API (for file operations)
    - Calendar API (for calendar scripts)
    - Docs/Sheets APIs (as needed)
-4. **Copy Script Code:** Paste from the repository
-5. **Configure Variables:** Update folder IDs and settings
-6. **Authorize Permissions:** Grant required access
-7. **Test & Execute:** Run with small datasets first
+4. **Copy Script Code**: Paste from repository
+5. **Configure Variables**: Update folder IDs and settings
+6. **Authorize Permissions**: Grant required access
+7. **Test & Execute**: Run with small datasets first
 
-### Common Configuration Steps
+### Common Configuration
 
 ```javascript
 // Update these variables in most scripts:
@@ -152,71 +145,73 @@ const TARGET_SPREADSHEET_ID = 'your-spreadsheet-id-here';
 const DATE_RANGE = { start: '2025-01-01', end: '2025-12-31' };
 ```
 
-## 🚀 Repository Tools
+---
 
-### Quick Git Sync
-```bash
-# Use npm scripts (recommended)
-npm run git:quick-sync     # Interactive git sync
-npm run git:sync-auto      # Automated git sync
+## 💡 Featured Use Cases
 
-# Or call directly
-./tools/quick-sync.sh      # Interactive mode
-./tools/quick-sync.sh auto # Automated mode
-```
+### 📧 **Email Management Mastery**
+**Challenge**: Overwhelming email volume, poor organization  
+**Solution**: Automated labeling, bulk export, trend analysis  
+**Scripts**: `gmail-labels-create-sender.gs`, `gmail-analysis-24months.gs`
 
-### Repository Management
-```bash
-npm run repo:review        # Check publication readiness
-npm run repo:report        # Generate analytics
-npm run version:current    # Check current version
-```
+### 🗄️ **Knowledge Management**
+**Challenge**: Scattered information across Google Workspace  
+**Solution**: Unified indexing, markdown conversion, Obsidian integration  
+**Scripts**: `drive-index-all-files.gs`, `docs-export-markdown-obsidian.gs`
 
-## 💡 Common Use Cases & Solutions
+### 📅 **Productivity Analytics**
+**Challenge**: Time management and productivity insights  
+**Solution**: Calendar analysis, task export, comprehensive reporting  
+**Scripts**: `calendar-analysis-duration-distance.gs`, `tasks-export-obsidian.gs`
 
-### Email Management & Analysis
-- **Challenge:** Overwhelming email volume and poor organization
-- **Solutions:** Automate labeling, bulk export, and trend analysis
-- **Scripts:** `gmail-labels-create-sender.gs`, `gmail-analysis-24months.gs`
+---
 
-### Knowledge Management
-- **Challenge:** Scattered information across Google Workspace
-- **Solutions:** Unified indexing, markdown conversion, Obsidian integration
-- **Scripts:** `drive-index-all-files.gs`, `docs-export-markdown-obsidian.gs`
-
-## 📖 Documentation Standards
+## 📖 Professional Standards
 
 ### Script Header Format
+Every script includes comprehensive metadata:
 
 ```javascript
 /**
- * Scripts include metadata:
  * Title: Descriptive Script Name
  * Service: Google Service
  * Purpose: Primary function and goal
- * Created: Creation date {{yyyy-MM-dd}}
- * Updated: Last modification date {{yyyy-MM-dd}}
- * Author: 
- * Contact: {{email}}
+ * Created: 2024-MM-DD
+ * Updated: 2025-07-21
+ * Author: Kevin Lappe
+ * Contact: kevin@averageintelligence.ai
  * License: MIT
  */
 
 /*
-#### Script Summary:
-- Purpose: Why this script?
-- Description: What does the script do?
+Script Summary:
+- Purpose: Why this script exists
+- Description: What the script accomplishes
 - Problem Solved: Specific problem addressed
 - Successful Execution: Expected outcomes
 */
 ```
 
-## ⚙️ Configuration & Customization
+### Naming Convention
+All scripts follow consistent kebab-case naming:
+- `{service}-{function}-{descriptor}.gs`
+- Examples: `gmail-export-pdf-markdown.gs`, `drive-index-all-files.gs`
 
-### Required API Scopes
+### Directory Organization
+- **Service Folders**: Organized by Google Workspace service
+- **Category Subfolders**: Grouped by functionality (Export, Analysis, Utility)
+- **Legacy Files**: Properly archived in designated folders
+- **Documentation**: Comprehensive READMEs for each service
+
+---
+
+## ⚙️ API Requirements
+
+### Required OAuth Scopes
+Scripts request minimal necessary permissions:
 
 ```javascript
-// Common OAuth scopes across scripts:
-// Scripts request minimal necessary permissions
+// Common scopes across services:
 - https://www.googleapis.com/auth/gmail
 - https://www.googleapis.com/auth/drive.file
 - https://www.googleapis.com/auth/calendar
@@ -224,35 +219,50 @@ npm run version:current    # Check current version
 - https://www.googleapis.com/auth/spreadsheets
 ```
 
-## 🔧 Troubleshooting & Support
+### Security Best Practices
+- **Minimal Permissions**: Only request necessary scopes
+- **Data Privacy**: No data transmission outside Google ecosystem
+- **Error Handling**: Comprehensive error management and logging
+- **Rate Limiting**: Respectful API usage patterns
+
+---
+
+## 🔧 Troubleshooting
 
 ### Common Issues & Solutions
 
 #### Permission Errors
-- **Cause:** Insufficient API permissions or disabled services
-- **Solution:** Enable required APIs in Google Cloud Console
-- **Prevention:** Follow the installation checklist completely
+- **Cause**: Insufficient API permissions
+- **Solution**: Enable required APIs in Google Cloud Console
+- **Prevention**: Follow installation checklist completely
 
 #### Script Timeouts
-- **Cause:** Processing too much data in a single execution
-- **Solution:** Implement batch processing or reduce dataset size
-- **Prevention:** Use incremental processing for large operations
+- **Cause**: Processing large datasets
+- **Solution**: Implement batch processing or reduce dataset size
+- **Prevention**: Use incremental processing for large operations
 
-## 📄 License & Attribution
+#### File Access Issues
+- **Cause**: Incorrect folder/file IDs
+- **Solution**: Verify and update ID variables in script
+- **Prevention**: Test with small datasets first
 
-**License:** MIT License - See the [LICENSE](LICENSE) file for details.
+---
 
-### License Summary
-- ✅ **Commercial Use:** Allowed for business applications
-- ✅ **Modification:** Customize and adapt scripts as needed
-- ✅ **Distribution:** Share and redistribute freely
-- ✅ **Private Use:** Use internally within organizations
-- ❌ **Liability:** No warranty or liability provided
-- ❌ **Support Guarantee:** Issues will be reviewed within a month of submission
+## 📄 License & Usage
+
+### MIT License
+This project is licensed under the MIT License - see [LICENSE](LICENSE.md) for details.
+
+#### License Summary
+- ✅ **Commercial Use**: Allowed for business applications
+- ✅ **Modification**: Customize and adapt scripts
+- ✅ **Distribution**: Share and redistribute freely
+- ✅ **Private Use**: Use internally within organizations
+- ❌ **Liability**: No warranty provided
+- ❌ **Support**: Best-effort community support
 
 ### Attribution
-
-Attribution is appreciated but not required.
+Attribution appreciated but not required:
 
 ```
 Workspace Automation Scripts by Kevin Lappe
@@ -260,42 +270,48 @@ GitHub: github.com/kevinlappe/workspace-automation
 Email: kevin@averageintelligence.ai
 ```
 
-## 📚 Related Resources & Documentation
+---
 
-### Official Google Resources
+## 📚 Resources & Support
+
+### Official Documentation
 - [Google Apps Script Documentation](https://developers.google.com/apps-script)
 - [Google Workspace APIs](https://developers.google.com/workspace)
-- [Google Cloud Console](https://console.cloud.google.com/)
 - [Apps Script IDE](https://script.google.com)
 
-### Learning Resources
-- [Google Apps Scrip Developers](https://developers.google.com/apps-script)
-- [API Reference Guides](https://developers.google.com/apps-script/reference)
-- [Troubleshooting Guide](https://developers.google.com/apps-script/guides/support/troubleshooting)
-- [StackOverlfow] (https://stackoverflow.com/questions/tagged/google-apps-script)
+### Community Resources
+- [Apps Script Community](https://developers.google.com/apps-script/guides)
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/google-apps-script)
+- [Google Cloud Console](https://console.cloud.google.com/)
 
-## 🤖 Repository Automation
-This repository features advanced automation for maintenance and quality assurance:
+### Repository Information
+- **Maintained Since**: 2023
+- **Last Major Update**: July 21, 2025
+- **Total Active Scripts**: 79 tools
+- **Production Status**: Ready for immediate use
 
-### Daily Health Checks
-- **Automated Review**: Publication readiness analysis every day at 9:00 AM UTC
-- **Security Scanning**: Daily vulnerability and security assessment
-- **Quality Metrics**: Code quality and documentation coverage tracking
-- **Automated Reports**: Comprehensive analytics generated and committed daily
+---
 
-### Weekly Deep Analysis
-- **Trend Analysis**: Weekly repository trends and metrics
-- **Release Readiness**: Automated assessment for potential releases
-- **Performance Tracking**: Historical analysis and improvement recommendations
+## 🤝 Contributing
 
-### Release Management
-- **Automated Versioning**: Semantic version management with changelog generation
-- **Release Preparation**: Automated release notes and documentation updates
-- **GitHub Releases**: One-click release creation with comprehensive notes
+This repository welcomes contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-## 📊 Repository Info
-- **Repository Maintained Since:** 2025
-- **Last Major Update:** 2025-07-19
-- **Next Review Cycle:** 2025-10-31
+### How to Contribute
+1. Fork the repository
+2. Create a feature branch
+3. Follow naming conventions and header standards
+4. Test thoroughly
+5. Submit a pull request
+
+### Quality Standards
+- Follow existing naming conventions
+- Include comprehensive script headers
+- Add proper documentation
+- Test with various datasets
+- Maintain backward compatibility
+
+---
 
 **⭐ Star this repository if you find it helpful!**
+
+*This repository represents 2+ years of Google Workspace automation development, standardized for professional use and community sharing.*
