@@ -109,3 +109,36 @@ yarn-error.log*
 .DS_Store?
 *.bak
 .DS_Store
+
+# Environment variables and config files
+*.env
+*.env.local
+*.env.development
+*.env.test
+*.env.production
+
+# JSON config files (add specific patterns)
+*.config.json
+*-config.json
+settings.json
+user-settings.json
+
+# Repository cleanup additions
+.reports/*
+!.reports/.gitkeep
+.docs/*
+!.docs/.gitkeep
+.projects/*/src/
+.projects/*/.clasp.json
+.temp/
+*.tmp
+
+# Repository cleanup additions
+.reports/*
+!.reports/.gitkeep
+.docs/*
+!.docs/.gitkeep
+.projects/*/src/
+.projects/*/.clasp.json
+.temp/
+*.tmp

@@ -1,0 +1,10 @@
+
+In ./tools/setup/quick-sync.sh line 6:
+cd "/Users/kevinlappe/Documents/GitHub/Workspace Automation"
+^-- SC2164 (warning): Use 'cd ... || exit' or 'cd ... || return' in case cd fails.
+
+Did you mean: 
+cd "/Users/kevinlappe/Documents/GitHub/Workspace Automation" || exit
+
+For more information:
+  https://www.shellcheck.net/wiki/SC2164 -- Use 'cd ... || exit' or 'cd ... |...

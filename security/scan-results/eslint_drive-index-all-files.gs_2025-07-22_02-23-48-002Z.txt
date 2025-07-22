@@ -1,0 +1,3 @@
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/drive/Content Management/drive-index-all-files.gs: line 1, col 1, Error - Parsing error: Unterminated comment
+
+1 problem

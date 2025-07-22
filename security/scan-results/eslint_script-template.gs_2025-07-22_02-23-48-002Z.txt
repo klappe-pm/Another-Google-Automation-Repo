@@ -1,0 +1,9 @@
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/standards/script-template.gs: line 72, col 10, Warning - 'getCachedData' is defined but never used. (no-unused-vars)
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/standards/script-template.gs: line 131, col 9, Warning - 'contextStr' is assigned a value but never used. (no-unused-vars)
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/standards/script-template.gs: line 154, col 10, Warning - 'processInBatches' is defined but never used. (no-unused-vars)
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/standards/script-template.gs: line 186, col 30, Warning - 'handlePartialFailure' is not defined. (no-undef)
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/standards/script-template.gs: line 258, col 30, Warning - 'handleItemFailure' is not defined. (no-undef)
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/standards/script-template.gs: line 281, col 10, Warning - 'mainFunction' is defined but never used. (no-unused-vars)
+/Users/kevinlappe/Documents/GitHub/Workspace Automation/standards/script-template.gs: line 317, col 20, Warning - 'processMainLogic' is not defined. (no-undef)
+
+7 problems

@@ -33,14 +33,18 @@
     "version:notes": "node tools/repository/version-manager.js notes",
     "publication:check": "npm run repo:review && npm run repo:report",
     "publication:prepare": "npm run repo:review && npm run version:bump-minor && npm run repo:report",
-    "git:sync": "./tools/git-sync.sh interactive",
-    "git:sync-auto": "./tools/git-sync.sh auto",
-    "git:quick-sync": "./tools/quick-sync.sh",
-    "git:push-safe": "./tools/git-sync.sh auto 'Safe automated push with sync'"
+    "git:sync": "./tools/setup/quick-sync.sh interactive",
+    "git:sync-auto": "./tools/setup/quick-sync.sh auto",
+    "git:quick-sync": "./tools/setup/quick-sync.sh",
+    "git:push-safe": "./tools/setup/quick-sync.sh auto",
+    "sync": "./tools/setup/quick-sync.sh auto",
+    "setup:ide": "./tools/setup/setup-ide.sh",
+    "setup:github": "./tools/setup-github-actions.sh",
+    "repo:cleanup": "./cleanup-repo.sh"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kevinlappe/workspace-automation.git"
+    "url": "https://github.com/klappe-pm/another-google-automation-repo.git"
   },
   "keywords": [
     "google-apps-script",

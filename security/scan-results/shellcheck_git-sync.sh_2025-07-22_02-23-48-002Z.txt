@@ -1,0 +1,156 @@
+
+In ./tools/git-sync.sh line 3:
+/**
+^-^ SC1127 (error): Was this intended as a comment? Use # in sh.
+^-^ SC2211 (warning): This is a glob used as a command name. Was it supposed to be in ${..}, array, or is it missing quoting?
+
+
+In ./tools/git-sync.sh line 4:
+ * Git Sync and Push Automation Script
+ ^-- SC2211 (warning): This is a glob used as a command name. Was it supposed to be in ${..}, array, or is it missing quoting?
+
+
+In ./tools/git-sync.sh line 5:
+ * 
+ ^-- SC2211 (warning): This is a glob used as a command name. Was it supposed to be in ${..}, array, or is it missing quoting?
+
+
+In ./tools/git-sync.sh line 6:
+ * Title: Automated Git Sync, Merge, and Push Handler
+ ^-- SC2211 (warning): This is a glob used as a command name. Was it supposed to be in ${..}, array, or is it missing quoting?
+
+
+In ./tools/git-sync.sh line 7:
+ * Purpose: Handle repeated git sync, merge conflicts, and push operations
+ ^-- SC2211 (warning): This is a glob used as a command name. Was it supposed to be in ${..}, array, or is it missing quoting?
+
+
+In ./tools/git-sync.sh line 8:
+ * Created: 2025-07-19
+ ^-- SC2211 (warning): This is a glob used as a command name. Was it supposed to be in ${..}, array, or is it missing quoting?
+
+
+In ./tools/git-sync.sh line 9:
+ * Updated: 2025-07-19
+ ^-- SC2211 (warning): This is a glob used as a command name. Was it supposed to be in ${..}, array, or is it missing quoting?
+
+
+In ./tools/git-sync.sh line 10:
+ * Author: Kevin Lappe
+ ^-- SC2211 (warning): This is a glob used as a command name. Was it supposed to be in ${..}, array, or is it missing quoting?
+
+
+In ./tools/git-sync.sh line 11:
+ * Contact: kevin@averageintelligence.ai
+ ^-- SC2211 (warning): This is a glob used as a command name. Was it supposed to be in ${..}, array, or is it missing quoting?
+
+
+In ./tools/git-sync.sh line 12:
+ * License: MIT
+ ^-- SC2211 (warning): This is a glob used as a command name. Was it supposed to be in ${..}, array, or is it missing quoting?
+
+
+In ./tools/git-sync.sh line 13:
+ * Version: 1.0.0
+ ^-- SC2211 (warning): This is a glob used as a command name. Was it supposed to be in ${..}, array, or is it missing quoting?
+
+
+In ./tools/git-sync.sh line 14:
+ */
+ ^-- SC2287 (error): This is interpreted as a command name ending with '/'. Double check syntax.
+ ^-- SC2211 (warning): This is a glob used as a command name. Was it supposed to be in ${..}, array, or is it missing quoting?
+
+
+In ./tools/git-sync.sh line 20:
+REPO_DIR="/Users/kevinlappe/Documents/GitHub/Workspace Automation"
+^------^ SC2034 (warning): REPO_DIR appears unused. Verify use (or export if used externally).
+
+
+In ./tools/git-sync.sh line 98:
+    git status --porcelain | while read status file; do
+                                   ^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./tools/git-sync.sh line 137:
+        local has_workflows=$(git diff --cached --name-only | grep -q "\.github/workflows" && echo "true" || echo "false")
+              ^-----------^ SC2155 (warning): Declare and assign separately to avoid masking return values.
+
+
+In ./tools/git-sync.sh line 138:
+        local has_tools=$(git diff --cached --name-only | grep -q "tools/" && echo "true" || echo "false")
+              ^-------^ SC2155 (warning): Declare and assign separately to avoid masking return values.
+
+
+In ./tools/git-sync.sh line 139:
+        local has_scripts=$(git diff --cached --name-only | grep -q "scripts/" && echo "true" || echo "false")
+              ^---------^ SC2155 (warning): Declare and assign separately to avoid masking return values.
+
+
+In ./tools/git-sync.sh line 140:
+        local has_docs=$(git diff --cached --name-only | grep -q "README\|\.md" && echo "true" || echo "false")
+              ^------^ SC2155 (warning): Declare and assign separately to avoid masking return values.
+
+
+In ./tools/git-sync.sh line 141:
+        local has_config=$(git diff --cached --name-only | grep -q "package\.json\|\.yml\|\.yaml" && echo "true" || echo "false")
+              ^--------^ SC2155 (warning): Declare and assign separately to avoid masking return values.
+
+
+In ./tools/git-sync.sh line 183:
+            read -p "Enter custom commit message: " CUSTOM_MESSAGE
+            ^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./tools/git-sync.sh line 203:
+    local conflicted_files=$(git diff --name-only --diff-filter=U)
+          ^--------------^ SC2155 (warning): Declare and assign separately to avoid masking return values.
+
+
+In ./tools/git-sync.sh line 211:
+    echo "$conflicted_files" | while read file; do
+                                     ^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./tools/git-sync.sh line 228:
+            echo "$conflicted_files" | while read file; do
+                                             ^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./tools/git-sync.sh line 243:
+            read -p "Press Enter after resolving all conflicts..."
+            ^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./tools/git-sync.sh line 246:
+            echo "$conflicted_files" | while read file; do
+                                             ^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./tools/git-sync.sh line 252:
+            echo "$conflicted_files" | while read file; do
+                                             ^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./tools/git-sync.sh line 259:
+            echo "$conflicted_files" | while read file; do
+                                             ^--^ SC2162 (info): read without -r will mangle backslashes.
+
+
+In ./tools/git-sync.sh line 301:
+        local behind=$(git rev-list --count HEAD..$REMOTE/$BRANCH)
+              ^----^ SC2155 (warning): Declare and assign separately to avoid masking return values.
+
+
+In ./tools/git-sync.sh line 302:
+        local ahead=$(git rev-list --count $REMOTE/$BRANCH..HEAD)
+              ^---^ SC2155 (warning): Declare and assign separately to avoid masking return values.
+
+
+In ./tools/git-sync.sh line 446:
+        local repo_url=$(git config --get remote.origin.url | sed 's/\.git$//')
+              ^------^ SC2155 (warning): Declare and assign separately to avoid masking return values.
+
+For more information:
+  https://www.shellcheck.net/wiki/SC1127 -- Was this intended as a comment? U...
+  https://www.shellcheck.net/wiki/SC2287 -- This is interpreted as a command ...
+  https://www.shellcheck.net/wiki/SC2034 -- REPO_DIR appears unused. Verify u...
