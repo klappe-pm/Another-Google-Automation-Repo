@@ -130,10 +130,10 @@ jobs:
               this.scannedFiles = 0;
               this.securityPatterns = {
                 hardcodedSecrets: [
-                  /(?i)(password|passwd|pwd|secret|key|token|api_key)\\s*=\\s*['\\\"][^'\\\"]{8,}['\\\"]/, 
-                  /(?i)(client_secret|client_id|auth_token)\\s*=\\s*['\\\"][^'\\\"]{20,}['\\\"]/, 
-                  /(?i)Bearer\\s+[A-Za-z0-9\\-_]{20,}/,
-                  /(?i)(sk-|pk_)[a-zA-Z0-9]{20,}/
+                  /(password|passwd|pwd|secret|key|token|api_key)\\s*=\\s*['\\\"][^'\\\"]{8,}['\\\"]]/i, 
+                  /(client_secret|client_id|auth_token)\\s*=\\s*['\\\"][^'\\\"]{20,}['\\\"]]/i,
+                  /Bearer\\s+[A-Za-z0-9\\-_]{20,}/i,
+                  /(sk-|pk_)[a-zA-Z0-9]{20,}/i
                 ],
                 insecurePatterns: [
                   /eval\\s*\\(/,
