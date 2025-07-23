@@ -15,7 +15,7 @@ Advanced document processing and content management tools
 |-------------|---------|--------------|
 | `docs-embed-content-block.gs` | Dynamic content embedding | Live content updates, cross-document linking, automated synchronization |
 | `docs-export-markdown-obsidian.gs` | Obsidian integration export | Markdown conversion, vault compatibility, metadata preservation |
-| `docs-formatter.gs` | Document formatting automation | Consistent styling, bulk formatting, template application |
+| `docs-formatter-content.gs` | Document formatting automation | Consistent styling, bulk formatting, template application |
 
 ### 📤 Export Functions (3 Scripts)
 Multi-format document export and conversion tools
@@ -63,7 +63,7 @@ const CONFIG = {
 ```
 1. docs-export-markdown-advanced.gs    // Professional markdown conversion
 2. docs-export-markdown-obsidian.gs    // Obsidian-specific formatting
-3. docs-formatter.gs                   // Apply consistent styling
+3. docs-formatter-content.gs           // Apply consistent styling
 4. Integrate with knowledge management systems
 ```
 
@@ -78,7 +78,7 @@ const CONFIG = {
 ### 🔄 Content Management Workflow
 ```
 1. docs-embed-content-block.gs         // Set up dynamic content blocks
-2. docs-formatter.gs                   // Apply consistent formatting
+2. docs-formatter-content.gs           // Apply consistent formatting
 3. Schedule regular updates and synchronization
 4. Monitor content freshness and accuracy
 ```

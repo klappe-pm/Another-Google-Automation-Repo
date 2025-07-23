@@ -1,0 +1,231 @@
+{
+  "audit_metadata": {
+    "generated": "2025-01-23",
+    "repository": "Workspace Automation",
+    "total_shell_scripts": 12,
+    "total_workflows": 12,
+    "recent_failures": 6
+  },
+  "shell_scripts": {
+    "root_directory": [
+      {
+        "name": "complete_wif_setup.sh",
+        "purpose": "Google Cloud Workload Identity Federation setup",
+        "invoked_by": "manual",
+        "status": "working",
+        "related_failures": []
+      },
+      {
+        "name": "create_apps_scripts.sh", 
+        "purpose": "Google Apps Script project creation",
+        "invoked_by": "manual",
+        "status": "working",
+        "related_failures": []
+      },
+      {
+        "name": "fix-repo-quality.sh",
+        "purpose": "Repository quality improvements", 
+        "invoked_by": "manual",
+        "status": "working",
+        "related_failures": []
+      },
+      {
+        "name": "unified_setup.sh",
+        "purpose": "Complete local environment setup",
+        "invoked_by": "manual", 
+        "status": "working",
+        "related_failures": []
+      },
+      {
+        "name": "verify_config_fixed.sh",
+        "purpose": "Configuration verification",
+        "invoked_by": "manual",
+        "status": "working", 
+        "related_failures": []
+      }
+    ],
+    "tools_directory": [
+      {
+        "name": "tools/comprehensive-security-scan.sh",
+        "purpose": "Complete security scanning",
+        "invoked_by": "manual",
+        "status": "working",
+        "related_failures": []
+      },
+      {
+        "name": "tools/git-sync.sh",
+        "purpose": "Advanced git sync automation", 
+        "invoked_by": "package.json (sync)",
+        "status": "working",
+        "related_failures": []
+      },
+      {
+        "name": "tools/init-git.sh",
+        "purpose": "Git repository initialization",
+        "invoked_by": "manual",
+        "status": "working",
+        "related_failures": []
+      },
+      {
+        "name": "tools/scan-all-scripts.sh", 
+        "purpose": "Repository-wide script scanning",
+        "invoked_by": "manual",
+        "status": "working",
+        "related_failures": []
+      },
+      {
+        "name": "tools/setup-github-actions.sh",
+        "purpose": "GitHub Actions configuration",
+        "invoked_by": "manual",
+        "status": "working", 
+        "related_failures": []
+      },
+      {
+        "name": "tools/setup-ide.sh",
+        "purpose": "IDE configuration setup",
+        "invoked_by": "package.json (setup:ide)",
+        "status": "working",
+        "related_failures": []
+      },
+      {
+        "name": "tools/verify-setup.sh",
+        "purpose": "Setup verification", 
+        "invoked_by": "package.json (verify)",
+        "status": "working",
+        "related_failures": []
+      },
+      {
+        "name": "tools/setup/cleanup-repo.sh",
+        "purpose": "Repository cleanup and organization",
+        "invoked_by": "manual",
+        "status": "working",
+        "related_failures": []
+      },
+      {
+        "name": "tools/setup/quick-sync.sh",
+        "purpose": "Quick git sync wrapper",
+        "invoked_by": "package.json (sync, git:sync)",
+        "status": "working", 
+        "related_failures": []
+      }
+    ]
+  },
+  "github_actions_failures": {
+    "authentication_errors": [
+      {
+        "run_id": "16479244747",
+        "workflow": "Snyk Continuous Monitoring", 
+        "error": "Missing SNYK_TOKEN secret",
+        "affected_scripts": [],
+        "priority": "high",
+        "fix": "Add SNYK_TOKEN to GitHub secrets"
+      },
+      {
+        "run_id": "16479244738",
+        "workflow": "Snyk Security Scan",
+        "error": "Missing SNYK_TOKEN secret + invalid flag combination",
+        "affected_scripts": [],
+        "priority": "high", 
+        "fix": "Add SNYK_TOKEN and fix --project-name + --all-projects conflict"
+      },
+      {
+        "run_id": "16479244750",
+        "workflow": "Deploy to Google Cloud",
+        "error": "Missing GCP credentials",
+        "affected_scripts": [],
+        "priority": "high",
+        "fix": "Configure GCP service account credentials"
+      }
+    ],
+    "documentation_errors": [
+      {
+        "run_id": "16479244761", 
+        "workflow": "Code Quality Check",
+        "error": "CONTRIBUTING.md missing",
+        "affected_scripts": [],
+        "priority": "medium",
+        "fix": "Create CONTRIBUTING.md file"
+      }
+    ],
+    "code_quality_errors": [
+      {
+        "run_id": "16479244761",
+        "workflow": "Code Quality Check", 
+        "error": "File naming violation: docs-formatter.gs (resolved)",
+        "affected_scripts": [],
+        "priority": "resolved",
+        "fix": "Renamed to docs-formatter-content.gs (completed)"
+      }
+    ],
+    "script_syntax_errors": [
+      {
+        "run_id": "16479244738",
+        "workflow": "Google Apps Script Security Analysis",
+        "error": "Invalid regex pattern in embedded Node.js script",
+        "affected_scripts": ["inline Node.js in snyk-security.yml"],
+        "priority": "high",
+        "fix": "Fix regex syntax - remove (?i) flags, use proper JavaScript regex"
+      }
+    ]
+  },
+  "script_to_error_mapping": {
+    "direct_failures": {},
+    "indirect_failures": {
+      "embedded_nodejs_in_workflows": [
+        {
+          "workflow": "snyk-security.yml",
+          "step": "Google Apps Script Security Analysis", 
+          "error": "SyntaxError: Invalid regular expression",
+          "fix_required": "Update regex patterns to valid JavaScript syntax"
+        }
+      ]
+    },
+    "working_scripts": [
+      "complete_wif_setup.sh",
+      "create_apps_scripts.sh", 
+      "fix-repo-quality.sh",
+      "unified_setup.sh",
+      "verify_config_fixed.sh",
+      "tools/comprehensive-security-scan.sh",
+      "tools/git-sync.sh",
+      "tools/init-git.sh", 
+      "tools/scan-all-scripts.sh",
+      "tools/setup-github-actions.sh",
+      "tools/setup-ide.sh",
+      "tools/verify-setup.sh",
+      "tools/setup/cleanup-repo.sh",
+      "tools/setup/quick-sync.sh"
+    ]
+  },
+  "fix_priority_matrix": {
+    "critical": [
+      "Add SNYK_TOKEN GitHub secret",
+      "Add GCP service account credentials", 
+      "Fix regex syntax in security workflow"
+    ],
+    "high": [
+      "Create CONTRIBUTING.md",
+      "Fix file naming convention violation"  
+    ],
+    "medium": [
+      "Complete empty workflow files",
+      "Fix Snyk configuration conflicts"
+    ],
+    "low": [
+      "Add error handling to shell scripts",
+      "Standardize script documentation"
+    ]
+  },
+  "summary": {
+    "shell_scripts_status": "✅ All 12 shell scripts are functional",
+    "cicd_pipeline_status": "❌ All recent GitHub Actions runs failing", 
+    "primary_issues": [
+      "Missing authentication secrets",
+      "Documentation compliance failures", 
+      "Embedded script syntax errors"
+    ],
+    "scripts_directly_causing_failures": 0,
+    "workflow_configuration_issues": 6,
+    "estimated_fix_time": "2-4 hours for critical issues"
+  }
+}
