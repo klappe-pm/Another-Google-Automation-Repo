@@ -40,6 +40,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args: >
+            --all-projects
             --severity-threshold=high
             --fail-on=all
             --org=${{ secrets.SNYK_ORG_ID }}
@@ -220,5 +221,5 @@ jobs:
             npm ci
             
             # Run Snyk test specifically for new dependencies
-            npx snyk test --severity-threshold=medium --fail-on=all
+            npx snyk test --all-projects --severity-threshold=high --fail-on=all
           fi

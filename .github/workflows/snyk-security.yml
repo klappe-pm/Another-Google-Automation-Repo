@@ -43,9 +43,8 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args: >
+            --all-projects
             --severity-threshold=high 
-            --all-projects 
-            --project-name="workspace-automation"
             --org=${{ secrets.SNYK_ORG_ID }}
             
       - name: Upload Snyk results to GitHub Code Scanning

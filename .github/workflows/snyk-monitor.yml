@@ -41,7 +41,6 @@ jobs:
           command: monitor
           args: >
             --all-projects
-            --project-name="workspace-automation"
             --org=${{ secrets.SNYK_ORG_ID }}
             --target-reference=${{ github.ref }}
             --project-environment=production
