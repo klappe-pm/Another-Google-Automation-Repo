@@ -19,4 +19,4 @@ jobs:
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@v1
     - name: Run Cloud Build
-      run: gcloud builds submit --tag gcr.io/workspace-automation-466800/my-app
+      run: gcloud builds submit --tag gcr.io/workspace-automation-466800/workspace-automation-latest
