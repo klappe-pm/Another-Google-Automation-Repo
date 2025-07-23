@@ -1,0 +1,177 @@
+name: Manual Status Management
+
+on:
+  workflow_call:
+    inputs:
+      status:
+        description: 'Status to set (pending, success, failure, error)'
+        required: true
+        type: string
+      description:
+        description: 'Status description'
+        required: false
+        type: string
+        default: ''
+      context:
+        description: 'Status context'
+        required: false
+        type: string
+        default: 'ci/github-actions'
+      target_url:
+        description: 'Target URL for the status'
+        required: false
+        type: string
+        default: ''
+      sha:
+        description: 'Commit SHA (defaults to current commit)'
+        required: false
+        type: string
+        default: ''
+      repo:
+        description: 'Repository (defaults to current repo)'
+        required: false
+        type: string
+        default: ''
+
+  workflow_dispatch:
+    inputs:
+      status:
+        description: 'Status to set (pending, success, failure, error)'
+        required: true
+        type: choice
+        options:
+          - pending
+          - success
+          - failure
+          - error
+      description:
+        description: 'Status description'
+        required: false
+        type: string
+        default: 'Manual status update'
+      context:
+        description: 'Status context'
+        required: false
+        type: string
+        default: 'ci/manual'
+      target_url:
+        description: 'Target URL for the status'
+        required: false
+        type: string
+        default: ''
+      sha:
+        description: 'Commit SHA (defaults to current commit)'
+        required: false
+        type: string
+        default: ''
+      repo:
+        description: 'Repository in owner/repo format (defaults to current repo)'
+        required: false
+        type: string
+        default: ''
+      pr_number:
+        description: 'PR number to update status for (optional)'
+        required: false
+        type: string
+        default: ''
+
+jobs:
+  set-status:
+    runs-on: ubuntu-latest
+    permissions:
+      statuses: write
+      pull-requests: write
+      contents: read
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set commit status
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        # Set default values
+        STATUS="${{ inputs.status }}"
+        DESCRIPTION="${{ inputs.description }}"
+        CONTEXT="${{ inputs.context }}"
+        TARGET_URL="${{ inputs.target_url }}"
+        SHA="${{ inputs.sha || github.sha }}"
+        REPO="${{ inputs.repo || github.repository }}"
+        
+        echo "Setting status: $STATUS"
+        echo "Description: $DESCRIPTION"
+        echo "Context: $CONTEXT"
+        echo "SHA: $SHA"
+        echo "Repository: $REPO"
+        
+        # Build the gh api command
+        API_DATA=$(cat <<EOF
+        {
+          "state": "$STATUS",
+          "description": "$DESCRIPTION",
+          "context": "$CONTEXT"
+        }
+EOF
+        )
+        
+        # Add target_url if provided
+        if [ -n "$TARGET_URL" ]; then
+          API_DATA=$(echo "$API_DATA" | jq --arg url "$TARGET_URL" '. + {"target_url": $url}')
+        fi
+        
+        # Set the commit status
+        echo "$API_DATA" | gh api \
+          --method POST \
+          --header "Accept: application/vnd.github+json" \
+          --header "X-GitHub-Api-Version: 2022-11-28" \
+          "/repos/$REPO/statuses/$SHA" \
+          --input -
+          
+        echo "✅ Status updated successfully"
+        
+    - name: Update PR status (if PR number provided)
+      if: inputs.pr_number != ''
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        PR_NUMBER="${{ inputs.pr_number }}"
+        STATUS="${{ inputs.status }}"
+        DESCRIPTION="${{ inputs.description }}"
+        CONTEXT="${{ inputs.context }}"
+        REPO="${{ inputs.repo || github.repository }}"
+        
+        echo "Updating PR #$PR_NUMBER status"
+        
+        # Get PR head SHA
+        PR_SHA=$(gh api \
+          --header "Accept: application/vnd.github+json" \
+          --header "X-GitHub-Api-Version: 2022-11-28" \
+          "/repos/$REPO/pulls/$PR_NUMBER" \
+          --jq '.head.sha')
+          
+        echo "PR SHA: $PR_SHA"
+        
+        # Set status for PR head commit
+        API_DATA=$(cat <<EOF
+        {
+          "state": "$STATUS",
+          "description": "$DESCRIPTION",
+          "context": "$CONTEXT"
+        }
+EOF
+        )
+        
+        # Add target_url if provided
+        if [ -n "${{ inputs.target_url }}" ]; then
+          API_DATA=$(echo "$API_DATA" | jq --arg url "${{ inputs.target_url }}" '. + {"target_url": $url}')
+        fi
+        
+        echo "$API_DATA" | gh api \
+          --method POST \
+          --header "Accept: application/vnd.github+json" \
+          --header "X-GitHub-Api-Version: 2022-11-28" \
+          "/repos/$REPO/statuses/$PR_SHA" \
+          --input -
+          
+        echo "✅ PR status updated successfully"

@@ -1,4 +1,8 @@
 #!/bin/bash
+set -euo pipefail
+
+# Error trap for better debugging
+trap 'echo "Error: $BASH_SOURCE:$LINENO"; exit 1' ERR
 
 # Workspace Automation - Git Initialization Script
 # This script initializes the Git repository and creates the first commit

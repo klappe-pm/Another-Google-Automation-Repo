@@ -1,9 +1,11 @@
 #!/bin/bash
+set -euo pipefail
+
+# Error trap for better debugging
+trap 'echo "Error: $BASH_SOURCE:$LINENO"; exit 1' ERR
 
 # Automated Setup Verification Script
 # Run this script to verify your Google Apps Script automation setup
-
-set -e  # Exit on any error
 
 echo "🔍 Starting Workspace Automation Setup Verification..."
 echo "=================================================="

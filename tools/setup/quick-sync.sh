@@ -1,9 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # Quick Git Sync - Simple wrapper for the main git-sync script
 # Just run: ./quick-sync.sh
 
-cd "/Users/kevinlappe/Documents/GitHub/Workspace Automation"
+cd "/Users/kevinlappe/Documents/GitHub/Workspace Automation" || exit
 
 # Auto-detect the type of operation needed and run accordingly
 if [ "$1" = "auto" ]; then

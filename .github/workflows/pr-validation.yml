@@ -1,0 +1,59 @@
+name: PR Validation
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+
+concurrency:
+  group: pr-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18]
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Run tests
+      run: npm test
+      
+    - name: Run ESLint
+      run: npx eslint .
+      
+    - name: Run Snyk test
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      run: npx snyk test
+      
+    - name: Check for TODO and FIXME comments
+      run: |
+        echo "Checking for TODO and FIXME comments..."
+        
+        if grep -r -i "TODO\|FIXME\|XXX" . --include=\"*.js\|*.ts\"; then
+          echo "⚠️  Found TODO/FIXME comments - consider addressing before merge"
+        else
+          echo "✅ No TODO/FIXME comments found"
+        fi
+        
+  security-check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Run security scan using Snyk
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      run: npm run snyk:test

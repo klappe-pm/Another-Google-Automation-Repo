@@ -1,33 +1,30 @@
-# Repository Structure Documentation
+# Google Apps Script Standards
 
 ## Overview
-Documentation and analysis files for the AGAR (Another Google Automation Repository) project.
+This directory contains the official standards and templates for all Google Apps Script development in this repository.
 
-## Files
+## Standards Documents
 
-### Security Documentation
-- **`SECURITY_REVIEW.md`** - Comprehensive security analysis and findings
-  - Vulnerability assessments
-  - Dependency security checks
-  - Code quality analysis
-  - Remediation recommendations
+### Core Standards
+- [Coding Standards](coding-standards.md) - Code formatting, structure, and best practices
+- [Documentation Standards](documentation-standards.md) - README and inline documentation requirements  
+- [Security Standards](security-standards.md) - Security guidelines and requirements
+- [Testing Standards](testing-standards.md) - Testing requirements and procedures
+- [Performance Standards](performance-standards.md) - Performance optimization guidelines
+- [Error Handling Standards](error-handling-standards.md) - Error handling patterns
 
-### Project Planning
-- **`STANDARDIZATION_ACTION_PLAN.md`** - Repository standardization roadmap
-  - File organization strategy
-  - Documentation improvements
-  - Quality assurance measures
-  - Implementation timeline
+### Templates
+- [Script Template](templates/script-template.gs) - Base template for new scripts
+- [Header Template](templates/script-header-template.gs) - Function header format
+- [README Template](templates/readme-template.md) - Folder documentation template
+- [Documentation Template](templates/documentation-template.md) - Script documentation format
 
-## Integration
-These documents were moved from the repository root to maintain a clean top-level structure while preserving important project documentation and analysis.
+## Implementation
+All new scripts must follow these standards. Existing scripts should be gradually updated to comply.
 
-## Related
-- **Security Tools**: See `/tools` directory for automated security scanning
-- **Repository Management**: See `/tools/repository` for analysis tools
-- **GitHub Actions**: See `/.github/workflows` for automated monitoring
+## Archive
+Historical files and deprecated standards are stored in the `archive/` directory.
 
 ---
-**Created**: 2025-07-19  
-**Purpose**: Project documentation and analysis  
-**Repository**: [AGAR Workspace Automation](https://github.com/kevinlappe/workspace-automation)
+**Contact**: kevin@averageintelligence.ai  
+**Last Updated**: 2025-07-23

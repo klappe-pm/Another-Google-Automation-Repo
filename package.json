@@ -37,7 +37,7 @@
     "git:sync-auto": "./tools/setup/quick-sync.sh auto",
     "git:quick-sync": "./tools/setup/quick-sync.sh",
     "git:push-safe": "./tools/setup/quick-sync.sh auto",
-    "sync": "./tools/setup/quick-sync.sh auto",
+    "sync": "./tools/git-sync.sh push",
     "setup:ide": "./tools/setup/setup-ide.sh",
     "setup:github": "./tools/setup-github-actions.sh",
     "repo:cleanup": "./cleanup-repo.sh"

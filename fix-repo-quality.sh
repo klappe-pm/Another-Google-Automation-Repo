@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # Repository Quality Fix Script
 # Addresses issues found in repo:review
@@ -64,7 +65,7 @@ fi
 # Check naming convention compliance
 echo "📝 Checking naming conventions..."
 TOTAL_FILES=$(find scripts -name "*.gs" -type f | wc -l | tr -d ' ')
-COMPLIANT_FILES=$(find scripts -name "*.gs" -type f | grep -E "^scripts/[^/]+/[a-z]+-[a-z]+-[a-z-]+\.gs$" | wc -l | tr -d ' ')
+COMPLIANT_FILES=$(find scripts -name "*.gs" -type f | grep -c -E "^scripts/[^/]+/[a-z]+-[a-z]+-[a-z-]+\.gs$" || echo "0")
 
 if [ "$TOTAL_FILES" -gt 0 ]; then
     COMPLIANCE_PERCENTAGE=$((COMPLIANT_FILES * 100 / TOTAL_FILES))

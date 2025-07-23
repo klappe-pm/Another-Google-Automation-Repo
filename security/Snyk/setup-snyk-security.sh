@@ -1,9 +1,11 @@
 #!/bin/bash
+set -euo pipefail
+
+# Error trap for better debugging
+trap 'echo "Error: $BASH_SOURCE:$LINENO"; exit 1' ERR
 
 # Snyk Security Integration Setup Script
 # For Another-Google-Automation-Repo (AGAR)
-
-set -e  # Exit on error
 
 echo "🛡️  SNYK SECURITY INTEGRATION SETUP"
 echo "===================================="

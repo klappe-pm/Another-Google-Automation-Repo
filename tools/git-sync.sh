@@ -1,23 +1,25 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-/**
- * Git Sync and Push Automation Script
- * 
- * Title: Automated Git Sync, Merge, and Push Handler
- * Purpose: Handle repeated git sync, merge conflicts, and push operations
- * Created: 2025-07-19
- * Updated: 2025-07-19
- * Author: Kevin Lappe
- * Contact: kevin@averageintelligence.ai
- * License: MIT
- * Version: 1.0.0
- */
+# Error trap for better debugging
+trap 'echo "Error: $BASH_SOURCE:$LINENO"; exit 1' ERR
+
+# Git Sync and Push Automation Script
+# 
+# Title: Automated Git Sync, Merge, and Push Handler
+# Purpose: Handle repeated git sync, merge conflicts, and push operations
+# Created: 2025-07-19
+# Updated: 2025-07-19
+# Author: Kevin Lappe
+# Contact: kevin@averageintelligence.ai
+# License: MIT
+# Version: 1.0.0
 
 # Configuration
 BRANCH="main"
 REMOTE="origin"
 MAX_RETRIES=3
-REPO_DIR="/Users/kevinlappe/Documents/GitHub/Workspace Automation"
+# REPO_DIR="/Users/kevinlappe/Documents/GitHub/Workspace Automation"  # Reserved for future use
 
 # Colors for output
 RED='\033[0;31m'
@@ -58,7 +60,7 @@ check_git_repo() {
     # Check if we're in the right directory
     if [ ! -f "package.json" ] || [ ! -d "scripts" ]; then
         warning "This doesn't look like the workspace-automation repository."
-        read -p "Continue anyway? (y/N): " -n 1 -r
+        read -r -p "Continue anyway? (y/N): " -n 1 REPLY
         echo
         if [[ ! $REPLY =~ ^[Yy]$ ]]; then
             exit 1
@@ -95,14 +97,14 @@ stage_changes() {
     
     # Show what will be staged
     info "Files to be staged:"
-    git status --porcelain | while read status file; do
+    git status --porcelain | while read -r status file; do
         echo "  $status $file"
     done
     
     # Ask for confirmation unless auto mode
     if [ "$AUTO_MODE" != "true" ]; then
         echo
-        read -p "Stage all changes? (Y/n): " -n 1 -r
+        read -r -p "Stage all changes? (Y/n): " -n 1 REPLY
         echo
         if [[ $REPLY =~ ^[Nn]$ ]]; then
             log "Selective staging mode..."
@@ -134,11 +136,17 @@ create_commit() {
     # Generate smart commit message if not provided
     if [ -z "$COMMIT_MESSAGE" ]; then
         # Detect type of changes
-        local has_workflows=$(git diff --cached --name-only | grep -q "\.github/workflows" && echo "true" || echo "false")
-        local has_tools=$(git diff --cached --name-only | grep -q "tools/" && echo "true" || echo "false")
-        local has_scripts=$(git diff --cached --name-only | grep -q "scripts/" && echo "true" || echo "false")
-        local has_docs=$(git diff --cached --name-only | grep -q "README\|\.md" && echo "true" || echo "false")
-        local has_config=$(git diff --cached --name-only | grep -q "package\.json\|\.yml\|\.yaml" && echo "true" || echo "false")
+        local has_workflows
+        local has_tools
+        local has_scripts
+        local has_docs
+        local has_config
+        
+        has_workflows=$(git diff --cached --name-only | grep -q "\.github/workflows" && echo "true" || echo "false")
+        has_tools=$(git diff --cached --name-only | grep -q "tools/" && echo "true" || echo "false")
+        has_scripts=$(git diff --cached --name-only | grep -q "scripts/" && echo "true" || echo "false")
+        has_docs=$(git diff --cached --name-only | grep -q "README\|\.md" && echo "true" || echo "false")
+        has_config=$(git diff --cached --name-only | grep -q "package\.json\|\.yml\|\.yaml" && echo "true" || echo "false")
         
         # Generate commit type and message
         local commit_type="feat"
@@ -177,10 +185,10 @@ $(date '+%Y-%m-%d %H:%M:%S') - Automated commit
     # Ask for confirmation unless auto mode
     if [ "$AUTO_MODE" != "true" ]; then
         echo
-        read -p "Use this commit message? (Y/n): " -n 1 -r
+        read -r -p "Use this commit message? (Y/n): " -n 1 REPLY
         echo
         if [[ $REPLY =~ ^[Nn]$ ]]; then
-            read -p "Enter custom commit message: " CUSTOM_MESSAGE
+            read -r -p "Enter custom commit message: " CUSTOM_MESSAGE
             COMMIT_MESSAGE="$CUSTOM_MESSAGE"
         fi
     fi
@@ -200,7 +208,8 @@ handle_merge_conflicts() {
     log "🔧 Handling merge conflicts..."
     
     # List conflicted files
-    local conflicted_files=$(git diff --name-only --diff-filter=U)
+    local conflicted_files
+    conflicted_files=$(git diff --name-only --diff-filter=U)
     
     if [ -z "$conflicted_files" ]; then
         success "No merge conflicts to resolve"
@@ -208,7 +217,7 @@ handle_merge_conflicts() {
     fi
     
     error "Merge conflicts detected in the following files:"
-    echo "$conflicted_files" | while read file; do
+    echo "$conflicted_files" | while read -r file; do
         echo "  📄 $file"
     done
     
@@ -219,13 +228,13 @@ handle_merge_conflicts() {
     echo "3. Keep remote changes (use theirs)"
     echo "4. Abort merge and exit"
     
-    read -p "Choose option (1-4): " -n 1 -r
+    read -r -p "Choose option (1-4): " -n 1 REPLY
     echo
     
     case $REPLY in
         1)
             log "Opening files for manual resolution..."
-            echo "$conflicted_files" | while read file; do
+            echo "$conflicted_files" | while read -r file; do
                 info "Opening $file..."
                 # Try different editors
                 if command -v code > /dev/null; then
@@ -240,23 +249,23 @@ handle_merge_conflicts() {
             done
             
             echo
-            read -p "Press Enter after resolving all conflicts..."
+            read -r -p "Press Enter after resolving all conflicts..."
             
             # Mark files as resolved
-            echo "$conflicted_files" | while read file; do
+            echo "$conflicted_files" | while read -r file; do
                 git add "$file"
             done
             ;;
         2)
             log "Keeping local changes..."
-            echo "$conflicted_files" | while read file; do
+            echo "$conflicted_files" | while read -r file; do
                 git checkout --ours "$file"
                 git add "$file"
             done
             ;;
         3)
             log "Keeping remote changes..."
-            echo "$conflicted_files" | while read file; do
+            echo "$conflicted_files" | while read -r file; do
                 git checkout --theirs "$file"
                 git add "$file"
             done
@@ -282,6 +291,61 @@ handle_merge_conflicts() {
     fi
 }
 
+# Push changes with clasp to modified directories
+push_clasp_changes() {
+    log "🔍 Detecting changed directories between $BASE_SHA and $HEAD_SHA..."
+    
+    # Get changed directories, excluding hidden directories and files without slash
+    local changed_files
+    changed_files=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")
+    
+    if [ -z "$changed_files" ]; then
+        info "No changes detected."
+        return 0
+    fi
+    
+    # Extract unique top-level directories from changed files
+    local changed_dirs
+    changed_dirs=$(echo "$changed_files" | grep '/' | cut -d/ -f1 | sort | uniq | grep -v '^\.')
+
+    if [ -z "$changed_dirs" ]; then
+        info "No service directories changed."
+        return 0
+    fi
+
+    info "Changed directories:"
+    echo "$changed_dirs" | while read -r dir; do
+        echo "  - $dir"
+    done
+    echo
+
+    # Process each changed directory
+    local failed_dirs=""
+    echo "$changed_dirs" | while read -r dir; do
+        if [ -n "$dir" ] && [ -d "$dir" ] && [ -f "$dir/.clasp.json" ]; then
+            log "Pushing changes to $dir..."
+            (
+                cd "$dir" || exit 1
+                if clasp push --force; then
+                    success "Successfully pushed $dir"
+                else
+                    error "Failed to push $dir"
+                    exit 1
+                fi
+            ) || failed_dirs="$failed_dirs $dir"
+        else
+            warning "Skipping $dir (not a valid Apps Script directory)"
+        fi
+    done
+    
+    if [ -n "$failed_dirs" ]; then
+        error "Failed to push to:$failed_dirs"
+        return 1
+    fi
+
+    success "All changes pushed successfully!"
+}
+
 # Sync with remote repository
 sync_with_remote() {
     local retry_count=0
@@ -298,8 +362,10 @@ sync_with_remote() {
         fi
         
         # Check if remote has new commits
-        local behind=$(git rev-list --count HEAD..$REMOTE/$BRANCH)
-        local ahead=$(git rev-list --count $REMOTE/$BRANCH..HEAD)
+        local behind
+        local ahead
+        behind=$(git rev-list --count HEAD..$REMOTE/$BRANCH)
+        ahead=$(git rev-list --count $REMOTE/$BRANCH..HEAD)
         
         info "Repository status: $ahead ahead, $behind behind"
         
@@ -374,6 +440,12 @@ main() {
     
     # Handle command line arguments
     case "${1:-interactive}" in
+        "push")
+            BASE_SHA="${BASE_SHA:-HEAD~1}"
+            HEAD_SHA="${HEAD_SHA:-HEAD}"
+            push_clasp_changes
+            exit $?
+            ;;
         "auto")
             AUTO_MODE="true"
             COMMIT_MESSAGE="${2:-Automated repository sync and update}"
@@ -443,7 +515,8 @@ main() {
     
     # Show GitHub Actions link
     if grep -q "github.com" .git/config 2>/dev/null; then
-        local repo_url=$(git config --get remote.origin.url | sed 's/\.git$//')
+        local repo_url
+        repo_url=$(git config --get remote.origin.url | sed 's/\.git$//')
         info "🔗 Check GitHub Actions: ${repo_url}/actions"
     fi
 }
@@ -459,6 +532,7 @@ USAGE:
 MODES:
     interactive    Interactive mode with prompts (default)
     auto          Fully automated mode with default commit message
+    push          Push changes to Apps Script projects using clasp
     stage-only    Only stage changes, don't commit or push
     commit-only   Only create commit, don't sync or push
     sync-only     Only sync with remote, don't push

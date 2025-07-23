@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # Exit on any error
-set -e
 
 # Validate environment variables
 if [[ -z "${SHARED_PROJECT_ID}" || -z "${PROD_PROJECT_ID}" || -z "${GITHUB_OWNER}" || -z "${GITHUB_REPO_NAME}" || -z "${GITHUB_SA_EMAIL}" || -z "${CLOUDBUILD_SA_EMAIL}" ]]; then
@@ -13,10 +13,11 @@ fi
 gcloud config set project "${SHARED_PROJECT_ID}"
 
 # Get Workload Identity Pool ID
-export WIF_POOL_ID=$(gcloud iam workload-identity-pools describe "github-pool" \
+WIF_POOL_ID=$(gcloud iam workload-identity-pools describe "github-pool" \
   --location="global" \
   --format="value(name)" \
   --project="${SHARED_PROJECT_ID}")
+export WIF_POOL_ID
 
 # Grant IAM permissions
 echo "Granting IAM permissions..."
