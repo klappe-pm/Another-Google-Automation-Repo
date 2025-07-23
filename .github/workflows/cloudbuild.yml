@@ -1,0 +1,9 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/workspace-automation-466800/my-app', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/workspace-automation-466800/my-app']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  args: ['app', 'deploy', 'app.yaml']
+images:
+- 'gcr.io/workspace-automation-466800/my-app'
