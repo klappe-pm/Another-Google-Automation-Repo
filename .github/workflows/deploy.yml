@@ -1,11 +1,31 @@
-name: Deploy to Google Cloud
+name: Deploy to Google Apps Script
 on:
   push:
     branches:
       - main
+
 jobs:
+  set-pending-status:
+    runs-on: ubuntu-latest
+    permissions:
+      statuses: write
+    steps:
+    - name: Set deployment status to pending
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.repos.createCommitStatus({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            sha: context.sha,
+            state: 'pending',
+            description: 'Deployment started',
+            context: 'deploy/google-apps-script'
+          });
+
   deploy:
     runs-on: ubuntu-latest
+    needs: set-pending-status
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -19,5 +39,45 @@ jobs:
         service_account: 'github-actions-ci@workspace-automation-466800.iam.gserviceaccount.com'
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@v1
-    - name: Run Cloud Build
+    - name: Dispatch Cloud Build
       run: gcloud builds submit --config cloudbuild.yaml
+
+  set-success-status:
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: success()
+    permissions:
+      statuses: write
+    steps:
+    - name: Set deployment status to success
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.repos.createCommitStatus({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            sha: context.sha,
+            state: 'success',
+            description: 'Deployment completed successfully', 
+            context: 'deploy/google-apps-script'
+          });
+
+  set-failure-status:
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: failure()
+    permissions:
+      statuses: write
+    steps:
+    - name: Set deployment status to failure
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.repos.createCommitStatus({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            sha: context.sha,
+            state: 'failure',
+            description: 'Deployment failed',
+            context: 'deploy/google-apps-script'
+          });
