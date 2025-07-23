@@ -1,0 +1,42 @@
+steps:
+  # Install dependencies
+  - name: 'node:18'
+    entrypoint: 'npm'
+    args: ['install']
+    
+  # Install clasp globally
+  - name: 'node:18'
+    entrypoint: 'npm'
+    args: ['install', '-g', '@google/clasp']
+    
+  # Set up clasp credentials from Secret Manager
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "Setting up clasp credentials..."
+        gcloud secrets versions access latest --secret="clasp-credentials" --project="$PROJECT_ID" > ~/.clasprc.json
+        chmod 600 ~/.clasprc.json
+    env:
+      - 'PROJECT_ID=workspace-automation-466800'
+      
+  # Push changes to Apps Script projects
+  - name: 'node:18'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "Pushing changes to Apps Script projects..."
+        chmod +x ./tools/git-sync.sh
+        BASE_SHA="${_BASE_SHA}" HEAD_SHA="${_HEAD_SHA}" ./tools/git-sync.sh push
+    env:
+      - 'PROJECT_ID=workspace-automation-466800'
+
+substitutions:
+  _BASE_SHA: 'HEAD~1'
+  _HEAD_SHA: 'HEAD'
+
+options:
+  substitution_option: 'ALLOW_LOOSE'
+  logging: CLOUD_LOGGING_ONLY

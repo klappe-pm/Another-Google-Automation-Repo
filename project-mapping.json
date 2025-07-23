@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "calendar": {
+      "scriptId": "example-calendar-script-id",
+      "name": "Calendar Automation - Dev"
+    },
+    "gmail": {
+      "scriptId": "example-gmail-script-id",
+      "name": "Gmail Automation - Dev"
+    },
+    "drive": {
+      "scriptId": "example-drive-script-id",
+      "name": "Drive Automation - Dev"
+    }
+  }
+}
