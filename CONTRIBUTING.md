@@ -210,7 +210,7 @@ When creating issues, use appropriate labels:
 ### Resources
 - [Google Apps Script Documentation](https://developers.google.com/apps-script)
 - [Google Workspace APIs](https://developers.google.com/workspace)
-- [Project Wiki](https://github.com/klappe-pm/workspace-automation/wiki)
+- [Project Wiki](https://github.com/klappe-pm/Another-Google-Automation-Repo/wiki)
 
 ## 🎉 Recognition
 

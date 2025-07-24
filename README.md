@@ -3,9 +3,9 @@
 **A Production-Ready Collection of Google Apps Script Tools**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/kevinlappe/workspace-automation/graphs/commit-activity)
-[![GitHub last commit](https://img.shields.io/github/last-commit/kevinlappe/workspace-automation.svg)](https://GitHub.com/kevinlappe/workspace-automation/commit/)
-[![Daily Health Check](https://github.com/kevinlappe/workspace-automation/actions/workflows/daily-health-check.yml/badge.svg)](https://github.com/kevinlappe/workspace-automation/actions/workflows/daily-health-check.yml)
+[![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/klappe-pm/Another-Google-Automation-Repo/graphs/commit-activity)
+[![GitHub last commit](https://img.shields.io/github/last-commit/klappe-pm/Another-Google-Automation-Repo.svg)](https://GitHub.com/klappe-pm/Another-Google-Automation-Repo/commit/)
+[![Daily Health Check](https://github.com/klappe-pm/Another-Google-Automation-Repo/actions/workflows/daily-health-check.yml/badge.svg)](https://github.com/klappe-pm/Another-Google-Automation-Repo/actions/workflows/daily-health-check.yml)
 
 ## 📊 Overview
 
@@ -266,7 +266,7 @@ Attribution appreciated but not required:
 
 ```
 Workspace Automation Scripts by Kevin Lappe
-GitHub: github.com/kevinlappe/workspace-automation
+GitHub: github.com/klappe-pm/Another-Google-Automation-Repo
 Email: kevin@averageintelligence.ai
 ```
 

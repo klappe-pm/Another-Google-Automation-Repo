@@ -49,7 +49,7 @@ jobs:
       id: cloudbuild
       run: |
         echo "Starting Cloud Build deployment..."
-        BUILD_ID=$(gcloud builds submit --config=.github/workflows/cloudbuild.yml --format="value(id)")
+        BUILD_ID=$(gcloud builds submit --config=cloudbuild.yaml --format="value(id)")
         echo "build-id=$BUILD_ID" >> $GITHUB_OUTPUT
         
         # Wait for build to complete and get status
