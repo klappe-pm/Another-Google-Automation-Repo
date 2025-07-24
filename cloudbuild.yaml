@@ -5,33 +5,34 @@ steps:
   # Single combined step: Use Node.js base, add gcloud, deploy all projects
   - name: 'node:18'
     entrypoint: 'bash'
-    timeout: '900s'  # 15 minute timeout for installations
+    timeout: '1200s'  # 20 minutes
     args:
       - '-c'
       - |
-        set -e  # Exit on any error
+        set -e  # Exit immediately if a command fails
         
         echo "🚀 Google Apps Script Deployment Pipeline"
         echo "========================================"
         
-        # Step 0: Verify Node.js environment and install gcloud
+        # Step 0: Verify Node.js environment
         echo "✅ Node.js environment ready"
         echo "Node.js version: $$(node --version)"
         echo "npm version: $$(npm --version)"
         
+        # Step 1: Install Google Cloud SDK using sudo for permissions
         echo "📦 Installing Google Cloud SDK..."
-        apt-get update && apt-get install -y apt-transport-https ca-certificates gnupg curl
-        curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
-        echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-        apt-get update && apt-get install -y google-cloud-sdk
+        sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificates gnupg curl
+        curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+        echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
+        sudo apt-get update && sudo apt-get install -y google-cloud-sdk
         echo "✅ Google Cloud SDK installed: $$(gcloud --version | head -1)"
         
-        # Step 1: Install clasp globally
+        # Step 2: Install clasp globally (no sudo needed for npm)
         echo "📥 Installing @google/clasp..."
         npm install -g @google/clasp
         echo "✅ Clasp installed: $$(clasp --version)"
         
-        # Step 2: Set up authentication using Secret Manager
+        # Step 3: Set up authentication using Secret Manager
         echo "🔐 Setting up clasp credentials..."
         gcloud secrets versions access latest \
           --secret="clasp-credentials" \
@@ -46,7 +47,7 @@ steps:
           exit 1
         fi
         
-        # Step 3: Deploy all Apps Script projects
+        # Step 4: Deploy all Apps Script projects
         echo "📤 Starting deployment to all projects..."
         echo ""
         
