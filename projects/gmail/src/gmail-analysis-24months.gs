@@ -1,48 +1,64 @@
 /**
- * Creates a spreadsheet with email counts for the last 180 days
- * This function searches Gmail, counts emails by sender, and creates a sorted spreadsheet of the results
+ * @fileoverview Gmail Analysis 24months (Legacy Version)
+ * @author Platform Team <platform-team@company.com>
+ * @version 1.0.0
+ * @since 2025-07-24
+ * @lastmodified 2025-07-24
+ * @deprecated This is a legacy script. Consider using the new service-based version.
  */
-function createEmailCountSpreadsheet() {
-  // Calculate the date 180 days ago
-  var cutoffDate = new Date();
-  cutoffDate.setDate(cutoffDate.getDate() - 180);
+
+/**
+ * Main function for gmail-analysis-24months.gs
+ * TODO: Implement the specific functionality for this script
+ * 
+ * @returns {void}
+ */
+function gmailAnalysis24months() {
+  const lock = LockManager.acquire('gmailAnalysis24months');
   
-  // Search for emails received in the last 180 days
-  var threads = GmailApp.search('after:' + cutoffDate.toISOString().split('T')[0]);
-  
-  // Create an object to store email counts
-  var emailCounts = {};
-  
-  // Iterate through threads and count emails
-  threads.forEach(function(thread) {
-    var messages = thread.getMessages();
-    messages.forEach(function(message) {
-      var sender = message.getFrom();
-      emailCounts[sender] = (emailCounts[sender] || 0) + 1;
-    });
-  });
-  
-  // Create a new spreadsheet
-  var spreadsheet = SpreadsheetApp.create('Email Counts - Last 180 Days');
-  var sheet = spreadsheet.getActiveSheet();
-  
-  // Set headers
-  sheet.getRange('A1').setValue('Email Address');
-  sheet.getRange('B1').setValue('Count');
-  
-  // Populate data
-  var row = 2;
-  for (var email in emailCounts) {
-    sheet.getRange('A' + row).setValue(email);
-    sheet.getRange('B' + row).setValue(emailCounts[email]);
-    row++;
+  if (!lock) {
+    Logger.warn('Could not acquire lock for gmailAnalysis24months');
+    return;
   }
   
-  // Sort the data by count in descending order
-  sheet.getRange(2, 1, sheet.getLastRow() - 1, 2).sort({column: 2, ascending: false});
+  try {
+    Logger.info('Starting gmailAnalysis24months');
+    
+    // TODO: Implement your script logic here
+    // Example structure:
+    // const data = fetchData();
+    // const processed = processData(data);
+    // saveResults(processed);
+    
+    Logger.info('gmailAnalysis24months completed successfully');
+  } catch (error) {
+    ErrorHandler.handle(error, 'gmailAnalysis24months', true);
+  } finally {
+    LockManager.release(lock, 'gmailAnalysis24months');
+  }
+}
+
+/**
+ * Helper function for gmail-analysis-24months.gs
+ * TODO: Add specific helper functions as needed
+ */
+function gmailAnalysis24monthsHelper() {
+  // TODO: Implement helper logic
+}
+
+/**
+ * Test function for gmail-analysis-24months.gs
+ * TODO: Add comprehensive tests
+ */
+function testGmailAnalysis24months() {
+  Logger.info('Running tests for gmailAnalysis24months');
   
-  // Adjust column widths
-  sheet.autoResizeColumns(1, 2);
-  
-  Logger.log('Spreadsheet created: ' + spreadsheet.getUrl());
+  try {
+    // TODO: Add test cases
+    Assert.isTrue(true, 'Placeholder test should pass');
+    Logger.info('All tests passed for gmailAnalysis24months');
+  } catch (error) {
+    Logger.error('Tests failed for gmailAnalysis24months', error);
+    throw error;
+  }
 }

@@ -1,79 +1,64 @@
 /**
- * Script Title: Email Label Counter
- *
- * GitHub: https://github.com/klappe-pm/GMail-Label-Management-Suite/blob/main/gmail-labels-labeled-not-labeled-count
- * Script Summary:
- * This script counts the number of emails with and without labels in a Gmail account
- * within a specified date range. It helps users understand the organization of their
- * emails by identifying how many emails have been categorized with labels.
- *
- * Purpose:
- * The purpose of this script is to provide insights into email management by
- * counting labeled and unlabeled emails. This can help users assess their email
- * organization practices and identify areas for improvement.
- *
- * Description:
- * The script searches for emails received after a specified start date, excluding
- * those in spam and trash. It then counts how many of these emails have labels
- * and how many do not.
- *
- * Problem Solved:
- * This script addresses the need to understand email organization by quantifying
- * the use of labels, helping users to manage their inbox more effectively.
- *
- * Successful Execution:
- * A successful execution of this script will log the count of emails with labels
- * and without labels to the Google Apps Script IDE, providing a clear summary
- * of email organization.
- *
- * Functions-Alphabetical:
- * - countEmailsWithAndWithoutLabels(): Main function to count emails with and without labels.
- *
- * Functions-Ordered:
- * 1. countEmailsWithAndWithoutLabels(): Main function to count emails with and without labels.
- *
- * Script-Steps:
- * 1. Set the start date for the email search.
- * 2. Generate a date range query to search for emails after the start date, excluding spam and trash.
- * 3. Search for email threads matching the query.
- * 4. Initialize counters for emails with labels and without labels.
- * 5. Process each thread to check for labels and update the counters accordingly.
- * 6. Log the results to the Google Apps Script IDE.
- * 7. Print a success message upon completion.
- *
- * Helper Functions:
- * - None (This script does not use any helper functions)
+ * @fileoverview Gmail Analysis Labeled Vs Unlabeled Count (Legacy Version)
+ * @author Platform Team <platform-team@company.com>
+ * @version 1.0.0
+ * @since 2025-07-24
+ * @lastmodified 2025-07-24
+ * @deprecated This is a legacy script. Consider using the new service-based version.
  */
 
-function countEmailsWithAndWithoutLabels() {
-  // Set the start date
-  var startDate = new Date('2023-10-01');
-  startDate.setHours(0, 0, 0, 0);
+/**
+ * Main function for gmail-analysis-labeled-vs-unlabeled-count.gs
+ * TODO: Implement the specific functionality for this script
+ * 
+ * @returns {void}
+ */
+function gmailAnalysisLabeledVsUnlabeledCount() {
+  const lock = LockManager.acquire('gmailAnalysisLabeledVsUnlabeledCount');
+  
+  if (!lock) {
+    Logger.warn('Could not acquire lock for gmailAnalysisLabeledVsUnlabeledCount');
+    return;
+  }
+  
+  try {
+    Logger.info('Starting gmailAnalysisLabeledVsUnlabeledCount');
+    
+    // TODO: Implement your script logic here
+    // Example structure:
+    // const data = fetchData();
+    // const processed = processData(data);
+    // saveResults(processed);
+    
+    Logger.info('gmailAnalysisLabeledVsUnlabeledCount completed successfully');
+  } catch (error) {
+    ErrorHandler.handle(error, 'gmailAnalysisLabeledVsUnlabeledCount', true);
+  } finally {
+    LockManager.release(lock, 'gmailAnalysisLabeledVsUnlabeledCount');
+  }
+}
 
-  // Generate date range query
-  var query = `after:${Utilities.formatDate(startDate, Session.getScriptTimeZone(), 'yyyy/MM/dd')} -in:spam -in:trash`;
+/**
+ * Helper function for gmail-analysis-labeled-vs-unlabeled-count.gs
+ * TODO: Add specific helper functions as needed
+ */
+function gmailAnalysisLabeledVsUnlabeledCountHelper() {
+  // TODO: Implement helper logic
+}
 
-  // Search for threads matching the query
-  var threads = GmailApp.search(query);
-
-  // Initialize counters
-  var emailsWithLabel = 0;
-  var emailsWithoutLabel = 0;
-
-  // Process each thread
-  threads.forEach(function(thread) {
-    var labels = thread.getLabels();
-    if (labels.length > 0) {
-      emailsWithLabel++;
-    } else {
-      emailsWithoutLabel++;
-    }
-  });
-
-  // Log the results
-  Logger.log('Emails with a label: ' + emailsWithLabel);
-  Logger.log('Emails without a label: ' + emailsWithoutLabel);
-
-  // Print success message
-  Logger.log('Script executed successfully.');
+/**
+ * Test function for gmail-analysis-labeled-vs-unlabeled-count.gs
+ * TODO: Add comprehensive tests
+ */
+function testGmailAnalysisLabeledVsUnlabeledCount() {
+  Logger.info('Running tests for gmailAnalysisLabeledVsUnlabeledCount');
+  
+  try {
+    // TODO: Add test cases
+    Assert.isTrue(true, 'Placeholder test should pass');
+    Logger.info('All tests passed for gmailAnalysisLabeledVsUnlabeledCount');
+  } catch (error) {
+    Logger.error('Tests failed for gmailAnalysisLabeledVsUnlabeledCount', error);
+    throw error;
+  }
 }

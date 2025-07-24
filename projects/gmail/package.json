@@ -1,0 +1,28 @@
+{
+  "name": "gmail-automation-scaffold",
+  "version": "1.0.0",
+  "description": "Service scaffolding generator for Gmail automation project",
+  "main": "scripts/scaffold.ts",
+  "scripts": {
+    "scaffold": "ts-node scripts/scaffold.ts",
+    "scaffold:service": "ts-node scripts/scaffold.ts",
+    "scaffold-all": "ts-node scripts/regenerate-scripts.ts",
+    "build": "tsc",
+    "dev": "ts-node-dev scripts/scaffold.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "gmail",
+    "automation",
+    "google-apps-script",
+    "scaffold",
+    "generator"
+  ],
+  "author": "Platform Team",
+  "license": "MIT"
+}

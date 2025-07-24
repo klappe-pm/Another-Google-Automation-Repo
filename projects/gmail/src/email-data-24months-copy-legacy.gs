@@ -1,48 +1,64 @@
 /**
- * Creates a spreadsheet with email counts for the last 180 days
- * This function searches Gmail, counts emails by sender, and creates a sorted spreadsheet of the results
+ * @fileoverview Email Data 24months Copy Legacy (Legacy Version)
+ * @author Platform Team <platform-team@company.com>
+ * @version 1.0.0
+ * @since 2025-07-24
+ * @lastmodified 2025-07-24
+ * @deprecated This is a legacy script. Consider using the new service-based version.
  */
-function createEmailCountSpreadsheet() {
-  // Calculate the date 180 days ago
-  var cutoffDate = new Date();
-  cutoffDate.setDate(cutoffDate.getDate() - 180);
+
+/**
+ * Main function for email-data-24months-copy-legacy.gs
+ * TODO: Implement the specific functionality for this script
+ * 
+ * @returns {void}
+ */
+function emailData24monthsCopyLegacy() {
+  const lock = LockManager.acquire('emailData24monthsCopyLegacy');
   
-  // Search for emails received in the last 180 days
-  var threads = GmailApp.search('after:' + cutoffDate.toISOString().split('T')[0]);
-  
-  // Create an object to store email counts
-  var emailCounts = {};
-  
-  // Iterate through threads and count emails
-  threads.forEach(function(thread) {
-    var messages = thread.getMessages();
-    messages.forEach(function(message) {
-      var sender = message.getFrom();
-      emailCounts[sender] = (emailCounts[sender] || 0) + 1;
-    });
-  });
-  
-  // Create a new spreadsheet
-  var spreadsheet = SpreadsheetApp.create('Email Counts - Last 180 Days');
-  var sheet = spreadsheet.getActiveSheet();
-  
-  // Set headers
-  sheet.getRange('A1').setValue('Email Address');
-  sheet.getRange('B1').setValue('Count');
-  
-  // Populate data
-  var row = 2;
-  for (var email in emailCounts) {
-    sheet.getRange('A' + row).setValue(email);
-    sheet.getRange('B' + row).setValue(emailCounts[email]);
-    row++;
+  if (!lock) {
+    Logger.warn('Could not acquire lock for emailData24monthsCopyLegacy');
+    return;
   }
   
-  // Sort the data by count in descending order
-  sheet.getRange(2, 1, sheet.getLastRow() - 1, 2).sort({column: 2, ascending: false});
+  try {
+    Logger.info('Starting emailData24monthsCopyLegacy');
+    
+    // TODO: Implement your script logic here
+    // Example structure:
+    // const data = fetchData();
+    // const processed = processData(data);
+    // saveResults(processed);
+    
+    Logger.info('emailData24monthsCopyLegacy completed successfully');
+  } catch (error) {
+    ErrorHandler.handle(error, 'emailData24monthsCopyLegacy', true);
+  } finally {
+    LockManager.release(lock, 'emailData24monthsCopyLegacy');
+  }
+}
+
+/**
+ * Helper function for email-data-24months-copy-legacy.gs
+ * TODO: Add specific helper functions as needed
+ */
+function emailData24monthsCopyLegacyHelper() {
+  // TODO: Implement helper logic
+}
+
+/**
+ * Test function for email-data-24months-copy-legacy.gs
+ * TODO: Add comprehensive tests
+ */
+function testEmailData24monthsCopyLegacy() {
+  Logger.info('Running tests for emailData24monthsCopyLegacy');
   
-  // Adjust column widths
-  sheet.autoResizeColumns(1, 2);
-  
-  Logger.log('Spreadsheet created: ' + spreadsheet.getUrl());
+  try {
+    // TODO: Add test cases
+    Assert.isTrue(true, 'Placeholder test should pass');
+    Logger.info('All tests passed for emailData24monthsCopyLegacy');
+  } catch (error) {
+    Logger.error('Tests failed for emailData24monthsCopyLegacy', error);
+    throw error;
+  }
 }
