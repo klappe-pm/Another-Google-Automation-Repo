@@ -20,7 +20,7 @@ steps:
 
       # --- CRITICAL FIX ---
       # Manually add the gcloud binary to the PATH for this shell session.
-      export PATH=$PATH:/usr/lib/google-cloud-sdk/bin
+      export PATH=$$PATH:/usr/lib/google-cloud-sdk/bin
       
       echo "✅ gcloud SDK installed and configured."
       echo "gcloud version: $$(gcloud --version | head -1)"
@@ -31,7 +31,7 @@ steps:
       echo "✅ Clasp installed: $$(clasp --version)"
       
       echo "🔐 Setting up clasp credentials..."
-      gcloud secrets versions access latest --secret="clasp-credentials" --project="workspace-automation-466800" > ~/.clasprc.json
+      gcloud secrets versions access latest --secret="clasp-credentials" --project="$PROJECT_ID" > ~/.clasprc.json
       chmod 600 ~/.clasprc.json
       
       # Verify credentials are valid
