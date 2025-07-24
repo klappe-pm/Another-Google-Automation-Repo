@@ -140,6 +140,7 @@ EOF
         DESCRIPTION="${{ inputs.description }}"
         CONTEXT="${{ inputs.context }}"
         REPO="${{ inputs.repo || github.repository }}"
+        TARGET_URL="${{ inputs.target_url }}"
         
         echo "Updating PR #$PR_NUMBER status"
         
@@ -163,8 +164,8 @@ EOF
         )
         
         # Add target_url if provided
-        if [ -n "${{ inputs.target_url }}" ]; then
-          API_DATA=$(echo "$API_DATA" | jq --arg url "${{ inputs.target_url }}" '. + {"target_url": $url}')
+        if [ -n "$TARGET_URL" ]; then
+          API_DATA=$(echo "$API_DATA" | jq --arg url "$TARGET_URL" '. + {"target_url": $url}')
         fi
         
         echo "$API_DATA" | gh api \

@@ -115,23 +115,38 @@ jobs:
             INSECURE_ISSUES=$((INSECURE_ISSUES + 1))
           fi
           
-          # Create simple report
-          cat > security/reports/gas-security-report.json << EOF
+          # Create simple JSON report
+          cat > security/reports/gas-security-report.json << 'JSONEOF'
 {
-  "timestamp": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
+  "timestamp": "TIMESTAMP_PLACEHOLDER",
   "scanner": "GAS Security Scanner v1.0",
-  "totalFiles": $TOTAL_FILES,
+  "totalFiles": TOTAL_FILES_PLACEHOLDER,
   "summary": {
-    "critical": $CRED_ISSUES,
-    "high": $INSECURE_ISSUES,
+    "critical": CRED_ISSUES_PLACEHOLDER,
+    "high": INSECURE_ISSUES_PLACEHOLDER,
     "medium": 0,
     "low": 0
   },
-  "status": "$([ $CRED_ISSUES -gt 0 ] && echo "CRITICAL" || [ $INSECURE_ISSUES -gt 0 ] && echo "HIGH" || echo "PASS")"
+  "status": "STATUS_PLACEHOLDER"
 }
-EOF
+JSONEOF
           
-          echo "Status: $([ $CRED_ISSUES -gt 0 ] && echo "CRITICAL" || [ $INSECURE_ISSUES -gt 0 ] && echo "HIGH" || echo "PASS")"
+          # Replace placeholders
+          sed -i "s/TIMESTAMP_PLACEHOLDER/$(date -u +"%Y-%m-%dT%H:%M:%SZ")/g" security/reports/gas-security-report.json
+          sed -i "s/TOTAL_FILES_PLACEHOLDER/$TOTAL_FILES/g" security/reports/gas-security-report.json
+          sed -i "s/CRED_ISSUES_PLACEHOLDER/$CRED_ISSUES/g" security/reports/gas-security-report.json
+          sed -i "s/INSECURE_ISSUES_PLACEHOLDER/$INSECURE_ISSUES/g" security/reports/gas-security-report.json
+          
+          if [ $CRED_ISSUES -gt 0 ]; then
+            STATUS="CRITICAL"
+          elif [ $INSECURE_ISSUES -gt 0 ]; then
+            STATUS="HIGH"
+          else
+            STATUS="PASS"
+          fi
+          sed -i "s/STATUS_PLACEHOLDER/$STATUS/g" security/reports/gas-security-report.json
+          
+          echo "Status: $STATUS"
           echo "Critical vulnerabilities: $CRED_ISSUES"
           echo "High vulnerabilities: $INSECURE_ISSUES"
           
