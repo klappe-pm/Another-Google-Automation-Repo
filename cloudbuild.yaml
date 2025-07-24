@@ -1,15 +1,10 @@
 #
 # Final, Production-Ready Cloud Build Configuration
 #
-# This file deploys multiple Google Apps Script projects.
-# - Uses Node.js base image for a stable runtime environment.
-# - Installs Google Cloud SDK using modern best practices.
-# - Verifies authentication before attempting deployments.
-# - Provides a clear and concise summary report.
-#
 timeout: 1200s # 20 minute timeout
 steps:
 - name: 'node:18'
+  user: 'root' # <-- THE DEFINITIVE FIX: Run this entire step as the root user
   entrypoint: bash
   args:
     - -c
@@ -17,36 +12,33 @@ steps:
       # Exit immediately if any command fails
       set -e
       
-      # 1. Install Google Cloud SDK using the modern, recommended method
+      # 1. Install Google Cloud SDK (no 'sudo' needed as we are root)
       echo "🚀 Installing dependencies and Google Cloud SDK..."
-      sudo apt-get update && sudo apt-get install -y ca-certificates curl gnupg
-      sudo mkdir -p /etc/apt/keyrings
-      curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/cloud.google.gpg
-      echo "deb [signed-by=/etc/apt/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
-      sudo apt-get update && sudo apt-get install -y google-cloud-sdk
+      apt-get update && apt-get install -y ca-certificates curl gnupg
+      mkdir -p /etc/apt/keyrings
+      curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/keyrings/cloud.google.gpg
+      echo "deb [signed-by=/etc/apt/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" > /etc/apt/sources.list.d/google-cloud-sdk.list
+      apt-get update && apt-get install -y google-cloud-sdk
       
-      # 2. Add the gcloud SDK to the PATH for this step
+      # 2. Add the gcloud SDK to the PATH
       export PATH=$$PATH:/usr/lib/google-cloud-sdk/bin
-      echo "✅ gcloud SDK installed and configured."
+      echo "✅ gcloud SDK installed."
       
       # 3. Install and verify clasp
       echo "📥 Installing @google/clasp..."
       npm install -g @google/clasp
-      echo "✅ Clasp installed: $$(clasp --version)"
       
       # 4. Authenticate and verify credentials
       echo "🔐 Setting up clasp credentials..."
       gcloud secrets versions access latest --secret="clasp-credentials" --project="$PROJECT_ID" > ~/.clasprc.json
       chmod 600 ~/.clasprc.json
-      
-      if clasp login --status > /dev/null 2>&1; then
-        echo "✅ Clasp authentication successful"
-      else
-        echo "❌ Clasp authentication failed. Check the 'clasp-credentials' secret in Secret Manager."
+      if ! clasp login --status > /dev/null 2>&1; then
+        echo "❌ Clasp authentication failed. Check the 'clasp-credentials' secret."
         exit 1
       fi
-      
-      # 5. Deploy all projects
+      echo "✅ Clasp authentication successful"
+
+      # 5. Deploy all projects...
       echo "📦 Deploying all Google Apps Script projects..."
       PROJECTS=(
         "projects/calendar" "projects/chat" "projects/docs" "projects/drive"
@@ -62,16 +54,11 @@ steps:
         if [ -d "$$PROJECT_DIR" ] && [ -f "$$PROJECT_DIR/.clasp.json" ]; then
           TOTAL_PROJECTS=$$((TOTAL_PROJECTS + 1))
           echo "   -> Deploying $$PROJECT_DIR..."
-          
           if (cd "$$PROJECT_DIR" && clasp push --force); then
-            echo "   ✅ $$PROJECT_DIR deployed successfully"
             SUCCESS_COUNT=$$((SUCCESS_COUNT + 1))
           else
-            echo "   ❌ Failed to deploy $$PROJECT_DIR"
             FAILED_PROJECTS="$$FAILED_PROJECTS $$PROJECT_DIR"
           fi
-        else
-          echo "   ⚠️ Skipping $$PROJECT_DIR (directory or .clasp.json not found)"
         fi
       done
       
@@ -84,12 +71,9 @@ steps:
       
       if [ $$SUCCESS_COUNT -eq $$TOTAL_PROJECTS ] && [ $$TOTAL_PROJECTS -gt 0 ]; then
         echo "🎉 ALL DEPLOYMENTS COMPLETED SUCCESSFULLY!"
-      elif [ -n "$$FAILED_PROJECTS" ]; then
+      else
         echo "❌ Failed deployments: $$((TOTAL_PROJECTS - SUCCESS_COUNT))"
         echo "Failed projects:$$FAILED_PROJECTS"
-        exit 1
-      else
-        echo "⚠️ No valid projects found to deploy."
         exit 1
       fi
 options:
