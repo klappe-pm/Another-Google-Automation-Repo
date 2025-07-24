@@ -16,7 +16,7 @@ steps:
         # Step 1: Install clasp globally in this container
         echo "📥 Installing @google/clasp..."
         npm install -g @google/clasp
-        echo "✅ Clasp installed: $(clasp --version)"
+        echo "✅ Clasp installed: $$(clasp --version)"
         
         # Step 2: Set up authentication using Secret Manager
         echo "🔐 Setting up clasp credentials..."
@@ -57,22 +57,22 @@ steps:
         FAILED_PROJECTS=""
         
         # Deploy each project
-        for PROJECT_DIR in "${PROJECTS[@]}"; do
-          if [ -d "$PROJECT_DIR" ] && [ -f "$PROJECT_DIR/.clasp.json" ]; then
-            TOTAL_PROJECTS=$((TOTAL_PROJECTS + 1))
-            echo "🔄 Deploying $PROJECT_DIR..."
+        for PROJECT_DIR in "$${PROJECTS[@]}"; do
+          if [ -d "$$PROJECT_DIR" ] && [ -f "$$PROJECT_DIR/.clasp.json" ]; then
+            TOTAL_PROJECTS=$$((TOTAL_PROJECTS + 1))
+            echo "🔄 Deploying $$PROJECT_DIR..."
             
             # Use subshell to avoid changing working directory permanently
-            if (cd "$PROJECT_DIR" && clasp push --force); then
-              echo "✅ $PROJECT_DIR deployed successfully"
-              SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+            if (cd "$$PROJECT_DIR" && clasp push --force); then
+              echo "✅ $$PROJECT_DIR deployed successfully"
+              SUCCESS_COUNT=$$((SUCCESS_COUNT + 1))
             else
-              echo "❌ $PROJECT_DIR deployment failed"
-              FAILED_PROJECTS="$FAILED_PROJECTS $PROJECT_DIR"
+              echo "❌ $$PROJECT_DIR deployment failed"
+              FAILED_PROJECTS="$$FAILED_PROJECTS $$PROJECT_DIR"
             fi
             echo ""
           else
-            echo "⚠️  Skipping $PROJECT_DIR (missing directory or .clasp.json)"
+            echo "⚠️  Skipping $$PROJECT_DIR (missing directory or .clasp.json)"
           fi
         done
         
@@ -80,17 +80,17 @@ steps:
         echo "========================================"
         echo "📊 DEPLOYMENT SUMMARY"
         echo "========================================"
-        echo "Total projects: $TOTAL_PROJECTS"
-        echo "Successful: $SUCCESS_COUNT"
-        echo "Failed: $((TOTAL_PROJECTS - SUCCESS_COUNT))"
+        echo "Total projects: $$TOTAL_PROJECTS"
+        echo "Successful: $$SUCCESS_COUNT"
+        echo "Failed: $$((TOTAL_PROJECTS - SUCCESS_COUNT))"
         
-        if [ $SUCCESS_COUNT -eq $TOTAL_PROJECTS ] && [ $TOTAL_PROJECTS -gt 0 ]; then
+        if [ $$SUCCESS_COUNT -eq $$TOTAL_PROJECTS ] && [ $$TOTAL_PROJECTS -gt 0 ]; then
           echo ""
           echo "🎉 ALL DEPLOYMENTS COMPLETED SUCCESSFULLY!"
           echo "========================================"
-        elif [ -n "$FAILED_PROJECTS" ]; then
+        elif [ -n "$$FAILED_PROJECTS" ]; then
           echo ""
-          echo "❌ Failed projects:$FAILED_PROJECTS"
+          echo "❌ Failed projects:$$FAILED_PROJECTS"
           echo "========================================"
           exit 1
         else
