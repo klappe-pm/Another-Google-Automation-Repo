@@ -1,44 +1,37 @@
-#
-# Final, Production-Ready Cloud Build Configuration
-#
-timeout: 1200s # 20 minute timeout
+# Definitive Cloud Build Configuration
+# - Base: gcr.io/google.com/cloudsdktool/cloud-sdk (provides gcloud and sudo)
+# - Installs Node.js v18 using the official NodeSource repository for reliability
+timeout: 1200s
 steps:
-- name: 'node:18'
-  user: 'root' # <-- THE DEFINITIVE FIX: Run this entire step as the root user
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: bash
   args:
     - -c
     - |
-      # Exit immediately if any command fails
-      set -e
+      set -e # Exit immediately if a command fails
       
-      # 1. Install Google Cloud SDK (no 'sudo' needed as we are root)
-      echo "🚀 Installing dependencies and Google Cloud SDK..."
-      apt-get update && apt-get install -y ca-certificates curl gnupg
-      mkdir -p /etc/apt/keyrings
-      curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/keyrings/cloud.google.gpg
-      echo "deb [signed-by=/etc/apt/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" > /etc/apt/sources.list.d/google-cloud-sdk.list
-      apt-get update && apt-get install -y google-cloud-sdk
+      # Install Node.js v18 using the official NodeSource method
+      echo "🚀 Installing Node.js v18..."
+      sudo apt-get update && sudo apt-get install -y curl
+      curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+      sudo apt-get install -y nodejs
+      echo "✅ Node.js installed: $$(node -v), npm installed: $$(npm -v)"
       
-      # 2. Add the gcloud SDK to the PATH
-      export PATH=$$PATH:/usr/lib/google-cloud-sdk/bin
-      echo "✅ gcloud SDK installed."
-      
-      # 3. Install and verify clasp
+      # Install and verify clasp
       echo "📥 Installing @google/clasp..."
       npm install -g @google/clasp
       
-      # 4. Authenticate and verify credentials
+      # Authenticate and verify credentials
       echo "🔐 Setting up clasp credentials..."
       gcloud secrets versions access latest --secret="clasp-credentials" --project="$PROJECT_ID" > ~/.clasprc.json
       chmod 600 ~/.clasprc.json
       if ! clasp login --status > /dev/null 2>&1; then
-        echo "❌ Clasp authentication failed. Check the 'clasp-credentials' secret."
+        echo "❌ Clasp authentication failed. Verify secret content and IAM permissions."
         exit 1
       fi
       echo "✅ Clasp authentication successful"
 
-      # 5. Deploy all projects...
+      # Deploy all projects...
       echo "📦 Deploying all Google Apps Script projects..."
       PROJECTS=(
         "projects/calendar" "projects/chat" "projects/docs" "projects/drive"
@@ -62,7 +55,7 @@ steps:
         fi
       done
       
-      # 6. Report Summary
+      # Report Summary
       echo "================================================="
       echo "📊 DEPLOYMENT SUMMARY"
       echo "================================================="
