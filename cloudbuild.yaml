@@ -1,38 +1,43 @@
+# Optimized Cloud Build configuration for Google Apps Script deployment
+# Combines all clasp operations in a single step to resolve container isolation issues
+
 steps:
-  # Install dependencies
-  - name: 'node:18'
-    entrypoint: 'npm'
-    args: ['install']
-    
-  # Install clasp globally
-  - name: 'node:18'
-    entrypoint: 'npm'
-    args: ['install', '-g', '@google/clasp']
-    
-  # Set up clasp credentials from Secret Manager
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  # Single combined step: Install clasp, authenticate, and deploy all projects
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:latest'
     entrypoint: 'bash'
     args:
       - '-c'
       - |
-        echo "Setting up clasp credentials..."
-        mkdir -p ~/.config/@google/clasp
-        gcloud secrets versions access latest --secret="clasp-credentials" --project="$PROJECT_ID" > ~/.clasprc.json
-        chmod 600 ~/.clasprc.json
-        ls -la ~/.clasprc.json
-        echo "Credentials set up successfully"
-    env:
-      - 'PROJECT_ID=workspace-automation-466800'
-      
-  # Deploy to all Apps Script projects
-  - name: 'node:18'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        echo "Deploying to Google Apps Script projects..."
+        set -e  # Exit on any error
         
-        # List of project directories to deploy
+        echo "🚀 Google Apps Script Deployment Pipeline"
+        echo "========================================"
+        
+        # Step 1: Install clasp globally in this container
+        echo "📥 Installing @google/clasp..."
+        npm install -g @google/clasp
+        echo "✅ Clasp installed: $(clasp --version)"
+        
+        # Step 2: Set up authentication using Secret Manager
+        echo "🔐 Setting up clasp credentials..."
+        gcloud secrets versions access latest \
+          --secret="clasp-credentials" \
+          --project="workspace-automation-466800" > ~/.clasprc.json
+        chmod 600 ~/.clasprc.json
+        
+        # Verify credentials are valid
+        if clasp login --status > /dev/null 2>&1; then
+          echo "✅ Clasp authentication successful"
+        else
+          echo "❌ Clasp authentication failed"
+          exit 1
+        fi
+        
+        # Step 3: Deploy all Apps Script projects
+        echo "📤 Starting deployment to all projects..."
+        echo ""
+        
+        # Define all project directories
         PROJECTS=(
           "projects/calendar"
           "projects/chat" 
@@ -46,43 +51,60 @@ steps:
           "projects/utility"
         )
         
+        # Deployment tracking
         SUCCESS_COUNT=0
+        TOTAL_PROJECTS=0
         FAILED_PROJECTS=""
         
+        # Deploy each project
         for PROJECT_DIR in "${PROJECTS[@]}"; do
           if [ -d "$PROJECT_DIR" ] && [ -f "$PROJECT_DIR/.clasp.json" ]; then
-            echo "📦 Deploying $PROJECT_DIR..."
-            cd "$PROJECT_DIR"
+            TOTAL_PROJECTS=$((TOTAL_PROJECTS + 1))
+            echo "🔄 Deploying $PROJECT_DIR..."
             
-            if clasp push --force; then
-              echo "✅ Successfully deployed $PROJECT_DIR"
+            # Use subshell to avoid changing working directory permanently
+            if (cd "$PROJECT_DIR" && clasp push --force); then
+              echo "✅ $PROJECT_DIR deployed successfully"
               SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
             else
-              echo "❌ Failed to deploy $PROJECT_DIR"
+              echo "❌ $PROJECT_DIR deployment failed"
               FAILED_PROJECTS="$FAILED_PROJECTS $PROJECT_DIR"
             fi
-            
-            cd - > /dev/null
+            echo ""
           else
-            echo "⚠️ Skipping $PROJECT_DIR (no .clasp.json found)"
+            echo "⚠️  Skipping $PROJECT_DIR (missing directory or .clasp.json)"
           fi
         done
         
-        echo "================================================"
-        echo "Deployment Summary:"
-        echo "✅ Successful deployments: $SUCCESS_COUNT"
-        if [ -n "$FAILED_PROJECTS" ]; then
-          echo "❌ Failed deployments:$FAILED_PROJECTS"
-          echo "================================================"
+        # Final deployment report
+        echo "========================================"
+        echo "📊 DEPLOYMENT SUMMARY"
+        echo "========================================"
+        echo "Total projects: $TOTAL_PROJECTS"
+        echo "Successful: $SUCCESS_COUNT"
+        echo "Failed: $((TOTAL_PROJECTS - SUCCESS_COUNT))"
+        
+        if [ $SUCCESS_COUNT -eq $TOTAL_PROJECTS ] && [ $TOTAL_PROJECTS -gt 0 ]; then
+          echo ""
+          echo "🎉 ALL DEPLOYMENTS COMPLETED SUCCESSFULLY!"
+          echo "========================================"
+        elif [ -n "$FAILED_PROJECTS" ]; then
+          echo ""
+          echo "❌ Failed projects:$FAILED_PROJECTS"
+          echo "========================================"
           exit 1
         else
-          echo "🎉 All deployments completed successfully!"
-          echo "================================================"
+          echo ""
+          echo "⚠️  No valid projects found to deploy"
+          echo "========================================"
+          exit 1
         fi
-    env:
-      - 'PROJECT_ID=workspace-automation-466800'
 
+# Build configuration
 options:
   substitution_option: 'ALLOW_LOOSE'
   logging: CLOUD_LOGGING_ONLY
   machineType: 'E2_HIGHCPU_8'
+
+# Set reasonable timeout
+timeout: '600s'  # 10 minutes should be sufficient for all deployments
