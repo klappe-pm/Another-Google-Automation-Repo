@@ -1,0 +1,277 @@
+name: Manual Direct Apps Script Diagnostic
+
+on:
+  workflow_dispatch:
+    inputs:
+      diagnostic_level:
+        description: 'Diagnostic level to run'
+        required: true
+        default: 'full'
+        type: choice
+        options:
+        - full
+        - auth-only
+        - quick
+
+concurrency:
+  group: manual-deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+        
+    - name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v2
+      with:
+        workload_identity_provider: 'projects/784508074368/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
+        service_account: 'github-actions-ci@workspace-automation-466800.iam.gserviceaccount.com'
+        
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
+      
+    - name: Step 1 - Environment Diagnostics
+      run: |
+        echo "=========================================="
+        echo "STEP 1: Environment Diagnostics"
+        echo "=========================================="
+        echo "Diagnostic Level: ${{ github.event.inputs.diagnostic_level }}"
+        echo "GitHub Runner: $(uname -a)"
+        echo "Current directory: $(pwd)"
+        echo "Available files:"
+        ls -la
+        echo ""
+        echo "=== Google Cloud Authentication ==="
+        gcloud auth list
+        echo ""
+        echo "=== Project Configuration ==="
+        gcloud config list
+        echo ""
+        echo "=== Cloud Build Triggers (potential conflict source) ==="
+        gcloud builds triggers list --project=workspace-automation-466800 || echo "Could not list triggers"
+        echo ""
+        echo "✅ Step 1 Complete: Environment verified"
+        
+    - name: Step 2 - Project Structure Check
+      run: |
+        echo "=========================================="
+        echo "STEP 2: Project Structure Check"
+        echo "=========================================="
+        echo "Checking for projects directory..."
+        if [ -d "projects" ]; then
+          echo "✅ projects/ directory exists"
+          echo "Contents:"
+          ls -la projects/
+          echo ""
+          
+          for dir in projects/*/; do
+            if [ -d "$dir" ]; then
+              echo "📁 Checking $dir"
+              if [ -f "$dir.clasp.json" ]; then
+                echo "  ✅ .clasp.json exists"
+                echo "  📄 Content:"
+                cat "$dir.clasp.json" || echo "  ❌ Could not read .clasp.json"
+                echo ""
+              else
+                echo "  ❌ .clasp.json missing"
+              fi
+              
+              # Check for source files
+              if [ -d "$dir/src" ]; then
+                echo "  📁 src/ directory contents:"
+                ls -la "$dir/src/" || echo "  Could not list src contents"
+              else
+                echo "  📁 Looking for .gs files in project root:"
+                ls -la "$dir"*.gs 2>/dev/null || echo "  No .gs files found in project root"
+              fi
+              echo ""
+            fi
+          done
+        else
+          echo "❌ projects/ directory not found"
+          echo "Available directories:"
+          ls -la
+          exit 1
+        fi
+        echo "✅ Step 2 Complete: Project structure verified"
+        
+    - name: Step 3 - Secret Manager Test
+      run: |
+        echo "=========================================="
+        echo "STEP 3: Secret Manager Test"
+        echo "=========================================="
+        echo "Listing available secrets..."
+        gcloud secrets list --project="workspace-automation-466800" || echo "Could not list secrets"
+        echo ""
+        
+        if gcloud secrets versions access latest --secret="clasp-credentials" --project="workspace-automation-466800" > /tmp/test-secret.json; then
+          echo "✅ Successfully accessed clasp-credentials secret"
+          echo "Secret file size: $(wc -c < /tmp/test-secret.json) bytes"
+          echo "Secret structure check:"
+          if jq . /tmp/test-secret.json > /dev/null 2>&1; then
+            echo "✅ Valid JSON format"
+            echo "Keys present: $(jq -r 'keys | @csv' /tmp/test-secret.json 2>/dev/null || echo "Unable to parse keys")"
+            
+            # Check for required clasp credential fields
+            if jq -e '.access_token' /tmp/test-secret.json > /dev/null; then
+              echo "✅ access_token field present"
+            else
+              echo "❌ access_token field missing"
+            fi
+            
+            if jq -e '.refresh_token' /tmp/test-secret.json > /dev/null; then
+              echo "✅ refresh_token field present"
+            else
+              echo "❌ refresh_token field missing"
+            fi
+            
+            if jq -e '.id_token' /tmp/test-secret.json > /dev/null; then
+              echo "✅ id_token field present"
+            else
+              echo "⚠️  id_token field missing (may be normal)"
+            fi
+            
+          else
+            echo "❌ Invalid JSON format"
+            echo "First 200 characters of secret:"
+            head -c 200 /tmp/test-secret.json
+          fi
+          rm -f /tmp/test-secret.json
+          echo "✅ Step 3 Complete: Secret Manager access verified"
+        else
+          echo "❌ Failed to access clasp-credentials secret"
+          echo "Available secrets:"
+          gcloud secrets list --project="workspace-automation-466800" || echo "Could not list secrets"
+          exit 1
+        fi
+        
+    - name: Step 4 - Node.js and clasp Setup
+      if: github.event.inputs.diagnostic_level == 'full' || github.event.inputs.diagnostic_level == 'auth-only'
+      run: |
+        echo "=========================================="
+        echo "STEP 4: Node.js and clasp Setup"
+        echo "=========================================="
+        
+        echo "Node version: $(node --version)"
+        echo "NPM version: $(npm --version)"
+        
+        echo "Installing clasp..."
+        npm install -g @google/clasp
+        
+        echo "Clasp version: $(clasp --version)"
+        
+        echo "Setting up clasp credentials..."
+        mkdir -p ~/.config/@google/clasp
+        
+        echo "Fetching credentials from Secret Manager..."
+        gcloud secrets versions access latest --secret="clasp-credentials" --project="workspace-automation-466800" > ~/.clasprc.json
+        chmod 600 ~/.clasprc.json
+        
+        echo "Credential file size: $(wc -c < ~/.clasprc.json) bytes"
+        echo "Credential file structure check:"
+        if jq . ~/.clasprc.json > /dev/null 2>&1; then
+          echo "✅ Valid JSON format"
+          echo "Keys in credential file: $(jq -r 'keys | @csv' ~/.clasprc.json)"
+        else
+          echo "❌ Invalid JSON format in credentials"
+          echo "First 200 characters:"
+          head -c 200 ~/.clasprc.json
+          exit 1
+        fi
+        
+        echo "Testing clasp authentication..."
+        if clasp login --status; then
+          echo "✅ Clasp authentication successful"
+          clasp whoami || echo "clasp whoami failed but login status was OK"
+          echo "✅ Step 4 Complete: Clasp setup verified"
+        else
+          echo "❌ Clasp authentication failed"
+          echo "Attempting to diagnose the issue..."
+          echo "Clasp whoami output:"
+          clasp whoami || echo "clasp whoami failed"
+          echo "Credential file content (first 100 characters):"
+          head -c 100 ~/.clasprc.json
+          exit 1
+        fi
+        
+    - name: Step 5 - Single Project Deployment Test
+      if: github.event.inputs.diagnostic_level == 'full'
+      run: |
+        echo "=========================================="
+        echo "STEP 5: Single Project Deployment Test"
+        echo "=========================================="
+        
+        # Re-setup clasp (GitHub Actions steps don't persist environment)
+        npm install -g @google/clasp
+        mkdir -p ~/.config/@google/clasp
+        gcloud secrets versions access latest --secret="clasp-credentials" --project="workspace-automation-466800" > ~/.clasprc.json
+        chmod 600 ~/.clasprc.json
+        
+        # Test with calendar project first (smallest)
+        TEST_PROJECT="projects/calendar"
+        
+        if [ -d "$TEST_PROJECT" ] && [ -f "$TEST_PROJECT/.clasp.json" ]; then
+          echo "Testing deployment to $TEST_PROJECT..."
+          cd "$TEST_PROJECT"
+          
+          echo "Project configuration:"
+          cat .clasp.json
+          echo ""
+          
+          echo "Available files to deploy:"
+          ls -la
+          echo ""
+          
+          echo "Checking clasp status in project directory..."
+          clasp status || echo "clasp status failed"
+          echo ""
+          
+          echo "Attempting deployment..."
+          if clasp push --force; then
+            echo "✅ Test deployment successful!"
+            echo "✅ Step 5 Complete: Deployment verified"
+          else
+            echo "❌ Test deployment failed"
+            echo "Clasp error details:"
+            clasp status || echo "Could not get clasp status"
+            echo "Project file contents:"
+            ls -la
+            echo "Checking if this is a clasp authentication issue..."
+            clasp whoami || echo "clasp whoami failed"
+            exit 1
+          fi
+        else
+          echo "❌ Test project $TEST_PROJECT not found or invalid"
+          echo "Available directories:"
+          ls -la projects/ || echo "No projects directory"
+          exit 1
+        fi
+        
+    - name: Summary Report
+      if: always()
+      run: |
+        echo "=========================================="
+        echo "DIAGNOSTIC SUMMARY REPORT"
+        echo "=========================================="
+        echo "Timestamp: $(date)"
+        echo "Repository: klappe-pm/Another-Google-Automation-Repo"
+        echo "Commit: ${{ github.sha }}"
+        echo "Workflow: Manual Direct GitHub Actions Diagnostic"
+        echo "Diagnostic Level: ${{ github.event.inputs.diagnostic_level }}"
+        echo ""
+        echo "If all steps completed successfully, the deployment pipeline"
+        echo "is ready for full implementation. If any steps failed,"
+        echo "the error details above indicate the specific issue to fix."
+        echo ""
+        echo "Next steps if successful:"
+        echo "1. Disable any conflicting Cloud Build triggers"
+        echo "2. Implement full deployment using GitHub Actions"
+        echo "3. Proceed with repository standardization"
+        echo "=========================================="
