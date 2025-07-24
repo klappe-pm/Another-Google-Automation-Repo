@@ -1,37 +1,33 @@
-# Definitive Cloud Build Configuration
-# - Base: gcr.io/google.com/cloudsdktool/cloud-sdk (provides gcloud and sudo)
-# - Installs Node.js v18 using the official NodeSource repository for reliability
+# Professional Cloud Build Configuration
+# Uses custom pre-built image with Node.js + Google Cloud SDK
 timeout: 1200s
 steps:
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+- name: 'gcr.io/$PROJECT_ID/clasp-builder' # Use our stable, pre-built image
   entrypoint: bash
   args:
     - -c
     - |
-      set -e # Exit immediately if a command fails
+      set -e
+      echo "✅ Custom builder environment ready."
+      echo "Node.js version: $$(node --version)"
+      echo "gcloud version: $$(gcloud --version | head -1)"
       
-      # Install Node.js v18 using the official NodeSource method
-      echo "🚀 Installing Node.js v18..."
-      sudo apt-get update && sudo apt-get install -y curl
-      curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-      sudo apt-get install -y nodejs
-      echo "✅ Node.js installed: $$(node -v), npm installed: $$(npm -v)"
-      
-      # Install and verify clasp
+      # Install clasp
       echo "📥 Installing @google/clasp..."
       npm install -g @google/clasp
+      echo "✅ Clasp installed: $$(clasp --version)"
       
       # Authenticate and verify credentials
       echo "🔐 Setting up clasp credentials..."
       gcloud secrets versions access latest --secret="clasp-credentials" --project="$PROJECT_ID" > ~/.clasprc.json
       chmod 600 ~/.clasprc.json
       if ! clasp login --status > /dev/null 2>&1; then
-        echo "❌ Clasp authentication failed. Verify secret content and IAM permissions."
+        echo "❌ Clasp authentication failed. Check the 'clasp-credentials' secret."
         exit 1
       fi
       echo "✅ Clasp authentication successful"
 
-      # Deploy all projects...
+      # Deploy all projects
       echo "📦 Deploying all Google Apps Script projects..."
       PROJECTS=(
         "projects/calendar" "projects/chat" "projects/docs" "projects/drive"
