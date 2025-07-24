@@ -1,10 +1,11 @@
 # Optimized Cloud Build configuration for Google Apps Script deployment
-# Combines all clasp operations in a single step to resolve container isolation issues
+# Uses Node.js base image with gcloud tools added for reliability
 
 steps:
-  # Single combined step: Install Node.js, clasp, authenticate, and deploy all projects
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:latest'
+  # Single combined step: Use Node.js base, add gcloud, deploy all projects
+  - name: 'node:18'
     entrypoint: 'bash'
+    timeout: '900s'  # 15 minute timeout for installations
     args:
       - '-c'
       - |
@@ -13,13 +14,19 @@ steps:
         echo "🚀 Google Apps Script Deployment Pipeline"
         echo "========================================"
         
-        # Step 0: Install Node.js and npm with sudo for permissions
-        echo "📦 Installing Node.js and npm..."
-        sudo apt-get update && sudo apt-get install -y nodejs npm
-        echo "✅ Node.js installed: $$(node --version)"
-        echo "✅ npm installed: $$(npm --version)"
+        # Step 0: Verify Node.js environment and install gcloud
+        echo "✅ Node.js environment ready"
+        echo "Node.js version: $$(node --version)"
+        echo "npm version: $$(npm --version)"
         
-        # Step 1: Install clasp globally in this container
+        echo "📦 Installing Google Cloud SDK..."
+        apt-get update && apt-get install -y apt-transport-https ca-certificates gnupg curl
+        curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+        echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+        apt-get update && apt-get install -y google-cloud-sdk
+        echo "✅ Google Cloud SDK installed: $$(gcloud --version | head -1)"
+        
+        # Step 1: Install clasp globally
         echo "📥 Installing @google/clasp..."
         npm install -g @google/clasp
         echo "✅ Clasp installed: $$(clasp --version)"
@@ -112,5 +119,5 @@ options:
   logging: CLOUD_LOGGING_ONLY
   machineType: 'E2_HIGHCPU_8'
 
-# Set reasonable timeout for Node.js installation + deployments
-timeout: '900s'  # 15 minutes to account for package installation
+# Set reasonable timeout for installations + deployments
+timeout: '1200s'  # 20 minutes for gcloud installation + all deployments
