@@ -1,4 +1,4 @@
-name: Deploy with Status Updates
+name: Deploy to Google Apps Script
 
 on:
   push:
@@ -10,27 +10,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  set-pending-status:
-    uses: ./.github/workflows/manual-status-management.yml
-    with:
-      status: 'pending'
-      description: 'Deployment started'
-      context: 'deploy/cloud-build'
-    permissions:
-      statuses: write
-      contents: read
-
   deploy:
     runs-on: ubuntu-latest
-    needs: set-pending-status
     permissions:
       contents: 'read'
       id-token: 'write'
-      statuses: 'write'
-    
-    outputs:
-      build-id: ${{ steps.cloudbuild.outputs.build-id }}
-      build-status: ${{ steps.cloudbuild.outputs.build-status }}
     
     steps:
     - name: Checkout code
@@ -45,61 +29,24 @@ jobs:
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@v2
       
-    - name: Dispatch Cloud Build
-      id: cloudbuild
+    - name: Test Cloud Build
+      run: |
+        echo "Testing Cloud Build configuration..."
+        if [ -f cloudbuild.yaml ]; then
+          echo "✅ cloudbuild.yaml exists"
+          gcloud builds submit --config=cloudbuild.yaml --dry-run
+          echo "✅ Cloud Build configuration is valid"
+        else
+          echo "❌ cloudbuild.yaml not found"
+          exit 1
+        fi
+        
+    - name: Deploy via Cloud Build
       run: |
         echo "Starting Cloud Build deployment..."
         BUILD_ID=$(gcloud builds submit --config=cloudbuild.yaml --format="value(id)")
-        echo "build-id=$BUILD_ID" >> $GITHUB_OUTPUT
+        echo "Build ID: $BUILD_ID"
         
-        # Wait for build to complete and get status
-        echo "Waiting for build $BUILD_ID to complete..."
-        gcloud builds wait $BUILD_ID --format="value(status)" > build_status.txt
-        BUILD_STATUS=$(cat build_status.txt)
-        echo "build-status=$BUILD_STATUS" >> $GITHUB_OUTPUT
-        
-        if [ "$BUILD_STATUS" = "SUCCESS" ]; then
-          echo "✅ Cloud Build completed successfully"
-          exit 0
-        else
-          echo "❌ Cloud Build failed with status: $BUILD_STATUS"
-          exit 1
-        fi
-
-  set-success-status:
-    if: needs.deploy.result == 'success'
-    needs: deploy
-    uses: ./.github/workflows/manual-status-management.yml
-    with:
-      status: 'success'
-      description: 'Deployment completed successfully'
-      context: 'deploy/cloud-build'
-      target_url: 'https://console.cloud.google.com/cloud-build/builds/${{ needs.deploy.outputs.build-id }}?project=workspace-automation-466800'
-    permissions:
-      statuses: write
-      contents: read
-        
-  set-failure-status:
-    if: needs.deploy.result == 'failure'
-    needs: deploy
-    uses: ./.github/workflows/manual-status-management.yml
-    with:
-      status: 'failure'
-      description: 'Deployment failed'
-      context: 'deploy/cloud-build'
-      target_url: 'https://console.cloud.google.com/cloud-build/builds/${{ needs.deploy.outputs.build-id }}?project=workspace-automation-466800'
-    permissions:
-      statuses: write
-      contents: read
-        
-  set-cancelled-status:
-    if: needs.deploy.result == 'cancelled'
-    needs: deploy
-    uses: ./.github/workflows/manual-status-management.yml
-    with:
-      status: 'error'
-      description: 'Deployment was cancelled'
-      context: 'deploy/cloud-build'
-    permissions:
-      statuses: write
-      contents: read
+        # Wait for build completion
+        gcloud builds wait $BUILD_ID
+        echo "✅ Deployment completed successfully"

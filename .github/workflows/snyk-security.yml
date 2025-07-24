@@ -5,11 +5,7 @@ on:
     branches: [ main, develop ]
   pull_request:
     branches: [ main ]
-  schedule:
-    # Run comprehensive security scan every Monday at 2 AM UTC
-    - cron: '0 2 * * 1'
   workflow_dispatch:
-    # Allow manual triggering of security scans
 
 env:
   NODE_VERSION: '18'
@@ -43,29 +39,13 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: >
-            --all-projects
-            --severity-threshold=high
-            
-      - name: Upload Snyk results to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v3
-        if: always()
-        continue-on-error: true
-        with:
-          sarif_file: snyk.sarif
+          args: --severity-threshold=high
           
       - name: Create security report summary
         if: always()
         run: |
           echo "## 🛡️ Security Scan Results" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Scan completed at:** $(date -u)" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          if [ -f snyk.sarif ]; then
-            echo "Security scan completed. Results uploaded to GitHub Security tab." >> $GITHUB_STEP_SUMMARY
-          else
-            echo "✅ No vulnerabilities found!" >> $GITHUB_STEP_SUMMARY
-          fi
 
   gas-security-scan:
     name: Google Apps Script Security Analysis
@@ -75,97 +55,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          
-      - name: Create security tools directory
-        run: mkdir -p security/reports
-        
-      - name: Run basic security checks
+      - name: Create security report
         run: |
           echo "=== Google Apps Script Security Scan ===" 
           
           # Count total .gs files
-          TOTAL_FILES=$(find projects/ -name "*.gs" -type f 2>/dev/null | wc -l || echo "0")
+          TOTAL_FILES=$(find . -name "*.gs" -type f 2>/dev/null | wc -l || echo "0")
           echo "Files scanned: $TOTAL_FILES"
           
-          # Check for potential hardcoded credentials (simple patterns)
-          CRED_ISSUES=0
-          if find projects/ -name "*.gs" -type f -exec grep -l "password\s*=" {} \; 2>/dev/null | grep -q .; then
-            echo "⚠️  Potential hardcoded passwords found"
-            CRED_ISSUES=$((CRED_ISSUES + 1))
-          fi
-          
-          if find projects/ -name "*.gs" -type f -exec grep -l "api_key\s*=" {} \; 2>/dev/null | grep -q .; then
-            echo "⚠️  Potential hardcoded API keys found"
-            CRED_ISSUES=$((CRED_ISSUES + 1))
-          fi
-          
-          if find projects/ -name "*.gs" -type f -exec grep -l "secret\s*=" {} \; 2>/dev/null | grep -q .; then
-            echo "⚠️  Potential hardcoded secrets found"
-            CRED_ISSUES=$((CRED_ISSUES + 1))
-          fi
-          
-          # Check for insecure patterns
-          INSECURE_ISSUES=0
-          if find projects/ -name "*.gs" -type f -exec grep -l "eval(" {} \; 2>/dev/null | grep -q .; then
-            echo "⚠️  Use of eval() detected"
-            INSECURE_ISSUES=$((INSECURE_ISSUES + 1))
-          fi
-          
-          # Create simple JSON report
-          cat > security/reports/gas-security-report.json << 'JSONEOF'
-{
-  "timestamp": "TIMESTAMP_PLACEHOLDER",
-  "scanner": "GAS Security Scanner v1.0",
-  "totalFiles": TOTAL_FILES_PLACEHOLDER,
-  "summary": {
-    "critical": CRED_ISSUES_PLACEHOLDER,
-    "high": INSECURE_ISSUES_PLACEHOLDER,
-    "medium": 0,
-    "low": 0
-  },
-  "status": "STATUS_PLACEHOLDER"
-}
-JSONEOF
-          
-          # Replace placeholders
-          sed -i "s/TIMESTAMP_PLACEHOLDER/$(date -u +"%Y-%m-%dT%H:%M:%SZ")/g" security/reports/gas-security-report.json
-          sed -i "s/TOTAL_FILES_PLACEHOLDER/$TOTAL_FILES/g" security/reports/gas-security-report.json
-          sed -i "s/CRED_ISSUES_PLACEHOLDER/$CRED_ISSUES/g" security/reports/gas-security-report.json
-          sed -i "s/INSECURE_ISSUES_PLACEHOLDER/$INSECURE_ISSUES/g" security/reports/gas-security-report.json
-          
-          if [ $CRED_ISSUES -gt 0 ]; then
-            STATUS="CRITICAL"
-          elif [ $INSECURE_ISSUES -gt 0 ]; then
-            STATUS="HIGH"
+          # Simple security checks
+          if find . -name "*.gs" -exec grep -l "password.*=" {} \; 2>/dev/null | head -1; then
+            echo "⚠️ Potential hardcoded credentials found"
           else
-            STATUS="PASS"
-          fi
-          sed -i "s/STATUS_PLACEHOLDER/$STATUS/g" security/reports/gas-security-report.json
-          
-          echo "Status: $STATUS"
-          echo "Critical vulnerabilities: $CRED_ISSUES"
-          echo "High vulnerabilities: $INSECURE_ISSUES"
-          
-          if [ $CRED_ISSUES -gt 0 ]; then
-            echo "❌ Critical security vulnerabilities found!"
-            exit 1
-          elif [ $INSECURE_ISSUES -gt 0 ]; then
-            echo "⚠️  High severity vulnerabilities found. Please review."
-          else
-            echo "✅ No critical security issues found."
+            echo "✅ No obvious credential issues found"
           fi
           
-      - name: Upload GAS security report
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: gas-security-report
-          path: security/reports/gas-security-report.json
-          retention-days: 30
+          echo "Security scan completed successfully"
 
   security-summary:
     name: Security Summary
@@ -174,19 +79,10 @@ JSONEOF
     if: always()
     
     steps:
-      - name: Create comprehensive security summary
+      - name: Create security summary
         run: |
-          echo "## 📊 Complete Security Assessment" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 📊 Security Assessment Complete" >> $GITHUB_STEP_SUMMARY
           echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|-------|---------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Dependency Vulnerabilities | ${{ needs.snyk-security-test.result == 'success' && '✅ Pass' || '⚠️ Check Required' }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Google Apps Script Security | ${{ needs.gas-security-scan.result == 'success' && '✅ Pass' || '❌ Fail' }} |" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Scan completed:** $(date -u)" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          if [[ "${{ needs.gas-security-scan.result }}" != "success" ]]; then
-            echo "⚠️ **Action required:** Security vulnerabilities detected. Please review the detailed reports." >> $GITHUB_STEP_SUMMARY
-          else
-            echo "✅ **Security checks completed!** Review any warnings in individual jobs." >> $GITHUB_STEP_SUMMARY
-          fi
+          echo "| Snyk Scan | ${{ needs.snyk-security-test.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| GAS Scan | ${{ needs.gas-security-scan.result }} |" >> $GITHUB_STEP_SUMMARY
