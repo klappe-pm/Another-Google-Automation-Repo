@@ -2,7 +2,7 @@
 # Combines all clasp operations in a single step to resolve container isolation issues
 
 steps:
-  # Single combined step: Install clasp, authenticate, and deploy all projects
+  # Single combined step: Install Node.js, clasp, authenticate, and deploy all projects
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:latest'
     entrypoint: 'bash'
     args:
@@ -12,6 +12,12 @@ steps:
         
         echo "🚀 Google Apps Script Deployment Pipeline"
         echo "========================================"
+        
+        # Step 0: Install Node.js and npm in the Cloud SDK container
+        echo "📦 Installing Node.js and npm..."
+        apt-get update && apt-get install -y nodejs npm
+        echo "✅ Node.js installed: $$(node --version)"
+        echo "✅ npm installed: $$(npm --version)"
         
         # Step 1: Install clasp globally in this container
         echo "📥 Installing @google/clasp..."
@@ -106,5 +112,5 @@ options:
   logging: CLOUD_LOGGING_ONLY
   machineType: 'E2_HIGHCPU_8'
 
-# Set reasonable timeout
-timeout: '600s'  # 10 minutes should be sufficient for all deployments
+# Set reasonable timeout for Node.js installation + deployments
+timeout: '900s'  # 15 minutes to account for package installation
