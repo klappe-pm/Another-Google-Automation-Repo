@@ -1,0 +1,93 @@
+# Utility Service Specification
+# Service: Utility Automation Tools
+# Purpose: Define exact automations, inputs, outputs, dependencies, and APIs for Utility service
+# Created: 2025-01-16
+# Updated: 2025-01-16
+
+service:
+  name: "Utility"
+  description: "General utility automation tools for system maintenance, API management, and cross-service operations"
+  version: "1.0.0"
+  status: "active"
+  
+automations:
+  - name: "utility-api-key-checker"
+    description: "Check and validate API keys and service connections across Google Workspace services"
+    script_file: "utility-api-key-checker.gs"
+    purpose: "Monitor and validate API connectivity and authentication status for all automation services"
+    complexity: "intermediate"
+    inputs:
+      - type: "service_list"
+        description: "List of Google Workspace services to check (or all if unspecified)"
+        required: false
+      - type: "check_type"
+        description: "Type of check to perform (connectivity, quotas, permissions)"
+        required: false
+      - type: "notification_settings"
+        description: "How to handle check results (email, sheet, log)"
+        required: false
+      - type: "detailed_analysis"
+        description: "Include detailed API quota and usage analysis"
+        required: false
+    outputs:
+      - type: "api_status_report"
+        description: "Comprehensive report of API key status and service connectivity"
+        format: "Google Sheets with status indicators and details"
+      - type: "health_summary"
+        description: "High-level summary of system health and any issues found"
+        format: "Summary document or notification"
+      - type: "quota_analysis"
+        description: "Analysis of API quota usage and remaining limits"
+        format: "Detailed usage metrics and projections"
+    dependencies:
+      - "Google Sheets API"
+      - "Gmail API (for notifications)"
+    apis_touched:
+      - "Multiple Google Workspace APIs (for testing)"
+      - "Sheets API"
+      - "Gmail API"
+      - "Drive API"
+      - "Calendar API"
+      - "Docs API"
+      - "Tasks API"
+      - "Chat API"
+      - "Photos Library API"
+    scopes:
+      - "https://www.googleapis.com/auth/spreadsheets"
+      - "https://www.googleapis.com/auth/gmail.send"
+      - "https://www.googleapis.com/auth/drive.readonly"
+      - "https://www.googleapis.com/auth/calendar.readonly"
+      - "https://www.googleapis.com/auth/documents.readonly"
+      - "https://www.googleapis.com/auth/tasks.readonly"
+      - "https://www.googleapis.com/auth/chat.spaces.readonly"
+      - "https://www.googleapis.com/auth/photoslibrary.readonly"
+
+total_scripts: 1
+service_apis:
+  primary:
+    - "Cross-service API validation"
+  secondary:
+    - "Google Sheets API"
+    - "Gmail API"
+    - "All Google Workspace APIs (for validation)"
+
+common_scopes:
+  - "https://www.googleapis.com/auth/spreadsheets"
+  - "https://www.googleapis.com/auth/gmail.send"
+  - "Multiple readonly scopes for service validation"
+
+use_cases:
+  - "System health monitoring and diagnostics"
+  - "API key and authentication validation"
+  - "Service connectivity testing"
+  - "Quota monitoring and usage analysis"
+  - "Automated system maintenance checks"
+  - "Service reliability monitoring"
+  - "Troubleshooting and debugging support"
+  - "Compliance and audit trail for API usage"
+
+maintenance:
+  last_updated: "2025-01-16"
+  next_review: "2025-04-16"
+  maintainer: "Kevin Lappe"
+  notes: "Currently limited to single utility script - high potential for expansion with additional system utilities and cross-service tools"

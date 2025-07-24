@@ -1,0 +1,280 @@
+# Sheets Service Specification
+# Service: Google Sheets Automation
+# Purpose: Define exact automations, inputs, outputs, dependencies, and APIs for Sheets service
+# Created: 2025-01-16
+# Updated: 2025-01-16
+
+service:
+  name: "Sheets"
+  description: "Google Sheets automation tools for data processing, formatting, and workflow management"
+  version: "1.0.0"
+  status: "active"
+  
+automations:
+  - name: "sheets-create-markdown"
+    description: "Convert Sheets data to markdown format"
+    script_file: "sheets-create-markdown.gs"
+    purpose: "Export spreadsheet content as formatted markdown for documentation"
+    complexity: "intermediate"
+    inputs:
+      - type: "spreadsheet_range"
+        description: "Specific range or entire sheet to convert"
+        required: true
+      - type: "markdown_format"
+        description: "Markdown formatting options (table, list, etc.)"
+        required: false
+      - type: "include_headers"
+        description: "Include column headers in markdown output"
+        required: false
+    outputs:
+      - type: "markdown_content"
+        description: "Formatted markdown representation of spreadsheet data"
+        format: "Markdown text or files"
+    dependencies:
+      - "Google Drive API" 
+    apis_touched:
+      - "Sheets API"
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/spreadsheets.readonly"
+      - "https://www.googleapis.com/auth/drive.file"
+
+  - name: "sheets-create-tree-diagram"
+    description: "Generate tree diagrams from hierarchical spreadsheet data"
+    script_file: "sheets-create-tree-diagram.gs"
+    purpose: "Visualize hierarchical data structures as tree diagrams"
+    complexity: "advanced"
+    inputs:
+      - type: "hierarchical_data"
+        description: "Spreadsheet data with parent-child relationships"
+        required: true
+      - type: "tree_structure_columns"
+        description: "Columns defining the hierarchy (parent, child, level)"
+        required: true
+      - type: "output_format"
+        description: "Tree diagram format (text, ASCII, markdown)"
+        required: false
+    outputs:
+      - type: "tree_diagram"
+        description: "Visual tree representation of hierarchical data"
+        format: "Text-based tree diagram"
+    dependencies: []
+    apis_touched:
+      - "Sheets API"
+    scopes:
+      - "https://www.googleapis.com/auth/spreadsheets.readonly"
+
+  - name: "sheets-csv-combiner"
+    description: "Combine multiple CSV files or sheets into a single sheet"
+    script_file: "sheets-csv-combiner.gs"
+    purpose: "Merge data from multiple sources into consolidated spreadsheet"
+    complexity: "intermediate"
+    inputs:
+      - type: "source_files"
+        description: "CSV files or spreadsheet ranges to combine"
+        required: true
+      - type: "combination_method"
+        description: "How to combine data (append, merge, union)"
+        required: false
+      - type: "header_handling"
+        description: "How to handle headers when combining"
+        required: false
+    outputs:
+      - type: "combined_spreadsheet"
+        description: "Single spreadsheet with merged data from all sources"
+        format: "Google Sheets spreadsheet"
+    dependencies:
+      - "Google Drive API"
+    apis_touched:
+      - "Sheets API"
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/spreadsheets"
+      - "https://www.googleapis.com/auth/drive.readonly"
+
+  - name: "sheets-export-markdown-files"
+    description: "Export spreadsheet data as individual markdown files"
+    script_file: "sheets-export-markdown-files.gs"
+    purpose: "Create separate markdown files for each row or data segment"
+    complexity: "intermediate"
+    inputs:
+      - type: "source_sheet"
+        description: "Spreadsheet containing data to export"
+        required: true
+      - type: "export_template"
+        description: "Template for markdown file structure"
+        required: false
+      - type: "file_naming_column"
+        description: "Column to use for markdown filename generation"
+        required: true
+    outputs:
+      - type: "markdown_files"
+        description: "Individual markdown files created from spreadsheet rows"
+        format: "Multiple markdown files in Drive folder"
+    dependencies:
+      - "Google Drive API"
+    apis_touched:
+      - "Sheets API"
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/spreadsheets.readonly"
+      - "https://www.googleapis.com/auth/drive.file"
+
+  - name: "sheets-format-comprehensive-styling"
+    description: "Apply comprehensive formatting and styling to spreadsheets"
+    script_file: "sheets-format-comprehensive-styling.gs"
+    purpose: "Automatically format spreadsheets with professional styling"
+    complexity: "advanced"
+    inputs:
+      - type: "target_sheet"
+        description: "Spreadsheet to format"
+        required: true
+      - type: "formatting_rules"
+        description: "Specific formatting rules and styles to apply"
+        required: false
+      - type: "style_template"
+        description: "Predefined style template to use"
+        required: false
+    outputs:
+      - type: "formatted_sheet"
+        description: "Professionally formatted spreadsheet"
+        format: "Styled Google Sheets spreadsheet"
+    dependencies: []
+    apis_touched:
+      - "Sheets API"
+    scopes:
+      - "https://www.googleapis.com/auth/spreadsheets"
+
+  - name: "sheets-index-folders-files"
+    description: "Create index of folders and files in spreadsheet format"
+    script_file: "sheets-index-folders-files.gs"
+    purpose: "Generate spreadsheet inventory of Drive folder structure"
+    complexity: "intermediate"
+    inputs:
+      - type: "root_folder_id"
+        description: "Starting folder for indexing"
+        required: true
+      - type: "index_depth"
+        description: "Maximum depth for folder traversal"
+        required: false
+      - type: "include_file_metadata"
+        description: "Include detailed file metadata in index"
+        required: false
+    outputs:
+      - type: "folder_file_index"
+        description: "Spreadsheet with organized folder and file inventory"
+        format: "Google Sheets with structured data"
+    dependencies:
+      - "Google Drive API"
+    apis_touched:
+      - "Sheets API"
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/spreadsheets"
+      - "https://www.googleapis.com/auth/drive.readonly"
+
+  - name: "sheets-index-general"
+    description: "Create general-purpose index from various data sources"
+    script_file: "sheets-index-general.gs"
+    purpose: "Generate flexible indexing solution for multiple data types"
+    complexity: "intermediate"
+    inputs:
+      - type: "data_sources"
+        description: "Various data sources to index (files, APIs, etc.)"
+        required: true
+      - type: "index_configuration"
+        description: "Configuration for index structure and content"
+        required: false
+    outputs:
+      - type: "general_index"
+        description: "Flexible index spreadsheet accommodating various data types"
+        format: "Google Sheets with configurable structure"
+    dependencies:
+      - "Google Drive API"
+    apis_touched:
+      - "Sheets API"
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/spreadsheets"
+      - "https://www.googleapis.com/auth/drive.readonly"
+
+  - name: "sheets-process-date-automation"
+    description: "Automate date processing with checkbox controls and validation"
+    script_file: "sheets-process-date-automation.gs"
+    purpose: "Automatically set or clear dates based on checkbox states with logging"
+    complexity: "advanced"
+    inputs:
+      - type: "checkbox_columns"
+        description: "Columns containing checkboxes that trigger date updates"
+        required: true
+      - type: "date_columns"
+        description: "Corresponding columns where dates should be set/cleared"
+        required: true
+      - type: "trigger_configuration"
+        description: "onEdit trigger configuration for real-time processing"
+        required: false
+    outputs:
+      - type: "automated_dates"
+        description: "Automatically managed date columns based on checkbox states"
+        format: "Updated spreadsheet with date automation"
+      - type: "change_log"
+        description: "Comprehensive log of all date changes and user actions"
+        format: "Separate sheet with change tracking"
+    dependencies: []
+    apis_touched:
+      - "Sheets API"
+    scopes:
+      - "https://www.googleapis.com/auth/spreadsheets"
+
+  - name: "sheets-utility-tab-sorter"
+    description: "Sort and organize spreadsheet tabs/sheets automatically"
+    script_file: "sheets-utility-tab-sorter.gs"
+    purpose: "Organize spreadsheet tabs by name, date, or custom criteria"
+    complexity: "intermediate"
+    inputs:
+      - type: "target_spreadsheet"
+        description: "Spreadsheet containing tabs to sort"
+        required: true
+      - type: "sort_criteria"
+        description: "Criteria for tab sorting (alphabetical, date, custom)"
+        required: false
+      - type: "sort_direction"
+        description: "Sort direction (ascending, descending)"
+        required: false
+    outputs:
+      - type: "organized_spreadsheet"
+        description: "Spreadsheet with tabs organized according to specified criteria"
+        format: "Reorganized Google Sheets spreadsheet"
+    dependencies: []
+    apis_touched:
+      - "Sheets API"
+    scopes:
+      - "https://www.googleapis.com/auth/spreadsheets"
+
+total_scripts: 9
+service_apis:
+  primary:
+    - "Google Sheets API"
+  secondary:
+    - "Google Drive API"
+
+common_scopes:
+  - "https://www.googleapis.com/auth/spreadsheets"
+  - "https://www.googleapis.com/auth/spreadsheets.readonly"
+  - "https://www.googleapis.com/auth/drive.file"
+  - "https://www.googleapis.com/auth/drive.readonly"
+
+use_cases:
+  - "Data export and format conversion"
+  - "Spreadsheet automation and workflow management"
+  - "File and folder inventory management"
+  - "Professional spreadsheet formatting"
+  - "Data consolidation and merging"
+  - "Automated date and checkbox processing"
+  - "Markdown documentation generation from data"
+  - "Hierarchical data visualization"
+
+maintenance:
+  last_updated: "2025-01-16"
+  next_review: "2025-04-16"
+  maintainer: "Kevin Lappe"

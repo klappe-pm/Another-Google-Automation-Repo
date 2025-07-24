@@ -1,0 +1,323 @@
+name: Snyk Security Scan
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run comprehensive security scan every Monday at 2 AM UTC
+    - cron: '0 2 * * 1'
+  workflow_dispatch:
+    # Allow manual triggering of security scans
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  snyk-security-test:
+    name: Snyk Vulnerability Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+          
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: >
+            --all-projects
+            --severity-threshold=high
+            
+      - name: Upload Snyk results to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: snyk.sarif
+          
+      - name: Create security report summary
+        if: always()
+        run: |
+          echo "## 🛡️ Security Scan Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Scan completed at:** $(date -u)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f snyk.sarif ]; then
+            echo "Security scan completed. Results uploaded to GitHub Security tab." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ No vulnerabilities found!" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  snyk-code-quality:
+    name: Snyk Code Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Run Snyk Code Analysis
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: code test
+          args: >
+            --severity-threshold=high
+
+  snyk-infrastructure:
+    name: Infrastructure as Code Security
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Run Snyk Infrastructure as Code test
+        uses: snyk/actions/iac@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: >
+            --severity-threshold=medium
+
+  gas-security-scan:
+    name: Google Apps Script Security Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          
+      - name: Create security tools directory
+        run: mkdir -p security/reports
+        
+      - name: Run custom GAS security scanner
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+          
+          class GASSecurityScanner {
+            constructor() {
+              this.vulnerabilities = [];
+              this.scannedFiles = 0;
+              this.securityPatterns = {
+                hardcodedSecrets: [
+                  /(password|passwd|pwd|secret|key|token|api_key)\\s*=\\s*['\\\"][^'\\\"]{8,}['\\\"]]/i, 
+                  /(client_secret|client_id|auth_token)\\s*=\\s*['\\\"][^'\\\"]{20,}['\\\"]]/i,
+                  /Bearer\\s+[A-Za-z0-9\\-_]{20,}/i,
+                  /(sk-|pk_)[a-zA-Z0-9]{20,}/i
+                ],
+                insecurePatterns: [
+                  /eval\\s*\\(/,
+                  /innerHTML\\s*=/,
+                  /document\\.write\\s*\\(/,
+                  /new\\s+Function\\s*\\(/
+                ],
+                apiKeyExposure: [
+                  /AIza[0-9A-Za-z\\-_]{35}/,
+                  /[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com/
+                ]
+              };
+            }
+            
+            scanFile(filePath) {
+              try {
+                const content = fs.readFileSync(filePath, 'utf8');
+                const lines = content.split('\\n');
+                this.scannedFiles++;
+                
+                lines.forEach((line, index) => {
+                  this.checkSecurityPatterns(line, index + 1, filePath);
+                });
+              } catch (error) {
+                console.error('Error scanning file:', filePath, error.message);
+              }
+            }
+            
+            checkSecurityPatterns(line, lineNumber, filePath) {
+              const trimmedLine = line.trim();
+              if (trimmedLine.startsWith('//') || trimmedLine.startsWith('*')) return;
+              
+              // Check for hardcoded secrets
+              this.securityPatterns.hardcodedSecrets.forEach(pattern => {
+                if (pattern.test(line)) {
+                  this.vulnerabilities.push({
+                    type: 'CRITICAL',
+                    category: 'Hardcoded Secrets',
+                    file: filePath.replace(process.cwd() + '/', ''),
+                    line: lineNumber,
+                    description: 'Potential hardcoded credential detected',
+                    snippet: line.trim().substring(0, 100)
+                  });
+                }
+              });
+              
+              // Check for insecure patterns
+              this.securityPatterns.insecurePatterns.forEach(pattern => {
+                if (pattern.test(line)) {
+                  this.vulnerabilities.push({
+                    type: 'HIGH',
+                    category: 'Insecure Pattern',
+                    file: filePath.replace(process.cwd() + '/', ''),
+                    line: lineNumber,
+                    description: 'Potentially insecure code pattern detected',
+                    snippet: line.trim().substring(0, 100)
+                  });
+                }
+              });
+              
+              // Check for API key exposure
+              this.securityPatterns.apiKeyExposure.forEach(pattern => {
+                if (pattern.test(line)) {
+                  this.vulnerabilities.push({
+                    type: 'CRITICAL',
+                    category: 'API Key Exposure',
+                    file: filePath.replace(process.cwd() + '/', ''),
+                    line: lineNumber,
+                    description: 'Potential API key exposure detected',
+                    snippet: '[REDACTED]'
+                  });
+                }
+              });
+            }
+            
+            generateReport() {
+              const summary = {
+                critical: this.vulnerabilities.filter(v => v.type === 'CRITICAL').length,
+                high: this.vulnerabilities.filter(v => v.type === 'HIGH').length,
+                medium: this.vulnerabilities.filter(v => v.type === 'MEDIUM').length,
+                low: this.vulnerabilities.filter(v => v.type === 'LOW').length
+              };
+              
+              return {
+                timestamp: new Date().toISOString(),
+                scanner: 'GAS Security Scanner v1.0',
+                totalFiles: this.scannedFiles,
+                vulnerabilities: this.vulnerabilities,
+                summary: summary,
+                status: summary.critical > 0 ? 'CRITICAL' : summary.high > 0 ? 'HIGH' : 'PASS'
+              };
+            }
+          }
+          
+          function scanRepository() {
+            const scanner = new GASSecurityScanner();
+            const scriptsDir = path.join(process.cwd(), 'scripts');
+            
+            if (!fs.existsSync(scriptsDir)) {
+              console.log('Scripts directory not found');
+              return;
+            }
+            
+            function scanDirectory(dir) {
+              const files = fs.readdirSync(dir);
+              
+              files.forEach(file => {
+                const filePath = path.join(dir, file);
+                const stat = fs.statSync(filePath);
+                
+                if (stat.isDirectory() && !file.startsWith('.') && file !== 'Legacy Files') {
+                  scanDirectory(filePath);
+                } else if (file.endsWith('.gs')) {
+                  scanner.scanFile(filePath);
+                }
+              });
+            }
+            
+            scanDirectory(scriptsDir);
+            
+            const report = scanner.generateReport();
+            
+            // Write detailed report
+            fs.writeFileSync('./security/reports/gas-security-report.json', JSON.stringify(report, null, 2));
+            
+            // Write summary for GitHub Actions
+            console.log('=== Google Apps Script Security Scan Results ===');
+            console.log('Files scanned:', report.totalFiles);
+            console.log('Status:', report.status);
+            console.log('Critical vulnerabilities:', report.summary.critical);
+            console.log('High vulnerabilities:', report.summary.high);
+            console.log('Medium vulnerabilities:', report.summary.medium);
+            console.log('Low vulnerabilities:', report.summary.low);
+            
+            if (report.vulnerabilities.length > 0) {
+              console.log('\\n=== Vulnerabilities Found ===');
+              report.vulnerabilities.forEach(vuln => {
+                console.log('[' + vuln.type + '] ' + vuln.category + ' in ' + vuln.file + ':' + vuln.line);
+                console.log('  ' + vuln.description);
+                console.log('  Code: ' + vuln.snippet);
+                console.log('');
+              });
+            }
+            
+            // Exit with error code if critical vulnerabilities found
+            if (report.summary.critical > 0) {
+              console.error('❌ Critical security vulnerabilities found!');
+              process.exit(1);
+            } else if (report.summary.high > 0) {
+              console.warn('⚠️  High severity vulnerabilities found. Please review.');
+            } else {
+              console.log('✅ No critical security issues found.');
+            }
+          }
+          
+          scanRepository();
+          "
+          
+      - name: Upload GAS security report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gas-security-report
+          path: security/reports/gas-security-report.json
+          retention-days: 30
+
+  security-summary:
+    name: Security Summary
+    runs-on: ubuntu-latest
+    needs: [snyk-security-test, snyk-code-quality, snyk-infrastructure, gas-security-scan]
+    if: always()
+    
+    steps:
+      - name: Create comprehensive security summary
+        run: |
+          echo "## 📊 Complete Security Assessment" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|---------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Dependency Vulnerabilities | ${{ needs.snyk-security-test.result == 'success' && '✅ Pass' || '❌ Fail' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Code Quality Security | ${{ needs.snyk-code-quality.result == 'success' && '✅ Pass' || '❌ Fail' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Infrastructure Security | ${{ needs.snyk-infrastructure.result == 'success' && '✅ Pass' || '❌ Fail' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Google Apps Script Security | ${{ needs.gas-security-scan.result == 'success' && '✅ Pass' || '❌ Fail' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Scan completed:** $(date -u)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [[ "${{ needs.snyk-security-test.result }}" != "success" || "${{ needs.gas-security-scan.result }}" != "success" ]]; then
+            echo "⚠️ **Action required:** Security vulnerabilities detected. Please review the detailed reports." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ **All security checks passed!** Your code meets security standards." >> $GITHUB_STEP_SUMMARY
+          fi

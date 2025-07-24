@@ -1,0 +1,222 @@
+# Docs Service Specification
+# Service: Google Docs Automation
+# Purpose: Define exact automations, inputs, outputs, dependencies, and APIs for Docs service
+# Created: 2025-01-16
+# Updated: 2025-01-16
+
+service:
+  name: "Docs"
+  description: "Google Docs automation tools for document processing, content management, and format conversion"
+  version: "1.0.0"
+  status: "active"
+  
+automations:
+  - name: "docs-embed-content-block"
+    description: "Embed content blocks or templates into Google Docs"
+    script_file: "docs-embed-content-block.gs"
+    purpose: "Insert standardized content blocks or dynamic content into documents"
+    complexity: "intermediate"
+    inputs:
+      - type: "target_document"
+        description: "Google Doc where content should be embedded"
+        required: true
+      - type: "content_template"
+        description: "Template or content block to embed"
+        required: true
+      - type: "insertion_point"
+        description: "Location in document for content insertion"
+        required: false
+      - type: "content_variables"
+        description: "Dynamic variables to populate in template"
+        required: false
+    outputs:
+      - type: "updated_document"
+        description: "Document with embedded content block"
+        format: "Modified Google Doc"
+    dependencies: []
+    apis_touched:
+      - "Docs API"
+    scopes:
+      - "https://www.googleapis.com/auth/documents"
+
+  - name: "docs-export-comments-sheets"
+    description: "Export document comments to Google Sheets for review and tracking"
+    script_file: "docs-export-comments-sheets.gs"
+    purpose: "Create structured review process by exporting comments to spreadsheet"
+    complexity: "intermediate"
+    inputs:
+      - type: "source_document"
+        description: "Google Doc containing comments to export"
+        required: true
+      - type: "comment_filter"
+        description: "Filter criteria for comments (resolved, unresolved, author)"
+        required: false
+      - type: "export_format"
+        description: "Structure for comment export in spreadsheet"
+        required: false
+    outputs:
+      - type: "comment_spreadsheet"
+        description: "Structured spreadsheet with document comments and metadata"
+        format: "Google Sheets with comment tracking"
+    dependencies:
+      - "Google Sheets API"
+    apis_touched:
+      - "Docs API"
+      - "Sheets API"
+    scopes:
+      - "https://www.googleapis.com/auth/documents.readonly"
+      - "https://www.googleapis.com/auth/spreadsheets"
+
+  - name: "docs-export-file-list-to-sheets"
+    description: "Export list of Google Docs files to spreadsheet with metadata"
+    script_file: "docs-export-file-list-to-sheets.gs"
+    purpose: "Create inventory of Google Docs files with detailed metadata analysis"
+    complexity: "intermediate"
+    inputs:
+      - type: "folder_scope"
+        description: "Folders to scan for Google Docs files"
+        required: true
+      - type: "metadata_fields"
+        description: "Specific metadata fields to include in export"
+        required: false
+      - type: "include_content_analysis"
+        description: "Include word count, structure analysis, etc."
+        required: false
+    outputs:
+      - type: "docs_inventory"
+        description: "Comprehensive spreadsheet inventory of Google Docs files"
+        format: "Google Sheets with detailed file metadata"
+    dependencies:
+      - "Google Sheets API"
+      - "Google Drive API"
+    apis_touched:
+      - "Docs API"
+      - "Drive API"
+      - "Sheets API"
+    scopes:
+      - "https://www.googleapis.com/auth/documents.readonly"
+      - "https://www.googleapis.com/auth/drive.readonly"
+      - "https://www.googleapis.com/auth/spreadsheets"
+
+  - name: "docs-export-markdown-advanced"
+    description: "Advanced export of Google Docs to markdown with enhanced formatting"
+    script_file: "docs-export-markdown-advanced.gs"
+    purpose: "Convert Google Docs to markdown with advanced formatting preservation"
+    complexity: "advanced"
+    inputs:
+      - type: "source_documents"
+        description: "Google Docs to convert to markdown"
+        required: true
+      - type: "markdown_options"
+        description: "Advanced markdown formatting options and preferences"
+        required: false
+      - type: "preserve_formatting"
+        description: "Level of formatting preservation (basic, advanced, full)"
+        required: false
+      - type: "output_structure"
+        description: "How to structure the markdown output (single file, sections, etc.)"
+        required: false
+    outputs:
+      - type: "markdown_files"
+        description: "High-quality markdown files with preserved formatting"
+        format: "Markdown files in Drive or downloadable format"
+    dependencies:
+      - "Google Drive API"
+    apis_touched:
+      - "Docs API"
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/documents.readonly"
+      - "https://www.googleapis.com/auth/drive.file"
+
+  - name: "docs-export-markdown-obsidian"
+    description: "Export Google Docs to Obsidian-compatible markdown format"
+    script_file: "docs-export-markdown-obsidian.gs"
+    purpose: "Convert Google Docs to markdown optimized for Obsidian note-taking system"
+    complexity: "advanced"
+    inputs:
+      - type: "source_documents"
+        description: "Google Docs to convert for Obsidian"
+        required: true
+      - type: "obsidian_formatting"
+        description: "Obsidian-specific formatting preferences (wikilinks, tags, etc.)"
+        required: false
+      - type: "vault_structure"
+        description: "Target vault structure for organized import"
+        required: false
+      - type: "frontmatter_template"
+        description: "YAML frontmatter template for Obsidian compatibility"
+        required: false
+    outputs:
+      - type: "obsidian_notes"
+        description: "Markdown files formatted for Obsidian with appropriate metadata"
+        format: "Obsidian-compatible markdown files with frontmatter"
+    dependencies:
+      - "Google Drive API"
+    apis_touched:
+      - "Docs API"
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/documents.readonly"
+      - "https://www.googleapis.com/auth/drive.file"
+
+  - name: "docs-formatter-content"
+    description: "Format and standardize content within Google Docs"
+    script_file: "docs-formatter-content.gs"
+    purpose: "Apply consistent formatting rules and content standards to documents"
+    complexity: "intermediate"
+    inputs:
+      - type: "target_documents"
+        description: "Google Docs to format"
+        required: true
+      - type: "formatting_rules"
+        description: "Specific formatting rules to apply (styles, fonts, spacing)"
+        required: false
+      - type: "content_standards"
+        description: "Content standardization rules (headings, lists, etc.)"
+        required: false
+      - type: "style_template"
+        description: "Document style template to apply"
+        required: false
+    outputs:
+      - type: "formatted_documents"
+        description: "Documents with consistent formatting and content standards applied"
+        format: "Standardized Google Docs"
+      - type: "formatting_report"
+        description: "Report of formatting changes made"
+        format: "Summary of applied changes"
+    dependencies: []
+    apis_touched:
+      - "Docs API"
+    scopes:
+      - "https://www.googleapis.com/auth/documents"
+
+total_scripts: 6
+service_apis:
+  primary:
+    - "Google Docs API"
+  secondary:
+    - "Google Sheets API"
+    - "Google Drive API"
+
+common_scopes:
+  - "https://www.googleapis.com/auth/documents"
+  - "https://www.googleapis.com/auth/documents.readonly"
+  - "https://www.googleapis.com/auth/spreadsheets"
+  - "https://www.googleapis.com/auth/drive.file"
+  - "https://www.googleapis.com/auth/drive.readonly"
+
+use_cases:
+  - "Document format conversion and export"
+  - "Content standardization and formatting"
+  - "Comment and review workflow management"
+  - "Document inventory and metadata analysis"
+  - "Integration with note-taking systems (Obsidian)"
+  - "Markdown generation for documentation workflows"
+  - "Content template and block management"
+  - "Document quality and consistency improvement"
+
+maintenance:
+  last_updated: "2025-01-16"
+  next_review: "2025-04-16"
+  maintainer: "Kevin Lappe"

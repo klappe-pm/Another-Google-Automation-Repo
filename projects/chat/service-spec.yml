@@ -1,0 +1,82 @@
+# Chat Service Specification
+# Service: Google Chat Automation
+# Purpose: Define exact automations, inputs, outputs, dependencies, and APIs for Chat service
+# Created: 2025-01-16
+# Updated: 2025-01-16
+
+service:
+  name: "Chat"
+  description: "Google Chat automation tools for message management, export, and communication workflows"
+  version: "1.0.0"
+  status: "active"
+  
+automations:
+  - name: "chat-export-daily-details"
+    description: "Export daily Google Chat messages with detailed conversation analysis"
+    script_file: "chat-export-daily-details.gs"
+    purpose: "Create comprehensive daily summaries of chat conversations for record-keeping and analysis"
+    complexity: "intermediate"
+    inputs:
+      - type: "target_date"
+        description: "Specific date for chat message export (defaults to today)"
+        required: false
+      - type: "chat_spaces"
+        description: "Specific chat spaces/rooms to include in export"
+        required: false
+      - type: "message_filter"
+        description: "Filter criteria for messages (sender, keywords, etc.)"
+        required: false
+      - type: "detail_level"
+        description: "Level of detail to include (basic, full, metadata)"
+        required: false
+      - type: "export_format"
+        description: "Output format for the export (markdown, CSV, JSON)"
+        required: false
+    outputs:
+      - type: "daily_chat_export"
+        description: "Structured export of daily chat conversations with analysis"
+        format: "Formatted file (markdown/CSV/JSON) in Drive"
+      - type: "conversation_summary"
+        description: "High-level summary of chat activity and key discussions"
+        format: "Summary document or data structure"
+    dependencies:
+      - "Google Drive API"
+      - "Google Sheets API" 
+    apis_touched:
+      - "Chat API"
+      - "Drive API"
+      - "Sheets API"
+    scopes:
+      - "https://www.googleapis.com/auth/chat.messages.readonly"
+      - "https://www.googleapis.com/auth/chat.spaces.readonly"
+      - "https://www.googleapis.com/auth/drive.file"
+      - "https://www.googleapis.com/auth/spreadsheets"
+
+total_scripts: 1
+service_apis:
+  primary:
+    - "Google Chat API"
+  secondary:
+    - "Google Drive API"
+    - "Google Sheets API"
+
+common_scopes:
+  - "https://www.googleapis.com/auth/chat.messages.readonly"
+  - "https://www.googleapis.com/auth/chat.spaces.readonly"
+  - "https://www.googleapis.com/auth/drive.file"
+  - "https://www.googleapis.com/auth/spreadsheets"
+
+use_cases:
+  - "Daily communication record-keeping"
+  - "Chat conversation archival and backup"
+  - "Team communication analysis and reporting"
+  - "Compliance and audit trail maintenance"
+  - "Knowledge extraction from chat discussions"
+  - "Communication pattern analysis"
+  - "Integration with documentation workflows"
+
+maintenance:
+  last_updated: "2025-01-16"
+  next_review: "2025-04-16"
+  maintainer: "Kevin Lappe"
+  notes: "Limited to single automation script - potential for expansion based on Chat API capabilities"

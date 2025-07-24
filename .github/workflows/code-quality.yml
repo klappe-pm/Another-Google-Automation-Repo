@@ -1,5 +1,4 @@
 name: Code Quality Check
-description: A workflow to check code quality and standards
 
 on:
   push:
@@ -25,73 +24,91 @@ jobs:
         echo "Checking file naming conventions..."
         
         # Check for Google Apps Script files
-        find scripts/ -name "*.gs" | while read file; do
-          filename=$(basename "$file")
-          
-          # Check if filename follows convention: service-function-descriptor.gs
-          if [[ ! $filename =~ ^[a-z]+-[a-z]+-[a-z-]+\.gs$ ]]; then
-            echo "❌ File naming issue: $file"
-            echo "   Should follow pattern: service-function-descriptor.gs"
-            echo "   Example: gmail-export-pdf-markdown.gs"
-            exit 1
-          else
-            echo "✅ $file follows naming convention"
-          fi
-        done
+        if [ -d "projects" ]; then
+          echo "Found projects directory, checking .gs files..."
+          find projects/ -name "*.gs" | while read file; do
+            filename=$(basename "$file")
+            
+            # Check if filename follows convention: service-function-descriptor.gs
+            if [[ ! $filename =~ ^[a-z]+-[a-z]+-[a-z-]+\.gs$ ]]; then
+              echo "❌ File naming issue: $file"
+              echo "   Should follow pattern: service-function-descriptor.gs"
+              echo "   Example: gmail-export-pdf-markdown.gs"
+              exit 1
+            else
+              echo "✅ $file follows naming convention"
+            fi
+          done
+        else
+          echo "✅ No projects directory found, skipping GAS file checks"
+        fi
         
     - name: Check for required script headers
       run: |
         echo "Checking for required script headers..."
         
-        find scripts/ -name "*.gs" | while read file; do
-          # Check for required header elements
-          if ! grep -q "Title:" "$file"; then
-            echo "❌ Missing 'Title:' in header: $file"
-            exit 1
-          fi
-          
-          if ! grep -q "Service:" "$file"; then
-            echo "❌ Missing 'Service:' in header: $file"
-            exit 1
-          fi
-          
-          if ! grep -q "Purpose:" "$file"; then
-            echo "❌ Missing 'Purpose:' in header: $file"
-            exit 1
-          fi
-          
-          if ! grep -q "Author:" "$file"; then
-            echo "❌ Missing 'Author:' in header: $file"
-            exit 1
-          fi
-          
-          echo "✅ $file has required headers"
-        done
+        if [ -d "projects" ]; then
+          echo "Checking script headers in projects directory..."
+          find projects/ -name "*.gs" | while read file; do
+            echo "Checking headers in: $file"
+            
+            # Check for required header elements
+            if ! grep -q "Title:" "$file"; then
+              echo "❌ Missing 'Title:' in header: $file"
+              exit 1
+            fi
+            
+            if ! grep -q "Service:" "$file"; then
+              echo "❌ Missing 'Service:' in header: $file"
+              exit 1
+            fi
+            
+            if ! grep -q "Purpose:" "$file"; then
+              echo "❌ Missing 'Purpose:' in header: $file"
+              exit 1
+            fi
+            
+            if ! grep -q "Author:" "$file"; then
+              echo "❌ Missing 'Author:' in header: $file"
+              exit 1
+            fi
+            
+            echo "✅ $file has required headers"
+          done
+        else
+          echo "✅ No projects directory found, skipping header checks"
+        fi
         
     - name: Check README files exist
       run: |
         echo "Checking for README files in service directories..."
         
-        for dir in scripts/*/; do
-          if [ -d "$dir" ]; then
-            if [ ! -f "$dir/README.md" ]; then
-              echo "❌ Missing README.md in: $dir"
-              exit 1
-            else
-              echo "✅ README.md exists in: $dir"
+        if [ -d "projects" ]; then
+          for dir in projects/*/; do
+            if [ -d "$dir" ]; then
+              if [ ! -f "$dir/README.md" ]; then
+                echo "❌ Missing README.md in: $dir"
+                exit 1
+              else
+                echo "✅ README.md exists in: $dir"
+              fi
             fi
-          fi
-        done
+          done
+        else
+          echo "✅ No projects directory found, skipping README checks"
+        fi
         
     - name: Check for sensitive information
       run: |
         echo "Checking for potential sensitive information..."
         
         # Check for common patterns that might indicate sensitive data
-        if grep -r -i "api.key\|password\|secret\|token" scripts/ --include="*.gs" | grep -v "YOUR_API_KEY_HERE\|your-api-key\|placeholder"; then
-          echo "❌ Potential sensitive information found in scripts"
-          echo "Please review and replace with placeholders"
-          exit 1
+        if [ -d "projects" ]; then
+          if grep -r -i "api.key\|password\|secret\|token" projects/ --include="*.gs" | grep -v "YOUR_API_KEY_HERE\|your-api-key\|placeholder"; then
+            echo "❌ Potential sensitive information found in scripts"
+            echo "Please review and replace with placeholders"
+            exit 1
+          fi
         fi
         
         echo "✅ No sensitive information detected"
@@ -115,11 +132,15 @@ jobs:
       run: |
         echo "Checking for TODO and FIXME comments..."
         
-        if grep -r -i "TODO\|FIXME\|XXX" scripts/ --include="*.gs"; then
-          echo "⚠️  Found TODO/FIXME comments - consider addressing before merge"
-          # Don't fail the build for TODOs, just warn
+        if [ -d "projects" ]; then
+          if grep -r -i "TODO\|FIXME\|XXX" projects/ --include="*.gs"; then
+            echo "⚠️  Found TODO/FIXME comments - consider addressing before merge"
+            # Don't fail the build for TODOs, just warn
+          else
+            echo "✅ No TODO/FIXME comments found"
+          fi
         else
-          echo "✅ No TODO/FIXME comments found"
+          echo "✅ No projects directory found, skipping TODO check"
         fi
 
   documentation-check:
@@ -176,14 +197,16 @@ jobs:
         echo "Running basic security checks..."
         
         # Check for hardcoded credentials patterns
-        if grep -r -E "(password|passwd|pwd|secret|key|token|api_key)\s*=\s*['\"][^'\"]{8,}" scripts/ --include="*.gs"; then
-          echo "❌ Potential hardcoded credentials found"
-          exit 1
-        fi
-        
-        # Check for common insecure patterns
-        if grep -r -i "eval(" scripts/ --include="*.gs"; then
-          echo "⚠️  Found eval() usage - review for security implications"
+        if [ -d "projects" ]; then
+          if grep -r -E "(password|passwd|pwd|secret|key|token|api_key)\s*=\s*['\"][^'\"]{8,}" projects/ --include="*.gs"; then
+            echo "❌ Potential hardcoded credentials found"
+            exit 1
+          fi
+          
+          # Check for common insecure patterns
+          if grep -r -i "eval(" projects/ --include="*.gs"; then
+            echo "⚠️  Found eval() usage - review for security implications"
+          fi
         fi
         
         echo "✅ Basic security check passed"

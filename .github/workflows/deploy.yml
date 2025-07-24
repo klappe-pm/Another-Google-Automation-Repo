@@ -11,7 +11,7 @@ jobs:
       statuses: write
     steps:
     - name: Set deployment status to pending
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       with:
         script: |
           github.rest.repos.createCommitStatus({
@@ -31,16 +31,16 @@ jobs:
       id-token: 'write'
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Authenticate to Google Cloud
-      uses: google-github-actions/auth@v1
+      uses: google-github-actions/auth@v2
       with:
         workload_identity_provider: 'projects/784508074368/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
         service_account: 'github-actions-ci@workspace-automation-466800.iam.gserviceaccount.com'
     - name: Set up Cloud SDK
-      uses: google-github-actions/setup-gcloud@v1
+      uses: google-github-actions/setup-gcloud@v2
     - name: Dispatch Cloud Build
-      run: gcloud builds submit --config cloudbuild.yaml
+      run: gcloud builds submit --config .github/workflows/cloudbuild.yml
 
   set-success-status:
     runs-on: ubuntu-latest
@@ -50,7 +50,7 @@ jobs:
       statuses: write
     steps:
     - name: Set deployment status to success
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       with:
         script: |
           github.rest.repos.createCommitStatus({
@@ -70,7 +70,7 @@ jobs:
       statuses: write
     steps:
     - name: Set deployment status to failure
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       with:
         script: |
           github.rest.repos.createCommitStatus({

@@ -1,15 +1,15 @@
 {
   "projects": {
     "calendar": {
-      "scriptId": "example-calendar-script-id",
+      "scriptId": "1jj1z13ic2qv_hHIS7SFw7jMJL_M4rnst1vaScH1XPepIEDFeXqMKsB1S",
       "name": "Calendar Automation - Dev"
     },
     "gmail": {
-      "scriptId": "example-gmail-script-id",
+      "scriptId": "1fRuwT0EE6AdpDTlQLSL5w-jjA5kS7b4-HYRJFWYObV0kKvIiq1-o4JvJ",
       "name": "Gmail Automation - Dev"
     },
     "drive": {
-      "scriptId": "example-drive-script-id",
+      "scriptId": "14R_OEQzAnqyL8qJGgITUBJHwvvhPoe606KcR9RtL3v01jrXVTSfDARcJ",
       "name": "Drive Automation - Dev"
     }
   }

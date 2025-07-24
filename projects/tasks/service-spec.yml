@@ -1,0 +1,130 @@
+# Tasks Service Specification
+# Service: Google Tasks Automation
+# Purpose: Define exact automations, inputs, outputs, dependencies, and APIs for Tasks service
+# Created: 2025-01-16
+# Updated: 2025-01-16
+
+service:
+  name: "Tasks"
+  description: "Google Tasks automation tools for task management, export, and productivity workflows"
+  version: "1.0.0"
+  status: "active"
+  
+automations:
+  - name: "tasks-export-markdown-yaml"
+    description: "Export Google Tasks to markdown format with YAML frontmatter"
+    script_file: "tasks-export-markdown-yaml.gs"
+    purpose: "Convert task lists to structured markdown files with metadata for external systems"
+    complexity: "intermediate"
+    inputs:
+      - type: "task_lists"
+        description: "Specific task lists to export (or all if unspecified)"
+        required: false
+      - type: "date_filter"
+        description: "Date range filter for tasks (due dates, created dates)"
+        required: false
+      - type: "status_filter"
+        description: "Task status filter (completed, pending, all)"
+        required: false
+      - type: "yaml_template"
+        description: "YAML frontmatter template for metadata structure"
+        required: false
+    outputs:
+      - type: "markdown_tasks"
+        description: "Markdown files with task data and YAML frontmatter metadata"
+        format: "Markdown files in Drive folder"
+    dependencies:
+      - "Google Drive API"
+    apis_touched:
+      - "Tasks API"
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/tasks.readonly"
+      - "https://www.googleapis.com/auth/drive.file"
+
+  - name: "tasks-export-obsidian"
+    description: "Export Google Tasks to Obsidian-compatible format"
+    script_file: "tasks-export-obsidian.gs"
+    purpose: "Convert task lists to Obsidian-compatible markdown with appropriate linking and formatting"
+    complexity: "advanced"
+    inputs:
+      - type: "task_lists"
+        description: "Task lists to export for Obsidian integration"
+        required: false
+      - type: "obsidian_format"
+        description: "Obsidian-specific formatting preferences (wikilinks, tags, etc.)"
+        required: false
+      - type: "vault_organization"
+        description: "How to organize tasks within Obsidian vault structure"
+        required: false
+      - type: "link_generation"
+        description: "Automatic linking rules for task relationships"
+        required: false
+    outputs:
+      - type: "obsidian_tasks"
+        description: "Obsidian-compatible task files with proper formatting and links"
+        format: "Structured markdown files for Obsidian import"
+    dependencies:
+      - "Google Drive API"
+    apis_touched:
+      - "Tasks API"
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/tasks.readonly"
+      - "https://www.googleapis.com/auth/drive.file"
+
+  - name: "tasks-export-todos-markdown"
+    description: "Export Google Tasks as TODO-formatted markdown lists"
+    script_file: "tasks-export-todos-markdown.gs"
+    purpose: "Create markdown TODO lists from Google Tasks for external task management systems"
+    complexity: "beginner"
+    inputs:
+      - type: "task_lists"
+        description: "Task lists to convert to TODO format"
+        required: false
+      - type: "todo_format"
+        description: "TODO markdown format style (GitHub, standard, custom)"
+        required: false
+      - type: "include_metadata"
+        description: "Include task metadata (due dates, notes, etc.) in TODO format"
+        required: false
+      - type: "grouping_method"
+        description: "How to group tasks (by list, by due date, by priority)"
+        required: false
+    outputs:
+      - type: "todo_markdown"
+        description: "Markdown files with TODO-formatted task lists"
+        format: "Standard markdown TODO format"
+    dependencies:
+      - "Google Drive API"
+    apis_touched:
+      - "Tasks API"
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/tasks.readonly"
+      - "https://www.googleapis.com/auth/drive.file"
+
+total_scripts: 3
+service_apis:
+  primary:
+    - "Google Tasks API"
+  secondary:
+    - "Google Drive API"
+
+common_scopes:
+  - "https://www.googleapis.com/auth/tasks.readonly"
+  - "https://www.googleapis.com/auth/drive.file"
+
+use_cases:
+  - "Task list export and migration"
+  - "Integration with external task management systems"
+  - "Obsidian productivity workflow integration"
+  - "Markdown-based task documentation"
+  - "Task data backup and archival"
+  - "Cross-platform task synchronization"
+  - "Productivity reporting and analysis"
+
+maintenance:
+  last_updated: "2025-01-16"
+  next_review: "2025-04-16"
+  maintainer: "Kevin Lappe"

@@ -1,132 +1,231 @@
-# Contributing Guidelines
+# Contributing to Workspace Automation
 
-Welcome to the Workspace Automation project! This guide will help you contribute effectively to our Google Apps Script automation tools.
+Thank you for your interest in contributing to the Workspace Automation project! This document provides guidelines and information for contributors.
 
-## Branch Strategy
+## 📋 Quick Start
 
-We use a Git flow approach with two main branches:
+1. **Fork the repository** and clone your fork
+2. **Create a feature branch** from `main`
+3. **Follow naming conventions** for scripts and files
+4. **Test your changes** thoroughly
+5. **Submit a pull request** with clear description
 
-- **`develop`** → Development environment: All feature branches should be branched off from `develop`
-- **`main`** → Production environment: Only stable, tested code gets merged here
+## 🏗️ Project Structure
 
-### Workflow:
-1. Create feature branches from `develop`
-2. Submit PRs to merge into `develop`
-3. Periodically merge `develop` into `main` for releases
-
-## Commit Message Convention
-
-We follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
-
-### Format:
 ```
-<type>[optional scope]: <description>
-
-[optional body]
-
-[optional footer(s)]
+Workspace Automation/
+├── projects/           # Service-specific Google Apps Script projects
+│   ├── gmail/         # Gmail automation scripts
+│   ├── drive/         # Google Drive scripts  
+│   ├── calendar/      # Calendar management
+│   ├── docs/          # Document processing
+│   ├── sheets/        # Spreadsheet automation
+│   ├── tasks/         # Task management
+│   ├── chat/          # Google Chat integration
+│   └── utility/       # General utilities
+├── tools/             # Development and deployment tools
+├── .github/           # CI/CD workflows and templates
+└── docs/              # Documentation
 ```
 
-### Types:
-- `feat`: A new feature
-- `fix`: A bug fix
-- `docs`: Documentation only changes
-- `style`: Changes that do not affect the meaning of the code
-- `refactor`: A code change that neither fixes a bug nor adds a feature
-- `perf`: A code change that improves performance
-- `test`: Adding missing tests or correcting existing tests
-- `chore`: Changes to the build process or auxiliary tools
+## 🎯 Script Naming Convention
 
-### Examples:
-- `feat(gmail): add PDF export functionality`
-- `fix(calendar): correct date parsing in event creation`
-- `docs: update API documentation for drive automation`
-- `chore: update dependencies to latest versions`
+All Google Apps Script files must follow this pattern:
+```
+{service}-{function}-{descriptor}.gs
+```
 
-## Pull Request Checklist
+**Examples:**
+- `gmail-export-pdf-markdown.gs`
+- `drive-index-all-files.gs`
+- `calendar-export-obsidian.gs`
+- `sheets-create-tree-diagram.gs`
 
-Before submitting a pull request, ensure all of the following items are completed:
+## 📝 Script Header Standard
+
+Every script must include this header format:
+
+```javascript
+/**
+ * Title: Descriptive Script Name
+ * Service: Google Service Name
+ * Purpose: Brief description of functionality
+ * Created: YYYY-MM-DD
+ * Updated: YYYY-MM-DD
+ * Author: Your Name
+ * Contact: your.email@domain.com
+ * License: MIT
+ */
+
+/*
+Script Summary:
+- Purpose: Why this script exists
+- Description: What the script accomplishes
+- Problem Solved: Specific problem addressed
+- Successful Execution: Expected outcomes
+*/
+```
+
+## 🔧 Development Guidelines
 
 ### Code Quality
-- [ ] **Linting**: Code passes ESLint without errors (`npm run lint` if available)
-- [ ] **Unit Tests**: All existing tests pass and new features include tests
-- [ ] **CI Green**: All GitHub Actions workflows pass successfully
-- [ ] **Code Review**: Code has been self-reviewed for clarity and efficiency
+- **Follow consistent indentation** (2 spaces)
+- **Use meaningful variable names**
+- **Add comprehensive error handling**
+- **Include inline comments for complex logic**
+- **Implement proper logging**
 
-### Google Apps Script Specific
-- [ ] **File Naming**: Follows convention `service-function-descriptor.gs`
-- [ ] **Script Headers**: Include required headers (Title, Service, Purpose, Author)
-- [ ] **README**: Service directories have appropriate README.md files
-- [ ] **No Secrets**: No hardcoded API keys, passwords, or sensitive information
+### Testing Requirements
+- **Test with small datasets first**
+- **Verify all OAuth scopes are correct**
+- **Test error conditions and edge cases**
+- **Document expected inputs/outputs**
 
-### Documentation
-- [ ] **Comments**: Code is well-commented, especially complex logic
-- [ ] **Documentation**: Update relevant documentation if needed
-- [ ] **Changelog**: Add entry to CHANGELOG.md for significant changes
+### Performance Standards
+- **Implement batch processing** for large operations
+- **Use appropriate rate limiting**
+- **Optimize API calls and reduce redundancy**
+- **Monitor execution time limits**
 
-### Testing
-- [ ] **Manual Testing**: Feature has been manually tested
-- [ ] **Edge Cases**: Consider and test edge cases
-- [ ] **Error Handling**: Proper error handling is implemented
+## 🚀 Contribution Workflow
 
-## Code Style Guidelines
+### 1. Setting Up Development Environment
 
-### ESLint Configuration
-Our code style is enforced by ESLint. Please adhere to the rules defined in [`.eslintrc.temp.js`](./.eslintrc.temp.js).
+```bash
+# Clone your fork
+git clone https://github.com/YOUR-USERNAME/workspace-automation.git
+cd workspace-automation
 
-### Google Apps Script Standards
-- Use descriptive variable and function names
-- Follow camelCase naming convention
-- Include proper JSDoc comments for functions
-- Handle errors gracefully with try-catch blocks
-- Use consistent indentation (2 spaces)
+# Install dependencies
+npm install
 
-### File Structure
-```
-scripts/
-├── service-name/
-│   ├── README.md
-│   ├── service-function-descriptor.gs
-│   └── service-helper-utilities.gs
+# Set up development environment
+npm run setup:ide
 ```
 
-## Development Setup
+### 2. Making Changes
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/klappe-pm/another-google-automation-repo.git
-   cd workspace-automation
-   ```
+```bash
+# Create feature branch
+git checkout -b feature/your-feature-name
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+# Make your changes
+# ...
 
-3. **Set up Google Apps Script CLI** (if needed):
-   ```bash
-   npm install -g @google/clasp
-   clasp login
-   ```
+# Test your changes
+npm run validate
 
-4. **Run setup scripts**:
-   ```bash
-   npm run setup
-   ```
+# Commit with conventional format
+git commit -m "feat(service): add new functionality
 
-## Testing
+- Detailed description of changes
+- Any breaking changes noted
+- References to issues if applicable"
+```
 
-- Run validation: `npm run validate`
-- Security scan: `npm run security:scan`
-- Repository review: `npm run repo:review`
+### 3. Submitting Pull Request
 
-## Getting Help
+1. **Push your feature branch** to your fork
+2. **Create pull request** against `main` branch
+3. **Provide clear description** of changes
+4. **Reference any related issues**
+5. **Ensure all CI checks pass**
 
-- Check existing [Issues](https://github.com/klappe-pm/another-google-automation-repo/issues)
-- Review the [README.md](./README.md) for project overview
-- Look at existing scripts for examples
-- Create a new issue for questions or bug reports
+## 📚 Documentation Requirements
 
-## License
+### For New Scripts
+- Add script to appropriate service directory
+- Update service README.md
+- Include usage examples
+- Document required OAuth scopes
+- Add troubleshooting section
 
-By contributing, you agree that your contributions will be licensed under the same [MIT License](./LICENSE.md) that covers the project.
+### For New Features
+- Update main README.md
+- Add configuration examples
+- Document any new dependencies
+- Include performance considerations
+
+## 🛡️ Security Guidelines
+
+### API Keys and Credentials
+- **Never commit API keys** or credentials
+- **Use Google Apps Script built-in services** when possible
+- **Follow principle of least privilege** for OAuth scopes
+- **Document security considerations**
+
+### Data Privacy
+- **Minimize data access** to what's necessary
+- **No data transmission** outside Google ecosystem
+- **Respect user privacy** and data retention policies
+- **Document data handling practices**
+
+## 🧪 Testing Standards
+
+### Manual Testing
+1. **Small Dataset Testing**: Test with 5-10 items first
+2. **Permission Verification**: Ensure proper OAuth authorization
+3. **Error Condition Testing**: Test failure scenarios
+4. **Performance Testing**: Verify execution within time limits
+
+### Automated Testing
+- Add unit tests for complex functions
+- Include integration tests for API interactions
+- Test error handling and edge cases
+- Verify output formats and data integrity
+
+## 📋 Pull Request Checklist
+
+Before submitting your pull request, ensure:
+
+- [ ] **Code follows naming conventions**
+- [ ] **Script headers are complete and accurate**
+- [ ] **Documentation is updated**
+- [ ] **Manual testing completed successfully**
+- [ ] **No hardcoded credentials or API keys**
+- [ ] **Error handling is comprehensive**
+- [ ] **Performance is optimized**
+- [ ] **Commit messages follow conventional format**
+
+## 🏷️ Issue Labels
+
+When creating issues, use appropriate labels:
+
+- `bug` - Something isn't working
+- `enhancement` - New feature or request
+- `documentation` - Improvements or additions to docs
+- `good first issue` - Good for newcomers
+- `help wanted` - Extra attention is needed
+- `priority:high` - High priority items
+- `service:gmail` - Gmail-specific issues
+- `service:drive` - Drive-specific issues
+
+## 💬 Getting Help
+
+### Community Support
+- **GitHub Issues**: For bugs and feature requests
+- **GitHub Discussions**: For questions and general discussion
+- **Email**: kevin@averageintelligence.ai for direct support
+
+### Resources
+- [Google Apps Script Documentation](https://developers.google.com/apps-script)
+- [Google Workspace APIs](https://developers.google.com/workspace)
+- [Project Wiki](https://github.com/klappe-pm/workspace-automation/wiki)
+
+## 🎉 Recognition
+
+Contributors will be:
+- **Listed in project README**
+- **Credited in release notes**
+- **Recognized in project documentation**
+- **Invited to maintainer discussions**
+
+## 📄 License
+
+By contributing to this project, you agree that your contributions will be licensed under the MIT License.
+
+---
+
+**Thank you for contributing to Workspace Automation!**
+
+For questions about contributing, please contact the maintainers or create an issue.

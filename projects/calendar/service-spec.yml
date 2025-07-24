@@ -1,0 +1,164 @@
+# Calendar Service Specification
+# Service: Google Calendar Automation
+# Purpose: Define exact automations, inputs, outputs, dependencies, and APIs for Calendar service
+# Created: 2025-01-16
+# Updated: 2025-01-16
+
+service:
+  name: "Calendar"
+  description: "Google Calendar automation tools for event management and data export"
+  version: "1.0.0"
+  status: "active"
+  
+automations:
+  - name: "calendar-analysis-duration-distance"
+    description: "Analyze calendar events for duration and distance calculations"
+    script_file: "calendar-analysis-duration-distance.gs"
+    purpose: "Calculate travel time and duration analysis for calendar events"
+    complexity: "intermediate"
+    inputs:
+      - type: "calendar_events"
+        description: "Google Calendar events with location data"
+        required: true
+      - type: "date_range"
+        description: "Date range for analysis"
+        required: true
+    outputs:
+      - type: "spreadsheet_report"
+        description: "Analysis report with duration and distance metrics"
+        format: "Google Sheets"
+    dependencies:
+      - "Google Maps API"
+      - "Google Sheets API"
+    apis_touched:
+      - "Calendar API"
+      - "Maps API"
+      - "Sheets API"
+    scopes:
+      - "https://www.googleapis.com/auth/calendar.readonly"
+      - "https://www.googleapis.com/auth/spreadsheets"
+      - "https://www.googleapis.com/auth/maps"
+
+  - name: "calendar-export-daily"
+    description: "Export daily calendar events to various formats"
+    script_file: "calendar-export-daily.gs"
+    purpose: "Generate daily summaries of calendar events for external systems"
+    complexity: "beginner"
+    inputs:
+      - type: "date"
+        description: "Target date for export (defaults to today)"
+        required: false
+      - type: "calendar_selection"
+        description: "Specific calendars to include in export"
+        required: false
+    outputs:
+      - type: "daily_summary"
+        description: "Structured daily event summary"
+        format: "JSON/Text"
+    dependencies: []
+    apis_touched:
+      - "Calendar API"
+    scopes:
+      - "https://www.googleapis.com/auth/calendar.readonly"
+
+  - name: "calendar-export-date-range"
+    description: "Export calendar events for a specified date range"
+    script_file: "calendar-export-date-range.gs"
+    purpose: "Bulk export of calendar events within date parameters"
+    complexity: "intermediate"
+    inputs:
+      - type: "start_date"
+        description: "Beginning date of export range"
+        required: true
+      - type: "end_date"
+        description: "End date of export range"
+        required: true
+      - type: "export_format"
+        description: "Output format (CSV, JSON, Markdown)"
+        required: false
+    outputs:
+      - type: "event_export"
+        description: "Structured export of events in specified date range"
+        format: "Multiple formats supported"
+    dependencies: []
+    apis_touched:
+      - "Calendar API"
+    scopes:
+      - "https://www.googleapis.com/auth/calendar.readonly"
+
+  - name: "calendar-export-distance-time"
+    description: "Export calendar events with travel time and distance calculations"
+    script_file: "calendar-export-distance-time.gs"
+    purpose: "Enhance calendar exports with geographic and temporal analysis"
+    complexity: "advanced"
+    inputs:
+      - type: "calendar_events"
+        description: "Events with location information"
+        required: true
+      - type: "home_location"
+        description: "Base location for distance calculations"
+        required: true
+    outputs:
+      - type: "enhanced_export"
+        description: "Calendar export with distance and travel time data"
+        format: "Enhanced CSV/JSON"
+    dependencies:
+      - "Google Maps API"
+    apis_touched:
+      - "Calendar API"
+      - "Maps API"
+    scopes:
+      - "https://www.googleapis.com/auth/calendar.readonly"
+      - "https://www.googleapis.com/auth/maps"
+
+  - name: "calendar-export-obsidian"
+    description: "Export calendar events to Obsidian markdown format"
+    script_file: "calendar-export-obsidian.gs"
+    purpose: "Create daily meeting notes in Obsidian with structured formatting"
+    complexity: "intermediate"
+    inputs:
+      - type: "target_date"
+        description: "Date for event export (defaults to today)"
+        required: false
+      - type: "calendar_selection"
+        description: "Specific calendars to include"
+        required: false
+    outputs:
+      - type: "obsidian_notes"
+        description: "Markdown files formatted for Obsidian Daily Notes"
+        format: "Markdown files in Drive folder structure"
+    dependencies:
+      - "Google Drive API"
+    apis_touched:
+      - "Calendar API"
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/calendar.readonly"
+      - "https://www.googleapis.com/auth/drive.file"
+
+total_scripts: 5
+service_apis:
+  primary:
+    - "Google Calendar API"
+  secondary:
+    - "Google Maps API"
+    - "Google Sheets API"
+    - "Google Drive API"
+
+common_scopes:
+  - "https://www.googleapis.com/auth/calendar.readonly"
+  - "https://www.googleapis.com/auth/drive.file"
+  - "https://www.googleapis.com/auth/spreadsheets"
+  - "https://www.googleapis.com/auth/maps"
+
+use_cases:
+  - "Daily productivity tracking"
+  - "Meeting preparation and documentation"
+  - "Travel time analysis and planning"
+  - "Calendar data export for external systems"
+  - "Integration with note-taking systems (Obsidian)"
+
+maintenance:
+  last_updated: "2025-01-16"
+  next_review: "2025-04-16"
+  maintainer: "Kevin Lappe"

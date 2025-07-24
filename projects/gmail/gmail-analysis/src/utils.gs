@@ -293,6 +293,28 @@ class ValidationUtils {
 }
 
 /**
+ * Testing assertion utilities
+ */
+class Assert {
+  static equal(actual, expected, message = null) {
+    if (actual !== expected) {
+      const errorMessage = message || `Expected ${expected}, but got ${actual}`;
+      throw new Error(errorMessage);
+    }
+  }
+  static isTrue(condition, message = 'Assertion failed') {
+    if (!condition) {
+      throw new Error(message);
+    }
+  }
+  static isFalse(condition, message = 'Assertion failed') {
+    if (condition) {
+      throw new Error(message);
+    }
+  }
+}
+
+/**
  * Cache utilities using PropertiesService
  */
 class CacheUtils {

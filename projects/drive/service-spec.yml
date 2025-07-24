@@ -1,0 +1,517 @@
+# Drive Service Specification
+# Service: Google Drive Automation
+# Purpose: Define exact automations, inputs, outputs, dependencies, and APIs for Drive service
+# Created: 2025-01-16
+# Updated: 2025-01-16
+
+service:
+  name: "Drive"
+  description: "Google Drive automation tools for file management, indexing, and content processing"
+  version: "1.0.0"
+  status: "active"
+  
+automations:
+  - name: "drive-docs-find-by-alias"
+    description: "Find Google Docs files using alias or metadata search"
+    script_file: "drive-docs-find-by-alias.gs"
+    purpose: "Locate documents using alternative naming or tagging systems"
+    complexity: "intermediate"
+    inputs:
+      - type: "alias_query"
+        description: "Alias or alternative name to search for"
+        required: true
+      - type: "search_scope"
+        description: "Folder or drive scope for search"
+        required: false
+    outputs:
+      - type: "file_list"
+        description: "List of matching documents with metadata"
+        format: "Array of file objects"
+    dependencies: []
+    apis_touched:
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive.readonly"
+
+  - name: "drive-index-all-files"
+    description: "Create comprehensive index of all Drive files"
+    script_file: "drive-index-all-files.gs"
+    purpose: "Generate complete inventory of Drive contents for management"
+    complexity: "intermediate"
+    inputs:
+      - type: "root_folder"
+        description: "Starting folder for indexing (defaults to My Drive)"
+        required: false
+      - type: "include_trashed"
+        description: "Include trashed files in index"
+        required: false
+    outputs:
+      - type: "file_index"
+        description: "Comprehensive listing of all files with metadata"
+        format: "Google Sheets spreadsheet"
+    dependencies:
+      - "Google Sheets API"
+    apis_touched:
+      - "Drive API"
+      - "Sheets API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive.readonly"
+      - "https://www.googleapis.com/auth/spreadsheets"
+
+  - name: "drive-index-docs-files"
+    description: "Index specifically Google Docs files"
+    script_file: "drive-index-docs-files.gs"
+    purpose: "Create specialized index for Google Docs with content metadata"
+    complexity: "intermediate"
+    inputs:
+      - type: "folder_scope"
+        description: "Folder to search for Docs files"
+        required: false
+      - type: "include_content_preview"
+        description: "Include content preview in index"
+        required: false
+    outputs:
+      - type: "docs_index"
+        description: "Structured index of Google Docs files"
+        format: "Google Sheets with enhanced metadata"
+    dependencies:
+      - "Google Sheets API"
+      - "Google Docs API"
+    apis_touched:
+      - "Drive API"
+      - "Docs API"
+      - "Sheets API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive.readonly"
+      - "https://www.googleapis.com/auth/documents.readonly"
+      - "https://www.googleapis.com/auth/spreadsheets"
+
+  - name: "drive-index-file-tree-generator"
+    description: "Generate hierarchical tree structure of Drive files"
+    script_file: "drive-index-file-tree-generator.gs"
+    purpose: "Create visual tree representation of folder and file structure"
+    complexity: "advanced"
+    inputs:
+      - type: "root_folder_id"
+        description: "Starting folder for tree generation"
+        required: true
+      - type: "max_depth"
+        description: "Maximum depth for tree traversal"
+        required: false
+      - type: "output_format"
+        description: "Tree format (text, markdown, html)"
+        required: false
+    outputs:
+      - type: "folder_tree"
+        description: "Hierarchical representation of folder structure"
+        format: "Text/Markdown tree diagram"
+    dependencies: []
+    apis_touched:
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive.readonly"
+
+  - name: "drive-index-markdown-files"
+    description: "Index and process markdown files in Drive"
+    script_file: "drive-index-markdown-files.gs"
+    purpose: "Catalog markdown files with metadata and content analysis"
+    complexity: "intermediate"
+    inputs:
+      - type: "search_folders"
+        description: "Specific folders to search for markdown files"
+        required: false
+      - type: "parse_frontmatter"
+        description: "Extract YAML frontmatter from markdown files"
+        required: false
+    outputs:
+      - type: "markdown_index"
+        description: "Index of markdown files with metadata and frontmatter"
+        format: "Google Sheets with parsed content"
+    dependencies:
+      - "Google Sheets API"
+    apis_touched:
+      - "Drive API"
+      - "Sheets API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive.readonly"
+      - "https://www.googleapis.com/auth/spreadsheets"
+
+  - name: "drive-manager-comprehensive-indexer"
+    description: "Advanced file management with comprehensive indexing"
+    script_file: "drive-manager-comprehensive-indexer.gs"
+    purpose: "Complete Drive management solution with advanced indexing capabilities"
+    complexity: "advanced"
+    inputs:
+      - type: "management_scope"
+        description: "Scope of Drive management (folders, file types, etc.)"
+        required: true
+      - type: "indexing_options"
+        description: "Advanced indexing configuration options"
+        required: false
+    outputs:
+      - type: "comprehensive_index"
+        description: "Advanced index with management insights and analytics"
+        format: "Multi-sheet Google Sheets workbook"
+    dependencies:
+      - "Google Sheets API"
+    apis_touched:
+      - "Drive API"
+      - "Sheets API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive"
+      - "https://www.googleapis.com/auth/spreadsheets"
+
+  - name: "drive-markdown-lint-spacing"
+    description: "Lint and fix spacing issues in markdown files"
+    script_file: "drive-markdown-lint-spacing.gs"
+    purpose: "Automatically correct formatting and spacing in markdown files"
+    complexity: "intermediate"
+    inputs:
+      - type: "target_files"
+        description: "Specific markdown files or folders to process"
+        required: true
+      - type: "lint_rules"
+        description: "Specific linting rules to apply"
+        required: false
+    outputs:
+      - type: "linted_files"
+        description: "Updated markdown files with corrected formatting"
+        format: "Modified files in place"
+      - type: "lint_report"
+        description: "Report of changes made during linting"
+        format: "Text/JSON report"
+    dependencies: []
+    apis_touched:
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive.file"
+
+  - name: "drive-markdown-move-update-metadata"
+    description: "Move markdown files and update their metadata"
+    script_file: "drive-markdown-move-update-metadata.gs"
+    purpose: "Reorganize markdown files while maintaining metadata integrity"
+    complexity: "advanced"
+    inputs:
+      - type: "source_files"
+        description: "Markdown files to be moved"
+        required: true
+      - type: "destination_folder"
+        description: "Target folder for moved files"
+        required: true
+      - type: "metadata_updates"
+        description: "Metadata changes to apply during move"
+        required: false
+    outputs:
+      - type: "moved_files"
+        description: "Files moved to new location with updated metadata"
+        format: "Reorganized file structure"
+      - type: "move_log"
+        description: "Log of all move operations and metadata changes"
+        format: "CSV/JSON log file"
+    dependencies: []
+    apis_touched:
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive.file"
+
+  - name: "drive-notes-create-weekly-daily"
+    description: "Create weekly and daily note templates in Drive"
+    script_file: "drive-notes-create-weekly-daily.gs"
+    purpose: "Automate creation of structured note templates for productivity"
+    complexity: "intermediate"
+    inputs:
+      - type: "date_range"
+        description: "Week or specific dates for note creation"
+        required: true
+      - type: "template_type"
+        description: "Type of notes to create (daily, weekly, both)"
+        required: false
+      - type: "destination_folder"
+        description: "Folder where notes should be created"
+        required: true
+    outputs:
+      - type: "note_files"
+        description: "Created note files with structured templates"
+        format: "Google Docs or markdown files"
+    dependencies:
+      - "Google Docs API"
+    apis_touched:
+      - "Drive API"
+      - "Docs API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive.file"
+      - "https://www.googleapis.com/auth/documents"
+
+  - name: "drive-notes-generate-weekly"
+    description: "Generate weekly note summaries and templates"
+    script_file: "drive-notes-generate-weekly.gs"
+    purpose: "Create comprehensive weekly planning and review documents"
+    complexity: "intermediate"
+    inputs:
+      - type: "week_date"
+        description: "Week for which to generate notes"
+        required: true
+      - type: "include_previous_week"
+        description: "Include summary from previous week"
+        required: false
+    outputs:
+      - type: "weekly_notes"
+        description: "Structured weekly planning and review documents"
+        format: "Google Docs with templates"
+    dependencies:
+      - "Google Docs API"
+    apis_touched:
+      - "Drive API"
+      - "Docs API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive.file"
+      - "https://www.googleapis.com/auth/documents"
+
+  - name: "drive-shortcuts-convert"
+    description: "Convert Drive shortcuts to direct file links or copies"
+    script_file: "drive-shortcuts-convert.gs"
+    purpose: "Manage and convert Drive shortcuts for better file organization"
+    complexity: "intermediate"
+    inputs:
+      - type: "shortcut_folder"
+        description: "Folder containing shortcuts to convert"
+        required: true
+      - type: "conversion_type"
+        description: "Type of conversion (copy, link, move)"
+        required: true
+    outputs:
+      - type: "converted_files"
+        description: "Processed files after shortcut conversion"
+        format: "Direct files or updated shortcuts"
+      - type: "conversion_log"
+        description: "Log of all conversion operations"
+        format: "CSV report"
+    dependencies: []
+    apis_touched:
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive"
+
+  - name: "drive-utility-deduplicate-files"
+    description: "Find and remove duplicate files in Drive"
+    script_file: "drive-utility-deduplicate-files.gs"
+    purpose: "Clean up Drive storage by identifying and managing duplicate files"
+    complexity: "advanced"
+    inputs:
+      - type: "search_scope"
+        description: "Folders or entire Drive to scan for duplicates"
+        required: true
+      - type: "duplicate_criteria"
+        description: "Criteria for identifying duplicates (name, size, checksum)"
+        required: false
+      - type: "action_type"
+        description: "Action to take on duplicates (delete, move, report)"
+        required: true
+    outputs:
+      - type: "deduplication_report"
+        description: "Report of found duplicates and actions taken"
+        format: "Google Sheets report"
+      - type: "cleaned_drive"
+        description: "Drive with duplicates removed or organized"
+        format: "Updated file structure"
+    dependencies:
+      - "Google Sheets API"
+    apis_touched:
+      - "Drive API"
+      - "Sheets API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive"
+      - "https://www.googleapis.com/auth/spreadsheets"
+
+  - name: "drive-utility-folder-ids"
+    description: "Extract and manage folder IDs for Drive organization"
+    script_file: "drive-utility-folder-ids.gs"
+    purpose: "Catalog and manage folder structure with ID mapping"
+    complexity: "beginner"
+    inputs:
+      - type: "root_folder"
+        description: "Starting folder for ID extraction"
+        required: false
+      - type: "include_subfolders"
+        description: "Include all subfolders in ID mapping"
+        required: false
+    outputs:
+      - type: "folder_id_map"
+        description: "Mapping of folder names to their Drive IDs"
+        format: "CSV or JSON mapping file"
+    dependencies: []
+    apis_touched:
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive.readonly"
+
+  - name: "drive-yaml-add-frontmatter-bulk"
+    description: "Add YAML frontmatter to multiple markdown files"
+    script_file: "drive-yaml-add-frontmatter-bulk.gs"
+    purpose: "Bulk processing to add structured metadata to markdown files"
+    complexity: "intermediate"
+    inputs:
+      - type: "target_files"
+        description: "Markdown files to process"
+        required: true
+      - type: "frontmatter_template"
+        description: "YAML template to add to files"
+        required: true
+      - type: "overwrite_existing"
+        description: "Whether to overwrite existing frontmatter"
+        required: false
+    outputs:
+      - type: "updated_files"
+        description: "Markdown files with added YAML frontmatter"
+        format: "Modified markdown files"
+      - type: "processing_log"
+        description: "Log of all frontmatter additions"
+        format: "CSV log file"
+    dependencies: []
+    apis_touched:
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive.file"
+
+  - name: "drive-yaml-add-frontmatter-multi"
+    description: "Add different YAML frontmatter to multiple file types"
+    script_file: "drive-yaml-add-frontmatter-multi.gs"
+    purpose: "Advanced frontmatter management with multiple templates"
+    complexity: "advanced"
+    inputs:
+      - type: "file_selection"
+        description: "Files organized by type for different frontmatter"
+        required: true
+      - type: "template_mapping"
+        description: "Mapping of file types to frontmatter templates"
+        required: true
+    outputs:
+      - type: "processed_files"
+        description: "Files with appropriate frontmatter added"
+        format: "Updated files with varied metadata"
+    dependencies: []
+    apis_touched:
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive.file"
+
+  - name: "drive-yaml-add-simple"
+    description: "Add simple YAML frontmatter to individual files"
+    script_file: "drive-yaml-add-simple.gs"
+    purpose: "Basic frontmatter addition for single file processing"
+    complexity: "beginner"
+    inputs:
+      - type: "target_file"
+        description: "Single markdown file to process"
+        required: true
+      - type: "yaml_content"
+        description: "YAML frontmatter content to add"
+        required: true
+    outputs:
+      - type: "updated_file"
+        description: "File with added YAML frontmatter"
+        format: "Modified markdown file"
+    dependencies: []
+    apis_touched:
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive.file"
+
+  - name: "drive-yaml-dataview-categories"
+    description: "Create Dataview-compatible categories in YAML frontmatter"
+    script_file: "drive-yaml-dataview-categories.gs"
+    purpose: "Prepare markdown files for Obsidian Dataview plugin integration"
+    complexity: "intermediate"
+    inputs:
+      - type: "markdown_files"
+        description: "Files to categorize for Dataview"
+        required: true
+      - type: "category_rules"
+        description: "Rules for automatic categorization"
+        required: false
+    outputs:
+      - type: "categorized_files"
+        description: "Files with Dataview-compatible frontmatter"
+        format: "Enhanced markdown files"
+    dependencies: []
+    apis_touched:
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive.file"
+
+  - name: "drive-yaml-finder"
+    description: "Find and analyze YAML frontmatter in markdown files"
+    script_file: "drive-yaml-finder.gs"
+    purpose: "Audit and analyze existing frontmatter across markdown files"
+    complexity: "intermediate"
+    inputs:
+      - type: "search_folders"
+        description: "Folders to search for markdown files with YAML"
+        required: true
+      - type: "analysis_type"
+        description: "Type of analysis (inventory, validation, extraction)"
+        required: false
+    outputs:
+      - type: "yaml_analysis"
+        description: "Analysis report of YAML frontmatter usage"
+        format: "Google Sheets analysis report"
+    dependencies:
+      - "Google Sheets API"
+    apis_touched:
+      - "Drive API"
+      - "Sheets API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive.readonly"
+      - "https://www.googleapis.com/auth/spreadsheets"
+
+  - name: "drive-yaml-folder-categories"
+    description: "Categorize files based on folder structure for YAML frontmatter"
+    script_file: "drive-yaml-folder-categories.gs"
+    purpose: "Automatically generate categories based on Drive folder organization"
+    complexity: "intermediate"
+    inputs:
+      - type: "folder_structure"
+        description: "Drive folders to analyze for categorization"
+        required: true
+      - type: "categorization_depth"
+        description: "Folder depth to use for category generation"
+        required: false
+    outputs:
+      - type: "categorized_structure"
+        description: "Files with folder-based categories in frontmatter"
+        format: "Organized markdown files with metadata"
+    dependencies: []
+    apis_touched:
+      - "Drive API"
+    scopes:
+      - "https://www.googleapis.com/auth/drive.file"
+
+total_scripts: 26
+service_apis:
+  primary:
+    - "Google Drive API"
+  secondary:
+    - "Google Sheets API"
+    - "Google Docs API"
+
+common_scopes:
+  - "https://www.googleapis.com/auth/drive"
+  - "https://www.googleapis.com/auth/drive.file"
+  - "https://www.googleapis.com/auth/drive.readonly"
+  - "https://www.googleapis.com/auth/spreadsheets"
+  - "https://www.googleapis.com/auth/documents"
+  - "https://www.googleapis.com/auth/documents.readonly"
+
+use_cases:
+  - "File organization and management"
+  - "Markdown content processing and metadata management"
+  - "Drive indexing and inventory management"
+  - "Note-taking system automation"
+  - "Content migration and organization"
+  - "Duplicate file cleanup and management"
+  - "YAML frontmatter management for Obsidian integration"
+
+maintenance:
+  last_updated: "2025-01-16"
+  next_review: "2025-04-16"
+  maintainer: "Kevin Lappe"

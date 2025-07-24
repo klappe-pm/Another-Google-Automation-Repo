@@ -8,7 +8,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'scripts/**'
+      - 'projects/**'
       - 'tools/**'
       - 'package.json'
 
