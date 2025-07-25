@@ -1,317 +1,233 @@
-# Workspace Automation Scripts
+# Workspace Automation Project
 
-**A Production-Ready Collection of Google Apps Script Tools**
+**A comprehensive Google Apps Script automation repository with CI/CD deployment pipeline**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/klappe-pm/Another-Google-Automation-Repo/graphs/commit-activity)
-[![GitHub last commit](https://img.shields.io/github/last-commit/klappe-pm/Another-Google-Automation-Repo.svg)](https://GitHub.com/klappe-pm/Another-Google-Automation-Repo/commit/)
-[![Daily Health Check](https://github.com/klappe-pm/Another-Google-Automation-Repo/actions/workflows/daily-health-check.yml/badge.svg)](https://github.com/klappe-pm/Another-Google-Automation-Repo/actions/workflows/daily-health-check.yml)
+## Project Overview
 
-## 📊 Overview
+This project provides a complete automation solution for Google Workspace services through Google Apps Script. It features a robust CI/CD pipeline that automatically synchronizes local script development with Google Apps Script projects, enabling version-controlled development of Google Workspace automations.
 
-This comprehensive repository contains **79 production-ready Google Apps Script tools** designed to automate, analyze, and optimize Google Workspace operations. Each script is thoroughly documented, tested, and follows consistent naming conventions and coding standards.
+### Key Features
+- **Automated Deployment**: Local scripts → GitHub → Google Apps Script projects
+- **Multi-Service Support**: 10 Google Workspace services with dedicated automation projects
+- **Professional CI/CD**: Custom Docker images with Cloud Build deployment pipeline
+- **Version Control**: Full Git workflow with standardized file naming and documentation
+- **Secure Authentication**: Google Cloud Secret Manager integration for credentials
 
-**Total Scripts**: 79 functional automation tools  
-**Services Covered**: 7 Google Workspace services  
-**Maintained by**: Kevin Lappe (kevin@averageintelligence.ai)
+## Project Status
 
----
+### Completed Work
 
-## 🏗️ Repository Architecture
+#### Phase 1: Authentication & Infrastructure - COMPLETE
+- **Workload Identity Federation**: GitHub Actions ↔ Google Cloud authentication configured
+- **Secret Management**: clasp-credentials stored in Google Cloud Secret Manager
+- **GitHub Actions Workflows**: Multiple deployment workflows created and tested
+- **Project Configuration**: All 10 Google Apps Script projects mapped with real IDs
 
+#### Phase 2: Cloud Build Deployment Pipeline - 95% COMPLETE
+- **Custom Docker Image**: Node.js + Google Cloud SDK pre-built image successfully created
+- **Artifact Registry**: Modern container registry configured and operational
+- **Permission Resolution**: NPM global install permissions fixed for node user
+- **Build Pipeline**: Professional Cloud Build configuration implemented
+
+### Current Challenges
+
+#### Final Deployment Hurdle - IN PROGRESS
+- **Status**: Custom builder image successfully built and pushed to Artifact Registry
+- **Next Step**: Execute final deployment to synchronize all local scripts with Google Apps Script projects
+- **Expected Outcome**: Complete automation pipeline from local development to production deployment
+
+### Open Tasks
+
+#### Phase 3: Repository Standardization - PENDING
+**Objective**: Implement comprehensive file and directory standardization across all Google Apps Script projects
+
+**Standardization Goals**:
+1. **File Naming Convention**: `{service}-{function}-{descriptor}.gs`
+2. **Standardized Headers**: All scripts will have consistent metadata headers
+3. **Comprehensive README Files**: Each service directory will have detailed documentation
+4. **Code Quality**: Implement automated quality checks and error handling validation
+
+#### Phase 4: Advanced Automation & Quality Assurance - PLANNED
+- Enhanced CI/CD pipeline with automated testing
+- Performance monitoring and alerts
+- Rollback mechanisms for failed deployments
+- Documentation and community preparation
+
+#### Phase 5: Long-term Maintenance & Scaling - PLANNED
+- Monitoring and analytics implementation
+- Community management framework
+- Multi-environment deployment (dev/staging/prod)
+
+## Project Architecture
+
+### Google Apps Script Projects
+
+| Service | Project ID | Status |
+|---------|------------|---------|
+| Calendar | `1WBzQgskRgRPJkPBLhjf-2CHNVRqYVIh2Io-fBW75Ro_9wOpX8uzUIHUh` | Configured |
+| Chat | `1j9M60-KeKOMlxdUVKCb0sO3c01OSL-btzmFj3Q77vcE0dY0aqz1ON7F8` | Configured |
+| Docs | `16U33iZkZSoN_h697FSbTsa3Ma5yD0e6p7gGjeWgH1xlTuWzfg6X3NHgz` | Configured |
+| Drive | `1Y62ucpYOhuhZ7PAQaBSg8ICqd0uPWPQ3aqwhgpbc6fDGwmlqKFjq0lLO` | Configured |
+| Gmail | `1MhC1spUX-j1HfITDj6g68G2EobqbiZDiIpJJAxCEQOBAozERJPMoiXuq` | Configured |
+| Photos | `1bkbORqQD2is7LWtlHRr6D_nCtd6uk1PP9t3SsVeCXobOrPgsVnK7yxPx` | Configured |
+| Sheets | `1HfBP6a8zJ7piAu74Q0iVFnik7wIOj5jsUIkqeNAM5IGlfE2AJwQMz9dZ` | Configured |
+| Slides | `1qWMrnFNy3b_Y1lo54Xjxzlg01t57ZmYMb1FB8N_JWTg_shNe318Zd55h` | Configured |
+| Tasks | `1GtzgEyKr39SNn9OuOXMoYLdEigAdGV447GJFutEJFNl1GQHos0XyBA5O` | Configured |
+| Utility | `1X3W2-mJ5ss_2Xl8zHlQXq8ndwnPHURvUynnp-v5t39xL7j4LdDTEVl1B` | Configured |
+
+### Automation State
+
+**Current Deployment Flow**:
 ```
-Workspace Automation/
-├── 📧 Gmail/          35 scripts - Email management & analysis
-├── 🗄️ Drive/          20 scripts - File organization & processing  
-├── 📊 Sheets/         9 scripts  - Data automation & indexing
-├── 📄 Docs/           6 scripts  - Document conversion & formatting
-├── 📅 Calendar/       5 scripts  - Event export & analysis
-├── ✅ Tasks/          3 scripts  - Task export & integration
-├── 💬 Chat/           1 script   - Message export & analysis
-└── 🎨 Slides/         0 scripts  - (Prepared for future development)
-```
-
----
-
-## 🎯 Service Coverage & Capabilities
-
-### 📧 **Gmail Automation** (35 Scripts)
-**Most Comprehensive Service** - Advanced email management and analysis tools
-
-| Category | Scripts | Key Features |
-|----------|---------|--------------|
-| **Export Functions** (9) | PDF, Markdown, Sheets | Multi-format exports, automated processing |
-| **Label Management** (15) | Analysis, Creation, Statistics | Smart labeling, bulk operations, analytics |
-| **Analysis Tools** (7) | 24-month trends, Metadata | Temporal analysis, content processing |
-| **Utility Tools** (4) | Markdown fixing, Bulk operations | Quality assurance, format correction |
-
-**Notable Capabilities:**
-- Export emails to PDF + Markdown + Sheets simultaneously
-- Automated label creation based on sender patterns
-- 24-month email data analysis with trend reporting
-- Advanced YAML metadata extraction and processing
-
-### 🗄️ **Drive Automation** (20 Scripts)
-**File Management Powerhouse** - Comprehensive file organization and processing
-
-| Category | Scripts | Key Features |
-|----------|---------|--------------|
-| **Content Management** (10) | File indexing, Markdown processing | Automated cataloging, content standardization |
-| **YAML Management** (6) | Frontmatter, Categories | Bulk YAML operations, Obsidian integration |
-| **Utility Tools** (4) | Deduplication, Tree generation | File optimization, visual organization |
-
-**Notable Capabilities:**
-- Index thousands of files with automatic categorization
-- Manage YAML frontmatter in bulk for knowledge management systems
-- Generate comprehensive file tree structures and hierarchies
-- Advanced markdown processing and link management
-
-### 📊 **Sheets Automation** (9 Scripts)
-**Data Processing Center** - Automation and visualization tools
-
-| Category | Scripts | Key Features |
-|----------|---------|--------------|
-| **Content Generation** (2) | Markdown, Tree diagrams | Visual data representation |
-| **Data Processing** (1) | CSV operations | File combination and processing |
-| **Indexing Tools** (2) | File/Folder cataloging | Comprehensive data organization |
-| **Automation Tools** (1) | Date processing | Automated workflow triggers |
-| **Utility Tools** (3) | Formatting, Sorting | Professional appearance, organization |
-
-### 📅 **Calendar Automation** (5 Scripts)
-**Time Management Excellence** - Event analysis and export functionality
-
-| Category | Scripts | Key Features |
-|----------|---------|--------------|
-| **Export Functions** (3) | Date ranges, Daily exports | Flexible export options, workflow integration |
-| **Analysis Tools** (1) | Duration, Distance metrics | Location-based analysis, travel calculations |
-| **Content Tools** (1) | Obsidian integration | Note-taking system connectivity |
-
-**Notable Capabilities:**
-- Export calendar events to Obsidian-formatted markdown
-- Calculate travel distances and times using Google Maps API
-- Comprehensive event analysis with duration and location metrics
-
-### 📄 **Docs Automation** (6 Scripts)
-**Document Processing Hub** - Advanced conversion and formatting tools
-
-| Category | Scripts | Key Features |
-|----------|---------|--------------|
-| **Content Management** (3) | Dynamic embedding, Formatting | Live content updates, style standardization |
-| **Export Functions** (3) | Markdown, Comments, Lists | Advanced conversion, metadata preservation |
-
-**Notable Capabilities:**
-- Convert Google Docs to Markdown with image handling
-- Embed dynamic content between documents
-- Extract and analyze comments for collaboration insights
-
-### ✅ **Tasks & 💬 Chat** (4 Scripts)
-**Productivity Integration** - Task management and communication tools
-
-| Service | Scripts | Key Features |
-|---------|---------|--------------|
-| **Tasks** (3) | Markdown/YAML export, Todos | Structured task export, Obsidian integration |
-| **Chat** (1) | Daily details export | Message archival and analysis |
-
----
-
-## 🚀 Quick Start Guide
-
-### Prerequisites
-- Google Account with Workspace access
-- Access to Google Apps Script projects
-- API permissions for target services
-- Google Drive storage for output files
-
-### Universal Installation Process
-
-1. **Navigate to Apps Script**: Go to [script.google.com](https://script.google.com)
-2. **Create New Project**: Click "New Project"
-3. **Enable Required APIs**:
-   - Gmail API (for email scripts)
-   - Drive API (for file operations)
-   - Calendar API (for calendar scripts)
-   - Docs/Sheets APIs (as needed)
-4. **Copy Script Code**: Paste from repository
-5. **Configure Variables**: Update folder IDs and settings
-6. **Authorize Permissions**: Grant required access
-7. **Test & Execute**: Run with small datasets first
-
-### Common Configuration
-
-```javascript
-// Update these variables in most scripts:
-const OUTPUT_FOLDER_ID = 'your-drive-folder-id-here';
-const TARGET_SPREADSHEET_ID = 'your-spreadsheet-id-here';
-const DATE_RANGE = { start: '2025-01-01', end: '2025-12-31' };
+Local Development → Git Commit → GitHub Repository → Cloud Build Trigger → 
+Custom Docker Image → Clasp Authentication → Google Apps Script Deployment
 ```
 
----
+**Infrastructure Components**:
+- **Cloud Build**: Automated build and deployment pipeline
+- **Artifact Registry**: Custom Docker image storage (`us-central1-docker.pkg.dev/workspace-automation-466800/clasp-builder/clasp-builder:latest`)
+- **Secret Manager**: Secure storage of clasp authentication credentials
+- **GitHub Actions**: Alternative deployment workflow (fallback)
 
-## 💡 Featured Use Cases
+## Current Project Plan
 
-### 📧 **Email Management Mastery**
-**Challenge**: Overwhelming email volume, poor organization  
-**Solution**: Automated labeling, bulk export, trend analysis  
-**Scripts**: `gmail-labels-create-sender.gs`, `gmail-analysis-24months.gs`
+### Phase 2 Completion - IMMEDIATE PRIORITY
+**Objective**: Complete the deployment pipeline and achieve first successful build
 
-### 🗄️ **Knowledge Management**
-**Challenge**: Scattered information across Google Workspace  
-**Solution**: Unified indexing, markdown conversion, Obsidian integration  
-**Scripts**: `drive-index-all-files.gs`, `docs-export-markdown-obsidian.gs`
+**Current Status**:
+- Custom Docker image built successfully with npm permission fixes
+- All authentication and infrastructure components operational
+- Ready for final deployment execution
 
-### 📅 **Productivity Analytics**
-**Challenge**: Time management and productivity insights  
-**Solution**: Calendar analysis, task export, comprehensive reporting  
-**Scripts**: `calendar-analysis-duration-distance.gs`, `tasks-export-obsidian.gs`
+**Next Action**:
+```bash
+gcloud builds submit --config=cloudbuild.yaml --project=workspace-automation-466800
+```
 
----
+**Success Criteria**:
+- Deployment success rate: 100% for all 10 Apps Script projects
+- Build time: Under 15 minutes for full deployment
+- Error rate: Zero permission or configuration errors
 
-## 📖 Professional Standards
+### Phase 3 Implementation Plan - NEXT PRIORITY
 
-### Script Header Format
-Every script includes comprehensive metadata:
+#### File Naming & Header Standardization
+**Proposed Format**: `{service}-{function}-{descriptor}.gs`
+- **service**: gmail, calendar, drive, sheets, docs, tasks, chat
+- **function**: export, import, analysis, index, process, create, update, delete
+- **descriptor**: brief description using kebab-case
 
+#### Script Header Template
 ```javascript
 /**
- * Title: Descriptive Script Name
- * Service: Google Service
- * Purpose: Primary function and goal
- * Created: 2024-MM-DD
- * Updated: 2025-07-21
+ * Title: {Script Title}
+ * Service: {Google Service}
+ * Purpose: {Brief purpose}
+ * Created: {Date}
+ * Updated: {Date}
  * Author: Kevin Lappe
  * Contact: kevin@averageintelligence.ai
  * License: MIT
  */
-
-/*
-Script Summary:
-- Purpose: Why this script exists
-- Description: What the script accomplishes
-- Problem Solved: Specific problem addressed
-- Successful Execution: Expected outcomes
-*/
 ```
 
-### Naming Convention
-All scripts follow consistent kebab-case naming:
-- `{service}-{function}-{descriptor}.gs`
-- Examples: `gmail-export-pdf-markdown.gs`, `drive-index-all-files.gs`
+#### README Template Structure
+```markdown
+# {Service} Automation Scripts
 
-### Directory Organization
-- **Service Folders**: Organized by Google Workspace service
-- **Category Subfolders**: Grouped by functionality (Export, Analysis, Utility)
-- **Legacy Files**: Properly archived in designated folders
-- **Documentation**: Comprehensive READMEs for each service
+## Overview
+Brief description of the service and automation goals.
 
----
+## Scripts Overview
+| Script Name | Purpose | Last Updated |
+|-------------|---------|--------------|
+| script-name.gs | Description | YYYY-MM-DD |
 
-## ⚙️ API Requirements
+## Installation
+Common installation steps for all scripts in folder.
 
-### Required OAuth Scopes
-Scripts request minimal necessary permissions:
+## Prerequisites
+Requirements and dependencies.
 
-```javascript
-// Common scopes across services:
-- https://www.googleapis.com/auth/gmail
-- https://www.googleapis.com/auth/drive.file
-- https://www.googleapis.com/auth/calendar
-- https://www.googleapis.com/auth/documents
-- https://www.googleapis.com/auth/spreadsheets
+## Usage
+How to use the scripts.
 ```
 
-### Security Best Practices
-- **Minimal Permissions**: Only request necessary scopes
-- **Data Privacy**: No data transmission outside Google ecosystem
-- **Error Handling**: Comprehensive error management and logging
-- **Rate Limiting**: Respectful API usage patterns
+### Success Metrics
+
+#### Immediate (Phase 2 Completion)
+- **Deployment Success Rate**: 100% for all 10 Apps Script projects
+- **Build Time**: Under 15 minutes for full deployment
+- **Error Rate**: Zero permission or configuration errors
+
+#### Short-term (Phase 3 Completion)
+- **File Standardization**: 100% compliance with naming conventions
+- **Documentation Coverage**: All services have comprehensive READMEs
+- **Code Quality**: Automated quality checks passing
+
+#### Long-term (Phase 4-5)
+- **Community Readiness**: Professional presentation and contribution framework
+- **Automation Coverage**: All deployments and quality checks automated
+- **Scalability**: Framework ready for additional services and contributors
+
+## Development Workflow
+
+### Local Development
+1. Clone repository: `git clone https://github.com/klappe-pm/Another-Google-Automation-Repo.git`
+2. Navigate to service directory: `cd projects/{service}`
+3. Develop and test scripts locally
+4. Commit changes with descriptive messages
+
+### Deployment Pipeline
+1. Push commits to GitHub repository
+2. Cloud Build automatically triggers on main branch
+3. Custom Docker image executes deployment
+4. Scripts are synchronized with Google Apps Script projects
+5. Deployment summary provides success/failure reporting
+
+### Testing and Validation
+- Pre-deployment validation of .clasp.json files
+- Authentication verification before script deployment
+- Individual project deployment with error reporting
+- Comprehensive deployment summary with success metrics
+
+## Technical Requirements
+
+### Dependencies
+- **Node.js**: v18.x
+- **Google Cloud SDK**: Latest version
+- **@google/clasp**: Google Apps Script CLI
+- **Docker**: For custom image building
+
+### Environment Setup
+- Google Cloud Project: `workspace-automation-466800`
+- Artifact Registry: `us-central1-docker.pkg.dev/workspace-automation-466800/clasp-builder`
+- Secret Manager: `clasp-credentials` secret for authentication
+
+### Permissions Required
+- **Cloud Build Service Account**: Secret Manager Secret Accessor
+- **Artifact Registry**: Writer permissions for custom images
+- **Google Apps Script**: API access for script deployment
+
+## Contact and Contribution
+
+**Project Lead**: Kevin Lappe  
+**Email**: kevin@averageintelligence.ai  
+**Repository**: https://github.com/klappe-pm/Another-Google-Automation-Repo
+
+### Contributing Guidelines
+1. Follow established file naming conventions
+2. Include standardized script headers
+3. Test locally before committing
+4. Provide clear commit messages
+5. Update documentation as needed
+
+## License
+
+MIT License - See LICENSE file for details
 
 ---
 
-## 🔧 Troubleshooting
-
-### Common Issues & Solutions
-
-#### Permission Errors
-- **Cause**: Insufficient API permissions
-- **Solution**: Enable required APIs in Google Cloud Console
-- **Prevention**: Follow installation checklist completely
-
-#### Script Timeouts
-- **Cause**: Processing large datasets
-- **Solution**: Implement batch processing or reduce dataset size
-- **Prevention**: Use incremental processing for large operations
-
-#### File Access Issues
-- **Cause**: Incorrect folder/file IDs
-- **Solution**: Verify and update ID variables in script
-- **Prevention**: Test with small datasets first
-
----
-
-## 📄 License & Usage
-
-### MIT License
-This project is licensed under the MIT License - see [LICENSE](LICENSE.md) for details.
-
-#### License Summary
-- ✅ **Commercial Use**: Allowed for business applications
-- ✅ **Modification**: Customize and adapt scripts
-- ✅ **Distribution**: Share and redistribute freely
-- ✅ **Private Use**: Use internally within organizations
-- ❌ **Liability**: No warranty provided
-- ❌ **Support**: Best-effort community support
-
-### Attribution
-Attribution appreciated but not required:
-
-```
-Workspace Automation Scripts by Kevin Lappe
-GitHub: github.com/klappe-pm/Another-Google-Automation-Repo
-Email: kevin@averageintelligence.ai
-```
-
----
-
-## 📚 Resources & Support
-
-### Official Documentation
-- [Google Apps Script Documentation](https://developers.google.com/apps-script)
-- [Google Workspace APIs](https://developers.google.com/workspace)
-- [Apps Script IDE](https://script.google.com)
-
-### Community Resources
-- [Apps Script Community](https://developers.google.com/apps-script/guides)
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/google-apps-script)
-- [Google Cloud Console](https://console.cloud.google.com/)
-
-### Repository Information
-- **Maintained Since**: 2023
-- **Last Major Update**: July 21, 2025
-- **Total Active Scripts**: 79 tools
-- **Production Status**: Ready for immediate use
-
----
-
-## 🤝 Contributing
-
-This repository welcomes contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-### How to Contribute
-1. Fork the repository
-2. Create a feature branch
-3. Follow naming conventions and header standards
-4. Test thoroughly
-5. Submit a pull request
-
-### Quality Standards
-- Follow existing naming conventions
-- Include comprehensive script headers
-- Add proper documentation
-- Test with various datasets
-- Maintain backward compatibility
-
----
-
-**⭐ Star this repository if you find it helpful!**
-
-*This repository represents 2+ years of Google Workspace automation development, standardized for professional use and community sharing.*
+**Last Updated**: July 25, 2025  
+**Version**: 2.0 (Phase 2 Near Completion)  
+**Status**: Active Development

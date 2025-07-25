@@ -157,4 +157,11 @@ function processFolder(folder, pathArray, depth, sheet, processedIds) {
     row[6] = hyperlinkFormula; // Name (with hyperlink) in column 7
     row[7] = createdDate;      // Date Created in column 8
     row[8] = lastUpdated;      // Date Revised in column 9
-    row[9] = folderId;         // Fo
+    row[9] = folderId;         // Folder ID in column 10
+    row[10] = fileId;          // File ID in column 11
+    
+    fileData.push(row);
+  }
+  
+  return fileData;
+}
