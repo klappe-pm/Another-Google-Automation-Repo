@@ -1,0 +1,126 @@
+# Diagnostic Cloud Build Configuration
+# Enhanced logging to identify deployment issues
+timeout: 1200s
+steps:
+- name: 'us-central1-docker.pkg.dev/$PROJECT_ID/clasp-builder/clasp-builder:latest'
+  entrypoint: bash
+  args:
+    - -c
+    - |
+      set -e
+      echo "🔍 DIAGNOSTIC MODE - Enhanced Logging"
+      echo "====================================="
+      
+      echo "✅ Custom builder environment ready."
+      echo "Node.js version: $$(node --version)"
+      echo "gcloud version: $$(gcloud --version | head -1)"
+      
+      # Install clasp
+      echo "📥 Installing @google/clasp..."
+      npm install -g @google/clasp
+      echo "✅ Clasp installed: $$(clasp --version)"
+      
+      # DIAGNOSTIC: Check project structure
+      echo "📁 Checking project directories..."
+      for dir in apps/*/; do
+        if [ -d "$$dir" ]; then
+          echo "  Found: $$dir"
+          if [ -f "$$dir.clasp.json" ]; then
+            echo "    ✅ Has .clasp.json"
+            echo "    Script ID: $$(cat $$dir.clasp.json | grep scriptId | head -1)"
+          else
+            echo "    ❌ Missing .clasp.json"
+          fi
+        fi
+      done
+      
+      # DIAGNOSTIC: Check secret content before authentication
+      echo "🔐 Checking Secret Manager access..."
+      if gcloud secrets versions access latest --secret="clasp-credentials" --project="$PROJECT_ID" > ~/.clasprc.json; then
+        echo "✅ Secret retrieved successfully"
+        echo "📋 Secret content preview:"
+        echo "$$(head -c 200 ~/.clasprc.json)..."
+      else
+        echo "❌ Failed to retrieve clasp-credentials secret"
+        exit 1
+      fi
+      
+      chmod 600 ~/.clasprc.json
+      
+      # DIAGNOSTIC: Test clasp authentication
+      echo "🔐 Testing clasp authentication..."
+      if clasp login --status > /dev/null 2>&1; then
+        echo "✅ Clasp authentication successful"
+      else
+        echo "❌ Clasp authentication failed"
+        echo "📋 Attempting clasp login --status with verbose output:"
+        clasp login --status || true
+        echo "📋 Contents of ~/.clasprc.json:"
+        cat ~/.clasprc.json | head -10
+        exit 1
+      fi
+
+      # Deploy with enhanced error reporting
+      echo "📦 Starting deployment with enhanced diagnostics..."
+      PROJECTS=(
+        "apps/calendar" "apps/chat" "apps/docs" "apps/drive"
+        "apps/gmail" "apps/photos" "apps/sheets" "apps/slides"
+        "apps/tasks" "apps/utility"
+      )
+      
+      SUCCESS_COUNT=0
+      TOTAL_PROJECTS=0
+      FAILED_PROJECTS=""
+      
+      for PROJECT_DIR in "$${PROJECTS[@]}"; do
+        echo "🔍 Checking $$PROJECT_DIR..."
+        if [ -d "$$PROJECT_DIR" ] && [ -f "$$PROJECT_DIR/.clasp.json" ]; then
+          TOTAL_PROJECTS=$$((TOTAL_PROJECTS + 1))
+          echo "   -> Deploying $$PROJECT_DIR..."
+          
+          # Show .clasp.json content for debugging
+          echo "   📋 .clasp.json content:"
+          cat "$$PROJECT_DIR/.clasp.json"
+          
+          # Attempt deployment with detailed error output
+          if (cd "$$PROJECT_DIR" && clasp push --force); then
+            echo "   ✅ $$PROJECT_DIR deployed successfully"
+            SUCCESS_COUNT=$$((SUCCESS_COUNT + 1))
+          else
+            echo "   ❌ Failed to deploy $$PROJECT_DIR"
+            echo "   📋 Error details:"
+            (cd "$$PROJECT_DIR" && clasp push --force 2>&1) || true
+            FAILED_PROJECTS="$$FAILED_PROJECTS $$PROJECT_DIR"
+          fi
+        else
+          echo "   ⚠️ Skipping $$PROJECT_DIR (missing directory or .clasp.json)"
+          if [ ! -d "$$PROJECT_DIR" ]; then
+            echo "      Directory does not exist"
+          fi
+          if [ ! -f "$$PROJECT_DIR/.clasp.json" ]; then
+            echo "      .clasp.json file does not exist"
+          fi
+        fi
+        echo ""
+      done
+      
+      # Report Summary
+      echo "================================================="
+      echo "📊 DIAGNOSTIC DEPLOYMENT SUMMARY"
+      echo "================================================="
+      echo "Total projects found: $$TOTAL_PROJECTS"
+      echo "✅ Successful deployments: $$SUCCESS_COUNT"
+      
+      if [ $$SUCCESS_COUNT -eq $$TOTAL_PROJECTS ] && [ $$TOTAL_PROJECTS -gt 0 ]; then
+        echo "🎉 ALL DEPLOYMENTS COMPLETED SUCCESSFULLY!"
+      else
+        echo "❌ Failed deployments: $$((TOTAL_PROJECTS - SUCCESS_COUNT))"
+        echo "Failed projects:$$FAILED_PROJECTS"
+        echo ""
+        echo "🔍 DIAGNOSTIC COMPLETE - Check logs above for specific errors"
+        exit 1
+      fi
+options:
+  substitution_option: ALLOW_LOOSE
+  logging: CLOUD_LOGGING_ONLY
+  machineType: E2_HIGHCPU_8

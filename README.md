@@ -1,233 +1,240 @@
-# Workspace Automation Project
+# Workspace Automation
 
-**A comprehensive Google Apps Script automation repository with CI/CD deployment pipeline**
+A comprehensive Google Apps Script automation framework with integrated CI/CD pipeline for Google Workspace services.
 
-## Project Overview
+## Problem Statement
 
-This project provides a complete automation solution for Google Workspace services through Google Apps Script. It features a robust CI/CD pipeline that automatically synchronizes local script development with Google Apps Script projects, enabling version-controlled development of Google Workspace automations.
+Managing Google Apps Script projects traditionally requires manual copying between the web editor and version control, leading to:
+- Lack of proper version control and collaboration
+- No automated testing or deployment processes
+- Difficulty maintaining consistency across multiple scripts
+- Limited visibility into script dependencies and permissions
 
-### Key Features
-- **Automated Deployment**: Local scripts → GitHub → Google Apps Script projects
-- **Multi-Service Support**: 10 Google Workspace services with dedicated automation projects
-- **Professional CI/CD**: Custom Docker images with Cloud Build deployment pipeline
-- **Version Control**: Full Git workflow with standardized file naming and documentation
-- **Secure Authentication**: Google Cloud Secret Manager integration for credentials
+## Solution
 
-## Project Status
+This repository provides a complete development framework that bridges local development with Google Apps Script deployment, offering:
+- Full Git-based version control for all scripts
+- Automated deployment pipeline from local files to Google Apps Script
+- Standardized project structure across 10 Google Workspace services
+- Comprehensive API permission management
+- Real-time file watching with automatic synchronization
 
-### Completed Work
+## Architecture
 
-#### Phase 1: Authentication & Infrastructure - COMPLETE
-- **Workload Identity Federation**: GitHub Actions ↔ Google Cloud authentication configured
-- **Secret Management**: clasp-credentials stored in Google Cloud Secret Manager
-- **GitHub Actions Workflows**: Multiple deployment workflows created and tested
-- **Project Configuration**: All 10 Google Apps Script projects mapped with real IDs
+### Repository Structure
 
-#### Phase 2: Cloud Build Deployment Pipeline - 95% COMPLETE
-- **Custom Docker Image**: Node.js + Google Cloud SDK pre-built image successfully created
-- **Artifact Registry**: Modern container registry configured and operational
-- **Permission Resolution**: NPM global install permissions fixed for node user
-- **Build Pipeline**: Professional Cloud Build configuration implemented
-
-### Current Challenges
-
-#### Final Deployment Hurdle - IN PROGRESS
-- **Status**: Custom builder image successfully built and pushed to Artifact Registry
-- **Next Step**: Execute final deployment to synchronize all local scripts with Google Apps Script projects
-- **Expected Outcome**: Complete automation pipeline from local development to production deployment
-
-### Open Tasks
-
-#### Phase 3: Repository Standardization - PENDING
-**Objective**: Implement comprehensive file and directory standardization across all Google Apps Script projects
-
-**Standardization Goals**:
-1. **File Naming Convention**: `{service}-{function}-{descriptor}.gs`
-2. **Standardized Headers**: All scripts will have consistent metadata headers
-3. **Comprehensive README Files**: Each service directory will have detailed documentation
-4. **Code Quality**: Implement automated quality checks and error handling validation
-
-#### Phase 4: Advanced Automation & Quality Assurance - PLANNED
-- Enhanced CI/CD pipeline with automated testing
-- Performance monitoring and alerts
-- Rollback mechanisms for failed deployments
-- Documentation and community preparation
-
-#### Phase 5: Long-term Maintenance & Scaling - PLANNED
-- Monitoring and analytics implementation
-- Community management framework
-- Multi-environment deployment (dev/staging/prod)
-
-## Project Architecture
-
-### Google Apps Script Projects
-
-| Service | Project ID | Status |
-|---------|------------|---------|
-| Calendar | `1WBzQgskRgRPJkPBLhjf-2CHNVRqYVIh2Io-fBW75Ro_9wOpX8uzUIHUh` | Configured |
-| Chat | `1j9M60-KeKOMlxdUVKCb0sO3c01OSL-btzmFj3Q77vcE0dY0aqz1ON7F8` | Configured |
-| Docs | `16U33iZkZSoN_h697FSbTsa3Ma5yD0e6p7gGjeWgH1xlTuWzfg6X3NHgz` | Configured |
-| Drive | `1Y62ucpYOhuhZ7PAQaBSg8ICqd0uPWPQ3aqwhgpbc6fDGwmlqKFjq0lLO` | Configured |
-| Gmail | `1MhC1spUX-j1HfITDj6g68G2EobqbiZDiIpJJAxCEQOBAozERJPMoiXuq` | Configured |
-| Photos | `1bkbORqQD2is7LWtlHRr6D_nCtd6uk1PP9t3SsVeCXobOrPgsVnK7yxPx` | Configured |
-| Sheets | `1HfBP6a8zJ7piAu74Q0iVFnik7wIOj5jsUIkqeNAM5IGlfE2AJwQMz9dZ` | Configured |
-| Slides | `1qWMrnFNy3b_Y1lo54Xjxzlg01t57ZmYMb1FB8N_JWTg_shNe318Zd55h` | Configured |
-| Tasks | `1GtzgEyKr39SNn9OuOXMoYLdEigAdGV447GJFutEJFNl1GQHos0XyBA5O` | Configured |
-| Utility | `1X3W2-mJ5ss_2Xl8zHlQXq8ndwnPHURvUynnp-v5t39xL7j4LdDTEVl1B` | Configured |
-
-### Automation State
-
-**Current Deployment Flow**:
 ```
-Local Development → Git Commit → GitHub Repository → Cloud Build Trigger → 
-Custom Docker Image → Clasp Authentication → Google Apps Script Deployment
+workspace-automation/
+├── apps/              # Google Apps Script projects
+│   ├── calendar/     # Calendar automation scripts
+│   ├── chat/         # Chat automation scripts
+│   ├── docs/         # Document automation scripts
+│   ├── drive/        # Drive automation scripts
+│   ├── gmail/        # Gmail automation scripts
+│   ├── photos/       # Photos automation scripts
+│   ├── sheets/       # Sheets automation scripts
+│   ├── slides/       # Slides automation scripts
+│   ├── tasks/        # Tasks automation scripts
+│   └── utility/      # Utility scripts
+├── automation/       # Deployment and sync scripts
+├── config/          # Configuration files
+├── docs/            # Documentation
+└── diagrams/        # Architecture diagrams
 ```
 
-**Infrastructure Components**:
-- **Cloud Build**: Automated build and deployment pipeline
-- **Artifact Registry**: Custom Docker image storage (`us-central1-docker.pkg.dev/workspace-automation-466800/clasp-builder/clasp-builder:latest`)
-- **Secret Manager**: Secure storage of clasp authentication credentials
-- **GitHub Actions**: Alternative deployment workflow (fallback)
+### Deployment Flow
 
-## Current Project Plan
+```
+Local Development → File Save → Auto-commit → GitHub Push → Deployment → Google Apps Script
+```
 
-### Phase 2 Completion - IMMEDIATE PRIORITY
-**Objective**: Complete the deployment pipeline and achieve first successful build
+The automation pipeline watches for file changes, commits them to Git, pushes to GitHub, and deploys to Google Apps Script projects automatically.
 
-**Current Status**:
-- Custom Docker image built successfully with npm permission fixes
-- All authentication and infrastructure components operational
-- Ready for final deployment execution
+## Implementation Details
 
-**Next Action**:
+### Supported Services
+
+| Service | Purpose | API Permissions |
+|---------|---------|-----------------|
+| Calendar | Event automation and analysis | Calendar, Drive, Sheets |
+| Chat | Message automation | Chat Messages, Spaces, Drive |
+| Docs | Document processing | Documents, Drive, Sheets |
+| Drive | File organization | Drive, Metadata, Sheets |
+| Gmail | Email management | Gmail, Labels, Drive, Docs |
+| Photos | Photo organization | Photos Library, Drive, Sheets |
+| Sheets | Spreadsheet automation | Sheets API v4, Drive |
+| Slides | Presentation tools | Presentations, Drive, Sheets |
+| Tasks | Task management | Tasks, Drive, Sheets |
+| Utility | Helper functions | External Requests, Drive, Sheets |
+
+### Key Components
+
+**Automation Scripts**
+- `deploy-local.sh` - Deploys all projects using local clasp CLI
+- `auto-sync-full.sh` - File watcher with automatic deployment
+- `sync-control.sh` - Process control for background synchronization
+- `test-deployment.sh` - Validates deployment configuration
+
+**Configuration**
+- `project-mapping.json` - Maps services to Google Apps Script project IDs
+- `cloudbuild.yaml` - Cloud Build configuration for CI/CD
+- Individual `appsscript.json` files for each service with API permissions
+
+## Getting Started
+
+### Prerequisites
+
+1. **Google Cloud Project** with the following APIs enabled:
+   - Apps Script API
+   - Drive API
+   - Secret Manager API (for Cloud Build)
+
+2. **Local Dependencies**:
+   ```bash
+   # Install Node.js (v18 or later)
+   # Install clasp globally
+   npm install -g @google/clasp
+   
+   # Authenticate with Google
+   clasp login
+   ```
+
+3. **Repository Setup**:
+   ```bash
+   git clone https://github.com/your-org/workspace-automation.git
+   cd workspace-automation
+   ```
+
+### Basic Usage
+
+1. **Manual Deployment**:
+   ```bash
+   # Deploy all projects
+   ./automation/deploy-local.sh
+   ```
+
+2. **Automatic Sync** (Recommended):
+   ```bash
+   # Start file watcher in foreground
+   ./automation/sync-control.sh start
+   
+   # Or run in background
+   ./automation/sync-control.sh start-background
+   ```
+
+3. **Development Workflow**:
+   - Edit any `.gs` file in the `apps/` directory
+   - Save the file
+   - Automation will handle commit, push, and deployment
+   - Check deployment status in the terminal output
+
+### Configuration
+
+Each service directory contains:
+- `src/` - Script source files (.gs, .html, .js)
+- `.clasp.json` - Project configuration with script ID
+- `appsscript.json` - Manifest with dependencies and permissions
+
+To add a new script:
+1. Create the file in the appropriate service's `src/` directory
+2. Follow naming convention: `service-function-description.gs`
+3. Save the file - automation handles the rest
+
+## Advanced Features
+
+### Cloud Build Integration
+
+For production deployments using Google Cloud Build:
 ```bash
-gcloud builds submit --config=cloudbuild.yaml --project=workspace-automation-466800
+gcloud builds submit --config=cloudbuild.yaml --project=your-project-id
 ```
 
-**Success Criteria**:
-- Deployment success rate: 100% for all 10 Apps Script projects
-- Build time: Under 15 minutes for full deployment
-- Error rate: Zero permission or configuration errors
+### File Watching Options
 
-### Phase 3 Implementation Plan - NEXT PRIORITY
+The file watcher monitors:
+- `*.gs` - Google Apps Script files
+- `*.json` - Configuration files
+- `*.html` - HTML templates
+- `*.js` - JavaScript files
 
-#### File Naming & Header Standardization
-**Proposed Format**: `{service}-{function}-{descriptor}.gs`
-- **service**: gmail, calendar, drive, sheets, docs, tasks, chat
-- **function**: export, import, analysis, index, process, create, update, delete
-- **descriptor**: brief description using kebab-case
+Excludes:
+- `.git` directory
+- `node_modules`
+- `*.log` files
 
-#### Script Header Template
-```javascript
-/**
- * Title: {Script Title}
- * Service: {Google Service}
- * Purpose: {Brief purpose}
- * Created: {Date}
- * Updated: {Date}
- * Author: Kevin Lappe
- * Contact: kevin@averageintelligence.ai
- * License: MIT
- */
+### Permission Management
+
+API permissions are configured in each service's `appsscript.json` file. The framework includes:
+- Automated permission auditing
+- Standardized OAuth scope configuration
+- Advanced Google API service integration where needed
+
+## Development Guidelines
+
+### File Naming Convention
+
+Use descriptive names following the pattern:
+```
+{service}-{function}-{description}.gs
 ```
 
-#### README Template Structure
-```markdown
-# {Service} Automation Scripts
+Examples:
+- `gmail-filter-manager.gs`
+- `drive-folder-organizer.gs`
+- `sheets-data-processor.gs`
 
-## Overview
-Brief description of the service and automation goals.
+### Code Style
 
-## Scripts Overview
-| Script Name | Purpose | Last Updated |
-|-------------|---------|--------------|
-| script-name.gs | Description | YYYY-MM-DD |
+- Use consistent indentation (2 spaces)
+- Include JSDoc comments for functions
+- Follow Google Apps Script best practices
+- Handle errors gracefully with try-catch blocks
 
-## Installation
-Common installation steps for all scripts in folder.
+### Testing
 
-## Prerequisites
-Requirements and dependencies.
+Before committing:
+1. Test scripts in Google Apps Script editor
+2. Verify permissions are correctly configured
+3. Run deployment test: `./automation/test-deployment.sh`
 
-## Usage
-How to use the scripts.
-```
+## Troubleshooting
 
-### Success Metrics
+### Common Issues
 
-#### Immediate (Phase 2 Completion)
-- **Deployment Success Rate**: 100% for all 10 Apps Script projects
-- **Build Time**: Under 15 minutes for full deployment
-- **Error Rate**: Zero permission or configuration errors
+**Authentication Failed**
+- Run `clasp login` to re-authenticate
+- Verify Google account has access to all script projects
 
-#### Short-term (Phase 3 Completion)
-- **File Standardization**: 100% compliance with naming conventions
-- **Documentation Coverage**: All services have comprehensive READMEs
-- **Code Quality**: Automated quality checks passing
+**Deployment Failed**
+- Check `.clasp.json` exists and contains valid script ID
+- Verify `appsscript.json` has required permissions
+- Review deployment logs for specific errors
 
-#### Long-term (Phase 4-5)
-- **Community Readiness**: Professional presentation and contribution framework
-- **Automation Coverage**: All deployments and quality checks automated
-- **Scalability**: Framework ready for additional services and contributors
+**File Watcher Not Detecting Changes**
+- Ensure you're editing files within `apps/` directory
+- Check that file extension matches watch patterns
+- Verify process is running: `./automation/sync-control.sh status`
 
-## Development Workflow
+## Contributing
 
-### Local Development
-1. Clone repository: `git clone https://github.com/klappe-pm/Another-Google-Automation-Repo.git`
-2. Navigate to service directory: `cd projects/{service}`
-3. Develop and test scripts locally
-4. Commit changes with descriptive messages
-
-### Deployment Pipeline
-1. Push commits to GitHub repository
-2. Cloud Build automatically triggers on main branch
-3. Custom Docker image executes deployment
-4. Scripts are synchronized with Google Apps Script projects
-5. Deployment summary provides success/failure reporting
-
-### Testing and Validation
-- Pre-deployment validation of .clasp.json files
-- Authentication verification before script deployment
-- Individual project deployment with error reporting
-- Comprehensive deployment summary with success metrics
-
-## Technical Requirements
-
-### Dependencies
-- **Node.js**: v18.x
-- **Google Cloud SDK**: Latest version
-- **@google/clasp**: Google Apps Script CLI
-- **Docker**: For custom image building
-
-### Environment Setup
-- Google Cloud Project: `workspace-automation-466800`
-- Artifact Registry: `us-central1-docker.pkg.dev/workspace-automation-466800/clasp-builder`
-- Secret Manager: `clasp-credentials` secret for authentication
-
-### Permissions Required
-- **Cloud Build Service Account**: Secret Manager Secret Accessor
-- **Artifact Registry**: Writer permissions for custom images
-- **Google Apps Script**: API access for script deployment
-
-## Contact and Contribution
-
-**Project Lead**: Kevin Lappe  
-**Email**: kevin@averageintelligence.ai  
-**Repository**: https://github.com/klappe-pm/Another-Google-Automation-Repo
-
-### Contributing Guidelines
-1. Follow established file naming conventions
-2. Include standardized script headers
-3. Test locally before committing
-4. Provide clear commit messages
-5. Update documentation as needed
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes following the guidelines
+4. Test thoroughly
+5. Submit a pull request
 
 ## License
 
 MIT License - See LICENSE file for details
 
+## Contact
+
+**Project Maintainer**: Kevin Lappe  
+**Email**: kevin@averageintelligence.ai  
+**Repository**: https://github.com/klappe-pm/Another-Google-Automation-Repo
+
 ---
 
-**Last Updated**: July 25, 2025  
-**Version**: 2.0 (Phase 2 Near Completion)  
+**Version**: 3.0  
+**Last Updated**: July 2025  
 **Status**: Active Development

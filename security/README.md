@@ -1,32 +1,37 @@
-# 🛡️ Snyk Security Integration for AGAR
+# Security
 
-This directory contains the comprehensive security integration for Another-Google-Automation-Repo (AGAR), featuring Snyk vulnerability monitoring, custom Google Apps Script security scanning, and automated security workflows.
+Security configuration and vulnerability management for the Workspace Automation project.
 
-## 🚀 Quick Start
+## Overview
 
-### 1. Run the Setup Script
+This directory contains security integration tools, policies, and configurations for maintaining secure Google Apps Script automation. It includes Snyk vulnerability monitoring, custom security scanning, and automated security workflows.
+
+## Quick Start
+
+### Initial Setup
+
 ```bash
+# Make setup script executable
 chmod +x setup-snyk-security.sh
+
+# Run security setup
 ./setup-snyk-security.sh
-```
 
-### 2. Authenticate with Snyk
-```bash
+# Authenticate with Snyk
 snyk auth
-```
 
-### 3. Run Initial Security Scan
-```bash
+# Run initial security scan
 npm run security:scan
 ```
 
-### 4. Generate Security Dashboard
+### Generate Security Dashboard
+
 ```bash
 npm run security:dashboard
 open security/dashboard/security-dashboard.html
 ```
 
-## 📋 Available Commands
+## Available Commands
 
 | Command | Description | Use Case |
 |---------|-------------|----------|
@@ -37,84 +42,52 @@ open security/dashboard/security-dashboard.html
 | `npm run snyk:monitor` | Continuous monitoring setup | Production monitoring |
 | `npm run snyk:wizard` | Interactive fix guidance | Vulnerability remediation |
 
-## 🔧 Configuration Files
-
-### Core Configuration
-- **`.snyk`** - Snyk configuration and vulnerability exceptions
-- **`security/SECURITY.md`** - Security policy and reporting guidelines
-- **`security/vulnerability-disclosure.md`** - Responsible disclosure process
-
-### GitHub Actions Workflows
-- **`.github/workflows/snyk-security.yml`** - Comprehensive security scanning
-- **`.github/workflows/snyk-monitor.yml`** - Continuous monitoring
-- **`.github/workflows/snyk-pr-checks.yml`** - Pull request security validation
-
-### Security Tools
-- **`tools/gas-security-scanner.js`** - Custom Google Apps Script security analyzer
-- **`tools/security-dashboard.js`** - Interactive security dashboard generator
-
-### 🎯 Executive Overview
-- Overall security score (0-100)
-- Risk level assessment
-- Vulnerability counts by severity
-- Files and dependencies analyzed
-
-### 📈 Detailed Analysis
-- Vulnerability breakdown by source (Snyk, GAS Scanner)
-- Service-specific security status (Gmail, Drive, Calendar, etc.)
-- Trending security metrics over time
-- Compliance framework assessment
-
-### 💡 Actionable Recommendations
-- Prioritized remediation steps
-- Effort and timeline estimates
-- Security best practice guidance
-- Links to relevant documentation
-
-## 🔍 Security Scanning Coverage
+## Security Coverage
 
 ### Google Apps Script Analysis
-- **Hardcoded Credentials**: API keys, passwords, tokens
+
+- **Credential Detection**: API keys, passwords, tokens
 - **Insecure Patterns**: eval(), innerHTML, dangerous functions
 - **API Security**: Google API usage validation
-- **Input Validation**: User input handling
+- **Input Validation**: User input handling checks
 - **Documentation**: Security header compliance
 
 ### Dependency Security
+
 - **Vulnerability Detection**: Known CVEs in npm packages
 - **License Compliance**: Open source license validation
 - **Outdated Packages**: Dependencies needing updates
 - **Supply Chain Security**: Package integrity verification
 
 ### Infrastructure Security
+
 - **GitHub Actions**: Workflow security validation
 - **Configuration Files**: Secure defaults verification
 - **Secrets Management**: Credential handling assessment
 - **Access Controls**: Permission minimization
 
-## 🔐 GitHub Actions Setup
+## Configuration Files
 
-### Required Secrets
+### Core Configuration
 
-Add these secrets in your GitHub repository settings:
+- **`.snyk`** - Snyk configuration and vulnerability exceptions
+- **`SECURITY.md`** - Security policy and reporting guidelines
+- **`vulnerability-disclosure.md`** - Responsible disclosure process
 
-1. **SNYK_TOKEN**
-   - Go to https://app.snyk.io/account
-   - Copy your API token
-   - Add as repository secret
+### GitHub Actions Workflows
 
-2. **SNYK_ORG_ID** (Optional but recommended)
-   - Find your organization ID in Snyk dashboard
-   - Add as repository secret for better project organization
+Located in `.github/workflows/`:
+- **`snyk-security.yml`** - Comprehensive security scanning
+- **`snyk-monitor.yml`** - Continuous monitoring
+- **`snyk-pr-checks.yml`** - Pull request security validation
 
-### Workflow Triggers
+### Security Tools
 
-- **Push to main/develop**: Full security scan
-- **Pull Requests**: Security validation for changes
-- **Daily Schedule**: Continuous monitoring
-- **Manual**: On-demand security analysis
+Located in `tools/`:
+- **`gas-security-scanner.js`** - Custom Google Apps Script analyzer
+- **`security-dashboard.js`** - Interactive dashboard generator
 
-## 📁 Directory Structure
+## Directory Structure
 
 ```
 security/
@@ -127,8 +100,91 @@ security/
 │   └── security-trends.json      # Historical trends
 ├── dashboard/                     # Generated dashboards
 │   └── security-dashboard.html   # Interactive HTML dashboard
-└── policies/                      # Security policies (future)
+└── policies/                      # Security policies
 ```
 
-## 🥔🥔🥔 Resources
-- **Security Issues**: You are on your own.
+## GitHub Actions Setup
+
+### Required Secrets
+
+Configure these in repository settings:
+
+1. **SNYK_TOKEN**
+   - Obtain from https://app.snyk.io/account
+   - Add as repository secret
+
+2. **SNYK_ORG_ID** (Optional)
+   - Find in Snyk dashboard
+   - Helps organize projects
+
+### Workflow Triggers
+
+- **Push to main**: Full security scan
+- **Pull Requests**: Security validation
+- **Daily Schedule**: Continuous monitoring
+- **Manual**: On-demand analysis
+
+## Security Dashboard Features
+
+### Executive Overview
+- Overall security score (0-100)
+- Risk level assessment
+- Vulnerability counts by severity
+- Files and dependencies analyzed
+
+### Detailed Analysis
+- Vulnerability breakdown by source
+- Service-specific security status
+- Security metrics trending
+- Compliance framework assessment
+
+### Actionable Recommendations
+- Prioritized remediation steps
+- Effort and timeline estimates
+- Security best practice guidance
+- Links to documentation
+
+## Best Practices
+
+### Development
+
+1. Run security scans before committing
+2. Address high/critical vulnerabilities immediately
+3. Keep dependencies updated regularly
+4. Follow secure coding guidelines
+
+### Deployment
+
+1. Ensure all security checks pass
+2. Review security dashboard before release
+3. Monitor production for new vulnerabilities
+4. Maintain security documentation
+
+## Troubleshooting
+
+### Common Issues
+
+**Snyk Authentication Failed**
+- Re-run `snyk auth`
+- Verify token in repository secrets
+- Check network connectivity
+
+**Security Scan Timeout**
+- Reduce scan scope temporarily
+- Check for large dependencies
+- Increase timeout in configuration
+
+**Dashboard Generation Error**
+- Ensure reports directory exists
+- Check JSON report validity
+- Verify Node.js version compatibility
+
+## Resources
+
+- [Snyk Documentation](https://docs.snyk.io)
+- [OWASP Security Guidelines](https://owasp.org)
+- [Google Apps Script Security Best Practices](https://developers.google.com/apps-script/guides/security)
+
+---
+
+Last Updated: July 2025

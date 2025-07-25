@@ -1,0 +1,54 @@
+{
+  "projects": {
+    "calendar": {
+      "scriptId": "1WBzQgskRgRPJkPBLhjf-2CHNVRqYVIh2Io-fBW75Ro_9wOpX8uzUIHUh",
+      "name": "Calendar Automation",
+      "status": "active"
+    },
+    "chat": {
+      "scriptId": "1j9M60-KeKOMlxdUVKCb0sO3c01OSL-btzmFj3Q77vcE0dY0aqz1ON7F8",
+      "name": "Chat Automation",
+      "status": "active"
+    },
+    "docs": {
+      "scriptId": "16U33iZkZSoN_h697FSbTsa3Ma5yD0e6p7gGjeWgH1xlTuWzfg6X3NHgz",
+      "name": "Docs Automation",
+      "status": "active"
+    },
+    "drive": {
+      "scriptId": "1Y62ucpYOhuhZ7PAQaBSg8ICqd0uPWPQ3aqwhgpbc6fDGwmlqKFjq0lLO",
+      "name": "Drive Automation",
+      "status": "active"
+    },
+    "gmail": {
+      "scriptId": "1MhC1spUX-j1HfITDj6g68G2EobqbiZDiIpJJAxCEQOBAozERJPMoiXuq",
+      "name": "Gmail Automation",
+      "status": "active"
+    },
+    "photos": {
+      "scriptId": "1bkbORqQD2is7LWtlHRr6D_nCtd6uk1PP9t3SsVeCXobOrPgsVnK7yxPx",
+      "name": "Photos Automation",
+      "status": "active"
+    },
+    "sheets": {
+      "scriptId": "1HfBP6a8zJ7piAu74Q0iVFnik7wIOj5jsUIkqeNAM5IGlfE2AJwQMz9dZ",
+      "name": "Sheets Automation",
+      "status": "active"
+    },
+    "slides": {
+      "scriptId": "1qWMrnFNy3b_Y1lo54Xjxzlg01t57ZmYMb1FB8N_JWTg_shNe318Zd55h",
+      "name": "Slides Automation",
+      "status": "active"
+    },
+    "tasks": {
+      "scriptId": "1GtzgEyKr39SNn9OuOXMoYLdEigAdGV447GJFutEJFNl1GQHos0XyBA5O",
+      "name": "Tasks Automation",
+      "status": "active"
+    },
+    "utility": {
+      "scriptId": "1X3W2-mJ5ss_2Xl8zHlQXq8ndwnPHURvUynnp-v5t39xL7j4LdDTEVl1B",
+      "name": "Utility Scripts",
+      "status": "active"
+    }
+  }
+}

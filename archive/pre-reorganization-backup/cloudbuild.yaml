@@ -1,0 +1,71 @@
+# Professional Cloud Build Configuration
+# Uses custom pre-built image with Node.js + Google Cloud SDK
+timeout: 1200s
+steps:
+- name: 'us-central1-docker.pkg.dev/$PROJECT_ID/clasp-builder/clasp-builder:latest' # Use Artifact Registry instead of Container Registry
+  entrypoint: bash
+  args:
+    - -c
+    - |
+      set -e
+      echo "✅ Custom builder environment ready."
+      echo "Node.js version: $$(node --version)"
+      echo "gcloud version: $$(gcloud --version | head -1)"
+      
+      # Install clasp
+      echo "📥 Installing @google/clasp..."
+      npm install -g @google/clasp
+      echo "✅ Clasp installed: $$(clasp --version)"
+      
+      # Authenticate and verify credentials
+      echo "🔐 Setting up clasp credentials..."
+      gcloud secrets versions access latest --secret="clasp-credentials" --project="$PROJECT_ID" > ~/.clasprc.json
+      chmod 600 ~/.clasprc.json
+      if ! clasp login --status > /dev/null 2>&1; then
+        echo "❌ Clasp authentication failed. Check the 'clasp-credentials' secret."
+        exit 1
+      fi
+      echo "✅ Clasp authentication successful"
+
+      # Deploy all projects
+      echo "📦 Deploying all Google Apps Script projects..."
+      PROJECTS=(
+        "projects/calendar" "projects/chat" "projects/docs" "projects/drive"
+        "projects/gmail" "projects/photos" "projects/sheets" "projects/slides"
+        "projects/tasks" "projects/utility"
+      )
+      
+      SUCCESS_COUNT=0
+      TOTAL_PROJECTS=0
+      FAILED_PROJECTS=""
+      
+      for PROJECT_DIR in "$${PROJECTS[@]}"; do
+        if [ -d "$$PROJECT_DIR" ] && [ -f "$$PROJECT_DIR/.clasp.json" ]; then
+          TOTAL_PROJECTS=$$((TOTAL_PROJECTS + 1))
+          echo "   -> Deploying $$PROJECT_DIR..."
+          if (cd "$$PROJECT_DIR" && clasp push --force); then
+            SUCCESS_COUNT=$$((SUCCESS_COUNT + 1))
+          else
+            FAILED_PROJECTS="$$FAILED_PROJECTS $$PROJECT_DIR"
+          fi
+        fi
+      done
+      
+      # Report Summary
+      echo "================================================="
+      echo "📊 DEPLOYMENT SUMMARY"
+      echo "================================================="
+      echo "Total projects found: $$TOTAL_PROJECTS"
+      echo "✅ Successful deployments: $$SUCCESS_COUNT"
+      
+      if [ $$SUCCESS_COUNT -eq $$TOTAL_PROJECTS ] && [ $$TOTAL_PROJECTS -gt 0 ]; then
+        echo "🎉 ALL DEPLOYMENTS COMPLETED SUCCESSFULLY!"
+      else
+        echo "❌ Failed deployments: $$((TOTAL_PROJECTS - SUCCESS_COUNT))"
+        echo "Failed projects:$$FAILED_PROJECTS"
+        exit 1
+      fi
+options:
+  substitution_option: ALLOW_LOOSE
+  logging: CLOUD_LOGGING_ONLY
+  machineType: E2_HIGHCPU_8
