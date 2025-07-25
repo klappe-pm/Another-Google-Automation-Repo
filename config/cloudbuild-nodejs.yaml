@@ -1,38 +1,37 @@
-# Professional Cloud Build Configuration
-# Uses custom pre-built image with Node.js + Google Cloud SDK
+# Alternative Cloud Build Configuration using official Node.js image
+# This avoids the npm permission issues in the custom Docker image
 timeout: 1200s
 steps:
-- name: 'us-central1-docker.pkg.dev/$PROJECT_ID/clasp-builder/clasp-builder:latest' # Use Artifact Registry instead of Container Registry
-  entrypoint: bash
+# Step 1: Install dependencies
+- name: 'node:18'
+  entrypoint: 'npm'
+  args: ['install', '-g', '@google/clasp']
+
+# Step 2: Authenticate and deploy
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
+  entrypoint: 'bash'
   args:
     - -c
     - |
       set -e
-      echo "✅ Custom builder environment ready."
+      
+      # Install Node.js in cloud-sdk container
+      apk add --no-cache nodejs npm
+      
+      # Install clasp
+      npm install -g @google/clasp
+      
+      echo "✅ Environment ready"
       echo "Node.js version: $$(node --version)"
       echo "gcloud version: $$(gcloud --version | head -1)"
-      
-      # Create a local directory for npm packages
-      mkdir -p /workspace/node_modules/.bin
-      export PATH="/workspace/node_modules/.bin:$PATH"
-      export npm_config_prefix=/workspace
-      
-      # Install clasp locally to avoid permission issues
-      echo "📥 Installing @google/clasp locally..."
-      cd /workspace
-      npm install @google/clasp --no-save
-      
-      # Create a symlink to make clasp available
-      ln -sf /workspace/node_modules/@google/clasp/src/index.js /workspace/node_modules/.bin/clasp
-      
-      # Verify installation
-      echo "✅ Clasp installed"
       
       # Authenticate and verify credentials
       echo "🔐 Setting up clasp credentials..."
       gcloud secrets versions access latest --secret="clasp-credentials" --project="$PROJECT_ID" > ~/.clasprc.json
       chmod 600 ~/.clasprc.json
-      if ! clasp login --status > /dev/null 2>&1; then
+      
+      # Verify authentication
+      if ! /usr/bin/npx clasp login --status > /dev/null 2>&1; then
         echo "❌ Clasp authentication failed. Check the 'clasp-credentials' secret."
         exit 1
       fi
@@ -54,15 +53,20 @@ steps:
         if [ -d "$$PROJECT_DIR" ] && [ -f "$$PROJECT_DIR/.clasp.json" ]; then
           TOTAL_PROJECTS=$$((TOTAL_PROJECTS + 1))
           echo "   -> Deploying $$PROJECT_DIR..."
-          if (cd "$$PROJECT_DIR" && clasp push --force); then
+          if (cd "$$PROJECT_DIR" && /usr/bin/npx clasp push --force); then
             SUCCESS_COUNT=$$((SUCCESS_COUNT + 1))
+            echo "   ✅ $$PROJECT_DIR deployed successfully"
           else
             FAILED_PROJECTS="$$FAILED_PROJECTS $$PROJECT_DIR"
+            echo "   ❌ $$PROJECT_DIR deployment failed"
           fi
+        else
+          echo "   ⚠️ Skipping $$PROJECT_DIR (missing directory or .clasp.json)"
         fi
       done
       
       # Report Summary
+      echo ""
       echo "================================================="
       echo "📊 DEPLOYMENT SUMMARY"
       echo "================================================="
@@ -70,6 +74,7 @@ steps:
       echo "✅ Successful deployments: $$SUCCESS_COUNT"
       
       if [ $$SUCCESS_COUNT -eq $$TOTAL_PROJECTS ] && [ $$TOTAL_PROJECTS -gt 0 ]; then
+        echo ""
         echo "🎉 ALL DEPLOYMENTS COMPLETED SUCCESSFULLY!"
       else
         echo "❌ Failed deployments: $$((TOTAL_PROJECTS - SUCCESS_COUNT))"
