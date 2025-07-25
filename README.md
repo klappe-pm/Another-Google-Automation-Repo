@@ -1,5 +1,10 @@
 # Workspace Automation
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Google Apps Script](https://img.shields.io/badge/Google%20Apps%20Script-4285F4?logo=google&logoColor=white)](https://developers.google.com/apps-script)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)](https://nodejs.org)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/klappe-pm/Another-Google-Automation-Repo/pulls)
+
 A comprehensive Google Apps Script automation framework with integrated CI/CD pipeline for Google Workspace services.
 
 ## Problem Statement
