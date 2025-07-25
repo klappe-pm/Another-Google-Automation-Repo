@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      input, button {
+        margin: 5px 0;
+        padding: 5px;
+        width: 100%;
+      }
+      button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Search and Export Emails</h3>
+    <form id="searchForm">
+      <label for="searchTerm">Search Term:</label>
+      <input type="text" id="searchTerm" name="searchTerm" placeholder="e.g., from:example@email.com">
+      
+      <label for="label">Label:</label>
+      <input type="text" id="label" name="label" placeholder="e.g., Important">
+      
+      <label for="keyword">Keyword:</label>
+      <input type="text" id="keyword" name="keyword" placeholder="e.g., invoice">
+      
+      <label for="startDate">Start Date:</label>
+      <input type="date" id="startDate" name="startDate">
+      
+      <label for="endDate">End Date:</label>
+      <input type="date" id="endDate" name="endDate">
+      
+      <button type="button" onclick="searchEmails()">Search and Export</button>
+    </form>
+    
+    <script>
+      function searchEmails() {
+        const searchTerm = document.getElementById('searchTerm').value;
+        const label = document.getElementById('label').value;
+        const keyword = document.getElementById('keyword').value;
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+        
+        google.script.run
+          .withSuccessHandler(() => google.script.host.close())
+          .withFailureHandler(error => alert('Error: ' + error))
+          .searchAndExportEmails(searchTerm, label, keyword, startDate, endDate);
+      }
+    </script>
+  </body>
+</html>

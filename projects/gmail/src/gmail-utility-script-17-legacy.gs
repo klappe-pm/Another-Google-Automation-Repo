@@ -1,64 +1,41 @@
-/**
- * @fileoverview Gmail Utility Script 17 Legacy (Legacy Version)
- * @author Platform Team <platform-team@company.com>
- * @version 1.0.0
- * @since 2025-07-24
- * @lastmodified 2025-07-24
- * @deprecated This is a legacy script. Consider using the new service-based version.
- */
-
-/**
- * Main function for gmail-utility-script-17-legacy.gs
- * TODO: Implement the specific functionality for this script
- * 
- * @returns {void}
- */
-function gmailUtilityScript17Legacy() {
-  const lock = LockManager.acquire('gmailUtilityScript17Legacy');
+function listFolderIds() {
+  // Get the active spreadsheet and the sheet named "folderIDs"
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = spreadsheet.getSheetByName("folderIDs");
   
-  if (!lock) {
-    Logger.warn('Could not acquire lock for gmailUtilityScript17Legacy');
-    return;
-  }
+  // Clear existing content in the sheet
+  sheet.clear();
   
-  try {
-    Logger.info('Starting gmailUtilityScript17Legacy');
-    
-    // TODO: Implement your script logic here
-    // Example structure:
-    // const data = fetchData();
-    // const processed = processData(data);
-    // saveResults(processed);
-    
-    Logger.info('gmailUtilityScript17Legacy completed successfully');
-  } catch (error) {
-    ErrorHandler.handle(error, 'gmailUtilityScript17Legacy', true);
-  } finally {
-    LockManager.release(lock, 'gmailUtilityScript17Legacy');
+  // Set headers
+  sheet.getRange("A1:B1").setValues([["Folder Name", "Folder ID"]]);
+  
+  // Replace 'YOUR_ROOT_FOLDER_ID' with the actual folder ID you want to start from
+  const rootFolderId = '1WClFwQ5wBWZvvRehwgSY9pb79UciYrg5'; // Update this with the actual folder ID
+  const rootFolder = DriveApp.getFolderById(rootFolderId);
+  
+  // Array to store folder data
+  let folderData = [];
+  
+  // Recursively get all folder IDs
+  getFoldersRecursively(rootFolder, folderData);
+  
+  // Write data to the sheet
+  if (folderData.length > 0) {
+    sheet.getRange(2, 1, folderData.length, 2).setValues(folderData);
   }
 }
 
-/**
- * Helper function for gmail-utility-script-17-legacy.gs
- * TODO: Add specific helper functions as needed
- */
-function gmailUtilityScript17LegacyHelper() {
-  // TODO: Implement helper logic
-}
-
-/**
- * Test function for gmail-utility-script-17-legacy.gs
- * TODO: Add comprehensive tests
- */
-function testGmailUtilityScript17Legacy() {
-  Logger.info('Running tests for gmailUtilityScript17Legacy');
+function getFoldersRecursively(folder, folderData) {
+  // Add current folder to the data array
+  folderData.push([folder.getName(), folder.getId()]);
   
-  try {
-    // TODO: Add test cases
-    Assert.isTrue(true, 'Placeholder test should pass');
-    Logger.info('All tests passed for gmailUtilityScript17Legacy');
-  } catch (error) {
-    Logger.error('Tests failed for gmailUtilityScript17Legacy', error);
-    throw error;
+  // Get subfolders
+  const subFolders = folder.getFolders();
+  
+  // Iterate through subfolders
+  while (subFolders.hasNext()) {
+    const subFolder = subFolders.next();
+    // Recursively call for each subfolder
+    getFoldersRecursively(subFolder, folderData);
   }
 }
