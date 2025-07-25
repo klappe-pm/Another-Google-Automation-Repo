@@ -2,7 +2,7 @@
 # Uses custom pre-built image with Node.js + Google Cloud SDK
 timeout: 1200s
 steps:
-- name: 'gcr.io/$PROJECT_ID/clasp-builder' # Use our stable, pre-built image
+- name: 'us-central1-docker.pkg.dev/$PROJECT_ID/clasp-builder/clasp-builder:latest' # Use Artifact Registry instead of Container Registry
   entrypoint: bash
   args:
     - -c
