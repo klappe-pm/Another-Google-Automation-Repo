@@ -24,9 +24,9 @@ jobs:
         echo "Checking file naming conventions..."
         
         # Check for Google Apps Script files
-        if [ -d "projects" ]; then
-          echo "Found projects directory, checking .gs files..."
-          find projects/ -name "*.gs" | while read file; do
+        if [ -d "apps" ]; then
+          echo "Found apps directory, checking .gs files..."
+          find apps/ -name "*.gs" | while read file; do
             filename=$(basename "$file")
             
             # Check if filename follows convention: service-function-descriptor.gs
@@ -40,16 +40,16 @@ jobs:
             fi
           done
         else
-          echo "✅ No projects directory found, skipping GAS file checks"
+          echo "✅ No apps directory found, skipping GAS file checks"
         fi
         
     - name: Check for required script headers
       run: |
         echo "Checking for required script headers..."
         
-        if [ -d "projects" ]; then
-          echo "Checking script headers in projects directory..."
-          find projects/ -name "*.gs" | while read file; do
+        if [ -d "apps" ]; then
+          echo "Checking script headers in apps directory..."
+          find apps/ -name "*.gs" | while read file; do
             echo "Checking headers in: $file"
             
             # Check for required header elements
@@ -76,15 +76,15 @@ jobs:
             echo "✅ $file has required headers"
           done
         else
-          echo "✅ No projects directory found, skipping header checks"
+          echo "✅ No apps directory found, skipping header checks"
         fi
         
     - name: Check README files exist
       run: |
         echo "Checking for README files in service directories..."
         
-        if [ -d "projects" ]; then
-          for dir in projects/*/; do
+        if [ -d "apps" ]; then
+          for dir in apps/*/; do
             if [ -d "$dir" ]; then
               if [ ! -f "$dir/README.md" ]; then
                 echo "❌ Missing README.md in: $dir"
@@ -95,7 +95,7 @@ jobs:
             fi
           done
         else
-          echo "✅ No projects directory found, skipping README checks"
+          echo "✅ No apps directory found, skipping README checks"
         fi
         
     - name: Check for sensitive information
@@ -103,8 +103,8 @@ jobs:
         echo "Checking for potential sensitive information..."
         
         # Check for common patterns that might indicate sensitive data
-        if [ -d "projects" ]; then
-          if grep -r -i "api.key\|password\|secret\|token" projects/ --include="*.gs" | grep -v "YOUR_API_KEY_HERE\|your-api-key\|placeholder"; then
+        if [ -d "apps" ]; then
+          if grep -r -i "api.key\|password\|secret\|token" apps/ --include="*.gs" | grep -v "YOUR_API_KEY_HERE\|your-api-key\|placeholder"; then
             echo "❌ Potential sensitive information found in scripts"
             echo "Please review and replace with placeholders"
             exit 1
@@ -132,15 +132,15 @@ jobs:
       run: |
         echo "Checking for TODO and FIXME comments..."
         
-        if [ -d "projects" ]; then
-          if grep -r -i "TODO\|FIXME\|XXX" projects/ --include="*.gs"; then
+        if [ -d "apps" ]; then
+          if grep -r -i "TODO\|FIXME\|XXX" apps/ --include="*.gs"; then
             echo "⚠️  Found TODO/FIXME comments - consider addressing before merge"
             # Don't fail the build for TODOs, just warn
           else
             echo "✅ No TODO/FIXME comments found"
           fi
         else
-          echo "✅ No projects directory found, skipping TODO check"
+          echo "✅ No apps directory found, skipping TODO check"
         fi
 
   documentation-check:
@@ -197,14 +197,14 @@ jobs:
         echo "Running basic security checks..."
         
         # Check for hardcoded credentials patterns
-        if [ -d "projects" ]; then
-          if grep -r -E "(password|passwd|pwd|secret|key|token|api_key)\s*=\s*['\"][^'\"]{8,}" projects/ --include="*.gs"; then
+        if [ -d "apps" ]; then
+          if grep -r -E "(password|passwd|pwd|secret|key|token|api_key)\s*=\s*['\"][^'\"]{8,}" apps/ --include="*.gs"; then
             echo "❌ Potential hardcoded credentials found"
             exit 1
           fi
           
           # Check for common insecure patterns
-          if grep -r -i "eval(" projects/ --include="*.gs"; then
+          if grep -r -i "eval(" apps/ --include="*.gs"; then
             echo "⚠️  Found eval() usage - review for security implications"
           fi
         fi

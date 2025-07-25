@@ -31,7 +31,7 @@ jobs:
     - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v2
       with:
-        workload_identity_provider: 'projects/784508074368/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
+        workload_identity_provider: 'apps/784508074368/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
         service_account: 'github-actions-ci@workspace-automation-466800.iam.gserviceaccount.com'
         
     - name: Set up Cloud SDK
@@ -66,12 +66,12 @@ jobs:
         echo "=========================================="
         echo "Checking for projects directory..."
         if [ -d "projects" ]; then
-          echo "✅ projects/ directory exists"
+          echo "✅ apps/ directory exists"
           echo "Contents:"
-          ls -la projects/
+          ls -la apps/
           echo ""
           
-          for dir in projects/*/; do
+          for dir in apps/*/; do
             if [ -d "$dir" ]; then
               echo "📁 Checking $dir"
               if [ -f "$dir.clasp.json" ]; then
@@ -95,7 +95,7 @@ jobs:
             fi
           done
         else
-          echo "❌ projects/ directory not found"
+          echo "❌ apps/ directory not found"
           echo "Available directories:"
           ls -la
           exit 1
@@ -215,7 +215,7 @@ jobs:
         chmod 600 ~/.clasprc.json
         
         # Test with calendar project first (smallest)
-        TEST_PROJECT="projects/calendar"
+        TEST_PROJECT="apps/calendar"
         
         if [ -d "$TEST_PROJECT" ] && [ -f "$TEST_PROJECT/.clasp.json" ]; then
           echo "Testing deployment to $TEST_PROJECT..."
@@ -250,7 +250,7 @@ jobs:
         else
           echo "❌ Test project $TEST_PROJECT not found or invalid"
           echo "Available directories:"
-          ls -la projects/ || echo "No projects directory"
+          ls -la apps/ || echo "No projects directory"
           exit 1
         fi
         

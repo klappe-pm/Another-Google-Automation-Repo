@@ -77,8 +77,8 @@ echo -e "$DEPLOYMENT_LOG"
 
 # Create deployment timestamp file
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
-echo "Deployment completed at: $TIMESTAMP" > "deployment-$TIMESTAMP.log"
-echo "Success: $SUCCESS_COUNT/${#PROJECTS[@]}" >> "deployment-$TIMESTAMP.log"
+echo "Deployment completed at: $TIMESTAMP" > "logs/deployment-$TIMESTAMP.log"
+echo "Success: $SUCCESS_COUNT/${#PROJECTS[@]}" >> "logs/deployment-$TIMESTAMP.log"
 
 if [ $SUCCESS_COUNT -eq ${#PROJECTS[@]} ]; then
     echo ""

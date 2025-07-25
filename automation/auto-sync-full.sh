@@ -5,7 +5,7 @@
 WATCH_DIR="$(pwd)/apps"
 COMMIT_DELAY=10
 LAST_CHANGE_FILE="/tmp/workspace-automation-last-change"
-LOG_FILE="auto-sync.log"
+LOG_FILE="logs/auto-sync.log"
 
 # Colors for output
 GREEN='\033[0;32m'

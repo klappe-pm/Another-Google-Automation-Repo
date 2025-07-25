@@ -90,16 +90,16 @@ graph TB
 
     %% Project Directories
     subgraph "Local Project Structure"
-        PROJ_CAL[projects/calendar/]
-        PROJ_GMAIL[projects/gmail/]
-        PROJ_DRIVE[projects/drive/]
-        PROJ_DOCS[projects/docs/]
-        PROJ_SHEETS[projects/sheets/]
-        PROJ_SLIDES[projects/slides/]
-        PROJ_TASKS[projects/tasks/]
-        PROJ_CHAT[projects/chat/]
-        PROJ_PHOTOS[projects/photos/]
-        PROJ_UTILITY[projects/utility/]
+        PROJ_CAL[apps/calendar/]
+        PROJ_GMAIL[apps/gmail/]
+        PROJ_DRIVE[apps/drive/]
+        PROJ_DOCS[apps/docs/]
+        PROJ_SHEETS[apps/sheets/]
+        PROJ_SLIDES[apps/slides/]
+        PROJ_TASKS[apps/tasks/]
+        PROJ_CHAT[apps/chat/]
+        PROJ_PHOTOS[apps/photos/]
+        PROJ_UTILITY[apps/utility/]
     end
 
     %% Development Flow

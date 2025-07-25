@@ -7,7 +7,7 @@ const { execSync } = require('child_process');
 // Configuration
 const CONFIG = {
   SCRIPTS_DIR: path.join(__dirname, '../scripts'),
-  PROJECTS_DIR: path.join(__dirname, '../projects'),
+  PROJECTS_DIR: path.join(__dirname, '../apps'),
   SERVICES: ['calendar', 'gmail', 'drive', 'sheets', 'docs', 'tasks', 'chat', 'photos', 'utility']
 };
 

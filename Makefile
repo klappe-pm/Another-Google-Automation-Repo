@@ -46,9 +46,9 @@ clean:
 # Run initial project setup
 setup:
 	@echo "⚙️  Running project setup..."
-	@if [ -f "unified_setup.sh" ]; then \
+	@if [ -f "tools/shell-scripts/unified_setup.sh" ]; then \
 		echo "Running unified setup script..."; \
-		./unified_setup.sh; \
+		./tools/shell-scripts/unified_setup.sh; \
 	else \
 		echo "Setup script not found. Please run setup manually."; \
 	fi
