@@ -1,125 +1,108 @@
 # Documentation
 
-Comprehensive documentation for the Workspace Automation project.
+This directory contains all documentation for the Google Workspace Automation project.
 
-## Overview
+## Quick Links
 
-This directory contains detailed documentation covering architecture, guides, milestones, and API configurations for the Google Apps Script automation framework.
+- [Setup Guide](SETUP.md) - Get started with the project
+- [Development Guide](development/DEVELOPMENT.md) - Coding standards and practices
+- [API Permissions](api/API_PERMISSIONS.md) - Required Google API scopes
+- [Script Catalog](catalogs/SCRIPT_CATALOG.md) - Complete list of available scripts
+- [Architecture Overview](ARCHITECTURE.md) - System architecture and design
 
-## Directory Structure
+## Documentation Structure
 
-| Directory | Purpose | Contents |
-|-----------|---------|----------|
-| architecture/ | System design documentation | Architecture decisions, patterns |
-| guides/ | How-to guides and tutorials | Step-by-step instructions |
-| milestones/ | Project planning and progress | Phase documentation, roadmaps |
+```
+docs/
+├── README.md                    # This file
+├── SETUP.md                    # Installation and setup guide
+├── ARCHITECTURE.md             # System architecture overview
+├── LICENSE.md                  # License information
+│
+├── api/                        # API documentation
+│   ├── API_PERMISSIONS.md      # Required Google API scopes
+│   └── API_PERMISSIONS_AUDIT.md # API audit results
+│
+├── architecture/               # System architecture docs
+│   └── [architecture diagrams and docs]
+│
+├── catalogs/                   # Script and tool catalogs
+│   ├── SCRIPT_CATALOG.md       # Complete script listing
+│   ├── SCRIPT_INVENTORY.md     # Script inventory details
+│   └── SHELL_SCRIPT_CATALOG.md # Shell script catalog
+│
+├── claude/                     # AI-generated documentation
+│   ├── README.md               # Claude docs index
+│   ├── STATE_OF_REPOSITORY_*.md # Repository state reports
+│   └── [migration and standardization reports]
+│
+├── deployment/                 # Deployment documentation
+│   └── [deployment guides]
+│
+├── development/                # Development resources
+│   ├── DEVELOPMENT.md          # Development guidelines
+│   └── GAS_DEVELOPMENT_TOOLS.md # GAS dev tools guide
+│
+├── diagrams/                   # Visual documentation
+│   ├── ARCHITECTURE.md         # Architecture diagrams
+│   ├── DATA_FLOW.md           # Data flow diagrams
+│   └── [other diagrams]
+│
+├── guides/                     # User and developer guides
+│   └── [various guides]
+│
+├── milestones/                 # Project milestones
+│   └── [milestone documentation]
+│
+├── reorganization/             # Reorganization docs
+│   └── [reorganization plans and logs]
+│
+├── reports/                    # Various reports
+│   ├── daily/                  # Daily reports
+│   ├── weekly/                 # Weekly reports
+│   └── [other reports]
+│
+├── security/                   # Security documentation
+│   ├── README.md              # Security overview
+│   ├── SECURITY_REVIEW.md     # Security review results
+│   └── Snyk/                  # Snyk security tools
+│
+├── setup/                      # Setup documentation
+│   ├── CONTRIBUTING.md        # Contribution guidelines
+│   └── [setup guides]
+│
+├── standards/                  # Coding standards
+│   ├── README.md              # Standards overview
+│   ├── gas-style-guide.md     # GAS style guide
+│   ├── templates/             # Code templates
+│   └── [other standards]
+│
+└── tools/                      # Tool documentation
+    ├── README.md              # Tools overview
+    └── [tool documentation]
+```
 
-## Key Documents
+## Key Documentation
 
-### API Documentation
-
-- **API_PERMISSIONS_AUDIT.md** - Complete audit of OAuth scopes and API permissions for all services
-
-### Architecture Documentation
-
-Located in `architecture/`:
-- System design principles
-- Component interactions
-- Technology decisions
-
-### Guides
-
-Located in `guides/`:
-- Setup instructions
-- Development workflows
-- Troubleshooting guides
-
-### Milestone Documentation
-
-Located in `milestones/`:
-- Project phases
-- Completion criteria
-- Progress tracking
-
-## Document Standards
-
-### File Naming
-
-- Use UPPERCASE for primary documents: `API_PERMISSIONS_AUDIT.md`
-- Use descriptive names with hyphens: `setup-guide.md`
-- Include dates for time-sensitive docs: `milestone-2025-07.md`
-
-### Document Structure
-
-All documentation should include:
-1. Clear title and purpose
-2. Table of contents (for longer documents)
-3. Step-by-step instructions where applicable
-4. Examples and code snippets
-5. Troubleshooting section
-6. Last updated date
-
-### Markdown Standards
-
-- Use ATX-style headers (`#` not underlines)
-- Include code fence language identifiers
-- Use tables for structured data
-- Keep line length reasonable (80-120 characters)
-
-## Contributing Documentation
-
-### Adding New Documents
-
-1. Choose appropriate subdirectory
-2. Follow naming conventions
-3. Include in this README if significant
-4. Update related documents with cross-references
-
-### Updating Existing Documents
-
-1. Maintain document structure
-2. Update "Last Updated" date
-3. Add revision notes if significant changes
-4. Verify all links still work
-
-## Quick Reference
-
-### For New Users
-
-Start with:
-1. Main repository README.md
-2. `guides/setup-guide.md` (if exists)
-3. Service-specific READMEs in `apps/`
+### For Users
+- **[Setup Guide](SETUP.md)** - Installation and configuration
+- **[Script Catalog](catalogs/SCRIPT_CATALOG.md)** - Available automation scripts
+- **[API Permissions](api/API_PERMISSIONS.md)** - Required permissions
 
 ### For Developers
+- **[Development Guide](development/DEVELOPMENT.md)** - Coding standards and practices
+- **[Architecture](ARCHITECTURE.md)** - System design and structure
+- **[Style Guide](standards/gas-style-guide.md)** - Google Apps Script style guide
 
-Key documents:
-1. `API_PERMISSIONS_AUDIT.md` - API configuration
-2. Architecture documentation
-3. Service READMEs for script details
+### Project Management
+- **[State of Repository](claude/STATE_OF_REPOSITORY_2025-07-26.md)** - Current project status
+- **[Milestones](milestones/)** - Project milestones and progress
+- **[Reports](reports/)** - Various project reports
 
-### For Project Planning
+## Contributing
 
-Reference:
-1. Milestone documentation
-2. Project roadmaps
-3. Phase completion criteria
-
-## Documentation Maintenance
-
-### Regular Updates
-
-- Review monthly for accuracy
-- Update after significant changes
-- Archive outdated documents
-- Maintain cross-reference integrity
-
-### Version Control
-
-- Use meaningful commit messages
-- Document significant changes
-- Tag major documentation updates
+Please read [CONTRIBUTING.md](setup/CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
 ---
 
-Last Updated: July 2025
+*Last Updated: July 26, 2025*

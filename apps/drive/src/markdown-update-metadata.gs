@@ -1,58 +1,58 @@
-/**
- * Script Name: markdown-update-metadata
- * 
+/ * *
+ * Script Name: markdown- update- metadata
+ *
  * Script Summary:
- * Updates markdown content for documentation and note-taking workflows.
- * 
+ * Updates markdown content for documentation and note- taking workflows.
+ *
  * Script Purpose:
  * - Generate markdown documentation
- * - Format content for note-taking systems
+ * - Format content for note- taking systems
  * - Maintain consistent documentation structure
- * 
+ *
  * Script Steps:
  * 1. Access Drive file system
  * 2. Fetch source data
  * 3. Process and transform data
- * 
+ *
  * Script Functions:
  * - moveMarkdownFiles(): Manages files and folders
  * - updateYamlFrontmatterToFile(): Updates existing yaml frontmatter to file
- * 
+ *
  * Script Dependencies:
  * - None (standalone script)
- * 
+ *
  * Google Services:
  * - DriveApp: For file and folder management
  * - Logger: For logging and debugging
- */
+ * /
 
-/*  *  * Main function to move Markdown files and update their YAML frontmatter. *//*  *  * Enhanced function to handle existing metadata and update YAML frontmatter. * @param {File} file - The Google Drive file to process. */// Main Functions
+/ *  *  * Main function to move Markdown files and update their YAML frontmatter. * / / *  *  * Enhanced function to handle existing metadata and update YAML frontmatter. * @param {File} file - The Google Drive file to process. * / / / Main Functions
 
-// Main Functions
+/ / Main Functions
 
-/**
+/ * *
 
  * Manages files and folders
 
- */
+ * /
 
 function moveMarkdownFiles() {
-  const folderIdToMoveInto = ""; // Target folder ID (add the target folder ID here);
+  const folderIdToMoveInto = ""; / / Target folder ID (add the target folder ID here);
 
   const drive = DriveApp;
-  const filesIterator = drive.getFilesByType("text / markdown"); // Get all markdown files;
+  const filesIterator = drive.getFilesByType("text / markdown"); / / Get all markdown files;
 
   while (filesIterator.hasNext()) {
-    const file = filesIterator.next(); // This might be a Blob, not a File;
-    const fileName = file.getName(); // Assuming Blob has a getName method;
+    const file = filesIterator.next(); / / This might be a Blob, not a File;
+    const fileName = file.getName(); / / Assuming Blob has a getName method;
 
-    try { // Check if it's a Blob, then get the File object
-      if (file.hasOwnProperty('getAs')) { // Blobs have getAs method;
-        file = file.getAs(MimeType.GOOGLE_DOCS); // Convert to File;
-      } // Now you can safely call getType
-      if (file.getType() === DriveApp.FileType.FILE && fileName.includes("@google.com")) {
+    try { / / Check if it's a Blob, then get the File object
+      if (file.hasOwnProperty('getAs')) { / / Blobs have getAs method;
+        file = file.getAs(MimeType.GOOGLE_DOCS); / / Convert to File;
+      } / / Now you can safely call getType
+      if (file.getType() = = = DriveApp.FileType.FILE && fileName.includes("@google.com")) {
         const targetFolder = drive.getFolderById(folderIdToMoveInto);
-        file.moveTo(targetFolder); // Move the file // Update YAML frontmatter (handle existing metadata);
+        file.moveTo(targetFolder); / / Move the file / / Update YAML frontmatter (handle existing metadata);
         updateYamlFrontmatterToFile(file);
 
         Logger.log(`Moved file: ${fileName} to folder and updated YAML frontmatter`);
@@ -64,34 +64,34 @@ function moveMarkdownFiles() {
   Logger.log("Script completed successfully.");
 }
 
-/**
+/ * *
 
  * Updates existing yaml frontmatter to file
  * @param
  * @param {File} file - The file to update
 
- */
+ * /
 
 function updateYamlFrontmatterToFile(file) {
   const fileName = file.getName();
   let fileContent = file.getBlob().getDataAsString();
 
-  try { // Get file creation and modification dates
+  try { / / Get file creation and modification dates
     const fileMetadata = file.getMetadata();
     const dateCreated = fileMetadata.createdDate;
-    const dateModified = fileMetadata.lastModifiedDate; // Create new YAML frontmatter;
-    const newYamlFrontmatter = ` --- category: people;
+    const dateModified = fileMetadata.lastModifiedDate; / / Create new YAML frontmatter;
+    const newYamlFrontmatter = ` - - - category: people;
 dateCreated: ${dateCreated}
 dateModified: ${dateModified}
 person: ${fileName}
 alias:
-tags: --- `; // Check for existing YAML frontmatter
-    const yamlRegex = / ^ --- \n([\s\S] * ?)\n --- \n /; const match = fileContent.match(yamlRegex);
+tags: - - - `; / / Check for existing YAML frontmatter
+    const yamlRegex = / ^ - - - \n([\s\S] * ?)\n - - - \n / ; const match = fileContent.match(yamlRegex);
 
-    if (match) { // Replace existing YAML
+    if (match) { / / Replace existing YAML
       fileContent = fileContent.replace(yamlRegex, newYamlFrontmatter);
       Logger.log(`Replaced existing YAML frontmatter in file: ${fileName}`);
-    } else { // Add new YAML to the beginning
+    } else { / / Add new YAML to the beginning
       fileContent = newYamlFrontmatter + fileContent;
       Logger.log(`Added new YAML frontmatter to file: ${fileName}`);
     }

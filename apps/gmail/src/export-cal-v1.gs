@@ -1,15 +1,15 @@
-/**
- * Script Name: export-cal-v1
- * 
+/ * *
+ * Script Name: export- cal- v1
+ *
  * Script Summary:
  * Exports spreadsheet data for automated workflow processing.
- * 
+ *
  * Script Purpose:
  * - Extract cal v1 data from Google services
  * - Convert data to portable formats
  * - Generate reports and summaries
  * - Handle bulk operations efficiently
- * 
+ *
  * Script Steps:
  * 1. Initialize spreadsheet connection
  * 2. Access Drive file system
@@ -19,7 +19,7 @@
  * 6. Apply filters and criteria
  * 7. Sort data by relevant fields
  * 8. Format output for presentation
- * 
+ *
  * Script Functions:
  * - chunkArray(): Performs specialized operations
  * - debugLog(): Logs debug or messages
@@ -38,7 +38,7 @@
  * - testCalendarAccess(): Works with spreadsheet data
  * - testMapsApiKey(): Performs specialized operations
  * - writeEventsSheet(): Writes events sheet to destination
- * 
+ *
  * Script Helper Functions:
  * - formatValue(): Formats value for display
  * - getDayOfWeek(): Gets specific day of week or configuration
@@ -46,10 +46,10 @@
  * - getNameMonth(): Gets specific name month or configuration
  * - getNameQuarter(): Gets specific name quarter or configuration
  * - getWeekNumber(): Gets specific week number or configuration
- * 
+ *
  * Script Dependencies:
  * - None (standalone script)
- * 
+ *
  * Google Services:
  * - CalendarApp: For calendar and event management
  * - DriveApp: For file and folder management
@@ -59,20 +59,20 @@
  * - SpreadsheetApp: For spreadsheet operations
  * - UrlFetchApp: For HTTP requests to external services
  * - Utilities: For utility functions and encoding
- */
+ * /
 
 /  / Guard against global scope execution;
 if (typeof ScriptApp ! = = 'undefined') {
-  const triggerInfo = ScriptApp.getProjectTriggers().map(t => `${t.getHandlerFunction()} (${t.getEventType()})`).join(', ') || 'No triggers';
+  const triggerInfo = ScriptApp.getProjectTriggers().map(t = > `${t.getHandlerFunction()} (${t.getEventType()})`).join(', ') || 'No triggers';
   Logger.log(`[${new Date().toISOString()}] ERROR [Global] Script executed at global scope. Please run a specific function (e.g., exportAllCalendarEvents). Triggers: ${triggerInfo}, Stack: ${new Error().stack}`);
 }
 
-let locationMap = new Map(); // Global to ensure scope consistency;
-let debugCounter = 0; // Unique ID for each debug log;
+let locationMap = new Map(); / / Global to ensure scope consistency;
+let debugCounter = 0; / / Unique ID for each debug log;
 
-// Main Functions
+/ / Main Functions
 
-/**
+/ * *
 
  * Performs specialized operations
  * @param
@@ -80,17 +80,17 @@ let debugCounter = 0; // Unique ID for each debug log;
  * @param {number} size - The size limit
  * @returns {any} The result
 
- */
+ * /
 
 function chunkArray(array, size) {
   const chunks = [];
-  for (let i = 0; i < array.length; i += size) {
+  for (let i = 0; i < array.length; i + = size) {
     chunks.push(array.slice(i, i + size));
   }
   return chunks;
 }
 
-/**
+/ * *
 
  * Logs debug or messages
  * @param
@@ -99,12 +99,12 @@ function chunkArray(array, size) {
  * @param {string} message - The message content
  * @returns {any} The result
 
- */
+ * /
 
 function debugLog(level, functionName, message) {
-  const debugId = debugCounter ++; if (!level || !functionName || !message) {
+  const debugId = debugCounter + + ; if (! level || ! functionName || ! message) {
     const stack = new Error().stack.split('\n').slice(1).join('\n');
-    const errorMessage = `Invalid log call (ID: ${debugId}): level=${level}, functionName=${functionName}, message=${message}\nStack: ${stack}`;
+    const errorMessage = `Invalid log call (ID: ${debugId}): level= ${level}, functionName= ${functionName}, message= ${message}\nStack: ${stack}`;
     Logger.log(`[${new Date().toISOString()}] ERROR [debugLog] ${errorMessage}`);
     try {
       const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -117,7 +117,7 @@ function debugLog(level, functionName, message) {
   }
   const timestamp = new Date().toISOString();
   Logger.log(`[${timestamp}] ${level} [${functionName}] ${message} (ID: ${debugId})`);
-  if (level === 'ERROR' || level === 'WARN') {
+  if (level = = = 'ERROR' || level = = = 'WARN') {
     try {
       const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
       const errorSheet = spreadsheet.getSheetByName('ErrorLog') || spreadsheet.insertSheet('ErrorLog');
@@ -128,29 +128,29 @@ function debugLog(level, functionName, message) {
   }
 }
 
-/**
+/ * *
 
  * Exports all calendar events to external format
  * @returns {any} The result
 
- */
+ * /
 
 function exportAllCalendarEvents() {
   const functionName = 'exportAllCalendarEvents';
   debugLog('INFO', functionName, 'Starting execution');
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  const scriptProperties = PropertiesService.getScriptProperties(); // Early configuration check;
+  const scriptProperties = PropertiesService.getScriptProperties(); / / Early configuration check;
   const calendarSheet = spreadsheet.getSheetByName('config - calendars');
   const locationSheet = spreadsheet.getSheetByName('config - locations');
-  if (!calendarSheet || !locationSheet) {
-    debugLog('ERROR', functionName, `Missing configuration sheet: ${!calendarSheet ? 'config - calendars' : 'config - locations'}`);
-    SpreadsheetApp.getUi().alert(`Error: Missing "${!calendarSheet ? 'config - calendars' : 'config - locations'}" sheet. Run setConfig().`);
+  if (! calendarSheet || ! locationSheet) {
+    debugLog('ERROR', functionName, `Missing configuration sheet: ${! calendarSheet ? 'config - calendars' : 'config - locations'}`);
+    SpreadsheetApp.getUi().alert(`Error: Missing "${! calendarSheet ? 'config - calendars' : 'config - locations'}" sheet. Run setConfig().`);
     return;
   }
 
   const logSheet = spreadsheet.getSheetByName('EventLog') || spreadsheet.insertSheet('EventLog');
   const MAPS_API_KEY = scriptProperties.getProperty('GOOGLE_MAPS_API_KEY');
-  if (!MAPS_API_KEY) {
+  if (! MAPS_API_KEY) {
     debugLog('ERROR', functionName, 'Google Maps API key not configured');
     SpreadsheetApp.getUi().alert('Error: Google Maps API key not configured. Please run setConfig().');
     return;
@@ -159,10 +159,10 @@ function exportAllCalendarEvents() {
 
   try {
     debugLog('INFO', functionName, 'Validating Google Maps API key');
-    const testUrl = `https: // maps.googleapis.com / maps / api / distancematrix / json?units=imperial&origins=901 % 20East % 20South % 20Street % 2C % 20Anaheim % 2C % 20CA % 2C % 2092815&destinations=901 % 20East % 20South % 20Street % 2C % 20Anaheim % 2C % 20CA % 2C % 2092815&key=${MAPS_API_KEY}`;
+    const testUrl = `https: / / maps.googleapis.com / maps / api / distancematrix / json?units= imperial&origins= 901 % 20East % 20South % 20Street % 2C % 20Anaheim % 2C % 20CA % 2C % 2092815&destinations= 901 % 20East % 20South % 20Street % 2C % 20Anaheim % 2C % 20CA % 2C % 2092815&key= ${MAPS_API_KEY}`;
     const testResponse = UrlFetchApp.fetch(testUrl, { muteHttpExceptions: true });
     const testData = JSON.parse(testResponse.getContentText());
-    debugLog('INFO', functionName, `Maps API key test: status=${testData.status}, error=${testData.error_message || 'none'}`);
+    debugLog('INFO', functionName, `Maps API key test: status= ${testData.status}, error= ${testData.error_message || 'none'}`);
     if (testData.status ! = = "OK") {
       debugLog('ERROR', functionName, `Google Maps API key invalid: ${testData.error_message || 'Unknown error'}`);
       SpreadsheetApp.getUi().alert(`Error: Google Maps API key invalid: ${testData.error_message || 'Unknown error'}`);
@@ -175,9 +175,9 @@ function exportAllCalendarEvents() {
   }
 
   const { calendarIds, locations } = loadConfiguration(spreadsheet);
-  if (!calendarIds || !locations) return;
+  if (! calendarIds || ! locations) return;
 
-  const startDate = new Date('2025 - 05 - 01'); // Small range for testing;
+  const startDate = new Date('2025 - 05 - 01'); / / Small range for testing;
   startDate.setUTCHours(0, 0, 0, 0);
   const endDate = new Date('2025 - 05 - 11');
   endDate.setUTCHours(0, 0, 0, 0);
@@ -187,16 +187,16 @@ function exportAllCalendarEvents() {
 
   const eventStart = new Date(startDate);
   const eventEnd = new Date(endDate);
-  const sortedLocations = locations.sort((a, b) => a.start - b.start);
+  const sortedLocations = locations.sort((a, b) = > a.start - b.start);
   let isCovered = sortedLocations.length > 0 && sortedLocations[0].start < = eventStart;
-  for (let i = 0; i < sortedLocations.length - 1; i ++ ) {
+  for (let i = 0; i < sortedLocations.length - 1; i + + ) {
     if (sortedLocations[i].end < sortedLocations[i + 1].start) {
       isCovered = false;
       break;
     }
   }
   isCovered = isCovered && sortedLocations[sortedLocations.length - 1].end > = eventEnd;
-  if (!isCovered) {
+  if (! isCovered) {
     debugLog('WARN', functionName, `Location date ranges may not cover event period (${Utilities.formatDate(eventStart, "UTC", "yyyy - MM - dd")} to ${Utilities.formatDate(eventEnd, "UTC", "yyyy - MM - dd")})`);
   } else {
     debugLog('INFO', functionName, 'Location date ranges fully cover event period');
@@ -204,7 +204,7 @@ function exportAllCalendarEvents() {
 
   debugLog('INFO', functionName, 'Loading processed event IDs from EventLog');
   const logData = logSheet.getDataRange().getValues();
-  const processedEventIds = new Set(logData.slice(1).map(row => row[0]));
+  const processedEventIds = new Set(logData.slice(1).map(row = > row[0]));
   debugLog('INFO', functionName, `Loaded ${processedEventIds.size} processed event IDs`);
 
   const dateCache = {};
@@ -222,9 +222,9 @@ function exportAllCalendarEvents() {
 
   const logEntries = [["Event ID", "Calendar Name", "Event Name", "Event Date", "Error"]];
   debugLog('INFO', functionName, `Processing ${calendarIds.length} calendars`);
-  locationMap.clear(); // Reset global map;
+  locationMap.clear(); / / Reset global map;
   const allEvents = [];
-  calendarIds.forEach(calendarId => {
+  calendarIds.forEach(calendarId = > {
     const events = fetchCalendarEvents(calendarId, timeMin, timeMax, processedEventIds, dateCache, locations, logEntries, errors);
     allEvents.push(...events);
   });
@@ -239,7 +239,7 @@ function exportAllCalendarEvents() {
     const outboundResults = getDistancesFromGoogleMaps(eventLocations, destinationAddresses, MAPS_API_KEY);
     const returnResults = getDistancesFromGoogleMaps(destinationAddresses, eventLocations, MAPS_API_KEY);
 
-    eventLocations.forEach((eventLocation, i) => {
+    eventLocations.forEach((eventLocation, i) = > {
       const destAddress = locationMap.get(eventLocation);
       const destIndex = destinationAddresses.indexOf(destAddress);
       distanceResults[eventLocation] = {
@@ -273,12 +273,12 @@ function exportAllCalendarEvents() {
   debugLog('INFO', functionName, 'Execution completed');
 }
 
-/**
+/ * *
 
  * Exports logs to external format
  * @returns {any} The result
 
- */
+ * /
 
 function exportLogs() {
   const functionName = 'exportLogs';
@@ -286,7 +286,7 @@ function exportLogs() {
   try {
     const errorSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('ErrorLog');
     const data = errorSheet.getDataRange().getValues();
-    const csvContent = data.map(row => row.join(',')).join('\n');
+    const csvContent = data.map(row = > row.join(',')).join('\n');
     DriveApp.createFile('ErrorLog.csv', csvContent, 'text / csv');
     debugLog('INFO', functionName, 'Exported logs to ErrorLog.csv');
   } catch (e) {
@@ -294,7 +294,7 @@ function exportLogs() {
   }
 }
 
-/**
+/ * *
 
  * Retrieves calendar events from service
  * @param
@@ -308,13 +308,13 @@ function exportLogs() {
  * @param {any} errors - The errors parameter
  * @returns {any} The result
 
- */
+ * /
 
 function fetchCalendarEvents(calendarId, timeMin, timeMax, processedEventIds, dateCache, locations, logEntries, errors) {
   const functionName = 'fetchCalendarEvents';
   debugLog('INFO', functionName, `Processing calendar ${calendarId}`);
   const calendar = CalendarApp.getCalendarById(calendarId);
-  if (!calendar) {
+  if (! calendar) {
     debugLog('ERROR', functionName, `Invalid calendar ID: ${calendarId}`);
     errors.push(`Invalid calendar ID: ${calendarId}`);
     return [];
@@ -325,7 +325,7 @@ function fetchCalendarEvents(calendarId, timeMin, timeMax, processedEventIds, da
     timeMax: timeMax,
     singleEvents: true,
     orderBy: "startTime",
-    maxResults: 100 // Increased for efficiency
+    maxResults: 100 / / Increased for efficiency
   };
   const MAX_RETRIES = 3;
   let attempts = 0;
@@ -336,19 +336,19 @@ function fetchCalendarEvents(calendarId, timeMin, timeMax, processedEventIds, da
       debugLog('INFO', functionName, `Fetched ${response.items?.length || 0} events for ${calendarId}`);
       const events = response.items || [];
       const allEvents = [];
-      events.forEach(event => {
+      events.forEach(event = > {
         if (processedEventIds.has(event.id)) {
           debugLog('INFO', functionName, `Skipping processed event ${event.id}`);
           return;
         }
         try {
           const eventDate = new Date(event.start.dateTime || event.start.date);
-          if (!event.location) {
+          if (! event.location) {
             debugLog('INFO', functionName, `Event ${event.id} skipped: no location`);
             return;
           }
           const locationInfo = getLocationForDate(eventDate, locations);
-          debugLog('INFO', functionName, `Event ${event.id}: location=${event.location}, locationInfo=${locationInfo ? locationInfo.address : 'null'}`);
+          debugLog('INFO', functionName, `Event ${event.id}: location= ${event.location}, locationInfo= ${locationInfo ? locationInfo.address : 'null'}`);
           if (locationInfo) {
             locationMap.set(event.location, locationInfo.address);
           }
@@ -362,7 +362,7 @@ function fetchCalendarEvents(calendarId, timeMin, timeMax, processedEventIds, da
       });
       return allEvents;
     } catch (e) {
-      attempts ++; if (e.message.includes('Quota exceeded') || e.message.includes('429')) {
+      attempts + + ; if (e.message.includes('Quota exceeded') || e.message.includes('429')) {
         debugLog('ERROR', functionName, `Rate limit hit for ${calendarId}. Waiting 30s.`);
         Utilities.sleep(30000);
       } else if (attempts < MAX_RETRIES) {
@@ -378,14 +378,14 @@ function fetchCalendarEvents(calendarId, timeMin, timeMax, processedEventIds, da
   return [];
 }
 
-/**
+/ * *
 
  * Gets specific day of year or configuration
  * @param
  * @param {any} date - The date to retrieve
  * @returns {any} The requested any
 
- */
+ * /
 
 function getDayOfYear(date) {
   const start = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
@@ -393,7 +393,7 @@ function getDayOfYear(date) {
   return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
 }
 
-/**
+/ * *
 
  * Gets specific distances from google maps or configuration
  * @param
@@ -402,7 +402,7 @@ function getDayOfYear(date) {
  * @param {string} apiKey - The apiKey to retrieve
  * @returns {any} The requested any
 
- */
+ * /
 
 function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
   const functionName = 'getDistancesFromGoogleMaps';
@@ -413,34 +413,34 @@ function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
     return distanceCache[cacheKey];
   }
 
-  if (!origins.every(addr => addr && typeof addr === 'string' && addr.trim()) || !destinations.every(addr => addr && typeof addr === 'string' && addr.trim())) {
+  if (! origins.every(addr = > addr && typeof addr = = = 'string' && addr.trim()) || ! destinations.every(addr = > addr && typeof addr = = = 'string' && addr.trim())) {
     debugLog('ERROR', functionName, 'Invalid addresses detected');
-    return Array(origins.length).fill().map(() => Array(destinations.length).fill({ distance: "", duration: "" }));
+    return Array(origins.length).fill().map(() = > Array(destinations.length).fill({ distance: "", duration: "" }));
   }
 
   const CHUNK_SIZE = 5;
   const originChunks = chunkArray(origins, CHUNK_SIZE);
-  const results = Array(origins.length).fill().map(() => Array(destinations.length).fill({ distance: "", duration: "" }));
+  const results = Array(origins.length).fill().map(() = > Array(destinations.length).fill({ distance: "", duration: "" }));
   const MAX_RETRIES = 3;
 
   try {
-    originChunks.forEach((chunk, chunkIndex) => {
+    originChunks.forEach((chunk, chunkIndex) = > {
       const chunkOrigins = chunk;
       let attempts = 0;
       while (attempts < MAX_RETRIES) {
         try {
           const originsEncoded = encodeURIComponent(chunkOrigins.join("|"));
           const destinationsEncoded = encodeURIComponent(destinations.join("|"));
-          const url = `https: // maps.googleapis.com / maps / api / distancematrix / json?units=imperial&origins=${originsEncoded}&destinations=${destinationsEncoded}&key=${apiKey}`;
+          const url = `https: / / maps.googleapis.com / maps / api / distancematrix / json?units= imperial&origins= ${originsEncoded}&destinations= ${destinationsEncoded}&key= ${apiKey}`;
           debugLog('INFO', functionName, `Distance Matrix API: chunk ${chunkIndex + 1} / ${originChunks.length}, attempt ${attempts + 1}`);
           const response = UrlFetchApp.fetch(url, { muteHttpExceptions: true });
           const data = JSON.parse(response.getContentText());
-          debugLog('INFO', functionName, `Distance Matrix status=${data.status}, error=${data.error_message || 'none'}`);
+          debugLog('INFO', functionName, `Distance Matrix status= ${data.status}, error= ${data.error_message || 'none'}`);
 
-          if (data.status === "OK") {
-            chunkOrigins.forEach((_, i) => {
+          if (data.status = = = "OK") {
+            chunkOrigins.forEach((_, i) = > {
               const row = data.rows[i].elements;
-              row.forEach((element, j) => {
+              row.forEach((element, j) = > {
                 const originIndex = chunkIndex * CHUNK_SIZE + i;
                 if (originIndex < origins.length) {
                   if (element.status ! = = 'OK') {
@@ -458,7 +458,7 @@ function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
             break;
           } else {
             debugLog('ERROR', functionName, `Distance Matrix error for chunk ${chunkIndex + 1}: ${data.error_message || 'Unknown error'}`);
-            attempts ++; if (attempts < MAX_RETRIES) {
+            attempts + + ; if (attempts < MAX_RETRIES) {
               Utilities.sleep(5000 * Math.pow(2, attempts));
             } else {
               throw new Error(`Distance Matrix failed after ${MAX_RETRIES} retries`);
@@ -466,7 +466,7 @@ function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
           }
         } catch (e) {
           debugLog('ERROR', functionName, `Distance Matrix failed for chunk ${chunkIndex + 1}: ${e.message}`);
-          attempts ++; if (attempts < MAX_RETRIES) {
+          attempts + + ; if (attempts < MAX_RETRIES) {
             Utilities.sleep(5000 * Math.pow(2, attempts));
           } else {
             throw e;
@@ -479,11 +479,11 @@ function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
     return results;
   } catch (e) {
     debugLog('ERROR', functionName, `Distance Matrix failed: ${e.message}`);
-    return Array(origins.length).fill().map(() => Array(destinations.length).fill({ distance: "", duration: "" }));
+    return Array(origins.length).fill().map(() = > Array(destinations.length).fill({ distance: "", duration: "" }));
   }
 }
 
-/**
+/ * *
 
  * Gets specific location for date or configuration
  * @param
@@ -491,7 +491,7 @@ function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
  * @param {Object} configLocations - The configLocations to retrieve
  * @returns {any} The requested any
 
- */
+ * /
 
 function getLocationForDate(date, configLocations) {
   const functionName = 'getLocationForDate';
@@ -505,18 +505,18 @@ function getLocationForDate(date, configLocations) {
   return null;
 }
 
-/**
+/ * *
 
  * Gets specific quarter or configuration
  * @param
  * @param {any} date - The date to retrieve
  * @returns {any} The requested any
 
- */
+ * /
 
 function getQuarter(date) {
   const key = date.toISOString().split('T')[0];
-  if (!dateCache[key]) {
+  if (! dateCache[key]) {
     dateCache[key] = {
       quarter: Math.floor(date.getUTCMonth() / 3) + 1,
       week: getWeekNumber(date),
@@ -531,14 +531,14 @@ function getQuarter(date) {
   return dateCache[key].quarter;
 }
 
-/**
+/ * *
 
  * Loads configuration from storage
  * @param
  * @param {Sheet} spreadsheet - The spreadsheet parameter
  * @returns {any} The result
 
- */
+ * /
 
 function loadConfiguration(spreadsheet) {
   const functionName = 'loadConfiguration';
@@ -546,16 +546,16 @@ function loadConfiguration(spreadsheet) {
   const calendarSheet = spreadsheet.getSheetByName('config - calendars');
   const locationSheet = spreadsheet.getSheetByName('config - locations');
 
-  if (!calendarSheet || !locationSheet) {
-    debugLog('ERROR', functionName, `Missing sheet: ${!calendarSheet ? 'config - calendars' : 'config - locations'}`);
-    SpreadsheetApp.getUi().alert(`Error: "${!calendarSheet ? 'config - calendars' : 'config - locations'}" sheet not found. Run setConfig().`);
+  if (! calendarSheet || ! locationSheet) {
+    debugLog('ERROR', functionName, `Missing sheet: ${! calendarSheet ? 'config - calendars' : 'config - locations'}`);
+    SpreadsheetApp.getUi().alert(`Error: "${! calendarSheet ? 'config - calendars' : 'config - locations'}" sheet not found. Run setConfig().`);
     return { calendarIds: null, locations: null };
   }
 
   const calendarData = calendarSheet.getDataRange().getValues().slice(1);
-  const calendarIds = [...new Set(calendarData.filter(row => row[0]).map(row => row[0]))];
-  debugLog('INFO', functionName, `Loaded ${calendarIds.length} calendar IDs`); // Validate calendar IDs;
-  const validCalendarIds = calendarIds.filter(id => {
+  const calendarIds = [...new Set(calendarData.filter(row = > row[0]).map(row = > row[0]))];
+  debugLog('INFO', functionName, `Loaded ${calendarIds.length} calendar IDs`); / / Validate calendar IDs;
+  const validCalendarIds = calendarIds.filter(id = > {
     try {
       CalendarApp.getCalendarById(id).getName();
       return true;
@@ -564,7 +564,7 @@ function loadConfiguration(spreadsheet) {
       return false;
     }
   });
-  if (!validCalendarIds.length) {
+  if (! validCalendarIds.length) {
     debugLog('ERROR', functionName, 'No valid calendar IDs in "config - calendars" sheet');
     SpreadsheetApp.getUi().alert('Error: No valid calendar IDs found.');
     return { calendarIds: null, locations: null };
@@ -572,10 +572,10 @@ function loadConfiguration(spreadsheet) {
 
   const locationData = locationSheet.getDataRange().getValues().slice(1);
   const locations = locationData;
-    .filter(row => row[0] && row[3] && row[4]) // Check Column A (index 0), D (index 3), E (index 4);
-    .map((row, index) => {
-      const start = new Date(row[3]); // Column D;
-      const end = new Date(row[4]); // Column E;
+    .filter(row = > row[0] && row[3] && row[4]) / / Check Column A (index 0), D (index 3), E (index 4);
+    .map((row, index) = > {
+      const start = new Date(row[3]); / / Column D;
+      const end = new Date(row[4]); / / Column E;
       if (isNaN(start) || isNaN(end) || start > end) {
         debugLog('WARN', functionName, `Invalid date range in config - locations row ${index + 2}: ${row[3]} to ${row[4]}`);
         return null;
@@ -583,9 +583,9 @@ function loadConfiguration(spreadsheet) {
       debugLog('INFO', functionName, `Config location ${index + 1}: ${row[0]}, ${row[3]} to ${row[4]}`);
       return { address: row[0], start, end, index: index + 1 };
     })
-    .filter(loc => loc);
+    .filter(loc = > loc);
 
-  if (!locations.length) {
+  if (! locations.length) {
     debugLog('ERROR', functionName, 'No valid locations in "config - locations" sheet');
     SpreadsheetApp.getUi().alert('Error: No valid locations found.');
     return { calendarIds: null, locations: null };
@@ -594,7 +594,7 @@ function loadConfiguration(spreadsheet) {
   return { calendarIds: validCalendarIds, locations };
 }
 
-/**
+/ * *
 
  * Processes and transforms events data
  * @param
@@ -606,14 +606,14 @@ function loadConfiguration(spreadsheet) {
  * @param {any} errors - The errors parameter
  * @returns {any} The result
 
- */
+ * /
 
 function processEventsData(allEvents, distanceResults, dateCache, headers, logEntries, errors) {
   const functionName = 'processEventsData';
   debugLog('INFO', functionName, `Processing ${allEvents.length} events`);
   const data = [headers];
 
-  allEvents.forEach(({ calendar, event, locationInfo }) => {
+  allEvents.forEach(({ calendar, event, locationInfo }) = > {
     try {
       const eventDate = new Date(event.start.dateTime || event.start.date);
       const eventName = event.summary || "Untitled";
@@ -640,7 +640,7 @@ function processEventsData(allEvents, distanceResults, dateCache, headers, logEn
       const nameDayWeek = getNameDayWeek(dayOfWeek);
 
       const locationStartReturn = locationInfo ? locationInfo.address : "";
-      const locationEventLink = eventLocation ? `=HYPERLINK("https: // www.google.com / maps / search / ?api=1&query=${encodeURIComponent(eventLocation)}","${eventLocation}")` : "";
+      const locationEventLink = eventLocation ? `= HYPERLINK("https: / / www.google.com / maps / search / ?api= 1&query= ${encodeURIComponent(eventLocation)}","${eventLocation}")` : "";
 
       const distancesAndTimes = eventLocation && distanceResults[eventLocation];
         ? [
@@ -688,14 +688,14 @@ function processEventsData(allEvents, distanceResults, dateCache, headers, logEn
   return data;
 }
 
-/**
+/ * *
 
  * Performs specialized operations
  * @param
  * @param {string|any} value - The value to set
  * @returns {any} The result
 
- */
+ * /
 
 function roundToQuarterHour(value) {
   if (typeof value ! = = 'number' || isNaN(value)) return "";
@@ -704,12 +704,12 @@ function roundToQuarterHour(value) {
   return (roundedMinutes / 60).toFixed(2);
 }
 
-/**
+/ * *
 
  * Sets config or configuration values
  * @returns {any} The result
 
- */
+ * /
 
 function setConfig() {
   const functionName = 'setConfig';
@@ -718,7 +718,7 @@ function setConfig() {
   const ui = SpreadsheetApp.getUi();
 
   const mapsApiKey = ui.prompt('Enter Google Maps API Key').getResponseText();
-  if (!mapsApiKey) {
+  if (! mapsApiKey) {
     debugLog('ERROR', functionName, 'Google Maps API key is required');
     ui.alert('Error: Google Maps API key is required.');
     return;
@@ -729,7 +729,7 @@ function setConfig() {
   debugLog('INFO', functionName, 'API key stored in PropertiesService');
 
   let calendarSheet = spreadsheet.getSheetByName('config - calendars');
-  if (!calendarSheet) {
+  if (! calendarSheet) {
     calendarSheet = spreadsheet.insertSheet('config - calendars');
   } else {
     calendarSheet.clear();
@@ -748,7 +748,7 @@ function setConfig() {
   debugLog('INFO', functionName, 'config - calendars sheet created');
 
   let locationSheet = spreadsheet.getSheetByName('config - locations');
-  if (!locationSheet) {
+  if (! locationSheet) {
     locationSheet = spreadsheet.insertSheet('config - locations');
   } else {
     locationSheet.clear();
@@ -771,12 +771,12 @@ function setConfig() {
   ui.alert('Configuration sheets created. Populate "config - calendars" with calendar IDs (e.g., your.email@gmail.com) and "config - locations" with addresses (Column A) and date ranges (Columns D and E, yyyy - MM - dd). API key set.');
 }
 
-/**
+/ * *
 
  * Handles calendar operations
  * @returns {any} The result
 
- */
+ * /
 
 function testAllComponents() {
   const functionName = 'testAllComponents';
@@ -786,12 +786,12 @@ function testAllComponents() {
   debugLog('INFO', functionName, 'Component tests completed');
 }
 
-/**
+/ * *
 
  * Works with spreadsheet data
  * @returns {any} The result
 
- */
+ * /
 
 function testCalendarAccess() {
   const functionName = 'testCalendarAccess';
@@ -799,14 +799,14 @@ function testCalendarAccess() {
   try {
     const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
     const calendarSheet = spreadsheet.getSheetByName('config - calendars');
-    if (!calendarSheet) {
+    if (! calendarSheet) {
       debugLog('ERROR', functionName, 'config - calendars sheet not found');
       return;
     }
     const calendarData = calendarSheet.getDataRange().getValues().slice(1);
-    const calendarIds = [...new Set(calendarData.filter(row => row[0]).map(row => row[0]))];
+    const calendarIds = [...new Set(calendarData.filter(row = > row[0]).map(row = > row[0]))];
     debugLog('INFO', functionName, `Testing ${calendarIds.length} calendar IDs`);
-    calendarIds.forEach(id => {
+    calendarIds.forEach(id = > {
       try {
         const calendar = CalendarApp.getCalendarById(id);
         debugLog('INFO', functionName, `Calendar ${id}: ${calendar ? calendar.getName() : 'Not found'}`);
@@ -827,28 +827,28 @@ function testCalendarAccess() {
   }
 }
 
-/**
+/ * *
 
  * Performs specialized operations
  * @returns {any} The result
 
- */
+ * /
 
 function testMapsApiKey() {
   const functionName = 'testMapsApiKey';
   debugLog('INFO', functionName, 'Testing Google Maps API key');
   try {
     const key = PropertiesService.getScriptProperties().getProperty('GOOGLE_MAPS_API_KEY');
-    const url = `https: // maps.googleapis.com / maps / api / distancematrix / json?units=imperial&origins=901 % 20East % 20South % 20Street % 2C % 20Anaheim % 2C % 20CA % 2C % 2092815&destinations=901 % 20East % 20South % 20Street % 2C % 20Anaheim % 2C % 20CA % 2C % 2092815&key=${key}`;
+    const url = `https: / / maps.googleapis.com / maps / api / distancematrix / json?units= imperial&origins= 901 % 20East % 20South % 20Street % 2C % 20Anaheim % 2C % 20CA % 2C % 2092815&destinations= 901 % 20East % 20South % 20Street % 2C % 20Anaheim % 2C % 20CA % 2C % 2092815&key= ${key}`;
     const response = UrlFetchApp.fetch(url, { muteHttpExceptions: true });
     const data = JSON.parse(response.getContentText());
-    debugLog('INFO', functionName, `Maps API test: status=${data.status}, error=${data.error_message || 'none'}`);
+    debugLog('INFO', functionName, `Maps API test: status= ${data.status}, error= ${data.error_message || 'none'}`);
   } catch (e) {
     debugLog('ERROR', functionName, `Test failed: ${e.message}`);
   }
 }
 
-/**
+/ * *
 
  * Writes events sheet to destination
  * @param
@@ -857,13 +857,13 @@ function testMapsApiKey() {
  * @param {any} headers - The headers parameter
  * @returns {any} The result
 
- */
+ * /
 
 function writeEventsSheet(spreadsheet, data, headers) {
   const functionName = 'writeEventsSheet';
   debugLog('INFO', functionName, `Writing ${data.length - 1} events to Events sheet`);
   let sheet = spreadsheet.getSheetByName("Events");
-  if (!sheet) {
+  if (! sheet) {
     sheet = spreadsheet.insertSheet("Events");
   } else if (data.length > 1) {
     sheet.clear();
@@ -872,7 +872,7 @@ function writeEventsSheet(spreadsheet, data, headers) {
   if (data.length > 1) {
     try {
       const batchSize = 100;
-      for (let i = 0; i < data.length; i += batchSize) {
+      for (let i = 0; i < data.length; i + = batchSize) {
         const chunk = data.slice(i, i + batchSize);
         sheet.getRange(i + 1, 1, chunk.length, headers.length).setValues(chunk);
       }
@@ -893,9 +893,9 @@ function writeEventsSheet(spreadsheet, data, headers) {
   }
 }
 
-// Helper Functions
+/ / Helper Functions
 
-/**
+/ * *
 
  * Formats value for display
  * @param
@@ -903,34 +903,34 @@ function writeEventsSheet(spreadsheet, data, headers) {
  * @param {any} decimals - The decimals parameter
  * @returns {any} The result
 
- */
+ * /
 
 function formatValue(value, decimals = 2) {
-  return typeof value === 'number' && !isNaN(value) ? value.toFixed(decimals) : "";
+  return typeof value = = = 'number' && ! isNaN(value) ? value.toFixed(decimals) : "";
 }
 
-/**
+/ * *
 
  * Gets specific day of week or configuration
  * @param
  * @param {any} date - The date to retrieve
  * @returns {any} The requested any
 
- */
+ * /
 
 function getDayOfWeek(date) {
   const day = date.getUTCDay();
-  return day === 0 ? 1 : day + 1;
+  return day = = = 0 ? 1 : day + 1;
 }
 
-/**
+/ * *
 
  * Gets specific name day week or configuration
  * @param
  * @param {any} day - The day to retrieve
  * @returns {any} The requested any
 
- */
+ * /
 
 function getNameDayWeek(day) {
   const days = [;
@@ -939,14 +939,14 @@ function getNameDayWeek(day) {
   return days[day - 1] || "";
 }
 
-/**
+/ * *
 
  * Gets specific name month or configuration
  * @param
  * @param {any} month - The month to retrieve
  * @returns {any} The requested any
 
- */
+ * /
 
 function getNameMonth(month) {
   const months = [;
@@ -956,27 +956,27 @@ function getNameMonth(month) {
   return months[month - 1] || "";
 }
 
-/**
+/ * *
 
  * Gets specific name quarter or configuration
  * @param
  * @param {any} quarter - The quarter to retrieve
  * @returns {any} The requested any
 
- */
+ * /
 
 function getNameQuarter(quarter) {
   return `Q${quarter}`;
 }
 
-/**
+/ * *
 
  * Gets specific week number or configuration
  * @param
  * @param {any} date - The date to retrieve
  * @returns {any} The requested any
 
- */
+ * /
 
 function getWeekNumber(date) {
   const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));

@@ -1,11 +1,11 @@
-/**
- * Script Name: extract-lyft-and-uber-data
- * 
+/ * *
+ * Script Name: extract- lyft- and- uber- data
+ *
  * Script Summary:
  * Processes Gmail labels for automated workflow processing.
- * 
+ *
  * Script Purpose:
- * 
+ *
  * Script Steps:
  * 1. Initialize spreadsheet connection
  * 2. Connect to Gmail service
@@ -15,31 +15,31 @@
  * 6. Format output for presentation
  * 7. Write results to destination
  * 8. Send notifications or reports
- * 
+ *
  * Script Functions:
  * - extractReceiptFromMessage(): Extracts specific information
  * - extractReceiptsFromGmail(): Extracts specific information
  * - processRideReceipts(): Processes and transforms ride receipts
  * - writeToSheet(): Writes to sheet to destination
- * 
+ *
  * Script Helper Functions:
  * - convertTo24Hour(): Converts between formats
  * - parseTime(): Sets parime or configuration values
  * - validateAndCleanReceipts(): Validates and clean receipts integrity
- * 
+ *
  * Script Dependencies:
  * - None (standalone script)
- * 
+ *
  * Google Services:
  * - GmailApp: For accessing email messages and labels
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- */
+ * /
 
-// Main Functions
+/ / Main Functions
 
-/**
+/ * *
 
  * Extracts specific information
  * @param
@@ -47,7 +47,7 @@
  * @param {string} defaultProvider - The defaultProvider parameter
  * @returns {any} The result
 
- */
+ * /
 
 function extractReceiptFromMessage(message, defaultProvider) {
   const body = message.getPlainBody().replace( / \r\n / g, '\n').replace( / \n +  / g, '\n').trim();
@@ -58,7 +58,7 @@ function extractReceiptFromMessage(message, defaultProvider) {
   if ( / uber / i.test(body)) provider = 'Uber';
   else if ( / lyft / i.test(body)) provider = 'Lyft';
   const receipt = {
-    message_link: `https: // mail.google.com / mail / u / 0 / #inbox / ${messageId}`,
+    message_link: `https: / / mail.google.com / mail / u / 0 / #inbox / ${messageId}`,
     provider: provider,
     trip_date: Utilities.formatDate(date, Session.getScriptTimeZone(), 'MMMM dd, yyyy'),
     trip_start_time: 'N / A',
@@ -75,28 +75,28 @@ function extractReceiptFromMessage(message, defaultProvider) {
     tip_amount: 0,
     payment_method: 'N / A',
     driver_name: 'N / A',
-    driver_rating: provider === 'Lyft' ? 'N / A' : 'N / A';
+    driver_rating: provider = = = 'Lyft' ? 'N / A' : 'N / A';
   };
   const patterns = {
-    tripDate: provider === 'Lyft' ? / (?:[A - Z] + \s + \d{1,2},\s * \d{4})\s + AT / i : / (?:[A - Za - z] + \s + \d{1,2}(?:,\s * |\s + )\d{4}) / i,
-    startTime: provider === 'Lyft' ? / Pickup\s + (\d{1,2}:\d{2}\s * (?:AM|PM)) / i : / (\d{1,2}:\d{2}\s * (?:AM|PM))\n[A - Za - z0 - 9\s, - ] +  / i,
-    endTime: provider === 'Lyft' ? / Drop - off\s + (\d{1,2}:\d{2}\s * (?:AM|PM)) / i : / (\d{1,2}:\d{2}\s * (?:AM|PM))\n[A - Za - z0 - 9\s, - ] + $ / im,
-    mileage: provider === 'Lyft' ? / \((\d + \.\d{1,2})mi, / i : / (\d + \.\d{1,2})\s * miles / i,
-    duration: provider === 'Lyft' ? / \(\d + \.\d{1,2}mi,\s * (\d + m\s * (?:\d + s)?)\) / i : / \|\s * (\d + \s * min) / i,
-    startLocation: provider === 'Lyft' ? / Pickup\s + \d{1,2}:\d{2}\s * (?:AM|PM)\n([A - Za - z0 - 9\s, - ] + (?:,\s * [A - Z]{2}(?:\s * \d{5})?)?) / i : / (\d{1,2}:\d{2}\s * (?:AM|PM))\n([A - Za - z0 - 9\s, - ] + (?:,\s * [A - Z]{2}(?:\s * \d{5})?)?) / i,
-    endLocation: provider === 'Lyft' ? / Drop - off\s + \d{1,2}:\d{2}\s * (?:AM|PM)\n([A - Za - z0 - 9\s, - ] + (?:,\s * [A - Z]{2}(?:\s * \d{5})?)?) / i : / (\d{1,2}:\d{2}\s * (?:AM|PM))\n([A - Za - z0 - 9\s, - ] + (?:,\s * [A - Z]{2}(?:\s * \d{5})?)?)$ / im,
-    totalCost: provider === 'Lyft' ? / Pay\s + [^\$] * \$(\d + \.\d{2}) / i : / Total\s + \$(\d + \.\d{2}) / i,
-    baseFare: provider === 'Lyft' ? / Lyft\s + fare\s + [^\$] * \$(\d + \.\d{2}) / i : / Trip\s + fare\s + \$(\d + \.\d{2}) / i,
+    tripDate: provider = = = 'Lyft' ? / (?:[A - Z] + \s + \d{1,2},\s * \d{4})\s + AT / i : / (?:[A - Za - z] + \s + \d{1,2}(?:,\s * |\s + )\d{4}) / i,
+    startTime: provider = = = 'Lyft' ? / Pickup\s + (\d{1,2}:\d{2}\s * (?:AM|PM)) / i : / (\d{1,2}:\d{2}\s * (?:AM|PM))\n[A - Za - z0 - 9\s, - ] +  / i,
+    endTime: provider = = = 'Lyft' ? / Drop - off\s + (\d{1,2}:\d{2}\s * (?:AM|PM)) / i : / (\d{1,2}:\d{2}\s * (?:AM|PM))\n[A - Za - z0 - 9\s, - ] + $ / im,
+    mileage: provider = = = 'Lyft' ? / \((\d + \.\d{1,2})mi, / i : / (\d + \.\d{1,2})\s * miles / i,
+    duration: provider = = = 'Lyft' ? / \(\d + \.\d{1,2}mi,\s * (\d + m\s * (?:\d + s)?)\) / i : / \|\s * (\d + \s * min) / i,
+    startLocation: provider = = = 'Lyft' ? / Pickup\s + \d{1,2}:\d{2}\s * (?:AM|PM)\n([A - Za - z0 - 9\s, - ] + (?:,\s * [A - Z]{2}(?:\s * \d{5})?)?) / i : / (\d{1,2}:\d{2}\s * (?:AM|PM))\n([A - Za - z0 - 9\s, - ] + (?:,\s * [A - Z]{2}(?:\s * \d{5})?)?) / i,
+    endLocation: provider = = = 'Lyft' ? / Drop - off\s + \d{1,2}:\d{2}\s * (?:AM|PM)\n([A - Za - z0 - 9\s, - ] + (?:,\s * [A - Z]{2}(?:\s * \d{5})?)?) / i : / (\d{1,2}:\d{2}\s * (?:AM|PM))\n([A - Za - z0 - 9\s, - ] + (?:,\s * [A - Z]{2}(?:\s * \d{5})?)?)$ / im,
+    totalCost: provider = = = 'Lyft' ? / Pay\s + [^\$] * \$(\d + \.\d{2}) / i : / Total\s + \$(\d + \.\d{2}) / i,
+    baseFare: provider = = = 'Lyft' ? / Lyft\s + fare\s + [^\$] * \$(\d + \.\d{2}) / i : / Trip\s + fare\s + \$(\d + \.\d{2}) / i,
     fee: / ((?:Service\s + Fee|Priority\s + Pickup\s + Upgrade|Wait\s + [tT]ime\s * [fF]ee|Booking\s + Fee|Regulatory\s * Fee|CA\s + Driver\s * Benefits?|Access\s + for\s + All\s + Fee|Airport\s * Fee|Clean\s + Miles\s + Standard\s + Regulatory\s + Fee))\s * [^\$] * \$(\d + \.\d{2}) / gi,
     discount: / ((?:Membership|Promotion))\s * [^\$] * \$(\d + \.\d{2}) / gi,
     credit: / ((?:Lyft\s + Pink|Uber\s + One\s + Credits))\s * [^\$] * \$(\d + \.\d{2}) / gi,
-    tip: provider === 'Lyft' ? null : / Tip\s + \$(\d + \.\d{2}) / i,
-    payment: provider === 'Lyft' ? / Pay\s + ([A - Za - z\s\(\)] + (?:ending\s * \d{4})?)\s + \$\d + \.\d{2} / i : / Payments\s + ([A - Za - z\s] + (?:ending\s * \d{4})?) / i,
-    driver: provider === 'Lyft' ? / Thanks\s + for\s + riding\s + with\s + ([A - Za - z\s] + ) / i : / You\s + rode\s + with\s + ([A - Za - z\s] + ) / i,
-    rating: provider === 'Lyft' ? null : / (\d + \.\d{1,2})\s * ★\s * Rating / i;
+    tip: provider = = = 'Lyft' ? null : / Tip\s + \$(\d + \.\d{2}) / i,
+    payment: provider = = = 'Lyft' ? / Pay\s + ([A - Za - z\s\(\)] + (?:ending\s * \d{4})?)\s + \$\d + \.\d{2} / i : / Payments\s + ([A - Za - z\s] + (?:ending\s * \d{4})?) / i,
+    driver: provider = = = 'Lyft' ? / Thanks\s + for\s + riding\s + with\s + ([A - Za - z\s] + ) / i : / You\s + rode\s + with\s + ([A - Za - z\s] + ) / i,
+    rating: provider = = = 'Lyft' ? null : / (\d + \.\d{1,2})\s * ★\s * Rating / i;
   };
   try {
-    if (provider === 'Lyft' && / missed\s + ride / i.test(body)) {
+    if (provider = = = 'Lyft' && / missed\s + ride / i.test(body)) {
       const cancelFeeMatch = body.match( / Lyft\s + cancel\s + fee\s + \$(\d + \.\d{2}) / i);
       if (cancelFeeMatch) {
         receipt.total_cost = parseFloat(cancelFeeMatch[1]);
@@ -107,8 +107,8 @@ function extractReceiptFromMessage(message, defaultProvider) {
     }
     const matches = {};
     for (const [key, pattern] of Object.entries(patterns)) {
-      if (!pattern) continue;
-      if (key === 'fee' || key === 'discount' || key === 'credit') {
+      if (! pattern) continue;
+      if (key = = = 'fee' || key = = = 'discount' || key = = = 'credit') {
         const items = [];
         let match;
         while ((match = pattern.exec(body)) ! = = null) {
@@ -135,7 +135,7 @@ function extractReceiptFromMessage(message, defaultProvider) {
       const end = parseTime(receipt.trip_end_time);
       if (start && end) {
         let minutes = (end - start) / (1000 * 60);
-        if (minutes < 0) minutes += 24 * 60;
+        if (minutes < 0) minutes + = 24 * 60;
         receipt.trip_duration = `${Math.floor(minutes)} minutes`;
       }
     } else if (patterns.duration && patterns.duration.test(body)) {
@@ -187,14 +187,14 @@ function extractReceiptFromMessage(message, defaultProvider) {
   }
 }
 
-/**
+/ * *
 
  * Extracts specific information
  * @param
  * @param {number} maxThreads - The maxThreads parameter
  * @returns {any} The result
 
- */
+ * /
 
 function extractReceiptsFromGmail(maxThreads) {
   const receipts = [];
@@ -205,17 +205,17 @@ function extractReceiptsFromGmail(maxThreads) {
       const threads = GmailApp.search(query, 0, maxThreads);
       Logger.log(`Query: ${query}`);
       Logger.log(`Found ${threads.length} threads for ${label}`);
-      if (threads.length === 0) {
+      if (threads.length = = = 0) {
         Logger.log(`No threads found for label ${label}. Check if the label contains emails. Try searching 'label:${label}' in Gmail.`);
-        const fallbackQuery = `from:${label === 'MTBI / Uber' ? 'uber' : 'lyft'}`;
+        const fallbackQuery = `from:${label = = = 'MTBI / Uber' ? 'uber' : 'lyft'}`;
         const fallbackThreads = GmailApp.search(fallbackQuery, 0, maxThreads);
         Logger.log(`Fallback query: ${fallbackQuery}`);
         Logger.log(`Found ${fallbackThreads.length} threads in fallback for ${label}`);
         if (fallbackThreads.length > 0) {
           Logger.log(`Emails found without label. Apply '${label}' label to these emails in Gmail.`);
-          fallbackThreads.forEach((thread, index) => {
+          fallbackThreads.forEach((thread, index) = > {
             const firstMessage = thread.getMessages()[0];
-            Logger.log(`Fallback Thread ${index + 1}: Subject=${thread.getFirstMessageSubject()}, From=${firstMessage.getFrom()}, Date=${firstMessage.getDate()}`);
+            Logger.log(`Fallback Thread ${index + 1}: Subject= ${thread.getFirstMessageSubject()}, From= ${firstMessage.getFrom()}, Date= ${firstMessage.getDate()}`);
           });
           for (const thread of fallbackThreads) {
             const messages = thread.getMessages();
@@ -238,9 +238,9 @@ function extractReceiptsFromGmail(maxThreads) {
           Logger.log(`No ${label} emails found even without label. Check if receipt emails exist (e.g., search 'from:uber' or 'from:lyft' in Gmail).`);
         }
       } else {
-        threads.forEach((thread, index) => {
+        threads.forEach((thread, index) = > {
           const firstMessage = thread.getMessages()[0];
-          Logger.log(`Thread ${index + 1}: Subject=${thread.getFirstMessageSubject()}, From=${firstMessage.getFrom()}, Date=${firstMessage.getDate()}`);
+          Logger.log(`Thread ${index + 1}: Subject= ${thread.getFirstMessageSubject()}, From= ${firstMessage.getFrom()}, Date= ${firstMessage.getDate()}`);
         });
         for (const thread of threads) {
           const messages = thread.getMessages();
@@ -267,38 +267,38 @@ function extractReceiptsFromGmail(maxThreads) {
   return receipts;
 }
 
-/**
+/ * *
 
  * Processes and transforms ride receipts
  * @returns {any} The result
 
- */
+ * /
 
 function processRideReceipts() {
   const maxThreads = 50;
   const startTime = Date.now();
   const labels = GmailApp.getUserLabels();
-  Logger.log('Available Gmail labels: ' + labels.map(label => label.getName()).join(', '));
+  Logger.log('Available Gmail labels: ' + labels.map(label = > label.getName()).join(', '));
   const receipts = extractReceiptsFromGmail(maxThreads);
   const validatedReceipts = validateAndCleanReceipts(receipts);
   writeToSheet(validatedReceipts);
   Logger.log(`Completed in ${(Date.now() - startTime) / 1000} seconds. Processed ${receipts.length} receipts.`);
 }
 
-/**
+/ * *
 
  * Writes to sheet to destination
  * @param
  * @param {any} receipts - The receipts parameter
  * @returns {any} The result
 
- */
+ * /
 
 function writeToSheet(receipts) {
   try {
     const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
     let sheet = spreadsheet.getSheetByName('RideReceipts');
-    if (!sheet) {
+    if (! sheet) {
       sheet = spreadsheet.insertSheet('RideReceipts');
     }
     sheet.clear();
@@ -307,11 +307,11 @@ function writeToSheet(receipts) {
       'Start Location', 'End Location', 'Total Cost', 'Base Fare', 'Additional Fees', 'Discounts', 'Credits',
       'Tip Amount', 'Payment Method', 'Driver Name', 'Driver Rating', 'Validation Notes'
     ];
-    const rows = receipts.map(receipt => {
+    const rows = receipts.map(receipt = > {
       try {
-        const fees = receipt.additional_fees.map(fee => `${fee.name}: $${fee.amount.toFixed(2)}`).join(', ');
-        const discounts = receipt.discounts.map(discount => `${discount.name}: $${discount.amount.toFixed(2)}`).join(', ');
-        const credits = receipt.credits.map(credit => `${credit.name}: $${credit.amount.toFixed(2)}`).join(', ');
+        const fees = receipt.additional_fees.map(fee = > `${fee.name}: $${fee.amount.toFixed(2)}`).join(', ');
+        const discounts = receipt.discounts.map(discount = > `${discount.name}: $${discount.amount.toFixed(2)}`).join(', ');
+        const credits = receipt.credits.map(credit = > `${credit.name}: $${credit.amount.toFixed(2)}`).join(', ');
         let formattedDate = receipt.trip_date;
         const dateMatch = receipt.trip_date.match( / ([A - Za - z] + )\s + (\d{1,2}),\s * (\d{4}) / );
         if (dateMatch) {
@@ -357,26 +357,26 @@ function writeToSheet(receipts) {
   }
 }
 
-// Helper Functions
+/ / Helper Functions
 
-/**
+/ * *
 
  * Converts between formats
  * @param
  * @param {any} timeStr - The timeStr parameter
  * @returns {any} The result
 
- */
+ * /
 
 function convertTo24Hour(timeStr) {
   try {
     const match = timeStr.match( / (\d{1,2}):(\d{2})\s * (AM|PM) / i);
-    if (!match) return 'N / A';
+    if (! match) return 'N / A';
     let hour = parseInt(match[1]);
     const minute = match[2];
     const period = match[3].toUpperCase();
-    if (period === 'PM' && hour < 12) hour += 12;
-    if (period === 'AM' && hour === 12) hour = 0;
+    if (period = = = 'PM' && hour < 12) hour + = 12;
+    if (period = = = 'AM' && hour = = = 12) hour = 0;
     return `${hour.toString().padStart(2, '0')}:${minute}`;
   } catch (e) {
     Logger.log(`Error converting time ${timeStr}: ${e.message}`);
@@ -384,74 +384,74 @@ function convertTo24Hour(timeStr) {
   }
 }
 
-/**
+/ * *
 
  * Sets parime or configuration values
  * @param
  * @param {any} timeStr - The timeStr parameter
  * @returns {any} The result
 
- */
+ * /
 
 function parseTime(timeStr) {
   const match = timeStr.match( / (\d{2}):(\d{2}) / );
-  if (!match) return null;
+  if (! match) return null;
   const date = new Date();
   date.setHours(parseInt(match[1]), parseInt(match[2]), 0, 0);
   return date;
 }
 
-/**
+/ * *
 
  * Validates and clean receipts integrity
  * @param
  * @param {any} receipts - The receipts parameter
  * @returns {any} The result
 
- */
+ * /
 
 function validateAndCleanReceipts(receipts) {
-  return receipts.map((receipt, index) => {
+  return receipts.map((receipt, index) = > {
     try {
       const validatedReceipt = { ...receipt, validation_notes: '' };
-      if (!['Uber', 'Lyft'].includes(validatedReceipt.provider)) {
-        validatedReceipt.validation_notes += 'Invalid provider. ';
+      if (! ['Uber', 'Lyft'].includes(validatedReceipt.provider)) {
+        validatedReceipt.validation_notes + = 'Invalid provider. ';
       }
       const dateMatch = validatedReceipt.trip_date.match( / ([A - Za - z] + )\s + (\d{1,2}),\s * (\d{4}) / );
-      if (!dateMatch) {
+      if (! dateMatch) {
         validatedReceipt.trip_date = 'N / A';
-        validatedReceipt.validation_notes += 'Invalid trip date. ';
+        validatedReceipt.validation_notes + = 'Invalid trip date. ';
       }
-      const timePattern = / ^\d{2}:\d{2}$ /; if (!timePattern.test(validatedReceipt.trip_start_time)) {
+      const timePattern = / ^\d{2}:\d{2}$ / ; if (! timePattern.test(validatedReceipt.trip_start_time)) {
         validatedReceipt.trip_start_time = 'N / A';
-        validatedReceipt.validation_notes += 'Invalid start time. ';
+        validatedReceipt.validation_notes + = 'Invalid start time. ';
       }
-      if (!timePattern.test(validatedReceipt.trip_end_time)) {
+      if (! timePattern.test(validatedReceipt.trip_end_time)) {
         validatedReceipt.trip_end_time = 'N / A';
-        validatedReceipt.validation_notes += 'Invalid end time. ';
+        validatedReceipt.validation_notes + = 'Invalid end time. ';
       }
       if (typeof validatedReceipt.mileage ! = = 'number' || validatedReceipt.mileage < = 0) {
         validatedReceipt.mileage = 0;
-        validatedReceipt.validation_notes += 'Invalid mileage. ';
+        validatedReceipt.validation_notes + = 'Invalid mileage. ';
       }
       let calculatedTotal = validatedReceipt.base_fare;
-      validatedReceipt.additional_fees.forEach(fee => calculatedTotal += fee.amount);
-      validatedReceipt.discounts.forEach(discount => calculatedTotal += discount.amount);
-      validatedReceipt.credits.forEach(credit => calculatedTotal += credit.amount);
-      calculatedTotal += validatedReceipt.tip_amount;
+      validatedReceipt.additional_fees.forEach(fee = > calculatedTotal + = fee.amount);
+      validatedReceipt.discounts.forEach(discount = > calculatedTotal + = discount.amount);
+      validatedReceipt.credits.forEach(credit = > calculatedTotal + = credit.amount);
+      calculatedTotal + = validatedReceipt.tip_amount;
       if (Math.abs(calculatedTotal - validatedReceipt.total_cost) > 0.01) {
-        validatedReceipt.validation_notes += `Total cost mismatch: expected ${calculatedTotal}, got ${validatedReceipt.total_cost}. `;
+        validatedReceipt.validation_notes + = `Total cost mismatch: expected ${calculatedTotal}, got ${validatedReceipt.total_cost}. `;
       }
       validatedReceipt.start_location = validatedReceipt.start_location.replace( / ,?\s * US$ / , '').trim();
       validatedReceipt.end_location = validatedReceipt.end_location.replace( / ,?\s * US$ / , '').trim();
       if (validatedReceipt.trip_duration ! = = 'N / A') {
         validatedReceipt.trip_duration = validatedReceipt.trip_duration.replace('mins', 'minutes').trim();
       }
-      if (!validatedReceipt.validation_notes) {
+      if (! validatedReceipt.validation_notes) {
         validatedReceipt.validation_notes = 'Data validated successfully.';
       }
-      if (validatedReceipt.tip_amount === 0) {
-        validatedReceipt.validation_notes += ' Tip assumed as $0.';
+      if (validatedReceipt.tip_amount = = = 0) {
+        validatedReceipt.validation_notes + = ' Tip assumed as $0.';
       }
       return validatedReceipt;
     } catch (e) {
