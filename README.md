@@ -24,6 +24,33 @@ This repository provides a complete development framework that bridges local dev
 - Comprehensive API permission management
 - Real-time file watching with automatic synchronization
 
+## Development Tools
+
+This project includes comprehensive development tools for Google Apps Scripts:
+
+- **Smart Formatter**: Intelligently generates documentation from code analysis
+- **GAS Linter**: Validates scripts against style guidelines
+- **Script Catalogs**: Tracks documentation coverage and script inventory
+- **Batch Refactoring**: Process multiple scripts systematically
+- **Git Integration**: Pre-commit hooks and automated checks
+
+See [GAS Development Tools Documentation](docs/GAS_DEVELOPMENT_TOOLS.md) for detailed usage.
+
+### Quick Start
+```bash
+# Set up development environment
+npm install
+npm run setup:git-hooks
+
+# Format and lint scripts
+npm run format:smart:all    # Smart format all scripts
+npm run lint:all           # Check for issues
+npm run gas:fix            # Fix all issues
+
+# Generate catalogs
+npm run catalog:all        # Generate script inventories
+```
+
 ## Architecture
 
 ### Repository Structure
