@@ -1,15 +1,15 @@
 # Google Apps Script Catalog
 
-Last Updated: 7/26/2025, 10:35:08 AM
+Last Updated: 7/26/2025, 10:44:26 AM
 
 ## Summary
 - **Total Scripts**: 119
-- **Fully Documented**: 50 (42%)
-- **With Setup Instructions**: 0 (0%)
-- **Average Documentation Score**: 27%
+- **Fully Documented**: 51 (43%)
+- **With Setup Instructions**: 1 (1%)
+- **Average Documentation Score**: 28%
 
 ### Scripts by Service
-- Gmail: 42 scripts
+- Gmail: 41 scripts
 - Google Drive: 28 scripts
 - Google Sheets: 12 scripts
 - Utility: 11 scripts
@@ -18,6 +18,7 @@ Last Updated: 7/26/2025, 10:35:08 AM
 - Google Tasks: 6 scripts
 - Drive: 1 scripts
 - Gmail + Google Sheets: 1 scripts
+- Gmail, Drive, Sheets, HtmlService: 1 scripts
 - Google Chat: 1 scripts
 - Google Photos: 1 scripts
 - Sheets/Drive: 1 scripts
@@ -37,7 +38,7 @@ Last Updated: 7/26/2025, 10:35:08 AM
 |--------|---------|-----------|-------|--------------|
 | [drive-utility-folder-ids.gs](apps/drive/src/drive-utility-folder-ids.gs) | Recursively list all folder names and IDs from a root folder to Google Sheets | 63% | ❌ | 2025-07-21 |
 
-### Gmail (42 scripts)
+### Gmail (41 scripts)
 
 | Script | Purpose | Doc Score | Setup | Last Updated |
 |--------|---------|-----------|-------|--------------|
@@ -55,7 +56,6 @@ Last Updated: 7/26/2025, 10:35:08 AM
 | [gmail-analysis-metadata-misc.gs](apps/gmail/src/gmail-analysis-metadata-misc.gs) | No purpose documented | 13% | ❌ | 2025-07-16 |
 | [gmail-code.gs](apps/gmail/src/gmail-code.gs) | No purpose documented | 13% | ❌ | 2025-07-23 |
 | [gmail-export-advanced-sheets.gs](apps/gmail/src/gmail-export-advanced-sheets.gs) | No purpose documented | 0% | ❌ | 2025-07-15 |
-| [gmail-export-basic-sheets.gs](apps/gmail/src/gmail-export-basic-sheets.gs) | No purpose documented | 0% | ❌ | 2025-07-16 |
 | [gmail-export-docs-pdf.gs](apps/gmail/src/gmail-export-docs-pdf.gs) | No purpose documented | 0% | ❌ | 2025-07-15 |
 | [gmail-export-emails-pdf-attachments.gs](apps/gmail/src/gmail-export-emails-pdf-attachments.gs) | No purpose documented | 13% | ❌ | 2025-07-16 |
 | [gmail-export-labels-to-sheets.gs](apps/gmail/src/gmail-export-labels-to-sheets.gs) | * The purpose of this script is to provide a summary of Gmail labels in a Google Sheet, making it | 38% | ❌ | 2025-07-16 |
@@ -89,6 +89,12 @@ Last Updated: 7/26/2025, 10:35:08 AM
 | Script | Purpose | Doc Score | Setup | Last Updated |
 |--------|---------|-----------|-------|--------------|
 | [gmail-analysis-labels-data.gs](apps/gmail/src/gmail-analysis-labels-data.gs) | Export Gmail label statistics to Google Sheet with configurable security | 63% | ❌ | 2025-07-19 |
+
+### Gmail, Drive, Sheets, HtmlService (1 scripts)
+
+| Script | Purpose | Doc Score | Setup | Last Updated |
+|--------|---------|-----------|-------|--------------|
+| [gmail-export-basic-sheets.gs](apps/gmail/src/gmail-export-basic-sheets.gs) | Export data to PDF and Markdown formats | 100% | ✅ | 2025-07-26 |
 
 ### Google Calendar (8 scripts)
 
@@ -211,6 +217,15 @@ Last Updated: 7/26/2025, 10:35:08 AM
 | [zzz-yaml-add-yaml.gs](apps/utility/src/zzz-yaml-add-yaml.gs) | No purpose documented | 0% | ❌ | 2025-07-26 |
 
 ## Detailed Script Information
+
+### Export Basic Sheets
+- **File**: apps/gmail/src/gmail-export-basic-sheets.gs
+- **Purpose**: Export data to PDF and Markdown formats
+- **Features**:
+  - Email searching and filtering
+  - File/folder creation and management
+  - Spreadsheet data manipulation
+- **Services**: Gmail, Drive, Sheets, HtmlService
 
 ### Dynamic Content Block Embedder
 - **File**: apps/docs/src/docs-embed-content-block.gs
