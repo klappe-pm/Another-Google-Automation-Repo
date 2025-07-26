@@ -60,7 +60,14 @@
     "shell:catalog": "node automation/dev-tools/shell-catalog.js",
     "shell:catalog:watch": "node automation/dev-tools/shell-catalog.js --watch",
     "shell:catalog:json": "node automation/dev-tools/shell-catalog.js --json",
-    "catalog:all": "npm run catalog && npm run shell:catalog"
+    "catalog:all": "npm run catalog && npm run shell:catalog",
+    "gas:discover": "node automation/dev-tools/gas-project-discovery.js",
+    "gas:download": "node automation/dev-tools/gas-project-downloader.js",
+    "gas:download:all": "node automation/dev-tools/gas-project-downloader.js --all",
+    "gas:migrate": "node automation/dev-tools/gas-project-migrator.js",
+    "gas:migrate:all": "node automation/dev-tools/gas-project-migrator.js --all",
+    "gas:delete": "node automation/dev-tools/gas-project-archiver.js",
+    "gas:delete:report": "node automation/dev-tools/gas-project-archiver.js --report"
   },
   "repository": {
     "type": "git",
