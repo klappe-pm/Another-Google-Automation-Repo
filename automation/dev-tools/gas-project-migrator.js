@@ -335,6 +335,12 @@ ${migrationResult.migratedFiles
       }
     }
     
+    // Also check for converted scripts
+    const convertedDir = path.join(this.repoRoot, 'temp', 'converted-scripts');
+    if (await fs.access(convertedDir).then(() => true).catch(() => false)) {
+      projectDirs.push('converted-scripts');
+    }
+    
     console.log(`Found ${projectDirs.length} projects to migrate\n`);
     
     for (const project of projectDirs) {

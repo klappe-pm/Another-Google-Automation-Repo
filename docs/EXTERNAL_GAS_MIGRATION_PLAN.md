@@ -1,7 +1,29 @@
 # External Google Apps Script Projects Migration Plan
 
 ## Overview
-This plan outlines the process for discovering, downloading, processing, and migrating external Google Apps Script projects into the Workspace Automation repository, then safely removing them from Google Apps Script.
+This plan outlines the process for discovering, downloading, processing, and migrating external Google Apps Script projects into the Workspace Automation repository, then safely removing them from Google Apps Script. This includes processing raw text files and detecting/removing duplicates across all scripts.
+
+## Phase 0: Process Raw Text Files
+
+### 0.1 Convert Text Files to GS
+Process files in `/txt to convert/` directory:
+```bash
+npm run gas:convert:txt
+```
+
+### 0.2 Text File Processing
+- Convert `.txt` files to `.gs` format
+- Parse existing headers and metadata
+- Standardize naming conventions
+- Detect service type from content
+- Apply smart formatting
+
+### 0.3 Duplicate Detection
+- Calculate content hashes for all scripts
+- Identify exact duplicates
+- Find similar scripts (>90% similarity)
+- Create duplicate report
+- Merge or archive duplicates
 
 ## Phase 1: Discovery and Inventory
 
@@ -10,6 +32,9 @@ This plan outlines the process for discovering, downloading, processing, and mig
 # Use clasp to list all projects associated with the account
 clasp list
 
+# Process text files first
+npm run gas:convert:txt
+
 # Alternative: Use Google Apps Script API
 # This will show projects not in the current repository
 ```
@@ -17,18 +42,22 @@ clasp list
 ### 1.2 Create Inventory
 Create a spreadsheet tracking:
 - Project Name
-- Script ID
+- Script ID (if applicable)
+- Source (Google Apps Script, Text File, Repository)
 - Last Modified Date
 - Number of Files
 - Primary Service (Gmail, Drive, etc.)
 - Migration Status
+- Duplicate Status
 - Notes
 
 ### 1.3 Identify Projects to Migrate
+- Include text files from `/txt to convert/`
 - Exclude projects already in `/apps/` directory
 - Flag test/experimental projects
 - Identify abandoned projects
 - Group by service type
+- Mark duplicates for review
 
 ## Phase 2: Download and Backup
 
@@ -268,7 +297,42 @@ class GASProjectArchiver {
 }
 ```
 
-## Phase 7: Documentation and Reporting
+## Phase 7: Duplicate Detection and Removal
+
+### 7.1 Comprehensive Duplicate Analysis
+```javascript
+// automation/dev-tools/gas-duplicate-detector.js
+class GASDuplicateDetector {
+  async detectDuplicates() {
+    // Scan all locations:
+    // - /apps/*/src/*.gs
+    // - /txt to convert/*.txt
+    // - /temp/external-projects/
+    
+    return {
+      exactDuplicates: [],    // Same content hash
+      similarScripts: [],     // >90% similarity
+      nameCollisions: [],     // Same filename
+      functionalDuplicates: [] // Same functionality
+    };
+  }
+}
+```
+
+### 7.2 Duplicate Resolution Strategy
+1. **Exact Duplicates**: Keep newest/best documented version
+2. **Similar Scripts**: Merge functionality, combine best parts
+3. **Name Collisions**: Rename based on functionality
+4. **Functional Duplicates**: Consolidate into single script
+
+### 7.3 Duplicate Report
+Generate comprehensive report showing:
+- All duplicates found
+- Recommended actions
+- Potential space savings
+- Risk assessment
+
+## Phase 8: Documentation and Reporting
 
 ### 7.1 Migration Report Template
 ```markdown

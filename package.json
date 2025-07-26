@@ -67,7 +67,9 @@
     "gas:migrate": "node automation/dev-tools/gas-project-migrator.js",
     "gas:migrate:all": "node automation/dev-tools/gas-project-migrator.js --all",
     "gas:delete": "node automation/dev-tools/gas-project-archiver.js",
-    "gas:delete:report": "node automation/dev-tools/gas-project-archiver.js --report"
+    "gas:delete:report": "node automation/dev-tools/gas-project-archiver.js --report",
+    "gas:convert:txt": "node automation/dev-tools/gas-txt-converter.js",
+    "gas:duplicates": "node automation/dev-tools/gas-duplicate-detector.js"
   },
   "repository": {
     "type": "git",
