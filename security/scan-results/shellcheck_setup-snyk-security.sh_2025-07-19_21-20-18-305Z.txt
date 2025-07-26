@@ -1,7 +1,0 @@
-
-In ./security/Snyk/setup-snyk-security.sh line 179:
-        echo "" >> .gitignore
-        ^-------------------^ SC2129 (style): Consider using { cmd1; cmd2; } >> file instead of individual redirects.
-
-For more information:
-  https://www.shellcheck.net/wiki/SC2129 -- Consider using { cmd1; cmd2; } >>...

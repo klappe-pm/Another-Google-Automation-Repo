@@ -1,5 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Label Management/gmail-labels-date-processor.gs: line 58, col 10, Warning - 'processGmailEmails' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Label Management/gmail-labels-date-processor.gs: line 194, col 26, Error - Unnecessary escape character: \.. (no-useless-escape)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Label Management/gmail-labels-date-processor.gs: line 194, col 28, Error - Unnecessary escape character: \/. (no-useless-escape)
-
-3 problems

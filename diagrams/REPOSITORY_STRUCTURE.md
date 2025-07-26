@@ -1,132 +1,257 @@
-# Repository Structure
+# Repository Structure Diagram
 
-## Directory Tree
-
-```
-workspace-automation/
-├── apps/                      # Google Apps Script projects
-│   ├── calendar/             # Calendar automation scripts
-│   │   ├── src/             # Script source files
-│   │   ├── .clasp.json      # Project configuration
-│   │   └── appsscript.json  # Manifest file
-│   ├── chat/                # Chat automation scripts
-│   ├── docs/                # Docs automation scripts
-│   ├── drive/               # Drive automation scripts
-│   ├── gmail/               # Gmail automation scripts
-│   ├── photos/              # Photos automation scripts
-│   ├── sheets/              # Sheets automation scripts
-│   ├── slides/              # Slides automation scripts
-│   ├── tasks/               # Tasks automation scripts
-│   └── utility/             # Utility scripts
-├── automation/              # Automation and deployment scripts
-│   ├── deploy-local.sh     # Local deployment script
-│   ├── auto-sync-full.sh   # File watcher with auto-deploy
-│   ├── sync-control.sh     # Sync process control
-│   └── test-deployment.sh  # Deployment testing
-├── config/                  # Configuration files
-│   ├── cloudbuild.yaml     # Cloud Build configuration
-│   └── cloudbuild-diagnostic.yaml
-├── docs/                    # Documentation
-│   ├── architecture/       # Architecture documentation
-│   ├── guides/            # How-to guides
-│   └── milestones/        # Project milestones
-├── diagrams/               # Architecture diagrams
-├── .github/                # GitHub configuration
-│   ├── workflows/         # GitHub Actions workflows
-│   └── ISSUE_TEMPLATE/    # Issue templates
-└── archive/               # Archived files
-
-```
-
-## Mermaid.js Diagram
+## Complete Repository Structure
 
 ```mermaid
 graph TD
-    A[Workspace Automation] --> B[apps/]
-    A --> C[automation/]
-    A --> D[config/]
-    A --> E[docs/]
-    A --> F[diagrams/]
-    A --> G[.github/]
+    ROOT[workspace-automation/]
     
-    B --> B1[calendar/]
-    B --> B2[gmail/]
-    B --> B3[drive/]
-    B --> B4[docs/]
-    B --> B5[sheets/]
-    B --> B6[other services...]
+    ROOT --> APPS[apps/]
+    ROOT --> AUTOMATION[automation/]
+    ROOT --> CONFIG[config/]
+    ROOT --> DOCS[docs/]
+    ROOT --> TOOLS[tools/]
+    ROOT --> SECURITY[security/]
+    ROOT --> DIAGRAMS[diagrams/]
+    ROOT --> LOGS[logs/]
+    ROOT --> REPORTS[reports/]
+    ROOT --> GITHUB[.github/]
+    ROOT --> BUILDER[builder/]
+    ROOT --> ARCHIVE[archive/]
+    ROOT --> TEMPLATES[templates/]
+    ROOT --> STANDARDS[standards/]
     
-    B1 --> B1A[src/]
-    B1 --> B1B[.clasp.json]
-    B1 --> B1C[appsscript.json]
+    APPS --> CALENDAR[calendar/<br/>Calendar automation scripts]
+    APPS --> CHAT[chat/<br/>Chat export scripts]
+    APPS --> DOCS_APP[docs/<br/>Document processing]
+    APPS --> DRIVE[drive/<br/>Drive organization tools]
+    APPS --> GMAIL[gmail/<br/>Email automation]
+    APPS --> PHOTOS[photos/<br/>Photo management]
+    APPS --> SHEETS[sheets/<br/>Spreadsheet utilities]
+    APPS --> SLIDES[slides/<br/>Presentation tools]
+    APPS --> TASKS[tasks/<br/>Task management]
+    APPS --> UTILITY[utility/<br/>Helper functions]
     
-    C --> C1[deploy-local.sh]
-    C --> C2[auto-sync-full.sh]
-    C --> C3[sync-control.sh]
-    C --> C4[test-deployment.sh]
+    AUTOMATION --> AUTOSYNC[auto-sync-full.sh]
+    AUTOMATION --> DEPLOYLOCAL[deploy-local.sh]
+    AUTOMATION --> TESTDEPLOY[test-deployment.sh]
+    AUTOMATION --> SYNCCONTROL[sync-control.sh]
+    AUTOMATION --> COMMITPUSH[auto-commit-push.sh]
     
-    D --> D1[cloudbuild.yaml]
-    D --> D2[cloudbuild-diagnostic.yaml]
+    CONFIG --> CLOUDBUILD[cloudbuild.yaml]
+    CONFIG --> CLOUDBUILDALT[cloudbuild-nodejs.yaml]
+    CONFIG --> CLOUDBUILDDIAG[cloudbuild-diagnostic.yaml]
+    CONFIG --> PROJECTMAP[project-mapping.json]
+    CONFIG --> WATCHERCONF[com.workspace-automation.watcher.plist]
     
-    E --> E1[architecture/]
-    E --> E2[guides/]
-    E --> E3[milestones/]
+    DOCS --> ARCHITECTURE[architecture/]
+    DOCS --> GUIDES[guides/]
+    DOCS --> MILESTONES[milestones/]
+    DOCS --> SETUP[setup/]
+    DOCS --> REORGANIZATION[reorganization/]
+    DOCS --> README_DOCS[README.md]
     
-    G --> G1[workflows/]
-    G --> G2[ISSUE_TEMPLATE/]
+    DIAGRAMS --> ERD[ERD.md]
+    DIAGRAMS --> SYSARCH[SYSTEM_ARCHITECTURE.md]
+    DIAGRAMS --> DEPLOYFLOW[DEPLOYMENT_FLOW.md]
+    DIAGRAMS --> USERFLOWS[USER_FLOWS.md]
+    DIAGRAMS --> DATAFLOW[DATA_FLOW.md]
+    DIAGRAMS --> DATAMODEL[DATA_MODEL.md]
+    DIAGRAMS --> ARCHITECTURE_DIAG[ARCHITECTURE.md]
+    DIAGRAMS --> REPOSTRUCTURE[REPOSITORY_STRUCTURE.md]
     
-    style A fill:#f9f,stroke:#333,stroke-width:4px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style C fill:#bfb,stroke:#333,stroke-width:2px
-    style D fill:#fbf,stroke:#333,stroke-width:2px
+    GITHUB --> WORKFLOWS[workflows/]
+    WORKFLOWS --> DEPLOY[deploy.yml]
+    WORKFLOWS --> CODEQUALITY[code-quality.yml]
+    
+    BUILDER --> DOCKERFILE[Dockerfile]
+    BUILDER --> SEQUENCE[SEQUENCE_FLOW.md]
+    
+    SECURITY --> SECURITYREVIEW[SECURITY_REVIEW.md]
+    SECURITY --> SECURITYFIXES[SECURITY_FIXES_APPLIED.md]
+    SECURITY --> SCANRESULTS[scan-results/]
+    SECURITY --> SNYK[Snyk/]
+    
+    style ROOT fill:#f9f,stroke:#333,stroke-width:4px
+    style APPS fill:#bbf,stroke:#333,stroke-width:2px
+    style AUTOMATION fill:#bfb,stroke:#333,stroke-width:2px
+    style CONFIG fill:#fbf,stroke:#333,stroke-width:2px
+    style DOCS fill:#ffb,stroke:#333,stroke-width:2px
+    style DIAGRAMS fill:#fbb,stroke:#333,stroke-width:2px
+    style GITHUB fill:#bff,stroke:#333,stroke-width:2px
+    style SECURITY fill:#faa,stroke:#333,stroke-width:2px
 ```
 
-## Key Directories
+## Apps Directory Structure
 
-### `/apps`
-Contains all Google Apps Script projects organized by service. Each project has:
-- `src/` - Script source files (.gs, .html, .js)
-- `.clasp.json` - Project configuration with script ID
-- `appsscript.json` - Manifest with dependencies and permissions
+```mermaid
+graph LR
+    subgraph "App Directory Structure"
+        APP[apps/service/]
+        APP --> SRC[src/]
+        APP --> README[README.md]
+        APP --> CLASP[.clasp.json]
+        APP --> PROJCONF[project-config.json]
+        APP --> SERVICESPEC[service-spec.yml]
+        
+        SRC --> APPSCRIPT[appsscript.json]
+        SRC --> SCRIPTS[*.gs files]
+        SRC --> HTML[*.html files]
+        SRC --> JS[*.js files]
+        SRC --> CSS[*.css files]
+        
+        SCRIPTS --> MAIN[main.gs]
+        SCRIPTS --> FUNCTIONS[function-*.gs]
+        SCRIPTS --> UTILS[utils.gs]
+    end
+```
 
-### `/automation`
-Shell scripts for deployment and synchronization:
-- **deploy-local.sh** - Deploys all projects using local clasp
-- **auto-sync-full.sh** - Watches for file changes and auto-deploys
-- **sync-control.sh** - Controls the sync process
-- **test-deployment.sh** - Validates deployment configuration
+## Configuration Hierarchy
 
-### `/config`
-Cloud Build and CI/CD configuration files
+```mermaid
+graph TD
+    subgraph "Root Configuration"
+        PACKAGE[package.json]
+        GITIGNORE[.gitignore]
+        GCLOUDIGNORE[.gcloudignore]
+        LICENSE[LICENSE.md]
+        README[README.md]
+        MAKEFILE[Makefile]
+        CLAUDEMD[CLAUDE.md]
+    end
+    
+    subgraph "Symlinks"
+        CLOUDBUILDLINK[cloudbuild.yaml]
+        PROJECTMAPLINK[project-mapping.json]
+        CONTRIBLINK[CONTRIBUTING.md]
+    end
+    
+    subgraph "Link Targets"
+        CLOUDBUILDTARGET[config/cloudbuild-nodejs.yaml]
+        PROJECTMAPTARGET[config/project-mapping.json]
+        CONTRIBTARGET[docs/setup/CONTRIBUTING.md]
+    end
+    
+    CLOUDBUILDLINK -.-> CLOUDBUILDTARGET
+    PROJECTMAPLINK -.-> PROJECTMAPTARGET
+    CONTRIBLINK -.-> CONTRIBTARGET
+```
 
-### `/docs`
-Project documentation organized by type:
-- **architecture/** - System design and architecture docs
-- **guides/** - How-to guides and tutorials
-- **milestones/** - Project planning and progress
+## File Organization Pattern
 
-### `/diagrams`
-Architecture and flow diagrams using Mermaid.js
+```mermaid
+flowchart TD
+    subgraph "File Types"
+        GS[Google Script Files .gs]
+        JSON[Configuration .json]
+        MD[Documentation .md]
+        SH[Shell Scripts .sh]
+        YAML[Config Files .yaml]
+        HTML[Templates .html]
+        JS[JavaScript .js]
+    end
+    
+    subgraph "Organization Rules"
+        RULE1[Apps go in apps/{service}/src/]
+        RULE2[Scripts go in automation/]
+        RULE3[Configs go in config/]
+        RULE4[Docs go in docs/{category}/]
+        RULE5[Diagrams go in diagrams/]
+        RULE6[Tools go in tools/]
+        RULE7[Security scans go in security/]
+    end
+    
+    GS --> RULE1
+    SH --> RULE2
+    YAML --> RULE3
+    JSON --> RULE3
+    MD --> RULE4
+    MD --> RULE5
+    JS --> RULE6
+    
+    RULE1 --> APPDIR[apps/{service}/src/]
+    RULE2 --> AUTODIR[automation/]
+    RULE3 --> CONFDIR[config/]
+    RULE4 --> DOCDIR[docs/{category}/]
+    RULE5 --> DIAGDIR[diagrams/]
+    RULE6 --> TOOLDIR[tools/]
+    RULE7 --> SECDIR[security/scan-results/]
+```
 
-### `/.github`
-GitHub-specific configuration:
-- **workflows/** - GitHub Actions for CI/CD
-- **ISSUE_TEMPLATE/** - Issue and PR templates
+## Project Lifecycle Flow
+
+```mermaid
+stateDiagram-v2
+    [*] --> Development: Create new feature
+    Development --> Testing: Local testing
+    Testing --> Commit: Tests pass
+    Testing --> Development: Tests fail
+    
+    Commit --> Push: git push
+    Push --> CI: GitHub Actions
+    
+    CI --> CloudBuild: Trigger build
+    CloudBuild --> Deploy: Build success
+    CloudBuild --> Failed: Build failed
+    
+    Deploy --> Production: Apps Script
+    Failed --> Debug: Check logs
+    Debug --> Development: Fix issues
+    
+    Production --> Monitor: Track usage
+    Monitor --> [*]: Complete
+```
+
+## Directory Growth Plan
+
+```mermaid
+graph TD
+    subgraph "Current Structure"
+        CURRENT[Current Directories]
+        CURRENT --> APPS_NOW[apps/10 services]
+        CURRENT --> AUTO_NOW[automation/5 scripts]
+        CURRENT --> DOCS_NOW[docs/5 categories]
+    end
+    
+    subgraph "Future Expansion"
+        FUTURE[Planned Additions]
+        FUTURE --> TESTS[tests/<br/>Unit & Integration]
+        FUTURE --> PACKAGES[packages/<br/>Shared libraries]
+        FUTURE --> GCP[gcp/<br/>Cloud Functions]
+        FUTURE --> GEMINI[apps/gemini/<br/>AI Integration]
+        FUTURE --> MONITORING[monitoring/<br/>Observability]
+    end
+    
+    CURRENT --> FUTURE
+```
 
 ## File Naming Conventions
 
-- **Scripts**: `service-function-description.gs`
-  - Example: `gmail-filter-manager.gs`
-- **Documentation**: `UPPERCASE_TOPIC.md`
-  - Example: `ARCHITECTURE.md`
-- **Config files**: `lowercase-with-dashes.yaml`
-  - Example: `cloudbuild-diagnostic.yaml`
+| Type | Pattern | Example |
+|------|---------|---------|
+| Scripts | `service-function-description.gs` | `gmail-filter-manager.gs` |
+| Config | `lowercase-with-dashes.yaml` | `cloudbuild-diagnostic.yaml` |
+| Docs | `UPPERCASE_TOPIC.md` | `ARCHITECTURE.md` |
+| Tests | `test-*.js` | `test-gmail-export.js` |
+| Utils | `utils-*.gs` | `utils-date-format.gs` |
 
-## Future Growth Structure
+## Key Files Reference
 
-The repository is organized to support:
-1. **New Google Services** - Add new folders under `/apps`
-2. **Gemini Integration** - Add `/apps/gemini` when ready
-3. **GCP Services** - Add `/gcp` for Cloud Functions, Pub/Sub, etc.
-4. **Testing** - Add `/tests` for automated testing
-5. **Packages** - Add `/packages` for shared libraries
+```mermaid
+graph LR
+    subgraph "Essential Files"
+        ENTRY[Entry Points]
+        ENTRY --> DEPLOY_SH[automation/deploy-local.sh]
+        ENTRY --> CLOUDBUILD_YML[cloudbuild.yaml]
+        ENTRY --> PACKAGE_JSON[package.json]
+        
+        CONFIG[Configuration]
+        CONFIG --> PROJECT_MAP[config/project-mapping.json]
+        CONFIG --> CLASP_FILES[apps/*/.clasp.json]
+        
+        DOCS_KEY[Key Documentation]
+        DOCS_KEY --> README_ROOT[README.md]
+        DOCS_KEY --> CLAUDE[CLAUDE.md]
+        DOCS_KEY --> CONTRIBUTING[CONTRIBUTING.md]
+    end
+```

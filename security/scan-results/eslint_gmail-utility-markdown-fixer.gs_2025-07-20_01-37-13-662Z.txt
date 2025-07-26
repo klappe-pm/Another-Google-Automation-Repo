@@ -1,4 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Utility Tools/gmail-utility-markdown-fixer.gs: line 84, col 10, Warning - 'onOpen' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Utility Tools/gmail-utility-markdown-fixer.gs: line 95, col 10, Warning - 'initializeLinting' is defined but never used. (no-unused-vars)
-
-2 problems

@@ -1,7 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Label Management/gmail-labels-create-basic.gs: line 1, col 10, Warning - 'processGmailEmails' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Label Management/gmail-labels-create-basic.gs: line 3, col 7, Warning - 'lastProcessedMonth' is assigned a value but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Label Management/gmail-labels-create-basic.gs: line 38, col 10, Warning - 'setLastProcessedMonth' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Label Management/gmail-labels-create-basic.gs: line 122, col 26, Error - Unnecessary escape character: \.. (no-useless-escape)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Label Management/gmail-labels-create-basic.gs: line 122, col 28, Error - Unnecessary escape character: \/. (no-useless-escape)
-
-5 problems

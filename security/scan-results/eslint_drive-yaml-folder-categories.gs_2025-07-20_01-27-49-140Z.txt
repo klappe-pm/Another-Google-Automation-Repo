@@ -1,4 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/drive/YAML Management/drive-yaml-folder-categories.gs: line 1, col 10, Warning - 'addYamlFrontmatter' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/drive/YAML Management/drive-yaml-folder-categories.gs: line 10, col 8, Error - Irregular whitespace not allowed. (no-irregular-whitespace)
-
-2 problems

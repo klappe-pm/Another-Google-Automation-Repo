@@ -1,3 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/drive/Legacy Files/drive-index-tree-v100-legacy.gs: line 161, col 1, Error - Parsing error: Unexpected token
-
-1 problem

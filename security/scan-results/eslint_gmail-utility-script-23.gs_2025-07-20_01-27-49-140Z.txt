@@ -1,5 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Utility Tools/gmail-utility-script-23.gs: line 60, col 10, Warning - 'processGmailEmails' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Utility Tools/gmail-utility-script-23.gs: line 196, col 26, Error - Unnecessary escape character: \.. (no-useless-escape)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Utility Tools/gmail-utility-script-23.gs: line 196, col 28, Error - Unnecessary escape character: \/. (no-useless-escape)
-
-3 problems

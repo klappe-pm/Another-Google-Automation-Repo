@@ -1,3 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/draft-scripts/43.gs: line 176, col 42, Error - Parsing error: Unexpected token .
-
-1 problem

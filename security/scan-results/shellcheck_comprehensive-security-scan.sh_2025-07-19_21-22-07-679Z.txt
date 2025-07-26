@@ -1,7 +1,0 @@
-
-In ./comprehensive-security-scan.sh line 204:
-ls -la "$RESULTS_DIR/"*"$TIMESTAMP"* 2>/dev/null | tee -a "$REPORT_FILE" || log_message "No timestamped files found"
-^-- SC2012 (info): Use find instead of ls to better handle non-alphanumeric filenames.
-
-For more information:
-  https://www.shellcheck.net/wiki/SC2012 -- Use find instead of ls to better ...

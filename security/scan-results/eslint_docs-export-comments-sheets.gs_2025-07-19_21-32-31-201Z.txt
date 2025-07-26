@@ -1,6 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/docs/Exports/docs-export-comments-sheets.gs: line 27, col 10, Warning - 'exportComments' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/docs/Exports/docs-export-comments-sheets.gs: line 36, col 20, Warning - 'Drive' is not defined. (no-undef)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/docs/Exports/docs-export-comments-sheets.gs: line 45, col 23, Warning - 'Drive' is not defined. (no-undef)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/docs/Exports/docs-export-comments-sheets.gs: line 56, col 25, Warning - 'Drive' is not defined. (no-undef)
-
-4 problems

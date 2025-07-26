@@ -1,4 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/draft-scripts/33.gs: line 5, col 10, Warning - 'listTaskLists' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/draft-scripts/33.gs: line 8, col 23, Warning - 'Tasks' is not defined. (no-undef)
-
-2 problems

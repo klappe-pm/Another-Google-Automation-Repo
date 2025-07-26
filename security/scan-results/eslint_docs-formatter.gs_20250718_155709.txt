@@ -1,8 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/docs/Content Management/docs-formatter.gs: line 28, col 10, Warning - 'updateFormatting' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/docs/Content Management/docs-formatter.gs: line 64, col 16, Error - 'i' is already defined. (no-redeclare)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/docs/Content Management/docs-formatter.gs: line 75, col 16, Error - 'i' is already defined. (no-redeclare)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/docs/Content Management/docs-formatter.gs: line 86, col 16, Error - 'i' is already defined. (no-redeclare)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/docs/Content Management/docs-formatter.gs: line 96, col 16, Error - 'i' is already defined. (no-redeclare)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/docs/Content Management/docs-formatter.gs: line 106, col 16, Error - 'i' is already defined. (no-redeclare)
-
-6 problems

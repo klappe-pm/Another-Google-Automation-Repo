@@ -1,4 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/standards/script-header-template.gs: line 74, col 10, Warning - 'processInBatches' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/standards/script-header-template.gs: line 110, col 10, Warning - 'getCachedData' is defined but never used. (no-unused-vars)
-
-2 problems

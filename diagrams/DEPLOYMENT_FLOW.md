@@ -1,116 +1,204 @@
-# Deployment Flow Diagram
+# Deployment Flow
 
-## Overview
-This document visualizes the deployment pipeline from local development to Google Apps Script.
+## CI/CD Pipeline Flow
 
-## Deployment Flow
+```mermaid
+flowchart TD
+    Start([Developer Push]) --> GH{GitHub}
+    GH -->|main branch| GHA[GitHub Actions]
+    GH -->|other branch| End1([No Action])
+    
+    GHA --> Auth[Authenticate to GCP]
+    Auth --> CB[Submit Cloud Build]
+    
+    CB --> Validate{Validate Build}
+    Validate -->|Invalid| Fail1[Build Failed]
+    Validate -->|Valid| Docker[Pull Docker Image]
+    
+    Docker --> Setup[Setup Environment]
+    Setup --> NPM[Install Dependencies]
+    NPM --> Creds[Fetch Credentials]
+    
+    Creds --> ClaspAuth[Authenticate Clasp]
+    ClaspAuth -->|Failed| Fail2[Auth Failed]
+    ClaspAuth -->|Success| Deploy[Deploy Projects]
+    
+    Deploy --> Loop{For Each Project}
+    Loop -->|Next| Check{Check .clasp.json}
+    Check -->|Missing| Skip[Skip Project]
+    Check -->|Found| Push[Clasp Push]
+    
+    Push -->|Success| Count1[Success++]
+    Push -->|Failed| Count2[Failed++]
+    
+    Skip --> Loop
+    Count1 --> Loop
+    Count2 --> Loop
+    
+    Loop -->|Done| Summary[Generate Summary]
+    Summary --> Status{All Success?}
+    
+    Status -->|Yes| Success[Build Success]
+    Status -->|No| Fail3[Build Failed]
+    
+    Success --> Notify1[Update GitHub Status]
+    Fail1 --> Notify2[Update GitHub Status]
+    Fail2 --> Notify2
+    Fail3 --> Notify2
+    
+    Notify1 --> End2([Deployment Complete])
+    Notify2 --> End3([Deployment Failed])
+```
+
+## Local Deployment Flow
 
 ```mermaid
 flowchart LR
-    A[Local Development] --> B{File Save}
-    B --> C[fswatch detects change]
-    C --> D[auto-sync-full.sh]
-    D --> E[Git Commit]
-    E --> F[Git Push to GitHub]
-    F --> G{Deployment Method}
+    Start([Run deploy-local.sh]) --> Check{Check Arguments}
+    Check -->|No Args| All[Deploy All Projects]
+    Check -->|Project Name| Single[Deploy Single Project]
     
-    G --> H[Local Deploy]
-    G --> I[Cloud Build]
+    All --> List[List All Projects]
+    Single --> Validate{Valid Project?}
     
-    H --> J[deploy-local.sh]
-    I --> K[cloudbuild.yaml]
+    Validate -->|No| Error1[Invalid Project]
+    Validate -->|Yes| Deploy1[Deploy Project]
     
-    J --> L[clasp push]
-    K --> M[Docker Container]
-    M --> N[clasp push]
+    List --> Loop{For Each Project}
+    Loop --> Deploy2[Deploy Project]
     
-    L --> O[Google Apps Script]
-    N --> O
+    Deploy1 --> Log1[Log Result]
+    Deploy2 --> Log2[Log Result]
     
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style O fill:#9f9,stroke:#333,stroke-width:2px
-    style G fill:#ff9,stroke:#333,stroke-width:2px
+    Log1 --> End1([Complete])
+    Log2 --> Loop
+    Loop -->|Done| Summary[Show Summary]
+    Summary --> End2([Complete])
+    Error1 --> End3([Exit with Error])
 ```
 
-## Detailed Process Flow
+## Manual Deployment Flow
+
+```mermaid
+stateDiagram-v2
+    [*] --> Setup: Initialize
+    Setup --> Authenticate: clasp login
+    
+    Authenticate --> SelectProject: Choose project
+    SelectProject --> CheckFiles: Verify files
+    
+    CheckFiles --> Ready: Files valid
+    CheckFiles --> FixFiles: Files missing
+    
+    FixFiles --> CheckFiles: Retry
+    
+    Ready --> Deploy: clasp push
+    Deploy --> Success: Deployment successful
+    Deploy --> Failed: Deployment failed
+    
+    Success --> [*]
+    Failed --> Troubleshoot: Check errors
+    Troubleshoot --> FixIssues: Resolve issues
+    FixIssues --> Deploy: Retry
+```
+
+## Auto-Sync Deployment Flow
+
+```mermaid
+flowchart TD
+    Start([File System Watcher]) --> Watch{Monitor apps/}
+    Watch -->|File Changed| Debounce[Debounce 2s]
+    Watch -->|No Change| Watch
+    
+    Debounce --> Check{Check File Type}
+    Check -->|.gs/.json| Process[Process Change]
+    Check -->|Other| Ignore[Ignore]
+    
+    Ignore --> Watch
+    Process --> Project[Identify Project]
+    
+    Project --> Queue[Add to Queue]
+    Queue --> Batch{Batch Changes}
+    
+    Batch -->|Timeout| Deploy[Deploy Project]
+    Batch -->|More Changes| Queue
+    
+    Deploy --> Log[Log Deployment]
+    Log --> Notify[Send Notification]
+    Notify --> Watch
+```
+
+## Deployment Sequence Diagram
 
 ```mermaid
 sequenceDiagram
     participant Dev as Developer
     participant FS as File System
-    participant Watch as fswatch
-    participant Sync as auto-sync-full.sh
     participant Git as Git Repository
     participant GH as GitHub
+    participant GHA as GitHub Actions
     participant CB as Cloud Build
+    participant SM as Secret Manager
     participant GAS as Google Apps Script
     
-    Dev->>FS: Save .gs file
-    Watch->>Watch: Detect change
-    Watch->>Sync: Trigger handler
-    Sync->>Sync: Wait 10 seconds
-    Sync->>Git: git add apps/
-    Sync->>Git: git commit -m "auto: update"
-    Sync->>GH: git push origin main
+    Dev->>FS: Save changes
+    Dev->>Git: git commit
+    Dev->>GH: git push
     
-    alt Local Deployment
-        Sync->>Sync: Run deploy-local.sh
-        Sync->>GAS: clasp push --force
-    else Cloud Build
-        GH->>CB: Trigger build
-        CB->>CB: Run cloudbuild.yaml
-        CB->>GAS: clasp push --force
+    GH->>GHA: Trigger workflow
+    GHA->>GHA: Check branch
+    GHA->>GHA: Authenticate to GCP
+    GHA->>CB: Submit build
+    
+    CB->>SM: Fetch credentials
+    SM-->>CB: Return clasp auth
+    CB->>CB: Setup environment
+    CB->>CB: Install dependencies
+    
+    loop For each project
+        CB->>CB: Check .clasp.json
+        CB->>GAS: clasp push
+        GAS-->>CB: Deployment result
     end
     
-    GAS-->>Dev: Scripts updated
+    CB->>CB: Generate summary
+    CB-->>GHA: Build status
+    GHA-->>GH: Update commit status
+    GH-->>Dev: Notification
 ```
 
-## Component Details
-
-### File Watcher (`fswatch`)
-- Monitors: `*.gs`, `*.json`, `*.html`, `*.js` files
-- Excludes: `.git`, `node_modules`, `*.log`
-- Location: `/apps` directory
-
-### Auto-sync Script
-- **Debounce**: 10-second delay after last change
-- **Actions**: 
-  1. Stage changes
-  2. Create descriptive commit
-  3. Push to GitHub
-  4. Deploy to Apps Script
-
-### Deployment Methods
-
-#### Local Deployment (Current)
-- Uses `deploy-local.sh`
-- Requires local clasp authentication
-- Direct push to Google Apps Script
-
-#### Cloud Build (Future)
-- Uses `cloudbuild.yaml`
-- Runs in Google Cloud
-- Requires fixing Docker permissions
-
-## Error Handling
+## Error Handling Flow
 
 ```mermaid
 flowchart TD
     A[Deployment Start] --> B{Check Auth}
-    B -->|Failed| C[Log Error]
-    B -->|Success| D{Deploy Project}
-    D -->|Failed| E[Log & Continue]
-    D -->|Success| F[Update Counter]
-    F --> G{More Projects?}
-    G -->|Yes| D
-    G -->|No| H[Generate Report]
-    H --> I{All Success?}
-    I -->|Yes| J[Exit 0]
-    I -->|No| K[Exit 1]
+    B -->|Failed| C[Log Auth Error]
+    B -->|Success| D{Check Projects}
+    
+    D -->|No Projects| E[Log Warning]
+    D -->|Projects Found| F[Start Deployment]
+    
+    F --> G{Deploy Project}
+    G -->|Success| H[Update Success Count]
+    G -->|Failed| I[Update Failed Count]
+    
+    H --> J{More Projects?}
+    I --> J
+    J -->|Yes| G
+    J -->|No| K[Generate Report]
+    
+    K --> L{Check Results}
+    L -->|All Success| M[Exit Success]
+    L -->|Some Failed| N[Exit with Error]
+    
+    C --> O[Exit with Error]
+    E --> P[Exit with Warning]
     
     style A fill:#f9f,stroke:#333,stroke-width:2px
-    style J fill:#9f9,stroke:#333,stroke-width:2px
-    style K fill:#f99,stroke:#333,stroke-width:2px
+    style M fill:#9f9,stroke:#333,stroke-width:2px
+    style N fill:#f99,stroke:#333,stroke-width:2px
+    style O fill:#f99,stroke:#333,stroke-width:2px
+    style P fill:#ff9,stroke:#333,stroke-width:2px
 ```
 
 ## Deployment Status Indicators
@@ -124,3 +212,6 @@ flowchart TD
 | 📦 | Processing project |
 | 🔐 | Authentication check |
 | 📊 | Summary report |
+| 🔧 | Setup/Configuration |
+| 📥 | Installing dependencies |
+| 🎉 | All deployments successful |

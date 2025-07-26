@@ -1,9 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/sheets/Content Generation/sheets-create-markdown.gs: line 107, col 10, Warning - 'generateMarkdownFiles' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/sheets/Content Generation/sheets-create-markdown.gs: line 370, col 7, Error - Unexpected lexical declaration in case block. (no-case-declarations)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/sheets/Content Generation/sheets-create-markdown.gs: line 527, col 10, Warning - 'toSentenceCase' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/sheets/Content Generation/sheets-create-markdown.gs: line 542, col 10, Warning - 'onOpen' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/sheets/Content Generation/sheets-create-markdown.gs: line 558, col 10, Warning - 'createConfigTemplate' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/sheets/Content Generation/sheets-create-markdown.gs: line 606, col 10, Warning - 'createSampleDataSheet' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/sheets/Content Generation/sheets-create-markdown.gs: line 658, col 10, Warning - 'formatAllSheets' is defined but never used. (no-unused-vars)
-
-7 problems

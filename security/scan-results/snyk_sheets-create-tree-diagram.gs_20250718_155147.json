@@ -1,5 +1,0 @@
-{
-  "ok": false,
-  "error": "Snyk was unable to find supported files.",
-  "path": "./scripts/sheets/Content Generation/sheets-create-tree-diagram.gs"
-}

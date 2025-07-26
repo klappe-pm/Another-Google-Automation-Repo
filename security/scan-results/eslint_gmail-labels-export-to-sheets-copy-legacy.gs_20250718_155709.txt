@@ -1,3 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Legacy Files/gmail-labels-export-to-sheets-copy-legacy.gs: line 48, col 10, Warning - 'exportGmailLabelsToSheet' is defined but never used. (no-unused-vars)
-
-1 problem

@@ -1,5 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/tasks/Integration Tools/tasks-export-obsidian.gs: line 28, col 10, Warning - 'exportTasksToMarkdown' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/tasks/Integration Tools/tasks-export-obsidian.gs: line 31, col 23, Warning - 'Tasks' is not defined. (no-undef)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/tasks/Integration Tools/tasks-export-obsidian.gs: line 42, col 19, Warning - 'Tasks' is not defined. (no-undef)
-
-3 problems

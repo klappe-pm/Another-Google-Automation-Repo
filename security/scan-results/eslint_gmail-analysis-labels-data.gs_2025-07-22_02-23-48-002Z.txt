@@ -1,6 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Analysis Tools/gmail-analysis-labels-data.gs: line 52, col 10, Warning - 'setupGmailLabelsExport' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Analysis Tools/gmail-analysis-labels-data.gs: line 130, col 10, Warning - 'exportGmailLabelsToSheet' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Analysis Tools/gmail-analysis-labels-data.gs: line 289, col 10, Warning - 'viewCurrentConfiguration' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Analysis Tools/gmail-analysis-labels-data.gs: line 320, col 10, Warning - 'resetConfiguration' is defined but never used. (no-unused-vars)
-
-4 problems

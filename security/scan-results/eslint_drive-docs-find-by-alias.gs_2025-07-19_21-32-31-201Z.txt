@@ -1,6 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/drive/Content Management/drive-docs-find-by-alias.gs: line 1, col 10, Warning - 'findAndPrintDocs' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/drive/Content Management/drive-docs-find-by-alias.gs: line 56, col 8, Warning - 'Drive' is not defined. (no-undef)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/drive/Content Management/drive-docs-find-by-alias.gs: line 69, col 15, Warning - 'Drive' is not defined. (no-undef)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/drive/Content Management/drive-docs-find-by-alias.gs: line 87, col 17, Warning - 'Drive' is not defined. (no-undef)
-
-4 problems

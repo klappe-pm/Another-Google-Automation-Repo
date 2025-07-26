@@ -1,5 +1,0 @@
-{
-  "ok": false,
-  "error": "Snyk was unable to find supported files.",
-  "path": "./scripts/drive/YAML Management/drive-yaml-add-simple.gs"
-}

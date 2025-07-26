@@ -1,3 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/chat/Exports/chat-export-daily-details.gs: line 190, col 34, Error - Parsing error: Unexpected token .
-
-1 problem

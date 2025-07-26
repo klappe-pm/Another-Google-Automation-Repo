@@ -1,5 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Analysis Tools/gmail-metadata-tools.gs: line 19, col 10, Warning - 'markAllEmailsAsRead' is defined but never used. (no-unused-vars)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Analysis Tools/gmail-metadata-tools.gs: line 101, col 14, Error - Unexpected constant condition. (no-constant-condition)
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/gmail/Analysis Tools/gmail-metadata-tools.gs: line 125, col 10, Warning - 'testGmailAccess' is defined but never used. (no-unused-vars)
-
-3 problems

@@ -1,7 +1,0 @@
-
-In ./fix-repo-quality.sh line 67:
-COMPLIANT_FILES=$(find scripts -name "*.gs" -type f | grep -E "^scripts/[^/]+/[a-z]+-[a-z]+-[a-z-]+\.gs$" | wc -l | tr -d ' ')
-                                                      ^-- SC2126 (style): Consider using 'grep -c' instead of 'grep|wc -l'.
-
-For more information:
-  https://www.shellcheck.net/wiki/SC2126 -- Consider using 'grep -c' instead ...

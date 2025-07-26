@@ -1,3 +1,0 @@
-/Users/kevinlappe/Documents/GitHub/Workspace Automation/scripts/drive/Content Management/drive-index-all-files.gs: line 29, col 10, Warning - 'createDriveIndex' is defined but never used. (no-unused-vars)
-
-1 problem
