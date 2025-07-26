@@ -1,0 +1,163 @@
+# Google Apps Script Inventory
+
+Generated: 2025-07-26T19:28:37.275Z
+
+## Full Script List
+
+| Script | Service | Action | Target | Type |
+|--------|---------|--------|--------|------|
+| assist-calendar-events | calendar | assist | calendar-events | standard |
+| embed-content-block | docs | embed | content-block | standard |
+| export-docs-comments-sheets | docs | export | docs-comments-sheets | standard |
+| export-docs-file-list-to-sheets | docs | export | docs-file-list-to-sheets | standard |
+| format-content | docs | format | content | standard |
+| format-documents | docs | format | documents | standard |
+| markdown-export-docs-advanced | docs | export | docs-advanced | markdown |
+| markdown-export-docs-alt | docs | export | docs-alt | markdown |
+| markdown-export-docs-obsidian | docs | export | docs-obsidian | markdown |
+| markdown-export-docs | docs | export | docs | markdown |
+| clean-email-headers | drive | clean | email-headers | standard |
+| convert-shortcuts | drive | convert | shortcuts | standard |
+| dedupe-file | drive | dedupe | file | standard |
+| export-emails | drive | export | emails | standard |
+| find-docs-by-alias | drive | find | docs-by-alias | standard |
+| folderids | drive | folderids |  | standard |
+| generate-file-tree | drive | generate | file-tree | standard |
+| generate-folder-tree | drive | generate | folder-tree | standard |
+| index-all-files | drive | index | all-files | standard |
+| index-docs-files | drive | index | docs-files | standard |
+| index-drive-files | drive | index | drive-files | standard |
+| index-files-v10-legacy | drive | index | files-v10 | legacy |
+| index-sheets-folders-files | drive | index | sheets-folders-files | standard |
+| list-folder-ids | drive | list | folder-ids | standard |
+| markdown-add-yaml-frontmatter-bulk | drive | add | yaml-frontmatter-bulk | markdown |
+| markdown-add-yaml-frontmatter-multi | drive | add | yaml-frontmatter-multi | markdown |
+| markdown-categorize-yaml-folders | drive | categorize | yaml-folders | markdown |
+| markdown-create-files-from-rows | drive | create | files-from-rows | markdown |
+| markdown-create-from-sheets | drive | create | from-sheets | markdown |
+| markdown-create-weekly-daily-notes-legacy | drive | create | weekly-daily-notes | legacy |
+| markdown-create-weekly-daily-notes | drive | create | weekly-daily-notes | markdown |
+| markdown-export-calendar-daily | drive | export | calendar-daily | markdown |
+| markdown-export-calendar-events | drive | export | calendar-events | markdown |
+| markdown-export-calendar-meetings | drive | export | calendar-meetings | markdown |
+| markdown-export-files | drive | export | files | markdown |
+| markdown-export-tasklist-yaml | drive | export | tasklist-yaml | markdown |
+| markdown-export-tasks-obsidian | drive | export | tasks-obsidian | markdown |
+| markdown-export-tasks-todos | drive | export | tasks-todos | markdown |
+| markdown-export-tasks-yaml | drive | export | tasks-yaml | markdown |
+| markdown-export-todos | drive | export | todos | markdown |
+| markdown-find-yaml-files | drive | find | yaml-files | markdown |
+| markdown-find-yaml | drive | find | yaml | markdown |
+| markdown-fix-formatting | drive | fix | formatting | markdown |
+| markdown-generate-from-sheets | drive | generate | from-sheets | markdown |
+| markdown-generate-weekly-notes | drive | generate | weekly-notes | markdown |
+| markdown-generate-yaml-categories | drive | generate | yaml-categories | markdown |
+| markdown-index-comprehensive | drive | index | comprehensive | markdown |
+| markdown-index-files-legacy | drive | index | files | legacy |
+| markdown-index-files | drive | index | files | markdown |
+| markdown-index-folders-files | drive | index | folders-files | markdown |
+| markdown-index-tree-legacy | drive | index | tree | legacy |
+| markdown-lint-files | drive | lint | files | markdown |
+| markdown-lint-line-spacing | drive | lint | line-spacing | markdown |
+| markdown-process-blank-links | drive | process | blank-links | markdown |
+| markdown-process-yaml | drive | process | yaml | markdown |
+| markdown-update-metadata | drive | update | metadata | markdown |
+| process-main | drive | process | main | standard |
+| analyze-email-stats | gmail | analyze | email-stats | standard |
+| analyze-emails-24months | gmail | analyze | emails-24months | standard |
+| analyze-label-statistics | gmail | analyze | label-statistics | standard |
+| analyze-label-stats | gmail | analyze | label-stats | standard |
+| analyze-labeled-unlabeled | gmail | analyze | labeled-unlabeled | standard |
+| analyze-labels-data | gmail | analyze | labels-data | standard |
+| analyze-labels-statistics-v1 | gmail | analyze | labels-statistics | versioned |
+| analyze-labels-statistics | gmail | analyze | labels-statistics | standard |
+| analyze-labels | gmail | analyze | labels | standard |
+| analyze-metadata-24months | gmail | analyze | metadata-24months | standard |
+| analyze-metadata | gmail | analyze | metadata | standard |
+| append-date-received | gmail | append | date-received | standard |
+| append-time-received | gmail | append | time-received | standard |
+| count-labels | gmail | count | labels | standard |
+| count-unread-emails | gmail | count | unread-emails | standard |
+| count-unread-labels | gmail | count | unread-labels | standard |
+| create-album-hyperlinks | gmail | create | album-hyperlinks | standard |
+| create-labels | gmail | create | labels | standard |
+| dedupe-rows-v1 | gmail | dedupe | rows | versioned |
+| dedupe-rows-v2 | gmail | dedupe | rows | versioned |
+| dedupe-rows | gmail | dedupe | rows | standard |
+| delete-all-labels-utility | gmail | delete | all-labels-utility | standard |
+| delete-all-labels | gmail | delete | all-labels | standard |
+| export-cal-v1 | gmail | export | cal | versioned |
+| export-cal | gmail | export | cal | standard |
+| export-event | gmail | export | event | standard |
+| export-gmail-labels-to-sheets | gmail | export | gmail-labels-to-sheets | standard |
+| export-gmail-to-pdf | gmail | export | gmail-to-pdf | standard |
+| export-gmail-weekly-threads | gmail | export | gmail-weekly-threads | standard |
+| export-labels-data | gmail | export | labels-data | standard |
+| export-labels-gmail | gmail | export | labels-gmail | standard |
+| export-lyft-uber-emails | gmail | export | lyft-uber-emails | standard |
+| extract-date-ranges-lyft-and-uber | gmail | extract | date-ranges-lyft-and-uber | standard |
+| extract-gmail-snippets | gmail | extract | gmail-snippets | standard |
+| extract-gmail-threadid | gmail | extract | gmail-threadid | standard |
+| extract-lyft-and-uber-data-v1 | gmail | extract | lyft-and-uber-data | versioned |
+| extract-lyft-and-uber-data-v2 | gmail | extract | lyft-and-uber-data | versioned |
+| extract-lyft-and-uber-data-v3 | gmail | extract | lyft-and-uber-data | versioned |
+| extract-lyft-and-uber-data | gmail | extract | lyft-and-uber-data | standard |
+| extract-subject | gmail | extract | subject | standard |
+| index-sheets-tabs-moc | gmail | index | sheets-tabs-moc | standard |
+| insert-row-url-to-toc | gmail | insert | row-url-to-toc | standard |
+| mark-all-read | gmail | mark | all-read | standard |
+| mark-emails-read | gmail | mark | emails-read | standard |
+| markdown-export-advanced-sheets | gmail | export | advanced-sheets | markdown |
+| markdown-export-basic-sheets | gmail | export | basic-sheets | markdown |
+| markdown-export-docs-pdf | gmail | export | docs-pdf | markdown |
+| markdown-export-emails-pdf-sheets | gmail | export | emails-pdf-sheets | markdown |
+| markdown-export-emails | gmail | export | emails | markdown |
+| markdown-export-gmail-pdf | gmail | export | gmail-pdf | markdown |
+| markdown-export-pdf | gmail | export | pdf | markdown |
+| markdown-gmail-analysis-yaml | gmail | gmail | analysis-yaml | markdown |
+| process-emails | gmail | process | emails | standard |
+| process-labels-by-date | gmail | process | labels-by-date | standard |
+| process-main | gmail | process | main | standard |
+| processor-gmail-labels-date | gmail | processor | gmail-labels-date | standard |
+| rename-tabs | gmail | rename | tabs | standard |
+| send-gmail-labels-auto | gmail | send | gmail-labels-auto | standard |
+| send-gmail-labels-create | gmail | send | gmail-labels-create | standard |
+| send-gmail-labels-maker | gmail | send | gmail-labels-maker | standard |
+| sort-sheets-columns | gmail | sort | sheets-columns | standard |
+| sort-sheets-tabs-alpha | gmail | sort | sheets-tabs-alpha | standard |
+| sort-sheets-tabs-alphabetically | gmail | sort | sheets-tabs-alphabetically | standard |
+| update-insert-or-sheets-row-url-to-toc | gmail | update | insert-or-sheets-row-url-to-toc | standard |
+| analyze-duration-distance | sheets | analyze | duration-distance | standard |
+| analyze-events-duration-distance | sheets | analyze | events-duration-distance | standard |
+| automate-date-checkboxes | sheets | automate | date-checkboxes | standard |
+| combine-csv-files | sheets | combine | csv-files | standard |
+| create-sheets-tabs-tree-diagram | sheets | create | sheets-tabs-tree-diagram | standard |
+| create-sheets-tree-diagram | sheets | create | sheets-tree-diagram | standard |
+| dedupe-rows | sheets | dedupe | rows | standard |
+| export-calendar-after-date | sheets | export | calendar-after-date | standard |
+| export-calendar-date-range | sheets | export | calendar-date-range | standard |
+| export-calendar-distance-time | sheets | export | calendar-distance-time | standard |
+| export-calendar | sheets | export | calendar | standard |
+| export-chat-daily-details | sheets | export | chat-daily-details | standard |
+| export-emails | sheets | export | emails | standard |
+| export-event-gcp-distance-time | sheets | export | event-gcp-distance-time | standard |
+| export-photos-and-videos | sheets | export | photos-and-videos | standard |
+| format-sheets-comprehensive-styling | sheets | format | sheets-comprehensive-styling | standard |
+| index-sheets-general | sheets | index | sheets-general | standard |
+| index-sheets | sheets | index | sheets | standard |
+| process-sheets-date-automation | sheets | process | sheets-date-automation | standard |
+| sort-sheets-utility-tab | sheets | sort | sheets-utility-tab | standard |
+| style-tabs | sheets | style | tabs | standard |
+| export-tasks-obsidian | tasks | export | tasks-obsidian | standard |
+| list-task-ids | tasks | list | task-ids | standard |
+| add-yaml-frontmatter | utility | add | yaml-frontmatter | standard |
+| check-api-key | utility | check | api-key | standard |
+| fetch-api-key | utility | fetch | api-key | standard |
+| update-obsidian-vault-config | utility | update | obsidian-vault-config | standard |
+
+## Script Naming Patterns
+
+- **Action-Noun**: Standard format (e.g., export-labels, create-folders)
+- **Markdown Prefix**: Scripts that create/modify markdown start with "markdown-"
+- **Version Suffix**: Legacy versions indicated with -v1, -v2, etc.
+- **Legacy Suffix**: Old implementations marked with -legacy

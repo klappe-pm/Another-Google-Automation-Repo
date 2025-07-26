@@ -1,53 +1,187 @@
-# Workspace Automation
+# Google Workspace Automation
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Google Apps Script](https://img.shields.io/badge/Google%20Apps%20Script-4285F4?logo=google&logoColor=white)](https://developers.google.com/apps-script)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)](https://nodejs.org)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/klappe-pm/Another-Google-Automation-Repo/pulls)
+[![Scripts: 148](https://img.shields.io/badge/Scripts-148-blue)](docs/SCRIPT_CATALOG.md)
+[![Services: 7](https://img.shields.io/badge/Services-7-green)](docs/SCRIPT_INVENTORY.md)
 
-A comprehensive Google Apps Script automation framework with integrated CI/CD pipeline for Google Workspace services.
+A comprehensive collection of 148 professionally documented Google Apps Script automation tools for Google Workspace, organized by service with standardized naming conventions and full CI/CD pipeline support.
 
-## Problem Statement
+## 📋 Overview
 
-Managing Google Apps Script projects traditionally requires manual copying between the web editor and version control, leading to:
-- Lack of proper version control and collaboration
-- No automated testing or deployment processes
-- Difficulty maintaining consistency across multiple scripts
-- Limited visibility into script dependencies and permissions
+This repository contains a complete automation framework for Google Workspace services:
+- **148 Scripts** across 7 services
+- **Standardized** action-noun naming convention
+- **Comprehensive** documentation with inline comments
+- **Automated** deployment via clasp CLI
+- **Professional** code organization and formatting
 
-## Solution
+## 🚀 Quick Start
 
-This repository provides a complete development framework that bridges local development with Google Apps Script deployment, offering:
-- Full Git-based version control for all scripts
-- Automated deployment pipeline from local files to Google Apps Script
-- Standardized project structure across 10 Google Workspace services
-- Comprehensive API permission management
-- Real-time file watching with automatic synchronization
-
-## Development Tools
-
-This project includes comprehensive development tools for Google Apps Scripts:
-
-- **Smart Formatter**: Intelligently generates documentation from code analysis
-- **GAS Linter**: Validates scripts against style guidelines
-- **Script Catalogs**: Tracks documentation coverage and script inventory
-- **Batch Refactoring**: Process multiple scripts systematically
-- **Git Integration**: Pre-commit hooks and automated checks
-
-See [GAS Development Tools Documentation](docs/GAS_DEVELOPMENT_TOOLS.md) for detailed usage.
-
-### Quick Start
 ```bash
-# Set up development environment
+# Clone the repository
+git clone https://github.com/yourusername/workspace-automation.git
+cd workspace-automation
+
+# Install dependencies
 npm install
-npm run setup:git-hooks
 
-# Format and lint scripts
-npm run format:smart:all    # Smart format all scripts
-npm run lint:all           # Check for issues
-npm run gas:fix            # Fix all issues
+# Deploy all scripts
+./automation/deploy-local.sh
 
-# Generate catalogs
+# Deploy specific service
+./automation/deploy-local.sh gmail
+```
+
+## 📁 Repository Structure
+
+```
+workspace-automation/
+├── apps/                    # Google Apps Script projects (148 scripts)
+│   ├── calendar/           # Calendar automation (1 script)
+│   ├── docs/              # Document automation (9 scripts)
+│   ├── drive/             # Drive automation (47 scripts)
+│   ├── gmail/             # Gmail automation (64 scripts)
+│   ├── sheets/            # Sheets automation (21 scripts)
+│   ├── tasks/             # Tasks automation (2 scripts)
+│   └── utility/           # Utility scripts (4 scripts)
+├── automation/             # Deployment and development tools
+│   ├── deploy-local.sh    # Local deployment script
+│   └── dev-tools/         # Development utilities
+├── config/                # Configuration files
+├── docs/                  # Documentation
+└── logs/                  # Deployment logs
+```
+
+## 🛠️ Key Features by Service
+
+### Gmail Automation (64 scripts)
+- **Email Analysis**: Statistics, patterns, metadata extraction
+- **Label Management**: Auto-labeling, bulk operations, organization
+- **Export Functions**: PDF, Markdown, Sheets, multiple formats
+- **Bulk Processing**: Mark read, delete, categorize
+
+### Drive Automation (47 scripts)
+- **File Management**: Indexing, deduplication, organization
+- **Markdown Operations**: Generation, formatting, YAML frontmatter
+- **Folder Operations**: Tree generation, bulk operations
+- **Content Processing**: File conversion, metadata updates
+
+### Sheets Automation (21 scripts)
+- **Data Processing**: Analysis, formatting, validation
+- **Import/Export**: CSV operations, cross-service integration
+- **Automation**: Date handling, conditional formatting
+- **Report Generation**: Statistics, summaries, visualizations
+
+### Calendar Automation (1 script)
+- **Event Analysis**: Duration and distance tracking
+- **Data Export**: Comprehensive event data extraction
+
+### Docs Automation (9 scripts)
+- **Content Management**: Formatting, embedding, organization
+- **Export Functions**: Markdown conversion, comment extraction
+- **Document Processing**: Bulk operations, metadata handling
+
+### Tasks Automation (2 scripts)
+- **Task Management**: List operations, bulk processing
+- **Export Functions**: Various format conversions
+
+### Utility Scripts (4 scripts)
+- **Configuration**: API keys, vault configs
+- **Processing**: YAML handling, data transformation
+
+## 📚 Documentation
+
+- **[Script Catalog](docs/SCRIPT_CATALOG.md)** - Complete list with descriptions
+- **[Script Inventory](docs/SCRIPT_INVENTORY.md)** - Detailed categorization
+- **[Migration Summary](docs/MIGRATION_SUMMARY.md)** - Recent standardization details
+- **[Setup Guide](docs/SETUP.md)** - Installation instructions
+- **[Development Guide](docs/DEVELOPMENT.md)** - Contributing guidelines
+- **[API Permissions](docs/API_PERMISSIONS.md)** - Required Google APIs
+
+## 🔧 Development Standards
+
+### Naming Convention
+- **Action-Noun Format**: `export-labels`, `create-folders`
+- **Markdown Prefix**: `markdown-` for markdown operations
+- **No Service Prefix**: Folder structure indicates service
+
+### Documentation Standards
+Every script includes:
+```javascript
+/**
+ * Script Name: [filename]
+ * 
+ * Script Summary:
+ * [One-line description]
+ * 
+ * Script Purpose:
+ * - [Primary purpose]
+ * - [Secondary purposes]
+ * 
+ * Script Steps:
+ * 1. [Step one]
+ * 2. [Step two]
+ * 
+ * Script Functions:
+ * - functionName(): [Description]
+ * 
+ * Google Services:
+ * - ServiceName: [Usage description]
+ */
+```
+
+### Code Organization
+- Functions sorted alphabetically
+- Main/Helper function separation
+- Consistent formatting
+- JSDoc inline comments
+
+## 🚀 Deployment Options
+
+### Local Deployment
+```bash
+# Deploy all scripts
+./automation/deploy-local.sh
+
+# Deploy with options
+./automation/deploy-local.sh --service gmail --env production
+```
+
+### Cloud Build Integration
+```bash
+# Submit to Cloud Build
+gcloud builds submit --config=cloudbuild.yaml
+
+# Monitor deployment
+gcloud builds list --limit=5
+```
+
+## 🤝 Contributing
+
+1. **Follow Standards**: Use action-noun naming
+2. **Document Thoroughly**: Include all required headers
+3. **Test Locally**: Verify before submitting
+4. **Update Catalogs**: Keep documentation current
+
+See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for detailed guidelines.
+
+## 📊 Project Statistics
+
+- **Total Scripts**: 148
+- **Services Covered**: 7
+- **Functions Documented**: 924
+- **Last Updated**: July 2025
+- **Code Standards**: 100% compliance
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+---
+
+**Built with** ❤️ **using Google Apps Script and Node.js**
 npm run catalog:all        # Generate script inventories
 ```
 
