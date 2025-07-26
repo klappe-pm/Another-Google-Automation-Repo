@@ -1,0 +1,19 @@
+# Include everything by default
+!*
+
+# Exclude node_modules and other build artifacts
+node_modules/
+.git/
+.gitignore
+.DS_Store
+*.log
+*.tmp
+*.temp
+scripts-backup-*/
+
+# Ensure .clasp.json files are included
+!.clasp.json
+!apps/**/.clasp.json
+!apps/**/*.json
+!apps/**/*.gs
+!apps/**/*.js

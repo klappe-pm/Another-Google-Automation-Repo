@@ -40,7 +40,7 @@ jobs:
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@v2
     - name: Dispatch Cloud Build
-      run: gcloud builds submit --config .github/workflows/cloudbuild.yml
+      run: gcloud builds submit --config cloudbuild.yaml --project workspace-automation-466800
 
   set-success-status:
     runs-on: ubuntu-latest
