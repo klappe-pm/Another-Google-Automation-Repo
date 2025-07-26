@@ -12,9 +12,21 @@ graph TB
         IDE[VS Code / IDE]
         GIT[Git Repository]
         CLASP[Clasp CLI]
+        DEVTOOLS[Development Tools]
         DEV --> IDE
         IDE --> GIT
         IDE --> CLASP
+        IDE --> DEVTOOLS
+        
+        subgraph "Dev Tools Suite"
+            FORMATTER[Smart Formatter]
+            LINTER[GAS Linter]
+            CATALOG[Catalog Generator]
+            REFACTOR[Batch Refactor]
+            FORMATTER --> LINTER
+            LINTER --> CATALOG
+        end
+        DEVTOOLS --> FORMATTER
     end
 
     %% GitHub Environment
@@ -23,9 +35,18 @@ graph TB
         MAIN[main branch]
         PR[Pull Requests]
         ACTIONS[GitHub Actions]
+        HOOKS[Git Hooks]
         REPO --> MAIN
         REPO --> PR
         REPO --> ACTIONS
+        REPO --> HOOKS
+        
+        subgraph "CI/CD Workflows"
+            LINTCI[gas-lint.yml]
+            CATALOGCI[gas-catalog.yml]
+            FORMATCI[gas-format-check.yml]
+        end
+        ACTIONS --> LINTCI
     end
 
     %% Google Cloud Platform
@@ -108,6 +129,12 @@ graph TB
     TRIGGER --> PIPELINE
     PIPELINE --> SECRETS
     PIPELINE --> REGISTRY
+    
+    %% Quality Enforcement Flow
+    FORMATTER --> GIT
+    LINTER --> HOOKS
+    HOOKS --> GIT
+    CATALOG --> DOCS
 
     %% Deployment Flow
     PIPELINE --> CALENDAR_PROJ
@@ -188,6 +215,8 @@ graph TB
 - **Secret Management**: OAuth tokens stored securely in Google Cloud Secret Manager
 - **Project Mapping**: Each local directory maps directly to a specific Google Apps Script project
 - **Service Integration**: Each Apps Script project connects to its corresponding Google Workspace API
+- **Development Tools**: Comprehensive suite for formatting, linting, and cataloging scripts
+- **Quality Gates**: Pre-commit hooks and CI/CD workflows ensure code quality
 
 ### Data Flow Patterns
 - **Solid Lines**: Direct execution and deployment flows

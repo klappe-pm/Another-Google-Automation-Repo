@@ -10,16 +10,10 @@ graph TD
     ROOT --> AUTOMATION[automation/]
     ROOT --> CONFIG[config/]
     ROOT --> DOCS[docs/]
-    ROOT --> TOOLS[tools/]
-    ROOT --> SECURITY[security/]
-    ROOT --> DIAGRAMS[diagrams/]
     ROOT --> LOGS[logs/]
-    ROOT --> REPORTS[reports/]
     ROOT --> GITHUB[.github/]
-    ROOT --> BUILDER[builder/]
-    ROOT --> ARCHIVE[archive/]
-    ROOT --> TEMPLATES[templates/]
-    ROOT --> STANDARDS[standards/]
+    ROOT --> GITHOOKS[.githooks/]
+    ROOT --> NODE[node_modules/]
     
     APPS --> CALENDAR[calendar/<br/>Calendar automation scripts]
     APPS --> CHAT[chat/<br/>Chat export scripts]
@@ -32,11 +26,20 @@ graph TD
     APPS --> TASKS[tasks/<br/>Task management]
     APPS --> UTILITY[utility/<br/>Helper functions]
     
-    AUTOMATION --> AUTOSYNC[auto-sync-full.sh]
-    AUTOMATION --> DEPLOYLOCAL[deploy-local.sh]
-    AUTOMATION --> TESTDEPLOY[test-deployment.sh]
-    AUTOMATION --> SYNCCONTROL[sync-control.sh]
-    AUTOMATION --> COMMITPUSH[auto-commit-push.sh]
+    AUTOMATION --> SHELLSCRIPTS[shell-scripts/]
+    AUTOMATION --> DEVTOOLS[dev-tools/]
+    
+    SHELLSCRIPTS --> AUTOSYNC[auto-sync-full.sh]
+    SHELLSCRIPTS --> DEPLOYLOCAL[deploy-local.sh]
+    SHELLSCRIPTS --> TESTDEPLOY[test-deployment.sh]
+    SHELLSCRIPTS --> SYNCCONTROL[sync-control.sh]
+    
+    DEVTOOLS --> GASFORMATTER[gas-formatter.js]
+    DEVTOOLS --> GASFORMATTERSMART[gas-formatter-smart.js]
+    DEVTOOLS --> GASLINTER[gas-linter.js]
+    DEVTOOLS --> GASCATALOG[gas-catalog.js]
+    DEVTOOLS --> SHELLCATALOG[shell-catalog.js]
+    DEVTOOLS --> REFACTORBATCH[gas-refactor-batch.js]
     
     CONFIG --> CLOUDBUILD[cloudbuild.yaml]
     CONFIG --> CLOUDBUILDALT[cloudbuild-nodejs.yaml]
@@ -44,33 +47,30 @@ graph TD
     CONFIG --> PROJECTMAP[project-mapping.json]
     CONFIG --> WATCHERCONF[com.workspace-automation.watcher.plist]
     
-    DOCS --> ARCHITECTURE[architecture/]
-    DOCS --> GUIDES[guides/]
-    DOCS --> MILESTONES[milestones/]
+    DOCS --> DIAGRAMS[diagrams/]
+    DOCS --> STANDARDS[standards/]
     DOCS --> SETUP[setup/]
     DOCS --> REORGANIZATION[reorganization/]
-    DOCS --> README_DOCS[README.md]
+    DOCS --> SECURITY[security/]
+    DOCS --> CATALOG[SCRIPT_CATALOG.md]
+    DOCS --> SHELLCATALOG[SHELL_CATALOG.md]
+    DOCS --> GASDEVTOOLS[GAS_DEVELOPMENT_TOOLS.md]
     
     DIAGRAMS --> ERD[ERD.md]
-    DIAGRAMS --> SYSARCH[SYSTEM_ARCHITECTURE.md]
-    DIAGRAMS --> DEPLOYFLOW[DEPLOYMENT_FLOW.md]
-    DIAGRAMS --> USERFLOWS[USER_FLOWS.md]
-    DIAGRAMS --> DATAFLOW[DATA_FLOW.md]
-    DIAGRAMS --> DATAMODEL[DATA_MODEL.md]
     DIAGRAMS --> ARCHITECTURE_DIAG[ARCHITECTURE.md]
     DIAGRAMS --> REPOSTRUCTURE[REPOSITORY_STRUCTURE.md]
     
+    STANDARDS --> GASSTYLE[gas-style-guide.md]
+    STANDARDS --> GASREFACTOR[gas-refactoring-plan.md]
+    STANDARDS --> CODINGSTANDARDS[coding-standards.md]
+    
     GITHUB --> WORKFLOWS[workflows/]
-    WORKFLOWS --> DEPLOY[deploy.yml]
-    WORKFLOWS --> CODEQUALITY[code-quality.yml]
+    WORKFLOWS --> GASLINTCI[gas-lint.yml]
+    WORKFLOWS --> GASCATALOGCI[gas-catalog.yml]
+    WORKFLOWS --> GASFORMATCHECK[gas-format-check.yml]
     
-    BUILDER --> DOCKERFILE[Dockerfile]
-    BUILDER --> SEQUENCE[SEQUENCE_FLOW.md]
-    
-    SECURITY --> SECURITYREVIEW[SECURITY_REVIEW.md]
-    SECURITY --> SECURITYFIXES[SECURITY_FIXES_APPLIED.md]
-    SECURITY --> SCANRESULTS[scan-results/]
-    SECURITY --> SNYK[Snyk/]
+    GITHOOKS --> PRECOMMIT[pre-commit]
+    GITHOOKS --> POSTCOMMIT[post-commit]
     
     style ROOT fill:#f9f,stroke:#333,stroke-width:4px
     style APPS fill:#bbf,stroke:#333,stroke-width:2px
@@ -79,7 +79,8 @@ graph TD
     style DOCS fill:#ffb,stroke:#333,stroke-width:2px
     style DIAGRAMS fill:#fbb,stroke:#333,stroke-width:2px
     style GITHUB fill:#bff,stroke:#333,stroke-width:2px
-    style SECURITY fill:#faa,stroke:#333,stroke-width:2px
+    style DEVTOOLS fill:#fcf,stroke:#333,stroke-width:2px
+    style GITHOOKS fill:#cff,stroke:#333,stroke-width:2px
 ```
 
 ## Apps Directory Structure

@@ -14,7 +14,7 @@ Thank you for your interest in contributing to the Workspace Automation project!
 
 ```
 Workspace Automation/
-├── projects/           # Service-specific Google Apps Script projects
+├── apps/              # Service-specific Google Apps Script projects
 │   ├── gmail/         # Gmail automation scripts
 │   ├── drive/         # Google Drive scripts  
 │   ├── calendar/      # Calendar management
@@ -22,10 +22,18 @@ Workspace Automation/
 │   ├── sheets/        # Spreadsheet automation
 │   ├── tasks/         # Task management
 │   ├── chat/          # Google Chat integration
+│   ├── photos/        # Google Photos integration
+│   ├── slides/        # Google Slides automation
 │   └── utility/       # General utilities
-├── tools/             # Development and deployment tools
+├── automation/        # Development and deployment tools
+│   ├── shell-scripts/ # Deployment and sync scripts
+│   └── dev-tools/     # Formatting, linting, cataloging
 ├── .github/           # CI/CD workflows and templates
+├── .githooks/         # Git hooks for quality enforcement
 └── docs/              # Documentation
+    ├── diagrams/      # Architecture diagrams
+    ├── standards/     # Coding standards and style guides
+    └── setup/         # Setup and configuration guides
 ```
 
 ## 🎯 Script Naming Convention

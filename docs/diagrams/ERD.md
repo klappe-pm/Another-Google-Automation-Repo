@@ -8,15 +8,20 @@ erDiagram
     PROJECT ||--|| CONFIG : has
     PROJECT ||--o{ DEPENDENCY : requires
     PROJECT ||--o{ API_PERMISSION : needs
+    PROJECT ||--|| DOCUMENTATION : has
     
     SCRIPT ||--o{ FUNCTION : defines
     SCRIPT ||--o{ TRIGGER : may_have
+    SCRIPT ||--|| QUALITY_METRICS : tracked_by
     
     DEPLOYMENT ||--|| PROJECT : deploys
     DEPLOYMENT ||--o{ BUILD_LOG : generates
     
     USER ||--o{ DEPLOYMENT : initiates
     USER ||--o{ PROJECT : manages
+    
+    QUALITY_METRICS ||--o{ LINT_ISSUE : contains
+    DOCUMENTATION ||--o{ SETUP_INSTRUCTION : includes
     
     PROJECT {
         string project_id PK
@@ -99,6 +104,47 @@ erDiagram
         string email
         string role
         datetime last_login
+    }
+    
+    DOCUMENTATION {
+        string doc_id PK
+        string project_id FK
+        string script_id FK
+        string title
+        string purpose
+        text script_summary
+        json setup_instructions
+        json key_features
+        datetime created_at
+        datetime updated_at
+        integer doc_score
+    }
+    
+    QUALITY_METRICS {
+        string metrics_id PK
+        string script_id FK
+        integer documentation_score
+        integer lint_score
+        boolean has_header
+        boolean has_setup
+        datetime last_checked
+    }
+    
+    LINT_ISSUE {
+        string issue_id PK
+        string metrics_id FK
+        string severity
+        string rule
+        string message
+        integer line_number
+    }
+    
+    SETUP_INSTRUCTION {
+        string instruction_id PK
+        string doc_id FK
+        integer step_number
+        string instruction_text
+        boolean is_required
     }
 ```
 

@@ -3,7 +3,7 @@
 This file contains important information for Claude AI to understand the project context and common tasks.
 
 ## Project Overview
-This is a Google Apps Script automation project that deploys multiple Apps Script projects to Google using the clasp CLI tool.
+This is a Google Apps Script automation project that deploys multiple Apps Script projects to Google using the clasp CLI tool. The project includes comprehensive development tools for formatting, linting, and cataloging scripts to ensure code quality and documentation standards.
 
 ## Key Commands
 
@@ -15,8 +15,11 @@ This is a Google Apps Script automation project that deploys multiple Apps Scrip
 # Deploy a specific project
 ./automation/deploy-local.sh calendar
 
-# Run tests
-npm test
+# Development tools
+npm run format:smart:all   # Smart format all scripts
+npm run lint:all          # Lint all scripts
+npm run catalog:all       # Generate catalogs
+npm run gas:fix          # Fix all issues
 ```
 
 ### Cloud Build
@@ -65,9 +68,15 @@ The project uses official Node.js images to avoid npm permission issues. The clo
 - `config/cloudbuild-nodejs.yaml` - Working Cloud Build config using official images
 - `.gcloudignore` - Ensures .clasp.json files are included in builds
 - `project-mapping.json` - Maps project names to script IDs
+- `docs/GAS_DEVELOPMENT_TOOLS.md` - Complete guide to development tools
+- `docs/standards/gas-style-guide.md` - Coding standards for Google Apps Scripts
 
 ## Recent Changes (July 2025)
 - Reorganized repository structure: `projects/` → `apps/`
 - Fixed Cloud Build npm permission issues
 - Added Secret Manager permissions for service accounts
 - Created comprehensive documentation structure
+- Added development tools suite (formatter, linter, catalog)
+- Implemented git hooks for quality enforcement
+- Created CI/CD workflows for automated checks
+- Established coding standards and style guides

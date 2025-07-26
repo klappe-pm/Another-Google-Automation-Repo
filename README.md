@@ -68,11 +68,21 @@ workspace-automation/
 │   ├── slides/       # Slides automation scripts
 │   ├── tasks/        # Tasks automation scripts
 │   └── utility/      # Utility scripts
-├── automation/       # Deployment and sync scripts
+├── automation/       # Deployment and development tools
+│   ├── shell-scripts/  # Deployment scripts
+│   └── dev-tools/      # Formatting, linting, cataloging
 ├── config/          # Configuration files
 ├── docs/            # Documentation
-└── diagrams/        # Architecture diagrams
+│   ├── diagrams/    # Architecture diagrams
+│   └── standards/   # Style guides and standards
+└── .githooks/       # Git hooks for quality enforcement
 ```
+
+For detailed architecture diagrams, see:
+- [System Architecture](docs/diagrams/ARCHITECTURE.md)
+- [Repository Structure](docs/diagrams/REPOSITORY_STRUCTURE.md)
+- [Development Workflow](docs/diagrams/DEVELOPMENT_WORKFLOW.md)
+- [Entity Relationships](docs/diagrams/ERD.md)
 
 ### Deployment Flow
 
