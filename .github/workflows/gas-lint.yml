@@ -1,0 +1,55 @@
+name: GAS Lint
+
+on:
+  pull_request:
+    paths:
+      - 'apps/**/*.gs'
+      - 'automation/dev-tools/gas-linter.js'
+      - '.github/workflows/gas-lint.yml'
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'apps/**/*.gs'
+
+jobs:
+  lint:
+    name: Lint Google Apps Scripts
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run GAS linter
+        run: npm run lint:all
+
+      - name: Comment PR
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '❌ **GAS Linting Failed**\n\nPlease fix the linting errors before merging.\n\n```bash\nnpm run lint:fix  # Auto-fix some issues\nnpm run format    # Format scripts\n```\n\nSee the [GAS Style Guide](docs/standards/gas-style-guide.md) for more information.'
+            })
+
+      - name: Upload lint results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-results
+          path: lint-results.json
+          retention-days: 7

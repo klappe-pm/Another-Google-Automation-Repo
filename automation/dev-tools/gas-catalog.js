@@ -109,6 +109,7 @@ class GASCatalog {
     try {
       const content = fs.readFileSync(filePath, 'utf8');
       const relativePath = path.relative(process.cwd(), filePath);
+      const stat = fs.statSync(filePath);
       
       // Extract header information
       const headerMatch = content.match(/\/\*\*([\s\S]*?)\*\//);

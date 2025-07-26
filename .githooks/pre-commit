@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Google Apps Script Pre-commit Hook
+# Runs linting on staged .gs files before commit
+
+echo "🔍 Running GAS linter on staged files..."
+
+# Get list of staged .gs files
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\.gs$' || true)
+
+if [ -z "$STAGED_FILES" ]; then
+  echo "✅ No .gs files to lint"
+  exit 0
+fi
+
+# Check if Node.js is available
+if ! command -v node &> /dev/null; then
+  echo "❌ Node.js is required but not installed"
+  exit 1
+fi
+
+# Run linter on staged files
+LINT_PASSED=true
+for FILE in $STAGED_FILES; do
+  echo "Linting: $FILE"
+  if ! node automation/dev-tools/gas-linter.js "$FILE"; then
+    LINT_PASSED=false
+  fi
+done
+
+if [ "$LINT_PASSED" = false ]; then
+  echo ""
+  echo "❌ Linting failed. Please fix the issues above before committing."
+  echo ""
+  echo "💡 Tips:"
+  echo "  - Run 'npm run lint:fix' to auto-fix some issues"
+  echo "  - Run 'npm run format' to format your scripts"
+  echo "  - See docs/standards/gas-style-guide.md for style guidelines"
+  exit 1
+fi
+
+echo "✅ All .gs files passed linting!"
+exit 0

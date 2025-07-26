@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Google Apps Script Post-commit Hook
+# Updates the script catalog after commits
+
+# Check if any .gs files were committed
+COMMITTED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD | grep '\.gs$' || true)
+
+if [ -z "$COMMITTED_FILES" ]; then
+  exit 0
+fi
+
+echo "📚 Updating script catalog..."
+
+# Check if Node.js is available
+if ! command -v node &> /dev/null; then
+  echo "⚠️  Node.js not found, skipping catalog update"
+  exit 0
+fi
+
+# Generate catalog
+if node automation/dev-tools/gas-catalog.js; then
+  # Check if catalog was modified
+  if git diff --quiet docs/SCRIPT_CATALOG.md 2>/dev/null; then
+    echo "✅ Catalog is up to date"
+  else
+    echo "📝 Catalog updated - remember to commit the changes"
+    echo "   Run: git add docs/SCRIPT_CATALOG.md && git commit -m 'Update script catalog'"
+  fi
+else
+  echo "⚠️  Failed to update catalog"
+fi
