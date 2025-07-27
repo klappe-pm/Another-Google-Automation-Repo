@@ -1,156 +1,130 @@
-# Automation Scripts
+# Workspace Automation Tools
 
-Shell scripts for deployment automation and file synchronization.
+This directory contains automation tools organized by file type and functionality to maintain, develop, and deploy Google Apps Script projects.
 
-## Overview
+## Directory Structure
 
-This directory contains the core automation scripts that enable the CI/CD pipeline for Google Apps Script development. These scripts handle file watching, automatic commits, deployment, and process management.
+### JavaScript Tools (`javascript/`)
+Development tools written in JavaScript for managing Google Apps Script projects.
 
-## Scripts
+#### `javascript/gas-tools/`
+Core Google Apps Script project management tools:
+- **gas-catalog.js** - Catalogs and indexes GAS projects
+- **gas-download-and-clean.js** - Downloads and cleans GAS projects
+- **gas-duplicate-detector.js** - Detects duplicate scripts
+- **gas-project-archiver.js** - Archives GAS projects
+- **gas-project-discovery.js** - Discovers GAS projects
+- **gas-project-downloader.js** - Downloads GAS projects
+- **gas-quick-duplicate-check.js** - Quick duplicate checking
+- **gas-txt-converter.js** - Converts GAS files to text format
+- **deploy-tools.js** - Deployment utilities
+- **gas-refactor-batch.js** - Batch refactoring tools
+- **process-batch-projects.js** - Batch project processing
+- **process-external-scripts.js** - External script processing
+- **setup-projects.js** - Project setup utilities
+- **shell-catalog.js** - Shell script cataloging
+- **update-final-catalogs.js** - Final catalog updates
+- **update-google-samples.js** - Google samples updater
 
-| Script Name | Purpose | Usage |
-|-------------|---------|-------|
-| deploy-local.sh | Deploy all Apps Script projects | `./deploy-local.sh` |
-| auto-sync-full.sh | File watcher with auto-deployment | Called by sync-control.sh |
-| sync-control.sh | Process control for sync operations | `./sync-control.sh {start|stop|status}` |
-| test-deployment.sh | Validate deployment configuration | `./test-deployment.sh` |
-| auto-commit-push.sh | Auto-commit and push changes | Standalone auto-commit tool |
+#### `javascript/formatters/`
+Code formatting and standardization tools:
+- **gas-formatter.js** - Basic GAS code formatter
+- **gas-formatter-smart.js** - Advanced GAS code formatter
+- **apply-smart-formatting.js** - Applies smart formatting
+- **add-function-comments.js** - Adds function documentation
+- **fix-script-headers.js** - Fixes script headers
+- **standardize-script-headers.js** - Standardizes headers
+- **standardize-filenames.js** - Standardizes file names
+- **final-header-fix.js** - Final header fixes
+- **clean-duplicates-final.js** - Final duplicate cleanup
+- **fix-all-naming-issues.js** - Fixes naming issues
+- **fix-script-issues.js** - General script fixes
+- **lint-google-apps-scripts.js** - Lints GAS scripts
 
-## Script Details
+#### `javascript/validators/`
+Code validation and quality assurance tools:
+- **script-validator.js** - Main script validator
+- **gas-linter.js** - GAS-specific linter
+- **analyze-and-verify-scripts.js** - Script analysis
+- **validate-projects.js** - Project validation
+- **validate-google-samples.js** - Google samples validation
+- **validate-updates.js** - Update validation
+- **security-scanner.js** - Security scanning
+- **validation-script-validator.js** - Additional validation
 
-### deploy-local.sh
+#### `javascript/migration-tools/`
+Project migration and version management:
+- **gas-project-migrator.js** - Migrates GAS projects
+- **migrate-projects.js** - General project migration
+- **gas-version-merger.js** - Merges GAS versions
+- **move-standards.js** - Moves standardized files
 
-Deploys all 10 Google Apps Script projects using the local clasp CLI.
+### Shell Scripts (`shell/`)
+Automation scripts written in Bash for system-level operations.
 
-**Features:**
-- Validates clasp authentication
-- Deploys projects in sequence
-- Provides detailed success/failure reporting
-- Creates deployment timestamp logs
+#### `shell/git-automation/`
+Git and repository management:
+- **auto-commit-push.sh** - Automated git commits and pushes
+- **auto-sync-full.sh** - Full repository synchronization
+- **git-sync.sh** - Git synchronization
+- **init-git.sh** - Git repository initialization
+- **quick-sync.sh** - Quick synchronization
+- **sync-control.sh** - Sync control management
+- **cleanup-repo.sh** - Repository cleanup
+- **fix-repo-quality.sh** - Repository quality fixes
+- **migrate-unique-files.sh** - Migrates unique files
+- **remove-duplicate-txt.sh** - Removes duplicate text files
+- **remove-repo-duplicates.sh** - Removes repository duplicates
 
-**Requirements:**
-- clasp CLI installed (`npm install -g @google/clasp`)
-- Authenticated with `clasp login`
+#### `shell/deployment/`
+Deployment and project management:
+- **deploy-local.sh** - Local deployment
+- **test-deployment.sh** - Deployment testing
+- **manage-cloud-build-triggers.sh** - Cloud build management
+- **add-missing-manifests.sh** - Adds missing manifests
+- **update-project-mappings.sh** - Updates project mappings
+- **restore-scripts.sh** - Restores scripts
 
-### auto-sync-full.sh
+#### `shell/security/`
+Security scanning and analysis:
+- **comprehensive-security-scan.sh** - Comprehensive security scanning
+- **scan-all-scripts.sh** - Scans all scripts for security issues
 
-Complete automation pipeline that watches for file changes and automatically commits, pushes, and deploys.
+#### `shell/setup/`
+Environment and project setup:
+- **complete_wif_setup.sh** - Complete WIF setup
+- **setup-auto-push.sh** - Sets up auto-push
+- **setup-git-hooks.sh** - Sets up git hooks
+- **setup-github-actions.sh** - Sets up GitHub Actions
+- **setup-ide.sh** - IDE setup
+- **unified_setup.sh** - Unified setup process
+- **verify-setup.sh** - Verifies setup
+- **verify_config_fixed.sh** - Verifies configuration fixes
 
-**Features:**
-- Monitors file changes in apps/ directory
-- 10-second debounce to batch changes
-- Automatic commit with descriptive messages
-- Push to GitHub main branch
-- Trigger deployment after push
+### Configuration (`config/`)
+Configuration files and settings:
+- **deployment-status.json** - Deployment status tracking
 
-**Watched File Types:**
-- `*.gs` - Google Apps Script files
-- `*.json` - Configuration files
-- `*.html` - HTML templates
-- `*.js` - JavaScript files
+## Usage
 
-### sync-control.sh
+Each subfolder contains specialized tools for different aspects of the automation pipeline:
 
-Process management script for controlling the auto-sync service.
+1. **Development**: Use `javascript/gas-tools/` for project management
+2. **Code Quality**: Use `javascript/formatters/` and `javascript/validators/`
+3. **Migration**: Use `javascript/migration-tools/` for project updates
+4. **System Operations**: Use `shell/` scripts for repository and deployment management
 
-**Commands:**
-- `start` - Run sync in foreground
-- `start-background` - Run sync as background process
-- `stop` - Stop background sync
-- `status` - Check sync status
-- `logs` - View sync logs
-- `test` - Make test change to verify sync
+## Prerequisites
 
-### test-deployment.sh
+- Node.js (for JavaScript tools)
+- Bash (for shell scripts)
+- Google Apps Script CLI (clasp)
+- Git
 
-Pre-flight validation script that checks deployment readiness.
+## License
 
-**Validates:**
-- Google Cloud configuration
-- Required configuration files
-- Apps Script project configurations
-- Cloud Build setup
+MIT License - See main repository LICENSE file
 
-## Usage Examples
+## Contact
 
-### Start Development Session
-
-```bash
-# Start file watcher in foreground (recommended for active development)
-./sync-control.sh start
-
-# Or run in background
-./sync-control.sh start-background
-
-# Check status
-./sync-control.sh status
-```
-
-### Manual Deployment
-
-```bash
-# Deploy all projects immediately
-./deploy-local.sh
-```
-
-### Test Configuration
-
-```bash
-# Validate everything is configured correctly
-./test-deployment.sh
-```
-
-## Configuration
-
-### Environment Variables
-
-Scripts use relative paths and auto-detect the working directory. No environment variables required.
-
-### File Paths
-
-- **Watch Directory**: `apps/`
-- **Log File**: `auto-sync.log`
-- **PID File**: `.sync-pid` (for background mode)
-
-### Timing Configuration
-
-- **Commit Delay**: 10 seconds after last change
-- **No timeout**: Scripts run until manually stopped
-
-## Troubleshooting
-
-### Sync Not Detecting Changes
-
-1. Verify you're editing files in `apps/` directory
-2. Check file extension matches watch patterns
-3. Confirm process is running: `./sync-control.sh status`
-
-### Deployment Failures
-
-1. Run `./test-deployment.sh` to validate configuration
-2. Check `clasp login --status` for authentication
-3. Review deployment logs for specific errors
-
-### Background Process Issues
-
-1. Check if PID file exists: `ls -la .sync-pid`
-2. Verify process: `ps -p $(cat .sync-pid)`
-3. Stop and restart: `./sync-control.sh stop && ./sync-control.sh start-background`
-
-## Best Practices
-
-1. **Use Foreground Mode** for active development to see real-time feedback
-2. **Check Logs** regularly when using background mode
-3. **Test Changes** with small edits first to verify pipeline
-4. **Monitor Quotas** in Google Cloud Console for API limits
-
-## Integration with CI/CD
-
-These scripts integrate with:
-- **GitHub Actions**: Alternative deployment pipeline
-- **Cloud Build**: Production deployment (when Docker issues resolved)
-- **Git Hooks**: Pre-commit validation (if configured)
-
----
-
-Last Updated: July 2025
+Kevin Lappe - kevin@averageintelligence.ai
