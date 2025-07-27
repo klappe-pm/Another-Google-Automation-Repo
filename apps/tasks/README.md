@@ -42,7 +42,7 @@ This service provides automation scripts for Google Tasks operations including t
 // Get all task lists
 function getTaskLists() {
   const taskLists = Tasks.Tasklists.list();
-  
+
   if (taskLists.items && taskLists.items.length > 0) {
     taskLists.items.forEach(taskList => {
       Logger.log('Task List: ' + taskList.title);
@@ -54,7 +54,7 @@ function getTaskLists() {
 // Get tasks from a list
 function getTasks(taskListId) {
   const tasks = Tasks.Tasks.list(taskListId);
-  
+
   if (tasks.items && tasks.items.length > 0) {
     tasks.items.forEach(task => {
       Logger.log('Task: ' + task.title + ' - ' + (task.status || 'needsAction'));
@@ -100,7 +100,7 @@ function testTasksAccess() {
     // This is a basic connectivity test
     const token = ScriptApp.getOAuthToken();
     Logger.log('OAuth token generated for Tasks API');
-    
+
     // Actual API calls require Tasks advanced service
     return true;
   } catch (error) {

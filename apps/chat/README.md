@@ -41,7 +41,7 @@ This service provides automation scripts for Google Chat operations including me
 function exportChatMessages(spaceId) {
   // Note: Requires Chat API advanced service
   const messages = Chat.Spaces.Messages.list(spaceId);
-  
+
   messages.messages.forEach(message => {
     Logger.log(message.text);
   });

@@ -52,7 +52,7 @@ automation/
 ## Migration Notes
 
 - Original `javascript/` directory contents distributed across tools/, validation/, and utilities/
-- Original `shell/` directory contents distributed across deployment/, validation/, and utilities/  
+- Original `shell/` directory contents distributed across deployment/, validation/, and utilities/
 - Original `config/` and `dev-tools/` moved to appropriate functional categories
 - Empty `shell-scripts/` directory removed
 - All original README files preserved in utilities/ for reference

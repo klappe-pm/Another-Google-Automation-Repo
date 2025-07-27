@@ -7,7 +7,7 @@ This directory contains the official standards and templates for all Google Apps
 
 ### Core Standards
 - [Coding Standards](coding-standards.md) - Code formatting, structure, and best practices
-- [Documentation Standards](documentation-standards.md) - README and inline documentation requirements  
+- [Documentation Standards](documentation-standards.md) - README and inline documentation requirements
 - [Security Standards](security-standards.md) - Security guidelines and requirements
 - [Testing Standards](testing-standards.md) - Testing requirements and procedures
 - [Performance Standards](performance-standards.md) - Performance optimization guidelines
@@ -26,5 +26,5 @@ All new scripts must follow these standards. Existing scripts should be graduall
 Historical files and deprecated standards are stored in the `archive/` directory.
 
 ---
-**Contact**: kevin@averageintelligence.ai  
+**Contact**: kevin@averageintelligence.ai
 **Last Updated**: 2025-07-23

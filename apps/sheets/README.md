@@ -59,11 +59,11 @@ This service provides automation scripts for Google Sheets operations including 
 function readSpreadsheetData() {
   const sheet = SpreadsheetApp.getActiveSheet();
   const data = sheet.getDataRange().getValues();
-  
+
   data.forEach((row, index) => {
     Logger.log('Row ' + index + ': ' + row.join(', '));
   });
-  
+
   return data;
 }
 ```
@@ -108,15 +108,15 @@ function testSheetsAccess() {
     // Create a test spreadsheet
     const spreadsheet = SpreadsheetApp.create('Test Spreadsheet');
     const sheet = spreadsheet.getActiveSheet();
-    
+
     // Write test data
     sheet.getRange('A1').setValue('Test');
     sheet.getRange('B1').setValue('Data');
-    
+
     // Read back
     const values = sheet.getRange('A1:B1').getValues();
     Logger.log('Test data: ' + values[0].join(', '));
-    
+
     // Clean up
     DriveApp.getFileById(spreadsheet.getId()).setTrashed(true);
     return true;

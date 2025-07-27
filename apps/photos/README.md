@@ -48,7 +48,7 @@ function listPhotoAlbums() {
       Authorization: 'Bearer ' + ScriptApp.getOAuthToken()
     }
   });
-  
+
   const albums = JSON.parse(response.getContentText());
   Logger.log('Found ' + albums.albums.length + ' albums');
 }
@@ -86,7 +86,7 @@ function testPhotosAccess() {
     // Test OAuth token generation
     const token = ScriptApp.getOAuthToken();
     Logger.log('OAuth token generated successfully');
-    
+
     // Note: Actual Photos API calls require additional setup
     return true;
   } catch (error) {

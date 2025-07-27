@@ -48,7 +48,7 @@ function exportTodayEvents() {
   const calendar = CalendarApp.getDefaultCalendar();
   const today = new Date();
   const events = calendar.getEventsForDay(today);
-  
+
   // Process events
   events.forEach(event => {
     Logger.log(event.getTitle() + ' - ' + event.getStartTime());

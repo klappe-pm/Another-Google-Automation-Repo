@@ -94,17 +94,17 @@ function testUtilityFunctions() {
     // Test UUID generation
     const uuid = Utilities.getUuid();
     Logger.log('Generated UUID: ' + uuid);
-    
+
     // Test date formatting
     const now = new Date();
     const formatted = Utilities.formatDate(now, 'America/New_York', 'yyyy-MM-dd');
     Logger.log('Formatted date: ' + formatted);
-    
+
     // Test external request capability
     const testUrl = 'https://api.github.com/zen';
     const response = UrlFetchApp.fetch(testUrl);
     Logger.log('External request successful: ' + response.getResponseCode());
-    
+
     return true;
   } catch (error) {
     Logger.log('Error: ' + error.message);

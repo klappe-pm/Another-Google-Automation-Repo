@@ -57,7 +57,7 @@ function getDocumentContent(documentId) {
   const doc = DocumentApp.openById(documentId);
   const body = doc.getBody();
   const text = body.getText();
-  
+
   Logger.log('Document text: ' + text);
   return text;
 }
@@ -96,7 +96,7 @@ function testDocumentAccess() {
     const doc = DocumentApp.create('Test Document');
     const docId = doc.getId();
     Logger.log('Created test document: ' + docId);
-    
+
     // Clean up
     DriveApp.getFileById(docId).setTrashed(true);
     return true;

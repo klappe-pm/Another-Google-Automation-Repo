@@ -120,7 +120,7 @@ This service provides comprehensive automation scripts for Gmail operations incl
 // Search and process emails
 function processRecentEmails() {
   const threads = GmailApp.search('newer_than:7d', 0, 50);
-  
+
   threads.forEach(thread => {
     const messages = thread.getMessages();
     messages.forEach(message => {
@@ -169,10 +169,10 @@ function testGmailAccess() {
   try {
     const threads = GmailApp.search('in:inbox', 0, 1);
     Logger.log('Found ' + threads.length + ' threads');
-    
+
     const labels = GmailApp.getUserLabels();
     Logger.log('Found ' + labels.length + ' labels');
-    
+
     return true;
   } catch (error) {
     Logger.log('Error: ' + error.message);

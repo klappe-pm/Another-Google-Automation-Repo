@@ -51,7 +51,7 @@ This service provides automation scripts for Google Slides operations including 
 function createPresentation() {
   const presentation = SlidesApp.create('New Presentation');
   const presentationId = presentation.getId();
-  
+
   Logger.log('Created presentation with ID: ' + presentationId);
   return presentation;
 }
@@ -60,12 +60,12 @@ function createPresentation() {
 function addSlide(presentationId) {
   const presentation = SlidesApp.openById(presentationId);
   const slide = presentation.appendSlide(SlidesApp.PredefinedLayout.TITLE_AND_BODY);
-  
+
   // Add content to slide
   const shapes = slide.getShapes();
   shapes[0].getText().setText('Slide Title');
   shapes[1].getText().setText('Slide content goes here');
-  
+
   return slide;
 }
 ```
@@ -105,11 +105,11 @@ function testSlidesAccess() {
     // Create test presentation
     const presentation = SlidesApp.create('Test Presentation');
     const presentationId = presentation.getId();
-    
+
     // Add a test slide
     const slide = presentation.appendSlide(SlidesApp.PredefinedLayout.BLANK);
     Logger.log('Added slide to presentation');
-    
+
     // Clean up
     DriveApp.getFileById(presentationId).setTrashed(true);
     return true;

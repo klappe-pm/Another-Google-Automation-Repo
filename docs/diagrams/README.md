@@ -89,7 +89,7 @@ graph TD
 
 ```mermaid
 graph LR
-    A[Primary - #f9f] 
+    A[Primary - #f9f]
     B[Secondary - #bbf]
     C[Success - #9f9]
     D[Warning - #ff9]

@@ -24,7 +24,7 @@ npm run repo:review
 node tools/repository/repo-review.js
 ```
 
-**Output**: 
+**Output**:
 - Console report with scores and recommendations
 - JSON report saved to `reports/repo-review-[timestamp].json`
 - Exit code 0 if ready for publication, 1 if not
@@ -143,11 +143,11 @@ reports/
 - **Licensing**: License files, attribution, compliance
 
 ### Overall Publication Readiness
-- **9.0-10.0**: 🟢 Excellent - Ready for Publication
-- **8.0-8.9**: 🟢 Good - Nearly Ready for Publication  
-- **7.0-7.9**: 🟡 Fair - Minor Issues to Address
-- **5.0-6.9**: 🟡 Needs Work - Several Issues to Fix
-- **0.0-4.9**: 🔴 Not Ready - Major Issues Present
+- **9.0-10.0**: � Excellent - Ready for Publication
+- **8.0-8.9**: � Good - Nearly Ready for Publication
+- **7.0-7.9**:  Fair - Minor Issues to Address
+- **5.0-6.9**:  Needs Work - Several Issues to Fix
+- **0.0-4.9**: � Not Ready - Major Issues Present
 
 ## Integration with CI/CD
 

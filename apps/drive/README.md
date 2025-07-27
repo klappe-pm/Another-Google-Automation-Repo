@@ -60,7 +60,7 @@ This service provides comprehensive automation scripts for Google Drive operatio
 function listFilesInFolder(folderId) {
   const folder = DriveApp.getFolderById(folderId);
   const files = folder.getFiles();
-  
+
   while (files.hasNext()) {
     const file = files.next();
     Logger.log(file.getName() + ' - ' + file.getId());
@@ -106,11 +106,11 @@ function testDriveAccess() {
     const folder = DriveApp.createFolder('Test Folder ' + new Date().getTime());
     const folderId = folder.getId();
     Logger.log('Created test folder: ' + folderId);
-    
+
     // Create test file
     const file = folder.createFile('test.txt', 'Test content');
     Logger.log('Created test file: ' + file.getId());
-    
+
     // Clean up
     folder.setTrashed(true);
     return true;
