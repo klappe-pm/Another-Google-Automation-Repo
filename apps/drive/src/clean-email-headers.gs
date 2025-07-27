@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: clean- email- headers
  *
  * Script Summary:
@@ -33,11 +33,11 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/ *  *  * Main function to remove blank lines after headers in Markdown files. * Prompts the user for a folder input, finds the folder, and processes all Markdown files within. * / / *  *  * Prompts the user to enter a folder name or ID. *  * @return {string|null} The user's input, or null if cancelled. * / / *  *  * Attempts to find a folder based on the user's input. * First tries to find by ID, then by name if ID fails. *  * @param {string} input - The folder name or ID provided by the user. * @return {Folder|null} The folder object if found, null otherwise. * / / *  *  * Recursively processes a folder and its subfolders. * Finds all Markdown files and processes them. *  * @param {Folder} folder - The Google Drive folder to process. * / / *  *  * Processes all Markdown files in a given folder. *  * @param {Folder} folder - The folder containing Markdown files. * / / *  *  * Processes a single Markdown file by removing extra blank lines after headers. *  * @param {File} file - The Markdown file to process. * / / *  *  * Checks if a line is a Markdown header. *  * @param {string} line - The line to check. * @return {boolean} True if the line is a header, false otherwise. * / / / Main Functions
+/**  * Main function to remove blank lines after headers in Markdown files. * Prompts the user for a folder input, finds the folder, and processes all Markdown files within. * / / *  *  * Prompts the user to enter a folder name or ID. *  * @return {string|null} The user's input, or null if cancelled. * / / *  *  * Attempts to find a folder based on the user's input. * First tries to find by ID, then by name if ID fails. *  * @param {string} input - The folder name or ID provided by the user. * @return {Folder|null} The folder object if found, null otherwise. * / / *  *  * Recursively processes a folder and its subfolders. * Finds all Markdown files and processes them. *  * @param {Folder} folder - The Google Drive folder to process. * / / *  *  * Processes all Markdown files in a given folder. *  * @param {Folder} folder - The folder containing Markdown files. * / / *  *  * Processes a single Markdown file by removing extra blank lines after headers. *  * @param {File} file - The Markdown file to process. * / / *  *  * Checks if a line is a Markdown header. *  * @param {string} line - The line to check. * @return {boolean} True if the line is a header, false otherwise. * / / / Main Functions
 
 / / Main Functions
 
-/ * *
+/**
 
  * Processes and transforms files in folder
  * @param
@@ -46,7 +46,7 @@
 
  * /
 
-/ * *
+/**
 
  * Processes and transforms files in folder
  * @param
@@ -70,7 +70,7 @@ function processFilesInFolder(folder) {
   }
 }
 
-/ * *
+/**
 
  * Processes and transforms folder recursively
  * @param
@@ -79,7 +79,7 @@ function processFilesInFolder(folder) {
 
  * /
 
-/ * *
+/**
 
  * Processes and transforms folder recursively
  * @param
@@ -101,7 +101,7 @@ function processFolderRecursively(folder) {
   }
 }
 
-/ * *
+/**
 
  * Processes and transforms markdown file
  * @param
@@ -110,7 +110,7 @@ function processFolderRecursively(folder) {
 
  * /
 
-/ * *
+/**
 
  * Processes and transforms markdown file
  * @param
@@ -150,14 +150,14 @@ function processMarkdownFile(file) {
   }
 }
 
-/ * *
+/**
 
  * Manages files and folders
  * @returns {string} The formatted string
 
  * /
 
-/ * *
+/**
 
  * Manages files and folders
  * @returns {string} The formatted string
@@ -180,14 +180,14 @@ function promptForFolderInput() {
   }
 }
 
-/ * *
+/**
 
  * Removes blank lines after headers from collection
  * @returns {string} The formatted string
 
  * /
 
-/ * *
+/**
 
  * Removes blank lines after headers from collection
  * @returns {string} The formatted string
@@ -218,7 +218,7 @@ function removeBlankLinesAfterHeaders() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Gets specific folder from input or configuration
  * @param
@@ -227,7 +227,7 @@ function removeBlankLinesAfterHeaders() {
 
  * /
 
-/ * *
+/**
 
  * Gets specific folder from input or configuration
  * @param
@@ -246,7 +246,7 @@ function getFolderFromInput(input) {
   }
 }
 
-/ * *
+/**
 
  * Checks boolean condition
  * @param
@@ -255,7 +255,7 @@ function getFolderFromInput(input) {
 
  * /
 
-/ * *
+/**
 
  * Checks boolean condition
  * @param

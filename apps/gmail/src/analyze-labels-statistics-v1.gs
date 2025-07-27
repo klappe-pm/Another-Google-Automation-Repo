@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: analyze- labels- statistics- v1
  *
  * Script Summary:
@@ -29,11 +29,11 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/ *  *  * Main function to export Gmail labels information to a Google Sheet * / / / Main Functions
+/**  * Main function to export Gmail labels information to a Google Sheet * / / / Main Functions
 
 / / Main Functions
 
-/ * *
+/**
 
  * Exports gmail labels to sheet to external format
 

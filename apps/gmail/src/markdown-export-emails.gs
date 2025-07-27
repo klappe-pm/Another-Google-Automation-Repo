@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- export- emails
  *
  * Script Summary:
@@ -75,7 +75,7 @@ const PARSERS = {
 
 / / Main Functions
 
-/ * *
+/**
 
  * Gets specific existing message ids or configuration
  * @param
@@ -90,7 +90,7 @@ function getExistingMessageIds(sheet) {
   return new Set(data.flat());
 }
 
-/ * *
+/**
 
  * Gets specific or create sheet or configuration
  * @param
@@ -113,7 +113,7 @@ function getOrCreateSheet(sheetName) {
   return sheet;
 }
 
-/ * *
+/**
 
  * Loads config from storage
  * @returns {Object} The result object
@@ -165,7 +165,7 @@ function loadConfig() {
   return config;
 }
 
-/ * *
+/**
 
  * Logs message or messages
  * @param
@@ -185,7 +185,7 @@ function logMessage(message, level, context, logLevel) {
   }
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @returns {Object} The result object
@@ -199,7 +199,7 @@ function onOpen() {
     .addToUi();
 }
 
-/ * *
+/**
 
  * Processes and transforms emails
  * @param
@@ -237,7 +237,7 @@ function processEmails(label, config, existingMessageIds, dateProcessed, folder,
   return processedCount;
 }
 
-/ * *
+/**
 
  * Processes and transforms message
  * @param
@@ -296,7 +296,7 @@ function processMessage(message, existingMessageIds, dateProcessed, folder, shee
   return true;
 }
 
-/ * *
+/**
 
  * Processes and transforms transportation emails
  * @returns {Object} The result object
@@ -331,7 +331,7 @@ function processTransportationEmails() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Formats convert to24 hour for display
  * @param
@@ -354,7 +354,7 @@ function convertTo24HourFormat(time) {
   return `${hours.toString().padStart(2, '0')}:${minutes}`;
 }
 
-/ * *
+/**
 
  * Creates new markdown content or resources
  * @param
@@ -370,7 +370,7 @@ function createMarkdownContent(data, body) {
   return `${yamlFrontMatter}${cleanedBody}`;
 }
 
-/ * *
+/**
 
  * Creates new markdown file or resources
  * @param
@@ -387,7 +387,7 @@ function createMarkdownFile(content, filename, folder) {
   return file.getUrl();
 }
 
-/ * *
+/**
 
  * Extracts specific information
  * @param
@@ -402,7 +402,7 @@ function extractValue(body, regex) {
   return match ? match[1] : '';
 }
 
-/ * *
+/**
 
  * Formats currency for display
  * @param
@@ -416,7 +416,7 @@ function formatCurrency(value) {
   return parseFloat(value).toLocaleString('en - US', { style: 'currency', currency: 'USD' });
 }
 
-/ * *
+/**
 
  * Gets specific or create folder or configuration
  * @param
@@ -431,7 +431,7 @@ function getOrCreateFolder(parentFolder, folderName) {
   return folders.hasNext() ? folders.next() : parentFolder.createFolder(folderName);
 }
 
-/ * *
+/**
 
  * Parses and extracts email body
  * @param
@@ -489,7 +489,7 @@ function parseEmailBody(body, emailDate, sender, subject, dateProcessed, parserK
   return data;
 }
 
-/ * *
+/**
 
  * Validates row data integrity
  * @param

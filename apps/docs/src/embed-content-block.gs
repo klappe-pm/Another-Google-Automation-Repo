@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: embed- content- block
  *
  * Script Summary:
@@ -24,13 +24,13 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Updates existing document
 
  * /
 
-/ * *
+/**
 
  * Updates existing document
 

@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: generate- folder- tree
  *
  * Script Summary:
@@ -32,14 +32,14 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Generates new content or reports
  * @returns {boolean} True if successful, false otherwise
 
  * /
 
-/ * *
+/**
 
  * Generates new content or reports
  * @returns {boolean} True if successful, false otherwise
@@ -118,14 +118,14 @@ function generateFolderIndex() {
   SpreadsheetApp.getUi().alert('Folder index generation completed successfully.');
 }
 
-/ * *
+/**
 
  * Manages files and folders
  * @returns {boolean} True if successful, false otherwise
 
  * /
 
-/ * *
+/**
 
  * Manages files and folders
  * @returns {boolean} True if successful, false otherwise
@@ -139,7 +139,7 @@ function onOpen() {
     .addToUi();
 }
 
-/ * *
+/**
 
  * Processes and transforms folder batch
  * @param
@@ -152,7 +152,7 @@ function onOpen() {
 
  * /
 
-/ * *
+/**
 
  * Processes and transforms folder batch
  * @param

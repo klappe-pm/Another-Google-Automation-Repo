@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: dedupe- rows
  *
  * Script Summary:
@@ -32,7 +32,7 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/ * *
+/**
  * Helper function to get day of week
  * / / * *
  * Helper function to extract hour from time string
@@ -50,7 +50,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Performs calculations on metrics
  * @param
@@ -115,7 +115,7 @@ function calculateMetrics(data, providerColIdx, totalCostColIdx, dayOfWeekColIdx
   return metrics;
 }
 
-/ * *
+/**
 
  * Creates new dashboard or resources
  * @returns {any} The newly created any
@@ -198,7 +198,7 @@ function createDashboard() {
   Browser.msgBox('Dashboard created successfully! ');
 }
 
-/ * *
+/**
 
  * Creates new enhanced sheet or resources
  * @param
@@ -271,7 +271,7 @@ function createEnhancedSheet(ss, deduplicatedRows, headers) {
   enhancedSheet.getRange(2, costPerMinuteColPos, enhancedRows.length, 1).setNumberFormat('$0.00');
 }
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @returns {any} The result
@@ -365,7 +365,7 @@ function deduplicateRideData() {
                 'Removed ' + (data.length - 1 - deduplicatedRows.length) + ' duplicate entries');
 }
 
-/ * *
+/**
 
  * Extracts specific information
  * @param
@@ -386,7 +386,7 @@ function extractHour(timeStr) {
   }
 }
 
-/ * *
+/**
 
  * Gets specific time category or configuration
  * @param
@@ -409,7 +409,7 @@ function getTimeCategory(hour) {
   }
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @returns {any} The result
@@ -426,7 +426,7 @@ function onOpen() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Gets specific day of week or configuration
  * @param
@@ -440,7 +440,7 @@ function getDayOfWeek(date) {
   return days[date.getDay()];
 }
 
-/ * *
+/**
 
  * Parses and extracts cost
  * @param

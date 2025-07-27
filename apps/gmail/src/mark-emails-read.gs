@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: mark- emails- read
  *
  * Script Summary:
@@ -27,7 +27,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Reads mark all emails as from source
  * @returns {string} The formatted string
@@ -112,7 +112,7 @@ function markAllEmailsAsRead() {
   }
 }
 
-/ * *
+/**
 
  * Processes email data
  * @returns {string} The formatted string

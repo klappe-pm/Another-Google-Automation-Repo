@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: index- all- files
  *
  * Script Summary:
@@ -19,7 +19,7 @@
  * - None
  * /
 
-/ * *
+/**
  *
  * Script Summary:
  * Manages files for automated workflow processing.

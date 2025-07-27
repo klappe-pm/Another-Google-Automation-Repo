@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: export- emails
  *
  * Script Summary:
@@ -62,7 +62,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Exports all calendar events to external format
  * @returns {any} The result
@@ -153,7 +153,7 @@ function exportAllCalendarEvents() {
   Logger.log("🎉 Script execution completed successfully.");
 }
 
-/ * *
+/**
 
  * Retrieves calendar events from service
  * @param
@@ -176,7 +176,7 @@ function fetchCalendarEvents(calendar, timeMin, timeMax) {
   }
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -200,7 +200,7 @@ function geocodeAddress(apiKey, address) {
   }
 }
 
-/ * *
+/**
 
  * Gets specific destination locations or configuration
  * @returns {any} The requested any
@@ -221,7 +221,7 @@ function getDestinationLocations() {
   return destinationLocations;
 }
 
-/ * *
+/**
 
  * Gets specific fixed departure time or configuration
  * @returns {any} The requested any
@@ -237,7 +237,7 @@ function getFixedDepartureTime() {
   return fixedDepartureTime;
 }
 
-/ * *
+/**
 
  * Gets specific headers or configuration
  * @returns {any} The requested any
@@ -255,7 +255,7 @@ function getHeaders() {
   ];
 }
 
-/ * *
+/**
 
  * Gets specific route info or configuration
  * @param
@@ -340,7 +340,7 @@ function getRouteInfo(apiKey, origin, destination, departureTime) {
   }
 }
 
-/ * *
+/**
 
  * Gets specific sheet name or configuration
  * @returns {any} The requested any
@@ -352,7 +352,7 @@ function getSheetName() {
   return Utilities.formatDate(today, Session.getScriptTimeZone(), "yyyy- MM- dd") + "- cal- events- export";
 }
 
-/ * *
+/**
 
  * Initializes resources or configuration
  * @param
@@ -396,7 +396,7 @@ function initializeSheet(sheetName) {
   return { spreadsheet, sheet, isResuming, lastCalendarIndex, lastEventIndex, processedEventIDs };
 }
 
-/ * *
+/**
 
  * Logs error or messages
  * @param
@@ -416,7 +416,7 @@ function logError(message) {
   logSheet.appendRow([new Date(), message]);
 }
 
-/ * *
+/**
 
  * Processes and transforms event
  * @param
@@ -462,7 +462,7 @@ function processEvent(event, destinationLocations, API_KEY) {
   ];
 }
 
-/ * *
+/**
 
  * Sets re progress tracking or configuration values
  * @returns {any} The result
@@ -473,7 +473,7 @@ function resetProgressTracking() {
   PropertiesService.getScriptProperties().setProperty('IS_PROCESSING', 'false');
 }
 
-/ * *
+/**
 
  * Saves data to sheet persistently
  * @param
@@ -499,7 +499,7 @@ function saveDataToSheet(spreadsheet, sheetName, data) {
   Logger.log(`📝 Saved ${data.length} rows to sheet '${sheetName}'`);
 }
 
-/ * *
+/**
 
  * Saves progress persistently
  * @param
@@ -516,7 +516,7 @@ function saveProgress(calendarIndex, eventIndex, processedEventIDs) {
   PropertiesService.getScriptProperties().setProperty('PROCESSED_EVENT_IDS', JSON.stringify(Array.from(processedEventIDs)));
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @returns {any} The result
@@ -529,7 +529,7 @@ function scheduleRestart() {
   PropertiesService.getScriptProperties().setProperty('IS_PROCESSING', 'true');
 }
 
-/ * *
+/**
 
  * Saves should progress persistently
  * @param
@@ -551,7 +551,7 @@ function shouldSaveProgress(startTime, lastSaveTime) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -565,7 +565,7 @@ function areLocationsEqual(loc1, loc2) {
   return loc1.lat = = = loc2.lat && loc1.lng = = = loc2.lng;
 }
 
-/ * *
+/**
 
  * Gets specific date range or configuration
  * @returns {any} The requested any
@@ -579,7 +579,7 @@ function getDateRange() {
   return { timeMin: startDate.toISOString(), timeMax: today.toISOString() };
 }
 
-/ * *
+/**
 
  * Gets specific day of week or configuration
  * @param
@@ -590,7 +590,7 @@ function getDateRange() {
 
 function getDayOfWeek(date) { return date.getUTCDay() || 7; }
 
-/ * *
+/**
 
  * Gets specific day of year or configuration
  * @param
@@ -601,7 +601,7 @@ function getDayOfWeek(date) { return date.getUTCDay() || 7; }
 
 function getDayOfYear(date) { return Math.floor((date - new Date(date.getUTCFullYear(), 0, 1)) / 86400000) + 1; }
 
-/ * *
+/**
 
  * Gets specific quarter or configuration
  * @param
@@ -612,7 +612,7 @@ function getDayOfYear(date) { return Math.floor((date - new Date(date.getUTCFull
 
 function getQuarter(date) { return Math.floor(date.getUTCMonth() / 3) + 1; }
 
-/ * *
+/**
 
  * Gets specific script property or configuration
  * @param
@@ -625,7 +625,7 @@ function getScriptProperty(key) {
   return PropertiesService.getScriptProperties().getProperty(key);
 }
 
-/ * *
+/**
 
  * Gets specific target calendars or configuration
  * @returns {any} The requested any
@@ -639,7 +639,7 @@ function getTargetCalendars() {
   );
 }
 
-/ * *
+/**
 
  * Gets specific week number or configuration
  * @param
@@ -650,7 +650,7 @@ function getTargetCalendars() {
 
 function getWeekNumber(date) { return Math.ceil(((date - new Date(date.getUTCFullYear(), 0, 1)) / 86400000 + 1) / 7); }
 
-/ * *
+/**
 
  * Checks boolean condition
  * @param

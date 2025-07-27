@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: export- calendar- after- date
  *
  * Script Summary:
@@ -49,7 +49,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Logs clear or messages
 
@@ -59,7 +59,7 @@ function clearLog() {
   console.clear();
 }
 
-/ * *
+/**
 
  * Exports calendar events to external format
 
@@ -112,7 +112,7 @@ function exportCalendarEvents() { / / NEW: Added debug logging;
   Logger.log('Spreadsheet URL: ' + spreadsheet.getUrl());
 }
 
-/ * *
+/**
 
  * Handles calendar operations
 

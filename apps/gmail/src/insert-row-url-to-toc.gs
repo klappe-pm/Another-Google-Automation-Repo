@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: insert- row- url- to- toc
  *
  * Script Summary:
@@ -25,7 +25,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Inserts hyperlink to t o c at specific position
 

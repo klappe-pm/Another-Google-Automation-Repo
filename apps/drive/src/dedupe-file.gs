@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: dedupe- file
  *
  * Script Summary:
@@ -29,18 +29,18 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/ *  *  * Process a single folder and return the number of duplicates removed * @param {string} folderId - The ID of the folder to process * @param {Sheet} logSheet - The sheet to log results * @returns {number} - Number of duplicates removed * / / *  *  * Create a one - time trigger to resume processing * / / / Main Functions
+/**  * Process a single folder and return the number of duplicates removed * @param {string} folderId - The ID of the folder to process * @param {Sheet} logSheet - The sheet to log results * @returns {number} - Number of duplicates removed * / / *  *  * Create a one - time trigger to resume processing * / / / Main Functions
 
 / / Main Functions
 
-/ * *
+/**
 
  * Creates new trigger or resources
  * @returns {Object} The newly created object
 
  * /
 
-/ * *
+/**
 
  * Creates new trigger or resources
  * @returns {Object} The newly created object
@@ -56,7 +56,7 @@ function createTrigger() { / / Delete existing triggers to avoid duplicates
     .create();
 }
 
-/ * *
+/**
 
  * Processes and transforms folder
  * @param
@@ -66,7 +66,7 @@ function createTrigger() { / / Delete existing triggers to avoid duplicates
 
  * /
 
-/ * *
+/**
 
  * Processes and transforms folder
  * @param
@@ -134,14 +134,14 @@ function processFolder(folderId, logSheet) {
   }
 }
 
-/ * *
+/**
 
  * Removes duplicate files from collection
  * @returns {Object} The result object
 
  * /
 
-/ * *
+/**
 
  * Removes duplicate files from collection
  * @returns {Object} The result object

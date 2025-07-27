@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: extract- gmail- snippets
  *
  * Script Summary:
@@ -28,7 +28,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Extracts specific information
 
@@ -69,7 +69,7 @@ function extractEmailSnippets() { / / Initialize logging;
   Logger.log("extractEmailSnippets execution completed");
 }
 
-/ * *
+/**
 
  * Sets column headers or configuration values
  * @param

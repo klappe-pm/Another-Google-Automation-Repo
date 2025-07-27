@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: count- unread- labels
  *
  * Script Summary:
@@ -31,7 +31,7 @@ const END_DATE = '2023 - 10 - 31'; / / Format: yyyy - MM - dd;
 
 / / Main Functions
 
-/ * *
+/**
 
  * Checks boolean condition
  * @returns {Array} True if condition is met, false otherwise

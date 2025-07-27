@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: append- date- received
  *
  * Script Summary:
@@ -29,7 +29,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @returns {string} The formatted string
@@ -124,7 +124,7 @@ function addDateReceivedColumn() {
   }
 }
 
-/ * *
+/**
 
  * Gets specific message received date or configuration
  * @param

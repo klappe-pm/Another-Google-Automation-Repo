@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: analyze- labels- data
  *
  * Script Summary:
@@ -57,7 +57,7 @@ GOOGLE_IDS: { / / External spreadsheet ID - HIGH SECURITY RISK if hardcoded
 
 / / Main Functions
 
-/ * *
+/**
 
  * Exports gmail labels to sheet to external format
  * @returns {number} The calculated value
@@ -115,7 +115,7 @@ function exportGmailLabelsToSheet() {
   }
 }
 
-/ * *
+/**
 
  * Exports perform labels to external format
  * @returns {number} The calculated value
@@ -184,7 +184,7 @@ function performLabelsExport() {
   };
 }
 
-/ * *
+/**
 
  * Sets re configuration or configuration values
  * @returns {number} The calculated value
@@ -204,7 +204,7 @@ function resetConfiguration() {
   }
 }
 
-/ * *
+/**
 
  * Exports setup gmail labels to external format
  * @returns {number} The calculated value
@@ -267,7 +267,7 @@ function setupGmailLabelsExport() {
   Logger.log('Setup completed successfully');
 }
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @returns {number} The calculated value
@@ -303,7 +303,7 @@ function viewCurrentConfiguration() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Checks boolean condition
  * @param

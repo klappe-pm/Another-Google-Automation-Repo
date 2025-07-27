@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: export- docs- file- list- to- sheets
  *
  * Script Summary:
@@ -30,13 +30,13 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Checks boolean condition
 
  * /
 
-/ * *
+/**
 
  * Checks boolean condition
 

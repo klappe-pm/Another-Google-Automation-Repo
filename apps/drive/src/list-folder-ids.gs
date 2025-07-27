@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: list- folder- ids
  *
  * Script Summary:
@@ -56,7 +56,7 @@ const CONFIG = {
 
  / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = / / Menu Integration / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
 
-/ * *
+/**
 
  * Performs a specific operation
 
@@ -71,7 +71,7 @@ function onOpen() {
 
 / / Main Functions
 
-/ * *
+/**
 
  * Gets specific folders recursively or configuration
  * @param
@@ -81,7 +81,7 @@ function onOpen() {
 
  * /
 
-/ * *
+/**
 
  * Gets specific folders recursively or configuration
  * @param
@@ -122,13 +122,13 @@ function getFoldersRecursively(folder, folderData, parentPath = '') {
   }
 }
 
-/ * *
+/**
 
  * Checks boolean condition
 
  * /
 
-/ * *
+/**
 
  * Checks boolean condition
 
