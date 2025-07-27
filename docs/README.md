@@ -31,8 +31,8 @@ docs/
 │   ├── SCRIPT_INVENTORY.md     # Script inventory details
 │   └── SHELL_SCRIPT_CATALOG.md # Shell script catalog
 │
-├── claude/                     # AI-generated documentation
-│   ├── README.md               # Claude docs index
+├── /                     #  documentation
+│   ├── README.md               #  docs index
 │   ├── STATE_OF_REPOSITORY_*.md # Repository state reports
 │   └── [migration and standardization reports]
 │
@@ -95,7 +95,7 @@ docs/
 - **[Style Guide](standards/gas-style-guide.md)** - Google Apps Script style guide
 
 ### Project Management
-- **[State of Repository](claude/STATE_OF_REPOSITORY_2025-07-26.md)** - Current project status
+- **[State of Repository](/STATE_OF_REPOSITORY_2025-07-26.md)** - Current project status
 - **[Milestones](milestones/)** - Project milestones and progress
 - **[Reports](reports/)** - Various project reports
 

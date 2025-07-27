@@ -1,54 +1,26 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Google Apps Script Pre-commit Hook
-# Automatically fixes linting issues on staged .gs files before commit
+# Pre-commit Hook
+# Runs automated checks and fixes on staged files
 
 # Get the repository root
 REPO_ROOT=$(git rev-parse --show-toplevel)
 
-echo "🔍 Running GAS linter on staged files..."
-
-# Get list of staged .gs files
-STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\.gs$' || true)
-
-if [ -z "$STAGED_FILES" ]; then
-  echo "✅ No .gs files to lint"
-  exit 0
-fi
+echo "Running pre-commit checks..."
 
 # Check if Node.js is available
 if ! command -v node &> /dev/null; then
-  echo "❌ Node.js is required but not installed"
+  echo "Error: Node.js is required but not installed"
   exit 1
 fi
 
-# Run linter with auto-fix on staged files
-FILES_FIXED=false
-for FILE in $STAGED_FILES; do
-  echo "Linting and fixing: $FILE"
-  # Run linter with --fix flag to automatically fix issues
-  if node "$REPO_ROOT/automation/validation/javascript/gas-linter.js" --fix "$FILE"; then
-    # Check if file was modified
-    if ! git diff --quiet "$FILE"; then
-      FILES_FIXED=true
-      # Re-stage the fixed file
-      git add "$FILE"
-      echo "  ✅ Fixed and re-staged: $FILE"
-    else
-      echo "  ✅ No fixes needed: $FILE"
-    fi
-  else
-    # If linter still fails after auto-fix, just warn but don't block
-    echo "  ⚠️  Some issues couldn't be auto-fixed in: $FILE"
-  fi
-done
-
-if [ "$FILES_FIXED" = true ]; then
-  echo ""
-  echo "✅ Files were automatically fixed and re-staged!"
-  echo "📝 The commit will proceed with the fixed files."
+# Run the consolidated pre-commit checker
+if node "$REPO_ROOT/automation/precommit/check-all.js"; then
+  echo "All pre-commit checks passed!"
+  exit 0
+else
+  echo "Pre-commit checks failed"
+  echo "Run 'npm run fix' to automatically fix issues"
+  exit 1
 fi
-
-echo "✅ Pre-commit checks complete!"
-exit 0
