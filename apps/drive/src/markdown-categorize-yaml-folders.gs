@@ -1,42 +1,42 @@
-/**
- * Script Name: markdown-categorize-yaml-folders
- * 
+/ * *
+ * Script Name: markdown- categorize- yaml- folders
+ *
  * Script Summary:
- * Categorizes markdown content for documentation and note-taking workflows.
- * 
+ * Categorizes markdown content for documentation and note- taking workflows.
+ *
  * Script Purpose:
  * - Generate markdown documentation
- * - Format content for note-taking systems
+ * - Format content for note- taking systems
  * - Maintain consistent documentation structure
- * 
+ *
  * Script Steps:
  * 1. Access Drive file system
  * 2. Fetch source data
  * 3. Process and transform data
- * 
+ *
  * Script Functions:
  * - addYamlFrontmatter(): Manages files and folders
- * 
+ *
  * Script Dependencies:
  * - None (standalone script)
- * 
+ *
  * Google Services:
  * - DriveApp: For file and folder management
- */
+ * /
 
-// Main Functions
+/ / Main Functions
 
-/**
-
- * Manages files and folders
-
- */
-
-/**
+/ * *
 
  * Manages files and folders
 
- */
+ * /
+
+/ * *
+
+ * Manages files and folders
+
+ * /
 
 function addYamlFrontmatter() {
   const folderId = '';
@@ -55,18 +55,18 @@ function addYamlFrontmatter() {
         const dateModified = file.getLastUpdated().toISOString().split('T')[0];
         const person = file.getName().replace('.md', '');
 
-        // Extract filename as subCategory
-        const subCategory = file.getName().replace('.md', ''); 
+        / / Extract filename as subCategory
+        const subCategory = file.getName().replace('.md', '');
 
-        const yaml = `---
+        const yaml = `- - -
 category: diagrams
 dateCreated: ${dateCreated}
 dateModified: ${dateModified}
 diagramType: ${person}
-subCategory: ${subCategory} // Add subCategory
-alias: 
-tags: 
----
+subCategory: ${subCategory} / / Add subCategory
+alias:
+tags:
+- - -
 
 `;
 

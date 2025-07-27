@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: create- labels
  *
  * Script Summary:
@@ -45,7 +45,7 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Sends applyer labels or communications
  * @param
@@ -75,7 +75,7 @@ function applySenderLabels(thread) {
   }
 }
 
-/**
+/ * *
 
  * Gets specific last processed month or configuration
  * @returns {Object} The requested object
@@ -92,7 +92,7 @@ function getLastProcessedMonth() {
   }
 }
 
-/**
+/ * *
 
  * Gets specific or create label or configuration
  * @param
@@ -125,7 +125,7 @@ function getOrCreateLabel(labelName) {
   }
 }
 
-/**
+/ * *
 
  * Processes and transforms gmail emails
  * @returns {Object} The result object
@@ -148,7 +148,7 @@ function processGmailEmails() { / / Retrieve the last processed month
   }
 }
 
-/**
+/ * *
 
  * Sets last processed month or configuration values
  * @param
@@ -164,7 +164,7 @@ function setLastProcessedMonth(monthDate) {
 
 / / Helper Functions
 
-/**
+/ * *
 
  * Extracts specific information
  * @param
@@ -179,7 +179,7 @@ function extractAndSanitizeSender(from) { / / Extract the sender's name from the
   return sanitizeLabelName(senderName);
 }
 
-/**
+/ * *
 
  * Checks boolean condition
  * @param
@@ -200,7 +200,7 @@ function isValidLabelName(name) {
   return / ^[a - zA - Z0 - 9 _\ - \.\ / ] + $ / .test(name);
 }
 
-/**
+/ * *
 
  * Cleans and sanitizes input
  * @param

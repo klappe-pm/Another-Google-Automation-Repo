@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: analyze- labeled- unlabeled
  *
  * Script Summary:
@@ -29,7 +29,7 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Counts emails with and without labels or occurrences
 

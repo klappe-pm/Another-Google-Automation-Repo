@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: export- gmail- to- pdf
  *
  * Script Summary:
@@ -68,7 +68,7 @@ const SLEEP_INTERVAL = 500; / / 0.5s / / Main function with progress logging and
 
 / / Main Functions
 
-/**
+/ * *
 
  * Creates new pdf from message or resources
  * @param
@@ -88,7 +88,7 @@ function createPdfFromMessage(message) {
     .setName(`${subject}.pdf`);
 }
 
-/**
+/ * *
 
  * Extracts specific information
  * @param
@@ -104,7 +104,7 @@ function extractEmail(fromString) {
   return emailOnlyMatch ? emailOnlyMatch[0] : fromString;
 }
 
-/**
+/ * *
 
  * Extracts specific information
  * @param
@@ -120,7 +120,7 @@ function extractName(fromString) {
   return emailPart ? fromString.replace(emailPart[0], '').trim() || 'No display name' : fromString;
 }
 
-/**
+/ * *
 
  * Gets specific processed ids or configuration
  * @param
@@ -135,7 +135,7 @@ function getProcessedIds(sheet) {
   return { threadIds: new Set(data.map(row = > row[0])), emailIds: new Set(data.map(row = > row[1])) };
 }
 
-/**
+/ * *
 
  * Exports grok emails to p d f to external format
  * @returns {string} The formatted string
@@ -208,7 +208,7 @@ function grokExportEmailsToPDF() {
   }
 }
 
-/**
+/ * *
 
  * Inserts data into sheet at specific position
  * @param
@@ -248,7 +248,7 @@ function insertDataIntoSheet(emailData, sheetName, sheet) {
   }
 }
 
-/**
+/ * *
 
  * Processes and transforms email batches
  * @param
@@ -321,7 +321,7 @@ function processEmailBatches(label, processedIds, folders, startTime, processedL
   return { emailDataBatch, processedBatch, processedCount, processedThreads: Array.from(processedThreads) };
 }
 
-/**
+/ * *
 
  * Processes and transforms single email
  * @param
@@ -390,7 +390,7 @@ function processSingleEmail(message, folders) {
   }
 }
 
-/**
+/ * *
 
  * Performs specialized operations
  * @param
@@ -415,7 +415,7 @@ function safeOperation(operation, fallback = null, retries = 3) {
   }
 }
 
-/**
+/ * *
 
  * Sets up labels sheet or configuration values
  * @param
@@ -437,7 +437,7 @@ function setupLabelsSheet(sheet) {
   sheet.autoResizeColumns(1, 7);
 }
 
-/**
+/ * *
 
  * Sets up output sheet or configuration values
  * @param
@@ -458,7 +458,7 @@ function setupOutputSheet(spreadsheet, label) {
   return sheet;
 }
 
-/**
+/ * *
 
  * Sets up processed sheet or configuration values
  * @param
@@ -476,7 +476,7 @@ function setupProcessedSheet(sheet) {
     .setVerticalAlignment("top").setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
 }
 
-/**
+/ * *
 
  * Updates existing labels sheet
  * @param
@@ -498,7 +498,7 @@ function updateLabelsSheet(sheet, row, label, folder, count, allProcessed, execu
   Logger.log(`Updated Labels to Process sheet for ${label}`);
 }
 
-/**
+/ * *
 
  * Updates existing processed sheet
  * @param
@@ -517,7 +517,7 @@ function updateProcessedSheet(sheet, processedBatch) {
 
 / / Helper Functions
 
-/**
+/ * *
 
  * Creates new folder structure or resources
  * @param
@@ -534,7 +534,7 @@ function createFolderStructure(label) {
   return { rootFolder, pdfFolder, labelFolder, attachmentsFolder };
 }
 
-/**
+/ * *
 
  * Gets specific next label to process or configuration
  * @param
@@ -549,7 +549,7 @@ function getNextLabelToProcess(sheet) {
   return index = = = - 1 ? { labelToProcess: null, statusRow: - 1 } : { labelToProcess: labelsData[index][1], statusRow: index + 2 };
 }
 
-/**
+/ * *
 
  * Gets specific or create folder or configuration
  * @param
@@ -564,7 +564,7 @@ function getOrCreateFolder(folderName, parentFolder) {
   return folders.hasNext() ? folders.next() : safeOperation(() = > (parentFolder || DriveApp).createFolder(folderName));
 }
 
-/**
+/ * *
 
  * Gets specific or create gmail label or configuration
  * @param

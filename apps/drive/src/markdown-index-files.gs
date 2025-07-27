@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: markdown- index- files
  *
  * Script Summary:
@@ -48,7 +48,7 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Works with spreadsheet data
  * @param
@@ -82,7 +82,7 @@ function addToSheet(sheet, file, type) { / / Get the file path, creation date, a
   sheet.getRange(lastRow, 1).insertCheckboxes().setHorizontalAlignment('center');
 }
 
-/**
+/ * *
 
  * Works with spreadsheet data
  * @param
@@ -99,7 +99,7 @@ function finalizeSheet(sheet) {
   }
 }
 
-/**
+/ * *
 
  * Gets specific file path or configuration
  * @param
@@ -118,7 +118,7 @@ function getFilePath(file) {
   return pathParts.join(' / ') + ' / ' + file.getName();
 }
 
-/**
+/ * *
 
  * Gets specific or create sheet or configuration
  * @param
@@ -136,7 +136,7 @@ function getOrCreateSheet(ss, sheetName) {
   return sheet;
 }
 
-/**
+/ * *
 
  * Works with spreadsheet data
  * @returns {string} The formatted string
@@ -179,7 +179,7 @@ function markdownIndex() { / / Get the active spreadsheet and define the sheet n
   Logger.log('Markdown indexing completed at: ' + new Date().toISOString());
 }
 
-/**
+/ * *
 
  * Sets headers or configuration values
  * @param
@@ -196,7 +196,7 @@ function setHeaders(sheet) {
 
 / / Helper Functions
 
-/**
+/ * *
 
  * Formats date for display
  * @param

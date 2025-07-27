@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: export- cal- v1
  *
  * Script Summary:
@@ -72,7 +72,7 @@ let debugCounter = 0; / / Unique ID for each debug log;
 
 / / Main Functions
 
-/**
+/ * *
 
  * Performs specialized operations
  * @param
@@ -90,7 +90,7 @@ function chunkArray(array, size) {
   return chunks;
 }
 
-/**
+/ * *
 
  * Logs debug or messages
  * @param
@@ -128,7 +128,7 @@ function debugLog(level, functionName, message) {
   }
 }
 
-/**
+/ * *
 
  * Exports all calendar events to external format
  * @returns {any} The result
@@ -273,7 +273,7 @@ function exportAllCalendarEvents() {
   debugLog('INFO', functionName, 'Execution completed');
 }
 
-/**
+/ * *
 
  * Exports logs to external format
  * @returns {any} The result
@@ -294,7 +294,7 @@ function exportLogs() {
   }
 }
 
-/**
+/ * *
 
  * Retrieves calendar events from service
  * @param
@@ -378,7 +378,7 @@ function fetchCalendarEvents(calendarId, timeMin, timeMax, processedEventIds, da
   return [];
 }
 
-/**
+/ * *
 
  * Gets specific day of year or configuration
  * @param
@@ -393,7 +393,7 @@ function getDayOfYear(date) {
   return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
 }
 
-/**
+/ * *
 
  * Gets specific distances from google maps or configuration
  * @param
@@ -483,7 +483,7 @@ function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
   }
 }
 
-/**
+/ * *
 
  * Gets specific location for date or configuration
  * @param
@@ -505,7 +505,7 @@ function getLocationForDate(date, configLocations) {
   return null;
 }
 
-/**
+/ * *
 
  * Gets specific quarter or configuration
  * @param
@@ -531,7 +531,7 @@ function getQuarter(date) {
   return dateCache[key].quarter;
 }
 
-/**
+/ * *
 
  * Loads configuration from storage
  * @param
@@ -594,7 +594,7 @@ function loadConfiguration(spreadsheet) {
   return { calendarIds: validCalendarIds, locations };
 }
 
-/**
+/ * *
 
  * Processes and transforms events data
  * @param
@@ -688,7 +688,7 @@ function processEventsData(allEvents, distanceResults, dateCache, headers, logEn
   return data;
 }
 
-/**
+/ * *
 
  * Performs specialized operations
  * @param
@@ -704,7 +704,7 @@ function roundToQuarterHour(value) {
   return (roundedMinutes / 60).toFixed(2);
 }
 
-/**
+/ * *
 
  * Sets config or configuration values
  * @returns {any} The result
@@ -771,7 +771,7 @@ function setConfig() {
   ui.alert('Configuration sheets created. Populate "config - calendars" with calendar IDs (e.g., your.email@gmail.com) and "config - locations" with addresses (Column A) and date ranges (Columns D and E, yyyy - MM - dd). API key set.');
 }
 
-/**
+/ * *
 
  * Handles calendar operations
  * @returns {any} The result
@@ -786,7 +786,7 @@ function testAllComponents() {
   debugLog('INFO', functionName, 'Component tests completed');
 }
 
-/**
+/ * *
 
  * Works with spreadsheet data
  * @returns {any} The result
@@ -827,7 +827,7 @@ function testCalendarAccess() {
   }
 }
 
-/**
+/ * *
 
  * Performs specialized operations
  * @returns {any} The result
@@ -848,7 +848,7 @@ function testMapsApiKey() {
   }
 }
 
-/**
+/ * *
 
  * Writes events sheet to destination
  * @param
@@ -895,7 +895,7 @@ function writeEventsSheet(spreadsheet, data, headers) {
 
 / / Helper Functions
 
-/**
+/ * *
 
  * Formats value for display
  * @param
@@ -909,7 +909,7 @@ function formatValue(value, decimals = 2) {
   return typeof value = = = 'number' && ! isNaN(value) ? value.toFixed(decimals) : "";
 }
 
-/**
+/ * *
 
  * Gets specific day of week or configuration
  * @param
@@ -923,7 +923,7 @@ function getDayOfWeek(date) {
   return day = = = 0 ? 1 : day + 1;
 }
 
-/**
+/ * *
 
  * Gets specific name day week or configuration
  * @param
@@ -939,7 +939,7 @@ function getNameDayWeek(day) {
   return days[day - 1] || "";
 }
 
-/**
+/ * *
 
  * Gets specific name month or configuration
  * @param
@@ -956,7 +956,7 @@ function getNameMonth(month) {
   return months[month - 1] || "";
 }
 
-/**
+/ * *
 
  * Gets specific name quarter or configuration
  * @param
@@ -969,7 +969,7 @@ function getNameQuarter(quarter) {
   return `Q${quarter}`;
 }
 
-/**
+/ * *
 
  * Gets specific week number or configuration
  * @param

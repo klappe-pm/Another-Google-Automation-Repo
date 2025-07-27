@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: export- docs- comments- sheets
  *
  * Script Summary:
@@ -34,14 +34,14 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Exports comments to external format
  * @returns {Array} Array of results
 
  * /
 
-/**
+/ * *
 
  * Exports comments to external format
  * @returns {Array} Array of results
@@ -82,7 +82,7 @@ function exportComments() {
   }
 }
 
-/**
+/ * *
 
  * Processes and transforms comment
  * @param
@@ -91,7 +91,7 @@ function exportComments() {
 
  * /
 
-/**
+/ * *
 
  * Processes and transforms comment
  * @param

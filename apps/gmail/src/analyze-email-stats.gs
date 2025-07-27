@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: analyze- email- stats
  *
  * Script Summary:
@@ -35,7 +35,7 @@ const MAX_THREADS = 100; / / Maximum number of threads to process;
 
 / / Main Functions
 
-/**
+/ * *
 
  * Gets specific gmail stats or configuration
  * @param
@@ -81,7 +81,7 @@ function getGmailStats(maxThreads = MAX_THREADS) {
   }
 }
 
-/**
+/ * *
 
  * Logs stats or messages
  * @param
@@ -134,7 +134,7 @@ function logStats(emailStats) {
 
 / / Helper Functions
 
-/**
+/ * *
 
  * Extracts specific information
  * @param

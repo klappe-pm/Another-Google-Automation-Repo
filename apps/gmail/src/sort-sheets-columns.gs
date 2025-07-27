@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: sort- sheets- columns
  *
  * Script Summary:
@@ -24,7 +24,7 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/**
+/ * *
  * Creates a custom menu in the Google Sheets UI when the spreadsheet opens.
  * This function adds a new menu item "Sort Tabs" with a sub- item
  * that runs the sortTabs function when clicked.
@@ -32,7 +32,7 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Processes email data
  * @returns {any} The result
@@ -46,7 +46,7 @@ function onOpen() {
     .addToUi();
 }
 
-/**
+/ * *
 
  * Sorts and orders tabs
  * @returns {any} The result

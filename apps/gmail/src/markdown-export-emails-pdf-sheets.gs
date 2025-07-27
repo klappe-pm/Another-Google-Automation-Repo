@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: markdown- export- emails- pdf- sheets
  *
  * Script Summary:
@@ -38,11 +38,11 @@
  * - Utilities: For utility functions and encoding
  * /
 
-/**  * Creates a custom menu in the Google Sheets UI * This function runs automatically when the spreadsheet is opened * / / *  *  * Displays a dialog box for email search and export * This function is triggered when the user clicks the custom menu item * / / *  *  * Searches for emails based on criteria and exports them to PDF and Markdown * This is the main function that performs the email search and export operations *  * @param {string} searchTerm - The general search term for emails * @param {string} label - The Gmail label to search within * @param {string} keyword - A specific keyword to search for in emails * @param {string} startDate - The start date for the date range search * @param {string} endDate - The end date for the date range search * / / *  *  * Formats a date string to 'yyyy / MM / dd' format *  * @param {string} date - The date string to format * @returns {string} The formatted date string * / / / Main Functions
+/ * *  * Creates a custom menu in the Google Sheets UI * This function runs automatically when the spreadsheet is opened * / / *  *  * Displays a dialog box for email search and export * This function is triggered when the user clicks the custom menu item * / / *  *  * Searches for emails based on criteria and exports them to PDF and Markdown * This is the main function that performs the email search and export operations *  * @param {string} searchTerm - The general search term for emails * @param {string} label - The Gmail label to search within * @param {string} keyword - A specific keyword to search for in emails * @param {string} startDate - The start date for the date range search * @param {string} endDate - The end date for the date range search * / / *  *  * Formats a date string to 'yyyy / MM / dd' format *  * @param {string} date - The date string to format * @returns {string} The formatted date string * / / / Main Functions
 
 / / Main Functions
 
-/**
+/ * *
 
  * Performs specialized operations
  * @returns {any} The result
@@ -63,7 +63,7 @@ function onOpen() {
   Logger.log('Exiting onOpen function');
 }
 
-/**
+/ * *
 
  * Exports search and emails to external format
  * @param
@@ -152,7 +152,7 @@ function searchAndExportEmails(searchTerm, label, keyword, startDate, endDate) {
   Logger.log('Exiting searchAndExportEmails function');
 }
 
-/**
+/ * *
 
  * Logs show dia or messages
  * @returns {any} The result
@@ -175,7 +175,7 @@ function showDialog() {
 
 / / Helper Functions
 
-/**
+/ * *
 
  * Formats date for display
  * @param

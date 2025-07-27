@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: export- labels- gmail
  *
  * Script Summary:
@@ -29,7 +29,7 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Exports gmail labels to external format
  * @returns {Array} Array of results

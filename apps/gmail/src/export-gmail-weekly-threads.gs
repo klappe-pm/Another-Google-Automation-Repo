@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: export- gmail- weekly- threads
  *
  * Script Summary:
@@ -33,11 +33,11 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/**  * Gets the ISO week number of the given date. * @param {Date} date The date for which to get the week number. * @return {string} The ISO week number in 'WW' format. * / / / Main Functions
+/ * *  * Gets the ISO week number of the given date. * @param {Date} date The date for which to get the week number. * @return {string} The ISO week number in 'WW' format. * / / / Main Functions
 
 / / Main Functions
 
-/**
+/ * *
 
  * Checks boolean condition
  * @returns {string} True if condition is met, false otherwise
@@ -86,7 +86,7 @@ function listEmails() { / / Get the current date and the date 7 days ago.;
 
 / / Helper Functions
 
-/**
+/ * *
 
  * Gets specific week number or configuration
  * @param

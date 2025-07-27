@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: markdown- generate- weekly- notes
  *
  * Script Summary:
@@ -139,7 +139,7 @@ const TIMEZONE = "America / Los_Angeles"; / / Function to create and add the cus
 
 / / Main Functions
 
-/**
+/ * *
 
  * Checks conditions or status
  * @returns {Object} The result object
@@ -153,7 +153,7 @@ function checkCalendarAppAvailability() {
   Logger.log('CalendarApp is available');
 }
 
-/**
+/ * *
 
  * Logs clear or messages
  * @returns {Object} The result object
@@ -164,7 +164,7 @@ function clearLog() {
   console.clear();
 }
 
-/**
+/ * *
 
  * Counts events by status or occurrences
  * @param
@@ -185,7 +185,7 @@ function countEventsByStatus(events) {
   return { accepted, declined, total };
 }
 
-/**
+/ * *
 
  * Counts unique attendees or occurrences
  * @param
@@ -204,7 +204,7 @@ function countUniqueAttendees(weekStart) {
   return uniqueAttendees.size;
 }
 
-/**
+/ * *
 
  * Creates new initial weekly note content or resources
  * @param
@@ -225,7 +225,7 @@ function createInitialWeeklyNoteContent(weekNumber, weekStart) {
   return content;
 }
 
-/**
+/ * *
 
  * Creates new initial yaml frontmatter or resources
  * @param
@@ -264,7 +264,7 @@ function createInitialYamlFrontmatter(weekNumber, weekStart) {
   return ` - - - \n${stringifyYaml(yamlObj)} - - - \n\n`;
 }
 
-/**
+/ * *
 
  * Creates new or update weekly note or resources
  * @returns {Object} The newly created object
@@ -308,7 +308,7 @@ function createOrUpdateWeeklyNote() {
   }
 }
 
-/**
+/ * *
 
  * Creates new triggers or resources
  * @returns {Object} The newly created object
@@ -334,7 +334,7 @@ function createTriggers() {
     .create();
 }
 
-/**
+/ * *
 
  * Triggers actions or events
  * @returns {Object} The result object
@@ -345,7 +345,7 @@ function fridayTrigger() {
   createOrUpdateWeeklyNote();
 }
 
-/**
+/ * *
 
  * Gets specific events for day or configuration
  * @param
@@ -368,7 +368,7 @@ function getEventsForDay(date) {
   }
 }
 
-/**
+/ * *
 
  * Gets specific event status or configuration
  * @param
@@ -402,7 +402,7 @@ function getEventStatus(event) {
   }
 }
 
-/**
+/ * *
 
  * Gets specific or create folder path or configuration
  * @param
@@ -426,7 +426,7 @@ function getOrCreateFolderPath(path) {
   return parent;
 }
 
-/**
+/ * *
 
  * Performs specialized operations
  * @returns {Object} The result object
@@ -438,7 +438,7 @@ function main() {
   createOrUpdateWeeklyNote();
 }
 
-/**
+/ * *
 
  * Triggers actions or events
  * @returns {Object} The result object
@@ -449,7 +449,7 @@ function mondayTrigger() {
   createOrUpdateWeeklyNote();
 }
 
-/**
+/ * *
 
  * Handles calendar operations
  * @param
@@ -464,7 +464,7 @@ function onCalendarChange(e) {
   }
 }
 
-/**
+/ * *
 
  * Performs specialized operations
  * @returns {Object} The result object
@@ -483,7 +483,7 @@ function onOpen() {
   }
 }
 
-/**
+/ * *
 
  * Processes and transforms events for day
  * @param
@@ -525,7 +525,7 @@ function processEventsForDay(events, date) {
   return content;
 }
 
-/**
+/ * *
 
  * Processes and transforms events for week
  * @param
@@ -557,7 +557,7 @@ function processEventsForWeek(weekStart, content, file) {
   file.setContent(content);
 }
 
-/**
+/ * *
 
  * Performs specialized operations
  * @param
@@ -572,7 +572,7 @@ function stringifyYaml(obj) {
     .join('\n');
 }
 
-/**
+/ * *
 
  * Updates existing yaml frontmatter
  * @param
@@ -610,7 +610,7 @@ function updateYamlFrontmatter(content, weekStart) {
 
 / / Helper Functions
 
-/**
+/ * *
 
  * Performs calculations on total event minutes
  * @param
@@ -626,7 +626,7 @@ function calculateTotalEventMinutes(events) {
   }, 0);
 }
 
-/**
+/ * *
 
  * Counts new events or occurrences
  * @param
@@ -641,7 +641,7 @@ function countNewEvents(weekStart) {
   return events.filter(e = > e.getDateCreated() > = weekStart).length;
 }
 
-/**
+/ * *
 
  * Counts total attendees or occurrences
  * @param
@@ -656,7 +656,7 @@ function countTotalAttendees(weekStart) {
   return events.reduce((total, event) = > total + event.getGuestList().length, 0);
 }
 
-/**
+/ * *
 
  * Formats date for display
  * @param
@@ -669,7 +669,7 @@ function formatDate(date) {
   return Utilities.formatDate(date, TIMEZONE, 'yyyy - MM - dd');
 }
 
-/**
+/ * *
 
  * Gets specific or create weekly folder or configuration
  * @param
@@ -685,7 +685,7 @@ function getOrCreateWeeklyFolder(date) {
   return getOrCreateFolderPath(folderName);
 }
 
-/**
+/ * *
 
  * Gets specific week number or configuration
  * @param
@@ -702,7 +702,7 @@ function getWeekNumber(d) {
   return weekNo;
 }
 
-/**
+/ * *
 
  * Gets specific week start or configuration
  * @param
@@ -718,7 +718,7 @@ function getWeekStart(date) {
   return d;
 }
 
-/**
+/ * *
 
  * Parses and extracts yaml
  * @param

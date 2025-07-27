@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: markdown- index- tree- legacy
  *
  * Script Summary:
@@ -38,7 +38,7 @@ let TOP_LEVEL_FOLDER_ID = ''; / / Example: '1FM6FHK3HmkF15RIhKa8Y8oh4JYT - yL47'
 
 / / Main Functions
 
-/**
+/ * *
 
  * Checks boolean condition
 
@@ -76,7 +76,7 @@ function listFilesInFolder() {
   Logger.log('Indexing complete.');
 }
 
-/**
+/ * *
 
  * Manages files and folders
 
@@ -90,7 +90,7 @@ function onOpen() { / / Add a custom menu to the spreadsheet;
     .addToUi();
 }
 
-/**
+/ * *
 
  * Processes and transforms folder
  * @param

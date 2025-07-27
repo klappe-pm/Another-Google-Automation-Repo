@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: process- emails
  *
  * Script Summary:
@@ -27,11 +27,11 @@
  * - Logger: For logging and debugging
  * /
 
-/**  * Main function to run Gmail automation tasks * / / *  *  * Function to process new emails * / / / Main Functions
+/ * *  * Main function to run Gmail automation tasks * / / *  *  * Function to process new emails * / / / Main Functions
 
 / / Main Functions
 
-/**
+/ * *
 
  * Processes email data
 
@@ -41,7 +41,7 @@ function main() {
   Logger.log('Gmail automation script started'); / / Add your Gmail automation logic here;
 }
 
-/**
+/ * *
 
  * Processes and transforms new emails
 

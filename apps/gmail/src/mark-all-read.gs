@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: mark- all- read
  *
  * Script Summary:
@@ -25,7 +25,7 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Reads mark all emails as from source
 

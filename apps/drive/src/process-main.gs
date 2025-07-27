@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: process- main
  *
  * Script Summary:
@@ -42,11 +42,11 @@
  * - Utilities: For utility functions and encoding
  * /
 
-/**  * Main function to create a Drive index in the bound Google Sheets spreadsheet. * / / *  *  * Processes a folder and its subfolders to index files in the bound spreadsheet. * @param {object} folder - The folder to process. * @param {array} allowedTypes - The types of files to process. * @param {object} sheet - The sheet to add files to. * @param {Set} processedFiles - A set of processed file IDs. * @param {array} queue - A queue of folders to process. * / / *  *  * Determines the type of a file based on allowed types. * @param {object} file - The file to check. * @param {array} allowedTypes - The allowed file types. * @returns {string|null} - The file type if allowed, null otherwise. * / / *  *  * Adds file information to a sheet in the bound spreadsheet. * @param {object} sheet - The sheet to add the file information to. * @param {object} file - The file to add. * @param {string} type - The type of the file. * / / *  *  * Finalizes the sheet by sorting it in the bound spreadsheet. * @param {object} sheet - The sheet to finalize. * / /  / Helper functions / *  *  * Gets or creates a sheet with the specified name in the bound spreadsheet. * @param {object} ss - The bound spreadsheet. * @param {string} sheetName - The name of the sheet. * @returns {object} - The sheet object. * / / *  *  * Sets up the headers for a sheet in the bound spreadsheet. * @param {object} sheet - The sheet to set up headers for. * / / *  *  * Gets the file path for a given file. * @param {object} file - The file to get the path for. * @returns {string} - The file path. * / / *  *  * Formats a date object into a string. * @param {Date} date - The date to format. * @returns {string} - The formatted date string. * / / / Main Functions
+/ * *  * Main function to create a Drive index in the bound Google Sheets spreadsheet. * / / *  *  * Processes a folder and its subfolders to index files in the bound spreadsheet. * @param {object} folder - The folder to process. * @param {array} allowedTypes - The types of files to process. * @param {object} sheet - The sheet to add files to. * @param {Set} processedFiles - A set of processed file IDs. * @param {array} queue - A queue of folders to process. * / / *  *  * Determines the type of a file based on allowed types. * @param {object} file - The file to check. * @param {array} allowedTypes - The allowed file types. * @returns {string|null} - The file type if allowed, null otherwise. * / / *  *  * Adds file information to a sheet in the bound spreadsheet. * @param {object} sheet - The sheet to add the file information to. * @param {object} file - The file to add. * @param {string} type - The type of the file. * / / *  *  * Finalizes the sheet by sorting it in the bound spreadsheet. * @param {object} sheet - The sheet to finalize. * / /  / Helper functions / *  *  * Gets or creates a sheet with the specified name in the bound spreadsheet. * @param {object} ss - The bound spreadsheet. * @param {string} sheetName - The name of the sheet. * @returns {object} - The sheet object. * / / *  *  * Sets up the headers for a sheet in the bound spreadsheet. * @param {object} sheet - The sheet to set up headers for. * / / *  *  * Gets the file path for a given file. * @param {object} file - The file to get the path for. * @returns {string} - The file path. * / / *  *  * Formats a date object into a string. * @param {Date} date - The date to format. * @returns {string} - The formatted date string. * / / / Main Functions
 
 / / Main Functions
 
-/**
+/ * *
 
  * Works with spreadsheet data
  * @param
@@ -110,7 +110,7 @@ function addToSheet(sheet, file, type) {
   }
 }
 
-/**
+/ * *
 
  * Creates new drive index or resources
  * @returns {string} The newly created string
@@ -161,7 +161,7 @@ function createDriveIndex() {
   }
 }
 
-/**
+/ * *
 
  * Works with spreadsheet data
  * @param
@@ -178,7 +178,7 @@ function finalizeSheet(sheet) {
   }
 }
 
-/**
+/ * *
 
  * Gets specific file path or configuration
  * @param
@@ -197,7 +197,7 @@ function getFilePath(file) {
   return pathParts.join(' / ') + ' / ' + file.getName();
 }
 
-/**
+/ * *
 
  * Gets specific file type or configuration
  * @param
@@ -221,7 +221,7 @@ function getFileType(file, allowedTypes) {
   return null;
 }
 
-/**
+/ * *
 
  * Gets specific or create sheet or configuration
  * @param
@@ -239,7 +239,7 @@ function getOrCreateSheet(ss, sheetName) {
   return sheet;
 }
 
-/**
+/ * *
 
  * Processes and transforms folder
  * @param
@@ -274,7 +274,7 @@ function processFolder(folder, allowedTypes, sheet, processedFiles, queue) {
   }
 }
 
-/**
+/ * *
 
  * Sets headers or configuration values
  * @param
@@ -291,7 +291,7 @@ function setHeaders(sheet) {
 
 / / Helper Functions
 
-/**
+/ * *
 
  * Formats date for display
  * @param

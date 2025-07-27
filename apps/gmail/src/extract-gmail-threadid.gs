@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: extract- gmail- threadid
  *
  * Script Summary:
@@ -28,11 +28,11 @@
  * - Utilities: For utility functions and encoding
  * /
 
-/**  * Creates a custom menu when the spreadsheet opens * / / / Main Functions
+/ * *  * Creates a custom menu when the spreadsheet opens * / / / Main Functions
 
 / / Main Functions
 
-/**
+/ * *
 
  * Extracts specific information
 
@@ -179,7 +179,7 @@ function extractThreadIdsFromLabels() {
   }
 }
 
-/**
+/ * *
 
  * Processes email data
 

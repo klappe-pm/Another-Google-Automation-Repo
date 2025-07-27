@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: extract- subject
  *
  * Script Summary:
@@ -29,7 +29,7 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Works with spreadsheet data
  * @returns {string} The formatted string
@@ -101,7 +101,7 @@ function addEmailSubjectColumn() {
   }
 }
 
-/**
+/ * *
 
  * Gets specific message subject or configuration
  * @param

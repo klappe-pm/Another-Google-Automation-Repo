@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: rename- tabs
  *
  * Script Summary:
@@ -25,7 +25,7 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Works with spreadsheet data
 

@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: index- sheets- tabs- moc
  *
  * Script Summary:
@@ -27,7 +27,7 @@ Summary: Generates a table of contents in a Google Sheets tab named "Table of Co
 
 / / Main Functions
 
-/**
+/ * *
 
  * Generates new content or reports
  * @returns {Object} The result object
@@ -90,7 +90,7 @@ function generateTableOfContents() {
   }
 }
 
-/**
+/ * *
 
  * Works with spreadsheet data
  * @returns {Object} The result object

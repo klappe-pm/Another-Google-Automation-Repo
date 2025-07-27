@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: markdown- update- metadata
  *
  * Script Summary:
@@ -26,11 +26,11 @@
  * - Logger: For logging and debugging
  * /
 
-/**  * Main function to move Markdown files and update their YAML frontmatter. * / / *  *  * Enhanced function to handle existing metadata and update YAML frontmatter. * @param {File} file - The Google Drive file to process. * / / / Main Functions
+/ * *  * Main function to move Markdown files and update their YAML frontmatter. * / / *  *  * Enhanced function to handle existing metadata and update YAML frontmatter. * @param {File} file - The Google Drive file to process. * / / / Main Functions
 
 / / Main Functions
 
-/**
+/ * *
 
  * Manages files and folders
 
@@ -64,7 +64,7 @@ function moveMarkdownFiles() {
   Logger.log("Script completed successfully.");
 }
 
-/**
+/ * *
 
  * Updates existing yaml frontmatter to file
  * @param

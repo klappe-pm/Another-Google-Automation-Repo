@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: update- obsidian- vault- config
  *
  * Script Summary:

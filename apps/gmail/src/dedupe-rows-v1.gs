@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: dedupe- rows- v1
  *
  * Script Summary:
@@ -28,7 +28,7 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Works with spreadsheet data
 
@@ -103,7 +103,7 @@ function deduplicateRideEmails() { / / Get the "RideReceipts" sheet
   }
 }
 
-/**
+/ * *
 
  * Performs specialized operations
 

@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: extract- lyft- and- uber- data- v2
  *
  * Script Summary:
@@ -45,7 +45,7 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Creates new maps link or resources
  * @param
@@ -60,7 +60,7 @@ function createMapsLink(address) {
   return `= HYPERLINK("https: / / www.google.com / maps / search / ?api= 1&query= ${encodedAddress}", "${address}")`;
 }
 
-/**
+/ * *
 
  * Extracts specific information
  * @param
@@ -213,7 +213,7 @@ function extractReceiptFromMessage(message, defaultProvider) {
   }
 }
 
-/**
+/ * *
 
  * Extracts specific information
  * @returns {string} The formatted string
@@ -307,7 +307,7 @@ function extractReceiptsFromGmail() {
   return receipts;
 }
 
-/**
+/ * *
 
  * Processes and transforms ride receipts
  * @returns {string} The formatted string
@@ -323,7 +323,7 @@ function processRideReceipts() {
   Logger.log(`Completed in ${(Date.now() - startTime) / 1000} seconds. Processed ${receipts.length} receipts.`);
 }
 
-/**
+/ * *
 
  * Writes to sheet to destination
  * @param
@@ -396,7 +396,7 @@ function writeToSheet(receipts) {
 
 / / Helper Functions
 
-/**
+/ * *
 
  * Performs specialized operations
  * @param
@@ -410,7 +410,7 @@ function cleanAddress(address) { / / Split by double new line and take only the 
   return parts[0].trim();
 }
 
-/**
+/ * *
 
  * Converts between formats
  * @param
@@ -435,7 +435,7 @@ function convertTo24Hour(timeStr) {
   }
 }
 
-/**
+/ * *
 
  * Formats date for display
  * @param
@@ -452,7 +452,7 @@ function formatDate(date) { / / Return date in "Month DD, YYYY" format
   return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
 }
 
-/**
+/ * *
 
  * Formats duration for display
  * @param
@@ -485,7 +485,7 @@ function formatDuration(durationStr) {
   return minutes;
 }
 
-/**
+/ * *
 
  * Sets parime or configuration values
  * @param

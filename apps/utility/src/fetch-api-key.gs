@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: fetch- api- key
  *
  * Script Summary:
@@ -24,13 +24,13 @@
  * - PropertiesService: For storing script properties
  * /
 
-/**
+/ * *
  * Perform check api key operation
  * / / / Main Functions
 
 / / Main Functions
 
-/**
+/ * *
 
  * Checks conditions or status
 

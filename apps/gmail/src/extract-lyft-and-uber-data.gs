@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: extract- lyft- and- uber- data
  *
  * Script Summary:
@@ -39,7 +39,7 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Extracts specific information
  * @param
@@ -187,7 +187,7 @@ function extractReceiptFromMessage(message, defaultProvider) {
   }
 }
 
-/**
+/ * *
 
  * Extracts specific information
  * @param
@@ -267,7 +267,7 @@ function extractReceiptsFromGmail(maxThreads) {
   return receipts;
 }
 
-/**
+/ * *
 
  * Processes and transforms ride receipts
  * @returns {any} The result
@@ -285,7 +285,7 @@ function processRideReceipts() {
   Logger.log(`Completed in ${(Date.now() - startTime) / 1000} seconds. Processed ${receipts.length} receipts.`);
 }
 
-/**
+/ * *
 
  * Writes to sheet to destination
  * @param
@@ -359,7 +359,7 @@ function writeToSheet(receipts) {
 
 / / Helper Functions
 
-/**
+/ * *
 
  * Converts between formats
  * @param
@@ -384,7 +384,7 @@ function convertTo24Hour(timeStr) {
   }
 }
 
-/**
+/ * *
 
  * Sets parime or configuration values
  * @param
@@ -401,7 +401,7 @@ function parseTime(timeStr) {
   return date;
 }
 
-/**
+/ * *
 
  * Validates and clean receipts integrity
  * @param

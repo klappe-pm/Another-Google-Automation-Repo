@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: index- docs- files
  *
  * Script Summary:
@@ -39,7 +39,7 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Works with spreadsheet data
  * @param
@@ -50,7 +50,7 @@
 
  * /
 
-/**
+/ * *
 
  * Works with spreadsheet data
  * @param
@@ -87,14 +87,14 @@ function addToSheet(sheet, file, type) {
   sheet.getRange(lastRow, 1).insertCheckboxes().setHorizontalAlignment('center');
 }
 
-/**
+/ * *
 
  * Works with spreadsheet data
  * @returns {string} The formatted string
 
  * /
 
-/**
+/ * *
 
  * Works with spreadsheet data
  * @returns {string} The formatted string
@@ -146,7 +146,7 @@ function docsIndex() {
   Logger.log('Docs indexing completed at: ' + new Date().toISOString());
 }
 
-/**
+/ * *
 
  * Works with spreadsheet data
  * @param
@@ -155,7 +155,7 @@ function docsIndex() {
 
  * /
 
-/**
+/ * *
 
  * Works with spreadsheet data
  * @param
@@ -172,7 +172,7 @@ function finalizeSheet(sheet) {
   }
 }
 
-/**
+/ * *
 
  * Gets specific file path or configuration
  * @param
@@ -181,7 +181,7 @@ function finalizeSheet(sheet) {
 
  * /
 
-/**
+/ * *
 
  * Gets specific file path or configuration
  * @param
@@ -200,7 +200,7 @@ function getFilePath(file) {
   return pathParts.join(' / ') + ' / ' + file.getName();
 }
 
-/**
+/ * *
 
  * Gets specific or create sheet or configuration
  * @param
@@ -210,7 +210,7 @@ function getFilePath(file) {
 
  * /
 
-/**
+/ * *
 
  * Gets specific or create sheet or configuration
  * @param
@@ -228,7 +228,7 @@ function getOrCreateSheet(ss, sheetName) {
   return sheet;
 }
 
-/**
+/ * *
 
  * Sets headers or configuration values
  * @param
@@ -237,7 +237,7 @@ function getOrCreateSheet(ss, sheetName) {
 
  * /
 
-/**
+/ * *
 
  * Sets headers or configuration values
  * @param
@@ -254,7 +254,7 @@ function setHeaders(sheet) {
 
 / / Helper Functions
 
-/**
+/ * *
 
  * Formats date for display
  * @param
@@ -263,7 +263,7 @@ function setHeaders(sheet) {
 
  * /
 
-/**
+/ * *
 
  * Formats date for display
  * @param

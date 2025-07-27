@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: style- tabs
  *
  * Script Summary:
@@ -24,7 +24,7 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/**
+/ * *
  * Creates a custom menu in the Google Sheets UI when the spreadsheet opens.
  * This function adds a new menu item "Custom Formatting" with a sub- item
  * that runs the formatAllSheets function when clicked.
@@ -32,7 +32,7 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Works with spreadsheet data
 
@@ -47,7 +47,7 @@ function onOpen() {
 
 / / Helper Functions
 
-/**
+/ * *
 
  * Formats all sheets for display
 

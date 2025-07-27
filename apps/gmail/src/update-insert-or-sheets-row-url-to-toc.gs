@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: update- insert- or- sheets- row- url- to- toc
  *
  * Script Summary:
@@ -25,7 +25,7 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Updates existing hyperlink to t o c
 

@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: markdown- export- docs
  *
  * Script Summary:
@@ -52,7 +52,7 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Extracts specific information
  * @param
@@ -61,7 +61,7 @@
 
  * /
 
-/**
+/ * *
 
  * Extracts specific information
  * @param
@@ -115,7 +115,7 @@ function extractLinksFromElement(element) {
     return allLinks;
   }
 
-/**
+/ * *
 
  * Gets specific file type from url or configuration
  * @param
@@ -124,7 +124,7 @@ function extractLinksFromElement(element) {
 
  * /
 
-/**
+/ * *
 
  * Gets specific file type from url or configuration
  * @param
@@ -142,7 +142,7 @@ function getFileTypeFromUrl(url) {
     }
   }
 
-/**
+/ * *
 
  * Gets specific heading level from enum or configuration
  * @param
@@ -151,7 +151,7 @@ function getFileTypeFromUrl(url) {
 
  * /
 
-/**
+/ * *
 
  * Gets specific heading level from enum or configuration
  * @param
@@ -179,14 +179,14 @@ function getHeadingLevelFromEnum(headingEnum) {
     }
   }
 
-/**
+/ * *
 
  * Gets specific or create backlinks spreadsheet or configuration
  * @returns {any} The requested any
 
  * /
 
-/**
+/ * *
 
  * Gets specific or create backlinks spreadsheet or configuration
  * @returns {any} The requested any
@@ -205,14 +205,14 @@ function getOrCreateBacklinksSpreadsheet() {
     }
   }
 
-/**
+/ * *
 
  * Performs specialized operations
  * @returns {any} The result
 
  * /
 
-/**
+/ * *
 
  * Performs specialized operations
  * @returns {any} The result
@@ -225,14 +225,14 @@ function onOpen() {
   .addToUi();
 }
 
-/**
+/ * *
 
  * Sends to obsidian or communications
  * @returns {any} The result
 
  * /
 
-/**
+/ * *
 
  * Sends to obsidian or communications
  * @returns {any} The result
@@ -292,7 +292,7 @@ function sendToObsidian() {
 
 / / Helper Functions
 
-/**
+/ * *
 
  * Converts between formats
  * @param
@@ -301,7 +301,7 @@ function sendToObsidian() {
 
  * /
 
-/**
+/ * *
 
  * Converts between formats
  * @param
@@ -369,7 +369,7 @@ function convertDocToMarkdown(doc) {
     return markdown;
   }
 
-/**
+/ * *
 
  * Extracts specific information
  * @param
@@ -378,7 +378,7 @@ function convertDocToMarkdown(doc) {
 
  * /
 
-/**
+/ * *
 
  * Extracts specific information
  * @param
@@ -392,7 +392,7 @@ function extractLinksFromDoc(doc) {
     return extractLinksFromElement(body);
   }
 
-/**
+/ * *
 
  * Gets specific file name from url or configuration
  * @param
@@ -401,7 +401,7 @@ function extractLinksFromDoc(doc) {
 
  * /
 
-/**
+/ * *
 
  * Gets specific file name from url or configuration
  * @param
@@ -415,7 +415,7 @@ function getFileNameFromUrl(url) {
     return parts[parts.length - 1];
   }
 
-/**
+/ * *
 
  * Normalizes url format
  * @param
@@ -424,7 +424,7 @@ function getFileNameFromUrl(url) {
 
  * /
 
-/**
+/ * *
 
  * Normalizes url format
  * @param

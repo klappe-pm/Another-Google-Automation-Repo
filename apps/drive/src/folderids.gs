@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: folderids
  *
  * Script Summary:
@@ -25,7 +25,7 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Gets specific folders recursively or configuration
  * @param
@@ -34,7 +34,7 @@
 
  * /
 
-/**
+/ * *
 
  * Gets specific folders recursively or configuration
  * @param
@@ -52,13 +52,13 @@ function getFoldersRecursively(folder, folderData) { / / Add current folder to t
   }
 }
 
-/**
+/ * *
 
  * Checks boolean condition
 
  * /
 
-/**
+/ * *
 
  * Checks boolean condition
 

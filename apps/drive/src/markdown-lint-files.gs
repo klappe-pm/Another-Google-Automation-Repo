@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: markdown- lint- files
  *
  * Script Summary:
@@ -49,7 +49,7 @@ let DEBUG = true; / / Flag to enable or disable detailed debugging output / *  *
 
 / / Main Functions
 
-/**
+/ * *
 
  * Performs specialized operations
  * @param
@@ -64,7 +64,7 @@ function debug(message) {
   }
 }
 
-/**
+/ * *
 
  * Gets specific folder from input or configuration
  * @param
@@ -84,7 +84,7 @@ function getFolderFromInput(input) {
   }
 }
 
-/**
+/ * *
 
  * Initializes resources or configuration
  * @returns {string} The formatted string
@@ -119,7 +119,7 @@ function initializeLinting() {
   Logger.log("Script completed successfully.");
 }
 
-/**
+/ * *
 
  * Performs specialized operations
  * @param
@@ -174,7 +174,7 @@ function lintTextFile(file, options, forceUpdate = false) {
   return changes.length > 0;
 }
 
-/**
+/ * *
 
  * Logs action or messages
  * @param
@@ -194,7 +194,7 @@ function logAction(level, fileName, message) {
   debug(logMessage);
 }
 
-/**
+/ * *
 
  * Manages files and folders
  * @returns {string} The formatted string
@@ -209,7 +209,7 @@ function onOpen() {
   debug("'Linters' menu created with unified linting option");
 }
 
-/**
+/ * *
 
  * Processes and transforms folder
  * @param
@@ -239,7 +239,7 @@ function processFolder(folder, processingFunction) {
   }
 }
 
-/**
+/ * *
 
  * Manages files and folders
  * @param
@@ -274,7 +274,7 @@ function promptForFolderInput(operation) {
   return { folder: folder, name: folder.getName() };
 }
 
-/**
+/ * *
 
  * Performs specialized operations
  * @returns {string} The formatted string
@@ -307,7 +307,7 @@ function promptForLintingOptions() {
   };
 }
 
-/**
+/ * *
 
  * Removes extra lines after headers from collection
  * @param
@@ -347,7 +347,7 @@ function removeExtraLinesAfterHeaders(content) {
   return { content: modifiedLines.join("\n").trim() + "\n", changes };
 }
 
-/**
+/ * *
 
  * Sets up logging or configuration values
  * @returns {string} The formatted string
@@ -364,7 +364,7 @@ function setupLogging() {
 
 / / Helper Functions
 
-/**
+/ * *
 
  * Formats text content for display
  * @param

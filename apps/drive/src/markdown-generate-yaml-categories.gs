@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: markdown- generate- yaml- categories
  *
  * Script Summary:

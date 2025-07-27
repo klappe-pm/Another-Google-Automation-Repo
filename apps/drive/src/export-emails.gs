@@ -1,4 +1,4 @@
-/**
+/ * *
  * Script Name: export- emails
  *
  * Script Summary:
@@ -47,14 +47,14 @@
 
 / / Main Functions
 
-/**
+/ * *
 
  * Exports all calendar events to external format
  * @returns {any} The result
 
  * /
 
-/**
+/ * *
 
  * Exports all calendar events to external format
  * @returns {any} The result
@@ -192,7 +192,7 @@ function exportAllCalendarEvents() {
   Logger.log("🎉 Script execution completed successfully.");
 }
 
-/**
+/ * *
 
  * Performs specialized operations
  * @param
@@ -202,7 +202,7 @@ function exportAllCalendarEvents() {
 
  * /
 
-/**
+/ * *
 
  * Performs specialized operations
  * @param
@@ -230,7 +230,7 @@ function geocodeAddress(apiKey, address) {
   }
 }
 
-/**
+/ * *
 
  * Gets specific route info or configuration
  * @param
@@ -241,7 +241,7 @@ function geocodeAddress(apiKey, address) {
 
  * /
 
-/**
+/ * *
 
  * Gets specific route info or configuration
  * @param
@@ -323,7 +323,7 @@ function getRouteInfo(apiKey, origin, destination) {
   }
 }
 
-/**
+/ * *
 
  * Logs error or messages
  * @param
@@ -332,7 +332,7 @@ function getRouteInfo(apiKey, origin, destination) {
 
  * /
 
-/**
+/ * *
 
  * Logs error or messages
  * @param
@@ -356,7 +356,7 @@ function logError(message) {
 
 / / Helper Functions
 
-/**
+/ * *
 
  * Gets specific day of week or configuration
  * @param
@@ -365,7 +365,7 @@ function logError(message) {
 
  * /
 
-/**
+/ * *
 
  * Gets specific day of week or configuration
  * @param
@@ -376,7 +376,7 @@ function logError(message) {
 
 function getDayOfWeek(date) { return date.getUTCDay() || 7; }
 
-/**
+/ * *
 
  * Gets specific day of year or configuration
  * @param
@@ -385,7 +385,7 @@ function getDayOfWeek(date) { return date.getUTCDay() || 7; }
 
  * /
 
-/**
+/ * *
 
  * Gets specific day of year or configuration
  * @param
@@ -396,7 +396,7 @@ function getDayOfWeek(date) { return date.getUTCDay() || 7; }
 
 function getDayOfYear(date) { return Math.floor((date - new Date(date.getUTCFullYear(), 0, 1)) / 86400000) + 1; }
 
-/**
+/ * *
 
  * Gets specific quarter or configuration
  * @param
@@ -405,7 +405,7 @@ function getDayOfYear(date) { return Math.floor((date - new Date(date.getUTCFull
 
  * /
 
-/**
+/ * *
 
  * Gets specific quarter or configuration
  * @param
@@ -416,7 +416,7 @@ function getDayOfYear(date) { return Math.floor((date - new Date(date.getUTCFull
 
 function getQuarter(date) { return Math.floor(date.getUTCMonth() / 3) + 1; }
 
-/**
+/ * *
 
  * Gets specific week number or configuration
  * @param
@@ -425,7 +425,7 @@ function getQuarter(date) { return Math.floor(date.getUTCMonth() / 3) + 1; }
 
  * /
 
-/**
+/ * *
 
  * Gets specific week number or configuration
  * @param

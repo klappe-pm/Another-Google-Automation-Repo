@@ -1,21 +1,21 @@
-/**
- * Script Name: markdown-find-yaml
- * 
+/ * *
+ * Script Name: markdown- find- yaml
+ *
  * Script Summary:
- * Finds markdown content for documentation and note-taking workflows.
- * 
+ * Finds markdown content for documentation and note- taking workflows.
+ *
  * Script Purpose:
  * - Generate markdown documentation
- * - Format content for note-taking systems
+ * - Format content for note- taking systems
  * - Maintain consistent documentation structure
- * 
+ *
  * Script Steps:
  * 1. Initialize spreadsheet connection
  * 2. Access Drive file system
  * 3. Fetch source data
  * 4. Validate input data
  * 5. Process and transform data
- * 
+ *
  * Script Functions:
  * - extractYamlFrontmatter(): Extracts specific information
  * - findFolderByName(): Finds matching folder by name
@@ -25,98 +25,98 @@
  * - processFolderInput(): Processes and transforms folder input
  * - showFolderInputForm(): Manages files and folders
  * - YAML(): Performs specialized operations
- * 
+ *
  * Script Helper Functions:
  * - parseYaml(): Parses and extracts yaml
- * 
+ *
  * Script Dependencies:
  * - None (standalone script)
- * 
+ *
  * Google Services:
  * - DriveApp: For file and folder management
  * - HtmlService: For serving HTML content
  * - SpreadsheetApp: For spreadsheet operations
- */
+ * /
 
-/**
+/ * *
  * Shows the HTML form to accept folder input from the user.
- *//**
+ * / / * *
  * Processes the folder input from the user and finds YAML frontmatter properties.
  * @param {string} folderId - The folder ID input by the user.
  * @param {string} folderName - The folder name input by the user.
- *//**
+ * / / * *
  * Finds a folder by name.
  * @param {string} folderName - The name of the folder.
  * @return {Folder} The folder with the specified name, or null if not found.
- *//**
+ * / / * *
  * Finds and logs all YAML frontmatter properties in text files within a specified folder.
  * @param {Folder} folder - The folder to search for YAML frontmatter properties.
- *//**
+ * / / * *
  * Finds and logs all YAML frontmatter properties in text files within a folder specified by ID.
  * @param {string} folderId - The ID of the folder to search.
- *//**
+ * / / * *
  * Extracts YAML frontmatter from the content of a text file.
  * @param {string} content - The content of the text file.
  * @return {Object} An object containing the YAML frontmatter properties.
- *//**
+ * / / * *
  * Parses a YAML string into an object.
  * @param {string} yamlString - The YAML string.
  * @return {Object} The parsed YAML object.
- *//**
+ * / / * *
  * A simple YAML parser.
  * Note: For more complex YAML, consider using an external library.
- */// Main Functions
+ * / / / Main Functions
 
-// Main Functions
+/ / Main Functions
 
-/**
+/ * *
 
  * Extracts specific information
  * @param
  * @param {string} content - The content to process
  * @returns {string} The formatted string
 
- */
+ * /
 
 function extractYamlFrontmatter(content) {
   console.log('Entering extractYamlFrontmatter function');
-  var yamlStart = content.indexOf('---');
-  if (yamlStart === -1) {
-    console.log('No YAML frontmatter found (missing opening ---)');
+  let yamlStart = content.indexOf('- - - ');
+  if (yamlStart = = = - 1) {
+    console.log('No YAML frontmatter found (missing opening - - - )');
     console.log('Exiting extractYamlFrontmatter function');
     return null;
   }
 
-  var yamlEnd = content.indexOf('---', yamlStart + 3);
-  if (yamlEnd === -1) {
-    console.log('No YAML frontmatter found (missing closing ---)');
+  let yamlEnd = content.indexOf('- - - ', yamlStart + 3);
+  if (yamlEnd = = = - 1) {
+    console.log('No YAML frontmatter found (missing closing - - - )');
     console.log('Exiting extractYamlFrontmatter function');
     return null;
   }
 
-  var yamlContent = content.substring(yamlStart + 3, yamlEnd).trim();
+  let yamlContent = content.substring(yamlStart + 3, yamlEnd).trim();
   console.log('YAML content extracted:', yamlContent);
-  var parsedYaml = parseYaml(yamlContent);
+  let parsedYaml = parseYaml(yamlContent);
   console.log('Parsed YAML:', parsedYaml);
   console.log('Exiting extractYamlFrontmatter function');
   return parsedYaml;
 }
 
-/**
+/ * *
 
  * Finds matching folder by name
  * @param
  * @param {string} folderName - The folderName parameter
  * @returns {string} The formatted string
 
- */
+ * /
 
 function findFolderByName(folderName) {
   console.log('Entering findFolderByName function');
   console.log('Searching for folder:', folderName);
-  var folder = null;
+  let folder = null;
   try {
-    var folders = DriveApp.getFoldersByName(folderName);
+    let folders = DriveApp.getFoldersByName(folderName);
     folder = folders.hasNext() ? folders.next() : null;
     console.log('Folder found:', folder ? 'Yes' : 'No');
   } catch (error) {
@@ -126,44 +126,44 @@ function findFolderByName(folderName) {
   return folder;
 }
 
-/**
+/ * *
 
  * Finds matching yaml frontmatter in folder
  * @param
  * @param {Folder} folder - The folder parameter
  * @returns {string} The formatted string
 
- */
+ * /
 
 function findYamlFrontmatterInFolder(folder) {
   console.log('Entering findYamlFrontmatterInFolder function');
-  if (!folder) {
+  if (! folder) {
     console.warn('Folder is undefined.');
     return;
   }
   console.log('Processing folder:', folder.getName());
 
-  var files = folder.getFiles();
-  var yamlFrontmatter = {};
-  var fileCount = 0;
-  var yamlCount = 0;
+  let files = folder.getFiles();
+  let yamlFrontmatter = {};
+  let fileCount = 0;
+  let yamlCount = 0;
 
   while (files.hasNext()) {
-    var file = files.next();
-    fileCount++;
+    let file = files.next();
+    fileCount+ + ;
     console.log('Processing file:', file.getName());
-    if (file.getMimeType() === MimeType.PLAIN_TEXT) {
-      var content = file.getBlob().getDataAsString();
-      var frontmatter = extractYamlFrontmatter(content);
+    if (file.getMimeType() = = = MimeType.PLAIN_TEXT) {
+      let content = file.getBlob().getDataAsString();
+      let frontmatter = extractYamlFrontmatter(content);
       if (frontmatter) {
         yamlFrontmatter[file.getName()] = frontmatter;
-        yamlCount++;
+        yamlCount+ + ;
         console.log('YAML frontmatter found in file:', file.getName());
       } else {
         console.log('No YAML frontmatter found in file:', file.getName());
       }
     } else {
-      console.log('Skipping non-text file:', file.getName());
+      console.log('Skipping non- text file:', file.getName());
     }
   }
 
@@ -173,20 +173,20 @@ function findYamlFrontmatterInFolder(folder) {
   console.log('Exiting findYamlFrontmatterInFolder function');
 }
 
-/**
+/ * *
 
  * Finds matching yaml frontmatter in folder by id
  * @param
  * @param {string} folderId - The folderId parameter
  * @returns {string} The formatted string
 
- */
+ * /
 
 function findYamlFrontmatterInFolderById(folderId) {
   console.log('Entering findYamlFrontmatterInFolderById function');
   console.log('Folder ID:', folderId);
   try {
-    var folder = DriveApp.getFolderById(folderId);
+    let folder = DriveApp.getFolderById(folderId);
     console.log('Folder found:', folder.getName());
     findYamlFrontmatterInFolder(folder);
   } catch (error) {
@@ -196,17 +196,17 @@ function findYamlFrontmatterInFolderById(folderId) {
   console.log('Exiting findYamlFrontmatterInFolderById function');
 }
 
-/**
+/ * *
 
  * Manages files and folders
  * @returns {string} The formatted string
 
- */
+ * /
 
 function onOpen() {
   console.log('Entering onOpen function');
   try {
-    var ui = SpreadsheetApp.getUi();
+    let ui = SpreadsheetApp.getUi();
     ui.createMenu('Markdown Tools')
       .addItem('YAML Finder', 'showFolderInputForm')
       .addToUi();
@@ -217,7 +217,7 @@ function onOpen() {
   console.log('Exiting onOpen function');
 }
 
-/**
+/ * *
 
  * Processes and transforms folder input
  * @param
@@ -225,7 +225,7 @@ function onOpen() {
  * @param {string} folderName - The folderName parameter
  * @returns {string} The formatted string
 
- */
+ * /
 
 function processFolderInput(folderId, folderName) {
   console.log('Entering processFolderInput function');
@@ -236,7 +236,7 @@ function processFolderInput(folderId, folderName) {
       findYamlFrontmatterInFolderById(folderId);
     } else if (folderName) {
       console.log('Processing folder by name:', folderName);
-      var folder = findFolderByName(folderName);
+      let folder = findFolderByName(folderName);
       if (folder) {
         findYamlFrontmatterInFolder(folder);
       } else {
@@ -254,17 +254,17 @@ function processFolderInput(folderId, folderName) {
   console.log('Exiting processFolderInput function');
 }
 
-/**
+/ * *
 
  * Manages files and folders
  * @returns {string} The formatted string
 
- */
+ * /
 
 function showFolderInputForm() {
   console.log('Entering showFolderInputForm function');
   try {
-    var html = HtmlService.createHtmlOutputFromFile('Index')
+    let html = HtmlService.createHtmlOutputFromFile('Index')
         .setWidth(400)
         .setHeight(300);
     SpreadsheetApp.getUi().showModalDialog(html, 'Enter Folder ID or Name');
@@ -275,28 +275,28 @@ function showFolderInputForm() {
   console.log('Exiting showFolderInputForm function');
 }
 
-/**
+/ * *
 
  * Performs specialized operations
  * @returns {string} The formatted string
 
- */
+ * /
 
 function YAML() {
   this.parse = function (yamlString) {
     console.log('Entering YAML.parse function');
-    var lines = yamlString.split('\n');
-    var result = {};
+    let lines = yamlString.split('\n');
+    let result = {};
     lines.forEach(function (line, index) {
       console.log(`Processing line ${index + 1}:`, line);
-      var parts = line.split(':');
-      if (parts.length >= 2) {
-        var key = parts.shift().trim();
-        var value = parts.join(':').trim();
+      let parts = line.split(':');
+      if (parts.length > = 2) {
+        let key = parts.shift().trim();
+        let value = parts.join(':').trim();
         result[key] = value;
-        console.log('Parsed key-value pair:', key, ':', value);
+        console.log('Parsed key- value pair:', key, ':', value);
       } else {
-        console.log('Skipping line (not a key-value pair):', line);
+        console.log('Skipping line (not a key- value pair):', line);
       }
     });
     console.log('Parsed YAML result:', result);
@@ -305,22 +305,22 @@ function YAML() {
   };
 }
 
-// Helper Functions
+/ / Helper Functions
 
-/**
+/ * *
 
  * Parses and extracts yaml
  * @param
  * @param {any} yamlString - The yamlString parameter
  * @returns {string} The formatted string
 
- */
+ * /
 
 function parseYaml(yamlString) {
   console.log('Entering parseYaml function');
   try {
-    var yaml = new YAML();
-    var result = yaml.parse(yamlString);
+    let yaml = new YAML();
+    let result = yaml.parse(yamlString);
     console.log('YAML parsed successfully');
     console.log('Exiting parseYaml function');
     return result;

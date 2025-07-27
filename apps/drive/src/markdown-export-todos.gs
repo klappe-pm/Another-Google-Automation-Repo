@@ -1,14 +1,14 @@
-/**
- * Script Name: markdown-export-todos
- * 
+/ * *
+ * Script Name: markdown- export- todos
+ *
  * Script Summary:
- * Exports markdown content for documentation and note-taking workflows.
- * 
+ * Exports markdown content for documentation and note- taking workflows.
+ *
  * Script Purpose:
  * - Generate markdown documentation
- * - Format content for note-taking systems
+ * - Format content for note- taking systems
  * - Maintain consistent documentation structure
- * 
+ *
  * Script Steps:
  * 1. Initialize spreadsheet connection
  * 2. Access Drive file system
@@ -16,7 +16,7 @@
  * 4. Validate input data
  * 5. Sort data by relevant fields
  * 6. Format output for presentation
- * 
+ *
  * Script Functions:
  * - categorizeTasks(): Performs specialized operations
  * - createYAMLFrontmatter(): Creates new y a m l frontmatter or resources
@@ -27,98 +27,98 @@
  * - getOrCreateFolder(): Gets specific or create folder or configuration
  * - onOpen(): Performs specialized operations
  * - showTasklistPrompt(): Checks boolean condition
- * 
+ *
  * Script Helper Functions:
  * - countNewTodos(): Counts new todos or occurrences
  * - formatCategorizedTasks(): Formats categorized tasks for display
  * - formatCategory(): Formats category for display
  * - formatDate(): Formats date for display
  * - formatTask(): Formats task for display
- * 
+ *
  * Script Dependencies:
  * - None (standalone script)
- * 
+ *
  * Google Services:
  * - DriveApp: For file and folder management
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
  * - Tasks: For task list operations
- */
+ * /
 
-var DEBUG = true;
+let DEBUG = true;
 
-/**
+/ * *
  * Creates a custom menu in the Google Sheets UI when the spreadsheet is opened.
- *//**
+ * / / * *
  * Displays a prompt for the user to enter a tasklist ID.
- *//**
+ * / / * *
  * Exports tasks from the specified tasklist to a markdown file.
- *//**
+ * / / * *
  * Gets or creates a file in the specified folder.
- *//**
+ * / / * *
  * Categorizes tasks based on their due dates.
  * @return {Object} An object containing categorized tasks.
- *//**
+ * / / * *
  * Creates YAML frontmatter with task statistics.
  * @param {Object} categorizedTasks - The object containing categorized tasks.
  * @return {string} The YAML frontmatter string.
- *//**
- * Counts the total number of new (non-completed) todos.
+ * / / * *
+ * Counts the total number of new (non- completed) todos.
  * @param {Object} categorizedTasks - The object containing categorized tasks.
  * @return {number} The total count of new todos.
- *//**
+ * / / * *
  * Formats categorized tasks into markdown.
  * @param {Object} categorizedTasks - The object containing categorized tasks.
  * @param {string} yamlFrontmatter - The YAML frontmatter string.
  * @return {string} The formatted markdown string.
- *//**
+ * / / * *
  * Extracts count values from YAML frontmatter.
  * @param {string} yaml - The YAML frontmatter string.
  * @return {Object} An object containing extracted count values.
- *//**
+ * / / * *
  * Formats a category of tasks into markdown.
  * @param {string} header - The header for the category.
  * @param {Array} tasks - The array of tasks in the category.
  * @param {number} count - The count of tasks in the category.
  * @return {string} The formatted markdown string for the category.
- *//**
+ * / / * *
  * Formats a single task into markdown.
  * @param {Object} task - The task object to format.
  * @param {number} depth - The depth of the task (for subtasks).
  * @return {string} The formatted markdown string for the task.
- *//**
+ * / / * *
  * Formats a date object into a string.
  * @param {Date} date - The date to format.
- * @return {string} The formatted date string (YYYY-MM-DD).
- *//**
+ * @return {string} The formatted date string (YYYY- MM- DD).
+ * / / * *
  * Gets or creates a folder in Google Drive.
  * @param {string} folderName - The name of the folder to get or create.
  * @return {Folder} The found or created folder.
- */// Main Functions
+ * / / / Main Functions
 
-// Main Functions
+/ / Main Functions
 
-/**
+/ * *
 
  * Performs specialized operations
  * @param
  * @param {any} tasks - The tasks parameter
  * @returns {number} The calculated value
 
- */
+ * /
 
 function categorizeTasks(tasks) {
   debug('categorizeTasks function called with ' + tasks.length + ' tasks');
-  var today = new Date();
+  let today = new Date();
   today.setHours(0, 0, 0, 0);
-  var tomorrow = new Date(today);
+  let tomorrow = new Date(today);
   tomorrow.setDate(tomorrow.getDate() + 1);
-  var nextTwoWeeks = new Date(today);
+  let nextTwoWeeks = new Date(today);
   nextTwoWeeks.setDate(nextTwoWeeks.getDate() + 14);
-  var nextMonth = new Date(today);
+  let nextMonth = new Date(today);
   nextMonth.setDate(nextMonth.getDate() + 30);
 
-  var categories = {
+  let categories = {
     overdue: [],
     dueToday: [],
     dueNextTwoWeeks: [],
@@ -127,15 +127,15 @@ function categorizeTasks(tasks) {
     completed: []
   };
 
-  tasks.forEach(task => {
+  tasks.forEach(task = > {
     debug('Categorizing task: ' + task.title);
-    if (task.status === 'completed') {
+    if (task.status = = = 'completed') {
       categories.completed.push(task);
       return;
     }
 
-    var dueDate = task.due ? new Date(task.due) : null;
-    if (!dueDate) {
+    let dueDate = task.due ? new Date(task.due) : null;
+    if (! dueDate) {
       categories.noDueDate.push(task);
     } else if (dueDate < today) {
       categories.overdue.push(task);
@@ -150,48 +150,48 @@ function categorizeTasks(tasks) {
     }
   });
 
-  categories.noDueDate.sort((a, b) => a.title.localeCompare(b.title));
+  categories.noDueDate.sort((a, b) = > a.title.localeCompare(b.title));
   debug('Tasks categorized');
 
   return categories;
 }
 
-/**
+/ * *
 
  * Creates new y a m l frontmatter or resources
  * @param
  * @param {any} categorizedTasks - The categorizedTasks for creation
  * @returns {number} The newly created number
 
- */
+ * /
 
 function createYAMLFrontmatter(categorizedTasks) {
   debug('createYAMLFrontmatter function called');
-  var today = new Date();
-  var yaml = '---\n';
-  yaml += 'category: todos\n';
-  yaml += `dateCreated: ${formatDate(today)}\n`;
-  yaml += `totalNewTodos: ${countNewTodos(categorizedTasks)}\n`;
-  yaml += `totalOverdue: ${categorizedTasks.overdue.length}\n`;
-  yaml += `totalNextTwo: ${categorizedTasks.dueToday.length + categorizedTasks.dueNextTwoWeeks.length}\n`;
-  yaml += `countNextFour: ${categorizedTasks.dueNextMonth.length}\n`;
-  yaml += `countNoDue: ${categorizedTasks.noDueDate.length}\n`;
-  yaml += `countCummDone: ${categorizedTasks.completed.length}\n`;
-  yaml += 'aliases: \n';
-  yaml += 'tags: gas-tasks-to-todos\n';
-  yaml += '---\n\n';
+  let today = new Date();
+  let yaml = '- - - \n';
+  yaml + = 'category: todos\n';
+  yaml + = `dateCreated: ${formatDate(today)}\n`;
+  yaml + = `totalNewTodos: ${countNewTodos(categorizedTasks)}\n`;
+  yaml + = `totalOverdue: ${categorizedTasks.overdue.length}\n`;
+  yaml + = `totalNextTwo: ${categorizedTasks.dueToday.length + categorizedTasks.dueNextTwoWeeks.length}\n`;
+  yaml + = `countNextFour: ${categorizedTasks.dueNextMonth.length}\n`;
+  yaml + = `countNoDue: ${categorizedTasks.noDueDate.length}\n`;
+  yaml + = `countCummDone: ${categorizedTasks.completed.length}\n`;
+  yaml + = 'aliases: \n';
+  yaml + = 'tags: gas- tasks- to- todos\n';
+  yaml + = '- - - \n\n';
   debug('YAML frontmatter created');
   return yaml;
 }
 
-/**
+/ * *
 
  * Performs specialized operations
  * @param
  * @param {string} message - The message content
  * @returns {number} The calculated value
 
- */
+ * /
 
 function debug(message) {
   if (DEBUG) {
@@ -199,33 +199,33 @@ function debug(message) {
   }
 }
 
-/**
+/ * *
 
  * Exports tasks to markdown to external format
  * @param
  * @param {string} tasklistId - The tasklistId parameter
  * @returns {number} The calculated value
 
- */
+ * /
 
 function exportTasksToMarkdown(tasklistId) {
   debug('exportTasksToMarkdown function called with tasklistId: ' + tasklistId);
   try {
-    var tasks = Tasks.Tasks.list(tasklistId, {showHidden: true, maxResults: 100});
+    let tasks = Tasks.Tasks.list(tasklistId, {showHidden: true, maxResults: 100});
     debug('Retrieved ' + (tasks.items ? tasks.items.length : 0) + ' tasks');
-    
-    var categorizedTasks = categorizeTasks(tasks.items || []);
+
+    let categorizedTasks = categorizeTasks(tasks.items || []);
     debug('Tasks categorized');
-    var yamlFrontmatter = createYAMLFrontmatter(categorizedTasks);
+    let yamlFrontmatter = createYAMLFrontmatter(categorizedTasks);
     debug('YAML frontmatter created');
-    var markdown = yamlFrontmatter + formatCategorizedTasks(categorizedTasks, yamlFrontmatter);
+    let markdown = yamlFrontmatter + formatCategorizedTasks(categorizedTasks, yamlFrontmatter);
     debug('Markdown content generated');
 
-    var folder = getOrCreateFolder('_todos');
+    let folder = getOrCreateFolder('_todos');
     debug('_todos folder accessed or created');
-    
-    var fileName = 'myTodos.md';
-    var file = getOrCreateFile(folder, fileName);
+
+    let fileName = 'myTodos.md';
+    let file = getOrCreateFile(folder, fileName);
     file.setContent(markdown);
     debug('myTodos.md file updated in _todos folder');
 
@@ -237,20 +237,20 @@ function exportTasksToMarkdown(tasklistId) {
   }
 }
 
-/**
+/ * *
 
  * Extracts specific information
  * @param
  * @param {any} yaml - The yaml parameter
  * @returns {number} The total count
 
- */
+ * /
 
 function extractCountsFromYAML(yaml) {
   debug('extractCountsFromYAML function called');
-  var counts = {};
-  yaml.split('\n').forEach(line => {
-    var [key, value] = line.split(':').map(item => item.trim());
+  let counts = {};
+  yaml.split('\n').forEach(line = > {
+    let [key, value] = line.split(':').map(item = > item.trim());
     if (key && value) {
       counts[key] = parseInt(value);
     }
@@ -259,7 +259,7 @@ function extractCountsFromYAML(yaml) {
   return counts;
 }
 
-/**
+/ * *
 
  * Gets specific or create file or configuration
  * @param
@@ -267,11 +267,11 @@ function extractCountsFromYAML(yaml) {
  * @param {string} fileName - The fileName to retrieve
  * @returns {number} The requested number
 
- */
+ * /
 
 function getOrCreateFile(folder, fileName) {
   debug('getOrCreateFile function called with fileName: ' + fileName);
-  var files = folder.getFilesByName(fileName);
+  let files = folder.getFilesByName(fileName);
   if (files.hasNext()) {
     debug('Existing file found: ' + fileName);
     return files.next();
@@ -281,19 +281,19 @@ function getOrCreateFile(folder, fileName) {
   }
 }
 
-/**
+/ * *
 
  * Gets specific or create folder or configuration
  * @param
  * @param {string} folderName - The folderName to retrieve
  * @returns {number} The requested number
 
- */
+ * /
 
 function getOrCreateFolder(folderName) {
   debug('getOrCreateFolder function called for folder: ' + folderName);
-  var rootFolder = DriveApp.getRootFolder();
-  var folders = rootFolder.getFoldersByName(folderName);
+  let rootFolder = DriveApp.getRootFolder();
+  let folders = rootFolder.getFoldersByName(folderName);
   if (folders.hasNext()) {
     debug('Existing folder found: ' + folderName);
     return folders.next();
@@ -303,12 +303,12 @@ function getOrCreateFolder(folderName) {
   }
 }
 
-/**
+/ * *
 
  * Performs specialized operations
  * @returns {number} The calculated value
 
- */
+ * /
 
 function onOpen() {
   debug('onOpen function called');
@@ -319,24 +319,24 @@ function onOpen() {
   debug('Custom menu added to the spreadsheet');
 }
 
-/**
+/ * *
 
  * Checks boolean condition
  * @returns {number} True if condition is met, false otherwise
 
- */
+ * /
 
 function showTasklistPrompt() {
   debug('showTasklistPrompt function called');
-  var ui = SpreadsheetApp.getUi();
-  var result = ui.prompt(
+  let ui = SpreadsheetApp.getUi();
+  let result = ui.prompt(
     'Enter Tasklist ID',
     'Please enter the ID of the tasklist you want to export:',
     ui.ButtonSet.OK_CANCEL
   );
 
-  if (result.getSelectedButton() == ui.Button.OK) {
-    var tasklistId = result.getResponseText();
+  if (result.getSelectedButton() = = ui.Button.OK) {
+    let tasklistId = result.getResponseText();
     debug('User entered tasklist ID: ' + tasklistId);
     exportTasksToMarkdown(tasklistId);
   } else {
@@ -344,27 +344,27 @@ function showTasklistPrompt() {
   }
 }
 
-// Helper Functions
+/ / Helper Functions
 
-/**
+/ * *
 
  * Counts new todos or occurrences
  * @param
  * @param {any} categorizedTasks - The categorizedTasks parameter
  * @returns {number} The total count
 
- */
+ * /
 
 function countNewTodos(categorizedTasks) {
   debug('countNewTodos function called');
-  return categorizedTasks.overdue.length + 
-         categorizedTasks.dueToday.length + 
-         categorizedTasks.dueNextTwoWeeks.length + 
-         categorizedTasks.dueNextMonth.length + 
+  return categorizedTasks.overdue.length +
+         categorizedTasks.dueToday.length +
+         categorizedTasks.dueNextTwoWeeks.length +
+         categorizedTasks.dueNextMonth.length +
          categorizedTasks.noDueDate.length;
 }
 
-/**
+/ * *
 
  * Formats categorized tasks for display
  * @param
@@ -372,23 +372,23 @@ function countNewTodos(categorizedTasks) {
  * @param {any} yamlFrontmatter - The yamlFrontmatter parameter
  * @returns {number} The calculated value
 
- */
+ * /
 
 function formatCategorizedTasks(categorizedTasks, yamlFrontmatter) {
   debug('formatCategorizedTasks function called');
-  var counts = extractCountsFromYAML(yamlFrontmatter);
-  var markdown = "# My Todos\n\n";
-  markdown += formatCategory("## Overdue", categorizedTasks.overdue, counts.totalOverdue);
-  markdown += formatCategory("## Due Today", categorizedTasks.dueToday, categorizedTasks.dueToday.length);
-  markdown += formatCategory("## Due Next Two Weeks", categorizedTasks.dueNextTwoWeeks, counts.totalNextTwo - categorizedTasks.dueToday.length);
-  markdown += formatCategory("## Due in Next Month", categorizedTasks.dueNextMonth, counts.countNextFour);
-  markdown += formatCategory("## No Due Date", categorizedTasks.noDueDate, counts.countNoDue);
-  markdown += formatCategory("### Done", categorizedTasks.completed, counts.countCummDone);
+  let counts = extractCountsFromYAML(yamlFrontmatter);
+  let markdown = "# My Todos\n\n";
+  markdown + = formatCategory("## Overdue", categorizedTasks.overdue, counts.totalOverdue);
+  markdown + = formatCategory("## Due Today", categorizedTasks.dueToday, categorizedTasks.dueToday.length);
+  markdown + = formatCategory("## Due Next Two Weeks", categorizedTasks.dueNextTwoWeeks, counts.totalNextTwo - categorizedTasks.dueToday.length);
+  markdown + = formatCategory("## Due in Next Month", categorizedTasks.dueNextMonth, counts.countNextFour);
+  markdown + = formatCategory("## No Due Date", categorizedTasks.noDueDate, counts.countNoDue);
+  markdown + = formatCategory("### Done", categorizedTasks.completed, counts.countCummDone);
   debug('Categorized tasks formatted into markdown');
   return markdown;
 }
 
-/**
+/ * *
 
  * Formats category for display
  * @param
@@ -397,36 +397,36 @@ function formatCategorizedTasks(categorizedTasks, yamlFrontmatter) {
  * @param {number} count - The number of items
  * @returns {number} The calculated value
 
- */
+ * /
 
 function formatCategory(header, tasks, count) {
   debug('formatCategory function called for: ' + header);
-  if (tasks.length === 0) return '';
-  var markdown = `${header} - ${count}\n`;
-  if (header !== "## No Due Date" && header !== "### Done") {
-    tasks.sort((a, b) => new Date(a.due || '9999-12-31') - new Date(b.due || '9999-12-31'));
+  if (tasks.length = = = 0) return '';
+  let markdown = `${header} - ${count}\n`;
+  if (header ! = = "## No Due Date" && header ! = = "### Done") {
+    tasks.sort((a, b) = > new Date(a.due || '9999- 12- 31') - new Date(b.due || '9999- 12- 31'));
   }
-  tasks.forEach(task => {
-    markdown += formatTask(task, 0);
+  tasks.forEach(task = > {
+    markdown + = formatTask(task, 0);
   });
   return markdown + '\n';
 }
 
-/**
+/ * *
 
  * Formats date for display
  * @param
  * @param {any} date - The date parameter
  * @returns {number} The calculated value
 
- */
+ * /
 
 function formatDate(date) {
   debug('formatDate function called for date: ' + date);
-  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+  return `${date.getFullYear()}- ${String(date.getMonth() + 1).padStart(2, '0')}- ${String(date.getDate()).padStart(2, '0')}`;
 }
 
-/**
+/ * *
 
  * Formats task for display
  * @param
@@ -434,17 +434,17 @@ function formatDate(date) {
  * @param {any} depth - The depth parameter
  * @returns {number} The calculated value
 
- */
+ * /
 
 function formatTask(task, depth) {
   debug('formatTask function called for task: ' + task.title);
-  var indent = '  '.repeat(depth);
-  var checkbox = task.status === 'completed' ? '[x]' : '[ ]';
-  var dueDate = task.due ? ` ${formatDate(new Date(task.due))}` : '';
-  var line = `${indent}- ${checkbox} ${task.title}${dueDate}\n`;
+  let indent = '  '.repeat(depth);
+  let checkbox = task.status = = = 'completed' ? '[x]' : '[ ]';
+  let dueDate = task.due ? ` ${formatDate(new Date(task.due))}` : '';
+  let line = `${indent}- ${checkbox} ${task.title}${dueDate}\n`;
   if (task.subtasks && task.subtasks.length > 0) {
-    task.subtasks.forEach(subtask => {
-      line += formatTask(subtask, depth + 1);
+    task.subtasks.forEach(subtask = > {
+      line + = formatTask(subtask, depth + 1);
     });
   }
   return line;

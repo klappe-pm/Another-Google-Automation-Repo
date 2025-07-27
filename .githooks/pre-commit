@@ -4,6 +4,9 @@ set -euo pipefail
 # Google Apps Script Pre-commit Hook
 # Automatically fixes linting issues on staged .gs files before commit
 
+# Get the repository root
+REPO_ROOT=$(git rev-parse --show-toplevel)
+
 echo "🔍 Running GAS linter on staged files..."
 
 # Get list of staged .gs files
@@ -25,7 +28,7 @@ FILES_FIXED=false
 for FILE in $STAGED_FILES; do
   echo "Linting and fixing: $FILE"
   # Run linter with --fix flag to automatically fix issues
-  if node automation/dev-tools/gas-linter.js --fix "$FILE"; then
+  if node "$REPO_ROOT/automation/validation/javascript/gas-linter.js" --fix "$FILE"; then
     # Check if file was modified
     if ! git diff --quiet "$FILE"; then
       FILES_FIXED=true
