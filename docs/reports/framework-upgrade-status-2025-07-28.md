@@ -274,6 +274,8 @@ The next four weeks will focus on eliminating technical debt, implementing share
 
 ---
 
+**Please refer to the [Documentation Index](../README.md) for more information.**
+
 *Report generated: 2025-07-28*  
 *Next review scheduled: 2025-08-04*  
 *Status: Phase 1 Complete ✅ | Phase 2 Ready to Begin 🚀*

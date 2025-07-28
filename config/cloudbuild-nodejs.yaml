@@ -1,13 +1,13 @@
-# Alternative Cloud Build Configuration using official Node.js image
-# This avoids the npm permission issues in the custom Docker image
-timeout: 1200s
+# Google Cloud Build Configuration for Google Apps Script Deployment
+# Updated configuration with improved authentication and error handling
+timeout: 1800s
+options:
+  substitution_option: ALLOW_LOOSE
+  logging: CLOUD_LOGGING_ONLY
+  machineType: E2_HIGHCPU_8
+  
 steps:
-# Step 1: Install dependencies
-- name: 'node:18'
-  entrypoint: 'npm'
-  args: ['install', '-g', '@google/clasp']
-
-# Step 2: Authenticate and deploy
+# Step 1: Verify project structure and prepare environment
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
   entrypoint: 'bash'
   args:
@@ -15,27 +15,59 @@ steps:
     - |
       set -e
       
-      # Install Node.js in cloud-sdk container
+      echo "🔍 Verifying project structure..."
+      ls -la
+      
+      if [ ! -d "apps" ]; then
+        echo "❌ Error: 'apps' directory not found"
+        exit 1
+      fi
+      
+      echo "✅ Project structure verified"
+      
+      # Install Node.js and npm
       apk add --no-cache nodejs npm
       
-      # Install clasp
+      # Install clasp globally
       npm install -g @google/clasp
       
-      echo "✅ Environment ready"
+      echo "✅ Environment setup complete"
       echo "Node.js version: $$(node --version)"
-      echo "gcloud version: $$(gcloud --version | head -1)"
+      echo "npm version: $$(npm --version)"
+      echo "clasp version: $$(clasp --version)"
+
+# Step 2: Authenticate with Google Apps Script
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
+  entrypoint: 'bash'
+  args:
+    - -c
+    - |
+      set -e
       
-      # Authenticate and verify credentials
-      echo "🔐 Setting up clasp credentials..."
+      # Install Node.js and clasp (required in each step)
+      apk add --no-cache nodejs npm
+      npm install -g @google/clasp
+      
+      echo "🔐 Setting up clasp authentication..."
+      
+      # Check if clasp-credentials secret exists
+      if ! gcloud secrets describe clasp-credentials --project="$PROJECT_ID" > /dev/null 2>&1; then
+        echo "❌ Error: 'clasp-credentials' secret not found in project $PROJECT_ID"
+        echo "Please create the secret with: gcloud secrets create clasp-credentials --data-file=~/.clasprc.json"
+        exit 1
+      fi
+      
+      # Get clasp credentials from secret
       gcloud secrets versions access latest --secret="clasp-credentials" --project="$PROJECT_ID" > ~/.clasprc.json
       chmod 600 ~/.clasprc.json
       
-      # Verify authentication
-      if ! /usr/bin/npx clasp login --status > /dev/null 2>&1; then
-        echo "❌ Clasp authentication failed. Check the 'clasp-credentials' secret."
+      # Verify credentials file
+      if [ ! -s ~/.clasprc.json ]; then
+        echo "❌ Error: clasp credentials file is empty"
         exit 1
       fi
-      echo "✅ Clasp authentication successful"
+      
+      echo "✅ Clasp credentials configured"
 
       # Deploy all projects
       echo "📦 Deploying all Google Apps Script projects..."
@@ -81,7 +113,3 @@ steps:
         echo "Failed projects:$$FAILED_PROJECTS"
         exit 1
       fi
-options:
-  substitution_option: ALLOW_LOOSE
-  logging: CLOUD_LOGGING_ONLY
-  machineType: E2_HIGHCPU_8

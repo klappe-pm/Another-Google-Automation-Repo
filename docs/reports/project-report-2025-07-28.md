@@ -1,13 +1,11 @@
-# Project Report - 2025-07-27
-
-> **Quick Links:** [Documentation Index](../README.md) | [Main README](../../README.md)
+# Project Report - 2025-07-28
 
 ## Summary
 
-- Total Projects: 10
-- Total Files: 148
-- Total Lines: 42,734
-- Total Functions: 1,224
+- Total Projects: 11
+- Total Files: 154
+- Total Lines: 44,352
+- Total Functions: 1,282
 
 ## Projects
 
@@ -19,6 +17,7 @@
 | drive | 47 | 16,301 | 530 |
 | gmail | 64 | 16,440 | 398 |
 | photos | 0 | 0 | 0 |
+| shared | 6 | 1,618 | 58 |
 | sheets | 21 | 7,473 | 247 |
 | slides | 0 | 0 | 0 |
 | tasks | 2 | 153 | 3 |
@@ -28,4 +27,4 @@
 
 | Extension | Count |
 |-----------|-------|
-| .gs | 148 |
+| .gs | 154 |

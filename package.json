@@ -12,7 +12,10 @@
     "lint": "node automation/precommit/lint-gas.js",
     "lint:fix": "node automation/precommit/lint-gas.js --fix",
     "report": "node automation/reports/project-report.js",
-    "report:catalog": "node automation/reports/catalog.js"
+    "report:catalog": "node automation/reports/catalog.js",
+    "repo:review": "node automation/reports/project-report.js",
+    "repo:report": "node automation/reports/catalog.js",
+    "version:current": "echo $npm_package_version"
   },
   "repository": {
     "type": "git",

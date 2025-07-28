@@ -91,10 +91,15 @@ npm run version:notes
 # Direct execution
 node tools/repository/version-manager.js <command> [options]
 ```
+## Cross-links
+
+- [Main README](/README.md)
+- [Repository Review Guide](repo-review.md)
 
 ## Workflow Scripts
 
 ### Publication Readiness Check
+
 ```bash
 # Complete publication readiness assessment
 npm run publication:check
@@ -104,6 +109,7 @@ This runs:
 2. Comprehensive reporting (`repo:report`)
 
 ### Prepare for Publication
+
 ```bash
 # Automated publication preparation
 npm run publication:prepare
@@ -114,7 +120,6 @@ This runs:
 3. Generate reports
 4. Update changelog
 5. Create release notes
-
 ## Reports Structure
 
 All reports are saved to the `reports/` directory:

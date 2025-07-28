@@ -13,14 +13,21 @@ automation/
 ├── deployment/         # Deployment and setup scripts
 │   ├── scripts/        # Deployment automation scripts
 │   └── setup/          # Environment setup and configuration
-├── validation/         # Testing, validation, and quality assurance
-│   ├── javascript/     # JavaScript validators and linters
+├── validation/         # Testing, validation, and QA
+│   ├── javascript/     # JS validators and linters
 │   ├── security/       # Security scanning tools
-│   └── dev-tools/      # Development validation tools
+│   └── dev-tools/      # Dev validation tools
 └── utilities/          # General utilities and helpers
     ├── git-automation/ # Git workflow automation
     └── config/         # Configuration files and settings
 ```
+
+## Cross-links
+
+- [Main README](/README.md)
+- [Deployment Scripts](deployment/README.md)
+- [Validation Guides](validation/README.md)
+- [Utilities README](utilities/README.md)
 
 ## Tools Directory
 
