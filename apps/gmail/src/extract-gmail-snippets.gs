@@ -24,43 +24,43 @@
  * - GmailApp: For accessing email messages and labels
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Extracts specific information
 
- * /
+ */
 
-function extractEmailSnippets() { / / Initialize logging;
-  Logger.log("Starting extractEmailSnippets execution"); / / Get the active spreadsheet and "GMail" sheet;
+function extractEmailSnippets() { // Initialize logging;
+  Logger.log("Starting extractEmailSnippets execution"); // Get the active spreadsheet and "GMail" sheet;
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  let sheet = spreadsheet.getSheetByName("GMail"); / / Set column headers if not already present;
-  setColumnHeaders(sheet); / / Get all data from column B (email IDs)
+  let sheet = spreadsheet.getSheetByName("GMail"); // Set column headers if not already present;
+  setColumnHeaders(sheet); // Get all data from column B (email IDs)
   let lastRow = sheet.getLastRow();
   let emailIds = sheet.getRange("B2:B" + lastRow).getValues();
 
-  Logger.log("Processing " + emailIds.length + " email IDs"); / / Process each email ID;
+  Logger.log("Processing " + emailIds.length + " email IDs"); // Process each email ID;
   for (let i = 0; i < emailIds.length; i + + ) {
-    let emailId = emailIds[i][0]; / / Skip empty cells;
+    let emailId = emailIds[i][0]; // Skip empty cells;
     if (! emailId) {
       Logger.log("Row " + (i + 2) + ": Skipping empty email ID");
       continue;
     }
 
-    try { / / Get the email message using the email ID
+    try { // Get the email message using the email ID
       let message = GmailApp.getMessageById(emailId);
-      Logger.log("Row " + (i + 2) + ": Processing email ID " + emailId); / / Get the email snippet;
-      let snippet = message.getPlainBody().substring(0, 200); / / Limit to 200 characters / / Write snippet to column X (row offset by 2 due to starting at B2);
+      Logger.log("Row " + (i + 2) + ": Processing email ID " + emailId); // Get the email snippet;
+      let snippet = message.getPlainBody().substring(0, 200); // Limit to 200 characters // Write snippet to column X (row offset by 2 due to starting at B2);
       let row = i + 2;
-      sheet.getRange(row, 24).setValue(snippet); / / Column X (24);
+      sheet.getRange(row, 24).setValue(snippet); // Column X (24);
 
       Logger.log("Row " + row + ": Successfully processed - Snippet length: " + snippet.length);
 
     } catch (e) {
-      Logger.log("Row " + (i + 2) + ": Error processing email ID " + emailId + ": " + e.message); / / Write error message to sheet;
+      Logger.log("Row " + (i + 2) + ": Error processing email ID " + emailId + ": " + e.message); // Write error message to sheet;
       sheet.getRange(i + 2, 24).setValue("Error: " + e.message);
       continue;
     }
@@ -75,21 +75,21 @@ function extractEmailSnippets() { / / Initialize logging;
  * @param
  * @param {Sheet} sheet - The sheet to set
 
- * /
+ */
 
 function setColumnHeaders(sheet) {
   Logger.log("Setting column headers");
 
   let headers = [;
     ["Email ID", "Snippet"]
-  ]; / / Check if headers already exist in B1
+  ]; // Check if headers already exist in B1
   let existingHeaders = sheet.getRange(1, 2, 1, 1).getValue();
-  if (! existingHeaders) { / / Set headers in B1 and X1
-    sheet.getRange(1, 2).setValue(headers[0][0]); / / B1;
-    sheet.getRange(1, 24).setValue(headers[0][1]); / / X1;
+  if (! existingHeaders) { // Set headers in B1 and X1
+    sheet.getRange(1, 2).setValue(headers[0][0]); // B1;
+    sheet.getRange(1, 24).setValue(headers[0][1]); // X1;
     Logger.log("Column headers set successfully");
   } else {
-    Logger.log("Headers already exist, skipping"); / / Check if Snippet header exists, add it if not;
+    Logger.log("Headers already exist, skipping"); // Check if Snippet header exists, add it if not;
     if (! sheet.getRange(1, 24).getValue()) {
       sheet.getRange(1, 24).setValue(headers[0][1]);
       Logger.log("Added Snippet header");

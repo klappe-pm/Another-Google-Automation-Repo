@@ -26,23 +26,23 @@
  * Google Services:
  * - DriveApp: For file and folder management
  * - Tasks: For task list operations
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Exports tasks to markdown to external format
  * @returns {any} The result
 
- * /
+ */
 
 function exportTasksToMarkdown() {
   try {
-    / / List all task lists
+    // List all task lists
     const taskLists = Tasks.Tasklists.list();
 
-    / / Find the 'Inbox' task list
+    // Find the 'Inbox' task list
     const inboxTaskList = taskLists.items.find(taskList = > taskList.title = = = 'My Tasks');
 
     if (! inboxTaskList) {
@@ -50,7 +50,7 @@ function exportTasksToMarkdown() {
       return;
     }
 
-    / / List tasks from the 'Inbox'
+    // List tasks from the 'Inbox'
     const tasks = Tasks.Tasks.list(inboxTaskList.id);
 
     if (! tasks.items || tasks.items.length = = = 0) {
@@ -58,23 +58,23 @@ function exportTasksToMarkdown() {
       return;
     }
 
-    / / Prepare Markdown content
+    // Prepare Markdown content
     let markdownContent = "# Inbox\n\n";
     for (const task of tasks.items) {
       const status = task.status = = = 'completed' ? 'x' : ' ';
-      const dueDate = task.due ? `` : ''; / / Hidden due date comment
+      const dueDate = task.due ? `` : ''; // Hidden due date comment
       markdownContent + = `- [${status}] ${task.title} ${dueDate}\n`;
     }
 
-    / / Create or get the '_todos' folder
+    // Create or get the '_todos' folder
     const folderId = getOrCreateFolderId('_todos');
 
-    / / Create the Markdown file
+    // Create the Markdown file
     DriveApp.createFile(folderId, 'tasks.md', markdownContent);
     console.log('Markdown file created successfully in "_todos" folder.');
 
   } catch (err) {
-    / / Handle errors from the Tasks API or DriveApp
+    // Handle errors from the Tasks API or DriveApp
     console.error('An error occurred:', err.message);
   }
 }
@@ -86,7 +86,7 @@ function exportTasksToMarkdown() {
  * @param {string} folderName - The folderName to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getOrCreateFolderId(folderName) {
   try {
@@ -98,6 +98,6 @@ function getOrCreateFolderId(folderName) {
     }
   } catch (err) {
     console.error('Error finding or creating folder:', err.message);
-    throw err; / / Re- throw the error to stop execution
+    throw err; // Re- throw the error to stop execution
   }
 }

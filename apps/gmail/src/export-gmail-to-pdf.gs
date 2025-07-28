@@ -51,22 +51,22 @@
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
 /  / Constants
 const ROOT_FOLDER_NAME = "Lappe vs. Anton LLC - Lappe Files";
 const PDF_FOLDER_NAME = "GMail";
 const ATTACHMENTS_FOLDER_SUFFIX = "GMail - Attachments";
 const BATCH_SIZE = 10;
-const MAX_RUNTIME = 5 * 60 * 1000; / / 5 minutes;
-const MAX_ATTACHMENT_SIZE = 25 * 1024 * 1024; / / 25MB;
+const MAX_RUNTIME = 5 * 60 * 1000; // 5 minutes;
+const MAX_ATTACHMENT_SIZE = 25 * 1024 * 1024; // 25MB;
 const PROCESSED_LABEL_NAME = "0processed";
 const THREAD_FETCH_LIMIT = 100;
-const SLEEP_INTERVAL = 500; / / 0.5s / / Main function with progress logging and status update;
+const SLEEP_INTERVAL = 500; // 0.5s // Main function with progress logging and status update;
 
- / / Fixed setupOutputSheet function
+ // Fixed setupOutputSheet function
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -75,7 +75,7 @@ const SLEEP_INTERVAL = 500; / / 0.5s / / Main function with progress logging and
  * @param {string} message - The message content
  * @returns {string} The newly created string
 
- * /
+ */
 
 function createPdfFromMessage(message) {
   const subject = message.getSubject();
@@ -95,7 +95,7 @@ function createPdfFromMessage(message) {
  * @param {any} fromString - The fromString parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function extractEmail(fromString) {
   const emailMatch = fromString.match( / < (. + ?) > / );
@@ -111,7 +111,7 @@ function extractEmail(fromString) {
  * @param {any} fromString - The fromString parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function extractName(fromString) {
   const emailMatch = fromString.match( / < (. + ?) > / );
@@ -127,7 +127,7 @@ function extractName(fromString) {
  * @param {Sheet} sheet - The sheet to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 function getProcessedIds(sheet) {
   if (sheet.getLastRow() < = 1) return { threadIds: new Set(), emailIds: new Set() };
@@ -140,7 +140,7 @@ function getProcessedIds(sheet) {
  * Exports grok emails to p d f to external format
  * @returns {string} The formatted string
 
- * /
+ */
 
 function grokExportEmailsToPDF() {
   const startTime = Date.now();
@@ -183,7 +183,7 @@ function grokExportEmailsToPDF() {
 
       const totalProcessed = processedIds.emailIds.size + processedCount;
       const allProcessed = totalProcessed > = totalThreads;
-      updateLabelsSheet(labelsSheet, statusRow, labelToProcess, folderStructure.labelFolder, processedCount, allProcessed, executionDate); / / Set Status to true if all emails are processed;
+      updateLabelsSheet(labelsSheet, statusRow, labelToProcess, folderStructure.labelFolder, processedCount, allProcessed, executionDate); // Set Status to true if all emails are processed;
       if (allProcessed) {
         labelsSheet.getRange(statusRow, 1).setValue(true);
         Logger.log(`Set Status to true for label ${labelToProcess}`);
@@ -193,7 +193,7 @@ function grokExportEmailsToPDF() {
       Logger.log(`Processed ${processedCount} emails for ${labelToProcess}. Total: ${totalProcessed} / ${totalThreads}`);
     } else {
       const allProcessed = processedIds.emailIds.size > = totalThreads;
-      updateLabelsSheet(labelsSheet, statusRow, labelToProcess, folderStructure.labelFolder, 0, allProcessed, executionDate); / / Set Status to true if no new emails and all are processed;
+      updateLabelsSheet(labelsSheet, statusRow, labelToProcess, folderStructure.labelFolder, 0, allProcessed, executionDate); // Set Status to true if no new emails and all are processed;
       if (allProcessed) {
         labelsSheet.getRange(statusRow, 1).setValue(true);
         Logger.log(`Set Status to true for label ${labelToProcess} (no new emails)`);
@@ -217,7 +217,7 @@ function grokExportEmailsToPDF() {
  * @param {Sheet} sheet - The sheet parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function insertDataIntoSheet(emailData, sheetName, sheet) {
   const headers = ["Thread ID", "Email ID", "Date Received", "Time Received", "Metadata", "Subject", "Snippet", "Gmail Link", "PDF Link", "Sender Email", "Email Recipients", "Sender Domain", "Sender Display Name", ...Array(10).fill().map((_, i) = > `Attach Link ${i + 1}`)];
@@ -259,7 +259,7 @@ function insertDataIntoSheet(emailData, sheetName, sheet) {
  * @param {GmailLabel} processedLabel - The processedLabel parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function processEmailBatches(label, processedIds, folders, startTime, processedLabel) {
   const emailDataBatch = [];
@@ -329,14 +329,14 @@ function processEmailBatches(label, processedIds, folders, startTime, processedL
  * @param {Folder} folders - The folders parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function processSingleEmail(message, folders) {
   const emailId = message.getId();
   const threadId = message.getThread().getId();
 
   try {
-    const threadSubject = message.getThread().getFirstMessageSubject().replace( / ^(Re:|Fwd:)\s * / i, '');
+    const threadSubject = message.getThread().getFirstMessageSubject().replace( / ^(Re:|Fwd:)\s */ i, '');
     const dateReceived = Utilities.formatDate(message.getDate(), Session.getScriptTimeZone(), "yyyy - MM - dd");
     const timeReceived = Utilities.formatDate(message.getDate(), Session.getScriptTimeZone(), "HH:mm");
     const from = message.getFrom();
@@ -364,7 +364,7 @@ function processSingleEmail(message, folders) {
     const pdfLink = pdfFile.getUrl();
 
     const rfc822MessageId = message.getHeader("Message - ID");
-    const gmailLink = rfc822MessageId ? `https: / / mail.google.com / mail / u / 0 / #search / rfc822msgid:${encodeURIComponent(rfc822MessageId)}` : "";
+    const gmailLink = rfc822MessageId ? `https: // mail.google.com / mail / u / 0 / #search / rfc822msgid:${encodeURIComponent(rfc822MessageId)}` : "";
     const metadata = rfc822MessageId || "";
     const snippet = message.getPlainBody().substring(0, 100);
 
@@ -399,7 +399,7 @@ function processSingleEmail(message, folders) {
  * @param {any} retries - The retries parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function safeOperation(operation, fallback = null, retries = 3) {
   let delay = 500;
@@ -422,7 +422,7 @@ function safeOperation(operation, fallback = null, retries = 3) {
  * @param {Sheet} sheet - The sheet to set
  * @returns {string} The formatted string
 
- * /
+ */
 
 function setupLabelsSheet(sheet) {
   if (sheet.getLastRow() = = = 0) {
@@ -445,7 +445,7 @@ function setupLabelsSheet(sheet) {
  * @param {GmailLabel} label - The label to set
  * @returns {string} The formatted string
 
- * /
+ */
 
 function setupOutputSheet(spreadsheet, label) {
   let sheet = spreadsheet.getSheetByName(label);
@@ -465,7 +465,7 @@ function setupOutputSheet(spreadsheet, label) {
  * @param {Sheet} sheet - The sheet to set
  * @returns {string} The formatted string
 
- * /
+ */
 
 function setupProcessedSheet(sheet) {
   if (sheet.getLastRow() = = = 0) {
@@ -489,7 +489,7 @@ function setupProcessedSheet(sheet) {
  * @param {any} executionDate - The executionDate to update
  * @returns {string} The formatted string
 
- * /
+ */
 
 function updateLabelsSheet(sheet, row, label, folder, count, allProcessed, executionDate) {
   const folderLink = `= HYPERLINK("${folder.getUrl()}", "Export Folder")`;
@@ -506,7 +506,7 @@ function updateLabelsSheet(sheet, row, label, folder, count, allProcessed, execu
  * @param {any} processedBatch - The processedBatch to update
  * @returns {string} The formatted string
 
- * /
+ */
 
 function updateProcessedSheet(sheet, processedBatch) {
   if (processedBatch.length) {
@@ -515,7 +515,7 @@ function updateProcessedSheet(sheet, processedBatch) {
   }
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -524,7 +524,7 @@ function updateProcessedSheet(sheet, processedBatch) {
  * @param {GmailLabel} label - The label for creation
  * @returns {string} The newly created string
 
- * /
+ */
 
 function createFolderStructure(label) {
   const rootFolder = getOrCreateFolder(ROOT_FOLDER_NAME);
@@ -541,7 +541,7 @@ function createFolderStructure(label) {
  * @param {Sheet} sheet - The sheet to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 function getNextLabelToProcess(sheet) {
   const labelsData = sheet.getRange("A2:G" + sheet.getLastRow()).getValues();
@@ -557,7 +557,7 @@ function getNextLabelToProcess(sheet) {
  * @param {Folder} parentFolder - The parentFolder to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 function getOrCreateFolder(folderName, parentFolder) {
   const folders = (parentFolder || DriveApp).getFoldersByName(folderName);
@@ -571,7 +571,7 @@ function getOrCreateFolder(folderName, parentFolder) {
  * @param {string} labelName - The labelName to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 function getOrCreateGmailLabel(labelName) {
   return safeOperation(() = > GmailApp.getUserLabelByName(labelName) || GmailApp.createLabel(labelName));

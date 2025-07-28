@@ -30,9 +30,9 @@
  * Google Services:
  * - DriveApp: For file and folder management
  * - Logger: For logging and debugging
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -41,7 +41,7 @@
  * @param {string} content - The content to process
  * @returns {any} The result
 
- * /
+ */
 
 function applyMarkdownFormatting(content) {
   let formattedContent = content.replace(/ \n{3,}/ g, '\n\n');
@@ -93,7 +93,7 @@ function applyMarkdownFormatting(content) {
  * @param {Folder} folder - The folder parameter
  * @returns {any} The result
 
- * /
+ */
 
 function processFolder(folder) {
   const filesIterator = folder.getFiles();
@@ -128,7 +128,7 @@ function processFolder(folder) {
  * @param {string} folderName - The folderName to update
  * @returns {any} The result
 
- * /
+ */
 
 function updateYamlCategory(content, folderName) {
   const yamlRegex = / ^- - - \n([\s\S]* ?)- - - \n/ ;
@@ -151,7 +151,7 @@ function updateYamlCategory(content, folderName) {
   }
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -161,7 +161,7 @@ function updateYamlCategory(content, folderName) {
  * @param {string} folderName - The folderName parameter
  * @returns {any} The result
 
- * /
+ */
 
 function formatMarkdownFile(file, folderName) {
   const content = file.getBlob().getDataAsString();
@@ -175,7 +175,7 @@ function formatMarkdownFile(file, folderName) {
  * Formats markdown files for display
  * @returns {any} The result
 
- * /
+ */
 
 function formatMarkdownFiles() {
   const folderId = '';

@@ -35,20 +35,9 @@
  * - PropertiesService: For storing script properties
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
-/ / Main Functions
-
-/**
-
- * Works with spreadsheet data
- * @param
- * @param {Sheet} sheet - The sheet parameter
- * @param {File} file - The file parameter
- * @param {any} type - The type parameter
- * @returns {string} The formatted string
-
- * /
+// Main Functions
 
 /**
 
@@ -59,7 +48,18 @@
  * @param {any} type - The type parameter
  * @returns {string} The formatted string
 
- * /
+ */
+
+/**
+
+ * Works with spreadsheet data
+ * @param
+ * @param {Sheet} sheet - The sheet parameter
+ * @param {File} file - The file parameter
+ * @param {any} type - The type parameter
+ * @returns {string} The formatted string
+
+ */
 
 function addToSheet(sheet, file, type) {
   const filePath = getFilePath(file);
@@ -71,7 +71,7 @@ function addToSheet(sheet, file, type) {
   const modifiedAge = Math.floor((today - lastModified) / (1000 * 60 * 60 * 24));
 
   const rowData = [;
-    false, / / Clean - up checkbox
+    false, // Clean - up checkbox
     file.getUrl(),
     file.getName(),
     formatDate(createdDate),
@@ -92,14 +92,14 @@ function addToSheet(sheet, file, type) {
  * Works with spreadsheet data
  * @returns {string} The formatted string
 
- * /
+ */
 
 /**
 
  * Works with spreadsheet data
  * @returns {string} The formatted string
 
- * /
+ */
 
 function docsIndex() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -108,7 +108,7 @@ function docsIndex() {
 
   Logger.log('Docs indexing started at: ' + new Date().toISOString());
 
-  const folderId = '1VdMQjZpl8t6X_t20dyliX94iAJtOh4sV'; / / Replace with your folder ID;
+  const folderId = '1VdMQjZpl8t6X_t20dyliX94iAJtOh4sV'; // Replace with your folder ID;
   const folder = DriveApp.getFolderById(folderId);
 
   const scriptProperties = PropertiesService.getScriptProperties();
@@ -116,7 +116,7 @@ function docsIndex() {
 
   const sheet = getOrCreateSheet(ss, sheetName);
   if (sheet.getLastRow() = = = 0) {
-    setHeaders(sheet); / / Set headers only if the sheet is empty
+    setHeaders(sheet); // Set headers only if the sheet is empty
   }
 
   const queue = [folder];
@@ -153,7 +153,7 @@ function docsIndex() {
  * @param {Sheet} sheet - The sheet parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 /**
 
@@ -162,13 +162,13 @@ function docsIndex() {
  * @param {Sheet} sheet - The sheet parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function finalizeSheet(sheet) {
   const lastRow = sheet.getLastRow();
   if (lastRow > 1) {
     const range = sheet.getDataRange();
-    range.sort({ column: 4, ascending: false }); / / Sort by Created Date;
+    range.sort({ column: 4, ascending: false }); // Sort by Created Date;
   }
 }
 
@@ -179,7 +179,7 @@ function finalizeSheet(sheet) {
  * @param {File} file - The file to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 /**
 
@@ -188,7 +188,7 @@ function finalizeSheet(sheet) {
  * @param {File} file - The file to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 function getFilePath(file) {
   const pathParts = [];
@@ -208,7 +208,7 @@ function getFilePath(file) {
  * @param {string} sheetName - The sheetName to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 /**
 
@@ -218,7 +218,7 @@ function getFilePath(file) {
  * @param {string} sheetName - The sheetName to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 function getOrCreateSheet(ss, sheetName) {
   let sheet = ss.getSheetByName(sheetName);
@@ -235,7 +235,7 @@ function getOrCreateSheet(ss, sheetName) {
  * @param {Sheet} sheet - The sheet to set
  * @returns {string} The formatted string
 
- * /
+ */
 
 /**
 
@@ -244,7 +244,7 @@ function getOrCreateSheet(ss, sheetName) {
  * @param {Sheet} sheet - The sheet to set
  * @returns {string} The formatted string
 
- * /
+ */
 
 function setHeaders(sheet) {
   const headers = ['Clean - up', 'File Link', 'File Name', 'Created Date', 'Last Modified', 'File Age', 'Modified Age', 'File Type', 'File Path'];
@@ -252,7 +252,7 @@ function setHeaders(sheet) {
   sheet.setFrozenRows(1);
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -261,7 +261,7 @@ function setHeaders(sheet) {
  * @param {any} date - The date parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 /**
 
@@ -270,7 +270,7 @@ function setHeaders(sheet) {
  * @param {any} date - The date parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function formatDate(date) {
   return Utilities.formatDate(date, Session.getScriptTimeZone(), 'yyyy - MM - dd');

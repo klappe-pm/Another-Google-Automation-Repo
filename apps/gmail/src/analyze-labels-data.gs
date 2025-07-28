@@ -38,34 +38,34 @@
  * - PropertiesService: For storing script properties
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
-GOOGLE_IDS: { / / External spreadsheet ID - HIGH SECURITY RISK if hardcoded
+GOOGLE_IDS: { // External spreadsheet ID - HIGH SECURITY RISK if hardcoded
     SPREADSHEET_ID: PropertiesService.getScriptProperties().getProperty('GMAIL_LABELS_SPREADSHEET_ID'),
-  }, / / USER_CONFIGURABLE: Names and labels that users might want to customize
+  }, // USER_CONFIGURABLE: Names and labels that users might want to customize
   NAMES: {
-    SHEET_NAME: 'GMail Labels', / / User can modify this
+    SHEET_NAME: 'GMail Labels', // User can modify this
     TIMESTAMP_FORMAT: 'yyyy - MM - dd HH:mm:ss',
-  }, / / BUSINESS_LOGIC: Processing parameters that might need adjustment
+  }, // BUSINESS_LOGIC: Processing parameters that might need adjustment
   PROCESSING: {
-    INCLUDE_SYSTEM_LABELS: false, / / Only user - created labels by default
-    ADD_TIMESTAMP: true, / / Add last updated timestamp
-    MAX_RETRIES: 3, / / For handling API rate limits
-  }, / / SYSTEM: Headers and constants
+    INCLUDE_SYSTEM_LABELS: false, // Only user - created labels by default
+    ADD_TIMESTAMP: true, // Add last updated timestamp
+    MAX_RETRIES: 3, // For handling API rate limits
+  }, // SYSTEM: Headers and constants
   HEADERS: ['Labels', 'Total Threads', 'Total Emails', 'Last Updated']
-}; / *  *  * Setup function to configure the script for first - time use * This replaces hardcoded values with user - prompted configuration * / / *  *  * Main function to export Gmail labels information to a Google Sheet * Now uses secure configuration instead of hardcoded values * / / *  *  * Core export logic separated for better error handling and testing * / / *  *  * Utility function to validate Google ID format * / / *  *  * Configuration management functions * / / / Main Functions
+}; / *  *  * Setup function to configure the script for first - time use * This replaces hardcoded values with user - prompted configuration *// *  *  * Main function to export Gmail labels information to a Google Sheet * Now uses secure configuration instead of hardcoded values *// *  *  * Core export logic separated for better error handling and testing *// *  *  * Utility function to validate Google ID format *// *  *  * Configuration management functions *// / Main Functions
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Exports gmail labels to sheet to external format
  * @returns {number} The calculated value
 
- * /
+ */
 
 function exportGmailLabelsToSheet() {
-  Logger.log('Starting Gmail Labels Export...'); / / Validate configuration exists;
+  Logger.log('Starting Gmail Labels Export...'); // Validate configuration exists;
   if (! CONFIG.GOOGLE_IDS.SPREADSHEET_ID) {
     Browser.msgBox(
       'Configuration Required',
@@ -83,7 +83,7 @@ function exportGmailLabelsToSheet() {
 
   while (attempt < = maxRetries) {
     try {
-      attempt + + ; Logger.log(`Export attempt ${attempt} of ${maxRetries + 1}`); / / Execute the export;
+      attempt + + ; Logger.log(`Export attempt ${attempt} of ${maxRetries + 1}`); // Execute the export;
       const result = performLabelsExport();
 
       if (result.success) {
@@ -109,7 +109,7 @@ function exportGmailLabelsToSheet() {
         );
         console.error('Export failed after all retries');
         return;
-      } / / Wait before retry (exponential backoff)
+      } // Wait before retry (exponential backoff)
       Utilities.sleep(Math.pow(2, attempt) * 1000);
     }
   }
@@ -120,27 +120,27 @@ function exportGmailLabelsToSheet() {
  * Exports perform labels to external format
  * @returns {number} The calculated value
 
- * /
+ */
 
 function performLabelsExport() {
-  Logger.log('Performing labels export...'); / / Open the spreadsheet;
+  Logger.log('Performing labels export...'); // Open the spreadsheet;
   const spreadsheet = SpreadsheetApp.openById(CONFIG.GOOGLE_IDS.SPREADSHEET_ID);
-  Logger.log('Spreadsheet opened:', spreadsheet.getName()); / / Get or create the sheet;
+  Logger.log('Spreadsheet opened:', spreadsheet.getName()); // Get or create the sheet;
   let sheet = spreadsheet.getSheetByName(CONFIG.NAMES.SHEET_NAME);
   if (! sheet) {
     Logger.log('Creating new sheet:', CONFIG.NAMES.SHEET_NAME);
     sheet = spreadsheet.insertSheet(CONFIG.NAMES.SHEET_NAME);
   } else {
     Logger.log('Using existing sheet:', CONFIG.NAMES.SHEET_NAME);
-  } / / Clear existing data
+  } // Clear existing data
   sheet.clear();
-  Logger.log('Sheet cleared'); / / Set headers (conditionally include timestamp column);
+  Logger.log('Sheet cleared'); // Set headers (conditionally include timestamp column);
   const headers = CONFIG.PROCESSING.ADD_TIMESTAMP ?;
     CONFIG.HEADERS :
-    CONFIG.HEADERS.slice(0, - 1); / / Remove last column (timestamp);
+    CONFIG.HEADERS.slice(0, - 1); // Remove last column (timestamp);
 
   sheet.appendRow(headers);
-  Logger.log('Headers set:', headers); / / Get Gmail labels;
+  Logger.log('Headers set:', headers); // Get Gmail labels;
   const labels = CONFIG.PROCESSING.INCLUDE_SYSTEM_LABELS ?;
     GmailApp.getInboxLabel().getParent().getChildLabels().concat(GmailApp.getUserLabels()) :;
     GmailApp.getUserLabels();
@@ -149,18 +149,18 @@ function performLabelsExport() {
 
   const timestamp = CONFIG.PROCESSING.ADD_TIMESTAMP ?;
     Utilities.formatDate(new Date(), Session.getScriptTimeZone(), CONFIG.NAMES.TIMESTAMP_FORMAT) :;
-    null; / / Process each label
+    null; // Process each label
   const labelData = [];
   labels.forEach((label, index) = > {
     Logger.log(`Processing label ${index + 1} / ${labels.length}: ${label.getName()}`);
 
     const labelName = label.getName();
     const threads = label.getThreads();
-    const totalThreads = threads.length; / / Calculate total emails;
+    const totalThreads = threads.length; // Calculate total emails;
     let totalEmails = 0;
     threads.forEach(thread = > {
       totalEmails + = thread.getMessages().length;
-    }); / / Build row data
+    }); // Build row data
     const rowData = [labelName, totalThreads, totalEmails];
     if (CONFIG.PROCESSING.ADD_TIMESTAMP) {
       rowData.push(timestamp);
@@ -168,7 +168,7 @@ function performLabelsExport() {
 
     labelData.push(rowData);
     Logger.log(`Label processed: ${labelName} (${totalThreads} threads, ${totalEmails} emails)`);
-  }); / / Write all data at once for better performance
+  }); // Write all data at once for better performance
   if (labelData.length > 0) {
     sheet.getRange(2, 1, labelData.length, labelData[0].length).setValues(labelData);
     Logger.log(`${labelData.length} rows written to sheet`);
@@ -189,7 +189,7 @@ function performLabelsExport() {
  * Sets re configuration or configuration values
  * @returns {number} The calculated value
 
- * /
+ */
 
 function resetConfiguration() {
   const confirm = Browser.msgBox(;
@@ -209,10 +209,10 @@ function resetConfiguration() {
  * Exports setup gmail labels to external format
  * @returns {number} The calculated value
 
- * /
+ */
 
 function setupGmailLabelsExport() {
-  Logger.log('Setting up Gmail Labels Export configuration...'); / / Check if configuration already exists;
+  Logger.log('Setting up Gmail Labels Export configuration...'); // Check if configuration already exists;
   const existingSpreadsheetId = PropertiesService.getScriptProperties().getProperty('GMAIL_LABELS_SPREADSHEET_ID');
 
   if (existingSpreadsheetId) {
@@ -226,17 +226,17 @@ function setupGmailLabelsExport() {
       Browser.msgBox('Setup cancelled. Using existing configuration.');
       return;
     }
-  } / / Get spreadsheet ID from user
+  } // Get spreadsheet ID from user
   const spreadsheetId = Browser.inputBox(;
     'Gmail Labels Export Setup',
-    'Enter the Google Spreadsheet ID where you want to export Gmail label data:\n\n' + 'You can find this in the URL of your Google Sheet:\n' + 'https: / / docs.google.com / spreadsheets / d / [SPREADSHEET_ID] / edit\n\n' + 'Spreadsheet ID:',
+    'Enter the Google Spreadsheet ID where you want to export Gmail label data:\n\n' + 'You can find this in the URL of your Google Sheet:\n' + 'https: // docs.google.com / spreadsheets / d / [SPREADSHEET_ID] / edit\n\n' + 'Spreadsheet ID:',
     Browser.Buttons.OK_CANCEL
   );
 
   if (spreadsheetId = = = 'cancel' || ! spreadsheetId.trim()) {
     Browser.msgBox('Setup cancelled. No configuration saved.');
     return;
-  } / / Validate spreadsheet ID format
+  } // Validate spreadsheet ID format
   if (! isValidGoogleId(spreadsheetId.trim())) {
     Browser.msgBox(
       'Invalid Spreadsheet ID',
@@ -244,7 +244,7 @@ function setupGmailLabelsExport() {
       Browser.Buttons.OK
     );
     return;
-  } / / Test access to the spreadsheet
+  } // Test access to the spreadsheet
   try {
     const testSpreadsheet = SpreadsheetApp.openById(spreadsheetId.trim());
     Logger.log('Successfully validated access to spreadsheet:', testSpreadsheet.getName());
@@ -255,7 +255,7 @@ function setupGmailLabelsExport() {
       Browser.Buttons.OK
     );
     return;
-  } / / Save configuration
+  } // Save configuration
   PropertiesService.getScriptProperties().setProperty('GMAIL_LABELS_SPREADSHEET_ID', spreadsheetId.trim());
 
   Browser.msgBox(
@@ -272,7 +272,7 @@ function setupGmailLabelsExport() {
  * Works with spreadsheet data
  * @returns {number} The calculated value
 
- * /
+ */
 
 function viewCurrentConfiguration() {
   const spreadsheetId = PropertiesService.getScriptProperties().getProperty('GMAIL_LABELS_SPREADSHEET_ID');
@@ -301,7 +301,7 @@ function viewCurrentConfiguration() {
   }
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -310,8 +310,8 @@ function viewCurrentConfiguration() {
  * @param {string} id - The unique identifier
  * @returns {number} True if condition is met, false otherwise
 
- * /
+ */
 
-function isValidGoogleId(id) { / / Google IDs are typically 44 characters of alphanumeric, hyphens, and underscores
+function isValidGoogleId(id) { // Google IDs are typically 44 characters of alphanumeric, hyphens, and underscores
   const googleIdPattern = / ^[a - zA - Z0 - 9_ - ]{25,}$ / ; return googleIdPattern.test(id);
 }

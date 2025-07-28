@@ -37,22 +37,22 @@
  * - GmailApp: For accessing email messages and labels
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
- * /
+ */
 
 1. Complete label analysis with thread and message counts
   2. Attachment statistics per label
   3. Statistical measures (average, min, max, median) for messages per thread;
   4. Export to organized Google Sheets with formatting
   5. Progress tracking and error handling
-  6. Batch processing for large label sets * / /  / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = / / Configuration Settings / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
+  6. Batch processing for large label sets *//  / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = // Configuration Settings // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
 
 const CONFIG = {
-  BATCH_SIZE: 50, / / Labels per batch
-  TIMEOUT: 300000, / / 5 minutes
-  CACHE_DURATION: 1800, / / 30 minutes
+  BATCH_SIZE: 50, // Labels per batch
+  TIMEOUT: 300000, // 5 minutes
+  CACHE_DURATION: 1800, // 30 minutes
   SHEET_NAME: 'LabelStats',
-  MAX_LABELS: 1000 / / Safety limit
-}; / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = / / Error Handling / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
+  MAX_LABELS: 1000 // Safety limit
+}; // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = // Error Handling // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
 
 ) {
   const errorDetails = {
@@ -65,13 +65,13 @@ const CONFIG = {
 
   console.error('Script Error:', JSON.stringify(errorDetails, null, 2));
   Logger.log(`ERROR: ${JSON.stringify(errorDetails, null, 2)}`);
-} / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = / / Main Analysis Function / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
+} // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = // Main Analysis Function // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
 
- / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = / / Statistical Helper Functions / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
+ // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = // Statistical Helper Functions // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
 
- / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = / / Export Functions / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
+ // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = // Export Functions // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
 
- / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = / / Menu Integration / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
+ // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = // Menu Integration // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
 
 /**
 
@@ -79,24 +79,24 @@ const CONFIG = {
  * @param {GmailLabel} label - The label parameter
  * @returns {Array} Array of results
 
- * /
+ */
 
 function processLabel(label) {
   const labelName = label.getName();
-  Logger.log(`Processing label: ${labelName}`); / / Get all threads in the label;
+  Logger.log(`Processing label: ${labelName}`); // Get all threads in the label;
   const threads = label.getThreads();
-  Logger.log(`Found ${threads.length} threads in label: ${labelName}`); / / Initialize counters;
+  Logger.log(`Found ${threads.length} threads in label: ${labelName}`); // Initialize counters;
   const totalThreads = threads.length;
   let totalMessages = 0;
   let threadsWithAttachments = 0;
   let totalAttachments = 0;
-  const messagesPerThread = []; / / Process each thread;
+  const messagesPerThread = []; // Process each thread;
   for (const thread of threads) {
     try {
       const messages = thread.getMessages();
       const messageCount = messages.length;
       totalMessages + = messageCount;
-      messagesPerThread.push(messageCount); / / Check for attachments;
+      messagesPerThread.push(messageCount); // Check for attachments;
       let hasAttachment = false;
       let attachmentsInThread = 0;
 
@@ -117,7 +117,7 @@ function processLabel(label) {
         threadId: thread.getId();
       });
     }
-  } / / Calculate statistics
+  } // Calculate statistics
   const averageMessages = calculateAverage(messagesPerThread);
   const minMessages = calculateMin(messagesPerThread);
   const maxMessages = calculateMax(messagesPerThread);
@@ -127,36 +127,36 @@ function processLabel(label) {
     labelName,
     totalThreads,
     totalMessages,
-    Math.round(averageMessages * 100) / 100, / / Round to 2 decimal places;
+    Math.round(averageMessages * 100) / 100, // Round to 2 decimal places;
     minMessages,
     maxMessages,
     Math.round(medianMessages * 100) / 100,
     threadsWithAttachments,
     totalAttachments,
-    totalThreads > 0 ? Math.round((threadsWithAttachments / totalThreads) * 100) : 0 / / Attachment percentage;
+    totalThreads > 0 ? Math.round((threadsWithAttachments / totalThreads) * 100) : 0 // Attachment percentage;
   ];
 }
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Analyzes gmail labels and generates insights
  * @returns {Array} Array of results
 
- * /
+ */
 
 function analyzeGmailLabels() {
   try {
-    Logger.log('Starting comprehensive Gmail label analysis...'); / / Fetch all labels;
+    Logger.log('Starting comprehensive Gmail label analysis...'); // Fetch all labels;
     const labels = GmailApp.getLabels();
     Logger.log(`Fetched ${labels.length} labels for analysis.`);
 
     if (labels.length > CONFIG.MAX_LABELS) {
       throw new Error(`Too many labels (${labels.length}). Maximum supported: ${CONFIG.MAX_LABELS}`);
-    } / / Initialize data array
+    } // Initialize data array
     const labelData = [];
-    let processedCount = 0; / / Process labels in batches;
+    let processedCount = 0; // Process labels in batches;
     for (let i = 0; i < labels.length; i + = CONFIG.BATCH_SIZE) {
       const batch = labels.slice(i, i + CONFIG.BATCH_SIZE);
 
@@ -171,7 +171,7 @@ function analyzeGmailLabels() {
           logError(error, { labelName: label.getName() });
         }
       }
-    } / / Export to spreadsheet
+    } // Export to spreadsheet
     exportToSheet(labelData);
 
     Logger.log(`Gmail label analysis completed successfully. Processed ${processedCount} labels.`);
@@ -189,7 +189,7 @@ function analyzeGmailLabels() {
  * @param {Array} array - Array of elements
  * @returns {Array} Array of results
 
- * /
+ */
 
 function calculateAverage(array) {
   if (array.length = = = 0) return 0;
@@ -204,7 +204,7 @@ function calculateAverage(array) {
  * @param {Array} array - Array of elements
  * @returns {Array} Array of results
 
- * /
+ */
 
 function calculateMedian(array) {
   if (array.length = = = 0) return 0;
@@ -226,16 +226,16 @@ function calculateMedian(array) {
  * @param {Object} labelData - The labelData parameter
  * @returns {Array} Array of results
 
- * /
+ */
 
 function exportToSheet(labelData) {
   try {
     const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-    let sheet = spreadsheet.getSheetByName(CONFIG.SHEET_NAME); / / Create sheet if it doesn't exist;
+    let sheet = spreadsheet.getSheetByName(CONFIG.SHEET_NAME); // Create sheet if it doesn't exist;
     if (! sheet) {
       sheet = spreadsheet.insertSheet(CONFIG.SHEET_NAME);
-    } / / Clear existing content
-    sheet.clear(); / / Prepare headers with descriptions;
+    } // Clear existing content
+    sheet.clear(); // Prepare headers with descriptions;
     const headers = [;
       'Label Name',
       'Total Threads',
@@ -247,23 +247,23 @@ function exportToSheet(labelData) {
       'Threads with Attachments',
       'Total Attachments',
       'Attachment % '
-    ]; / / Write headers
+    ]; // Write headers
     sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
     sheet.getRange(1, 1, 1, headers.length).setFontWeight('bold');
     sheet.getRange(1, 1, 1, headers.length).setBackground('#4285F4');
-    sheet.getRange(1, 1, 1, headers.length).setFontColor('white'); / / Write data;
+    sheet.getRange(1, 1, 1, headers.length).setFontColor('white'); // Write data;
     if (labelData.length > 0) {
       sheet.getRange(2, 1, labelData.length, headers.length).setValues(labelData);
-    } / / Format the sheet
+    } // Format the sheet
     sheet.autoResizeColumns(1, headers.length);
-    sheet.setFrozenRows(1); / / Add summary row;
+    sheet.setFrozenRows(1); // Add summary row;
     const summaryRow = labelData.length + 3;
-    sheet.getRange(summaryRow, 1).setValue('TOTALS:').setFontWeight('bold'); / / Calculate totals;
+    sheet.getRange(summaryRow, 1).setValue('TOTALS:').setFontWeight('bold'); // Calculate totals;
     if (labelData.length > 0) {
-      sheet.getRange(summaryRow, 2).setFormula(`= SUM(B2:B${labelData.length + 1})`); / / Total threads;
-      sheet.getRange(summaryRow, 3).setFormula(`= SUM(C2:C${labelData.length + 1})`); / / Total messages;
-      sheet.getRange(summaryRow, 8).setFormula(`= SUM(H2:H${labelData.length + 1})`); / / Threads with attachments;
-      sheet.getRange(summaryRow, 9).setFormula(`= SUM(I2:I${labelData.length + 1})`); / / Total attachments;
+      sheet.getRange(summaryRow, 2).setFormula(`= SUM(B2:B${labelData.length + 1})`); // Total threads;
+      sheet.getRange(summaryRow, 3).setFormula(`= SUM(C2:C${labelData.length + 1})`); // Total messages;
+      sheet.getRange(summaryRow, 8).setFormula(`= SUM(H2:H${labelData.length + 1})`); // Threads with attachments;
+      sheet.getRange(summaryRow, 9).setFormula(`= SUM(I2:I${labelData.length + 1})`); // Total attachments;
     }
 
     Logger.log(`Data exported to sheet: ${CONFIG.SHEET_NAME}`);
@@ -283,7 +283,7 @@ function exportToSheet(labelData) {
  * @param {string} context - The context parameter
  * @returns {Array} Array of results
 
- * /
+ */
 
 function logError(error, context = {}
 
@@ -292,7 +292,7 @@ function logError(error, context = {}
  * Processes email data
  * @returns {Array} Array of results
 
- * /
+ */
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
@@ -301,7 +301,7 @@ function onOpen() {
     .addToUi();
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -310,7 +310,7 @@ function onOpen() {
  * @param {Array} array - Array of elements
  * @returns {Array} Array of results
 
- * /
+ */
 
 function calculateMax(array) {
   return array.length > 0 ? Math.max(...array) : 0;
@@ -323,7 +323,7 @@ function calculateMax(array) {
  * @param {Array} array - Array of elements
  * @returns {Array} Array of results
 
- * /
+ */
 
 function calculateMin(array) {
   return array.length > 0 ? Math.min(...array) : 0;

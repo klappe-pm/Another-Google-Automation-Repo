@@ -38,11 +38,11 @@
  * - GmailApp: For accessing email messages and labels
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
- * /
+ */
 
 /  / Run this to process receipts in manageable chunks
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -51,14 +51,14 @@
  * @param {any} receipts - The receipts parameter
  * @returns {Array} Array of results
 
- * /
+ */
 
 function appendToSheet(receipts) {
   try {
     const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-    let sheet = spreadsheet.getSheetByName('RideReceipts'); / / Create sheet if it doesn't exist;
+    let sheet = spreadsheet.getSheetByName('RideReceipts'); // Create sheet if it doesn't exist;
     if (! sheet) {
-      sheet = spreadsheet.insertSheet('RideReceipts'); / / Create headers for new sheet;
+      sheet = spreadsheet.insertSheet('RideReceipts'); // Create headers for new sheet;
       const headers = [;
         'Thread ID', 'Message ID', 'Message Link', 'Provider', 'Trip Date', 'Trip Start Time', 'Trip End Time',
         'Mileage', 'Trip Duration (min)', 'Start Location', 'End Location', 'Total Cost'
@@ -66,8 +66,8 @@ function appendToSheet(receipts) {
       sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
       sheet.getRange(1, 1, 1, headers.length).setFontWeight('bold');
       sheet.setFrozenRows(1);
-    } / / Prepare rows for the spreadsheet
-    const rows = receipts.map(receipt = > { / / Format date for spreadsheet (MM / DD / YYYY);
+    } // Prepare rows for the spreadsheet
+    const rows = receipts.map(receipt = > { // Format date for spreadsheet (MM / DD / YYYY);
       let formattedDate = receipt.trip_date;
       const dateMatch = receipt.trip_date.match( / ([A - Za - z] + )\s + (\d{1,2})(?:,|)\s * (\d{4}) / i);
       if (dateMatch) {
@@ -76,10 +76,10 @@ function appendToSheet(receipts) {
           'July', 'August', 'September', 'October', 'November', 'December'
         ];
         const month = monthNames.findIndex(m = > m.toLowerCase() = = = dateMatch[1].toLowerCase()) + 1;
-        if (month > 0) { / / Valid month name found
+        if (month > 0) { // Valid month name found
           formattedDate = `${month.toString().padStart(2, '0')} / ${dateMatch[2].padStart(2, '0')} / ${dateMatch[3]}`;
         }
-      } / / Create Google Maps hyperlinks for locations
+      } // Create Google Maps hyperlinks for locations
       const startLocationLink = createMapsLink(receipt.start_location);
       const endLocationLink = createMapsLink(receipt.end_location);
 
@@ -92,9 +92,9 @@ function appendToSheet(receipts) {
         receipt.trip_start_time,
         receipt.trip_end_time,
         receipt.mileage,
-        receipt.trip_duration, / / Integer minutes
-        startLocationLink, / / Google Maps hyperlink
-        endLocationLink, / / Google Maps hyperlink
+        receipt.trip_duration, // Integer minutes
+        startLocationLink, // Google Maps hyperlink
+        endLocationLink, // Google Maps hyperlink
         receipt.total_cost
       ];
     });
@@ -102,10 +102,10 @@ function appendToSheet(receipts) {
     if (rows.length = = = 0) {
       Logger.log('No receipts to append to sheet.');
       return;
-    } / / Append new rows to the sheet
+    } // Append new rows to the sheet
     const lastRow = Math.max(1, sheet.getLastRow());
-    sheet.getRange(lastRow + 1, 1, rows.length, rows[0].length).setValues(rows); / / Format the cost column as currency;
-    sheet.getRange(lastRow + 1, 12, rows.length, 1).setNumberFormat("$#,##0.00"); / / Auto - resize columns if the sheet isn't too large;
+    sheet.getRange(lastRow + 1, 1, rows.length, rows[0].length).setValues(rows); // Format the cost column as currency;
+    sheet.getRange(lastRow + 1, 12, rows.length, 1).setNumberFormat("$#,##0.00"); // Auto - resize columns if the sheet isn't too large;
     if (sheet.getLastRow() < 1000) {
       sheet.autoResizeColumns(1, 12);
     }
@@ -123,12 +123,12 @@ function appendToSheet(receipts) {
  * @param {any} address - The address for creation
  * @returns {Array} The newly created array
 
- * /
+ */
 
 function createMapsLink(address) {
-  if (! address || address = = = 'N / A') return 'N / A'; / / Encode the address for a URL;
+  if (! address || address = = = 'N / A') return 'N / A'; // Encode the address for a URL;
   const encodedAddress = encodeURIComponent(address);
-  return `= HYPERLINK("https: / / www.google.com / maps / search / ?api= 1&query= ${encodedAddress}", "${address}")`;
+  return `= HYPERLINK("https: // www.google.com / maps / search / ?api= 1&query= ${encodedAddress}", "${address}")`;
 }
 
 /**
@@ -139,7 +139,7 @@ function createMapsLink(address) {
  * @param {string} defaultProvider - The defaultProvider parameter
  * @returns {Array} Array of results
 
- * /
+ */
 
 function extractReceiptFromMessage(message, defaultProvider) {
   const body = message.getPlainBody().replace( / \r\n / g, '\n').replace( / \n +  / g, '\n').trim();
@@ -154,29 +154,29 @@ function extractReceiptFromMessage(message, defaultProvider) {
   const receipt = {
     thread_id: threadId,
     message_id: messageId,
-    message_link: `https: / / mail.google.com / mail / u / 0 / #inbox / ${messageId}`,
+    message_link: `https: // mail.google.com / mail / u / 0 / #inbox / ${messageId}`,
     provider: provider,
     trip_date: formatDate(date),
     trip_start_time: 'N / A',
     trip_end_time: 'N / A',
     mileage: 0,
-    trip_duration: 0, / / Integer minutes
+    trip_duration: 0, // Integer minutes
     start_location: 'N / A',
     end_location: 'N / A',
     total_cost: 0
   };
 
-  try { / / Check for Lyft missed ride
+  try { // Check for Lyft missed ride
     if (provider = = = 'Lyft' && / missed\s + ride / i.test(body)) {
       const cancelFeeMatch = body.match( / Lyft\s + cancel\s + fee\s + \$(\d + \.\d{2}) / i);
       if (cancelFeeMatch) {
-        receipt.total_cost = parseFloat(cancelFeeMatch[1]); / / Try to extract the date for missed rides;
+        receipt.total_cost = parseFloat(cancelFeeMatch[1]); // Try to extract the date for missed rides;
         const missedDateMatch = body.match( / Request\s + on\s + ([A - Za - z] + \s + \d{1,2})(?:\s + at|\s + AT)?\s + (\d{1,2}:\d{2}\s * (?:AM|PM)) / i);
         if (missedDateMatch) {
           const currentYear = new Date().getFullYear();
           receipt.trip_date = `${missedDateMatch[1]}, ${currentYear}`;
           receipt.trip_start_time = convertTo24Hour(missedDateMatch[2]);
-        } / / Try to extract location for missed rides
+        } // Try to extract location for missed rides
         const locationMatch = body.match( / Request. * at\s + ([A - Za - z0 - 9\s,. - ] + ) / i);
         if (locationMatch) {
           receipt.start_location = cleanAddress(locationMatch[1].trim());
@@ -184,25 +184,25 @@ function extractReceiptFromMessage(message, defaultProvider) {
 
         return receipt;
       }
-    } / / Define regex patterns based on provider
+    } // Define regex patterns based on provider
     const patterns = {
       tripDate: provider = = = 'Lyft' ? / ([A - Z] + \s + \d{1,2},\s * \d{4}) / i : / ([A - Za - z] + \s + \d{1,2}(?:,\s * |\s + )\d{4}) / i,
       startTime: provider = = = 'Lyft' ? / Pickup\s + (\d{1,2}:\d{2}\s * (?:AM|PM)) / i : / ^(\d{1,2}:\d{2}\s * (?:AM|PM)) / im,
       endTime: provider = = = 'Lyft' ? / Drop - off\s + (\d{1,2}:\d{2}\s * (?:AM|PM)) / i : / (\d{1,2}:\d{2}\s * (?:AM|PM))(?= \s * \n[^0 - 9]) / im,
       mileage: provider = = = 'Lyft' ? / \((\d + \.\d{1,2})mi, / i : / (\d + \.\d{1,2})\s * miles / i,
       duration: provider = = = 'Lyft' ? / \(\d + \.\d{1,2}mi,\s * (\d + m\s * (?:\d + s)?)\) / i : / \|\s * (\d + \s * min) / i,
-    }; / / Extract locations using line - by - line approach
+    }; // Extract locations using line - by - line approach
     let locations = [];
-    if (provider = = = 'Lyft') { / / Lyft locations;
+    if (provider = = = 'Lyft') { // Lyft locations;
       const pickupMatch = body.match( / Pickup\s + \d{1,2}:\d{2}\s * (?:AM|PM)\s * \n([A - Za - z0 - 9\s,. - ] + ) / i);
       const dropoffMatch = body.match( / Drop - off\s + \d{1,2}:\d{2}\s * (?:AM|PM)\s * \n([A - Za - z0 - 9\s,. - ] + ) / i);
 
       if (pickupMatch) receipt.start_location = cleanAddress(pickupMatch[1].trim());
       if (dropoffMatch) receipt.end_location = cleanAddress(dropoffMatch[1].trim());
-    } else { / / Uber locations - line - by - line approach
+    } else { // Uber locations - line - by - line approach
       const lines = body.split('\n');
       for (let i = 0; i < lines.length; i + + ) {
-        const line = lines[i].trim(); / / Find time patterns;
+        const line = lines[i].trim(); // Find time patterns;
         if ( / ^\d{1,2}:\d{2}\s * (?:AM|PM)$ / .test(line) && i + 1 < lines.length) {
           locations.push({
             time: line,
@@ -220,8 +220,8 @@ function extractReceiptFromMessage(message, defaultProvider) {
         receipt.end_location = locations[1].location;
         receipt.trip_end_time = convertTo24Hour(locations[1].time);
       }
-    } / / Process receipts differently based on provider
-    if (provider = = = 'Lyft') { / / Extract Lyft - specific fields;
+    } // Process receipts differently based on provider
+    if (provider = = = 'Lyft') { // Extract Lyft - specific fields;
       const dateMatch = body.match(patterns.tripDate);
       if (dateMatch) receipt.trip_date = dateMatch[1].trim();
 
@@ -238,7 +238,7 @@ function extractReceiptFromMessage(message, defaultProvider) {
       if (durationMatch) {
         const durationStr = durationMatch[1].trim();
         receipt.trip_duration = formatDuration(durationStr);
-      } / / Try multiple patterns for total cost
+      } // Try multiple patterns for total cost
       const totalCostPatterns = [ / (?:Pay|Charged to|Apple Pay|American Express)\s + [^\$] * \$(\d + \.\d{2}) / i, / total\s + [^\$] * \$(\d + \.\d{2}) / i;
       ];
 
@@ -250,9 +250,9 @@ function extractReceiptFromMessage(message, defaultProvider) {
         }
       }
 
-    } else if (provider = = = 'Uber') { / / Extract Uber - specific fields;
+    } else if (provider = = = 'Uber') { // Extract Uber - specific fields;
       const dateMatch = body.match(patterns.tripDate);
-      if (dateMatch) receipt.trip_date = dateMatch[1].trim(); / / Start and end times should already be set from location extraction;
+      if (dateMatch) receipt.trip_date = dateMatch[1].trim(); // Start and end times should already be set from location extraction;
 
       const mileageMatch = body.match(patterns.mileage);
       if (mileageMatch) receipt.mileage = parseFloat(mileageMatch[1]);
@@ -261,17 +261,17 @@ function extractReceiptFromMessage(message, defaultProvider) {
       if (durationMatch) {
         const durationStr = durationMatch[1].trim();
         receipt.trip_duration = formatDuration(durationStr);
-      } / / Total cost
+      } // Total cost
       const totalCostMatch = body.match( / Total\s + \$(\d + \.\d{2}) / i);
       if (totalCostMatch) receipt.total_cost = parseFloat(totalCostMatch[1]);
-    } / / Calculate trip duration if both start and end times are available and duration wasn't found
+    } // Calculate trip duration if both start and end times are available and duration wasn't found
     if (receipt.trip_start_time ! = = 'N / A' && receipt.trip_end_time ! = = 'N / A' && receipt.trip_duration = = = 0) {
       try {
         const start = parseTime(receipt.trip_start_time);
         const end = parseTime(receipt.trip_end_time);
         if (start && end) {
           let minutes = (end - start) / (1000 * 60);
-          if (minutes < 0) minutes + = 24 * 60; / / Handle overnight rides;
+          if (minutes < 0) minutes + = 24 * 60; // Handle overnight rides;
           receipt.trip_duration = Math.round(minutes);
         }
       } catch (e) {
@@ -293,12 +293,12 @@ function extractReceiptFromMessage(message, defaultProvider) {
  * @param {string} existingMessageIds - The existingMessageIds parameter
  * @returns {Array} Array of results
 
- * /
+ */
 
 function extractReceiptsFromGmail(existingMessageIds) {
   const receipts = [];
   const labels = ['MTBI / Lyft', 'MTBI / Uber'];
-  const maxThreadsPerLabel = 500; / / Adjust this value as needed;
+  const maxThreadsPerLabel = 500; // Adjust this value as needed;
 
   for (const label of labels) {
     try {
@@ -313,7 +313,7 @@ function extractReceiptsFromGmail(existingMessageIds) {
       for (const thread of threads) {
         const messages = thread.getMessages();
         for (const message of messages) {
-          const messageId = message.getId(); / / Skip already processed messages;
+          const messageId = message.getId(); // Skip already processed messages;
           if (existingMessageIds.has(messageId)) {
             skippedCount + + ; continue;
           }
@@ -322,7 +322,7 @@ function extractReceiptsFromGmail(existingMessageIds) {
             const receipt = extractReceiptFromMessage(message, label);
             if (receipt) {
               receipts.push(receipt);
-              processedCount + + ; / / Add to existing IDs set to avoid duplicates within this batch
+              processedCount + + ; // Add to existing IDs set to avoid duplicates within this batch
               existingMessageIds.add(messageId);
             }
           } catch (e) {
@@ -345,7 +345,7 @@ function extractReceiptsFromGmail(existingMessageIds) {
  * Gets specific existing message ids or configuration
  * @returns {Array} The requested array
 
- * /
+ */
 
 function getExistingMessageIds() {
   const messageIds = new Set();
@@ -356,7 +356,7 @@ function getExistingMessageIds() {
 
     if (sheet) {
       const lastRow = sheet.getLastRow();
-      if (lastRow > 1) { / / Assuming message ID is in column B
+      if (lastRow > 1) { // Assuming message ID is in column B
         const data = sheet.getRange(2, 2, lastRow - 1, 1).getValues();
         for (const row of data) {
           if (row[0]) messageIds.add(row[0]);
@@ -375,24 +375,24 @@ function getExistingMessageIds() {
  * Processes and transforms in chunks
  * @returns {Array} Array of results
 
- * /
+ */
 
 function processInChunks() {
   const startTime = Date.now();
-  const maxExecutionTime = 5 * 60 * 1000; / / 5 minutes;
-  const chunkSize = 100; / / Number of threads to process at once / / Get existing data from the sheet first to avoid duplicates;
+  const maxExecutionTime = 5 * 60 * 1000; // 5 minutes;
+  const chunkSize = 100; // Number of threads to process at once // Get existing data from the sheet first to avoid duplicates;
   const existingMessageIds = getExistingMessageIds();
-  Logger.log(`Found ${existingMessageIds.size} existing message IDs in the sheet`); / / Process emails with labels;
+  Logger.log(`Found ${existingMessageIds.size} existing message IDs in the sheet`); // Process emails with labels;
   const labels = ['MTBI / Lyft', 'MTBI / Uber'];
   let totalProcessed = 0;
 
   for (const label of labels) {
     try {
       Logger.log(`Processing emails with label: ${label}`);
-      const query = `label:${label}`; / / Get total count first;
+      const query = `label:${label}`; // Get total count first;
       const totalThreads = GmailApp.search(query).length;
-      Logger.log(`Found ${totalThreads} total threads with label ${label}`); / / Process in chunks;
-      for (let i = 0; i < totalThreads; i + = chunkSize) { / / Check if we're about to hit the time limit;
+      Logger.log(`Found ${totalThreads} total threads with label ${label}`); // Process in chunks;
+      for (let i = 0; i < totalThreads; i + = chunkSize) { // Check if we're about to hit the time limit;
         if (Date.now() - startTime > maxExecutionTime) {
           Logger.log(`Time limit approaching. Processed ${totalProcessed} receipts so far. Run the script again to continue.`);
           return;
@@ -405,7 +405,7 @@ function processInChunks() {
         for (const thread of threads) {
           const messages = thread.getMessages();
           for (const message of messages) {
-            const messageId = message.getId(); / / Skip already processed messages;
+            const messageId = message.getId(); // Skip already processed messages;
             if (existingMessageIds.has(messageId)) {
               continue;
             }
@@ -413,7 +413,7 @@ function processInChunks() {
             try {
               const receipt = extractReceiptFromMessage(message, label);
               if (receipt) {
-                receipts.push(receipt); / / Add to existing IDs set to avoid duplicates within this batch;
+                receipts.push(receipt); // Add to existing IDs set to avoid duplicates within this batch;
                 existingMessageIds.add(messageId);
               }
             } catch (e) {
@@ -443,12 +443,12 @@ function processInChunks() {
  * Processes and transforms ride receipts
  * @returns {Array} Array of results
 
- * /
+ */
 
 function processRideReceipts() {
-  const startTime = Date.now(); / / Get existing data from the sheet first to avoid duplicates;
+  const startTime = Date.now(); // Get existing data from the sheet first to avoid duplicates;
   const existingMessageIds = getExistingMessageIds();
-  Logger.log(`Found ${existingMessageIds.size} existing message IDs in the sheet`); / / Process emails with labels;
+  Logger.log(`Found ${existingMessageIds.size} existing message IDs in the sheet`); // Process emails with labels;
   const receipts = extractReceiptsFromGmail(existingMessageIds);
 
   if (receipts.length > 0) {
@@ -459,7 +459,7 @@ function processRideReceipts() {
   }
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -468,9 +468,9 @@ function processRideReceipts() {
  * @param {any} address - The address parameter
  * @returns {Array} Array of results
 
- * /
+ */
 
-function cleanAddress(address) { / / Split by double new line and take only the first part
+function cleanAddress(address) { // Split by double new line and take only the first part
   const parts = address.split( / \n\s * \n / );
   return parts[0].trim();
 }
@@ -482,7 +482,7 @@ function cleanAddress(address) { / / Split by double new line and take only the 
  * @param {any} timeStr - The timeStr parameter
  * @returns {Array} Array of results
 
- * /
+ */
 
 function convertTo24Hour(timeStr) {
   try {
@@ -507,9 +507,9 @@ function convertTo24Hour(timeStr) {
  * @param {any} date - The date parameter
  * @returns {Array} Array of results
 
- * /
+ */
 
-function formatDate(date) { / / Return date in "Month DD, YYYY" format
+function formatDate(date) { // Return date in "Month DD, YYYY" format
   const months = [;
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -524,24 +524,24 @@ function formatDate(date) { / / Return date in "Month DD, YYYY" format
  * @param {any} durationStr - The durationStr parameter
  * @returns {Array} Array of results
 
- * /
+ */
 
 function formatDuration(durationStr) {
-  if (durationStr = = = 'N / A') return 0; / / Extract minutes from various formats;
-  let minutes = 0; / / Pattern like "5 minutes" or "5 min" or "5m";
+  if (durationStr = = = 'N / A') return 0; // Extract minutes from various formats;
+  let minutes = 0; // Pattern like "5 minutes" or "5 min" or "5m";
   const minutesMatch = durationStr.match( / (\d + )\s * (?:minutes|mins|min|m) / i);
   if (minutesMatch) {
     minutes + = parseInt(minutesMatch[1]);
-  } / / Pattern like "1h 30m" or "1 hour 30 minutes"
+  } // Pattern like "1h 30m" or "1 hour 30 minutes"
   const hoursMatch = durationStr.match( / (\d + )\s * (?:hours|hour|h) / i);
   if (hoursMatch) {
     minutes + = parseInt(hoursMatch[1]) * 60;
-  } / / Pattern like "30s" (seconds)
+  } // Pattern like "30s" (seconds)
   const secondsMatch = durationStr.match( / (\d + )\s * (?:seconds|second|s) / i);
-  if (secondsMatch) { / / Round seconds to nearest minute if it's the only component
+  if (secondsMatch) { // Round seconds to nearest minute if it's the only component
     if (! minutesMatch && ! hoursMatch) {
       minutes = Math.round(parseInt(secondsMatch[1]) / 60);
-    } / / Otherwise, only count seconds if they make up a significant portion of a minute
+    } // Otherwise, only count seconds if they make up a significant portion of a minute
     else if (parseInt(secondsMatch[1]) > = 30) {
       minutes + = 1;
     }
@@ -557,7 +557,7 @@ function formatDuration(durationStr) {
  * @param {any} timeStr - The timeStr parameter
  * @returns {Array} Array of results
 
- * /
+ */
 
 function parseTime(timeStr) {
   const match = timeStr.match( / (\d{2}):(\d{2}) / );

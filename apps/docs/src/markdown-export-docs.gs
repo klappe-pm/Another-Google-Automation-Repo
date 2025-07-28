@@ -39,7 +39,7 @@
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
 1. Open Google Apps Script editor (script.google.com);
 2. Create a new project or open existing one
@@ -50,7 +50,7 @@
 7. Refresh the document to see custom menus
 8. Test the script with sample data
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -59,7 +59,7 @@
  * @param {any} element - The element parameter
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
@@ -68,7 +68,7 @@
  * @param {any} element - The element parameter
  * @returns {any} The result
 
- * /
+ */
 
 function extractLinksFromElement(element) {
     let allLinks = [];
@@ -96,7 +96,7 @@ function extractLinksFromElement(element) {
               currentLink = null;
             }
           }
-        } / / Handle the case where the link is at the very end of the text
+        } // Handle the case where the link is at the very end of the text
         if (currentLink) {
           allLinks.push(currentLink);
         }
@@ -122,7 +122,7 @@ function extractLinksFromElement(element) {
  * @param {string} url - The URL to access
  * @returns {any} The requested any
 
- * /
+ */
 
 /**
 
@@ -131,10 +131,10 @@ function extractLinksFromElement(element) {
  * @param {string} url - The URL to access
  * @returns {any} The requested any
 
- * /
+ */
 
 function getFileTypeFromUrl(url) {
-    const match = url.match( / \ / (d|spreadsheets|presentation)\ / / );
+    const match = url.match( / \ / (d|spreadsheets|presentation)\ // );
     if (match) {
       return match[1];
     } else {
@@ -149,7 +149,7 @@ function getFileTypeFromUrl(url) {
  * @param {any} headingEnum - The headingEnum to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 /**
 
@@ -158,7 +158,7 @@ function getFileTypeFromUrl(url) {
  * @param {any} headingEnum - The headingEnum to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getHeadingLevelFromEnum(headingEnum) {
     switch (headingEnum) {
@@ -184,14 +184,14 @@ function getHeadingLevelFromEnum(headingEnum) {
  * Gets specific or create backlinks spreadsheet or configuration
  * @returns {any} The requested any
 
- * /
+ */
 
 /**
 
  * Gets specific or create backlinks spreadsheet or configuration
  * @returns {any} The requested any
 
- * /
+ */
 
 function getOrCreateBacklinksSpreadsheet() {
     const backlinksSpreadsheetName = "Doc Backlinks";
@@ -210,14 +210,14 @@ function getOrCreateBacklinksSpreadsheet() {
  * Performs specialized operations
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
  * Performs specialized operations
  * @returns {any} The result
 
- * /
+ */
 
 function onOpen() {
   DocumentApp.getUi().createMenu('Send to Obsidian');
@@ -230,33 +230,33 @@ function onOpen() {
  * Sends to obsidian or communications
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
  * Sends to obsidian or communications
  * @returns {any} The result
 
- * /
+ */
 
 function sendToObsidian() {
   const doc = DocumentApp.getActiveDocument();
   const docId = doc.getId();
   const docName = doc.getName();
-  const docUrl = doc.getUrl(); / / Get the File object to access creation and last updated dates;
+  const docUrl = doc.getUrl(); // Get the File object to access creation and last updated dates;
   const file = DriveApp.getFileById(docId);
   const docCreatedDate = file.getDateCreated();
-  const docLastUpdated = file.getLastUpdated(); / / Convert the doc's content to Markdown;
-  const markdownContent = convertDocToMarkdown(doc); / / Extract all links from the document;
-  const allLinks = extractLinksFromDoc(doc); / / Add "Links in Document" section to the Markdown content;
+  const docLastUpdated = file.getLastUpdated(); // Convert the doc's content to Markdown;
+  const markdownContent = convertDocToMarkdown(doc); // Extract all links from the document;
+  const allLinks = extractLinksFromDoc(doc); // Add "Links in Document" section to the Markdown content;
   const linksSection = `\n## Links in Document\n\n${allLinks.map(link = > ` - ${link}`).join('\n')}\n`;
-  const finalMarkdownContent = markdownContent + linksSection; / / Create the Markdown file in the specified folder with the new naming convention;
+  const finalMarkdownContent = markdownContent + linksSection; // Create the Markdown file in the specified folder with the new naming convention;
   const obsidianFolderId = '1_OObzgxPbqo023fWtD8trioJoSb1MYCy';
   const obsidianFolder = DriveApp.getFolderById(obsidianFolderId);
   const currentDate = new Date();
   const formattedDate = Utilities.formatDate(currentDate, Session.getScriptTimeZone(), "yyyy - MM - dd");
   const markdownFileName = `${formattedDate} - ${docName}.md`;
-  const markdownFile = obsidianFolder.createFile(markdownFileName, finalMarkdownContent); / / Get or create the "Doc Backlinks" spreadsheet;
+  const markdownFile = obsidianFolder.createFile(markdownFileName, finalMarkdownContent); // Get or create the "Doc Backlinks" spreadsheet;
   const backlinksSpreadsheetId = getOrCreateBacklinksSpreadsheet();
   const backlinksSpreadsheet = SpreadsheetApp.openById(backlinksSpreadsheetId);
   const backlinksSheetName = "Doc Backlinks";
@@ -264,13 +264,13 @@ function sendToObsidian() {
   if ( ! backlinksSheet) {
     backlinksSheet = backlinksSpreadsheet.insertSheet(backlinksSheetName);
     backlinksSheet.appendRow(["Doc Created Date", "Last Update", "Doc Title", "Docs Link", "Obsidian URL"]);
-  } / / Add the doc information to the backlinks sheet
+  } // Add the doc information to the backlinks sheet
   const formattedCreatedDate = Utilities.formatDate(docCreatedDate, Session.getScriptTimeZone(), "yyyy - MM - dd");
   const formattedLastUpdated = Utilities.formatDate(docLastUpdated, Session.getScriptTimeZone(), "yyyy - MM - dd");
   const obsidianUrl = `[[${docName}]](${markdownFile.getUrl()})`;
-  backlinksSheet.appendRow([formattedCreatedDate, formattedLastUpdated, `[[${docName}]]`, docUrl, obsidianUrl]); / / Create or get the "Doc Backlinks - Obsidian Files" folder using the specified ID;
-  const backlinksObsidianFolderId = '1RnPNjeK1z31jbD0oOuIn88Qb1rnIsfCi'; / / Update with the new ID;
-  const backlinksObsidianFolder = DriveApp.getFolderById(backlinksObsidianFolderId); / / Create Markdown files for each link;
+  backlinksSheet.appendRow([formattedCreatedDate, formattedLastUpdated, `[[${docName}]]`, docUrl, obsidianUrl]); // Create or get the "Doc Backlinks - Obsidian Files" folder using the specified ID;
+  const backlinksObsidianFolderId = '1RnPNjeK1z31jbD0oOuIn88Qb1rnIsfCi'; // Update with the new ID;
+  const backlinksObsidianFolder = DriveApp.getFolderById(backlinksObsidianFolderId); // Create Markdown files for each link;
   allLinks.forEach(link = > {
     const fileType = getFileTypeFromUrl(link);
     let backlinkFileName;
@@ -290,7 +290,7 @@ function sendToObsidian() {
     Logger.log("Script completed successfully.");
   }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -299,7 +299,7 @@ function sendToObsidian() {
  * @param {any} doc - The doc parameter
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
@@ -308,7 +308,7 @@ function sendToObsidian() {
  * @param {any} doc - The doc parameter
  * @returns {any} The result
 
- * /
+ */
 
 function convertDocToMarkdown(doc) {
     let markdown = "";
@@ -376,7 +376,7 @@ function convertDocToMarkdown(doc) {
  * @param {any} doc - The doc parameter
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
@@ -385,7 +385,7 @@ function convertDocToMarkdown(doc) {
  * @param {any} doc - The doc parameter
  * @returns {any} The result
 
- * /
+ */
 
 function extractLinksFromDoc(doc) {
     const body = doc.getBody();
@@ -399,7 +399,7 @@ function extractLinksFromDoc(doc) {
  * @param {string} url - The URL to access
  * @returns {any} The requested any
 
- * /
+ */
 
 /**
 
@@ -408,7 +408,7 @@ function extractLinksFromDoc(doc) {
  * @param {string} url - The URL to access
  * @returns {any} The requested any
 
- * /
+ */
 
 function getFileNameFromUrl(url) {
     const parts = url.split(" / ");
@@ -422,7 +422,7 @@ function getFileNameFromUrl(url) {
  * @param {string} url - The URL to access
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
@@ -431,8 +431,8 @@ function getFileNameFromUrl(url) {
  * @param {string} url - The URL to access
  * @returns {any} The result
 
- * /
+ */
 
-function normalizeUrl(url) { / / Remove potential hidden characters and trim whitespace;
+function normalizeUrl(url) { // Remove potential hidden characters and trim whitespace;
     return url.replace( / [\u200B - \u200D\uFEFF] / g, '').trim();
   }

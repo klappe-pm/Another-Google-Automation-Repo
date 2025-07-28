@@ -27,51 +27,51 @@
  * - GmailApp: For accessing email messages and labels
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
- * /
+ */
 
-/**  * Main function to export Gmail labels information to a Google Sheet * / / / Main Functions
+/**  * Main function to export Gmail labels information to a Google Sheet *// / Main Functions
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Exports gmail labels to sheet to external format
 
- * /
+ */
 
 function exportGmailLabelsToSheet() {
-  Logger.log('Entering exportGmailLabelsToSheet function'); / / Define the sheet name;
+  Logger.log('Entering exportGmailLabelsToSheet function'); // Define the sheet name;
   let sheetName = "GMail Labels";
   Logger.log('Sheet Name:', sheetName);
 
   try {
-    Logger.log('Attempting to open bound spreadsheet'); / / Open the bound spreadsheet;
+    Logger.log('Attempting to open bound spreadsheet'); // Open the bound spreadsheet;
     let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
     Logger.log('Bound spreadsheet opened successfully');
 
     let sheet = spreadsheet.getSheetByName(sheetName);
 
     if (! sheet) {
-      Logger.log('Sheet not found. Creating new sheet:', sheetName); / / If the sheet doesn't exist, create it;
+      Logger.log('Sheet not found. Creating new sheet:', sheetName); // If the sheet doesn't exist, create it;
       sheet = spreadsheet.insertSheet(sheetName);
       Logger.log('New sheet created');
     } else {
       Logger.log('Existing sheet found:', sheetName);
     }
 
-    Logger.log('Clearing existing data from sheet'); / / Clear the sheet of any existing data;
+    Logger.log('Clearing existing data from sheet'); // Clear the sheet of any existing data;
     sheet.clear();
     Logger.log('Sheet cleared');
 
-    Logger.log('Setting header row'); / / Set the header row;
+    Logger.log('Setting header row'); // Set the header row;
     sheet.appendRow(["Labels", "Total Threads", "Total Emails"]);
     Logger.log('Header row set');
 
-    Logger.log('Retrieving Gmail labels'); / / Get all Gmail labels;
+    Logger.log('Retrieving Gmail labels'); // Get all Gmail labels;
     let labels = GmailApp.getUserLabels();
     Logger.log('Total labels found:', labels.length);
 
-    Logger.log('Processing labels'); / / Loop through each label to get the name, thread count, and email count;
+    Logger.log('Processing labels'); // Loop through each label to get the name, thread count, and email count;
     labels.forEach(function (label, index) {
       Logger.log('Processing label', index + 1, 'of', labels.length);
 
@@ -80,7 +80,7 @@ function exportGmailLabelsToSheet() {
 
       let threads = label.getThreads();
       let totalThreads = threads.length;
-      Logger.log('Total threads:', totalThreads); / / Calculate the total number of emails for the label;
+      Logger.log('Total threads:', totalThreads); // Calculate the total number of emails for the label;
       let totalEmails = 0;
       threads.forEach(function (thread, threadIndex) {
         let messageCount = thread.getMessages().length;
@@ -89,12 +89,12 @@ function exportGmailLabelsToSheet() {
       });
       Logger.log('Total emails:', totalEmails);
 
-      Logger.log('Appending row to sheet'); / / Add the data to the sheet;
+      Logger.log('Appending row to sheet'); // Add the data to the sheet;
       sheet.appendRow([labelName, totalThreads, totalEmails]);
       Logger.log('Row appended');
     });
 
-    Logger.log('All labels processed successfully'); / / Log the completion of the operation;
+    Logger.log('All labels processed successfully'); // Log the completion of the operation;
     Logger.log("Gmail Labels have been updated in the sheet: " + sheetName);
 
   } catch (e) {

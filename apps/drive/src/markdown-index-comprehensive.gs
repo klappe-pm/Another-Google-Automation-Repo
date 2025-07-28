@@ -51,7 +51,7 @@
  * - PropertiesService: For storing script properties
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
 /  / = = = = = = = = GLOBAL CONSTANTS = = = = = = = = const CONFIG_SHEET_NAME = 'Config';
 const FOLDER_TREE_SHEET_NAME = 'FolderTree';
@@ -65,9 +65,9 @@ const DEFAULT_ALLOWED_FILE_TYPES = JSON.stringify([;
 const DEFAULT_TAB_ORDER = JSON.stringify(['Docs', 'Markdown', 'PDFs', 'Sheets', 'Slides', FOLDER_TREE_SHEET_NAME]);
 const DEFAULT_MAX_FOLDER_DEPTH = 5;
 const DEFAULT_DEBUG_MODE = false;
-const DEFAULT_MAX_EXECUTION_TIME_MINUTES = 5; / / = = = = = = = = UI FUNCTIONS = = = = = = = = / *  *  * Creates a custom 'Drive Tools' menu in Google Sheets for triggering Drive operations. * Adds menu items for configuration, indexing, cache clearing, and folder listing. * @returns {void} * / /  / = = = = = = = = CONFIGURATION FUNCTIONS = = = = = = = = / *  *  * Loads configuration settings from the 'Config' sheet. * Validates JSON fields and ensures mandatory settings are present. * @returns {Object} Configuration object with settings * @throws {Error} If 'Config' sheet is missing or contains invalid JSON * / / *  *  * Creates or resets the 'Config' sheet with default settings. * Sets up headers and default values for user customization. * @returns {void} * @throws {Error} If sheet creation or update fails * / /  / = = = = = = = = DRIVE INDEXER FUNCTIONS = = = = = = = = / *  *  * Indexes all Google Drive files into categorized sheets in the active spreadsheet. * Processes files in batches and persists state for resumption if time limits are reached. * @returns {void} * @throws {Error} If configuration is invalid or indexing fails * / / *  *  * Clears cached processed file IDs and folder queue, allowing a fresh index run. * Prompts user for confirmation before clearing. * @returns {void} * @throws {Error} If cache clearing fails * / / *  *  * Sets up sheets for each file type in the active spreadsheet. * Creates sheets if needed and sets headers for empty sheets. * @param {Spreadsheet} ss - The active spreadsheet * @param {Array < Object > } allowedTypes - File types to process * @param {Object} config - Configuration object * @returns {Object} Map of file types to corresponding sheets * @throws {Error} If sheet setup fails * / / *  *  * Processes a folder and its files, indexing them into appropriate sheets. * Fetches files once and filters by type to minimize API calls. * @param {Folder} folder - The folder to process * @param {Array < Object > } allowedTypes - File types to process * @param {Object} sheets - Map of file types to sheets * @param {Set < string > } processedFiles - Set of processed file IDs * @param {Array < Folder > } queue - Queue of folders to process * @param {Object} config - Configuration object * @param {number} startTime - Start time of indexing * @param {number} maxExecutionTimeMs - Maximum execution time in milliseconds * @returns {void} * @throws {Error} If file or folder processing fails * / / *  *  * Checks if a file should be indexed based on its ID, mimeType, and extensions. * Skips duplicates and files not matching criteria. * @param {File} file - The file to check * @param {Array < string > } extensions - Allowed file extensions (optional) * @param {Set < string > } processedFiles - Set of processed file IDs * @param {boolean} debugMode - Whether debug logging is enabled * @param {string} mimeType - Required mimeType (optional) * @returns {boolean} True if the file should be processed * / / *  *  * Adds a file’s metadata to the specified sheet. * Includes a cleanup checkbox and calculated file ages. * @param {Sheet} sheet - The sheet to add data to * @param {File} file - The file to index * @param {string} type - The file type category * @returns {void} * @throws {Error} If appending to sheet fails * / / *  *  * Reorders sheets and sorts data by 'Created Date' (newest first). * Clears path cache after completion. * @param {Spreadsheet} ss - The active spreadsheet * @param {Array < string > } tabOrder - Desired sheet order * @returns {void} * @throws {Error} If sheet reordering or sorting fails * / /  / = = = = = = = = FOLDER TREE FUNCTIONS = = = = = = = = / *  *  * Lists Google Drive folder hierarchy in the 'FolderTree' sheet. * Generates a columnar representation up to the configured depth. * @returns {void} * @throws {Error} If configuration is invalid or listing fails * / / *  *  * Recursively builds folder hierarchy data for the 'FolderTree' sheet. * Populates rows with folder names and URLs up to maxDepth. * @param {Folder} folder - Current folder * @param {number} maxDepth - Maximum depth to traverse * @param {Array < string > } currentPath - Current folder path * @param {number} currentLevel - Current recursion level * @param {Array < Array < string >  > } allFolderData - Accumulated row data * @returns {void} * @throws {Error} If folder access fails * / /  / = = = = = = = = UTILITY FUNCTIONS = = = = = = = = / *  *  * Gets an existing sheet or creates a new one in the active spreadsheet. * @param {Spreadsheet} ss - The active spreadsheet * @param {string} sheetName - Name of the sheet * @returns {Sheet} The sheet object * @throws {Error} If sheet creation fails * / / *  *  * Sets headers for a sheet with consistent styling. * Freezes the header row for usability. * @param {Range} range - Range for headers * @param {Array < string > } headersArray - Header names * @returns {void} * @throws {Error} If header setting fails * / / *  *  * Constructs a file’s full path, caching results to minimize API calls. * Traverses parent folders up to the root. * @param {File} file - The file to get the path for * @returns {string} The full file path * @throws {Error} If path construction fails * / / *  *  * Formats a Date object to 'yyyy - MM - dd' using the script’s timezone. * @param {Date} date - The date to format * @returns {string} Formatted date string, or empty string if invalid * / / *  *  * Logs a status message to a sheet, with error styling for errors. * @param {Sheet} sheet - The sheet to log to * @param {string} message - The message to log * @param {boolean} isError - True if the message is an error * @returns {void} * @throws {Error} If logging fails * / / *  *  * Displays a UI alert to the user. * Falls back to console logging if UI is unavailable. * @param {string} title - Alert title * @param {string} message - Alert message * @param {ButtonSet} buttonSet - Buttons to display * @returns {void} * @throws {Error} If alert display fails * / / *  *  * Logs a debug message to the 'Log' sheet if debugMode is enabled. * @param {string} message - The debug message * @param {boolean} debugMode - Whether debug logging is enabled * @returns {void} * @throws {Error} If logging fails * / / / Main Functions
+const DEFAULT_MAX_EXECUTION_TIME_MINUTES = 5; // = = = = = = = = UI FUNCTIONS = = = = = = = = / *  *  * Creates a custom 'Drive Tools' menu in Google Sheets for triggering Drive operations. * Adds menu items for configuration, indexing, cache clearing, and folder listing. * @returns {void} *//  / = = = = = = = = CONFIGURATION FUNCTIONS = = = = = = = = / *  *  * Loads configuration settings from the 'Config' sheet. * Validates JSON fields and ensures mandatory settings are present. * @returns {Object} Configuration object with settings * @throws {Error} If 'Config' sheet is missing or contains invalid JSON *// *  *  * Creates or resets the 'Config' sheet with default settings. * Sets up headers and default values for user customization. * @returns {void} * @throws {Error} If sheet creation or update fails *//  / = = = = = = = = DRIVE INDEXER FUNCTIONS = = = = = = = = / *  *  * Indexes all Google Drive files into categorized sheets in the active spreadsheet. * Processes files in batches and persists state for resumption if time limits are reached. * @returns {void} * @throws {Error} If configuration is invalid or indexing fails *// *  *  * Clears cached processed file IDs and folder queue, allowing a fresh index run. * Prompts user for confirmation before clearing. * @returns {void} * @throws {Error} If cache clearing fails *// *  *  * Sets up sheets for each file type in the active spreadsheet. * Creates sheets if needed and sets headers for empty sheets. * @param {Spreadsheet} ss - The active spreadsheet * @param {Array < Object > } allowedTypes - File types to process * @param {Object} config - Configuration object * @returns {Object} Map of file types to corresponding sheets * @throws {Error} If sheet setup fails *// *  *  * Processes a folder and its files, indexing them into appropriate sheets. * Fetches files once and filters by type to minimize API calls. * @param {Folder} folder - The folder to process * @param {Array < Object > } allowedTypes - File types to process * @param {Object} sheets - Map of file types to sheets * @param {Set < string > } processedFiles - Set of processed file IDs * @param {Array < Folder > } queue - Queue of folders to process * @param {Object} config - Configuration object * @param {number} startTime - Start time of indexing * @param {number} maxExecutionTimeMs - Maximum execution time in milliseconds * @returns {void} * @throws {Error} If file or folder processing fails *// *  *  * Checks if a file should be indexed based on its ID, mimeType, and extensions. * Skips duplicates and files not matching criteria. * @param {File} file - The file to check * @param {Array < string > } extensions - Allowed file extensions (optional) * @param {Set < string > } processedFiles - Set of processed file IDs * @param {boolean} debugMode - Whether debug logging is enabled * @param {string} mimeType - Required mimeType (optional) * @returns {boolean} True if the file should be processed *// *  *  * Adds a file’s metadata to the specified sheet. * Includes a cleanup checkbox and calculated file ages. * @param {Sheet} sheet - The sheet to add data to * @param {File} file - The file to index * @param {string} type - The file type category * @returns {void} * @throws {Error} If appending to sheet fails *// *  *  * Reorders sheets and sorts data by 'Created Date' (newest first). * Clears path cache after completion. * @param {Spreadsheet} ss - The active spreadsheet * @param {Array < string > } tabOrder - Desired sheet order * @returns {void} * @throws {Error} If sheet reordering or sorting fails *//  / = = = = = = = = FOLDER TREE FUNCTIONS = = = = = = = = / *  *  * Lists Google Drive folder hierarchy in the 'FolderTree' sheet. * Generates a columnar representation up to the configured depth. * @returns {void} * @throws {Error} If configuration is invalid or listing fails *// *  *  * Recursively builds folder hierarchy data for the 'FolderTree' sheet. * Populates rows with folder names and URLs up to maxDepth. * @param {Folder} folder - Current folder * @param {number} maxDepth - Maximum depth to traverse * @param {Array < string > } currentPath - Current folder path * @param {number} currentLevel - Current recursion level * @param {Array < Array < string >  > } allFolderData - Accumulated row data * @returns {void} * @throws {Error} If folder access fails *//  / = = = = = = = = UTILITY FUNCTIONS = = = = = = = = / *  *  * Gets an existing sheet or creates a new one in the active spreadsheet. * @param {Spreadsheet} ss - The active spreadsheet * @param {string} sheetName - Name of the sheet * @returns {Sheet} The sheet object * @throws {Error} If sheet creation fails *// *  *  * Sets headers for a sheet with consistent styling. * Freezes the header row for usability. * @param {Range} range - Range for headers * @param {Array < string > } headersArray - Header names * @returns {void} * @throws {Error} If header setting fails *// *  *  * Constructs a file’s full path, caching results to minimize API calls. * Traverses parent folders up to the root. * @param {File} file - The file to get the path for * @returns {string} The full file path * @throws {Error} If path construction fails *// *  *  * Formats a Date object to 'yyyy - MM - dd' using the script’s timezone. * @param {Date} date - The date to format * @returns {string} Formatted date string, or empty string if invalid *// *  *  * Logs a status message to a sheet, with error styling for errors. * @param {Sheet} sheet - The sheet to log to * @param {string} message - The message to log * @param {boolean} isError - True if the message is an error * @returns {void} * @throws {Error} If logging fails *// *  *  * Displays a UI alert to the user. * Falls back to console logging if UI is unavailable. * @param {string} title - Alert title * @param {string} message - Alert message * @param {ButtonSet} buttonSet - Buttons to display * @returns {void} * @throws {Error} If alert display fails *// *  *  * Logs a debug message to the 'Log' sheet if debugMode is enabled. * @param {string} message - The debug message * @param {boolean} debugMode - Whether debug logging is enabled * @returns {void} * @throws {Error} If logging fails *// / Main Functions
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -78,7 +78,7 @@ const DEFAULT_MAX_EXECUTION_TIME_MINUTES = 5; / / = = = = = = = = UI FUNCTIONS =
  * @param {any} type - The type parameter
  * @returns {any} The result
 
- * /
+ */
 
 function addToSheet(sheet, file, type) {
   try {
@@ -114,7 +114,7 @@ function addToSheet(sheet, file, type) {
  * @param {Object} allFolderData - The allFolderData parameter
  * @returns {any} The result
 
- * /
+ */
 
 function buildFolderHierarchy(folder, maxDepth, currentPath, currentLevel, allFolderData) {
   const config = loadConfig();
@@ -150,7 +150,7 @@ function buildFolderHierarchy(folder, maxDepth, currentPath, currentLevel, allFo
  * Processes and transforms cleared files cache
  * @returns {any} The result
 
- * /
+ */
 
 function clearProcessedFilesCache() {
   const ui = SpreadsheetApp.getUi();
@@ -182,12 +182,12 @@ function clearProcessedFilesCache() {
  * Creates new config template or resources
  * @returns {any} The newly created any
 
- * /
+ */
 
 function createConfigTemplate() {
   try {
     const ss = SpreadsheetApp.getActiveSpreadsheet();
-    let configSheet = ss.getSheetByName(CONFIG_SHEET_NAME); / / Clear or create Config sheet;
+    let configSheet = ss.getSheetByName(CONFIG_SHEET_NAME); // Clear or create Config sheet;
     if (configSheet) {
       configSheet.clear();
     } else {
@@ -223,7 +223,7 @@ function createConfigTemplate() {
  * Creates new drive index merged or resources
  * @returns {any} The newly created any
 
- * /
+ */
 
 function createDriveIndexMerged() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -284,10 +284,10 @@ function createDriveIndexMerged() {
  * @param {any} tabOrder - The tabOrder parameter
  * @returns {any} The result
 
- * /
+ */
 
 function finalizeSheets(ss, tabOrder) {
-  try { / / Reorder sheets
+  try { // Reorder sheets
     for (let i = tabOrder.length - 1; i > = 0; i -  - ) {
       const type = tabOrder[i];
       const sheet = ss.getSheetByName(type);
@@ -295,7 +295,7 @@ function finalizeSheets(ss, tabOrder) {
         ss.setActiveSheet(sheet);
         ss.moveActiveSheet(i + 1);
       }
-    } / / Sort sheets by Created Date
+    } // Sort sheets by Created Date
     const sheets = ss.getSheets();
     sheets.forEach(sheet = > {
       if (sheet.getName() = = = CONFIG_SHEET_NAME || sheet.getName() = = = 'Log' || sheet.getName() = = = FOLDER_TREE_SHEET_NAME) {
@@ -306,7 +306,7 @@ function finalizeSheets(ss, tabOrder) {
         const range = sheet.getRange(2, 1, lastRow - 1, sheet.getLastColumn());
         range.sort({ column: 4, ascending: false });
       }
-    }); / / Clear path cache
+    }); // Clear path cache
     PropertiesService.getScriptProperties().deleteProperty('path_ * ');
   } catch (error) {
     console.error(`Error finalizing sheets: ${error.message}`);
@@ -320,7 +320,7 @@ function finalizeSheets(ss, tabOrder) {
  * @param {File} file - The file to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getFilePath(file) {
   const cache = PropertiesService.getScriptProperties();
@@ -363,7 +363,7 @@ function getFilePath(file) {
  * @param {string} sheetName - The sheetName to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getOrCreateSheet(ss, sheetName) {
   let sheet = ss.getSheetByName(sheetName);
@@ -378,7 +378,7 @@ function getOrCreateSheet(ss, sheetName) {
  * Combines multiple list folder treed sources
  * @returns {any} True if condition is met, false otherwise
 
- * /
+ */
 
 function listFolderTreeMerged() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -436,11 +436,11 @@ function listFolderTreeMerged() {
  * Loads config from storage
  * @returns {any} The result
 
- * /
+ */
 
 function loadConfig() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const configSheet = ss.getSheetByName(CONFIG_SHEET_NAME); / / Validate Config sheet exists;
+  const configSheet = ss.getSheetByName(CONFIG_SHEET_NAME); // Validate Config sheet exists;
   if (! configSheet) {
     showAlert('Configuration Error', `"${CONFIG_SHEET_NAME}" sheet not found. Please run "Drive Tools" > "Setup Configuration".`, SpreadsheetApp.getUi().ButtonSet.OK);
     throw new Error(`"${CONFIG_SHEET_NAME}" sheet not found.`);
@@ -467,7 +467,7 @@ function loadConfig() {
         throw e;
       }
     }
-  } / / Validate mandatory fields
+  } // Validate mandatory fields
   if (! config.allowedFileTypes || ! Array.isArray(config.allowedFileTypes)) {
     throw new Error('Invalid or missing "allowedFileTypes" in Config sheet.');
   }
@@ -495,7 +495,7 @@ function loadConfig() {
  * @param {any} debugMode - The debugMode parameter
  * @returns {any} The result
 
- * /
+ */
 
 function logDebug(message, debugMode) {
   if (debugMode) {
@@ -513,7 +513,7 @@ function logDebug(message, debugMode) {
  * @param {any} isError - The isError parameter
  * @returns {any} The result
 
- * /
+ */
 
 function logStatus(sheet, message, isError = false) {
   try {
@@ -530,7 +530,7 @@ function logStatus(sheet, message, isError = false) {
  * Manages files and folders
  * @returns {any} The result
 
- * /
+ */
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
@@ -558,14 +558,14 @@ function onOpen() {
  * @param {number} maxExecutionTimeMs - The maxExecutionTimeMs parameter
  * @returns {any} The result
 
- * /
+ */
 
 function processFolder(folder, allowedTypes, sheets, processedFiles, queue, config, startTime, maxExecutionTimeMs) {
   const { debugMode } = config;
   const logSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Log');
   let fileCount = 0;
 
-  logDebug(`Processing folder: ${folder.getName()} (${folder.getId()})`, debugMode); / / Fetch all files once;
+  logDebug(`Processing folder: ${folder.getName()} (${folder.getId()})`, debugMode); // Fetch all files once;
   const filesIterator = folder.getFiles();
   const files = [];
   while (filesIterator.hasNext() && (Date.now() - startTime < maxExecutionTimeMs)) {
@@ -619,7 +619,7 @@ function processFolder(folder, allowedTypes, sheets, processedFiles, queue, conf
  * @param {Array} headersArray - The headersArray to set
  * @returns {any} The result
 
- * /
+ */
 
 function setHeaders(range, headersArray) {
   range.setValues([headersArray]);
@@ -638,7 +638,7 @@ function setHeaders(range, headersArray) {
  * @param {Object} config - Configuration settings
  * @returns {any} The result
 
- * /
+ */
 
 function setupSheets(ss, allowedTypes, config) {
   const sheets = {};
@@ -672,7 +672,7 @@ function setupSheets(ss, allowedTypes, config) {
  * @param {any} mimeType - The mimeType parameter
  * @returns {any} The result
 
- * /
+ */
 
 function shouldProcessFile(file, extensions, processedFiles, debugMode, mimeType) {
   if (processedFiles.has(file.getId())) {
@@ -706,7 +706,7 @@ function shouldProcessFile(file, extensions, processedFiles, debugMode, mimeType
  * @param {any} buttonSet - The buttonSet parameter
  * @returns {any} The result
 
- * /
+ */
 
 function showAlert(title, message, buttonSet) {
   try {
@@ -716,7 +716,7 @@ function showAlert(title, message, buttonSet) {
   }
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -725,7 +725,7 @@ function showAlert(title, message, buttonSet) {
  * @param {any} date - The date parameter
  * @returns {any} The result
 
- * /
+ */
 
 function formatDate(date) {
   if (! (date instanceof Date) || isNaN(date.getTime())) {

@@ -22,21 +22,21 @@
  * Google Services:
  * - DriveApp: For file and folder management
  * - Logger: For logging and debugging
- * /
+ */
 
-/ / Main Functions
-
-/**
-
- * Manages files and folders
-
- * /
+// Main Functions
 
 /**
 
  * Manages files and folders
 
- * /
+ */
+
+/**
+
+ * Manages files and folders
+
+ */
 
 function organizeShortcuts() {
   const shortcutMimeType = 'application / vnd.google - apps.shortcut';
@@ -51,7 +51,7 @@ function organizeShortcuts() {
       shortcutsFolder = DriveApp.createFolder(shortcutsFolderName);
     } else {
       Logger.log('An error occurred while getting the "_shortcuts" folder: ' + error);
-      return; / / Stop execution if there's another unexpected error;
+      return; // Stop execution if there's another unexpected error;
     }
   }
 

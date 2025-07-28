@@ -41,13 +41,13 @@
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
 /  / Global variables;
-let logSheet; / / Spreadsheet used for logging linting actions;
-let DEBUG = true; / / Flag to enable or disable detailed debugging output / *  *  * Logs a debug message to the Apps Script Logger if debugging is enabled. * @param {string} message - The debug message to log. * / / *  *  * Creates the 'Linters' menu in the Google Sheets UI. * / / *  *  * Initializes the linting process by prompting for folder input and linting options. * / / *  *  * Prompts the user to select which linting operations to perform. * @return {Object|null} An object containing boolean flags for each linting option, or null if cancelled. * / / *  *  * Sets up the logging sheet in the active spreadsheet. * / / *  *  * Prompts the user for folder input and returns folder information. * @param {string} operation - The name of the operation being performed. * @return {Object|null} An object containing the folder and its name, or null if cancelled. * / / *  *  * Attempts to get a folder from the user input, either by ID or name. * @param {string} input - The folder name or ID provided by the user. * @return {Folder|null} The folder object if found, null otherwise. * / / *  *  * Processes all Markdown and plain text files in a folder and its subfolders. * @param {Folder} folder - The Google Drive folder to process. * @param {Function} processingFunction - The function to apply to each text file. * / / *  *  * Formats the text content according to specified rules. * @param {string} content - The original text content. * @param {boolean} isMarkdown - Whether the file is a Markdown file. * @return {Object} An object containing the formatted content and a list of changes made. * / / *  *  * Removes extra blank lines after headers in Markdown content. * @param {string} content - The Markdown content to process. * @return {Object} An object containing the processed content and a list of changes made. * / / *  *  * Applies linting operations to a single text file. * @param {File} file - The Google Drive file to process. * @param {Object} options - The linting options selected by the user. * @param {boolean} forceUpdate - Whether to force update the file even if no changes are detected. * @return {boolean} Whether any changes were made to the file. * / / *  *  * Logs an action to both the spreadsheet and the Apps Script Logger. * @param {string} level - The log level (e.g., 'INFO', 'ERROR', 'CHANGE'). * @param {string} fileName - The name of the file being processed. * @param {string} message - The message to log. * / / / Main Functions
+let logSheet; // Spreadsheet used for logging linting actions;
+let DEBUG = true; // Flag to enable or disable detailed debugging output / *  *  * Logs a debug message to the Apps Script Logger if debugging is enabled. * @param {string} message - The debug message to log. *// *  *  * Creates the 'Linters' menu in the Google Sheets UI. *// *  *  * Initializes the linting process by prompting for folder input and linting options. *// *  *  * Prompts the user to select which linting operations to perform. * @return {Object|null} An object containing boolean flags for each linting option, or null if cancelled. *// *  *  * Sets up the logging sheet in the active spreadsheet. *// *  *  * Prompts the user for folder input and returns folder information. * @param {string} operation - The name of the operation being performed. * @return {Object|null} An object containing the folder and its name, or null if cancelled. *// *  *  * Attempts to get a folder from the user input, either by ID or name. * @param {string} input - The folder name or ID provided by the user. * @return {Folder|null} The folder object if found, null otherwise. *// *  *  * Processes all Markdown and plain text files in a folder and its subfolders. * @param {Folder} folder - The Google Drive folder to process. * @param {Function} processingFunction - The function to apply to each text file. *// *  *  * Formats the text content according to specified rules. * @param {string} content - The original text content. * @param {boolean} isMarkdown - Whether the file is a Markdown file. * @return {Object} An object containing the formatted content and a list of changes made. *// *  *  * Removes extra blank lines after headers in Markdown content. * @param {string} content - The Markdown content to process. * @return {Object} An object containing the processed content and a list of changes made. *// *  *  * Applies linting operations to a single text file. * @param {File} file - The Google Drive file to process. * @param {Object} options - The linting options selected by the user. * @param {boolean} forceUpdate - Whether to force update the file even if no changes are detected. * @return {boolean} Whether any changes were made to the file. *// *  *  * Logs an action to both the spreadsheet and the Apps Script Logger. * @param {string} level - The log level (e.g., 'INFO', 'ERROR', 'CHANGE'). * @param {string} fileName - The name of the file being processed. * @param {string} message - The message to log. *// / Main Functions
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -56,7 +56,7 @@ let DEBUG = true; / / Flag to enable or disable detailed debugging output / *  *
  * @param {string} message - The message content
  * @returns {string} The formatted string
 
- * /
+ */
 
 function debug(message) {
   if (DEBUG) {
@@ -71,7 +71,7 @@ function debug(message) {
  * @param {any} input - The input to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 function getFolderFromInput(input) {
   debug(`Attempting to get folder from input: ${input}`);
@@ -89,7 +89,7 @@ function getFolderFromInput(input) {
  * Initializes resources or configuration
  * @returns {string} The formatted string
 
- * /
+ */
 
 function initializeLinting() {
   debug("Initializing unified linting process");
@@ -128,7 +128,7 @@ function initializeLinting() {
  * @param {any} forceUpdate - The forceUpdate parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function lintTextFile(file, options, forceUpdate = false) {
   debug(`Linting file: ${file.getName()}`);
@@ -183,14 +183,14 @@ function lintTextFile(file, options, forceUpdate = false) {
  * @param {string} message - The message content
  * @returns {string} The formatted string
 
- * /
+ */
 
 function logAction(level, fileName, message) {
   const timestamp = new Date().toISOString();
   logSheet.appendRow([timestamp, level, fileName, message]);
 
   const logMessage = `[${timestamp}] [${level}] ${fileName}: ${message}`;
-  Logger.log(logMessage); / / Print to Apps Script terminal;
+  Logger.log(logMessage); // Print to Apps Script terminal;
   debug(logMessage);
 }
 
@@ -199,7 +199,7 @@ function logAction(level, fileName, message) {
  * Manages files and folders
  * @returns {string} The formatted string
 
- * /
+ */
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
@@ -217,7 +217,7 @@ function onOpen() {
  * @param {Function} processingFunction - The processingFunction parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function processFolder(folder, processingFunction) {
   debug(`Processing folder: ${folder.getName()}`);
@@ -246,7 +246,7 @@ function processFolder(folder, processingFunction) {
  * @param {any} operation - The operation parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function promptForFolderInput(operation) {
   debug(`Prompting for folder input for operation: ${operation}`);
@@ -279,7 +279,7 @@ function promptForFolderInput(operation) {
  * Performs specialized operations
  * @returns {string} The formatted string
 
- * /
+ */
 
 function promptForLintingOptions() {
   const ui = SpreadsheetApp.getUi();
@@ -297,7 +297,7 @@ function promptForLintingOptions() {
   if (result = = = ui.Button.YES) {
     debug("User chose to perform all linting operations");
     return { format: true, removeExtraLines: true };
-  } / / If user clicked NO, prompt for specific options
+  } // If user clicked NO, prompt for specific options
   const formatResult = ui.alert('Format Text?', 'Standardize spacing and handle YAML frontmatter (for Markdown)?', ui.ButtonSet.YES_NO);
   const removeExtraLinesResult = ui.alert('Remove Extra Lines?', 'Remove extra blank lines after headers (Markdown only)?', ui.ButtonSet.YES_NO);
 
@@ -314,7 +314,7 @@ function promptForLintingOptions() {
  * @param {string} content - The content to process
  * @returns {string} The formatted string
 
- * /
+ */
 
 function removeExtraLinesAfterHeaders(content) {
   debug("Removing extra lines after headers");
@@ -329,9 +329,9 @@ function removeExtraLinesAfterHeaders(content) {
 
     if (isHeader) {
       if (modifiedLines.length > 0 && modifiedLines[modifiedLines.length - 1] ! = = "") {
-        modifiedLines.push(""); / / Ensure one blank line above header;
+        modifiedLines.push(""); // Ensure one blank line above header;
       }
-      modifiedLines.push(line); / / Skip any blank lines immediately after the header;
+      modifiedLines.push(line); // Skip any blank lines immediately after the header;
       while (i + 1 < lines.length && lines[i + 1].trim() = = = "") {
         i + + ; removedLines + + ; }
     } else {
@@ -352,7 +352,7 @@ function removeExtraLinesAfterHeaders(content) {
  * Sets up logging or configuration values
  * @returns {string} The formatted string
 
- * /
+ */
 
 function setupLogging() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -362,7 +362,7 @@ function setupLogging() {
   debug("Logging sheet set up");
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -372,22 +372,22 @@ function setupLogging() {
  * @param {any} isMarkdown - The isMarkdown parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function formatTextContent(content, isMarkdown) {
   debug("Formatting text content");
   let changes = [];
   let originalContent = content;
 
-  if (isMarkdown) { / / Handle YAML Front Matter (Markdown only)
-    content = content.replace( / ^ - - - \n([\s\S] * ?) - - - \n * / , (match, yaml) = > {
-      let formattedYaml = ` - - - \n${yaml.trim()}\n - - - \n\n`; / / Ensure one blank line after YAML;
+  if (isMarkdown) { // Handle YAML Front Matter (Markdown only)
+    content = content.replace( / ^ - - - \n([\s\S] * ?) - - - \n */ , (match, yaml) = > {
+      let formattedYaml = ` - - - \n${yaml.trim()}\n - - - \n\n`; // Ensure one blank line after YAML;
       if (match ! = = formattedYaml) {
         changes.push("Standardized YAML frontmatter spacing");
         debug("YAML frontmatter spacing standardized");
       }
       return formattedYaml;
-    }); / / Handle headers and ensure proper spacing
+    }); // Handle headers and ensure proper spacing
     const lines = content.split('\n');
     const formattedLines = [];
     let prevLineIsHeader = false;
@@ -398,12 +398,12 @@ function formatTextContent(content, isMarkdown) {
 
       if (isHeader) {
         if (formattedLines.length > 0 && formattedLines[formattedLines.length - 1] ! = = '') {
-          formattedLines.push(''); / / Ensure one blank line above header;
+          formattedLines.push(''); // Ensure one blank line above header;
         }
         formattedLines.push(line);
         prevLineIsHeader = true;
       } else {
-        if (prevLineIsHeader && line = = = '') { / / Skip blank line immediately after header;
+        if (prevLineIsHeader && line = = = '') { // Skip blank line immediately after header;
           prevLineIsHeader = false;
         } else {
           formattedLines.push(line);
@@ -417,7 +417,7 @@ function formatTextContent(content, isMarkdown) {
       changes.push("Standardized header spacing");
       debug("Header spacing standardized");
     }
-  } / / Standardize multiple blank lines to single blank lines
+  } // Standardize multiple blank lines to single blank lines
   let originalLineCount = content.split('\n').length;
   content = content.replace( / \n{3,} / g, '\n\n');
   let newLineCount = content.split('\n').length;

@@ -40,11 +40,11 @@
  * - PropertiesService: For storing script properties
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
-/**  * Main function to create a Drive index in the bound Google Sheets spreadsheet. * / / *  *  * Processes a folder and its subfolders to index files in the bound spreadsheet. * @param {object} folder - The folder to process. * @param {array} allowedTypes - The types of files to process. * @param {object} sheet - The sheet to add files to. * @param {Set} processedFiles - A set of processed file IDs. * @param {array} queue - A queue of folders to process. * / / *  *  * Determines the type of a file based on allowed types. * @param {object} file - The file to check. * @param {array} allowedTypes - The allowed file types. * @returns {string|null} - The file type if allowed, null otherwise. * / / *  *  * Adds file information to a sheet in the bound spreadsheet. * @param {object} sheet - The sheet to add the file information to. * @param {object} file - The file to add. * @param {string} type - The type of the file. * / / *  *  * Finalizes the sheet by sorting it in the bound spreadsheet. * @param {object} sheet - The sheet to finalize. * / /  / Helper functions / *  *  * Gets or creates a sheet with the specified name in the bound spreadsheet. * @param {object} ss - The bound spreadsheet. * @param {string} sheetName - The name of the sheet. * @returns {object} - The sheet object. * / / *  *  * Sets up the headers for a sheet in the bound spreadsheet. * @param {object} sheet - The sheet to set up headers for. * / / *  *  * Gets the file path for a given file. * @param {object} file - The file to get the path for. * @returns {string} - The file path. * / / *  *  * Formats a date object into a string. * @param {Date} date - The date to format. * @returns {string} - The formatted date string. * / / / Main Functions
+/**  * Main function to create a Drive index in the bound Google Sheets spreadsheet. *// *  *  * Processes a folder and its subfolders to index files in the bound spreadsheet. * @param {object} folder - The folder to process. * @param {array} allowedTypes - The types of files to process. * @param {object} sheet - The sheet to add files to. * @param {Set} processedFiles - A set of processed file IDs. * @param {array} queue - A queue of folders to process. *// *  *  * Determines the type of a file based on allowed types. * @param {object} file - The file to check. * @param {array} allowedTypes - The allowed file types. * @returns {string|null} - The file type if allowed, null otherwise. *// *  *  * Adds file information to a sheet in the bound spreadsheet. * @param {object} sheet - The sheet to add the file information to. * @param {object} file - The file to add. * @param {string} type - The type of the file. *// *  *  * Finalizes the sheet by sorting it in the bound spreadsheet. * @param {object} sheet - The sheet to finalize. *//  / Helper functions / *  *  * Gets or creates a sheet with the specified name in the bound spreadsheet. * @param {object} ss - The bound spreadsheet. * @param {string} sheetName - The name of the sheet. * @returns {object} - The sheet object. *// *  *  * Sets up the headers for a sheet in the bound spreadsheet. * @param {object} sheet - The sheet to set up headers for. *// *  *  * Gets the file path for a given file. * @param {object} file - The file to get the path for. * @returns {string} - The file path. *// *  *  * Formats a date object into a string. * @param {Date} date - The date to format. * @returns {string} - The formatted date string. *// / Main Functions
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -55,7 +55,7 @@
  * @param {any} type - The type parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function addToSheet(sheet, file, type) {
   try {
@@ -89,7 +89,7 @@ function addToSheet(sheet, file, type) {
     }
 
     const rowData = [;
-      false, / / Clean - up checkbox
+      false, // Clean - up checkbox
       file.getUrl(),
       file.getName(),
       formatDate(createdDate),
@@ -115,11 +115,11 @@ function addToSheet(sheet, file, type) {
  * Creates new drive index or resources
  * @returns {string} The newly created string
 
- * /
+ */
 
 function createDriveIndex() {
   try {
-    const ss = SpreadsheetApp.getActiveSpreadsheet(); / / Refers to the bound spreadsheet;
+    const ss = SpreadsheetApp.getActiveSpreadsheet(); // Refers to the bound spreadsheet;
     const allowedTypes = [;
       { type: 'Docs', mimeType: 'application / vnd.google - apps.document' },
       { type: 'Markdown', extensions: ['md'] },
@@ -130,8 +130,8 @@ function createDriveIndex() {
       { type: 'Slides', mimeType: 'application / vnd.google - apps.presentation' },
     ];
 
-    Logger.log('Process started at: ' + new Date().toISOString()); / / Read the folder ID from the specified cell in the bound spreadsheet;
-    const folderIdCell = ss.getSheets()[0].getRange('A1'); / / Change 'A1' to the desired cell;
+    Logger.log('Process started at: ' + new Date().toISOString()); // Read the folder ID from the specified cell in the bound spreadsheet;
+    const folderIdCell = ss.getSheets()[0].getRange('A1'); // Change 'A1' to the desired cell;
     const folderId = folderIdCell.getValue();
     if (! folderId) {
       throw new Error('Folder ID is missing in the specified cell.');
@@ -140,19 +140,19 @@ function createDriveIndex() {
     const folder = DriveApp.getFolderById(folderId);
 
     const scriptProperties = PropertiesService.getScriptProperties();
-    const processedFiles = new Set(JSON.parse(scriptProperties.getProperty('processedFiles') || '[]')); / / Set up the single dated sheet in the bound spreadsheet;
+    const processedFiles = new Set(JSON.parse(scriptProperties.getProperty('processedFiles') || '[]')); // Set up the single dated sheet in the bound spreadsheet;
     const today = new Date();
     const sheetName = Utilities.formatDate(today, Session.getScriptTimeZone(), 'yyyy - MM - dd');
     const sheet = getOrCreateSheet(ss, sheetName);
     if (sheet.getLastRow() = = = 0) {
-      setHeaders(sheet); / / Set headers only if the sheet is empty
-    } / / Process folder and its subfolders
+      setHeaders(sheet); // Set headers only if the sheet is empty
+    } // Process folder and its subfolders
     const queue = [folder];
     while (queue.length > 0) {
       const currentFolder = queue.shift();
       processFolder(currentFolder, allowedTypes, sheet, processedFiles, queue);
-    } / / Save processed file IDs
-    scriptProperties.setProperty('processedFiles', JSON.stringify([...processedFiles])); / / Finalize the sheet in the bound spreadsheet;
+    } // Save processed file IDs
+    scriptProperties.setProperty('processedFiles', JSON.stringify([...processedFiles])); // Finalize the sheet in the bound spreadsheet;
     finalizeSheet(sheet);
 
     Logger.log('Process completed at: ' + new Date().toISOString());
@@ -168,13 +168,13 @@ function createDriveIndex() {
  * @param {Sheet} sheet - The sheet parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function finalizeSheet(sheet) {
   const lastRow = sheet.getLastRow();
   if (lastRow > 1) {
     const range = sheet.getDataRange();
-    range.sort({ column: 4, ascending: false }); / / Sort by Created Date;
+    range.sort({ column: 4, ascending: false }); // Sort by Created Date;
   }
 }
 
@@ -185,7 +185,7 @@ function finalizeSheet(sheet) {
  * @param {File} file - The file to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 function getFilePath(file) {
   const pathParts = [];
@@ -205,7 +205,7 @@ function getFilePath(file) {
  * @param {any} allowedTypes - The allowedTypes to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 function getFileType(file, allowedTypes) {
   const mimeType = file.getMimeType();
@@ -229,7 +229,7 @@ function getFileType(file, allowedTypes) {
  * @param {string} sheetName - The sheetName to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 function getOrCreateSheet(ss, sheetName) {
   let sheet = ss.getSheetByName(sheetName);
@@ -250,7 +250,7 @@ function getOrCreateSheet(ss, sheetName) {
  * @param {any} queue - The queue parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function processFolder(folder, allowedTypes, sheet, processedFiles, queue) {
   Logger.log(`Processing files in folder: ${folder.getName()}`);
@@ -281,7 +281,7 @@ function processFolder(folder, allowedTypes, sheet, processedFiles, queue) {
  * @param {Sheet} sheet - The sheet to set
  * @returns {string} The formatted string
 
- * /
+ */
 
 function setHeaders(sheet) {
   const headers = ['Clean - up', 'File Link', 'File Name', 'Created Date', 'Last Revised Date', 'File Age', 'Modified Age', 'File Type', 'File Path', 'File Owner', 'User Access'];
@@ -289,7 +289,7 @@ function setHeaders(sheet) {
   sheet.setFrozenRows(1);
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -298,7 +298,7 @@ function setHeaders(sheet) {
  * @param {any} date - The date parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function formatDate(date) {
   return Utilities.formatDate(date, Session.getScriptTimeZone(), 'yyyy - MM - dd');

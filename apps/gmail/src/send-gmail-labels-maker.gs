@@ -36,9 +36,9 @@
  * - Logger: For logging and debugging
  * - PropertiesService: For storing script properties
  * - Utilities: For utility functions and encoding
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -47,7 +47,7 @@
  * @param {GmailThread} thread - The thread parameter
  * @returns {Object} The result object
 
- * /
+ */
 
 function applySenderLabels(thread) {
   let messages = thread.getMessages();
@@ -75,7 +75,7 @@ function applySenderLabels(thread) {
  * Gets specific last processed month or configuration
  * @returns {Object} The requested object
 
- * /
+ */
 
 function getLastProcessedMonth() {
   let properties = PropertiesService.getUserProperties();
@@ -95,7 +95,7 @@ function getLastProcessedMonth() {
  * @param {any} endDate - The endDate to retrieve
  * @returns {Object} The requested object
 
- * /
+ */
 
 function getMonthsToProcess(startDate, endDate) {
   let months = [];
@@ -104,7 +104,7 @@ function getMonthsToProcess(startDate, endDate) {
   while (month < = endDate) {
     months.push(new Date(month));
     month.setMonth(month.getMonth() + 1);
-    / / Prevent infinite loop
+    // Prevent infinite loop
     if (months.length > 100) break;
   }
   return months;
@@ -117,7 +117,7 @@ function getMonthsToProcess(startDate, endDate) {
  * @param {string} labelName - The labelName to retrieve
  * @returns {Object} The requested object
 
- * /
+ */
 
 function getOrCreateLabel(labelName) {
   if (! isValidLabelName(labelName)) {
@@ -148,35 +148,35 @@ function getOrCreateLabel(labelName) {
  * Processes and transforms gmail emails
  * @returns {Object} The result object
 
- * /
+ */
 
 function processGmailEmails() {
   Logger.log('Starting Gmail email processing...');
 
-  / / Retrieve the last processed month
+  // Retrieve the last processed month
   let lastProcessedMonth = getLastProcessedMonth();
   Logger.log('Last processed month: ' + lastProcessedMonth);
 
-  / / Determine the start month for this run
+  // Determine the start month for this run
   let startMonthDate;
   if (lastProcessedMonth) {
     startMonthDate = new Date(lastProcessedMonth);
     startMonthDate.setMonth(startMonthDate.getMonth() + 1);
   } else {
-    startMonthDate = new Date(2023, 10, 01); / / Start from October 2023
+    startMonthDate = new Date(2023, 10, 01); // Start from October 2023
   }
   Logger.log('Start month: ' + startMonthDate);
 
-  / / Set the current month
+  // Set the current month
   let currentMonthDate = new Date();
   currentMonthDate.setDate(1);
   Logger.log('Current month: ' + currentMonthDate);
 
-  / / Get the list of months to process
+  // Get the list of months to process
   let monthsToProcess = getMonthsToProcess(startMonthDate, currentMonthDate);
   Logger.log('Months to process: ' + monthsToProcess.length);
 
-  / / Process each month
+  // Process each month
   for (let i = 0; i < monthsToProcess.length; i+ + ) {
     let monthDate = monthsToProcess[i];
     processMonth(monthDate);
@@ -193,7 +193,7 @@ function processGmailEmails() {
  * @param {any} monthDate - The monthDate parameter
  * @returns {Object} The result object
 
- * /
+ */
 
 function processMonth(monthDate) {
   Logger.log('Processing month: ' + monthDate);
@@ -203,7 +203,7 @@ function processMonth(monthDate) {
 
   for (let i = 0; i < threads.length; i+ + ) {
     let thread = threads[i];
-    / / Process the thread by applying labels based on sender name
+    // Process the thread by applying labels based on sender name
     applySenderLabels(thread);
   }
 }
@@ -215,14 +215,14 @@ function processMonth(monthDate) {
  * @param {any} monthDate - The monthDate to set
  * @returns {Object} The result object
 
- * /
+ */
 
 function setLastProcessedMonth(monthDate) {
   let properties = PropertiesService.getUserProperties();
   properties.setProperty('lastProcessedMonth', Utilities.formatDate(monthDate, Session.getTimeZone(), 'yyyy- MM'));
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -231,10 +231,10 @@ function setLastProcessedMonth(monthDate) {
  * @param {any} from - The from parameter
  * @returns {Object} The result object
 
- * /
+ */
 
 function extractAndSanitizeSender(from) {
-  / / Extract the sender's name from the 'From' field
+  // Extract the sender's name from the 'From' field
   let nameMatch = from.match(/ ^.* ?(?= < )/ );
   let senderName = nameMatch ? nameMatch[0].trim() : from;
   return sanitizeLabelName(senderName);
@@ -248,7 +248,7 @@ function extractAndSanitizeSender(from) {
  * @param {any} month - The month to retrieve
  * @returns {Object} The requested object
 
- * /
+ */
 
 function getMonthDates(year, month) {
   let startDate = new Date(year, month, 1);
@@ -267,7 +267,7 @@ function getMonthDates(year, month) {
  * @param {string} name - The name to use
  * @returns {Object} True if condition is met, false otherwise
 
- * /
+ */
 
 function isValidLabelName(name) {
   if (name.length > 40) {
@@ -291,17 +291,17 @@ function isValidLabelName(name) {
  * @param {string} name - The name to use
  * @returns {Object} The result object
 
- * /
+ */
 
 function sanitizeLabelName(name) {
-  / / Replace invalid characters with '- '
+  // Replace invalid characters with '- '
   name = name.replace(/ [^a- zA- Z0- 9_.- ]/ g, '- ');
-  / / Remove leading/ trailing invalid characters
+  // Remove leading/ trailing invalid characters
   name = name.replace(/ ^[.- ]+ |[.- ]+ $/ g, '');
-  / / Truncate to 40 characters
+  // Truncate to 40 characters
   name = name.substring(0, 40);
   if (name = = = '') {
-    name = 'default- label'; / / Assign a default label if sanitization results in an empty string
+    name = 'default- label'; // Assign a default label if sanitization results in an empty string
   }
   return name;
 }

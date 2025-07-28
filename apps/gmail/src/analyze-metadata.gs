@@ -26,26 +26,26 @@
  * Google Services:
  * - GmailApp: For accessing email messages and labels
  * - Logger: For logging and debugging
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Reads mark all emails as from source
  * @returns {string} The formatted string
 
- * /
+ */
 
 function markAllEmailsAsRead() {
-  try { / / Initialize logging
+  try { // Initialize logging
     Logger.log('= = = Mark All Emails As Read - Execution Start = = = ');
-    Logger.log(`Execution started at: ${new Date().toISOString()}`); / / Set batch configuration;
+    Logger.log(`Execution started at: ${new Date().toISOString()}`); // Set batch configuration;
     const BATCH_SIZE = 100;
-    Logger.log(`Batch size configured: ${BATCH_SIZE}`); / / Initialize tracking variables;
+    Logger.log(`Batch size configured: ${BATCH_SIZE}`); // Initialize tracking variables;
     let startIndex = 0;
     let totalProcessed = 0;
-    const startTime = Date.now(); / / Get initial count;
+    const startTime = Date.now(); // Get initial count;
     Logger.log('Performing initial unread email count...');
     const initialCount = GmailApp.search('is:unread').length;
     Logger.log(`Initial unread thread count: ${initialCount}`);
@@ -53,16 +53,16 @@ function markAllEmailsAsRead() {
     if (initialCount = = = 0) {
       Logger.log('No unread emails found. Script execution complete.');
       return;
-    } / / Main processing loop
-    do { / / Batch start logging
+    } // Main processing loop
+    do { // Batch start logging
       Logger.log(`\n= = = Processing Batch ${Math.floor(startIndex / BATCH_SIZE) + 1} = = = `);
-      Logger.log(`Starting index: ${startIndex}`); / / Get thread batch;
+      Logger.log(`Starting index: ${startIndex}`); // Get thread batch;
       const threads = GmailApp.search('is:unread', startIndex, BATCH_SIZE);
-      Logger.log(`Retrieved ${threads.length} threads in current batch`); / / Check for completion;
+      Logger.log(`Retrieved ${threads.length} threads in current batch`); // Check for completion;
       if (threads.length = = = 0) {
         Logger.log('No more unread threads found. Processing complete.');
         break;
-      } / / Process each thread in batch
+      } // Process each thread in batch
       threads.forEach((thread, index) = > {
         try {
           const subject = thread.getFirstMessageSubject() || '[No Subject]';
@@ -71,7 +71,7 @@ function markAllEmailsAsRead() {
         } catch (e) {
           Logger.log(`Error processing thread details at index ${index}: ${e.toString()}`);
         }
-      }); / / Mark threads as read
+      }); // Mark threads as read
       Logger.log('Marking batch as read...');
       try {
         GmailApp.markThreadsRead(threads);
@@ -79,21 +79,21 @@ function markAllEmailsAsRead() {
       } catch (e) {
         Logger.log(`Error marking batch as read: ${e.toString()}`);
         throw e;
-      } / / Update progress tracking
+      } // Update progress tracking
       totalProcessed + = threads.length;
-      startIndex + = BATCH_SIZE; / / Log progress statistics;
-      Logger.log(`Progress: ${totalProcessed} / ${initialCount} threads processed`); / / Check execution time limits;
+      startIndex + = BATCH_SIZE; // Log progress statistics;
+      Logger.log(`Progress: ${totalProcessed} / ${initialCount} threads processed`); // Check execution time limits;
       const executionTime = (Date.now() - startTime) / 1000;
       Logger.log(`Current execution time: ${executionTime.toFixed(1)} seconds`);
 
       if (executionTime > 280) {
         Logger.log('WARNING: Approaching execution time limit. Stopping safely.');
         break;
-      } / / Verify batch processing
+      } // Verify batch processing
       const verificationCount = GmailApp.search('is:unread', startIndex - BATCH_SIZE, BATCH_SIZE).length;
       Logger.log(`Verification: ${verificationCount} threads remain unread in previous batch`);
 
-    } while (true); / / Generate final report
+    } while (true); // Generate final report
     const finalUnreadCount = GmailApp.search('is:unread').length;
     const totalTime = (Date.now() - startTime) / 1000;
 
@@ -120,17 +120,17 @@ function markAllEmailsAsRead() {
  * Processes email data
  * @returns {string} The formatted string
 
- * /
+ */
 
 function testGmailAccess() {
   Logger.log('\n= = = Gmail Access Test - Start = = = ');
-  try { / / Test user authentication
+  try { // Test user authentication
     const user = Session.getActiveUser().getEmail();
-    Logger.log(`Authenticated User: ${user}`); / / Test inbox access;
+    Logger.log(`Authenticated User: ${user}`); // Test inbox access;
     const threads = GmailApp.getInboxThreads(0, 1);
-    Logger.log(`Inbox Access: Success (Found ${threads.length} thread(s))`); / / Test search functionality;
+    Logger.log(`Inbox Access: Success (Found ${threads.length} thread(s))`); // Test search functionality;
     const unreadCount = GmailApp.search('is:unread').length;
-    Logger.log(`Search Function: Success (Found ${unreadCount} unread threads)`); / / Test complete;
+    Logger.log(`Search Function: Success (Found ${unreadCount} unread threads)`); // Test complete;
     Logger.log('= = = Gmail Access Test - Success = = = \n');
     return 'Gmail access verification completed successfully';
   } catch (error) {

@@ -37,9 +37,9 @@
  * - HtmlService: For serving HTML content
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -48,7 +48,7 @@
  * @param {string} content - The content to process
  * @returns {any} The result
 
- * /
+ */
 
 function extractYamlFrontmatter(content) {
   Logger.log('Entering extractYamlFrontmatter function');
@@ -81,7 +81,7 @@ function extractYamlFrontmatter(content) {
  * @param {string} folderName - The folderName parameter
  * @returns {any} The result
 
- * /
+ */
 
 function findFolderByName(folderName) {
   Logger.log('Entering findFolderByName function');
@@ -105,7 +105,7 @@ function findFolderByName(folderName) {
  * @param {Folder} folder - The folder parameter
  * @returns {any} The result
 
- * /
+ */
 
 function findYamlFrontmatterInFolder(folder) {
   Logger.log('Entering findYamlFrontmatterInFolder function');
@@ -150,7 +150,7 @@ function findYamlFrontmatterInFolder(folder) {
  * @param {string} folderId - The folderId parameter
  * @returns {any} The result
 
- * /
+ */
 
 function findYamlFrontmatterInFolderById(folderId) {
   Logger.log('Entering findYamlFrontmatterInFolderById function');
@@ -171,7 +171,7 @@ function findYamlFrontmatterInFolderById(folderId) {
  * Manages files and folders
  * @returns {any} The result
 
- * /
+ */
 
 function onOpen() {
   Logger.log('Entering onOpen function');
@@ -195,7 +195,7 @@ function onOpen() {
  * @param {string} folderName - The folderName parameter
  * @returns {any} The result
 
- * /
+ */
 
 function processFolderInput(folderId, folderName) {
   Logger.log('Entering processFolderInput function');
@@ -229,7 +229,7 @@ function processFolderInput(folderId, folderName) {
  * Manages files and folders
  * @returns {any} The result
 
- * /
+ */
 
 function showFolderInputForm() {
   Logger.log('Entering showFolderInputForm function');
@@ -250,7 +250,7 @@ function showFolderInputForm() {
  * Performs specialized operations
  * @returns {any} The result
 
- * /
+ */
 
 function YAML() {
   this.parse = function (yamlString) {
@@ -275,7 +275,7 @@ function YAML() {
   };
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -284,7 +284,7 @@ function YAML() {
  * @param {any} yamlString - The yamlString parameter
  * @returns {any} The result
 
- * /
+ */
 
 function parseYaml(yamlString) {
   Logger.log('Entering parseYaml function');

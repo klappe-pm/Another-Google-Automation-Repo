@@ -36,13 +36,13 @@
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
-/ *
+/*
+ * Main Functions
+ */
 
- * / / / Main Functions
-
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -52,7 +52,7 @@
  * @param {string} defaultProvider - The defaultProvider parameter
  * @returns {any} The result
 
- * /
+ */
 
 function extractReceiptFromMessage(message, defaultProvider) {
   const body = message.getPlainBody().replace( / \r\n / g, '\n').replace( / \n +  / g, '\n').trim();
@@ -65,7 +65,7 @@ function extractReceiptFromMessage(message, defaultProvider) {
   else if ( / lyft / i.test(body)) provider = 'Lyft';
 
   const receipt = {
-    message_link: `https: / / mail.google.com / mail / u / 0 / #inbox / ${messageId}`,
+    message_link: `https: // mail.google.com / mail / u / 0 / #inbox / ${messageId}`,
     provider: provider,
     trip_date: formatDate(date),
     trip_start_time: 'N / A',
@@ -85,22 +85,22 @@ function extractReceiptFromMessage(message, defaultProvider) {
     driver_rating: provider = = = 'Lyft' ? 'N / A' : 'N / A';
   };
 
-  try { / / Check for Lyft missed ride
+  try { // Check for Lyft missed ride
     if (provider = = = 'Lyft' && / missed\s + ride / i.test(body)) {
       const cancelFeeMatch = body.match( / Lyft\s + cancel\s + fee\s + \$(\d + \.\d{2}) / i);
       if (cancelFeeMatch) {
         receipt.total_cost = parseFloat(cancelFeeMatch[1]);
-        receipt.base_fare = 0; / / Try to extract the date for missed rides;
+        receipt.base_fare = 0; // Try to extract the date for missed rides;
         const missedDateMatch = body.match( / Request\s + on\s + ([A - Za - z] + \s + \d{1,2})(?:\s + at|\s + AT)?\s + (\d{1,2}:\d{2}\s * (?:AM|PM)) / i);
         if (missedDateMatch) {
           const currentYear = new Date().getFullYear();
           receipt.trip_date = `${missedDateMatch[1]}, ${currentYear}`;
           receipt.trip_start_time = convertTo24Hour(missedDateMatch[2]);
-        } / / Try to extract location for missed rides
+        } // Try to extract location for missed rides
         const locationMatch = body.match( / Request. * at\s + ([A - Za - z0 - 9\s,. - ] + ) / i);
         if (locationMatch) {
           receipt.start_location = locationMatch[1].trim();
-        } / / Payment method
+        } // Payment method
         const paymentMatch = body.match( / Charged\s + to\s + ([A - Za - z\s\(\)] + (?:ending\s * \d{4})?) / i);
         if (paymentMatch) {
           receipt.payment_method = paymentMatch[1].trim();
@@ -109,7 +109,7 @@ function extractReceiptFromMessage(message, defaultProvider) {
         receipt.validation_notes = 'Missed ride cancel fee.';
         return receipt;
       }
-    } / / Define regex patterns based on provider
+    } // Define regex patterns based on provider
     const patterns = {
       tripDate: provider = = = 'Lyft' ? / ([A - Z] + \s + \d{1,2},\s * \d{4}) / i : / ([A - Za - z] + \s + \d{1,2}(?:,\s * |\s + )\d{4}) / i,
       startTime: provider = = = 'Lyft' ? / Pickup\s + (\d{1,2}:\d{2}\s * (?:AM|PM)) / i : / ^(\d{1,2}:\d{2}\s * (?:AM|PM)) / im,
@@ -119,18 +119,18 @@ function extractReceiptFromMessage(message, defaultProvider) {
       payment: provider = = = 'Lyft' ? / (?:Pay|Charged to)\s + ([A - Za - z\s\(\)] + (?:ending\s * \d{4})?) / i : / Payments\s + ([A - Za - z\s] + (?:ending\s * \d{4})?) / i,
       driver: provider = = = 'Lyft' ? / Thanks\s + for\s + riding\s + with\s + ([A - Za - z\s] + ) / i : / You\s + rode\s + with\s + ([A - Za - z\s] + ) / i,
       rating: provider = = = 'Lyft' ? null : / (\d + \.\d{1,2})\s * ★\s * Rating / i;
-    }; / / Extract locations using line - by - line approach
+    }; // Extract locations using line - by - line approach
     let locations = [];
-    if (provider = = = 'Lyft') { / / Lyft locations;
+    if (provider = = = 'Lyft') { // Lyft locations;
       const pickupMatch = body.match( / Pickup\s + \d{1,2}:\d{2}\s * (?:AM|PM)\s * \n([A - Za - z0 - 9\s,. - ] + ) / i);
       const dropoffMatch = body.match( / Drop - off\s + \d{1,2}:\d{2}\s * (?:AM|PM)\s * \n([A - Za - z0 - 9\s,. - ] + ) / i);
 
       if (pickupMatch) receipt.start_location = pickupMatch[1].trim();
       if (dropoffMatch) receipt.end_location = dropoffMatch[1].trim();
-    } else { / / Uber locations - line - by - line approach
+    } else { // Uber locations - line - by - line approach
       const lines = body.split('\n');
       for (let i = 0; i < lines.length; i + + ) {
-        const line = lines[i].trim(); / / Find time patterns;
+        const line = lines[i].trim(); // Find time patterns;
         if ( / ^\d{1,2}:\d{2}\s * (?:AM|PM)$ / .test(line) && i + 1 < lines.length) {
           locations.push({
             time: line,
@@ -148,8 +148,8 @@ function extractReceiptFromMessage(message, defaultProvider) {
         receipt.end_location = locations[1].location;
         receipt.trip_end_time = convertTo24Hour(locations[1].time);
       }
-    } / / Process receipts differently based on provider
-    if (provider = = = 'Lyft') { / / Extract Lyft - specific fields;
+    } // Process receipts differently based on provider
+    if (provider = = = 'Lyft') { // Extract Lyft - specific fields;
       const dateMatch = body.match(patterns.tripDate);
       if (dateMatch) receipt.trip_date = dateMatch[1].trim();
 
@@ -163,7 +163,7 @@ function extractReceiptFromMessage(message, defaultProvider) {
       if (mileageMatch) receipt.mileage = parseFloat(mileageMatch[1]);
 
       const durationMatch = body.match(patterns.duration);
-      if (durationMatch) receipt.trip_duration = durationMatch[1].trim(); / / Try multiple patterns for total cost;
+      if (durationMatch) receipt.trip_duration = durationMatch[1].trim(); // Try multiple patterns for total cost;
       const totalCostPatterns = [ / (?:Pay|Charged to|Apple Pay|American Express)\s + [^\$] * \$(\d + \.\d{2}) / i, / total\s + [^\$] * \$(\d + \.\d{2}) / i;
       ];
 
@@ -173,7 +173,7 @@ function extractReceiptFromMessage(message, defaultProvider) {
           receipt.total_cost = parseFloat(match[1]);
           break;
         }
-      } / / Try different base fare patterns
+      } // Try different base fare patterns
       const baseFarePatterns = [ / Lyft\s + fare\s + [^\$] * \$(\d + \.\d{2}) / i, / fare\s + [^\$] * \$(\d + \.\d{2}) / i;
       ];
 
@@ -183,11 +183,11 @@ function extractReceiptFromMessage(message, defaultProvider) {
           receipt.base_fare = parseFloat(match[1]);
           break;
         }
-      } / / Extract payment method
+      } // Extract payment method
       const paymentMatch = body.match(patterns.payment);
-      if (paymentMatch) receipt.payment_method = paymentMatch[1].trim(); / / Extract driver name;
+      if (paymentMatch) receipt.payment_method = paymentMatch[1].trim(); // Extract driver name;
       const driverMatch = body.match(patterns.driver);
-      if (driverMatch) receipt.driver_name = driverMatch[1].trim(); / / Extract fees;
+      if (driverMatch) receipt.driver_name = driverMatch[1].trim(); // Extract fees;
       const feePattern = / ((?:Service\s + Fee|Priority\s + Pickup\s + Upgrade|Wait\s + [tT]ime\s * [fF]ee|Booking\s + Fee|Regulatory\s * Fee|CA\s + Driver\s * Benefits?|Access\s + for\s + All\s + Fee|Airport\s * Fee|Clean\s + Miles\s + Standard\s + Regulatory\s + Fee))\s * [^\$] * \$(\d + \.\d{2}) / gi;
       let feeMatch;
       while ((feeMatch = feePattern.exec(body)) ! = = null) {
@@ -195,7 +195,7 @@ function extractReceiptFromMessage(message, defaultProvider) {
           name: feeMatch[1].trim(),
           amount: parseFloat(feeMatch[2])
         });
-      } / / Extract discounts
+      } // Extract discounts
       const discountPattern = / ((?:Membership|Promotion))\s * [^\$] *  - ?\$(\d + \.\d{2}) / gi;
       let discountMatch;
       while ((discountMatch = discountPattern.exec(body)) ! = = null) {
@@ -203,7 +203,7 @@ function extractReceiptFromMessage(message, defaultProvider) {
           name: discountMatch[1].trim(),
           amount: - parseFloat(discountMatch[2])
         });
-      } / / Extract credits
+      } // Extract credits
       const creditPattern = / ((?:Lyft\s + Pink|Lyft\s + Credits))\s * [^\$] *  - ?\$(\d + \.\d{2}) / gi;
       let creditMatch;
       while ((creditMatch = creditPattern.exec(body)) ! = = null) {
@@ -211,30 +211,30 @@ function extractReceiptFromMessage(message, defaultProvider) {
           name: creditMatch[1].trim(),
           amount: - parseFloat(creditMatch[2])
         });
-      } / / Extract tip
+      } // Extract tip
       const tipMatch = body.match( / Tip\s + \$(\d + \.\d{2}) / i);
       if (tipMatch) receipt.tip_amount = parseFloat(tipMatch[1]);
 
-    } else if (provider = = = 'Uber') { / / Extract Uber - specific fields;
+    } else if (provider = = = 'Uber') { // Extract Uber - specific fields;
       const dateMatch = body.match(patterns.tripDate);
-      if (dateMatch) receipt.trip_date = dateMatch[1].trim(); / / Start and end times should already be set from location extraction;
+      if (dateMatch) receipt.trip_date = dateMatch[1].trim(); // Start and end times should already be set from location extraction;
 
       const mileageMatch = body.match(patterns.mileage);
       if (mileageMatch) receipt.mileage = parseFloat(mileageMatch[1]);
 
       const durationMatch = body.match(patterns.duration);
-      if (durationMatch) receipt.trip_duration = durationMatch[1].trim(); / / Total cost;
+      if (durationMatch) receipt.trip_duration = durationMatch[1].trim(); // Total cost;
       const totalCostMatch = body.match( / Total\s + \$(\d + \.\d{2}) / i);
-      if (totalCostMatch) receipt.total_cost = parseFloat(totalCostMatch[1]); / / Base fare;
+      if (totalCostMatch) receipt.total_cost = parseFloat(totalCostMatch[1]); // Base fare;
       const baseFareMatch = body.match( / Trip\s + fare\s + \$(\d + \.\d{2}) / i);
-      if (baseFareMatch) receipt.base_fare = parseFloat(baseFareMatch[1]); / / Extract payment method;
+      if (baseFareMatch) receipt.base_fare = parseFloat(baseFareMatch[1]); // Extract payment method;
       const paymentPattern = / (?:Payments|American Express|Visa|Mastercard|Discover|Payment Method)\s + ([A - Za - z\s] + (?:ending\s * \d{4})?) / i;
       const paymentMatch = body.match(paymentPattern);
-      if (paymentMatch) receipt.payment_method = paymentMatch[1].trim(); / / Extract driver name;
+      if (paymentMatch) receipt.payment_method = paymentMatch[1].trim(); // Extract driver name;
       const driverMatch = body.match(patterns.driver);
-      if (driverMatch) receipt.driver_name = driverMatch[1].trim(); / / Extract driver rating;
+      if (driverMatch) receipt.driver_name = driverMatch[1].trim(); // Extract driver rating;
       const ratingMatch = body.match(patterns.rating);
-      if (ratingMatch) receipt.driver_rating = parseFloat(ratingMatch[1]); / / Extract fees;
+      if (ratingMatch) receipt.driver_rating = parseFloat(ratingMatch[1]); // Extract fees;
       const feePattern = / ((?:Booking\s + Fee|CA\s + Driver\s + Benefits|Access\s + for\s + All\s + Fee|Clean\s + Miles\s + Standard\s + Regulatory\s + Fee|UberX\s + Priority|Wait\s + Time))\s + \$(\d + \.\d{2}) / gi;
       let feeMatch;
       while ((feeMatch = feePattern.exec(body)) ! = = null) {
@@ -242,7 +242,7 @@ function extractReceiptFromMessage(message, defaultProvider) {
           name: feeMatch[1].trim(),
           amount: parseFloat(feeMatch[2])
         });
-      } / / Extract discounts and credits
+      } // Extract discounts and credits
       const creditPattern = / ((?:Uber\s + One\s + Credits|Promotion))\s +  - \$(\d + \.\d{2}) / gi;
       let creditMatch;
       while ((creditMatch = creditPattern.exec(body)) ! = = null) {
@@ -257,17 +257,17 @@ function extractReceiptFromMessage(message, defaultProvider) {
             amount: - parseFloat(creditMatch[2])
           });
         }
-      } / / Extract tip
+      } // Extract tip
       const tipMatch = body.match( / Tip\s + \$(\d + \.\d{2}) / i);
       if (tipMatch) receipt.tip_amount = parseFloat(tipMatch[1]);
-    } / / Calculate trip duration if both start and end times are available
+    } // Calculate trip duration if both start and end times are available
     if (receipt.trip_start_time ! = = 'N / A' && receipt.trip_end_time ! = = 'N / A' && receipt.trip_duration = = = 'N / A') {
       try {
         const start = parseTime(receipt.trip_start_time);
         const end = parseTime(receipt.trip_end_time);
         if (start && end) {
           let minutes = (end - start) / (1000 * 60);
-          if (minutes < 0) minutes + = 24 * 60; / / Handle overnight rides;
+          if (minutes < 0) minutes + = 24 * 60; // Handle overnight rides;
           receipt.trip_duration = `${Math.floor(minutes)} minutes`;
         }
       } catch (e) {
@@ -289,7 +289,7 @@ function extractReceiptFromMessage(message, defaultProvider) {
  * @param {number} maxThreads - The maxThreads parameter
  * @returns {any} The result
 
- * /
+ */
 
 function extractReceiptsFromGmail(maxThreads) {
   const receipts = [];
@@ -367,7 +367,7 @@ function extractReceiptsFromGmail(maxThreads) {
  * Processes and transforms ride receipts
  * @returns {any} The result
 
- * /
+ */
 
 function processRideReceipts() {
   const maxThreads = 50;
@@ -387,7 +387,7 @@ function processRideReceipts() {
  * @param {any} receipts - The receipts parameter
  * @returns {any} The result
 
- * /
+ */
 
 function writeToSheet(receipts) {
   try {
@@ -405,10 +405,10 @@ function writeToSheet(receipts) {
     ];
 
     const rows = receipts.map(receipt = > {
-      try { / / Format fees, discounts, and credits for spreadsheet
+      try { // Format fees, discounts, and credits for spreadsheet
         const fees = receipt.additional_fees.map(fee = > `${fee.name}: $${fee.amount.toFixed(2)}`).join(', ');
         const discounts = receipt.discounts.map(discount = > `${discount.name}: $${discount.amount.toFixed(2)}`).join(', ');
-        const credits = receipt.credits.map(credit = > `${credit.name}: $${credit.amount.toFixed(2)}`).join(', '); / / Format date for spreadsheet (MM / DD / YYYY);
+        const credits = receipt.credits.map(credit = > `${credit.name}: $${credit.amount.toFixed(2)}`).join(', '); // Format date for spreadsheet (MM / DD / YYYY);
         let formattedDate = receipt.trip_date;
         const dateMatch = receipt.trip_date.match( / ([A - Za - z] + )\s + (\d{1,2})(?:,|)\s * (\d{4}) / i);
         if (dateMatch) {
@@ -417,7 +417,7 @@ function writeToSheet(receipts) {
             'July', 'August', 'September', 'October', 'November', 'December'
           ];
           const month = monthNames.findIndex(m = > m.toLowerCase() = = = dateMatch[1].toLowerCase()) + 1;
-          if (month > 0) { / / Valid month name found
+          if (month > 0) { // Valid month name found
             formattedDate = `${month.toString().padStart(2, '0')} / ${dateMatch[2].padStart(2, '0')} / ${dateMatch[3]}`;
           }
         }
@@ -447,11 +447,11 @@ function writeToSheet(receipts) {
         Logger.log(`Error preparing row for receipt: ${e.message}`);
         return Array(headers.length).fill('Error');
       }
-    }); / / Write headers and data to sheet
+    }); // Write headers and data to sheet
     sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
     if (rows.length > 0) {
       sheet.getRange(2, 1, rows.length, headers.length).setValues(rows);
-    } / / Format the sheet
+    } // Format the sheet
     sheet.autoResizeColumns(1, headers.length);
     Logger.log('Data written to RideReceipts sheet');
   } catch (e) {
@@ -459,7 +459,7 @@ function writeToSheet(receipts) {
   }
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -468,7 +468,7 @@ function writeToSheet(receipts) {
  * @param {any} timeStr - The timeStr parameter
  * @returns {any} The result
 
- * /
+ */
 
 function convertTo24Hour(timeStr) {
   try {
@@ -493,9 +493,9 @@ function convertTo24Hour(timeStr) {
  * @param {any} date - The date parameter
  * @returns {any} The result
 
- * /
+ */
 
-function formatDate(date) { / / Return date in "Month DD, YYYY" format
+function formatDate(date) { // Return date in "Month DD, YYYY" format
   const months = [;
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -510,7 +510,7 @@ function formatDate(date) { / / Return date in "Month DD, YYYY" format
  * @param {any} timeStr - The timeStr parameter
  * @returns {any} The result
 
- * /
+ */
 
 function parseTime(timeStr) {
   const match = timeStr.match( / (\d{2}):(\d{2}) / );
@@ -527,24 +527,24 @@ function parseTime(timeStr) {
  * @param {any} receipts - The receipts parameter
  * @returns {any} The result
 
- * /
+ */
 
 function validateAndCleanReceipts(receipts) {
   return receipts.map((receipt, index) = > {
     try {
-      const validatedReceipt = { ...receipt, validation_notes: '' }; / / Validate provider;
+      const validatedReceipt = { ...receipt, validation_notes: '' }; // Validate provider;
       if (! ['Uber', 'Lyft'].includes(validatedReceipt.provider)) {
         validatedReceipt.validation_notes + = 'Invalid provider. ';
-      } / / Clean date format - more flexible approach
+      } // Clean date format - more flexible approach
       const monthNames = [;
         'January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'
       ];
 
       const dateMatch = validatedReceipt.trip_date.match( / ([A - Za - z] + )\s + (\d{1,2})(?:,|)\s * (\d{4}) / i);
-      if (! dateMatch) { / / If not in expected format, leave as is but note it
+      if (! dateMatch) { // If not in expected format, leave as is but note it
         validatedReceipt.validation_notes + = 'Date format not standardized. ';
-      } / / Clean locations - remove ', US' and similar suffixes
+      } // Clean locations - remove ', US' and similar suffixes
       if (validatedReceipt.start_location ! = = 'N / A') {
         validatedReceipt.start_location = validatedReceipt.start_location;
           .replace( / ,?\s * US$ / , '');
@@ -557,13 +557,13 @@ function validateAndCleanReceipts(receipts) {
           .replace( / ,?\s * US$ / , '');
           .replace( / ,\s * [A - Z]{2}\s * \d{5}(?: - \d{4})?$ / , '');
           .trim();
-      } / / Standardize trip duration format
+      } // Standardize trip duration format
       if (validatedReceipt.trip_duration ! = = 'N / A') {
         validatedReceipt.trip_duration = validatedReceipt.trip_duration;
           .replace( / mins / i, 'minutes');
           .replace( / min / i, 'minutes');
           .trim();
-      } / / Validate costs - check with a small epsilon for rounding errors
+      } // Validate costs - check with a small epsilon for rounding errors
       let calculatedTotal = validatedReceipt.base_fare;
       validatedReceipt.additional_fees.forEach(fee = > {
         calculatedTotal + = fee.amount;
@@ -574,14 +574,14 @@ function validateAndCleanReceipts(receipts) {
       validatedReceipt.credits.forEach(credit = > {
         calculatedTotal + = credit.amount;
       });
-      calculatedTotal + = validatedReceipt.tip_amount; / / Use a small epsilon for floating point comparison;
-      const epsilon = 0.05; / / 5 cents;
+      calculatedTotal + = validatedReceipt.tip_amount; // Use a small epsilon for floating point comparison;
+      const epsilon = 0.05; // 5 cents;
       if (Math.abs(calculatedTotal - validatedReceipt.total_cost) > epsilon) {
         validatedReceipt.validation_notes + = `Total cost mismatch: calculated ${calculatedTotal.toFixed(2)}, reported ${validatedReceipt.total_cost.toFixed(2)}. `;
-      } / / Add note for assumed zero tip
+      } // Add note for assumed zero tip
       if (validatedReceipt.tip_amount = = = 0) {
         validatedReceipt.validation_notes + = 'Tip assumed as $0. ';
-      } / / Add success note if no issues
+      } // Add success note if no issues
       if (! validatedReceipt.validation_notes) {
         validatedReceipt.validation_notes = 'Data validated successfully.';
       }

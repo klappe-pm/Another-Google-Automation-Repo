@@ -36,7 +36,7 @@
  * - HtmlService: For serving HTML content
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
- * /
+ */
 
 / * Summary:
 This Google Apps Script adds YAML frontmatter to markdown files stored in a Google Drive folder.
@@ -50,34 +50,34 @@ Key features:
 3. YAML frontmatter generation with user - defined category and subcategory
 4. Batch processing of markdown files in the selected folder
 5. Debug logging with sheet - based and in - memory options
-6. Error handling and user feedback * / const DEBUG = true;
-let debugLog = []; / / Function to create and add the custom menu to the Google Sheets UI;
- / / Main function to add YAML frontmatter to markdown files
- / / Function to prompt the user for YAML values
- / / Function to add YAML frontmatter to a single file
- / / Helper function to format dates for YAML frontmatter
- / / Debug logging function
- / / Function to display the debug log in the UI
+6. Error handling and user feedback */ const DEBUG = true;
+let debugLog = []; // Function to create and add the custom menu to the Google Sheets UI;
+ // Main function to add YAML frontmatter to markdown files
+ // Function to prompt the user for YAML values
+ // Function to add YAML frontmatter to a single file
+ // Helper function to format dates for YAML frontmatter
+ // Debug logging function
+ // Function to display the debug log in the UI
 
-/ / Main Functions
-
-/**
-
- * Manages files and folders
- * @returns {any} The result
-
- * /
+// Main Functions
 
 /**
 
  * Manages files and folders
  * @returns {any} The result
 
- * /
+ */
+
+/**
+
+ * Manages files and folders
+ * @returns {any} The result
+
+ */
 
 function addYamlFrontmatter() {
   debug('Starting addYamlFrontmatter function');
-  const ui = SpreadsheetApp.getUi(); / / Prompt for folder ID;
+  const ui = SpreadsheetApp.getUi(); // Prompt for folder ID;
   let folderId;
   try {
     const folderIdResponse = ui.prompt(;
@@ -97,7 +97,7 @@ function addYamlFrontmatter() {
     debug(`Error in folder ID prompt: ${e.message}`);
     ui.alert('Error', `An error occurred while getting folder ID: ${e.message}`, ui.ButtonSet.OK);
     return;
-  } / / Get the folder by ID
+  } // Get the folder by ID
   let folder;
   try {
     folder = DriveApp.getFolderById(folderId);
@@ -106,7 +106,7 @@ function addYamlFrontmatter() {
     debug(`Error getting folder: ${e.message}`);
     ui.alert('Error', `Could not find folder with ID: ${folderId}. Error: ${e.message}`, ui.ButtonSet.OK);
     return;
-  } / / Prompt for YAML values
+  } // Prompt for YAML values
   let yamlValues;
   try {
     yamlValues = promptForYamlValues(ui);
@@ -115,7 +115,7 @@ function addYamlFrontmatter() {
     debug(`Error in YAML values prompt: ${e.message}`);
     ui.alert('Error', `An error occurred while getting YAML values: ${e.message}`, ui.ButtonSet.OK);
     return;
-  } / / Process files in the folder
+  } // Process files in the folder
   let files;
   try {
     files = folder.getFilesByType(MimeType.PLAIN_TEXT);
@@ -152,7 +152,7 @@ function addYamlFrontmatter() {
  * @param {string|any} yamlValues - The yamlValues parameter
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
@@ -162,7 +162,7 @@ function addYamlFrontmatter() {
  * @param {string|any} yamlValues - The yamlValues parameter
  * @returns {any} The result
 
- * /
+ */
 
 function addYamlToFile(file, yamlValues) {
   debug(`Starting addYamlToFile function for file: ${file.getName()}`);
@@ -192,7 +192,7 @@ tags: - - - `;
  * @param {string} message - The message content
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
@@ -201,13 +201,13 @@ tags: - - - `;
  * @param {string} message - The message content
  * @returns {any} The result
 
- * /
+ */
 
 function debug(message) {
   if (DEBUG) {
     const timestamp = new Date().toISOString();
     debugLog.push(`${timestamp}: ${message}`);
-    Logger.log(message); / / Attempt to log to a sheet for persistent debugging;
+    Logger.log(message); // Attempt to log to a sheet for persistent debugging;
     try {
       const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("DebugLog");
       if (! sheet) {
@@ -227,7 +227,7 @@ function debug(message) {
  * @param {any} e - The e parameter
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
@@ -236,7 +236,7 @@ function debug(message) {
  * @param {any} e - The e parameter
  * @returns {any} The result
 
- * /
+ */
 
 function onOpen(e) {
   debug("onOpen function started");
@@ -254,7 +254,7 @@ function onOpen(e) {
     debug("'View Debug Log' item added");
 
     menu.addToUi();
-    debug("Menu added to UI"); / / Log the trigger source
+    debug("Menu added to UI"); // Log the trigger source
     if (e && e.authMode) {
       debug(`Trigger source: ${e.authMode}`);
     } else {
@@ -273,7 +273,7 @@ function onOpen(e) {
  * @param {any} ui - The ui parameter
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
@@ -282,7 +282,7 @@ function onOpen(e) {
  * @param {any} ui - The ui parameter
  * @returns {any} The result
 
- * /
+ */
 
 function promptForYamlValues(ui) {
   debug('Starting promptForYamlValues function');
@@ -317,14 +317,14 @@ function promptForYamlValues(ui) {
  * Logs view debug or messages
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
  * Logs view debug or messages
  * @returns {any} The result
 
- * /
+ */
 
 function viewDebugLog() {
   const ui = SpreadsheetApp.getUi();
@@ -340,7 +340,7 @@ function viewDebugLog() {
   }
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -349,7 +349,7 @@ function viewDebugLog() {
  * @param {any} date - The date parameter
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
@@ -358,7 +358,7 @@ function viewDebugLog() {
  * @param {any} date - The date parameter
  * @returns {any} The result
 
- * /
+ */
 
 function formatDate(date) {
   const year = date.getFullYear();

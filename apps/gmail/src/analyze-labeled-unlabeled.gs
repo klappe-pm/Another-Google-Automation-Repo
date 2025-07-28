@@ -25,30 +25,30 @@
  * - GmailApp: For accessing email messages and labels
  * - Logger: For logging and debugging
  * - Utilities: For utility functions and encoding
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Counts emails with and without labels or occurrences
 
- * /
+ */
 
-function countEmailsWithAndWithoutLabels() { / / Set the start date;
+function countEmailsWithAndWithoutLabels() { // Set the start date;
   let startDate = new Date('2023 - 10 - 01');
-  startDate.setHours(0, 0, 0, 0); / / Generate date range query;
-  let query = `after:${Utilities.formatDate(startDate, Session.getScriptTimeZone(), 'yyyy / MM / dd')} - in:spam - in:trash`; / / Search for threads matching the query;
-  let threads = GmailApp.search(query); / / Initialize counters;
+  startDate.setHours(0, 0, 0, 0); // Generate date range query;
+  let query = `after:${Utilities.formatDate(startDate, Session.getScriptTimeZone(), 'yyyy / MM / dd')} - in:spam - in:trash`; // Search for threads matching the query;
+  let threads = GmailApp.search(query); // Initialize counters;
   let emailsWithLabel = 0;
-  let emailsWithoutLabel = 0; / / Process each thread;
+  let emailsWithoutLabel = 0; // Process each thread;
   threads.forEach(function (thread) {
     let labels = thread.getLabels();
     if (labels.length > 0) {
       emailsWithLabel + + ; } else {
       emailsWithoutLabel + + ; }
-  }); / / Log the results
+  }); // Log the results
   Logger.log('Emails with a label: ' + emailsWithLabel);
-  Logger.log('Emails without a label: ' + emailsWithoutLabel); / / Print success message;
+  Logger.log('Emails without a label: ' + emailsWithoutLabel); // Print success message;
   Logger.log('Script executed successfully.');
 }

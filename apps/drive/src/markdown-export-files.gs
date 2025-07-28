@@ -28,12 +28,12 @@
  * Google Services:
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
- * /
+ */
 
 const CONFIG = {
   BATCH_SIZE: 50,
-  TIMEOUT: 300000, / / 5 minutes
-  CACHE_DURATION: 3600, / / 1 hour
+  TIMEOUT: 300000, // 5 minutes
+  CACHE_DURATION: 3600, // 1 hour
   MAX_RETRIES: 3,
   VERSION: '2.6'
 };
@@ -75,23 +75,23 @@ const DEFAULT_SECTION_ORDER = [
 /**
  * Main function that reads configuration and processes the data sheet to create files.
  * This is the primary entry point triggered by the user.
- * / / * *
+ *// * *
  * Process a single row of data to create a markdown file
- * /
+ */
 
 function processRow(row, headers, config) {
-  / / Implementation would continue with the existing logic...
-  / / [The rest of the original script's implementation would go here]
+  // Implementation would continue with the existing logic...
+  // [The rest of the original script's implementation would go here]
 }
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Generates new content or reports
  * @returns {any} The result
 
- * /
+ */
 
 function generateMarkdownFiles() {
   try {
@@ -100,7 +100,7 @@ function generateMarkdownFiles() {
     const startTime = new Date();
     const config = loadConfiguration();
 
-    / / Validate required configuration
+    // Validate required configuration
     if (! config.rootFolderId) {
       throw new Error('Root folder ID not configured. Please check Config sheet.');
     }
@@ -118,7 +118,7 @@ function generateMarkdownFiles() {
 
     Logger.log(`Processing ${rows.length} rows of data...`);
 
-    / / Process in batches
+    // Process in batches
     let processedCount = 0;
     let errorCount = 0;
 
@@ -135,7 +135,7 @@ function generateMarkdownFiles() {
         }
       }
 
-      / / Log progress
+      // Log progress
       Logger.log(`Processed ${Math.min(i + CONFIG.BATCH_SIZE, rows.length)}/ ${rows.length} rows...`);
     }
 
@@ -158,7 +158,7 @@ function generateMarkdownFiles() {
  * Loads configuration from storage
  * @returns {any} The result
 
- * /
+ */
 
 function loadConfiguration() {
   try {
@@ -178,7 +178,7 @@ function loadConfiguration() {
       }
     });
 
-    / / Parse JSON fields with enhanced error handling
+    // Parse JSON fields with enhanced error handling
     ['yamlFields', 'columnMapping', 'sectionOrder'].forEach(field = > {
       if (config[field]) {
         try {
@@ -205,7 +205,7 @@ function loadConfiguration() {
  * @param {string} context - The context parameter
  * @returns {any} The result
 
- * /
+ */
 
 function logError(error, context = {}
 
@@ -214,7 +214,7 @@ function logError(error, context = {}
  * Works with spreadsheet data
  * @returns {any} The result
 
- * /
+ */
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();

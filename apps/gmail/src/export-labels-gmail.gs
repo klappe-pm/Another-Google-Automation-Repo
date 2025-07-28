@@ -25,38 +25,38 @@
  * Google Services:
  * - GmailApp: For accessing email messages and labels
  * - SpreadsheetApp: For spreadsheet operations
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Exports gmail labels to external format
  * @returns {Array} Array of results
 
- * /
+ */
 
-function exportGmailLabels() { / / Get the active spreadsheet
+function exportGmailLabels() { // Get the active spreadsheet
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  let sheet = spreadsheet.getSheetByName("GMail Labels"); / / If sheet doesn't exist, create it;
+  let sheet = spreadsheet.getSheetByName("GMail Labels"); // If sheet doesn't exist, create it;
   if (! sheet) {
     sheet = spreadsheet.insertSheet("GMail Labels");
-  } / / Clear existing content and reset sheet
-  sheet.clear(); / / Set headers;
-  sheet.appendRow(["Label Name", "Email Count"]); / / Get all user labels from Gmail;
-  let labels = GmailApp.getUserLabels(); / / Create array to store label data;
-  let labelData = []; / / Collect label names and counts;
+  } // Clear existing content and reset sheet
+  sheet.clear(); // Set headers;
+  sheet.appendRow(["Label Name", "Email Count"]); // Get all user labels from Gmail;
+  let labels = GmailApp.getUserLabels(); // Create array to store label data;
+  let labelData = []; // Collect label names and counts;
   for (let i = 0; i < labels.length; i + + ) {
     let label = labels[i];
-    let labelName = label.getName(); / / Get thread count for each label (unread and read emails);
+    let labelName = label.getName(); // Get thread count for each label (unread and read emails);
     let threadCount = GmailApp.search("in:" + labelName).length;
     labelData.push([labelName, threadCount]);
-  } / / Sort labels alphabetically
+  } // Sort labels alphabetically
   labelData.sort(function (a, b) {
     return a[0].localeCompare(b[0]);
-  }); / / Add data to sheet if there is any
+  }); // Add data to sheet if there is any
   if (labelData.length > 0) {
     sheet.getRange(2, 1, labelData.length, 2).setValues(labelData);
-  } / / Auto - resize columns for better readability
+  } // Auto - resize columns for better readability
   sheet.autoResizeColumns(1, 2);
 }

@@ -49,7 +49,7 @@
  * - DriveApp: For file and folder management
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
 const DEFAULT_YAML_FIELDS = {
   "filename": "filename",
@@ -72,9 +72,9 @@ const DEFAULT_YAML_FIELDS = {
   { "title": "Key Takeaways", "headerLevel": "2", "type": "bullet" }
   ];
 
-  / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-  / / CONFIGURATION LOADER
-  / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+  // CONFIGURATION LOADER
+  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
   / * *
   * Loads all configuration from the Config sheet.
@@ -82,16 +82,16 @@ const DEFAULT_YAML_FIELDS = {
   *
   * @returns {Object} Configuration object with all settings.
   * @throws {Error} If the Config sheet is missing or contains invalid JSON.
-  * / / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-      / / MAIN GENERATOR FUNCTION
-      / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+  *// / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+      // MAIN GENERATOR FUNCTION
+      // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
       / * *
       * Main function that reads configuration and processes the data sheet to create files.
       * This is the primary entry point triggered by the user.
-      * / / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-        / / DATA PROCESSING
-        / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+      *// / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+        // DATA PROCESSING
+        // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
         / * *
         * Processes all valid rows in the data sheet.
@@ -100,16 +100,16 @@ const DEFAULT_YAML_FIELDS = {
         * @param {Object} config The configuration object.
         * @param {Object} folderCache A cache to store Drive Folder objects for this run.
         * @returns {{created: number, errors: number}} An object with counts of created files and errors.
-        * / / * *
+        *// * *
             * Updates the spreadsheet in batches for better performance.
             *
             * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet The sheet to update.
             * @param {Array < Object > } updates An array of update objects.
             * @param {Object} config The configuration object.
             * @param {Object} colMap The column name to index map.
-            * / / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-              / / CONTENT GENERATION
-              / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+            *// / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+              // CONTENT GENERATION
+              // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
               / * *
               * Generates the full markdown content for a single row based on configuration.
@@ -119,7 +119,7 @@ const DEFAULT_YAML_FIELDS = {
               * @param {Object} colMap The column name to index map.
               * @param {Object} config The configuration object.
               * @returns {string} The complete markdown content as a string.
-              * / / * *
+              *// * *
                       * Generates a single markdown section.
                       *
                       * @param {Object} section The configuration for the section.
@@ -127,9 +127,9 @@ const DEFAULT_YAML_FIELDS = {
                       * @param {Object} colMap The column name to index map.
                       * @param {Object} config The global configuration object.
                       * @returns {string} The markdown for the generated section.
-                      * / / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-                        / / FILE OPERATIONS
-                        / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+                      *// / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+                        // FILE OPERATIONS
+                        // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
                         / * *
                         * Creates a file in Drive, managing subfolders and handling duplicates.
@@ -142,15 +142,15 @@ const DEFAULT_YAML_FIELDS = {
                         * @param {Object} folderCache A cache holding the parent and subfolder Drive objects.
                         * @returns {GoogleAppsScript.Drive.File} The newly created file object.
                         * @throws {Error} If the parent Drive folder is inaccessible.
-                        * / / * *
+                        *// * *
                         * Gets a subfolder by name, or creates it if it doesn't exist.
                         *
                         * @param {GoogleAppsScript.Drive.Folder} parentFolder The parent folder to search within.
                         * @param {string} name The name of the subfolder to find or create.
                         * @returns {GoogleAppsScript.Drive.Folder} The existing or newly created subfolder.
-                        * / / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-                        / / HELPER FUNCTIONS
-                        / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+                        *// / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+                        // HELPER FUNCTIONS
+                        // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
                         / * *
                         * Creates a mapping of column header names to their zero- based index.
@@ -158,49 +158,49 @@ const DEFAULT_YAML_FIELDS = {
                         * @param {Array < string > } headers An array of header strings from the sheet.
                         * @param {Object} customMapping A mapping of sheet headers to desired keys.
                         * @returns {Object} A map where keys are column names and values are their indices.
-                        * / / * *
+                        *// * *
                           * Ensures a column for status messages exists, creating it if necessary.
                           *
                           * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet The sheet to check.
                           * @param {Object} config The configuration object containing the status column name.
-                          * / / * *
+                          *// * *
                           * Converts a string to Title Case.
                           *
                           * @param {string} str The input string to convert.
                           * @returns {string} The Title Cased string, or 'Uncategorized' if the input is empty.
-                          * / / * *
+                          *// * *
                           * Converts a string to kebab- case (lowercase, spaces replaced with hyphens).
                           * @param {string} str The string to convert.
                           * @returns {string} The kebab- cased string.
-                          * / / * *
+                          *// * *
                           * Converts a string to Sentence case (capitalizes the first letter).
                           * @param {string} str The string to convert.
                           * @returns {string} The Sentence- cased string.
-                          * / / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-                          / / MENU, SETUP, AND FORMATTING
-                          / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+                          *// / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+                          // MENU, SETUP, AND FORMATTING
+                          // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
                           / * *
                           * Creates the custom UI menu when the spreadsheet is opened.
                           * Merges Markdown Generator and Custom Formatting functionality.
-                          * / / * *
+                          *// * *
                           * Creates the 'Config' sheet with default settings and descriptions.
                           * Automatically applies standard formatting after creation.
-                          * / / * *
+                          *// * *
                           * Creates a sample data sheet with columns that exactly match the default JSON configuration.
                           *
                           * @throws {Error} If the configuration cannot be loaded to determine the sheet name.
-                          * / / * *
+                          *// * *
                           * Main formatting function that applies all formatting rules to every sheet.
-                          * / / * *
+                          *// * *
                             * Applies a standard set of formatting rules to a given sheet.
                             * This is a reusable helper function.
                             *
                             * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet The sheet object to format.
                             * @param {boolean} shouldResizeColumns If true, resizes all columns to 100px.
-                            * / / / Main Functions
+                            *// / Main Functions
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -210,30 +210,30 @@ const DEFAULT_YAML_FIELDS = {
  * @param {number} shouldResizeColumns - The shouldResizeColumns parameter
  * @returns {any} The result
 
- * /
+ */
 
 function applyStandardFormatting(sheet, shouldResizeColumns) {
                               const dataRange = sheet.getDataRange();
 
-                              / / Set font to Helvetica Neue, size 11 for all cells
+                              // Set font to Helvetica Neue, size 11 for all cells
                               dataRange.setFontFamily("Helvetica Neue")
                               .setFontSize(11);
 
-                              / / Set horizontal alignment to left and vertical alignment to top for all cells
+                              // Set horizontal alignment to left and vertical alignment to top for all cells
                               dataRange.setHorizontalAlignment("left")
                               .setVerticalAlignment("top");
 
-                              / / Make the top row bold
+                              // Make the top row bold
                               const topRow = sheet.getRange(1, 1, 1, sheet.getLastColumn());
                               topRow.setFontWeight("bold");
 
-                              / / Set text wrapping to clip for all cells
+                              // Set text wrapping to clip for all cells
                               dataRange.setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
 
-                              / / Freeze the top row
+                              // Freeze the top row
                               sheet.setFrozenRows(1);
 
-                              / / Optionally resize all columns to 100 pixels
+                              // Optionally resize all columns to 100 pixels
                               if (shouldResizeColumns) {
                                 const numColumns = sheet.getLastColumn();
                                 for (let j = 1; j < = numColumns; j+ + ) {
@@ -252,14 +252,14 @@ function applyStandardFormatting(sheet, shouldResizeColumns) {
  * @param {any} colMap - The colMap to update
  * @returns {any} The result
 
- * /
+ */
 
 function batchUpdateSheet(sheet, updates, config, colMap) {
               const processedColIdx = config.processedColumn ? colMap[config.processedColumn] : - 1;
               const urlColIdx = config.urlColumn ? colMap[config.urlColumn] : - 1;
               const statusColIdx = config.statusColumn ? colMap[config.statusColumn] : - 1;
 
-              / / Perform individual updates as ranges may not be contiguous
+              // Perform individual updates as ranges may not be contiguous
               updates.forEach(update = > {
                 if (processedColIdx ! = = - 1) {
                   sheet.getRange(update.row, processedColIdx + 1).setValue(update.processed);
@@ -272,7 +272,7 @@ function batchUpdateSheet(sheet, updates, config, colMap) {
                 }
                 });
 
-                SpreadsheetApp.flush(); / / Apply all pending changes at once
+                SpreadsheetApp.flush(); // Apply all pending changes at once
               }
 
 /**
@@ -283,12 +283,12 @@ function batchUpdateSheet(sheet, updates, config, colMap) {
  * @param {any} customMapping - The customMapping for creation
  * @returns {any} The newly created any
 
- * /
+ */
 
 function createColumnMap(headers, customMapping) {
                           const map = {};
                           const reverseMapping = {};
-                          / / Create a reverse map for easier lookup
+                          // Create a reverse map for easier lookup
                           for (const key in customMapping) {
                             reverseMapping[customMapping[key]] = key;
                           }
@@ -304,7 +304,7 @@ function createColumnMap(headers, customMapping) {
  * Creates new config template or resources
  * @returns {any} The newly created any
 
- * /
+ */
 
 function createConfigTemplate() {
                             const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -338,10 +338,10 @@ function createConfigTemplate() {
 
                             configSheet.getRange(1, 1, configData.length, 3).setValues(configData);
 
-                            / / Apply standard formatting first
-                            applyStandardFormatting(configSheet, false); / / `false` to skip column resize
+                            // Apply standard formatting first
+                            applyStandardFormatting(configSheet, false); // `false` to skip column resize
 
-                            / / Apply specific formatting for this sheet
+                            // Apply specific formatting for this sheet
                             configSheet.setColumnWidth(1, 200);
                             configSheet.setColumnWidth(2, 400);
                             configSheet.setColumnWidth(3, 450);
@@ -361,10 +361,10 @@ function createConfigTemplate() {
  * @param {Folder} folderCache - The folderCache for creation
  * @returns {any} The newly created any
 
- * /
+ */
 
 function createFile(filename, content, config, row, colMap, folderCache) {
-                          / / Use the cached parent folder object for this run
+                          // Use the cached parent folder object for this run
                           if ( ! folderCache.parent) {
                             try {
                               folderCache.parent = DriveApp.getFolderById(config.folderId);
@@ -374,11 +374,11 @@ function createFile(filename, content, config, row, colMap, folderCache) {
                           }
                           let parentFolder = folderCache.parent;
 
-                          / / Handle subfolder logic
+                          // Handle subfolder logic
                           if (config.subfolderColumn) {
                             const subfolderName = row[colMap[config.subfolderColumn]] || 'Uncategorized';
                             const folderKey = toTitleCase(subfolderName);
-                            / / Use the cache if this subfolder has been seen before in this run
+                            // Use the cache if this subfolder has been seen before in this run
                             if ( ! folderCache.subfolders[folderKey]) {
                               folderCache.subfolders[folderKey] = getOrCreateSubfolder(parentFolder, folderKey);
                             }
@@ -389,7 +389,7 @@ function createFile(filename, content, config, row, colMap, folderCache) {
                           const extension = config.fileExtension || '.md';
                           const fullName = sanitized + extension;
 
-                          / / Simplified duplicate check: Overwrite if exists.
+                          // Simplified duplicate check: Overwrite if exists.
                           const existingFiles = parentFolder.getFilesByName(fullName);
                           if (existingFiles.hasNext()) {
                             existingFiles.next().setTrashed(true);
@@ -403,11 +403,11 @@ function createFile(filename, content, config, row, colMap, folderCache) {
  * Creates new sample data sheet or resources
  * @returns {any} The newly created any
 
- * /
+ */
 
 function createSampleDataSheet() {
                             const ss = SpreadsheetApp.getActiveSpreadsheet();
-                            const dataSheetName = 'DataInput'; / / Use the established default name
+                            const dataSheetName = 'DataInput'; // Use the established default name
 
                             if (ss.getSheetByName(dataSheetName)) {
                               SpreadsheetApp.getUi().alert(`The "${dataSheetName}" sheet already exists.`);
@@ -416,7 +416,7 @@ function createSampleDataSheet() {
 
                             const dataSheet = ss.insertSheet(dataSheetName);
 
-                            / / Headers now match all fields in the updated DEFAULT_YAML_FIELDS constant.
+                            // Headers now match all fields in the updated DEFAULT_YAML_FIELDS constant.
                             const sampleHeaders = [
                             'filename', 'area', 'category', 'subCategory', 'topic', 'subTopic',
                             'dateCreated', 'dateRevised', 'aliases', 'tags',
@@ -439,16 +439,16 @@ function createSampleDataSheet() {
 
                             dataSheet.getRange(1, 1, sampleData.length, sampleData[0].length).setValues(sampleData);
 
-                            / / Insert checkboxes in the 'processed' column
+                            // Insert checkboxes in the 'processed' column
                             const processedColIdx = sampleHeaders.indexOf('processed');
                             if (processedColIdx ! = = - 1) {
                               dataSheet.getRange(2, processedColIdx + 1, dataSheet.getLastRow() - 1, 1).insertCheckboxes();
                             }
 
-                            / / Apply standard formatting first
-                            applyStandardFormatting(dataSheet, false); / / `false` to skip column resize
+                            // Apply standard formatting first
+                            applyStandardFormatting(dataSheet, false); // `false` to skip column resize
 
-                            / / Apply specific auto- sizing for this sheet's content
+                            // Apply specific auto- sizing for this sheet's content
                             dataSheet.autoResizeColumns(1, sampleData[0].length);
 
                             SpreadsheetApp.getUi().alert(`Sample data sheet "${dataSheetName}" has been created and formatted to match the default JSON.`);
@@ -462,7 +462,7 @@ function createSampleDataSheet() {
  * @param {Object} config - Configuration settings
  * @returns {any} The result
 
- * /
+ */
 
 function ensureStatusColumn(sheet, config) {
                             const statusColumnName = config.statusColumn || 'status';
@@ -484,7 +484,7 @@ function ensureStatusColumn(sheet, config) {
  * @param {Object} config - Configuration settings
  * @returns {any} The result
 
- * /
+ */
 
 function generateContent(row, colMap, config) {
                 let content = '';
@@ -498,16 +498,16 @@ function generateContent(row, colMap, config) {
 
                     if (value = = = null || value = = = undefined || value = = = '') return;
 
-                    / / Rule: Format dates as yyyy- MM- dd
+                    // Rule: Format dates as yyyy- MM- dd
                     if ((yamlKey = = = 'datecreated' || yamlKey = = = 'daterevised') && value instanceof Date) {
                       content + = `${yamlKey}: ${Utilities.formatDate(value, spreadsheetTz, 'yyyy- MM- dd')}\n`;
-                      return; / / Done with this field
+                      return; // Done with this field
                     }
 
                     let valueStr = String(value);
                     let isList = valueStr.includes(',');
 
-                    / / For lists, format each item individually. For single values, create a temporary list to use the same logic.
+                    // For lists, format each item individually. For single values, create a temporary list to use the same logic.
                     const items = isList ? valueStr.split(',').map(item = > item.trim()).filter(Boolean) : [valueStr];
 
                     const formattedItems = items.map(item = > {
@@ -518,7 +518,7 @@ function generateContent(row, colMap, config) {
                         case 'topic':
                         case 'subtopic':
                         return toKebabCase(item);
-                        / / Rule: No changes for filename, aliases, and tags
+                        // Rule: No changes for filename, aliases, and tags
                         case 'filename':
                         case 'aliases':
                         case 'tags':
@@ -527,7 +527,7 @@ function generateContent(row, colMap, config) {
                       }
                       });
 
-                      / / Build the final YAML output
+                      // Build the final YAML output
                       if (isList && formattedItems.length > 0) {
                         content + = `${yamlKey}:\n`;
                         formattedItems.forEach(item = > {
@@ -562,7 +562,7 @@ function generateContent(row, colMap, config) {
  * Generates new content or reports
  * @returns {any} The result
 
- * /
+ */
 
 function generateMarkdownFiles() {
         try {
@@ -573,7 +573,7 @@ function generateMarkdownFiles() {
           }
 
           const ss = SpreadsheetApp.getActiveSpreadsheet();
-          / / Use the sheet name from the config, or fall back to a default
+          // Use the sheet name from the config, or fall back to a default
           const dataSheetName = config.dataSheetName || 'DataInput';
           const dataSheet = ss.getSheetByName(dataSheetName);
 
@@ -583,7 +583,7 @@ function generateMarkdownFiles() {
 
           ensureStatusColumn(dataSheet, config);
 
-          / / Initialize a cache for this run to hold Drive folder objects
+          // Initialize a cache for this run to hold Drive folder objects
           const folderCache = {
             parent: null,
             subfolders: {}
@@ -610,18 +610,18 @@ function generateMarkdownFiles() {
  * @param {Object} config - Configuration settings
  * @returns {any} The result
 
- * /
+ */
 
 function generateSection(section, row, colMap, config) {
                         const rawContent = section.column ? (row[colMap[section.column]] || '') : '';
-                        / / The 'bullet' type does not depend on content, so it should always run.
+                        // The 'bullet' type does not depend on content, so it should always run.
                         if ( ! rawContent && section.type ! = = 'bullet') return '';
 
                         let sectionContent = '';
                         const sectionHeaderLevel = section.headerLevel || config.sectionHeaderLevel || '2';
                         const headerPrefix = '#'.repeat(parseInt(sectionHeaderLevel, 10));
 
-                        / / Process title - can include variables like ${filename}
+                        // Process title - can include variables like ${filename}
                         let sectionTitle = section.title || section.column || '';
                         sectionTitle = sectionTitle.replace(/ \${(\w+ )}/ g, (match, colName) = > row[colMap[colName]] || '');
 
@@ -636,11 +636,11 @@ function generateSection(section, row, colMap, config) {
                             break;
 
                             case 'bullet':
-                            / / This type creates a heading and a single empty bullet point as a placeholder.
+                            // This type creates a heading and a single empty bullet point as a placeholder.
                             sectionContent + = '- \n';
                             break;
 
-                            default: / / 'text'
+                            default: // 'text'
                             sectionContent + = `${rawContent}\n`;
                           }
 
@@ -655,7 +655,7 @@ function generateSection(section, row, colMap, config) {
  * @param {string} name - The name to use
  * @returns {any} The requested any
 
- * /
+ */
 
 function getOrCreateSubfolder(parentFolder, name) {
                           const folders = parentFolder.getFoldersByName(name);
@@ -671,7 +671,7 @@ function getOrCreateSubfolder(parentFolder, name) {
  * Loads configuration from storage
  * @returns {any} The result
 
- * /
+ */
 
 function loadConfiguration() {
     const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -690,7 +690,7 @@ function loadConfiguration() {
       }
       });
 
-      / / Parse JSON fields with enhanced error handling
+      // Parse JSON fields with enhanced error handling
       ['yamlFields', 'columnMapping', 'sectionOrder'].forEach(field = > {
         if (config[field]) {
           try {
@@ -709,7 +709,7 @@ function loadConfiguration() {
  * Works with spreadsheet data
  * @returns {any} The result
 
- * /
+ */
 
 function onOpen() {
                             SpreadsheetApp.getUi()
@@ -732,7 +732,7 @@ function onOpen() {
  * @param {Folder} folderCache - The folderCache parameter
  * @returns {any} The result
 
- * /
+ */
 
 function processDataSheet(sheet, config, folderCache) {
           const data = sheet.getDataRange().getValues();
@@ -747,7 +747,7 @@ function processDataSheet(sheet, config, folderCache) {
 
           const unprocessedRows = [];
           for (let i = 1; i < data.length; i+ + ) {
-            / / Check if the "processed" column exists and if the checkbox is checked (true)
+            // Check if the "processed" column exists and if the checkbox is checked (true)
             const processedColumnName = config.processedColumn || 'processed';
             const isProcessed = colMap[processedColumnName] ! = = undefined ? data[i][colMap[processedColumnName]] = = = true : false;
             if ( ! isProcessed) {
@@ -816,7 +816,7 @@ function processDataSheet(sheet, config, folderCache) {
  * @param {any} str - The str parameter
  * @returns {any} The result
 
- * /
+ */
 
 function toKebabCase(str) {
                             if ( ! str || typeof str ! = = 'string') return '';
@@ -830,7 +830,7 @@ function toKebabCase(str) {
  * @param {any} str - The str parameter
  * @returns {any} The result
 
- * /
+ */
 
 function toSentenceCase(str) {
                             if ( ! str || typeof str ! = = 'string') return '';
@@ -845,7 +845,7 @@ function toSentenceCase(str) {
  * @param {any} str - The str parameter
  * @returns {any} The result
 
- * /
+ */
 
 function toTitleCase(str) {
                             if ( ! str || typeof str ! = = 'string') return 'Uncategorized';
@@ -854,20 +854,20 @@ function toTitleCase(str) {
                             ).join(' ');
                           }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
  * Formats all sheets for display
  * @returns {any} The result
 
- * /
+ */
 
 function formatAllSheets() {
                             const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
                             const sheets = spreadsheet.getSheets();
                             sheets.forEach(sheet = > {
-                              applyStandardFormatting(sheet, true); / / `true` to force column resize
+                              applyStandardFormatting(sheet, true); // `true` to force column resize
                               });
                               SpreadsheetApp.getUi().alert('All sheets have been formatted successfully ! ');
                             }

@@ -32,11 +32,11 @@
  * - FormApp: For form creation and responses
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
- * /
+ */
 
-/**  * Main function to remove blank lines after headers in Markdown files. * Prompts the user for a folder input, finds the folder, and processes all Markdown files within. * / / *  *  * Prompts the user to enter a folder name or ID. *  * @return {string|null} The user's input, or null if cancelled. * / / *  *  * Attempts to find a folder based on the user's input. * First tries to find by ID, then by name if ID fails. *  * @param {string} input - The folder name or ID provided by the user. * @return {Folder|null} The folder object if found, null otherwise. * / / *  *  * Recursively processes a folder and its subfolders. * Finds all Markdown files and processes them. *  * @param {Folder} folder - The Google Drive folder to process. * / / *  *  * Processes a single Markdown file. * Removes extra blank lines after headers and ensures consistent formatting. *  * @param {File} file - The Google Drive file to process. * / / / Main Functions
+/**  * Main function to remove blank lines after headers in Markdown files. * Prompts the user for a folder input, finds the folder, and processes all Markdown files within. *// *  *  * Prompts the user to enter a folder name or ID. *  * @return {string|null} The user's input, or null if cancelled. *// *  *  * Attempts to find a folder based on the user's input. * First tries to find by ID, then by name if ID fails. *  * @param {string} input - The folder name or ID provided by the user. * @return {Folder|null} The folder object if found, null otherwise. *// *  *  * Recursively processes a folder and its subfolders. * Finds all Markdown files and processes them. *  * @param {Folder} folder - The Google Drive folder to process. *// *  *  * Processes a single Markdown file. * Removes extra blank lines after headers and ensures consistent formatting. *  * @param {File} file - The Google Drive file to process. *// / Main Functions
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -45,14 +45,14 @@
  * @param {any} input - The input to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 function getFolderFromInput(input) {
-  let folder; / / Try to get folder by ID first;
+  let folder; // Try to get folder by ID first;
   try {
     folder = DriveApp.getFolderById(input);
     return folder;
-  } catch (e) { / / If not found by ID, search by name
+  } catch (e) { // If not found by ID, search by name
     let folders = DriveApp.getFoldersByName(input);
     if (folders.hasNext()) {
       return folders.next();
@@ -69,7 +69,7 @@ function getFolderFromInput(input) {
  * @param {File} file - The file parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function processFile(file) {
   let content = file.getBlob().getDataAsString();
@@ -81,17 +81,17 @@ function processFile(file) {
     let line = lines[i].trim();
     let isHeader = / ^#{1,6} / .test(line);
 
-    if (isHeader) { / / Ensure there's a blank line before headers (except at the start of the file)
+    if (isHeader) { // Ensure there's a blank line before headers (except at the start of the file)
       if (modifiedLines.length > 0 && modifiedLines[modifiedLines.length - 1] ! = = "") {
         modifiedLines.push("");
       }
       modifiedLines.push(line);
       previousLineWasHeader = true;
-    } else if (line ! = = "" || ! previousLineWasHeader) { / / Add non - blank lines, or blank lines not immediately following a header;
+    } else if (line ! = = "" || ! previousLineWasHeader) { // Add non - blank lines, or blank lines not immediately following a header;
       modifiedLines.push(line);
       previousLineWasHeader = false;
     }
-  } / / Ensure the file ends with a single newline
+  } // Ensure the file ends with a single newline
   let modifiedContent = modifiedLines.join("\n").trim() + "\n";
   file.setContent(modifiedContent);
   Logger.log("File processed: " + file.getName());
@@ -104,7 +104,7 @@ function processFile(file) {
  * @param {Folder} folder - The folder parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function processFolder(folder) {
   let files = folder.getFiles();
@@ -131,14 +131,14 @@ function processFolder(folder) {
  * Manages files and folders
  * @returns {string} The formatted string
 
- * /
+ */
 
 function promptForFolderInput() {
-  let ui = SpreadsheetApp.getUi(); / / Or DocumentApp or FormApp.;
+  let ui = SpreadsheetApp.getUi(); // Or DocumentApp or FormApp.;
   let result = ui.prompt(;
       'Enter Folder Details',
       'Please enter the folder name or ID:',
-      ui.ButtonSet.OK_CANCEL); / / Process the user's response.
+      ui.ButtonSet.OK_CANCEL); // Process the user's response.
   let button = result.getSelectedButton();
   let text = result.getResponseText();
   if (button = = ui.Button.OK) {
@@ -157,7 +157,7 @@ function promptForFolderInput() {
  * Removes blank lines after headers from collection
  * @returns {string} The formatted string
 
- * /
+ */
 
 function removeBlankLinesAfterHeaders() {
   let folderInput = promptForFolderInput();

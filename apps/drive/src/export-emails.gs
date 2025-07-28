@@ -37,38 +37,38 @@
  * - SpreadsheetApp: For spreadsheet operations
  * - UrlFetchApp: For HTTP requests to external services
  * - Utilities: For utility functions and encoding
- * /
+ */
 
 /  / Function to geocode an address
- / / Function to get route information between two points using the Routes API
- / / Function to calculate quarter
+ // Function to get route information between two points using the Routes API
+ // Function to calculate quarter
 
- / / Function to log errors;
+ // Function to log errors;
 
-/ / Main Functions
-
-/**
-
- * Exports all calendar events to external format
- * @returns {any} The result
-
- * /
+// Main Functions
 
 /**
 
  * Exports all calendar events to external format
  * @returns {any} The result
 
- * /
+ */
+
+/**
+
+ * Exports all calendar events to external format
+ * @returns {any} The result
+
+ */
 
 function exportAllCalendarEvents() {
-  Logger.log("🚀 Starting script execution..."); / / Reset the API unavailable log flag at the start of each run;
-  PropertiesService.getScriptProperties().deleteProperty('LOGGED_API_UNAVAILABLE'); / / Retrieve API key from script properties;
+  Logger.log("🚀 Starting script execution..."); // Reset the API unavailable log flag at the start of each run;
+  PropertiesService.getScriptProperties().deleteProperty('LOGGED_API_UNAVAILABLE'); // Retrieve API key from script properties;
   const API_KEY = PropertiesService.getScriptProperties().getProperty('GOOGLE_MAPS_API_KEY');
   if (! API_KEY) {
     logError("API key is missing. Set it in Script Properties.");
     return;
-  } / / Retrieve destination locations
+  } // Retrieve destination locations
   const destinationsProperty = PropertiesService.getScriptProperties().getProperty('DESTINATION_LOCATIONS');
   if (! destinationsProperty) {
     logError("Destination locations missing. Set them in Script Properties.");
@@ -79,13 +79,13 @@ function exportAllCalendarEvents() {
   if (! Array.isArray(destinationLocations) || destinationLocations.length = = = 0) {
     logError("Invalid destination locations. Ensure it's a valid JSON array.");
     return;
-  } / / Define date range: October 1, 2023, to today
+  } // Define date range: October 1, 2023, to today
   const startDate = new Date('2023 - 10 - 01T00:00:00Z');
   const today = new Date();
   today.setUTCHours(23, 59, 59, 999);
 
   const timeMin = startDate.toISOString();
-  const timeMax = today.toISOString(); / / Generate dynamic sheet name;
+  const timeMax = today.toISOString(); // Generate dynamic sheet name;
   const sheetName = Utilities.formatDate(today, Session.getScriptTimeZone(), "yyyy - MM - dd") + " - cal - events - export";
 
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -118,7 +118,7 @@ function exportAllCalendarEvents() {
     let events = [];
     try {
       events = Calendar.Events.list(calendar.getId(), options).items || [];
-      Utilities.sleep(1000); / / Prevent API rate limits;
+      Utilities.sleep(1000); // Prevent API rate limits;
     } catch (error) {
       logError(`Error fetching events for calendar '${calendar.getName()}': ${error.message}`);
       return;
@@ -200,7 +200,7 @@ function exportAllCalendarEvents() {
  * @param {any} address - The address parameter
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
@@ -210,13 +210,13 @@ function exportAllCalendarEvents() {
  * @param {any} address - The address parameter
  * @returns {any} The result
 
- * /
+ */
 
 function geocodeAddress(apiKey, address) {
   if (! address.trim()) return null;
 
   try {
-    const url = `https: / / maps.googleapis.com / maps / api / geocode / json?address= ${encodeURIComponent(address)}&key= ${apiKey}`;
+    const url = `https: // maps.googleapis.com / maps / api / geocode / json?address= ${encodeURIComponent(address)}&key= ${apiKey}`;
     const response = UrlFetchApp.fetch(url);
     Utilities.sleep(1000);
 
@@ -239,7 +239,7 @@ function geocodeAddress(apiKey, address) {
  * @param {any} destination - The destination to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 /**
 
@@ -250,7 +250,7 @@ function geocodeAddress(apiKey, address) {
  * @param {any} destination - The destination to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getRouteInfo(apiKey, origin, destination) {
   try {
@@ -262,8 +262,8 @@ function getRouteInfo(apiKey, origin, destination) {
     const destLoc = {
       latitude: destination.geometry.location.lat,
       longitude: destination.geometry.location.lng
-    }; / / Using the Routes API (v2)
-    const url = "https: / / routes.googleapis.com / directions / v2:computeRoutes";
+    }; // Using the Routes API (v2)
+    const url = "https: // routes.googleapis.com / directions / v2:computeRoutes";
 
     const payload = {
       origin: {
@@ -310,8 +310,8 @@ function getRouteInfo(apiKey, origin, destination) {
     }
 
     const route = json.routes[0];
-    const distanceInMiles = (route.distanceMeters / 1609.34).toFixed(2); / / Convert meters to miles;
-    const durationInHours = (route.duration.replace('s', '') / 3600).toFixed(2); / / Convert seconds to hours;
+    const distanceInMiles = (route.distanceMeters / 1609.34).toFixed(2); // Convert meters to miles;
+    const durationInHours = (route.duration.replace('s', '') / 3600).toFixed(2); // Convert seconds to hours;
 
     return {
       distance: distanceInMiles,
@@ -330,7 +330,7 @@ function getRouteInfo(apiKey, origin, destination) {
  * @param {string} message - The message content
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
@@ -339,7 +339,7 @@ function getRouteInfo(apiKey, origin, destination) {
  * @param {string} message - The message content
  * @returns {any} The result
 
- * /
+ */
 
 function logError(message) {
   Logger.log(`❌ ERROR: ${message}`);
@@ -354,7 +354,7 @@ function logError(message) {
   logSheet.appendRow([new Date(), message]);
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -363,7 +363,7 @@ function logError(message) {
  * @param {any} date - The date to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 /**
 
@@ -372,7 +372,7 @@ function logError(message) {
  * @param {any} date - The date to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getDayOfWeek(date) { return date.getUTCDay() || 7; }
 
@@ -383,7 +383,7 @@ function getDayOfWeek(date) { return date.getUTCDay() || 7; }
  * @param {any} date - The date to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 /**
 
@@ -392,7 +392,7 @@ function getDayOfWeek(date) { return date.getUTCDay() || 7; }
  * @param {any} date - The date to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getDayOfYear(date) { return Math.floor((date - new Date(date.getUTCFullYear(), 0, 1)) / 86400000) + 1; }
 
@@ -403,7 +403,7 @@ function getDayOfYear(date) { return Math.floor((date - new Date(date.getUTCFull
  * @param {any} date - The date to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 /**
 
@@ -412,7 +412,7 @@ function getDayOfYear(date) { return Math.floor((date - new Date(date.getUTCFull
  * @param {any} date - The date to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getQuarter(date) { return Math.floor(date.getUTCMonth() / 3) + 1; }
 
@@ -423,7 +423,7 @@ function getQuarter(date) { return Math.floor(date.getUTCMonth() / 3) + 1; }
  * @param {any} date - The date to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 /**
 
@@ -432,6 +432,6 @@ function getQuarter(date) { return Math.floor(date.getUTCMonth() / 3) + 1; }
  * @param {any} date - The date to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getWeekNumber(date) { return Math.ceil(((date - new Date(date.getUTCFullYear(), 0, 1)) / 86400000 + 1) / 7); }

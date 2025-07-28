@@ -28,28 +28,28 @@
  * - PropertiesService: For storing script properties
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
-/ / Main Functions
-
-/**
-
- * Generates new content or reports
- * @returns {boolean} True if successful, false otherwise
-
- * /
+// Main Functions
 
 /**
 
  * Generates new content or reports
  * @returns {boolean} True if successful, false otherwise
 
- * /
+ */
+
+/**
+
+ * Generates new content or reports
+ * @returns {boolean} True if successful, false otherwise
+
+ */
 
 function generateFolderIndex() {
-  Logger.log('Script started: generateFolderIndex'); / / Get the active spreadsheet;
+  Logger.log('Script started: generateFolderIndex'); // Get the active spreadsheet;
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  Logger.log('Active spreadsheet: ' + spreadsheet.getName()); / / Create a unique sheet name;
+  Logger.log('Active spreadsheet: ' + spreadsheet.getName()); // Create a unique sheet name;
   const scriptName = 'FolderIndex';
   const dateString = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy - MM - dd');
   let sheetName = `${scriptName}_${dateString}`;
@@ -57,21 +57,21 @@ function generateFolderIndex() {
   while (spreadsheet.getSheetByName(sheetName)) {
     sheetName = `${scriptName}_${dateString}_${counter + + }`;
   }
-  Logger.log('Creating new sheet: ' + sheetName); / / Insert the new sheet;
-  const sheet = spreadsheet.insertSheet(sheetName); / / Configurable settings;
+  Logger.log('Creating new sheet: ' + sheetName); // Insert the new sheet;
+  const sheet = spreadsheet.insertSheet(sheetName); // Configurable settings;
   const COLUMN_WIDTH = 300;
   const maxDepth = PropertiesService.getScriptProperties().getProperty('MAX_DEPTH') || 4;
   const excludedFolders = PropertiesService.getScriptProperties().getProperty('EXCLUDED_FOLDERS');
     ? PropertiesService.getScriptProperties().getProperty('EXCLUDED_FOLDERS').split(',');
     : ['Trash', 'SharedFolder'];
-  Logger.log('Settings - Max depth: ' + maxDepth + ', Excluded folders: ' + excludedFolders.join(', ')); / / Set headers;
+  Logger.log('Settings - Max depth: ' + maxDepth + ', Excluded folders: ' + excludedFolders.join(', ')); // Set headers;
   const headers = ['Top Level Folder', 'Subfolder', 'Sub - subfolder', 'Sub - sub - subfolder'];
   sheet.getRange(1, 1, 1, headers.length);
     .setValues([headers]);
     .setFontWeights([['bold', 'bold', 'bold', 'bold']]);
     .setFontSizes([[12, 12, 12, 12]]);
-  Logger.log('Headers set in sheet'); / / Initialize folder storage;
-  const folderMap = new Map(); / / Process the root folder;
+  Logger.log('Headers set in sheet'); // Initialize folder storage;
+  const folderMap = new Map(); // Process the root folder;
   try {
     const rootFolder = DriveApp.getRootFolder();
     Logger.log('Root folder accessed: ' + rootFolder.getName());
@@ -82,7 +82,7 @@ function generateFolderIndex() {
     return;
   }
 
-  Logger.log('Folders processed. folderMap size: ' + folderMap.size); / / Output folder data to sheet;
+  Logger.log('Folders processed. folderMap size: ' + folderMap.size); // Output folder data to sheet;
   const output = Array.from(folderMap.values());
   if (output.length > 0) {
     Logger.log('Writing ' + output.length + ' rows to sheet');
@@ -91,8 +91,8 @@ function generateFolderIndex() {
       while (padded.length < maxDepth) padded.push(null);
       return padded.map(item = > {
         if (item) {
-          const safeName = item.name.replace( / " / g, '""'); / / Escape quotes;
-          return `= HYPERLINK("https: / / drive.google.com / drive / folders / ${item.id}", "${safeName}")`;
+          const safeName = item.name.replace( / " / g, '""'); // Escape quotes;
+          return `= HYPERLINK("https: // drive.google.com / drive / folders / ${item.id}", "${safeName}")`;
         }
         return '';
       });
@@ -105,15 +105,15 @@ function generateFolderIndex() {
       Logger.log('Error writing data to sheet: ' + e.message);
       SpreadsheetApp.getUi().alert('Error writing data to sheet: ' + e.message);
       return;
-    } / / Add timestamp
+    } // Add timestamp
     sheet.getRange(1, maxDepth + 1).setValue(`Last updated: ${new Date().toLocaleString()}`);
     Logger.log('Timestamp added');
   } else {
     sheet.getRange(2, 1).setValue('No folders found in the root.');
     Logger.log('No folders found in the root');
-  } / / Set column widths
+  } // Set column widths
   sheet.setColumnWidths(1, maxDepth, COLUMN_WIDTH);
-  Logger.log('Column widths set'); / / Log completion;
+  Logger.log('Column widths set'); // Log completion;
   Logger.log(`Script completed. Processed ${folderMap.size} folders.`);
   SpreadsheetApp.getUi().alert('Folder index generation completed successfully.');
 }
@@ -123,14 +123,14 @@ function generateFolderIndex() {
  * Manages files and folders
  * @returns {boolean} True if successful, false otherwise
 
- * /
+ */
 
 /**
 
  * Manages files and folders
  * @returns {boolean} True if successful, false otherwise
 
- * /
+ */
 
 function onOpen() {
   let ui = SpreadsheetApp.getUi();
@@ -150,7 +150,7 @@ function onOpen() {
  * @param {Folder} excludedFolders - The excludedFolders parameter
  * @returns {boolean} True if successful, false otherwise
 
- * /
+ */
 
 /**
 
@@ -163,23 +163,23 @@ function onOpen() {
  * @param {Folder} excludedFolders - The excludedFolders parameter
  * @returns {boolean} True if successful, false otherwise
 
- * /
+ */
 
 function processFolderBatch(folder, path, folderMap, maxDepth, excludedFolders) {
   const folderId = folder.getId();
   const folderName = folder.getName();
-  Logger.log('Processing folder: ' + folderName + ' (ID: ' + folderId + ')'); / / Build current path;
-  const currentPath = [...path, { name: folderName, id: folderId }]; / / Skip if max depth reached or folder excluded;
+  Logger.log('Processing folder: ' + folderName + ' (ID: ' + folderId + ')'); // Build current path;
+  const currentPath = [...path, { name: folderName, id: folderId }]; // Skip if max depth reached or folder excluded;
   if (currentPath.length > maxDepth || excludedFolders.includes(folderName)) {
     Logger.log(`Skipping folder: ${folderName} (Depth: ${currentPath.length}, Excluded: ${excludedFolders.includes(folderName)})`);
     return;
-  } / / Store folder path
+  } // Store folder path
   folderMap.set(folderId, currentPath);
-  Logger.log('Added to folderMap: ' + folderName); / / Progress feedback;
+  Logger.log('Added to folderMap: ' + folderName); // Progress feedback;
   if (folderMap.size % 100 = = = 0) {
     Logger.log(`Processed ${folderMap.size} folders...`);
     SpreadsheetApp.getUi().showToast(`Processed ${folderMap.size} folders...`, 'Progress', 3000);
-  } / / Process subfolders
+  } // Process subfolders
   try {
     const subFoldersIterator = folder.getFolders();
     let subFolderCount = 0;

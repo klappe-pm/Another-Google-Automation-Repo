@@ -25,16 +25,16 @@
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Works with spreadsheet data
  * @returns {string} The formatted string
 
- * /
+ */
 
 function addEmailSubjectColumn() {
   const startTime = Date.now();
@@ -46,20 +46,20 @@ function addEmailSubjectColumn() {
     if (! sheet) {
       Logger.log('Error: RideReceipts sheet not found');
       return;
-    } / / Get the last row with data
+    } // Get the last row with data
     const lastRow = sheet.getLastRow();
 
     if (lastRow < = 1) {
       Logger.log('No data found in RideReceipts sheet');
       return;
-    } / / Target column S (19) for Email Subject
-    const subjectColumn = 19; / / Column S;
-    const messageIdColumn = 6; / / Column F for Message IDs / / Add the header for Email Subject;
+    } // Target column S (19) for Email Subject
+    const subjectColumn = 19; // Column S;
+    const messageIdColumn = 6; // Column F for Message IDs // Add the header for Email Subject;
     sheet.getRange(1, subjectColumn).setValue('Email Subject');
     sheet.getRange(1, subjectColumn).setFontWeight('bold');
 
-    Logger.log(`Added "Email Subject" header in column S (${subjectColumn})`); / / Get all Message IDs from column F;
-    const messageIds = sheet.getRange(2, messageIdColumn, lastRow - 1, 1).getValues(); / / Process in batches to avoid timeouts;
+    Logger.log(`Added "Email Subject" header in column S (${subjectColumn})`); // Get all Message IDs from column F;
+    const messageIds = sheet.getRange(2, messageIdColumn, lastRow - 1, 1).getValues(); // Process in batches to avoid timeouts;
     const batchSize = 50;
     let processedCount = 0;
     let updatedCount = 0;
@@ -77,7 +77,7 @@ function addEmailSubjectColumn() {
           continue;
         }
 
-        try { / / Get the subject for this message ID
+        try { // Get the subject for this message ID
           const subject = getMessageSubject(messageId);
           subjectValues.push([subject]);
           processedCount + + ; if (subject) {
@@ -86,11 +86,11 @@ function addEmailSubjectColumn() {
           Logger.log(`Error processing message ID ${messageId}: ${err.message}`);
           subjectValues.push(['Error']);
           errorCount + + ; }
-      } / / Update the sheet with this batch of subject values
-      sheet.getRange(i + 2, subjectColumn, currentBatchSize, 1).setValues(subjectValues); / / Log progress;
-      Logger.log(`Processed ${i + currentBatchSize} of ${messageIds.length} message IDs`); / / Add a brief pause to avoid hitting quotas;
+      } // Update the sheet with this batch of subject values
+      sheet.getRange(i + 2, subjectColumn, currentBatchSize, 1).setValues(subjectValues); // Log progress;
+      Logger.log(`Processed ${i + currentBatchSize} of ${messageIds.length} message IDs`); // Add a brief pause to avoid hitting quotas;
       Utilities.sleep(100);
-    } / / Auto - resize the column
+    } // Auto - resize the column
     sheet.autoResizeColumn(subjectColumn);
 
     Logger.log(`Completed in ${(Date.now() - startTime) / 1000} seconds`);
@@ -108,18 +108,18 @@ function addEmailSubjectColumn() {
  * @param {string} messageId - The messageId to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 function getMessageSubject(messageId) {
-  try { / / Try to find the message by ID
+  try { // Try to find the message by ID
     const message = GmailApp.getMessageById(messageId);
 
     if (! message) {
       Logger.log(`Message not found: ${messageId}`);
       return '';
-    } / / Get the subject of the message
+    } // Get the subject of the message
     const subject = message.getSubject();
-    return subject || ''; / / Return empty string if subject is null or undefined;
+    return subject || ''; // Return empty string if subject is null or undefined;
 
   } catch (e) {
     Logger.log(`Error retrieving message ${messageId}: ${e.message}`);

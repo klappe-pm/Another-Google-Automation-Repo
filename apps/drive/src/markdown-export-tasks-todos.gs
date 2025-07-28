@@ -43,60 +43,60 @@
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
  * - Tasks: For task list operations
- * /
+ */
 
 let DEBUG = true;
 
 /**
  * Creates a custom menu in the Google Sheets UI when the spreadsheet is opened.
- * / / * *
+ *// * *
  * Displays a prompt for the user to enter a tasklist ID.
- * / / * *
+ *// * *
  * Exports tasks from the specified tasklist to a markdown file.
- * / / * *
+ *// * *
  * Gets or creates a file in the specified folder.
- * / / * *
+ *// * *
  * Categorizes tasks based on their due dates.
  * @return {Object} An object containing categorized tasks.
- * / / * *
+ *// * *
  * Creates YAML frontmatter with task statistics.
  * @param {Object} categorizedTasks - The object containing categorized tasks.
  * @return {string} The YAML frontmatter string.
- * / / * *
+ *// * *
  * Counts the total number of new (non- completed) todos.
  * @param {Object} categorizedTasks - The object containing categorized tasks.
  * @return {number} The total count of new todos.
- * / / * *
+ *// * *
  * Formats categorized tasks into markdown.
  * @param {Object} categorizedTasks - The object containing categorized tasks.
  * @param {string} yamlFrontmatter - The YAML frontmatter string.
  * @return {string} The formatted markdown string.
- * / / * *
+ *// * *
  * Extracts count values from YAML frontmatter.
  * @param {string} yaml - The YAML frontmatter string.
  * @return {Object} An object containing extracted count values.
- * / / * *
+ *// * *
  * Formats a category of tasks into markdown.
  * @param {string} header - The header for the category.
  * @param {Array} tasks - The array of tasks in the category.
  * @param {number} count - The count of tasks in the category.
  * @return {string} The formatted markdown string for the category.
- * / / * *
+ *// * *
  * Formats a single task into markdown.
  * @param {Object} task - The task object to format.
  * @param {number} depth - The depth of the task (for subtasks).
  * @return {string} The formatted markdown string for the task.
- * / / * *
+ *// * *
  * Formats a date object into a string.
  * @param {Date} date - The date to format.
  * @return {string} The formatted date string (YYYY- MM- DD).
- * / / * *
+ *// * *
  * Gets or creates a folder in Google Drive.
  * @param {string} folderName - The name of the folder to get or create.
  * @return {Folder} The found or created folder.
- * / / / Main Functions
+ *// / Main Functions
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -105,7 +105,7 @@ let DEBUG = true;
  * @param {any} tasks - The tasks parameter
  * @returns {number} The calculated value
 
- * /
+ */
 
 function categorizeTasks(tasks) {
   debug('categorizeTasks function called with ' + tasks.length + ' tasks');
@@ -163,7 +163,7 @@ function categorizeTasks(tasks) {
  * @param {any} categorizedTasks - The categorizedTasks for creation
  * @returns {number} The newly created number
 
- * /
+ */
 
 function createYAMLFrontmatter(categorizedTasks) {
   debug('createYAMLFrontmatter function called');
@@ -191,7 +191,7 @@ function createYAMLFrontmatter(categorizedTasks) {
  * @param {string} message - The message content
  * @returns {number} The calculated value
 
- * /
+ */
 
 function debug(message) {
   if (DEBUG) {
@@ -206,7 +206,7 @@ function debug(message) {
  * @param {string} tasklistId - The tasklistId parameter
  * @returns {number} The calculated value
 
- * /
+ */
 
 function exportTasksToMarkdown(tasklistId) {
   debug('exportTasksToMarkdown function called with tasklistId: ' + tasklistId);
@@ -244,7 +244,7 @@ function exportTasksToMarkdown(tasklistId) {
  * @param {any} yaml - The yaml parameter
  * @returns {number} The total count
 
- * /
+ */
 
 function extractCountsFromYAML(yaml) {
   debug('extractCountsFromYAML function called');
@@ -267,7 +267,7 @@ function extractCountsFromYAML(yaml) {
  * @param {string} fileName - The fileName to retrieve
  * @returns {number} The requested number
 
- * /
+ */
 
 function getOrCreateFile(folder, fileName) {
   debug('getOrCreateFile function called with fileName: ' + fileName);
@@ -288,7 +288,7 @@ function getOrCreateFile(folder, fileName) {
  * @param {string} folderName - The folderName to retrieve
  * @returns {number} The requested number
 
- * /
+ */
 
 function getOrCreateFolder(folderName) {
   debug('getOrCreateFolder function called for folder: ' + folderName);
@@ -308,7 +308,7 @@ function getOrCreateFolder(folderName) {
  * Performs specialized operations
  * @returns {number} The calculated value
 
- * /
+ */
 
 function onOpen() {
   debug('onOpen function called');
@@ -324,7 +324,7 @@ function onOpen() {
  * Checks boolean condition
  * @returns {number} True if condition is met, false otherwise
 
- * /
+ */
 
 function showTasklistPrompt() {
   debug('showTasklistPrompt function called');
@@ -344,7 +344,7 @@ function showTasklistPrompt() {
   }
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -353,7 +353,7 @@ function showTasklistPrompt() {
  * @param {any} categorizedTasks - The categorizedTasks parameter
  * @returns {number} The total count
 
- * /
+ */
 
 function countNewTodos(categorizedTasks) {
   debug('countNewTodos function called');
@@ -372,7 +372,7 @@ function countNewTodos(categorizedTasks) {
  * @param {any} yamlFrontmatter - The yamlFrontmatter parameter
  * @returns {number} The calculated value
 
- * /
+ */
 
 function formatCategorizedTasks(categorizedTasks, yamlFrontmatter) {
   debug('formatCategorizedTasks function called');
@@ -397,7 +397,7 @@ function formatCategorizedTasks(categorizedTasks, yamlFrontmatter) {
  * @param {number} count - The number of items
  * @returns {number} The calculated value
 
- * /
+ */
 
 function formatCategory(header, tasks, count) {
   debug('formatCategory function called for: ' + header);
@@ -419,7 +419,7 @@ function formatCategory(header, tasks, count) {
  * @param {any} date - The date parameter
  * @returns {number} The calculated value
 
- * /
+ */
 
 function formatDate(date) {
   debug('formatDate function called for date: ' + date);
@@ -434,7 +434,7 @@ function formatDate(date) {
  * @param {any} depth - The depth parameter
  * @returns {number} The calculated value
 
- * /
+ */
 
 function formatTask(task, depth) {
   debug('formatTask function called for task: ' + task.title);

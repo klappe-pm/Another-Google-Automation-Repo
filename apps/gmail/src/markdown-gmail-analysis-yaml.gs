@@ -44,36 +44,36 @@
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
 const DEBUG = true;
 
 /**
  * Processes emails based on a search query
- * / / * *
+ *// * *
  * Processes specific emails by their IDs
- * / / * *
+ *// * *
  * Processes a single email message
- * / / * *
+ *// * *
  * Gets or creates a folder in Google Drive
  * @param {Folder} parentFolder - The parent folder
  * @param {string} folderName - The name of the folder to get or create
  * @returns {Folder} The existing or newly created folder
- * / / * *
+ *// * *
  * Gets or creates a sheet in the active spreadsheet
  * @param {string} sheetName - The name of the sheet to get or create
  * @returns {Sheet} The existing or newly created sheet
- * / / * *
+ *// * *
  * Gets existing message IDs from the sheet
  * @param {Sheet} sheet - The sheet to check for existing message IDs
  * @returns {Set} A set of existing message IDs
- * / / * *
+ *// * *
  * Creates a PDF file from HTML content
  * @param {string} htmlBody - The HTML content to convert to PDF
  * @param {string} filename - The name for the PDF file
  * @param {Folder} folder - The folder to save the PDF in
  * @returns {File} The created PDF file
- * / / * *
+ *// * *
  * Parses the email body and extracts relevant information
  * @param {string} body - The plain text body of the email
  * @param {Date} emailDate - The date of the email
@@ -81,27 +81,27 @@ const DEBUG = true;
  * @param {string} subject - The subject of the email
  * @param {Date} dateProcessed - The date when the email was processed
  * @returns {Array} An array containing the parsed email data
- * / / * *
+ *// * *
  * Creates Markdown content from the email data
  * @param {Array} rowData - The parsed email data
  * @param {string} body - The full body of the email
  * @param {string} query - The search query used to find this email
  * @returns {string} The Markdown content
- * / / * *
+ *// * *
  * Creates a Markdown file in Google Drive
  * @param {string} markdownContent - The Markdown content
  * @param {string} filename - The name for the Markdown file
  * @param {Folder} folder - The folder to save the Markdown file in
  * @returns {File} The created Markdown file
- * / / * *
+ *// * *
  * Creates a bracketed Markdown file in Google Drive
  * @param {string} markdownContent - The Markdown content
  * @param {string} filename - The name for the Markdown file (without extension)
  * @param {Folder} folder - The folder to save the Markdown file in
  * @returns {File} The created bracketed Markdown file
- * / / / Main Functions
+ *// / Main Functions
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -112,7 +112,7 @@ const DEBUG = true;
  * @param {Folder} folder - The folder for creation
  * @returns {any} The newly created any
 
- * /
+ */
 
 function createBracketedMarkdownFile_(markdownContent, filename, folder) {
   try {
@@ -136,7 +136,7 @@ function createBracketedMarkdownFile_(markdownContent, filename, folder) {
  * @param {string} query - The search query
  * @returns {any} The newly created any
 
- * /
+ */
 
 function createMarkdown_(rowData, body, query) {
   try {
@@ -164,7 +164,7 @@ function createMarkdown_(rowData, body, query) {
  * @param {Folder} folder - The folder for creation
  * @returns {any} The newly created any
 
- * /
+ */
 
 function createMarkdownFile_(markdownContent, filename, folder) {
   try {
@@ -187,7 +187,7 @@ function createMarkdownFile_(markdownContent, filename, folder) {
  * @param {Folder} folder - The folder for creation
  * @returns {any} The newly created any
 
- * /
+ */
 
 function createPDF_(htmlBody, filename, folder) {
   try {
@@ -209,7 +209,7 @@ function createPDF_(htmlBody, filename, folder) {
  * @param {string} message - The message content
  * @returns {any} The result
 
- * /
+ */
 
 function debug(message) {
   if (DEBUG) {
@@ -224,15 +224,15 @@ function debug(message) {
  * @param {Sheet} sheet - The sheet to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getExistingMessageIds(sheet) {
   try {
     debug("Getting existing message IDs from sheet");
     let data = sheet.getDataRange().getValues();
     let existingIds = new Set();
-    for (let i = 1; i < data.length; i+ + ) { / / Start from 1 to skip header row
-      existingIds.add(data[i][0]); / / Assuming Message ID is in the first column
+    for (let i = 1; i < data.length; i+ + ) { // Start from 1 to skip header row
+      existingIds.add(data[i][0]); // Assuming Message ID is in the first column
     }
     debug(`Found ${existingIds.size} existing message IDs`);
     return existingIds;
@@ -250,7 +250,7 @@ function getExistingMessageIds(sheet) {
  * @param {string} folderName - The folderName to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getOrCreateFolder_(parentFolder, folderName) {
   try {
@@ -276,7 +276,7 @@ function getOrCreateFolder_(parentFolder, folderName) {
  * @param {string} sheetName - The sheetName to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getOrCreateSheet_(sheetName) {
   try {
@@ -304,7 +304,7 @@ function getOrCreateSheet_(sheetName) {
  * @param {string} query - The search query
  * @returns {any} The result
 
- * /
+ */
 
 function processEmails(query) {
   try {
@@ -313,7 +313,7 @@ function processEmails(query) {
     }
     debug(`Processing emails with query: ${query}`);
 
-    let searchTerm = query.replace(/ [:/ ]/ g, '- '); / / Replace characters not suitable for folder names
+    let searchTerm = query.replace(/ [:/ ]/ g, '- '); // Replace characters not suitable for folder names
     let threads = GmailApp.search(query);
     debug(`Found ${threads.length} threads matching the query`);
 
@@ -336,7 +336,7 @@ function processEmails(query) {
     debug("Email processing completed successfully");
   } catch (error) {
     Logger.log(`Error in processEmails: ${error.message}`);
-    throw error; / / Re- throw the error for higher- level error handling
+    throw error; // Re- throw the error for higher- level error handling
   }
 }
 
@@ -347,7 +347,7 @@ function processEmails(query) {
  * @param {string} messageIds - The messageIds parameter
  * @returns {any} The result
 
- * /
+ */
 
 function processEmailsByIds(messageIds) {
   try {
@@ -356,7 +356,7 @@ function processEmailsByIds(messageIds) {
     }
     debug(`Processing ${messageIds.length} emails by IDs`);
 
-    let searchTerm = 'selected- emails'; / / Use a generic name for the folder and sheet
+    let searchTerm = 'selected- emails'; // Use a generic name for the folder and sheet
     let parentFolder = DriveApp.getFileById(SpreadsheetApp.getActiveSpreadsheet().getId()).getParents().next();
     let folder = getOrCreateFolder_(parentFolder, searchTerm);
     let dateProcessed = new Date();
@@ -377,7 +377,7 @@ function processEmailsByIds(messageIds) {
     debug("Email processing by IDs completed successfully");
   } catch (error) {
     Logger.log(`Error in processEmailsByIds: ${error.message}`);
-    throw error; / / Re- throw the error for higher- level error handling
+    throw error; // Re- throw the error for higher- level error handling
   }
 }
 
@@ -394,14 +394,14 @@ function processEmailsByIds(messageIds) {
  * @param {string} query - The search query
  * @returns {any} The result
 
- * /
+ */
 
 function processMessage(message, existingMessageIds, dateProcessed, folder, sheet, markdownFiles, query) {
   try {
     let messageId = message.getId();
     if (existingMessageIds.has(messageId)) {
       debug(`Skipping already processed message: ${messageId}`);
-      return; / / Skip this message if it has already been processed
+      return; // Skip this message if it has already been processed
     }
 
     let emailDate = message.getDate();
@@ -445,11 +445,11 @@ function processMessage(message, existingMessageIds, dateProcessed, folder, shee
     debug(`Successfully processed message: ${messageId}`);
   } catch (error) {
     Logger.log(`Error processing message ${message.getId()}: ${error.message}`);
-    / / Continue processing other messages
+    // Continue processing other messages
   }
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -462,18 +462,18 @@ function processMessage(message, existingMessageIds, dateProcessed, folder, shee
  * @param {any} dateProcessed - The dateProcessed parameter
  * @returns {any} The result
 
- * /
+ */
 
 function parseEmailBody_(body, emailDate, sender, subject, dateProcessed) {
   try {
     debug("Parsing email body");
-    / / Implement your parsing logic here
-    / / This is a placeholder implementation
+    // Implement your parsing logic here
+    // This is a placeholder implementation
     return [
       Utilities.formatDate(emailDate, Session.getScriptTimeZone(), 'yyyy- MM- dd HH:mm:ss'),
       sender,
       subject,
-      body.substring(0, 100) + "...", / / First 100 characters of the body
+      body.substring(0, 100) + "...", // First 100 characters of the body
       Utilities.formatDate(dateProcessed, Session.getScriptTimeZone(), 'yyyy- MM- dd HH:mm:ss')
     ];
   } catch (error) {

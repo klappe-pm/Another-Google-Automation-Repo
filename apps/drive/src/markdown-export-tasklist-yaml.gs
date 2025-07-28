@@ -42,9 +42,9 @@
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
  * - Tasks: For task list operations
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -53,7 +53,7 @@
  * @param {any} tasks - The tasks parameter
  * @returns {any} The result
 
- * /
+ */
 
 function categorizeTasks(tasks) {
   let today = new Date();
@@ -108,7 +108,7 @@ function categorizeTasks(tasks) {
  * @param {any} categorizedTasks - The categorizedTasks for creation
  * @returns {any} The newly created any
 
- * /
+ */
 
 function createYAMLFrontmatter(categorizedTasks) {
   let today = new Date();
@@ -134,7 +134,7 @@ function createYAMLFrontmatter(categorizedTasks) {
  * @param {string} tasklistId - The tasklistId parameter
  * @returns {any} The result
 
- * /
+ */
 
 function exportTasksToMarkdown(tasklistId) {
   try {
@@ -169,7 +169,7 @@ function exportTasksToMarkdown(tasklistId) {
  * @param {any} yaml - The yaml parameter
  * @returns {any} The total count
 
- * /
+ */
 
 function extractCountsFromYAML(yaml) {
   let counts = {};
@@ -190,7 +190,7 @@ function extractCountsFromYAML(yaml) {
  * @param {string} fileName - The fileName to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getOrCreateFile(folder, fileName) {
   let files = folder.getFilesByName(fileName);
@@ -210,7 +210,7 @@ function getOrCreateFile(folder, fileName) {
  * @param {string} folderName - The folderName to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getOrCreateFolder(folderName) {
   let rootFolder = DriveApp.getRootFolder();
@@ -229,7 +229,7 @@ function getOrCreateFolder(folderName) {
  * Performs specialized operations
  * @returns {any} The result
 
- * /
+ */
 
 function onOpen() {
   SpreadsheetApp.getUi()
@@ -244,7 +244,7 @@ function onOpen() {
  * Checks boolean condition
  * @returns {any} True if condition is met, false otherwise
 
- * /
+ */
 
 function showTasklistPrompt() {
   let ui = SpreadsheetApp.getUi();
@@ -263,7 +263,7 @@ function showTasklistPrompt() {
   }
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -272,7 +272,7 @@ function showTasklistPrompt() {
  * @param {any} categorizedTasks - The categorizedTasks parameter
  * @returns {any} The total count
 
- * /
+ */
 
 function countNewTodos(categorizedTasks) {
   return categorizedTasks.overdue.length +
@@ -290,7 +290,7 @@ function countNewTodos(categorizedTasks) {
  * @param {any} yamlFrontmatter - The yamlFrontmatter parameter
  * @returns {any} The result
 
- * /
+ */
 
 function formatCategorizedTasks(categorizedTasks, yamlFrontmatter) {
   let counts = extractCountsFromYAML(yamlFrontmatter);
@@ -313,7 +313,7 @@ function formatCategorizedTasks(categorizedTasks, yamlFrontmatter) {
  * @param {number} count - The number of items
  * @returns {any} The result
 
- * /
+ */
 
 function formatCategory(header, tasks, count) {
   if (tasks.length = = = 0) return '';
@@ -334,7 +334,7 @@ function formatCategory(header, tasks, count) {
  * @param {any} date - The date parameter
  * @returns {any} The result
 
- * /
+ */
 
 function formatDate(date) {
   return `${date.getFullYear()}- ${String(date.getMonth() + 1).padStart(2, '0')}- ${String(date.getDate()).padStart(2, '0')}`;
@@ -348,7 +348,7 @@ function formatDate(date) {
  * @param {any} depth - The depth parameter
  * @returns {any} The result
 
- * /
+ */
 
 function formatTask(task, depth) {
   let indent = '  '.repeat(depth);

@@ -52,7 +52,7 @@
  * - SpreadsheetApp: For spreadsheet operations
  * - UrlFetchApp: For HTTP requests to external services
  * - Utilities: For utility functions and encoding
- * /
+ */
 
 const DEFAULT_CONFIG = {
   batchSize: 50,
@@ -72,37 +72,37 @@ const DEFAULT_CONFIG = {
 
 /**
  * Main export function
- * / / * *
+ *// * *
  * Creates an index sheet if it doesn't exist
- * / / * *
+ *// * *
  * Finds the next unprocessed album
- * / / * *
+ *// * *
  * Processes photos from an album
- * / / * *
+ *// * *
  * Updates the album index sheet
- * / / * *
+ *// * *
  * Gets the configuration from the Config sheet
- * / / * *
+ *// * *
  * Sets up a sheet for album data
- * / / * *
+ *// * *
  * Process a single photo item
- * / / * *
+ *// * *
  * Writes data to a sheet
- * / / * *
+ *// * *
  * Sorts a sheet by create time
- * / / * *
+ *// * *
  * Resets the processed flag for all albums
- * / / * *
+ *// * *
  * Clears the albums cache
- * / / * *
+ *// * *
  * Shows a notification to the user
- * / / * *
+ *// * *
  * Gets all albums from Google Photos
- * / / * *
+ *// * *
  * Gets photos from an album
- * / / * *
+ *// * *
  * Fetches a URL with retry logic
- * /
+ */
 ) {
   options.headers = { "Authorization": "Bearer " + ScriptApp.getOAuthToken() };
   options.muteHttpExceptions = true;
@@ -134,12 +134,12 @@ const DEFAULT_CONFIG = {
 
 /**
  * Sanitizes a sheet name
- * / / * *
+ *// * *
  * Creates a new sheet with all available Google Photos albums and their IDs
  * to help update your "Album Index" sheet with the correct IDs
- * / / * *
+ *// * *
  * Adds selected albums to the index
- * /
+ */
 
 function getConfigFromSheet(spreadsheet) {
   const sheet = spreadsheet.getSheetByName("Config") || spreadsheet.insertSheet("Config");
@@ -165,14 +165,14 @@ function getConfigFromSheet(spreadsheet) {
   return config;
 }
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Works with spreadsheet data
  * @returns {any} The result
 
- * /
+ */
 
 function addSelectedAlbumsToIndex() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -186,14 +186,14 @@ function addSelectedAlbumsToIndex() {
   const indexSheet = spreadsheet.getSheetByName("Album Index") || createIndexSheet(spreadsheet);
   const data = availableSheet.getDataRange().getValues();
 
-  / / Skip header row
+  // Skip header row
   let addedCount = 0;
   for (let i = 1; i < data.length; i+ + ) {
     const [albumName, albumId, photoCount, isSelected] = data[i];
 
-    / / Only add selected albums
+    // Only add selected albums
     if (isSelected = = = true) {
-      / / Check if this ID already exists in the index
+      // Check if this ID already exists in the index
       const indexData = indexSheet.getDataRange().getValues();
       let exists = false;
 
@@ -205,7 +205,7 @@ function addSelectedAlbumsToIndex() {
       }
 
       if (! exists) {
-        / / Add to the next available row
+        // Add to the next available row
         const nextRow = indexSheet.getLastRow() + 1;
         indexSheet.getRange(nextRow, 1, 1, 2).setValues([[false, albumId]]);
         addedCount+ + ;
@@ -225,7 +225,7 @@ function addSelectedAlbumsToIndex() {
  * Performs specialized operations
  * @returns {any} The result
 
- * /
+ */
 
 function clearAlbumsCache() {
   CacheService.getScriptCache().remove("all_albums");
@@ -240,7 +240,7 @@ function clearAlbumsCache() {
  * @param {Sheet} spreadsheet - The spreadsheet for creation
  * @returns {any} The newly created any
 
- * /
+ */
 
 function createIndexSheet(spreadsheet) {
   const sheet = spreadsheet.insertSheet("Album Index");
@@ -256,7 +256,7 @@ function createIndexSheet(spreadsheet) {
  * Exports photo albums to sheets to external format
  * @returns {any} The result
 
- * /
+ */
 
 function exportPhotoAlbumsToSheets() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -314,7 +314,7 @@ function exportPhotoAlbumsToSheets() {
  * @param {any} allAlbums - The allAlbums parameter
  * @returns {any} The result
 
- * /
+ */
 
 function fetchWithRetry(url, options = {}
 
@@ -326,12 +326,12 @@ function fetchWithRetry(url, options = {}
  * @param {any} allAlbums - The allAlbums parameter
  * @returns {any} The result
 
- * /
+ */
 
 function findNextUnprocessedAlbum(data, allAlbums) {
   Logger.log(`Looking through ${data.length} rows of data for unprocessed albums...`);
 
-  / / Log the first few album IDs from the API for comparison
+  // Log the first few album IDs from the API for comparison
   if (allAlbums.length > 0) {
     Logger.log(`Sample album IDs from API: ${allAlbums.slice(0, 3).map(a = > a.id).join(', ')}`);
   }
@@ -340,7 +340,7 @@ function findNextUnprocessedAlbum(data, allAlbums) {
     const [isProcessed, albumId] = data[i];
     Logger.log(`Row ${i+ 2}: isProcessed= ${isProcessed}, albumId= ${albumId}`);
 
-    / / Check for any falsy value (blank, false, null, undefined, empty string)
+    // Check for any falsy value (blank, false, null, undefined, empty string)
     if (! isProcessed && albumId && albumId.toString().trim() ! = = '') {
       const stringId = albumId.toString().trim();
       Logger.log(`Looking for album with ID: ${stringId}`);
@@ -364,12 +364,12 @@ function findNextUnprocessedAlbum(data, allAlbums) {
  * Gets specific google photos albums or configuration
  * @returns {any} The requested any
 
- * /
+ */
 
 function getGooglePhotosAlbums() {
   const cache = CacheService.getScriptCache();
   const cacheKey = "all_albums";
-  / / Comment out cache temporarily for debugging
+  // Comment out cache temporarily for debugging
   const cached = cache.get(cacheKey);
   if (cached) return JSON.parse(cached);
 
@@ -379,8 +379,8 @@ function getGooglePhotosAlbums() {
   Logger.log("Fetching albums from Google Photos API...");
 
   do {
-    / / Modified to include shared albums
-    const url = `https:/ / photoslibrary.googleapis.com/ v1/ albums?pageSize= 50&excludeNonAppCreatedData= false${nextPageToken ? `&pageToken= ${nextPageToken}` : ''}`;
+    // Modified to include shared albums
+    const url = `https:// photoslibrary.googleapis.com/ v1/ albums?pageSize= 50&excludeNonAppCreatedData= false${nextPageToken ? `&pageToken= ${nextPageToken}` : ''}`;
     Logger.log(`Fetching URL: ${url}`);
 
     const response = fetchWithRetry(url);
@@ -416,7 +416,7 @@ function getGooglePhotosAlbums() {
 
   Logger.log(`Total albums found: ${albums.length}`);
   if (albums.length > 0) {
-    / / Log a few sample IDs to compare with your sheet
+    // Log a few sample IDs to compare with your sheet
     Logger.log(`Sample album IDs: ${albums.slice(0, 3).map(a = > a.id).join(', ')}`);
   }
 
@@ -432,7 +432,7 @@ function getGooglePhotosAlbums() {
  * @param {number} maxResults - The maxResults to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getPhotosFromAlbum(albumId, maxResults) {
   const photos = [];
@@ -441,7 +441,7 @@ function getPhotosFromAlbum(albumId, maxResults) {
   Logger.log(`Getting photos from album ID: ${albumId}`);
 
   do {
-    const url = "https:/ / photoslibrary.googleapis.com/ v1/ mediaItems:search";
+    const url = "https:// photoslibrary.googleapis.com/ v1/ mediaItems:search";
     const response = fetchWithRetry(url, {
       method: "post",
       contentType: "application/ json",
@@ -473,18 +473,18 @@ function getPhotosFromAlbum(albumId, maxResults) {
  * Checks boolean condition
  * @returns {any} True if condition is met, false otherwise
 
- * /
+ */
 
 function listAllAlbums() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let sheet = spreadsheet.getSheetByName("Available Albums") || spreadsheet.insertSheet("Available Albums");
 
-  / / Clear the sheet and set up headers
+  // Clear the sheet and set up headers
   sheet.clear();
   sheet.getRange(1, 1, 1, 5).setValues([["Album Name", "Album ID", "Photo Count", "Select", "Album Link"]]);
   sheet.getRange(1, 1, 1, 5).setFontWeight("bold");
 
-  / / Get all albums
+  // Get all albums
   const albums = getGooglePhotosAlbums();
 
   if (! albums.length) {
@@ -493,7 +493,7 @@ function listAllAlbums() {
     return;
   }
 
-  / / Prepare the data
+  // Prepare the data
   const data = albums.map(album = > [
     album.title || "Untitled",
     album.id,
@@ -502,16 +502,16 @@ function listAllAlbums() {
     `= HYPERLINK("${album.productUrl}","Open Album")`
   ]);
 
-  / / Write to sheet
+  // Write to sheet
   sheet.getRange(2, 1, data.length, 5).setValues(data);
 
-  / / Auto- size columns
+  // Auto- size columns
   sheet.autoResizeColumn(1);
   sheet.autoResizeColumn(2);
   sheet.autoResizeColumn(3);
   sheet.autoResizeColumn(5);
 
-  / / Add instructions
+  // Add instructions
   sheet.getRange(1, 7, 4, 1).setValues([
     ["Instructions:"],
     ["1. Find the albums you want to export"],
@@ -530,7 +530,7 @@ function listAllAlbums() {
  * @param {any} isError - The isError parameter
  * @returns {any} The result
 
- * /
+ */
 
 function notify(message, isError = false) {
   try {
@@ -550,7 +550,7 @@ function notify(message, isError = false) {
  * Works with spreadsheet data
  * @returns {any} The result
 
- * /
+ */
 
 function onOpen() {
   SpreadsheetApp.getUi()
@@ -572,22 +572,22 @@ function onOpen() {
  * @param {any} useThumbnails - The useThumbnails parameter
  * @returns {any} The result
 
- * /
+ */
 
 function processPhotoItem(mediaItem, albumName, useThumbnails) {
   try {
     const createDateTime = new Date(mediaItem.mediaMetadata.creationTime);
     const isVideo = mediaItem.mediaMetadata.video;
 
-    / / Match the exact property names to the headers in DEFAULT_CONFIG.albumHeaders
+    // Match the exact property names to the headers in DEFAULT_CONFIG.albumHeaders
     return {
       thumbnail: useThumbnails && ! isVideo ? `= IMAGE("${mediaItem.baseUrl}= w100- h100", 1)` : "",
       albumName,
       filename: mediaItem.filename,
       id: mediaItem.id,
-      fileLink: mediaItem.productUrl,    / / This matches "File Link" in the headers
-      createDate: Utilities.formatDate(createDateTime, "GMT", "yyyy- MM- dd"),  / / This matches "Create Date"
-      createTime: Utilities.formatDate(createDateTime, "GMT", "HH:mm:ss"),    / / This matches "Create Time"
+      fileLink: mediaItem.productUrl,    // This matches "File Link" in the headers
+      createDate: Utilities.formatDate(createDateTime, "GMT", "yyyy- MM- dd"),  // This matches "Create Date"
+      createTime: Utilities.formatDate(createDateTime, "GMT", "HH:mm:ss"),    // This matches "Create Time"
       description: mediaItem.description || ""
     };
   } catch (e) {
@@ -605,7 +605,7 @@ function processPhotoItem(mediaItem, albumName, useThumbnails) {
  * @param {any} useThumbnails - The useThumbnails parameter
  * @returns {any} The result
 
- * /
+ */
 
 function processPhotos(photos, albumName, useThumbnails) {
   const fileIds = new Set();
@@ -630,7 +630,7 @@ function processPhotos(photos, albumName, useThumbnails) {
  * @param {File} processedFiles - The processedFiles parameter
  * @returns {any} The result
 
- * /
+ */
 
 function recordProcessedFiles(spreadsheet, processedFiles) {
   let sheet = spreadsheet.getSheetByName("Processed") || spreadsheet.insertSheet("Processed");
@@ -646,7 +646,7 @@ function recordProcessedFiles(spreadsheet, processedFiles) {
  * Sets re processed albums or configuration values
  * @returns {any} The result
 
- * /
+ */
 
 function resetProcessedAlbums() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -672,7 +672,7 @@ function resetProcessedAlbums() {
  * @param {Sheet} sheet - The sheet for creation
  * @returns {any} The newly created any
 
- * /
+ */
 
 function sortSheetByCreateTime(sheet) {
   const lastRow = sheet.getLastRow();
@@ -692,7 +692,7 @@ function sortSheetByCreateTime(sheet) {
  * @param {number} fileCount - The fileCount to update
  * @returns {any} The result
 
- * /
+ */
 
 function updateAlbumIndex(indexSheet, rowIndex, sheet, tabName, fileCount) {
   const hyperlink = `= HYPERLINK("#gid= ${sheet.getSheetId()}","${tabName}")`;
@@ -710,22 +710,22 @@ function updateAlbumIndex(indexSheet, rowIndex, sheet, tabName, fileCount) {
  * @param {any} headers - The headers parameter
  * @returns {any} The result
 
- * /
+ */
 
 function writeDataToSheet(sheet, photoData, headers) {
-  / / Create a mapping that properly handles spaces in header names
+  // Create a mapping that properly handles spaces in header names
   const headerMap = {};
   headers.forEach(header = > {
-    / / Convert to camelCase property name
+    // Convert to camelCase property name
     const propName = header.toLowerCase().replace(/ \s+ (.)/ g, (match, group) = > group.toUpperCase());
-    / / Remove any remaining spaces
+    // Remove any remaining spaces
     headerMap[header] = propName.replace(/ \s+ / g, "");
   });
 
-  / / Log the mapping for debugging
+  // Log the mapping for debugging
   Logger.log("Header mapping: " + JSON.stringify(headerMap));
 
-  / / Map the data using the header mapping
+  // Map the data using the header mapping
   const data = photoData.map(obj = > {
     return headers.map(header = > {
       const propName = headerMap[header];
@@ -739,7 +739,7 @@ function writeDataToSheet(sheet, photoData, headers) {
   for (let i = 2; i < = headers.length; i+ + ) sheet.autoResizeColumn(i);
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -748,7 +748,7 @@ function writeDataToSheet(sheet, photoData, headers) {
  * @param {string} name - The name to use
  * @returns {any} The result
 
- * /
+ */
 
 function sanitizeSheetName(name) {
   return name.replace(/ [\[\]* / \\?]/ g, "_").slice(0, 31);

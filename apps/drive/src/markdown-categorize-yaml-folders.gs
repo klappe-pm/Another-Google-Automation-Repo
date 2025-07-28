@@ -22,21 +22,21 @@
  *
  * Google Services:
  * - DriveApp: For file and folder management
- * /
+ */
 
-/ / Main Functions
-
-/**
-
- * Manages files and folders
-
- * /
+// Main Functions
 
 /**
 
  * Manages files and folders
 
- * /
+ */
+
+/**
+
+ * Manages files and folders
+
+ */
 
 function addYamlFrontmatter() {
   const folderId = '';
@@ -55,7 +55,7 @@ function addYamlFrontmatter() {
         const dateModified = file.getLastUpdated().toISOString().split('T')[0];
         const person = file.getName().replace('.md', '');
 
-        / / Extract filename as subCategory
+        // Extract filename as subCategory
         const subCategory = file.getName().replace('.md', '');
 
         const yaml = `- - -
@@ -63,7 +63,7 @@ category: diagrams
 dateCreated: ${dateCreated}
 dateModified: ${dateModified}
 diagramType: ${person}
-subCategory: ${subCategory} / / Add subCategory
+subCategory: ${subCategory} // Add subCategory
 alias:
 tags:
 - - -

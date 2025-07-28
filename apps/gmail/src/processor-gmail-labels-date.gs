@@ -33,9 +33,9 @@
  * - GmailApp: For accessing email messages and labels
  * - Logger: For logging and debugging
  * - Utilities: For utility functions and encoding
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -44,7 +44,7 @@
  * @param {GmailThread} thread - The thread parameter
  * @returns {any} The result
 
- * /
+ */
 
 function applySenderLabels(thread) {
   let messages = thread.getMessages();
@@ -75,7 +75,7 @@ function applySenderLabels(thread) {
  * @param {any} endDate - The endDate to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getMonthsToProcess(startDate, endDate) {
   let months = [];
@@ -84,7 +84,7 @@ function getMonthsToProcess(startDate, endDate) {
   while (month < = endDate) {
     months.push(new Date(month));
     month.setMonth(month.getMonth() + 1);
-    / / Prevent infinite loop
+    // Prevent infinite loop
     if (months.length > 100) break;
   }
   return months;
@@ -97,7 +97,7 @@ function getMonthsToProcess(startDate, endDate) {
  * @param {string} labelName - The labelName to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getOrCreateLabel(labelName) {
   if (! isValidLabelName(labelName)) {
@@ -128,19 +128,19 @@ function getOrCreateLabel(labelName) {
  * Processes and transforms gmail emails
  * @returns {any} The result
 
- * /
+ */
 
 function processGmailEmails() {
   Logger.log('Starting email processing...');
 
-  / / Define the date range
-  let startDate = new Date(2023, 9, 1); / / October 1, 2023 (months are 0- indexed)
-  let endDate = new Date(2025, 0, 16); / / January 16, 2025
+  // Define the date range
+  let startDate = new Date(2023, 9, 1); // October 1, 2023 (months are 0- indexed)
+  let endDate = new Date(2025, 0, 16); // January 16, 2025
 
-  / / Get the list of months to process within the date range
+  // Get the list of months to process within the date range
   let monthsToProcess = getMonthsToProcess(startDate, endDate);
 
-  / / Process each month
+  // Process each month
   for (let i = 0; i < monthsToProcess.length; i+ + ) {
     let monthDate = monthsToProcess[i];
     processMonth(monthDate);
@@ -156,7 +156,7 @@ function processGmailEmails() {
  * @param {any} monthDate - The monthDate parameter
  * @returns {any} The result
 
- * /
+ */
 
 function processMonth(monthDate) {
   let dates = getMonthDates(monthDate.getFullYear(), monthDate.getMonth());
@@ -165,12 +165,12 @@ function processMonth(monthDate) {
 
   for (let i = 0; i < threads.length; i+ + ) {
     let thread = threads[i];
-    / / Process the thread by applying labels based on sender name
+    // Process the thread by applying labels based on sender name
     applySenderLabels(thread);
   }
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -179,10 +179,10 @@ function processMonth(monthDate) {
  * @param {any} from - The from parameter
  * @returns {any} The result
 
- * /
+ */
 
 function extractAndSanitizeSender(from) {
-  / / Extract the sender's name from the 'From' field
+  // Extract the sender's name from the 'From' field
   let nameMatch = from.match(/ ^.* ?(?= < )/ );
   let senderName = nameMatch ? nameMatch[0].trim() : from;
   return sanitizeLabelName(senderName);
@@ -196,7 +196,7 @@ function extractAndSanitizeSender(from) {
  * @param {any} month - The month to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getMonthDates(year, month) {
   let startDate = new Date(year, month, 1);
@@ -215,7 +215,7 @@ function getMonthDates(year, month) {
  * @param {string} name - The name to use
  * @returns {any} True if condition is met, false otherwise
 
- * /
+ */
 
 function isValidLabelName(name) {
   if (name.length > 40) {
@@ -239,17 +239,17 @@ function isValidLabelName(name) {
  * @param {string} name - The name to use
  * @returns {any} The result
 
- * /
+ */
 
 function sanitizeLabelName(name) {
-  / / Replace invalid characters with '- '
+  // Replace invalid characters with '- '
   name = name.replace(/ [^a- zA- Z0- 9_.- ]/ g, '- ');
-  / / Remove leading/ trailing invalid characters
+  // Remove leading/ trailing invalid characters
   name = name.replace(/ ^[.- ]+ |[.- ]+ $/ g, '');
-  / / Truncate to 40 characters
+  // Truncate to 40 characters
   name = name.substring(0, 40);
   if (name = = = '') {
-    name = 'default- label'; / / Assign a default label if sanitization results in an empty string
+    name = 'default- label'; // Assign a default label if sanitization results in an empty string
   }
   return name;
 }

@@ -22,19 +22,19 @@
  *
  * Google Services:
  * - None
- * /
+ */
 
 /**
  * Perform run operation
- * / / / Main Functions
+ *// / Main Functions
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Executes main process
 
- * /
+ */
 
 function run() {
   const config = {

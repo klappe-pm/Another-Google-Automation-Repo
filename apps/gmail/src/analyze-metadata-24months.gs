@@ -30,18 +30,18 @@
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
-/**  * Main function to extract contact information from Gmail and populate a spreadsheet. * / / *  *  * Calculates the date X months ago from the current date. * @param {number} months - The number of months to subtract from the current date. * @return {string} A formatted date string in the format "yyyy / MM / dd". * / / / Main Functions
+/**  * Main function to extract contact information from Gmail and populate a spreadsheet. *// *  *  * Calculates the date X months ago from the current date. * @param {number} months - The number of months to subtract from the current date. * @return {string} A formatted date string in the format "yyyy / MM / dd". *// / Main Functions
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Gets specific contact list or configuration
  * @returns {string} The requested string
 
- * /
+ */
 
 function getContactList() {
   let sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
@@ -64,25 +64,25 @@ function getContactList() {
           Logger.log("Processing message " + (j + 1) + " in thread " + (i + 1));
 
           let sender = message.getFrom();
-          Logger.log("Sender: " + sender); / / Extract email address;
+          Logger.log("Sender: " + sender); // Extract email address;
           let email = sender.match( / < (. + ) > / );
           if (email && email[1]) {
             email = email[1];
           } else {
             email = sender;
           }
-          Logger.log("Extracted email: " + email); / / Extract name;
+          Logger.log("Extracted email: " + email); // Extract name;
           let name = sender.replace( / < . + > / , '').trim().split(' ');
           let firstName = name[0] || '';
           let lastName = name.slice(1).join(' ') || '';
           Logger.log("Extracted name: " + firstName + " " + lastName);
 
           let date = message.getDate();
-          Logger.log("Message date: " + date); / / Check if the user has responded in this thread;
+          Logger.log("Message date: " + date); // Check if the user has responded in this thread;
           if (message.getFrom().indexOf(Session.getEffectiveUser().getEmail()) ! = = - 1) {
             responded = true;
             Logger.log("User has responded to this thread");
-          } / / Update or add contact to the list
+          } // Update or add contact to the list
           let existingContact = contactList.find(contact = > contact.email = = = email);
           if (existingContact) {
             if (date < existingContact.firstContact) existingContact.firstContact = date;
@@ -146,7 +146,7 @@ function getContactList() {
  * @param {any} months - The months to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 function getDateXMonthsAgo(months) {
   let date = new Date();

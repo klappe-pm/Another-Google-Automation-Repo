@@ -22,15 +22,15 @@
  * Google Services:
  * - Logger: For logging and debugging
  * - PropertiesService: For storing script properties
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Checks conditions or status
 
- * /
+ */
 
 function checkApiKey() {
   const key = PropertiesService.getScriptProperties().getProperty("anton- vs- lappe- api- key");

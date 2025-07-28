@@ -31,44 +31,44 @@
  * - GmailApp: For accessing email messages and labels
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
- * /
+ */
 
 /  / Helper function to calculate average
- / / Helper function to calculate minimum
- / / Helper function to calculate maximum
- / / Helper function to calculate median
+ // Helper function to calculate minimum
+ // Helper function to calculate maximum
+ // Helper function to calculate median
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Analyzes gmail labels and generates insights
  * @returns {number} The calculated value
 
- * /
+ */
 
 function analyzeGmailLabels() {
-  Logger.log('Starting Gmail label analysis...'); / / Fetch all labels;
+  Logger.log('Starting Gmail label analysis...'); // Fetch all labels;
   let labels = GmailApp.getLabels();
-  Logger.log('Fetched ' + labels.length + ' labels.'); / / Initialize an array to hold data for each label;
-  let labelData = []; / / Process each label;
+  Logger.log('Fetched ' + labels.length + ' labels.'); // Initialize an array to hold data for each label;
+  let labelData = []; // Process each label;
   for (let i = 0; i < labels.length; i + + ) {
     let label = labels[i];
     let labelName = label.getName();
-    Logger.log('Processing label: ' + labelName); / / Get all threads in the label;
+    Logger.log('Processing label: ' + labelName); // Get all threads in the label;
     let threads = label.getThreads();
-    Logger.log('Found ' + threads.length + ' threads in label: ' + labelName); / / Initialize counters;
+    Logger.log('Found ' + threads.length + ' threads in label: ' + labelName); // Initialize counters;
     let totalThreads = threads.length;
     let totalMessages = 0;
     let threadsWithAttachments = 0;
     let totalAttachments = 0;
-    let messagesPerThread = []; / / Process each thread;
+    let messagesPerThread = []; // Process each thread;
     for (let j = 0; j < threads.length; j + + ) {
       let thread = threads[j];
       let messages = thread.getMessages();
       let messageCount = messages.length;
       totalMessages + = messageCount;
-      messagesPerThread.push(messageCount); / / Check for attachments;
+      messagesPerThread.push(messageCount); // Check for attachments;
       let hasAttachment = false;
       let attachmentsInThread = 0;
       for (let k = 0; k < messages.length; k + + ) {
@@ -81,11 +81,11 @@ function analyzeGmailLabels() {
       if (hasAttachment) {
         threadsWithAttachments + + ; }
       totalAttachments + = attachmentsInThread;
-    } / / Calculate statistics
+    } // Calculate statistics
     let averageMessages = calculateAverage(messagesPerThread);
     let minMessages = calculateMin(messagesPerThread);
     let maxMessages = calculateMax(messagesPerThread);
-    let medianMessages = calculateMedian(messagesPerThread); / / Collect data for this label;
+    let medianMessages = calculateMedian(messagesPerThread); // Collect data for this label;
     let rowData = [;
       labelName,
       totalThreads,
@@ -96,11 +96,11 @@ function analyzeGmailLabels() {
       medianMessages,
       threadsWithAttachments,
       totalAttachments
-    ]; / / Append data to the array
+    ]; // Append data to the array
     labelData.push(rowData);
 
     Logger.log('Processed label: ' + labelName);
-  } / / Prepare the headers
+  } // Prepare the headers
   let headers = [;
     'Label Name',
     'Total Threads',
@@ -111,7 +111,7 @@ function analyzeGmailLabels() {
     'Median Messages per Thread',
     'Threads with Attachments',
     'Total Attachments'
-  ]; / / Output data to Google Sheet
+  ]; // Output data to Google Sheet
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let sheet = spreadsheet.getSheetByName('LabelStats');
   if (! sheet) {
@@ -133,7 +133,7 @@ function analyzeGmailLabels() {
  * @param {Array} array - Array of elements
  * @returns {number} The calculated value
 
- * /
+ */
 
 function calculateAverage(array) {
   if (array.length = = = 0) return 0;
@@ -148,7 +148,7 @@ function calculateAverage(array) {
  * @param {Array} array - Array of elements
  * @returns {number} The calculated value
 
- * /
+ */
 
 function calculateMedian(array) {
   array.sort(function (a, b) { return a - b; });
@@ -160,7 +160,7 @@ function calculateMedian(array) {
   }
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -169,7 +169,7 @@ function calculateMedian(array) {
  * @param {Array} array - Array of elements
  * @returns {number} The calculated value
 
- * /
+ */
 
 function calculateMax(array) {
   return Math.max.apply(null, array);
@@ -182,7 +182,7 @@ function calculateMax(array) {
  * @param {Array} array - Array of elements
  * @returns {number} The calculated value
 
- * /
+ */
 
 function calculateMin(array) {
   return Math.min.apply(null, array);

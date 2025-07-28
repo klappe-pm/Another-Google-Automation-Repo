@@ -19,9 +19,9 @@
  *
  * Google Services:
  * - DriveApp: For file and folder management
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -30,7 +30,7 @@
  * @param {File} file - The file parameter
  * @param {string|any} yamlValues - The yamlValues parameter
 
- * /
+ */
 
 function addYamlToFile(file, yamlValues) {
   debug(`Starting addYamlToFile function for file: ${file.getName()}`);
@@ -50,17 +50,17 @@ tags:
 
     const updatedContent = yaml + content;
 
-    / / Debugging: Print the updated content to the logs
+    // Debugging: Print the updated content to the logs
     console.log("Updated content for file " + file.getName() + ":\n" + updatedContent);
 
-    / / Attempt to update the file content using the provided snippet approach
+    // Attempt to update the file content using the provided snippet approach
     try {
       file.setContent(updatedContent);
       debug(`Updated content for file: ${file.getName()}`);
     } catch (setContentError) {
       debug(`Error updating content using setContent: ${setContentError.message}`);
 
-      / / If setContent fails, try the alternative approach (if available)
+      // If setContent fails, try the alternative approach (if available)
       try {
         const fileId = file.getId();
         const fileToUpdate = DriveApp.getFileById(fileId);
@@ -68,7 +68,7 @@ tags:
         debug(`Updated content for file (alternative approach): ${file.getName()}`);
       } catch (alternativeUpdateError) {
         debug(`Error updating content using alternative approach: ${alternativeUpdateError.message}`);
-        / / If both approaches fail, throw an error with combined messages
+        // If both approaches fail, throw an error with combined messages
         throw new Error(`Failed to add YAML to file ${file.getName()}: ${setContentError.message}, ${alternativeUpdateError.message}`);
       }
     }

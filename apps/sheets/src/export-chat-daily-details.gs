@@ -40,7 +40,7 @@
  * - ScriptApp: For script management and triggers
  * - SpreadsheetApp: For spreadsheet operations
  * - UrlFetchApp: For HTTP requests to external services
- * /
+ */
 
 Key Features:
 1. Fetches chat data for each day of the previous work week
@@ -48,19 +48,19 @@ Key Features:
 3. Writes detailed analysis results to Google Sheets spreadsheet
 4. Handles API pagination for large datasets
 5. Includes comprehensive error handling and debug logging
-6. Calculates per - person statistics and communication patterns * / /  / Global variable for logging
-let DEBUG = true; / / Function for debug logging;
- / / Main function to analyze chat usage
- / / Function to fetch chat data for a specific date
- / / Function to fetch all chat spaces
- / / Function to fetch messages for a specific space and time range
- / / Function to analyze chat data
- / / Function to write analysis results to the spreadsheet
- / / Function to count emojis in a text
- / / Function to get unique emojis in a text
- / / Function to calculate median wait time between messages
+6. Calculates per - person statistics and communication patterns *//  / Global variable for logging
+let DEBUG = true; // Function for debug logging;
+ // Main function to analyze chat usage
+ // Function to fetch chat data for a specific date
+ // Function to fetch all chat spaces
+ // Function to fetch messages for a specific space and time range
+ // Function to analyze chat data
+ // Function to write analysis results to the spreadsheet
+ // Function to count emojis in a text
+ // Function to get unique emojis in a text
+ // Function to calculate median wait time between messages
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -69,7 +69,7 @@ let DEBUG = true; / / Function for debug logging;
  * @param {Object} chatData - The chatData parameter
  * @returns {any} The result
 
- * /
+ */
 
 function analyzeChat(chatData) {
   let analysis = {
@@ -173,13 +173,13 @@ function analyzeChat(chatData) {
  * Analyzes chat usage and generates insights
  * @returns {any} The result
 
- * /
+ */
 
 function analyzeChatUsage() {
-  debugLog("Starting analyzeChatUsage function"); / / Set up spreadsheet
+  debugLog("Starting analyzeChatUsage function"); // Set up spreadsheet
   let ss = SpreadsheetApp.getActiveSpreadsheet() || SpreadsheetApp.create('Chat facts');
   let sheet = ss.getSheetByName('Chat facts') || ss.insertSheet('Chat facts');
-  debugLog("Spreadsheet and sheet set up"); / / Set up headers
+  debugLog("Spreadsheet and sheet set up"); // Set up headers
   let headers = [;
     "date", "typeChat", "nameChat", "totalPeople", "avgSentencesPerson", "avgWordsPerson",
     "avgCharactersPerson", "avgEmojisPerson", "maxSentencesPerson", "maxWordsPerson",
@@ -195,17 +195,17 @@ function analyzeChatUsage() {
   }
 
   sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
-  debugLog("Headers set up in sheet"); / / Get date range for previous work week
+  debugLog("Headers set up in sheet"); // Get date range for previous work week
   let today = new Date();
   let lastFriday = new Date(today.getTime() - (today.getDay() + 2) * 24 * 60 * 60 * 1000);
   let lastMonday = new Date(lastFriday.getTime() - 4 * 24 * 60 * 60 * 1000);
-  debugLog("Date range set: " + lastMonday.toISOString() + " to " + lastFriday.toISOString()); / / Loop through each day of the previous work week;
+  debugLog("Date range set: " + lastMonday.toISOString() + " to " + lastFriday.toISOString()); // Loop through each day of the previous work week;
   for (let date = new Date(lastMonday); date < = lastFriday; date.setDate(date.getDate() + 1)) {
-    let currentDate = new Date(date); / / New date instance for each iteration;
+    let currentDate = new Date(date); // New date instance for each iteration;
     debugLog("Processing data for " + currentDate.toISOString().split('T')[0]);
 
-    try { / / Fetch chat data for this date
-      let chatData = getChatData(currentDate); / / Only analyze if we have data;
+    try { // Fetch chat data for this date
+      let chatData = getChatData(currentDate); // Only analyze if we have data;
       if (chatData && chatData.messages && chatData.messages.length > 0) {
         debugLog("Chat data fetched successfully. Analyzing...");
         let analysis = analyzeChat(chatData);
@@ -229,7 +229,7 @@ function analyzeChatUsage() {
  * @param {string} messages - The messages parameter
  * @returns {any} The result
 
- * /
+ */
 
 function calculateMedianWaitTime(messages) {
   const waitTimes = [];
@@ -249,7 +249,7 @@ function calculateMedianWaitTime(messages) {
  * @param {string} message - The message content
  * @returns {any} The result
 
- * /
+ */
 
 function debugLog(message) {
   if (DEBUG) {
@@ -266,7 +266,7 @@ function debugLog(message) {
  * @param {any} endTime - The endTime parameter
  * @returns {any} The result
 
- * /
+ */
 
 function fetchMessagesForSpace(spaceName, startTime, endTime) {
   let messages = [];
@@ -274,7 +274,7 @@ function fetchMessagesForSpace(spaceName, startTime, endTime) {
   let pageCount = 0;
 
   do {
-    pageCount + + ; let url = 'https: / / chat.googleapis.com / v1 / ' + spaceName + ' / messages' + '?filter= createTime > = "' + startTime.toISOString() + '" AND createTime < = "' + endTime.toISOString() + '"';
+    pageCount + + ; let url = 'https: // chat.googleapis.com / v1 / ' + spaceName + ' / messages' + '?filter= createTime > = "' + startTime.toISOString() + '" AND createTime < = "' + endTime.toISOString() + '"';
     if (pageToken) url + = '&pageToken= ' + pageToken;
 
     let options = {
@@ -302,7 +302,7 @@ function fetchMessagesForSpace(spaceName, startTime, endTime) {
  * Retrieves spaces from service
  * @returns {any} The result
 
- * /
+ */
 
 function fetchSpaces() {
   let spaces = [];
@@ -310,7 +310,7 @@ function fetchSpaces() {
   let pageCount = 0;
 
   do {
-    pageCount + + ; let url = 'https: / / chat.googleapis.com / v1 / spaces';
+    pageCount + + ; let url = 'https: // chat.googleapis.com / v1 / spaces';
     if (pageToken) url + = '?pageToken= ' + pageToken;
 
     let options = {
@@ -340,7 +340,7 @@ function fetchSpaces() {
  * @param {any} date - The date to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getChatData(date) {
   debugLog("Starting getChatData for " + date.toISOString().split('T')[0]);
@@ -376,7 +376,7 @@ function getChatData(date) {
  * @param {any} analysis - The analysis parameter
  * @returns {any} True if condition is met, false otherwise
 
- * /
+ */
 
 function writeAnalysisToSheet(sheet, date, analysis) {
   let row = [date.toISOString().split('T')[0]];
@@ -389,7 +389,7 @@ function writeAnalysisToSheet(sheet, date, analysis) {
   sheet.appendRow(row);
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -398,7 +398,7 @@ function writeAnalysisToSheet(sheet, date, analysis) {
  * @param {string} text - The text content
  * @returns {any} The total count
 
- * /
+ */
 
 function countEmojis(text) {
   let emojiRegex = / [\u{1F600} - \u{1F64F}\u{1F300} - \u{1F5FF}\u{1F680} - \u{1F6FF}\u{1F1E0} - \u{1F1FF}\u{2600} - \u{26FF}\u{2700} - \u{27BF}] / gu;
@@ -412,7 +412,7 @@ function countEmojis(text) {
  * @param {string} text - The text content
  * @returns {any} The requested any
 
- * /
+ */
 
 function getUniqueEmojis(text) {
   let emojiRegex = / [\u{1F600} - \u{1F64F}\u{1F300} - \u{1F5FF}\u{1F680} - \u{1F6FF}\u{1F1E0} - \u{1F1FF}\u{2600} - \u{26FF}\u{2700} - \u{27BF}] / gu;

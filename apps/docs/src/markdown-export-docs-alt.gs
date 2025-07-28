@@ -34,7 +34,7 @@
  * - DocumentApp: For document manipulation
  * - DriveApp: For file and folder management
  * - Logger: For logging and debugging
- * /
+ */
 
 1. Open Google Apps Script editor (script.google.com);
 2. Create a new project or open existing one
@@ -43,7 +43,7 @@
 5. Run the script and authorize required permissions
 6. Test the script with sample data
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -53,7 +53,7 @@
  * @param {string} content - The content to process
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
@@ -63,7 +63,7 @@
  * @param {string} content - The content to process
  * @returns {any} The result
 
- * /
+ */
 
 function addYamlFrontmatter(metadata, content) {
     let yaml = ' - - - \n';
@@ -85,17 +85,17 @@ function addYamlFrontmatter(metadata, content) {
  * Exports all docs in folder to markdown to external format
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
  * Exports all docs in folder to markdown to external format
  * @returns {any} The result
 
- * /
+ */
 
 function exportAllDocsInFolderToMarkdown() {
-  let sourceFolderId = 'YOUR_SOURCE_FOLDER_ID'; / / Replace with your source folder ID;
+  let sourceFolderId = 'YOUR_SOURCE_FOLDER_ID'; // Replace with your source folder ID;
   let targetFolderName = 'MTDR Map';
 
   let sourceFolder = DriveApp.getFolderById(sourceFolderId);
@@ -107,9 +107,9 @@ function exportAllDocsInFolderToMarkdown() {
     let file = files.next();
     let doc = DocumentApp.openById(file.getId());
     let body = doc.getBody();
-    let metadata = getDocMetadata(doc, file); / / Initialize markdown content;
+    let metadata = getDocMetadata(doc, file); // Initialize markdown content;
     let markdownContent = convertBodyToMarkdown(body);
-    markdownContent = addYamlFrontmatter(metadata, markdownContent); / / Save markdown to a file;
+    markdownContent = addYamlFrontmatter(metadata, markdownContent); // Save markdown to a file;
     saveMarkdownToFile(markdownContent, file.getName(), targetFolder);
   }
   Logger.log("Script completed successfully.");
@@ -123,7 +123,7 @@ function exportAllDocsInFolderToMarkdown() {
  * @param {File} file - The file to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 /**
 
@@ -133,7 +133,7 @@ function exportAllDocsInFolderToMarkdown() {
  * @param {File} file - The file to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getDocMetadata(doc, file) {
   let owner = DriveApp.getFileById(doc.getId()).getOwner().getName();
@@ -161,7 +161,7 @@ function getDocMetadata(doc, file) {
  * @param {string} folderName - The folderName to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 /**
 
@@ -170,7 +170,7 @@ function getDocMetadata(doc, file) {
  * @param {string} folderName - The folderName to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getOrCreateFolder(folderName) {
     let folders = DriveApp.getFoldersByName(folderName);
@@ -188,7 +188,7 @@ function getOrCreateFolder(folderName) {
  * @param {any} element - The element parameter
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
@@ -197,7 +197,7 @@ function getOrCreateFolder(folderName) {
  * @param {any} element - The element parameter
  * @returns {any} The result
 
- * /
+ */
 
 function processElement(element) {
     let markdown = '';
@@ -268,7 +268,7 @@ function processElement(element) {
  * @param {Folder} folder - The folder parameter
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
@@ -279,14 +279,14 @@ function processElement(element) {
  * @param {Folder} folder - The folder parameter
  * @returns {any} The result
 
- * /
+ */
 
 function saveMarkdownToFile(markdownContent, fileName, folder) {
     let file = folder.createFile(fileName + '.md', markdownContent);
     Logger.log('File created: ' + file.getUrl());
   }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -295,7 +295,7 @@ function saveMarkdownToFile(markdownContent, fileName, folder) {
  * @param {string} body - The body content
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
@@ -304,7 +304,7 @@ function saveMarkdownToFile(markdownContent, fileName, folder) {
  * @param {string} body - The body content
  * @returns {any} The result
 
- * /
+ */
 
 function convertBodyToMarkdown(body) {
     let markdown = '';
@@ -313,7 +313,7 @@ function convertBodyToMarkdown(body) {
     for (let i = 0; i < numChildren; i + + ) {
       let element = body.getChild(i);
       markdown + = processElement(element);
-    } / / Ensure no more than one blank line between paragraphs
+    } // Ensure no more than one blank line between paragraphs
     markdown = markdown.replace( / \n{3,} / g, '\n\n');
     return markdown;
   }
@@ -326,7 +326,7 @@ function convertBodyToMarkdown(body) {
  * @param {string} fileName - The fileName parameter
  * @returns {any} The result
 
- * /
+ */
 
 /**
 
@@ -336,7 +336,7 @@ function convertBodyToMarkdown(body) {
  * @param {string} fileName - The fileName parameter
  * @returns {any} The result
 
- * /
+ */
 
 function saveImage(blob, fileName) {
     let folder = getOrCreateFolder('MTDR Map');

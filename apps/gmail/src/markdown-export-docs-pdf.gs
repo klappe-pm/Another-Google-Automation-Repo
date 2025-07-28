@@ -38,7 +38,7 @@
  * - SpreadsheetApp: For spreadsheet operations
  * - UrlFetchApp: For HTTP requests to external services
  * - Utilities: For utility functions and encoding
- * /
+ */
 
 const GmailUtils = {
   eachMessage: function (query, limit, callback) {
@@ -171,9 +171,9 @@ const GmailUtils = {
       return false;
     }
     const domain = email.split('@')[1];
-    let avatar = this.fetchRemoteFile(`https: / / www.gravatar.com / avatar / ${this.md5(email)}?s= 128&d= 404`);
+    let avatar = this.fetchRemoteFile(`https: // www.gravatar.com / avatar / ${this.md5(email)}?s= 128&d= 404`);
     if (! avatar && ['gmail', 'hotmail', 'yahoo'].every((s) = > domain.indexOf(s) = = = - 1)) {
-      avatar = this.fetchRemoteFile(`http: / / ${domain} / apple - touch - icon.png`) || this.fetchRemoteFile(`http: / / ${domain} / apple - touch - icon - precomposed.png`);
+      avatar = this.fetchRemoteFile(`http: // ${domain} / apple - touch - icon.png`) || this.fetchRemoteFile(`http: // ${domain} / apple - touch - icon - precomposed.png`);
     }
     return avatar;
   },
@@ -252,44 +252,44 @@ const GmailUtils = {
     return Utilities.computeDigest(Utilities.DigestAlgorithm.MD5, str);
       .reduce((str, chr) = > str + (chr < 0 ? chr + 256 : chr).toString(16).padStart(2, '0'), '');
   }
-}; / * / / Function to extract display name from the "From" field
-   * / /  / Main function to export emails as PDFs
- / / Helper function to get or create a folder
- / / Helper function to insert data into Google Sheet
+}; / *// Function to extract display name from the "From" field
+   *//  / Main function to export emails as PDFs
+ // Helper function to get or create a folder
+ // Helper function to insert data into Google Sheet
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Exports emails to p d f to external format
  * @returns {string} The formatted string
 
- * /
+ */
 
 function exportEmailsToPDF() {
   try {
-    const labelName = "rebecca - york"; / / Replace with your label or query;
+    const labelName = "rebecca - york"; // Replace with your label or query;
     const rootFolderName = "Lappe vs. Door";
     const pdfFolderName = "pdf - emails";
     const docsToConvertFolderName = "docs to convert";
-    const spreadsheetId = "1lgCbP -  - CvUOY3U06lHi_JiMe1hYqSzfnsOo8a - oyqKI"; / / Replace with your Google Sheet ID;
-    const sheetName = "Inbox"; / / Step 1: Fetch threads with the label;
+    const spreadsheetId = "1lgCbP -  - CvUOY3U06lHi_JiMe1hYqSzfnsOo8a - oyqKI"; // Replace with your Google Sheet ID;
+    const sheetName = "Inbox"; // Step 1: Fetch threads with the label;
     const threads = GmailApp.search(`label:${labelName}`);
     if (threads.length = = = 0) {
       Logger.log(`No emails found with the label "${labelName}".`);
       return;
     }
-    Logger.log(`Found ${threads.length} thread(s) with the label "${labelName}".`); / / Step 2: Get or create the root folder;
+    Logger.log(`Found ${threads.length} thread(s) with the label "${labelName}".`); // Step 2: Get or create the root folder;
     const rootFolder = getOrCreateFolder(rootFolderName);
     const pdfFolder = getOrCreateFolder(pdfFolderName, rootFolder);
     const labelFolder = getOrCreateFolder(labelName, pdfFolder);
     const attachmentsFolder = getOrCreateFolder("attachments", labelFolder);
-    const docsToConvertFolder = getOrCreateFolder(docsToConvertFolderName, rootFolder); / / Step 3: Process each thread;
+    const docsToConvertFolder = getOrCreateFolder(docsToConvertFolderName, rootFolder); // Step 3: Process each thread;
     const emailData = [];
     GmailUtils.eachMessage(`label:${labelName}`, (message) = > {
       Logger.log(`Processing message: ${message.getId()}`);
 
-      const threadSubject = message.getThread().getFirstMessageSubject().replace( / ^(Re:|Fwd:)\s * / i, ''); / / const fromField = message.getFrom(); / / const sender = extractDisplayNameOrEmail(fromField); / / const senderAlias = fromField.match( / < (. * ) > / ); / / const senderAliasValue = senderAlias ? senderAlias[1] : "Unknown Alias";
+      const threadSubject = message.getThread().getFirstMessageSubject().replace( / ^(Re:|Fwd:)\s */ i, ''); // const fromField = message.getFrom(); // const sender = extractDisplayNameOrEmail(fromField); // const senderAlias = fromField.match( / < (. * ) > / ); // const senderAliasValue = senderAlias ? senderAlias[1] : "Unknown Alias";
       const dateReceived = GmailUtils.formatDate(message, "yyyy - MM - dd");
       const timeReceived = GmailUtils.formatDate(message, "HH:mm");
       const body = GmailUtils.messageToHtml([message], {
@@ -305,7 +305,7 @@ function exportEmailsToPDF() {
       const doc = DocumentApp.create(docTitle);
       const bodyElement = doc.getBody();
       bodyElement.appendParagraph(body);
-      doc.saveAndClose(); / / Save the Google Doc in the "Docs to Convert" folder;
+      doc.saveAndClose(); // Save the Google Doc in the "Docs to Convert" folder;
       const docFile = DriveApp.getFileById(doc.getId());
       docsToConvertFolder.addFile(docFile);
       rootFolder.removeFile(docFile);
@@ -318,8 +318,8 @@ function exportEmailsToPDF() {
         embedInlineImages: true,
         embedAvatar: true
       });
-      const pdfLink = labelFolder.createFile(pdfFile.setName(`${docTitle}.pdf`)).getUrl(); / / Updated Gmail link generation;
-        const rfc822MessageId = message.getHeader("Message - ID"); / / Fetch the RFC822 Message ID;
+      const pdfLink = labelFolder.createFile(pdfFile.setName(`${docTitle}.pdf`)).getUrl(); // Updated Gmail link generation;
+        const rfc822MessageId = message.getHeader("Message - ID"); // Fetch the RFC822 Message ID;
         Logger.log(`RFC822 Message ID: ${rfc822MessageId}`);
 
         if (! rfc822MessageId) {
@@ -327,7 +327,7 @@ function exportEmailsToPDF() {
           return;
         }
 
-        const gmailLink = `https: / / mail.google.com / mail / u / 0 / #search / rfc822msgid:${encodeURIComponent(rfc822MessageId)}`;
+        const gmailLink = `https: // mail.google.com / mail / u / 0 / #search / rfc822msgid:${encodeURIComponent(rfc822MessageId)}`;
         Logger.log(`Generated Gmail Link: ${gmailLink}`);
 
       const attachments = message.getAttachments() || [];
@@ -341,7 +341,7 @@ function exportEmailsToPDF() {
         attachmentLinks.push({ name: attachmentFileName, url: attachmentFile.getUrl() });
       });
 
-      emailData.push({ / / sender, / / senderAlias: senderAliasValue,
+      emailData.push({ // sender, // senderAlias: senderAliasValue,
         dateReceived,
         timeReceived,
         subject: threadSubject,
@@ -351,7 +351,7 @@ function exportEmailsToPDF() {
         threadId: message.getThread().getId(),
         emailId: message.getId();
       });
-    }); / / Step 4: Insert data into Google Sheet
+    }); // Step 4: Insert data into Google Sheet
     insertDataIntoSheet(emailData, spreadsheetId, sheetName);
 
     Logger.log("All emails exported as PDFs and data inserted into Google Sheet successfully.");
@@ -367,7 +367,7 @@ function exportEmailsToPDF() {
  * @param {any} fromField - The fromField parameter
  * @returns {string} True if condition is met, false otherwise
 
- * /
+ */
 
 function extractDisplayNameOrEmail(fromField) {
   const match = fromField.match( / ^([^ < ] + ) < / );
@@ -388,11 +388,11 @@ function extractDisplayNameOrEmail(fromField) {
  * @param {string} sheetName - The sheetName parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function insertDataIntoSheet(emailData, spreadsheetId, sheetName) {
   const spreadsheet = SpreadsheetApp.openById(spreadsheetId);
-  let sheet = spreadsheet.getSheetByName(sheetName); / / Create the sheet if it doesn't exist;
+  let sheet = spreadsheet.getSheetByName(sheetName); // Create the sheet if it doesn't exist;
   if (! sheet) {
     sheet = spreadsheet.insertSheet(sheetName);
     Logger.log(`Created new sheet: ${sheetName}`);
@@ -405,7 +405,7 @@ function insertDataIntoSheet(emailData, spreadsheetId, sheetName) {
     "To Reply",
     "Processed",
     "Tasks",
-    "Metadata", / / "Sender", / / "Sender Alias",
+    "Metadata", // "Sender", // "Sender Alias",
     "Date Received",
     "Time Received",
     "Subject",
@@ -417,41 +417,41 @@ function insertDataIntoSheet(emailData, spreadsheetId, sheetName) {
   const maxAttachments = emailData.reduce((max, data) = > Math.max(max, data.attachmentLinks.length), 0);
   for (let i = 1; i < = maxAttachments; i + + ) {
     headers.push(`Attachment Link ${i}`);
-  } / / Ensure headers are present
+  } // Ensure headers are present
   if (sheet.getLastRow() = = = 0) {
     sheet.appendRow(headers);
-  } / / Check for existing email IDs to avoid duplicates
+  } // Check for existing email IDs to avoid duplicates
   const lastRow = sheet.getLastRow();
   const existingEmailIds = lastRow > 1;
     ? sheet.getRange(2, 2, lastRow - 1, 1).getValues().flat();
-    : []; / / Insert data at the top of the sheet
+    : []; // Insert data at the top of the sheet
   emailData.forEach((data) = > {
     if (! existingEmailIds.includes(data.emailId)) {
       const row = [;
         data.threadId,
         data.emailId,
-        false, / / Checkbox for Convert MD
-        false, / / Checkbox for To Reply
-        false, / / Checkbox for Processed
-        "", / / Tasks
-        "", / / Metadata / / data.sender, / / Display name / / data.senderAlias,
+        false, // Checkbox for Convert MD
+        false, // Checkbox for To Reply
+        false, // Checkbox for Processed
+        "", // Tasks
+        "", // Metadata // data.sender, // Display name // data.senderAlias,
         data.dateReceived,
         data.timeReceived,
         data.subject,
-        "", / / Links column is blank
-        `= HYPERLINK("${data.gmailLink}", "Gmail Link")`, / / Gmail Link;
+        "", // Links column is blank
+        `= HYPERLINK("${data.gmailLink}", "Gmail Link")`, // Gmail Link;
         `= HYPERLINK("${data.pdfLink}", "PDF Link")`,
-        "", / / Leave MD Link blank for now
+        "", // Leave MD Link blank for now
         ...data.attachmentLinks.map((link) = > `= HYPERLINK("${link.url}", "${link.name}")`);
       ];
       sheet.insertRowBefore(2);
       sheet.getRange(2, 1, 1, row.length).setValues([row]);
     }
-  }); / / Format the sheet
+  }); // Format the sheet
   const range = sheet.getRange(1, 1, sheet.getLastRow(), sheet.getLastColumn());
   range.setHorizontalAlignment("left");
   sheet.getRange(1, 1, 1, sheet.getLastColumn()).setFontWeight("bold");
-  sheet.setFrozenRows(1); / / Add checkboxes to the "Convert MD", "To Reply", and "Processed" columns;
+  sheet.setFrozenRows(1); // Add checkboxes to the "Convert MD", "To Reply", and "Processed" columns;
   const checkboxRangeConvertMD = sheet.getRange(2, 3, sheet.getLastRow() - 1, 1);
   checkboxRangeConvertMD.insertCheckboxes();
 
@@ -462,7 +462,7 @@ function insertDataIntoSheet(emailData, spreadsheetId, sheetName) {
   checkboxRangeProcessed.insertCheckboxes();
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -472,7 +472,7 @@ function insertDataIntoSheet(emailData, spreadsheetId, sheetName) {
  * @param {Folder} parentFolder - The parentFolder to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 function getOrCreateFolder(folderName, parentFolder) {
   const folders = (parentFolder || DriveApp).getFoldersByName(folderName);

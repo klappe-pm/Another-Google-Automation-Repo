@@ -38,23 +38,23 @@
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
-/ / Main Functions
-
-/**
-
- * Checks conditions or status
- * @returns {string} The formatted string
-
- * /
+// Main Functions
 
 /**
 
  * Checks conditions or status
  * @returns {string} The formatted string
 
- * /
+ */
+
+/**
+
+ * Checks conditions or status
+ * @returns {string} The formatted string
+
+ */
 
 function checkDriveApiAuthorization() {
   if (! Drive.Files) {
@@ -69,7 +69,7 @@ function checkDriveApiAuthorization() {
  * @param {File} filteredFiles - The filteredFiles parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 /**
 
@@ -78,12 +78,12 @@ function checkDriveApiAuthorization() {
  * @param {File} filteredFiles - The filteredFiles parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function checkIfFilesFound(filteredFiles) {
   if (filteredFiles.length = = = 0) {
     Browser.msgBox("No Google Docs found matching the criteria.");
-    throw new Error("No files found."); / / Throw an error to stop execution;
+    throw new Error("No files found."); // Throw an error to stop execution;
   }
 }
 
@@ -94,7 +94,7 @@ function checkIfFilesFound(filteredFiles) {
  * @param {string} ownerEmails - The ownerEmails to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 /**
 
@@ -103,7 +103,7 @@ function checkIfFilesFound(filteredFiles) {
  * @param {string} ownerEmails - The ownerEmails to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 function createOrGetOutputSheet(ownerEmails) {
   let ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -130,24 +130,24 @@ function createOrGetOutputSheet(ownerEmails) {
  * Finds matching and print docs
  * @returns {string} The formatted string
 
- * /
+ */
 
 /**
 
  * Finds matching and print docs
  * @returns {string} The formatted string
 
- * /
+ */
 
 function findAndPrintDocs() {
-  try { / / 1. Prompt for the owner's email addresses
-    let ownerEmails = promptForOwnerEmail(); / / 2. Check if the Drive API is authorized;
-    checkDriveApiAuthorization(); / / 3. Perform separate searches for owned and shared files;
+  try { // 1. Prompt for the owner's email addresses
+    let ownerEmails = promptForOwnerEmail(); // 2. Check if the Drive API is authorized;
+    checkDriveApiAuthorization(); // 3. Perform separate searches for owned and shared files;
     let ownedFiles = searchOwnedFiles(ownerEmails);
-    let sharedFiles = searchSharedFiles(); / / 4. Combine and filter results;
-    let filteredFiles = filterFilesByOwner(ownedFiles.files, sharedFiles.files, ownerEmails); / / 5. Create or get the output spreadsheet;
-    let sheet = createOrGetOutputSheet(ownerEmails); / / 6. Check if any files were found after filtering;
-    checkIfFilesFound(filteredFiles); / / 7. Iterate through the filtered files and output to the spreadsheet;
+    let sharedFiles = searchSharedFiles(); // 4. Combine and filter results;
+    let filteredFiles = filterFilesByOwner(ownedFiles.files, sharedFiles.files, ownerEmails); // 5. Create or get the output spreadsheet;
+    let sheet = createOrGetOutputSheet(ownerEmails); // 6. Check if any files were found after filtering;
+    checkIfFilesFound(filteredFiles); // 7. Iterate through the filtered files and output to the spreadsheet;
     printResultsToSheet(filteredFiles, sheet);
 
     Browser.msgBox("Results have been printed to the sheet: " + sheet.getName());
@@ -166,7 +166,7 @@ function findAndPrintDocs() {
  * @param {Sheet} sheet - The sheet parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 /**
 
@@ -176,7 +176,7 @@ function findAndPrintDocs() {
  * @param {Sheet} sheet - The sheet parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function printResultsToSheet(filteredFiles, sheet) {
   for (let i = 0; i < filteredFiles.length; i + + ) {
@@ -206,24 +206,24 @@ function printResultsToSheet(filteredFiles, sheet) {
  * Performs specialized operations
  * @returns {string} The formatted string
 
- * /
+ */
 
 /**
 
  * Performs specialized operations
  * @returns {string} The formatted string
 
- * /
+ */
 
 function promptForOwnerEmail() {
-  let ownerEmailsInput = Browser.inputBox("Enter the owner's email addresses (comma - separated):"); / / Validate and split email input;
+  let ownerEmailsInput = Browser.inputBox("Enter the owner's email addresses (comma - separated):"); // Validate and split email input;
   if (! ownerEmailsInput) {
     throw new Error("Please enter at least one email address.");
   }
 
   let ownerEmails = ownerEmailsInput.split(",").map(function (email) {
     return email.trim();
-  }); / / Validate each email
+  }); // Validate each email
   for (let i = 0; i < ownerEmails.length; i + + ) {
     if (! ownerEmails[i].includes("@")) {
       throw new Error("Please enter valid email addresses, separated by commas.");
@@ -240,7 +240,7 @@ function promptForOwnerEmail() {
  * @param {string} ownerEmails - The ownerEmails parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 /**
 
@@ -249,9 +249,9 @@ function promptForOwnerEmail() {
  * @param {string} ownerEmails - The ownerEmails parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
-function searchOwnedFiles(ownerEmails) { / / Construct the query to search for files owned by any of the provided emails
+function searchOwnedFiles(ownerEmails) { // Construct the query to search for files owned by any of the provided emails
   let queryParts = ownerEmails.map(function (email) {
     return "'" + email + "' in owners";
   });
@@ -275,16 +275,16 @@ function searchOwnedFiles(ownerEmails) { / / Construct the query to search for f
  * Searches for specific shared files
  * @returns {string} The formatted string
 
- * /
+ */
 
 /**
 
  * Searches for specific shared files
  * @returns {string} The formatted string
 
- * /
+ */
 
-function searchSharedFiles() { / / Use 'sharedWithMe' to find files shared with the user
+function searchSharedFiles() { // Use 'sharedWithMe' to find files shared with the user
   let query = "mimeType = 'application / vnd.google - apps.document' and sharedWithMe";
   Logger.log("Drive API Query (shared files):", query);
 
@@ -292,7 +292,7 @@ function searchSharedFiles() { / / Use 'sharedWithMe' to find files shared with 
     let files = Drive.Files.list({
       q: query,
       fields: "nextPageToken, files(id, name, owners, webViewLink, createdTime, modifiedTime)"
-    }); / / Log the raw API response for deeper inspection if needed
+    }); // Log the raw API response for deeper inspection if needed
     Logger.log("Raw API Response (shared files):", files);
 
     if (files.error) {
@@ -300,13 +300,13 @@ function searchSharedFiles() { / / Use 'sharedWithMe' to find files shared with 
     }
 
     return files;
-  } catch (error) { / / Handle potential errors during the API call itself
+  } catch (error) { // Handle potential errors during the API call itself
     console.error("Error while searching for shared files:", error);
-    throw error; / / Re - throw the error to be handled by the main try...catch;
+    throw error; // Re - throw the error to be handled by the main try...catch;
   }
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -317,7 +317,7 @@ function searchSharedFiles() { / / Use 'sharedWithMe' to find files shared with 
  * @param {string} ownerEmails - The ownerEmails parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 /**
 
@@ -328,7 +328,7 @@ function searchSharedFiles() { / / Use 'sharedWithMe' to find files shared with 
  * @param {string} ownerEmails - The ownerEmails parameter
  * @returns {string} The formatted string
 
- * /
+ */
 
 function filterFilesByOwner(ownedFiles, sharedFiles, ownerEmails) {
   let allFiles = ownedFiles.concat(sharedFiles);
@@ -346,7 +346,7 @@ function filterFilesByOwner(ownedFiles, sharedFiles, ownerEmails) {
  * @param {string} text - The text content
  * @returns {string} The requested string
 
- * /
+ */
 
 /**
 
@@ -355,7 +355,7 @@ function filterFilesByOwner(ownedFiles, sharedFiles, ownerEmails) {
  * @param {string} text - The text content
  * @returns {string} The requested string
 
- * /
+ */
 
 function getCharacterCount(text) {
   return text.length;
@@ -368,7 +368,7 @@ function getCharacterCount(text) {
  * @param {string} text - The text content
  * @returns {string} The requested string
 
- * /
+ */
 
 /**
 
@@ -377,7 +377,7 @@ function getCharacterCount(text) {
  * @param {string} text - The text content
  * @returns {string} The requested string
 
- * /
+ */
 
 function getWordCount(text) {
   return text.split( / \s +  / ).filter(function (word) { return word ! = = ""; }).length;

@@ -37,7 +37,7 @@
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
 1. Open Google Apps Script editor (script.google.com);
 2. Create a new project or open existing one
@@ -48,14 +48,14 @@
 7. Refresh the document to see custom menus
 8. Test the script with sample data
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Creates new markdown files for todays events or resources
  * @returns {any} The newly created any
 
- * /
+ */
 
 function createMarkdownFilesForTodaysEvents() {
   try {
@@ -64,28 +64,28 @@ function createMarkdownFilesForTodaysEvents() {
     const today = new Date();
     const todayFormatted = Utilities.formatDate(today, Session.getScriptTimeZone(), 'yyyy - MM - dd');
     const startOfDay = new Date(today.setHours(0, 0, 0, 0));
-    const endOfDay = new Date(today.setHours(23, 59, 59, 999)); / / Get today's events;
+    const endOfDay = new Date(today.setHours(23, 59, 59, 999)); // Get today's events;
     const events = CalendarApp.getCalendarById(calendarId).getEvents(startOfDay, endOfDay);
-    Logger.log(`${events.length} events found.`); / / Process each event and create a markdown file;
+    Logger.log(`${events.length} events found.`); // Process each event and create a markdown file;
     events.forEach((event) = > {
       const title = event.getTitle();
       const meetingDate = Utilities.formatDate(event.getStartTime(), Session.getScriptTimeZone(), 'yyyy - MM - dd');
       const ownerEmail = event.getCreators().join(", ");
       const meetingStart = Utilities.formatDate(event.getStartTime(), Session.getScriptTimeZone(), 'HH:mm');
       const meetingEnd = Utilities.formatDate(event.getEndTime(), Session.getScriptTimeZone(), 'HH:mm');
-      const meetingDuration = (event.getEndTime() - event.getStartTime()) / (1000 * 60); / / Duration in minutes;
+      const meetingDuration = (event.getEndTime() - event.getStartTime()) / (1000 * 60); // Duration in minutes;
 
       const eventViewUrl = getEventViewUrl(event, calendarId);
       const isMyMeeting = isOwnedByMe(event);
       const description = event.getDescription() || 'No description';
-      const isRecurring = event.isRecurringEvent(); / / Collect accepted attendees;
+      const isRecurring = event.isRecurringEvent(); // Collect accepted attendees;
       const attendees = event.getGuestList();
       const acceptedAttendees = attendees.filter(att = > att.getResponseStatus() = = = 'accepted').map(att = > att.getEmail());
-      const sortedAttendees = acceptedAttendees.sort().map(att = > ` - [[${att}]]`).join('\n'); / / Count the number of attendees with different response statuses;
+      const sortedAttendees = acceptedAttendees.sort().map(att = > ` - [[${att}]]`).join('\n'); // Count the number of attendees with different response statuses;
       const countAttendeesYes = acceptedAttendees.length;
       const countAttendeesNo = attendees.filter(att = > att.getResponseStatus() = = = 'declined').length;
       const countAttendeesMaybe = attendees.filter(att = > att.getResponseStatus() = = = 'tentative').length;
-      const countAttendeesNoResponse = attendees.filter(att = > att.getResponseStatus() = = = 'needsAction').length; / / YAML front matter;
+      const countAttendeesNoResponse = attendees.filter(att = > att.getResponseStatus() = = = 'needsAction').length; // YAML front matter;
       const yamlContent = ` - - - category: meetings;
       meetingTitle: ${title}
       meetingDate: ${meetingDate}
@@ -101,15 +101,15 @@ function createMarkdownFilesForTodaysEvents() {
       countAttendeesMaybe: ${countAttendeesMaybe}
       countAttendeesNoResponse: ${countAttendeesNoResponse}
       aliases:
-      tags: - - - `; / / Markdown content
+      tags: - - - `; // Markdown content
       const markdownContent = `${yamlContent}
 
 
       #### Todos - #### Attendees
       ${sortedAttendees}
-      `; / / Get or create the "Daily Notes / yyyy - {week number}" folder
+      `; // Get or create the "Daily Notes / yyyy - {week number}" folder
       const dailyNotesFolder = createOrGetDailyNotesFolder();
-      const fileName = `${meetingDate} - ${title.replace( / [^\w\s] / gi, '')}.md`; / / Create the markdown file in the folder;
+      const fileName = `${meetingDate} - ${title.replace( / [^\w\s] / gi, '')}.md`; // Create the markdown file in the folder;
       const file = dailyNotesFolder.createFile(fileName, markdownContent, MimeType.PLAIN_TEXT);
       Logger.log(`Created file: ${file.getName()}`);
       });
@@ -124,7 +124,7 @@ function createMarkdownFilesForTodaysEvents() {
  * Gets specific create or daily notes folder or configuration
  * @returns {any} The requested any
 
- * /
+ */
 
 function createOrGetDailyNotesFolder() {
     const todayDate = new Date();
@@ -141,7 +141,7 @@ function createOrGetDailyNotesFolder() {
  * @param {string} path - The file path
  * @returns {any} The requested any
 
- * /
+ */
 
 function getOrCreateFolderPath(path) {
     const folders = path.split(' / ');
@@ -163,7 +163,7 @@ function getOrCreateFolderPath(path) {
  * Manages files and folders
  * @returns {any} The result
 
- * /
+ */
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
@@ -172,7 +172,7 @@ function onOpen() {
   .addToUi();
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -182,11 +182,11 @@ function onOpen() {
  * @param {string} calendarId - The calendarId to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getEventViewUrl(event, calendarId) {
     const splitEventId = event.getId().split('@');
-    return "https: / / www.google.com / calendar / event?eid = " + Utilities.base64Encode(splitEventId[0] + " " + calendarId).replace(" = = ", '');
+    return "https: // www.google.com / calendar / event?eid = " + Utilities.base64Encode(splitEventId[0] + " " + calendarId).replace(" = = ", '');
   }
 
 /**
@@ -196,7 +196,7 @@ function getEventViewUrl(event, calendarId) {
  * @param {any} d - The d to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getWeekNumber(d) {
     const startOfYear = new Date(d.getFullYear(), 0, 1);
@@ -212,7 +212,7 @@ function getWeekNumber(d) {
  * @param {CalendarEvent} event - The event parameter
  * @returns {any} True if condition is met, false otherwise
 
- * /
+ */
 
 function isOwnedByMe(event) {
     const ownerEmail = event.getCreators().join(", ");

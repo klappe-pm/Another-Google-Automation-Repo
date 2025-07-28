@@ -21,16 +21,16 @@
  *
  * Google Services:
  * - SpreadsheetApp: For spreadsheet operations
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Works with spreadsheet data
  * @returns {any} The result
 
- * /
+ */
 
 function onOpen() {
   let ui = SpreadsheetApp.getUi();
@@ -44,7 +44,7 @@ function onOpen() {
  * Sorts and orders sheets alphabetically
  * @returns {any} The result
 
- * /
+ */
 
 function sortSheetsAlphabetically() {
   try {
@@ -58,7 +58,7 @@ function sortSheetsAlphabetically() {
       "requirements": null
     };
 
-    / / Collect all sheets and identify fixed sheets (case- insensitive)
+    // Collect all sheets and identify fixed sheets (case- insensitive)
     for (let i = 0; i < sheets.length; i+ + ) {
       let sheetName = sheets[i].getName();
       let sheetNameLower = sheetName.toLowerCase();
@@ -72,12 +72,12 @@ function sortSheetsAlphabetically() {
       }
     }
 
-    / / Sort non- fixed sheets alphabetically
+    // Sort non- fixed sheets alphabetically
     sheetInfo.sort(function(a, b) {
       return a.name.localeCompare(b.name);
     });
 
-    / / Move fixed sheets to positions 1- 4
+    // Move fixed sheets to positions 1- 4
     let fixedOrder = [
       { name: "gmail labels", position: 1 },
       { name: "labels to process", position: 2 },
@@ -96,7 +96,7 @@ function sortSheetsAlphabetically() {
       }
     });
 
-    / / Notify user of missing fixed sheets
+    // Notify user of missing fixed sheets
     if (missingSheets.length > 0) {
       SpreadsheetApp.getUi().alert(
         'Missing Sheets',
@@ -106,7 +106,7 @@ function sortSheetsAlphabetically() {
       );
     }
 
-    / / Move sorted sheets starting at position 5
+    // Move sorted sheets starting at position 5
     for (let i = 0; i < sheetInfo.length; i+ + ) {
       spreadsheet.setActiveSheet(sheetInfo[i].sheet);
       spreadsheet.moveActiveSheet(i + 5);

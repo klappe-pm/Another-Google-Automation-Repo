@@ -21,15 +21,13 @@
  *
  * Google Services:
  * - GmailApp: For accessing email messages and labels
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
-
  * Reads mark all emails as from source
-
- * /
+ */
 
 function markAllEmailsAsRead() {
   let threads = GmailApp.getInboxThreads();

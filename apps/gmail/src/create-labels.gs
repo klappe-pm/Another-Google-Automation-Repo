@@ -36,14 +36,14 @@
  * - Logger: For logging and debugging
  * - PropertiesService: For storing script properties
  * - Utilities: For utility functions and encoding
- * /
+ */
 
 /  / Function to retrieve the last processed month
- / / Function to set the last processed month
- / / Function to apply labels based on sender name
- / / Existing labeling functions remain unchanged
+ // Function to set the last processed month
+ // Function to apply labels based on sender name
+ // Existing labeling functions remain unchanged
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -52,7 +52,7 @@
  * @param {GmailThread} thread - The thread parameter
  * @returns {Object} The result object
 
- * /
+ */
 
 function applySenderLabels(thread) {
   let messages = thread.getMessages();
@@ -80,7 +80,7 @@ function applySenderLabels(thread) {
  * Gets specific last processed month or configuration
  * @returns {Object} The requested object
 
- * /
+ */
 
 function getLastProcessedMonth() {
   let properties = PropertiesService.getUserProperties();
@@ -99,7 +99,7 @@ function getLastProcessedMonth() {
  * @param {string} labelName - The labelName to retrieve
  * @returns {Object} The requested object
 
- * /
+ */
 
 function getOrCreateLabel(labelName) {
   if (! isValidLabelName(labelName)) {
@@ -130,20 +130,20 @@ function getOrCreateLabel(labelName) {
  * Processes and transforms gmail emails
  * @returns {Object} The result object
 
- * /
+ */
 
-function processGmailEmails() { / / Retrieve the last processed month
-  let lastProcessedMonth = getLastProcessedMonth(); / / Directly set the start and end dates for processing / / UPDATE_DATES_HERE;
-  let startDate = new Date('2024 - 02 - 01'); / / Set your start date here;
-  let endDate = new Date('2024 - 02 - 29'); / / Set your end date here / / Ensure dates are set to the beginning and end of the day;
+function processGmailEmails() { // Retrieve the last processed month
+  let lastProcessedMonth = getLastProcessedMonth(); // Directly set the start and end dates for processing // UPDATE_DATES_HERE;
+  let startDate = new Date('2024 - 02 - 01'); // Set your start date here;
+  let endDate = new Date('2024 - 02 - 29'); // Set your end date here // Ensure dates are set to the beginning and end of the day;
   startDate.setHours(0, 0, 0, 0);
-  endDate.setHours(23, 59, 59, 999); / / Generate date range query;
+  endDate.setHours(23, 59, 59, 999); // Generate date range query;
   let query = `after:${Utilities.formatDate(startDate, Session.getTimeZone(), 'yyyy / MM / dd')} before:${Utilities.formatDate(endDate, Session.getTimeZone(), 'yyyy / MM / dd')} - in:spam - in:trash`;
 
   let threads = GmailApp.search(query);
 
   for (let i = 0; i < threads.length; i + + ) {
-    let thread = threads[i]; / / Process the thread by applying labels based on sender name;
+    let thread = threads[i]; // Process the thread by applying labels based on sender name;
     applySenderLabels(thread);
   }
 }
@@ -155,14 +155,14 @@ function processGmailEmails() { / / Retrieve the last processed month
  * @param {any} monthDate - The monthDate to set
  * @returns {Object} The result object
 
- * /
+ */
 
 function setLastProcessedMonth(monthDate) {
   let properties = PropertiesService.getUserProperties();
   properties.setProperty('lastProcessedMonth', Utilities.formatDate(monthDate, Session.getTimeZone(), 'yyyy - MM'));
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -171,9 +171,9 @@ function setLastProcessedMonth(monthDate) {
  * @param {any} from - The from parameter
  * @returns {Object} The result object
 
- * /
+ */
 
-function extractAndSanitizeSender(from) { / / Extract the sender's name from the 'From' field
+function extractAndSanitizeSender(from) { // Extract the sender's name from the 'From' field
   let nameMatch = from.match( / ^. * ?(?= < ) / );
   let senderName = nameMatch ? nameMatch[0].trim() : from;
   return sanitizeLabelName(senderName);
@@ -186,7 +186,7 @@ function extractAndSanitizeSender(from) { / / Extract the sender's name from the
  * @param {string} name - The name to use
  * @returns {Object} True if condition is met, false otherwise
 
- * /
+ */
 
 function isValidLabelName(name) {
   if (name.length > 40) {
@@ -207,14 +207,14 @@ function isValidLabelName(name) {
  * @param {string} name - The name to use
  * @returns {Object} The result object
 
- * /
+ */
 
-function sanitizeLabelName(name) { / / Replace invalid characters with ' - '
-  name = name.replace( / [^a - zA - Z0 - 9_. - ] / g, ' - '); / / Remove leading / trailing invalid characters;
-  name = name.replace( / ^[. - ] + |[. - ] + $ / g, ''); / / Truncate to 40 characters;
+function sanitizeLabelName(name) { // Replace invalid characters with ' - '
+  name = name.replace( / [^a - zA - Z0 - 9_. - ] / g, ' - '); // Remove leading / trailing invalid characters;
+  name = name.replace( / ^[. - ] + |[. - ] + $ / g, ''); // Truncate to 40 characters;
   name = name.substring(0, 40);
   if (name = = = '') {
-    name = 'default - label'; / / Assign a default label if sanitization results in an empty string;
+    name = 'default - label'; // Assign a default label if sanitization results in an empty string;
   }
   return name;
 }

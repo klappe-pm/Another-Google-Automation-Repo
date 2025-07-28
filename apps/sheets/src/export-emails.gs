@@ -58,22 +58,22 @@
  * - SpreadsheetApp: For spreadsheet operations
  * - UrlFetchApp: For HTTP requests to external services
  * - Utilities: For utility functions and encoding
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Exports all calendar events to external format
  * @returns {any} The result
 
- * /
+ */
 
 function exportAllCalendarEvents() {
   Logger.log("🚀 Starting script execution...");
 
-  const MAX_RUNTIME = 255000; / / 4 minutes 15 seconds
-  const SAVE_INTERVAL = 20000; / / Save every 20 seconds
+  const MAX_RUNTIME = 255000; // 4 minutes 15 seconds
+  const SAVE_INTERVAL = 20000; // Save every 20 seconds
   const startTime = new Date().getTime();
   let lastSaveTime = startTime;
 
@@ -162,13 +162,13 @@ function exportAllCalendarEvents() {
  * @param {number} timeMax - The timeMax parameter
  * @returns {any} The result
 
- * /
+ */
 
 function fetchCalendarEvents(calendar, timeMin, timeMax) {
   const options = { timeMin, timeMax, singleEvents: true, orderBy: "startTime", fields: "items(id, start, end, summary, location)" };
   try {
     const events = Calendar.Events.list(calendar.getId(), options).items || [];
-    Utilities.sleep(1000); / / Prevent API rate limits
+    Utilities.sleep(1000); // Prevent API rate limits
     return events;
   } catch (error) {
     logError(`Error fetching events for calendar '${calendar.getName()}': ${error.message}`);
@@ -184,12 +184,12 @@ function fetchCalendarEvents(calendar, timeMin, timeMax) {
  * @param {any} address - The address parameter
  * @returns {any} The result
 
- * /
+ */
 
 function geocodeAddress(apiKey, address) {
   if (! address.trim()) return null;
   try {
-    const url = `https:/ / maps.googleapis.com/ maps/ api/ geocode/ json?address= ${encodeURIComponent(address)}&key= ${apiKey}`;
+    const url = `https:// maps.googleapis.com/ maps/ api/ geocode/ json?address= ${encodeURIComponent(address)}&key= ${apiKey}`;
     const response = UrlFetchApp.fetch(url);
     const json = JSON.parse(response.getContentText());
     if (json.status ! = = "OK") throw new Error(json.error_message || "Unknown error");
@@ -205,7 +205,7 @@ function geocodeAddress(apiKey, address) {
  * Gets specific destination locations or configuration
  * @returns {any} The requested any
 
- * /
+ */
 
 function getDestinationLocations() {
   const destinationsProperty = getScriptProperty('DESTINATION_LOCATIONS');
@@ -226,11 +226,11 @@ function getDestinationLocations() {
  * Gets specific fixed departure time or configuration
  * @returns {any} The requested any
 
- * /
+ */
 
 function getFixedDepartureTime() {
   const fixedDepartureTime = new Date();
-  fixedDepartureTime.setHours(10, 0, 0, 0); / / 10:00:00.000 local time
+  fixedDepartureTime.setHours(10, 0, 0, 0); // 10:00:00.000 local time
   if (new Date() > fixedDepartureTime) {
     fixedDepartureTime.setDate(fixedDepartureTime.getDate() + 1);
   }
@@ -242,7 +242,7 @@ function getFixedDepartureTime() {
  * Gets specific headers or configuration
  * @returns {any} The requested any
 
- * /
+ */
 
 function getHeaders() {
   const destinationsProperty = getScriptProperty('DESTINATION_LOCATIONS');
@@ -265,7 +265,7 @@ function getHeaders() {
  * @param {any} departureTime - The departureTime to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getRouteInfo(apiKey, origin, destination, departureTime) {
   if (! origin?.geometry?.location || ! destination?.geometry?.location) {
@@ -278,7 +278,7 @@ function getRouteInfo(apiKey, origin, destination, departureTime) {
   }
   try {
     Logger.log(`🧭 Calculating route from ${origin.formatted_address} to ${destination.formatted_address} at ${departureTime}`);
-    const url = "https:/ / routes.googleapis.com/ directions/ v2:computeRoutes";
+    const url = "https:// routes.googleapis.com/ directions/ v2:computeRoutes";
     const payload = {
       origin: { location: { latLng: { latitude: origin.geometry.location.lat, longitude: origin.geometry.location.lng } } },
       destination: { location: { latLng: { latitude: destination.geometry.location.lat, longitude: destination.geometry.location.lng } } },
@@ -299,7 +299,7 @@ function getRouteInfo(apiKey, origin, destination, departureTime) {
       muteHttpExceptions: true
     };
     const response = UrlFetchApp.fetch(url, options);
-    Utilities.sleep(1000); / / Prevent API rate limits
+    Utilities.sleep(1000); // Prevent API rate limits
     const responseText = response.getContentText();
     if (response.getResponseCode() ! = = 200) {
       logError(`⚠️ API Error: ${response.getResponseCode()} - ${responseText}`);
@@ -345,7 +345,7 @@ function getRouteInfo(apiKey, origin, destination, departureTime) {
  * Gets specific sheet name or configuration
  * @returns {any} The requested any
 
- * /
+ */
 
 function getSheetName() {
   const today = new Date();
@@ -359,7 +359,7 @@ function getSheetName() {
  * @param {string} sheetName - The sheetName parameter
  * @returns {any} The result
 
- * /
+ */
 
 function initializeSheet(sheetName) {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -381,7 +381,7 @@ function initializeSheet(sheetName) {
     resetProgressTracking();
   }
 
-  / / Check if the sheet was successfully created or retrieved
+  // Check if the sheet was successfully created or retrieved
   if (! sheet) {
     logError(`Failed to create or retrieve the sheet: '${sheetName}'`);
     return;
@@ -403,7 +403,7 @@ function initializeSheet(sheetName) {
  * @param {string} message - The message content
  * @returns {any} The result
 
- * /
+ */
 
 function logError(message) {
   Logger.log(`❌ ERROR: ${message}`);
@@ -425,7 +425,7 @@ function logError(message) {
  * @param {string} API_KEY - The API_KEY parameter
  * @returns {any} The result
 
- * /
+ */
 
 function processEvent(event, destinationLocations, API_KEY) {
   const eventDate = new Date(event.start?.dateTime || event.start?.date);
@@ -467,7 +467,7 @@ function processEvent(event, destinationLocations, API_KEY) {
  * Sets re progress tracking or configuration values
  * @returns {any} The result
 
- * /
+ */
 
 function resetProgressTracking() {
   PropertiesService.getScriptProperties().setProperty('IS_PROCESSING', 'false');
@@ -482,7 +482,7 @@ function resetProgressTracking() {
  * @param {Object} data - The data object to process
  * @returns {any} The result
 
- * /
+ */
 
 function saveDataToSheet(spreadsheet, sheetName, data) {
   if (data.length = = = 0) return;
@@ -508,7 +508,7 @@ function saveDataToSheet(spreadsheet, sheetName, data) {
  * @param {string} processedEventIDs - The processedEventIDs parameter
  * @returns {any} The result
 
- * /
+ */
 
 function saveProgress(calendarIndex, eventIndex, processedEventIDs) {
   PropertiesService.getScriptProperties().setProperty('LAST_CALENDAR_INDEX', calendarIndex.toString());
@@ -521,7 +521,7 @@ function saveProgress(calendarIndex, eventIndex, processedEventIDs) {
  * Performs specialized operations
  * @returns {any} The result
 
- * /
+ */
 
 function scheduleRestart() {
   Logger.log("⏰ MAX RUNTIME REACHED: Please manually run the script again to continue processing.");
@@ -537,7 +537,7 @@ function scheduleRestart() {
  * @param {any} lastSaveTime - The lastSaveTime parameter
  * @returns {any} The result
 
- * /
+ */
 
 function shouldSaveProgress(startTime, lastSaveTime) {
   const currentTime = new Date().getTime();
@@ -549,7 +549,7 @@ function shouldSaveProgress(startTime, lastSaveTime) {
   return currentTime - lastSaveTime > SAVE_INTERVAL;
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -559,7 +559,7 @@ function shouldSaveProgress(startTime, lastSaveTime) {
  * @param {any} loc2 - The loc2 parameter
  * @returns {any} The result
 
- * /
+ */
 
 function areLocationsEqual(loc1, loc2) {
   return loc1.lat = = = loc2.lat && loc1.lng = = = loc2.lng;
@@ -570,7 +570,7 @@ function areLocationsEqual(loc1, loc2) {
  * Gets specific date range or configuration
  * @returns {any} The requested any
 
- * /
+ */
 
 function getDateRange() {
   const startDate = new Date('2023- 10- 01T00:00:00Z');
@@ -586,7 +586,7 @@ function getDateRange() {
  * @param {any} date - The date to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getDayOfWeek(date) { return date.getUTCDay() || 7; }
 
@@ -597,7 +597,7 @@ function getDayOfWeek(date) { return date.getUTCDay() || 7; }
  * @param {any} date - The date to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getDayOfYear(date) { return Math.floor((date - new Date(date.getUTCFullYear(), 0, 1)) / 86400000) + 1; }
 
@@ -608,7 +608,7 @@ function getDayOfYear(date) { return Math.floor((date - new Date(date.getUTCFull
  * @param {any} date - The date to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getQuarter(date) { return Math.floor(date.getUTCMonth() / 3) + 1; }
 
@@ -619,7 +619,7 @@ function getQuarter(date) { return Math.floor(date.getUTCMonth() / 3) + 1; }
  * @param {string} key - The key to look up
  * @returns {any} The requested any
 
- * /
+ */
 
 function getScriptProperty(key) {
   return PropertiesService.getScriptProperties().getProperty(key);
@@ -630,7 +630,7 @@ function getScriptProperty(key) {
  * Gets specific target calendars or configuration
  * @returns {any} The requested any
 
- * /
+ */
 
 function getTargetCalendars() {
   const targetCalendarNames = ["Kevin's Calendar", "Kevin's mTBI Calendar", "Kevin mTBI Calendar", "Kevin Calendar"];
@@ -646,7 +646,7 @@ function getTargetCalendars() {
  * @param {any} date - The date to retrieve
  * @returns {any} The requested any
 
- * /
+ */
 
 function getWeekNumber(date) { return Math.ceil(((date - new Date(date.getUTCFullYear(), 0, 1)) / 86400000 + 1) / 7); }
 
@@ -658,10 +658,10 @@ function getWeekNumber(date) { return Math.ceil(((date - new Date(date.getUTCFul
  * @param {any} loc2 - The loc2 parameter
  * @returns {any} True if condition is met, false otherwise
 
- * /
+ */
 
 function isSameLocationApproximate(loc1, loc2) {
-  const R = 6371e3; / / Earth radius in meters
+  const R = 6371e3; // Earth radius in meters
   const φ1 = loc1.lat * Math.PI/ 180;
   const φ2 = loc2.lat * Math.PI/ 180;
   const Δφ = (loc2.lat - loc1.lat) * Math.PI/ 180;

@@ -29,11 +29,11 @@
  * Google Services:
  * - GmailApp: For accessing email messages and labels
  * - Logger: For logging and debugging
- * /
+ */
 
-const MAX_THREADS = 100; / / Maximum number of threads to process;
+const MAX_THREADS = 100; // Maximum number of threads to process;
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -42,39 +42,39 @@ const MAX_THREADS = 100; / / Maximum number of threads to process;
  * @param {number} maxThreads - The maxThreads to retrieve
  * @returns {Array} The requested array
 
- * /
+ */
 
 function getGmailStats(maxThreads = MAX_THREADS) {
-  try { / / Retrieve inbox threads
+  try { // Retrieve inbox threads
     const threads = GmailApp.getInboxThreads(0, maxThreads);
     if (! threads || threads.length = = = 0) {
       Logger.log("No threads found in inbox.");
       return;
-    } / / Initialize statistics object
+    } // Initialize statistics object
     let emailStats = {
       totalThreads: 0,
       totalMessages: 0,
       senders: {},
       labels: {},
       recentSubjects: [],
-    }; / / Process each thread
+    }; // Process each thread
     threads.forEach(thread = > {
       emailStats.totalThreads + + ; const messages = thread.getMessages();
       emailStats.totalMessages + = messages.length;
 
-      messages.forEach(message = > { / / Extract sender email address;
+      messages.forEach(message = > { // Extract sender email address;
         const sender = extractEmailAddress(message.getFrom());
         const subject = message.getSubject() || "(No Subject)";
-        const labels = thread.getLabels().map(label = > label.getName()); / / Track sender frequency;
-        emailStats.senders[sender] = (emailStats.senders[sender] || 0) + 1; / / Track label frequency;
+        const labels = thread.getLabels().map(label = > label.getName()); // Track sender frequency;
+        emailStats.senders[sender] = (emailStats.senders[sender] || 0) + 1; // Track label frequency;
         labels.forEach(label = > {
           emailStats.labels[label] = (emailStats.labels[label] || 0) + 1;
-        }); / / Track recent subjects (avoid duplicates)
+        }); // Track recent subjects (avoid duplicates)
         if (emailStats.recentSubjects.length < MAX_TOP_ITEMS && ! emailStats.recentSubjects.includes(subject)) {
           emailStats.recentSubjects.push(subject);
         }
       });
-    }); / / Log the collected statistics
+    }); // Log the collected statistics
     logStats(emailStats);
   } catch (error) {
     Logger.log(`Error in getGmailStats: ${error.message}`);
@@ -88,13 +88,13 @@ function getGmailStats(maxThreads = MAX_THREADS) {
  * @param {string} emailStats - The emailStats parameter
  * @returns {Array} Array of results
 
- * /
+ */
 
 function logStats(emailStats) {
   try {
     Logger.log("Gmail Statistics Summary:");
     Logger.log(`Total Threads: ${emailStats.totalThreads}`);
-    Logger.log(`Total Messages: ${emailStats.totalMessages}`); / / Log top senders;
+    Logger.log(`Total Messages: ${emailStats.totalMessages}`); // Log top senders;
     Logger.log("\nTop Senders:");
     const sortedSenders = Object.entries(emailStats.senders);
       .sort(([, a], [, b]) = > b - a);
@@ -105,7 +105,7 @@ function logStats(emailStats) {
       sortedSenders.forEach(([sender, count]) = > {
         Logger.log(` - ${sender}: ${count} messages`);
       });
-    } / / Log top labels
+    } // Log top labels
     Logger.log("\nTop Labels:");
     const sortedLabels = Object.entries(emailStats.labels);
       .sort(([, a], [, b]) = > b - a);
@@ -116,7 +116,7 @@ function logStats(emailStats) {
       sortedLabels.forEach(([label, count]) = > {
         Logger.log(` - ${label}: ${count} threads`);
       });
-    } / / Log recent subjects
+    } // Log recent subjects
     Logger.log("\nRecent Email Subjects:");
     if (emailStats.recentSubjects.length = = = 0) {
       Logger.log(" - No subjects found.");
@@ -132,7 +132,7 @@ function logStats(emailStats) {
   }
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -141,7 +141,7 @@ function logStats(emailStats) {
  * @param {any} sender - The sender parameter
  * @returns {Array} Array of results
 
- * /
+ */
 
 function extractEmailAddress(sender) {
   const emailMatch = sender.match( / < (. + ?) > / );

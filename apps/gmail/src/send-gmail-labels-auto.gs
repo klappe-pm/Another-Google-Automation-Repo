@@ -37,14 +37,14 @@
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
 const CONFIG = {
-  BATCH_SIZE: 50, / / Threads per batch
-  TIMEOUT: 300000, / / 5 minutes
-  CACHE_DURATION: 3600, / / 1 hour
-  MAX_MONTHS: 100, / / Safety limit
-  LABEL_CACHE: new Map() / / In- memory label cache
+  BATCH_SIZE: 50, // Threads per batch
+  TIMEOUT: 300000, // 5 minutes
+  CACHE_DURATION: 3600, // 1 hour
+  MAX_MONTHS: 100, // Safety limit
+  LABEL_CACHE: new Map() // In- memory label cache
 };
 
 ) {
@@ -64,24 +64,24 @@ const CONFIG = {
 
  * Processes gmail emails
 
- * /
+ */
 
 function processGmailEmails() {
   try {
     Logger.log('Starting automated sender- based email labeling...');
 
-    / / Define the date range
-    const startDate = new Date(2023, 9, 1); / / October 1, 2023 (months are 0- indexed)
-    const endDate = new Date(2025, 0, 16); / / January 16, 2025
+    // Define the date range
+    const startDate = new Date(2023, 9, 1); // October 1, 2023 (months are 0- indexed)
+    const endDate = new Date(2025, 0, 16); // January 16, 2025
 
-    / / Get the list of months to process within the date range
+    // Get the list of months to process within the date range
     const monthsToProcess = getMonthsToProcess(startDate, endDate);
     Logger.log(`Processing ${monthsToProcess.length} months from ${startDate.toDateString()} to ${endDate.toDateString()}`);
 
     let totalThreadsProcessed = 0;
     let totalLabelsApplied = 0;
 
-    / / Process each month
+    // Process each month
     for (let i = 0; i < monthsToProcess.length; i+ + ) {
       const monthDate = monthsToProcess[i];
       try {
@@ -103,7 +103,7 @@ function processGmailEmails() {
   }
 }
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -112,7 +112,7 @@ function processGmailEmails() {
  * @param {GmailThread} thread - The thread parameter
  * @returns {boolean} True if successful, false otherwise
 
- * /
+ */
 
 function applySenderLabels(thread) {
   try {
@@ -151,11 +151,11 @@ function applySenderLabels(thread) {
  * @param {any} from - The from parameter
  * @returns {boolean} True if successful, false otherwise
 
- * /
+ */
 
 function extractAndSanitizeSender(from) {
   try {
-    / / Extract the sender's name from the 'From' field
+    // Extract the sender's name from the 'From' field
     const nameMatch = from.match(/ ^.* ?(?= < )/ );
     const senderName = nameMatch ? nameMatch[0].trim() : from;
     return sanitizeLabelName(senderName);
@@ -173,7 +173,7 @@ function extractAndSanitizeSender(from) {
  * @param {any} month - The month to retrieve
  * @returns {boolean} True if found, false otherwise
 
- * /
+ */
 
 function getMonthDates(year, month) {
   const startDate = new Date(year, month, 1);
@@ -194,7 +194,7 @@ function getMonthDates(year, month) {
  * @param {any} endDate - The endDate to retrieve
  * @returns {boolean} True if found, false otherwise
 
- * /
+ */
 
 function getMonthsToProcess(startDate, endDate) {
   const months = [];
@@ -216,7 +216,7 @@ function getMonthsToProcess(startDate, endDate) {
  * @param {string} labelName - The labelName to retrieve
  * @returns {boolean} True if found, false otherwise
 
- * /
+ */
 
 function getOrCreateLabel(labelName) {
   if (! isValidLabelName(labelName)) {
@@ -224,12 +224,12 @@ function getOrCreateLabel(labelName) {
     return null;
   }
 
-  / / Check cache first
+  // Check cache first
   if (CONFIG.LABEL_CACHE.has(labelName)) {
     return CONFIG.LABEL_CACHE.get(labelName);
   }
 
-  / / Check existing labels
+  // Check existing labels
   const labels = GmailApp.getUserLabels();
   for (const label of labels) {
     if (label.getName() = = = labelName) {
@@ -239,7 +239,7 @@ function getOrCreateLabel(labelName) {
     }
   }
 
-  / / Create new label
+  // Create new label
   try {
     const newLabel = GmailApp.createLabel(labelName);
     Logger.log(`Created new label: ${labelName}`);
@@ -259,7 +259,7 @@ function getOrCreateLabel(labelName) {
  * @param {string} context - The context parameter
  * @returns {boolean} True if successful, false otherwise
 
- * /
+ */
 
 function logError(error, context = {}
 
@@ -268,7 +268,7 @@ function logError(error, context = {}
  * Processes email data
  * @returns {boolean} True if successful, false otherwise
 
- * /
+ */
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
@@ -284,7 +284,7 @@ function onOpen() {
  * @param {any} monthDate - The monthDate parameter
  * @returns {boolean} True if successful, false otherwise
 
- * /
+ */
 
 function processMonth(monthDate) {
   const dates = getMonthDates(monthDate.getFullYear(), monthDate.getMonth());
@@ -295,7 +295,7 @@ function processMonth(monthDate) {
 
   Logger.log(`Processing ${threads.length} threads for ${monthDate.toDateString().substring(4, 7)} ${monthDate.getFullYear()}`);
 
-  / / Process threads in batches
+  // Process threads in batches
   for (let i = 0; i < threads.length; i + = CONFIG.BATCH_SIZE) {
     const batch = threads.slice(i, i + CONFIG.BATCH_SIZE);
 
@@ -316,7 +316,7 @@ function processMonth(monthDate) {
   };
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -325,7 +325,7 @@ function processMonth(monthDate) {
  * @param {string} name - The name to use
  * @returns {boolean} True if condition is met, false otherwise
 
- * /
+ */
 
 function isValidLabelName(name) {
   if (! name || name.length > 40) {
@@ -349,20 +349,20 @@ function isValidLabelName(name) {
  * @param {string} name - The name to use
  * @returns {boolean} True if successful, false otherwise
 
- * /
+ */
 
 function sanitizeLabelName(name) {
   if (! name) return null;
 
-  / / Replace invalid characters with '- '
+  // Replace invalid characters with '- '
   name = name.replace(/ [^a- zA- Z0- 9_.- ]/ g, '- ');
-  / / Remove leading/ trailing invalid characters
+  // Remove leading/ trailing invalid characters
   name = name.replace(/ ^[.- ]+ |[.- ]+ $/ g, '');
-  / / Truncate to 40 characters
+  // Truncate to 40 characters
   name = name.substring(0, 40);
 
   if (name = = = '') {
-    name = 'default- label'; / / Assign a default label if sanitization results in an empty string
+    name = 'default- label'; // Assign a default label if sanitization results in an empty string
   }
 
   return name;

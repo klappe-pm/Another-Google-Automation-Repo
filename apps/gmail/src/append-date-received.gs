@@ -25,16 +25,16 @@
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Works with spreadsheet data
  * @returns {string} The formatted string
 
- * /
+ */
 
 function addDateReceivedColumn() {
   const startTime = Date.now();
@@ -48,7 +48,7 @@ function addDateReceivedColumn() {
       return;
     }
 
-    / / Get the last row with data
+    // Get the last row with data
     const lastRow = sheet.getLastRow();
 
     if (lastRow < = 1) {
@@ -56,20 +56,20 @@ function addDateReceivedColumn() {
       return;
     }
 
-    / / Target column R (18) for Date Received
-    const dateReceivedColumn = 18; / / Column R
-    const messageIdColumn = 4;     / / Column D for Message IDs
+    // Target column R (18) for Date Received
+    const dateReceivedColumn = 18; // Column R
+    const messageIdColumn = 4;     // Column D for Message IDs
 
-    / / Add the header for Date Received
+    // Add the header for Date Received
     sheet.getRange(1, dateReceivedColumn).setValue('Date Received');
     sheet.getRange(1, dateReceivedColumn).setFontWeight('bold');
 
     Logger.log(`Added "Date Received" header in column R (${dateReceivedColumn})`);
 
-    / / Get all Message IDs from column D
+    // Get all Message IDs from column D
     const messageIds = sheet.getRange(2, messageIdColumn, lastRow - 1, 1).getValues();
 
-    / / Process in batches to avoid timeouts
+    // Process in batches to avoid timeouts
     const batchSize = 50;
     let processedCount = 0;
     let updatedCount = 0;
@@ -88,7 +88,7 @@ function addDateReceivedColumn() {
         }
 
         try {
-          / / Get the received date for this message ID
+          // Get the received date for this message ID
           const receivedDate = getMessageReceivedDate(messageId);
           dateValues.push([receivedDate]);
           processedCount+ + ;
@@ -103,17 +103,17 @@ function addDateReceivedColumn() {
         }
       }
 
-      / / Update the sheet with this batch of date values
+      // Update the sheet with this batch of date values
       sheet.getRange(i + 2, dateReceivedColumn, currentBatchSize, 1).setValues(dateValues);
 
-      / / Log progress
+      // Log progress
       Logger.log(`Processed ${i + currentBatchSize} of ${messageIds.length} message IDs`);
 
-      / / Add a brief pause to avoid hitting quotas
+      // Add a brief pause to avoid hitting quotas
       Utilities.sleep(100);
     }
 
-    / / Auto- resize the column
+    // Auto- resize the column
     sheet.autoResizeColumn(dateReceivedColumn);
 
     Logger.log(`Completed in ${(Date.now() - startTime) / 1000} seconds`);
@@ -131,11 +131,11 @@ function addDateReceivedColumn() {
  * @param {string} messageId - The messageId to retrieve
  * @returns {string} The requested string
 
- * /
+ */
 
 function getMessageReceivedDate(messageId) {
   try {
-    / / Try to find the message by ID
+    // Try to find the message by ID
     const message = GmailApp.getMessageById(messageId);
 
     if (! message) {
@@ -143,10 +143,10 @@ function getMessageReceivedDate(messageId) {
       return '';
     }
 
-    / / Get the date the message was received
+    // Get the date the message was received
     const date = message.getDate();
 
-    / / Format as MM/ DD/ YYYY
+    // Format as MM/ DD/ YYYY
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const day = date.getDate().toString().padStart(2, '0');
     const year = date.getFullYear();

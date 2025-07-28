@@ -22,21 +22,21 @@
  * Google Services:
  * - GmailApp: For accessing email messages and labels
  * - Logger: For logging and debugging
- * /
+ */
 
-Logger.log('Gmail Label Deletion Script executed.'); / / Print a success message to the Google Apps Script IDE;
+Logger.log('Gmail Label Deletion Script executed.'); // Print a success message to the Google Apps Script IDE;
 Logger.log('Script execution completed successfully.');
 
-/ / Main Functions
+// Main Functions
 
 /**
 
  * Removes all gmail labels or data
 
- * /
+ */
 
 function deleteAllGmailLabels() {
-  try { / / Fetch all user - created labels
+  try { // Fetch all user - created labels
     let labels = GmailApp.getUserLabels();
 
     if (labels.length = = = 0) {
@@ -44,10 +44,10 @@ function deleteAllGmailLabels() {
       return;
     }
 
-    Logger.log('Total labels found: ' + labels.length); / / Iterate through the labels and delete them;
+    Logger.log('Total labels found: ' + labels.length); // Iterate through the labels and delete them;
     labels.forEach(label = > {
       Logger.log('Attempting to delete label: ' + label.getName());
-      label.deleteLabel(); / / Delete the label;
+      label.deleteLabel(); // Delete the label;
       Logger.log('Deleted label: ' + label.getName());
     });
 

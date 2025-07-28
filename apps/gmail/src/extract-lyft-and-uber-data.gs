@@ -35,9 +35,9 @@
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -47,7 +47,7 @@
  * @param {string} defaultProvider - The defaultProvider parameter
  * @returns {any} The result
 
- * /
+ */
 
 function extractReceiptFromMessage(message, defaultProvider) {
   const body = message.getPlainBody().replace( / \r\n / g, '\n').replace( / \n +  / g, '\n').trim();
@@ -58,7 +58,7 @@ function extractReceiptFromMessage(message, defaultProvider) {
   if ( / uber / i.test(body)) provider = 'Uber';
   else if ( / lyft / i.test(body)) provider = 'Lyft';
   const receipt = {
-    message_link: `https: / / mail.google.com / mail / u / 0 / #inbox / ${messageId}`,
+    message_link: `https: // mail.google.com / mail / u / 0 / #inbox / ${messageId}`,
     provider: provider,
     trip_date: Utilities.formatDate(date, Session.getScriptTimeZone(), 'MMMM dd, yyyy'),
     trip_start_time: 'N / A',
@@ -194,7 +194,7 @@ function extractReceiptFromMessage(message, defaultProvider) {
  * @param {number} maxThreads - The maxThreads parameter
  * @returns {any} The result
 
- * /
+ */
 
 function extractReceiptsFromGmail(maxThreads) {
   const receipts = [];
@@ -272,7 +272,7 @@ function extractReceiptsFromGmail(maxThreads) {
  * Processes and transforms ride receipts
  * @returns {any} The result
 
- * /
+ */
 
 function processRideReceipts() {
   const maxThreads = 50;
@@ -292,7 +292,7 @@ function processRideReceipts() {
  * @param {any} receipts - The receipts parameter
  * @returns {any} The result
 
- * /
+ */
 
 function writeToSheet(receipts) {
   try {
@@ -357,7 +357,7 @@ function writeToSheet(receipts) {
   }
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -366,7 +366,7 @@ function writeToSheet(receipts) {
  * @param {any} timeStr - The timeStr parameter
  * @returns {any} The result
 
- * /
+ */
 
 function convertTo24Hour(timeStr) {
   try {
@@ -391,7 +391,7 @@ function convertTo24Hour(timeStr) {
  * @param {any} timeStr - The timeStr parameter
  * @returns {any} The result
 
- * /
+ */
 
 function parseTime(timeStr) {
   const match = timeStr.match( / (\d{2}):(\d{2}) / );
@@ -408,7 +408,7 @@ function parseTime(timeStr) {
  * @param {any} receipts - The receipts parameter
  * @returns {any} The result
 
- * /
+ */
 
 function validateAndCleanReceipts(receipts) {
   return receipts.map((receipt, index) = > {

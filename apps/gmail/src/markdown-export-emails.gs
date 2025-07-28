@@ -49,7 +49,7 @@
  * - Logger: For logging and debugging
  * - SpreadsheetApp: For spreadsheet operations
  * - Utilities: For utility functions and encoding
- * /
+ */
 
 /  / Hardcoded regex parsers for Uber and Lyft (extensible for other services);
 const PARSERS = {
@@ -71,9 +71,9 @@ const PARSERS = {
     endTime: (startLocation) = > new RegExp('Drop - off\\s + ' + startLocation.replace( / [. *  + ?^${}()|[\]\\] / g, '\\$&') + '\\s + ([\\d{1,2}:\\d{2}\\s * (?:AM|PM)])', 'i'),
     endLocation: (endTime) = > new RegExp(endTime + '\\s + ([^\\n] + )', 'i');
   }
-}; / *  *  * Adds a custom menu to Google Sheets when the spreadsheet is opened. * / / *  *  * Processes emails with labels specified in the "Config" sheet. * / / *  *  * Loads and validates configuration from the "Config" sheet. * @returns {Object} Configuration object. * @throws {Error} If the "Config" sheet is missing or invalid. * / / *  *  * Processes emails for a specific label in batches. * @param {string} label - The Gmail label to search (e.g., 'lyft'). * @param {Object} config - Configuration object from "Config" sheet. * @param {Set} existingMessageIds - Set of already processed message IDs. * @param {Date} dateProcessed - The date of processing. * @param {Folder} folder - The Google Drive folder for Markdown files. * @param {Sheet} sheet - The Google Sheet for summary data. * @returns {number} Number of new emails processed. * / / *  *  * Processes a single email, extracting ride details and creating a Markdown file. * @param {GmailMessage} message - The Gmail message to process. * @param {Set} existingMessageIds - Set of already processed message IDs. * @param {Date} dateProcessed - The date of processing. * @param {Folder} folder - The Google Drive folder for Markdown files. * @param {Sheet} sheet - The Google Sheet for summary data. * @param {string} label - The label being processed. * @param {Object} config - Configuration object. * @returns {boolean} True if the message was processed, false if skipped. * / / *  *  * Parses an email body to extract ride details using sender - specific regex patterns. * @param {string} body - The email body. * @param {Date} emailDate - The email date. * @param {string} sender - The sender email address. * @param {string} subject - The email subject. * @param {Date} dateProcessed - The processing date. * @param {string} parserKey - The key for the parser config ('uber.com' or 'lyft.com'). * @returns {Object} Parsed ride details. * / / *  *  * Validates parsed email data against required fields. * @param {Object} data - Parsed email data. * @param {string[]} requiredFields - Array of required field names. * @returns {boolean} True if valid, false otherwise. * / / *  *  * Creates Markdown content with YAML front matter and cleaned email body. * @param {Object} data - Parsed email data. * @param {string} body - Original email body. * @returns {string} Markdown content. * / / *  *  * Creates a Markdown file in the specified Google Drive folder. * @param {string} content - Markdown content. * @param {string} filename - File name (without extension). * @param {Folder} folder - Target folder. * @returns {string} URL of the created file. * / / *  *  * Gets or creates a folder in Google Drive. * @param {Folder} parentFolder - Parent folder. * @param {string} folderName - Folder name to get or create. * @returns {Folder} The folder. * / / *  *  * Gets or creates a sheet in the active spreadsheet. * @param {string} sheetName - Name of the sheet. * @returns {Sheet} The sheet. * / / *  *  * Retrieves existing message IDs from the sheet to avoid duplicates. * @param {Sheet} sheet - The sheet. * @returns {Set} Set of message IDs. * / / *  *  * Extracts a value from text using a regex. * @param {string} body - Text to search. * @param {RegExp} regex - Regex to use. * @returns {string} Extracted value or empty string. * / / *  *  * Formats a numeric value as USD currency. * @param {string|number} value - Value to format. * @returns {string} Formatted currency or empty string. * / / *  *  * Converts 12 - hour time to 24 - hour format. * @param {string} time - Time string (e.g., "1:30 PM"). * @returns {string} 24 - hour format (e.g., "13:30") or empty string. * / / *  *  * Logs messages with specified verbosity level and context. * @param {string} message - Message to log. * @param {string} level - Log level ('DEBUG', 'INFO', 'ERROR'). * @param {Object} context - Additional context for the log. * @param {string} logLevel - Configured log level from "Config" sheet. * / / * Configurable Fields (stored in the "Config" sheet): - PARENT_FOLDER: The Google Drive parent folder name for storing Markdown files (e.g., 'Kevin Lappe vs. Anton LLC Expenses'). - TARGET_FOLDER: The subfolder name for Markdown files (e.g., 'Transportation Expenses'). - SHEET_NAME: The name of the sheet for summarizing email data (e.g., 'Transportation'). - LABELS: Comma - separated list of Gmail labels to process (e.g., 'lyft,uber,taxi'). - SUPPORTED_SENDERS: Comma - separated list of sender domains to process (e.g., 'uber.com,lyft.com'). - LOG_LEVEL: Logging verbosity level ('DEBUG', 'INFO', or 'ERROR'). - BATCH_SIZE: Number of email threads to process per batch (e.g., '50'). - REQUIRED_FIELDS: Comma - separated list of fields required in parsed data (e.g., 'costTotal,startLocation,endLocation'). * / ; / / Main Functions
+}; / *  *  * Adds a custom menu to Google Sheets when the spreadsheet is opened. *// *  *  * Processes emails with labels specified in the "Config" sheet. *// *  *  * Loads and validates configuration from the "Config" sheet. * @returns {Object} Configuration object. * @throws {Error} If the "Config" sheet is missing or invalid. *// *  *  * Processes emails for a specific label in batches. * @param {string} label - The Gmail label to search (e.g., 'lyft'). * @param {Object} config - Configuration object from "Config" sheet. * @param {Set} existingMessageIds - Set of already processed message IDs. * @param {Date} dateProcessed - The date of processing. * @param {Folder} folder - The Google Drive folder for Markdown files. * @param {Sheet} sheet - The Google Sheet for summary data. * @returns {number} Number of new emails processed. *// *  *  * Processes a single email, extracting ride details and creating a Markdown file. * @param {GmailMessage} message - The Gmail message to process. * @param {Set} existingMessageIds - Set of already processed message IDs. * @param {Date} dateProcessed - The date of processing. * @param {Folder} folder - The Google Drive folder for Markdown files. * @param {Sheet} sheet - The Google Sheet for summary data. * @param {string} label - The label being processed. * @param {Object} config - Configuration object. * @returns {boolean} True if the message was processed, false if skipped. *// *  *  * Parses an email body to extract ride details using sender - specific regex patterns. * @param {string} body - The email body. * @param {Date} emailDate - The email date. * @param {string} sender - The sender email address. * @param {string} subject - The email subject. * @param {Date} dateProcessed - The processing date. * @param {string} parserKey - The key for the parser config ('uber.com' or 'lyft.com'). * @returns {Object} Parsed ride details. *// *  *  * Validates parsed email data against required fields. * @param {Object} data - Parsed email data. * @param {string[]} requiredFields - Array of required field names. * @returns {boolean} True if valid, false otherwise. *// *  *  * Creates Markdown content with YAML front matter and cleaned email body. * @param {Object} data - Parsed email data. * @param {string} body - Original email body. * @returns {string} Markdown content. *// *  *  * Creates a Markdown file in the specified Google Drive folder. * @param {string} content - Markdown content. * @param {string} filename - File name (without extension). * @param {Folder} folder - Target folder. * @returns {string} URL of the created file. *// *  *  * Gets or creates a folder in Google Drive. * @param {Folder} parentFolder - Parent folder. * @param {string} folderName - Folder name to get or create. * @returns {Folder} The folder. *// *  *  * Gets or creates a sheet in the active spreadsheet. * @param {string} sheetName - Name of the sheet. * @returns {Sheet} The sheet. *// *  *  * Retrieves existing message IDs from the sheet to avoid duplicates. * @param {Sheet} sheet - The sheet. * @returns {Set} Set of message IDs. *// *  *  * Extracts a value from text using a regex. * @param {string} body - Text to search. * @param {RegExp} regex - Regex to use. * @returns {string} Extracted value or empty string. *// *  *  * Formats a numeric value as USD currency. * @param {string|number} value - Value to format. * @returns {string} Formatted currency or empty string. *// *  *  * Converts 12 - hour time to 24 - hour format. * @param {string} time - Time string (e.g., "1:30 PM"). * @returns {string} 24 - hour format (e.g., "13:30") or empty string. *// *  *  * Logs messages with specified verbosity level and context. * @param {string} message - Message to log. * @param {string} level - Log level ('DEBUG', 'INFO', 'ERROR'). * @param {Object} context - Additional context for the log. * @param {string} logLevel - Configured log level from "Config" sheet. *// * Configurable Fields (stored in the "Config" sheet): - PARENT_FOLDER: The Google Drive parent folder name for storing Markdown files (e.g., 'Kevin Lappe vs. Anton LLC Expenses'). - TARGET_FOLDER: The subfolder name for Markdown files (e.g., 'Transportation Expenses'). - SHEET_NAME: The name of the sheet for summarizing email data (e.g., 'Transportation'). - LABELS: Comma - separated list of Gmail labels to process (e.g., 'lyft,uber,taxi'). - SUPPORTED_SENDERS: Comma - separated list of sender domains to process (e.g., 'uber.com,lyft.com'). - LOG_LEVEL: Logging verbosity level ('DEBUG', 'INFO', or 'ERROR'). - BATCH_SIZE: Number of email threads to process per batch (e.g., '50'). - REQUIRED_FIELDS: Comma - separated list of fields required in parsed data (e.g., 'costTotal,startLocation,endLocation'). */ ; // Main Functions
 
-/ / Main Functions
+// Main Functions
 
 /**
 
@@ -82,7 +82,7 @@ const PARSERS = {
  * @param {Sheet} sheet - The sheet to retrieve
  * @returns {Object} The requested object
 
- * /
+ */
 
 function getExistingMessageIds(sheet) {
   if (sheet.getLastRow() < 2) return new Set();
@@ -97,7 +97,7 @@ function getExistingMessageIds(sheet) {
  * @param {string} sheetName - The sheetName to retrieve
  * @returns {Object} The requested object
 
- * /
+ */
 
 function getOrCreateSheet(sheetName) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -118,7 +118,7 @@ function getOrCreateSheet(sheetName) {
  * Loads config from storage
  * @returns {Object} The result object
 
- * /
+ */
 
 function loadConfig() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -139,7 +139,7 @@ function loadConfig() {
     if (key && value) {
       config[key] = value;
     }
-  }); / / Required configuration fields
+  }); // Required configuration fields
   const requiredFields = [;
     'PARENT_FOLDER', 'TARGET_FOLDER', 'SHEET_NAME', 'LABELS',
     'SUPPORTED_SENDERS', 'LOG_LEVEL', 'BATCH_SIZE', 'REQUIRED_FIELDS'
@@ -147,10 +147,10 @@ function loadConfig() {
   const missingFields = requiredFields.filter(field = > ! config[field]);
   if (missingFields.length > 0) {
     throw new Error(`Missing required config fields: ${missingFields.join(', ')}`);
-  } / / Parse comma - separated fields
+  } // Parse comma - separated fields
   config.LABELS = config.LABELS.split(',').map(label = > label.trim()).filter(label = > label);
   config.SUPPORTED_SENDERS = config.SUPPORTED_SENDERS.split(',').map(sender = > sender.trim()).filter(sender = > sender);
-  config.REQUIRED_FIELDS = config.REQUIRED_FIELDS.split(',').map(field = > field.trim()).filter(field = > field); / / Validate specific fields;
+  config.REQUIRED_FIELDS = config.REQUIRED_FIELDS.split(',').map(field = > field.trim()).filter(field = > field); // Validate specific fields;
   if (! ['DEBUG', 'INFO', 'ERROR'].includes(config.LOG_LEVEL)) {
     throw new Error(`Invalid LOG_LEVEL: ${config.LOG_LEVEL}. Must be DEBUG, INFO, or ERROR.`);
   }
@@ -175,7 +175,7 @@ function loadConfig() {
  * @param {any} logLevel - The logLevel parameter
  * @returns {Object} The result object
 
- * /
+ */
 
 function logMessage(message, level, context, logLevel) {
   const levels = { DEBUG: 0, INFO: 1, ERROR: 2 };
@@ -190,7 +190,7 @@ function logMessage(message, level, context, logLevel) {
  * Performs specialized operations
  * @returns {Object} The result object
 
- * /
+ */
 
 function onOpen() {
   SpreadsheetApp.getUi();
@@ -211,7 +211,7 @@ function onOpen() {
  * @param {Sheet} sheet - The sheet parameter
  * @returns {Object} The result object
 
- * /
+ */
 
 function processEmails(label, config, existingMessageIds, dateProcessed, folder, sheet) {
   let start = 0;
@@ -250,7 +250,7 @@ function processEmails(label, config, existingMessageIds, dateProcessed, folder,
  * @param {Object} config - Configuration settings
  * @returns {Object} The result object
 
- * /
+ */
 
 function processMessage(message, existingMessageIds, dateProcessed, folder, sheet, label, config) {
   const messageId = message.getId();
@@ -301,7 +301,7 @@ function processMessage(message, existingMessageIds, dateProcessed, folder, shee
  * Processes and transforms transportation emails
  * @returns {Object} The result object
 
- * /
+ */
 
 function processTransportationEmails() {
   try {
@@ -329,7 +329,7 @@ function processTransportationEmails() {
   }
 }
 
-/ / Helper Functions
+// Helper Functions
 
 /**
 
@@ -338,7 +338,7 @@ function processTransportationEmails() {
  * @param {any} time - The time parameter
  * @returns {Object} The result object
 
- * /
+ */
 
 function convertTo24HourFormat(time) {
   const match = time.match( / (\d{1,2}):(\d{2})\s * (AM|PM) / i);
@@ -362,7 +362,7 @@ function convertTo24HourFormat(time) {
  * @param {string} body - The body content
  * @returns {Object} The newly created object
 
- * /
+ */
 
 function createMarkdownContent(data, body) {
   const yamlFrontMatter = ` - - - ${Object.entries(data).map(([key, value]) = > `${key}: ${value}`).join('\n')} - - - `;
@@ -379,7 +379,7 @@ function createMarkdownContent(data, body) {
  * @param {Folder} folder - The folder for creation
  * @returns {Object} The newly created object
 
- * /
+ */
 
 function createMarkdownFile(content, filename, folder) {
   const blob = Utilities.newBlob(content, 'text / markdown', `${filename}.md`);
@@ -395,7 +395,7 @@ function createMarkdownFile(content, filename, folder) {
  * @param {any} regex - The regex parameter
  * @returns {Object} The result object
 
- * /
+ */
 
 function extractValue(body, regex) {
   const match = body.match(regex);
@@ -409,7 +409,7 @@ function extractValue(body, regex) {
  * @param {string|any} value - The value to set
  * @returns {Object} The result object
 
- * /
+ */
 
 function formatCurrency(value) {
   if (! value) return '';
@@ -424,7 +424,7 @@ function formatCurrency(value) {
  * @param {string} folderName - The folderName to retrieve
  * @returns {Object} The requested object
 
- * /
+ */
 
 function getOrCreateFolder(parentFolder, folderName) {
   const folders = parentFolder.getFoldersByName(folderName);
@@ -443,7 +443,7 @@ function getOrCreateFolder(parentFolder, folderName) {
  * @param {string} parserKey - The parserKey parameter
  * @returns {Object} The result object
 
- * /
+ */
 
 function parseEmailBody(body, emailDate, sender, subject, dateProcessed, parserKey) {
   const data = {
@@ -497,7 +497,7 @@ function parseEmailBody(body, emailDate, sender, subject, dateProcessed, parserK
  * @param {any} requiredFields - The requiredFields parameter
  * @returns {Object} The result object
 
- * /
+ */
 
 function validateRowData(data, requiredFields) {
   return requiredFields.every(field = > data[field] && data[field] ! = = '');
