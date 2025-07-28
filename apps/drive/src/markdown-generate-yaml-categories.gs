@@ -1,25 +1,25 @@
 /**
- * Script Name: markdown- generate- yaml- categories
- *
- * Script Summary:
- * Generates markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- *
- * Script Steps:
- * 1. Fetch source data
- * 2. Apply filters and criteria
- * 3. Format output for presentation
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - None
- */
+  * Script Name: markdown- generate- yaml- categories
+  *
+  * Script Summary:
+  * Generates markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  *
+  * Script Steps:
+  * 1. Fetch source data
+  * 2. Apply filters and criteria
+  * 3. Format output for presentation
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - None
+  */
 
 <%
 // Get the filename from the user

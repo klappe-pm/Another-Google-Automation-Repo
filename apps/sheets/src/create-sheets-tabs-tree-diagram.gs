@@ -1,34 +1,34 @@
 /**
- * Script Name: create- sheets- tabs- tree- diagram
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Generate new sheets tabs tree diagram items
- * - Set up required structure and metadata
- * - Apply formatting and organization
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Process and transform data
- * 4. Sort data by relevant fields
- * 5. Format output for presentation
- *
- * Script Functions:
- * - createIndexV2(): Creates new index v2 or resources
- *
- * Script Helper Functions:
- * - extractCategory(): Extracts specific information
- * - formatSheet(): Formats sheet for display
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: create- sheets- tabs- tree- diagram
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Generate new sheets tabs tree diagram items
+  * - Set up required structure and metadata
+  * - Apply formatting and organization
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Process and transform data
+  * 4. Sort data by relevant fields
+  * 5. Format output for presentation
+  *
+  * Script Functions:
+  * - createIndexV2(): Creates new index v2 or resources
+  *
+  * Script Helper Functions:
+  * - extractCategory(): Extracts specific information
+  * - formatSheet(): Formats sheet for display
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 /**
 * Google Sheets Tab Index Generator and Formatter
@@ -105,9 +105,9 @@
 *   - Applies consistent formatting to a sheet
 *   - Sets font, alignment, and special first row formatting
 * // * *
- * Create index v2
- * @return {* } The created index v2
- *// * *
+  * Create index v2
+  * @return {* } The created index v2
+  *// * *
       * Extracts the category from a sheet name using PascalCase convention
       *
       * @param {string} sheetName - The name of the sheet to process
@@ -132,10 +132,10 @@
 
 /**
 
- * Creates new index v2 or resources
- * @returns {boolean} The newly created boolean
+  * Creates new index v2 or resources
+  * @returns {boolean} The newly created boolean
 
- */
+  */
 
 function createIndexV2() {
   console.log(" = = = Sheet Index Generator Started = = = ");
@@ -222,12 +222,12 @@ function createIndexV2() {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {string} sheetName - The sheetName parameter
- * @returns {boolean} True if successful, false otherwise
+  * Extracts specific information
+  * @param
+  * @param {string} sheetName - The sheetName parameter
+  * @returns {boolean} True if successful, false otherwise
 
- */
+  */
 
 function extractCategory(sheetName) {
         console.log(`Extracting category from sheet name: "${sheetName}"`);
@@ -239,12 +239,12 @@ function extractCategory(sheetName) {
 
 /**
 
- * Formats sheet for display
- * @param
- * @param {Sheet} sheet - The sheet parameter
- * @returns {boolean} True if successful, false otherwise
+  * Formats sheet for display
+  * @param
+  * @param {Sheet} sheet - The sheet parameter
+  * @returns {boolean} True if successful, false otherwise
 
- */
+  */
 
 function formatSheet(sheet) {
         const sheetName = sheet.getName();

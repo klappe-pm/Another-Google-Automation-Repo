@@ -1,40 +1,40 @@
 /**
- * Script Name: process- main
- *
- * Script Summary:
- * Processes data for automated workflow processing.
- *
- * Script Purpose:
- * - Process main data transformations
- * - Apply business rules and logic
- * - Ensure data consistency
- *
- * Script Steps:
- * 1. Fetch source data
- * 2. Format output for presentation
- * 3. Send notifications or reports
- *
- * Script Functions:
- * - run(): Executes main process
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - None
- */
+  * Script Name: process- main
+  *
+  * Script Summary:
+  * Processes data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Process main data transformations
+  * - Apply business rules and logic
+  * - Ensure data consistency
+  *
+  * Script Steps:
+  * 1. Fetch source data
+  * 2. Format output for presentation
+  * 3. Send notifications or reports
+  *
+  * Script Functions:
+  * - run(): Executes main process
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - None
+  */
 
 /**
- * Perform run operation
- *// / Main Functions
+  * Perform run operation
+  *// / Main Functions
 
 // Main Functions
 
 /**
 
- * Executes main process
+  * Executes main process
 
- */
+  */
 
 function run() {
   const config = {

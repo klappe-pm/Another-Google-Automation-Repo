@@ -1,58 +1,58 @@
 /**
- * Script Name: export- photos- and- videos
- *
- * Script Summary:
- * Exports spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Extract photos and videos data from Google services
- * - Convert data to portable formats
- * - Generate reports and summaries
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Validate input data
- * 4. Process and transform data
- * 5. Sort data by relevant fields
- * 6. Format output for presentation
- * 7. Write results to destination
- *
- * Script Functions:
- * - addSelectedAlbumsToIndex(): Works with spreadsheet data
- * - clearAlbumsCache(): Performs specialized operations
- * - createIndexSheet(): Creates new index sheet or resources
- * - exportPhotoAlbumsToSheets(): Exports photo albums to sheets to external format
- * - fetchWithRetry(): Retrieves with retry from service
- * - findNextUnprocessedAlbum(): Processes and transforms find next uned album
- * - getGooglePhotosAlbums(): Gets specific google photos albums or configuration
- * - getPhotosFromAlbum(): Gets specific photos from album or configuration
- * - listAllAlbums(): Checks boolean condition
- * - notify(): Performs specialized operations
- * - onOpen(): Works with spreadsheet data
- * - processPhotoItem(): Processes and transforms photo item
- * - processPhotos(): Processes and transforms photos
- * - recordProcessedFiles(): Processes and transforms recorded files
- * - resetProcessedAlbums(): Sets re processed albums or configuration values
- * - sortSheetByCreateTime(): Creates new sort sheet by time or resources
- * - updateAlbumIndex(): Updates existing album index
- * - writeDataToSheet(): Writes data to sheet to destination
- *
- * Script Helper Functions:
- * - sanitizeSheetName(): Cleans and sanitizes input
- * - setupSheet(): Sets up sheet or configuration values
- *
- * Script Dependencies:
- * - OAuth2 library
- *
- * Google Services:
- * - Logger: For logging and debugging
- * - ScriptApp: For script management and triggers
- * - SpreadsheetApp: For spreadsheet operations
- * - UrlFetchApp: For HTTP requests to external services
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: export- photos- and- videos
+  *
+  * Script Summary:
+  * Exports spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Extract photos and videos data from Google services
+  * - Convert data to portable formats
+  * - Generate reports and summaries
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Validate input data
+  * 4. Process and transform data
+  * 5. Sort data by relevant fields
+  * 6. Format output for presentation
+  * 7. Write results to destination
+  *
+  * Script Functions:
+  * - addSelectedAlbumsToIndex(): Works with spreadsheet data
+  * - clearAlbumsCache(): Performs specialized operations
+  * - createIndexSheet(): Creates new index sheet or resources
+  * - exportPhotoAlbumsToSheets(): Exports photo albums to sheets to external format
+  * - fetchWithRetry(): Retrieves with retry from service
+  * - findNextUnprocessedAlbum(): Processes and transforms find next uned album
+  * - getGooglePhotosAlbums(): Gets specific google photos albums or configuration
+  * - getPhotosFromAlbum(): Gets specific photos from album or configuration
+  * - listAllAlbums(): Checks boolean condition
+  * - notify(): Performs specialized operations
+  * - onOpen(): Works with spreadsheet data
+  * - processPhotoItem(): Processes and transforms photo item
+  * - processPhotos(): Processes and transforms photos
+  * - recordProcessedFiles(): Processes and transforms recorded files
+  * - resetProcessedAlbums(): Sets re processed albums or configuration values
+  * - sortSheetByCreateTime(): Creates new sort sheet by time or resources
+  * - updateAlbumIndex(): Updates existing album index
+  * - writeDataToSheet(): Writes data to sheet to destination
+  *
+  * Script Helper Functions:
+  * - sanitizeSheetName(): Cleans and sanitizes input
+  * - setupSheet(): Sets up sheet or configuration values
+  *
+  * Script Dependencies:
+  * - OAuth2 library
+  *
+  * Google Services:
+  * - Logger: For logging and debugging
+  * - ScriptApp: For script management and triggers
+  * - SpreadsheetApp: For spreadsheet operations
+  * - UrlFetchApp: For HTTP requests to external services
+  * - Utilities: For utility functions and encoding
+  */
 
 const DEFAULT_CONFIG = {
   batchSize: 50,
@@ -71,38 +71,38 @@ const DEFAULT_CONFIG = {
 };
 
 /**
- * Main export function
- *// * *
- * Creates an index sheet if it doesn't exist
- *// * *
- * Finds the next unprocessed album
- *// * *
- * Processes photos from an album
- *// * *
- * Updates the album index sheet
- *// * *
- * Gets the configuration from the Config sheet
- *// * *
- * Sets up a sheet for album data
- *// * *
- * Process a single photo item
- *// * *
- * Writes data to a sheet
- *// * *
- * Sorts a sheet by create time
- *// * *
- * Resets the processed flag for all albums
- *// * *
- * Clears the albums cache
- *// * *
- * Shows a notification to the user
- *// * *
- * Gets all albums from Google Photos
- *// * *
- * Gets photos from an album
- *// * *
- * Fetches a URL with retry logic
- */
+  * Main export function
+  *// * *
+  * Creates an index sheet if it doesn't exist
+  *// * *
+  * Finds the next unprocessed album
+  *// * *
+  * Processes photos from an album
+  *// * *
+  * Updates the album index sheet
+  *// * *
+  * Gets the configuration from the Config sheet
+  *// * *
+  * Sets up a sheet for album data
+  *// * *
+  * Process a single photo item
+  *// * *
+  * Writes data to a sheet
+  *// * *
+  * Sorts a sheet by create time
+  *// * *
+  * Resets the processed flag for all albums
+  *// * *
+  * Clears the albums cache
+  *// * *
+  * Shows a notification to the user
+  *// * *
+  * Gets all albums from Google Photos
+  *// * *
+  * Gets photos from an album
+  *// * *
+  * Fetches a URL with retry logic
+  */
 ) {
   options.headers = { "Authorization": "Bearer " + ScriptApp.getOAuthToken() };
   options.muteHttpExceptions = true;
@@ -133,13 +133,13 @@ const DEFAULT_CONFIG = {
 }
 
 /**
- * Sanitizes a sheet name
- *// * *
- * Creates a new sheet with all available Google Photos albums and their IDs
- * to help update your "Album Index" sheet with the correct IDs
- *// * *
- * Adds selected albums to the index
- */
+  * Sanitizes a sheet name
+  *// * *
+  * Creates a new sheet with all available Google Photos albums and their IDs
+  * to help update your "Album Index" sheet with the correct IDs
+  *// * *
+  * Adds selected albums to the index
+  */
 
 function getConfigFromSheet(spreadsheet) {
   const sheet = spreadsheet.getSheetByName("Config") || spreadsheet.insertSheet("Config");
@@ -169,10 +169,10 @@ function getConfigFromSheet(spreadsheet) {
 
 /**
 
- * Works with spreadsheet data
- * @returns {any} The result
+  * Works with spreadsheet data
+  * @returns {any} The result
 
- */
+  */
 
 function addSelectedAlbumsToIndex() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -222,10 +222,10 @@ function addSelectedAlbumsToIndex() {
 
 /**
 
- * Performs specialized operations
- * @returns {any} The result
+  * Performs specialized operations
+  * @returns {any} The result
 
- */
+  */
 
 function clearAlbumsCache() {
   CacheService.getScriptCache().remove("all_albums");
@@ -235,12 +235,12 @@ function clearAlbumsCache() {
 
 /**
 
- * Creates new index sheet or resources
- * @param
- * @param {Sheet} spreadsheet - The spreadsheet for creation
- * @returns {any} The newly created any
+  * Creates new index sheet or resources
+  * @param
+  * @param {Sheet} spreadsheet - The spreadsheet for creation
+  * @returns {any} The newly created any
 
- */
+  */
 
 function createIndexSheet(spreadsheet) {
   const sheet = spreadsheet.insertSheet("Album Index");
@@ -253,10 +253,10 @@ function createIndexSheet(spreadsheet) {
 
 /**
 
- * Exports photo albums to sheets to external format
- * @returns {any} The result
+  * Exports photo albums to sheets to external format
+  * @returns {any} The result
 
- */
+  */
 
 function exportPhotoAlbumsToSheets() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -307,26 +307,26 @@ function exportPhotoAlbumsToSheets() {
 
 /**
 
- * Retrieves with retry from service
- * @param
- * @param {string} url - The URL to access
- * @param {Object} options - Configuration options
- * @param {any} allAlbums - The allAlbums parameter
- * @returns {any} The result
+  * Retrieves with retry from service
+  * @param
+  * @param {string} url - The URL to access
+  * @param {Object} options - Configuration options
+  * @param {any} allAlbums - The allAlbums parameter
+  * @returns {any} The result
 
- */
+  */
 
 function fetchWithRetry(url, options = {}
 
 /**
 
- * Processes and transforms find next uned album
- * @param
- * @param {Object} data - The data object to process
- * @param {any} allAlbums - The allAlbums parameter
- * @returns {any} The result
+  * Processes and transforms find next uned album
+  * @param
+  * @param {Object} data - The data object to process
+  * @param {any} allAlbums - The allAlbums parameter
+  * @returns {any} The result
 
- */
+  */
 
 function findNextUnprocessedAlbum(data, allAlbums) {
   Logger.log(`Looking through ${data.length} rows of data for unprocessed albums...`);
@@ -361,10 +361,10 @@ function findNextUnprocessedAlbum(data, allAlbums) {
 
 /**
 
- * Gets specific google photos albums or configuration
- * @returns {any} The requested any
+  * Gets specific google photos albums or configuration
+  * @returns {any} The requested any
 
- */
+  */
 
 function getGooglePhotosAlbums() {
   const cache = CacheService.getScriptCache();
@@ -426,13 +426,13 @@ function getGooglePhotosAlbums() {
 
 /**
 
- * Gets specific photos from album or configuration
- * @param
- * @param {string} albumId - The albumId to retrieve
- * @param {number} maxResults - The maxResults to retrieve
- * @returns {any} The requested any
+  * Gets specific photos from album or configuration
+  * @param
+  * @param {string} albumId - The albumId to retrieve
+  * @param {number} maxResults - The maxResults to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getPhotosFromAlbum(albumId, maxResults) {
   const photos = [];
@@ -470,10 +470,10 @@ function getPhotosFromAlbum(albumId, maxResults) {
 
 /**
 
- * Checks boolean condition
- * @returns {any} True if condition is met, false otherwise
+  * Checks boolean condition
+  * @returns {any} True if condition is met, false otherwise
 
- */
+  */
 
 function listAllAlbums() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -524,13 +524,13 @@ function listAllAlbums() {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {string} message - The message content
- * @param {any} isError - The isError parameter
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {string} message - The message content
+  * @param {any} isError - The isError parameter
+  * @returns {any} The result
 
- */
+  */
 
 function notify(message, isError = false) {
   try {
@@ -547,10 +547,10 @@ function notify(message, isError = false) {
 
 /**
 
- * Works with spreadsheet data
- * @returns {any} The result
+  * Works with spreadsheet data
+  * @returns {any} The result
 
- */
+  */
 
 function onOpen() {
   SpreadsheetApp.getUi()
@@ -565,14 +565,14 @@ function onOpen() {
 
 /**
 
- * Processes and transforms photo item
- * @param
- * @param {any} mediaItem - The mediaItem parameter
- * @param {string} albumName - The albumName parameter
- * @param {any} useThumbnails - The useThumbnails parameter
- * @returns {any} The result
+  * Processes and transforms photo item
+  * @param
+  * @param {any} mediaItem - The mediaItem parameter
+  * @param {string} albumName - The albumName parameter
+  * @param {any} useThumbnails - The useThumbnails parameter
+  * @returns {any} The result
 
- */
+  */
 
 function processPhotoItem(mediaItem, albumName, useThumbnails) {
   try {
@@ -598,14 +598,14 @@ function processPhotoItem(mediaItem, albumName, useThumbnails) {
 
 /**
 
- * Processes and transforms photos
- * @param
- * @param {any} photos - The photos parameter
- * @param {string} albumName - The albumName parameter
- * @param {any} useThumbnails - The useThumbnails parameter
- * @returns {any} The result
+  * Processes and transforms photos
+  * @param
+  * @param {any} photos - The photos parameter
+  * @param {string} albumName - The albumName parameter
+  * @param {any} useThumbnails - The useThumbnails parameter
+  * @returns {any} The result
 
- */
+  */
 
 function processPhotos(photos, albumName, useThumbnails) {
   const fileIds = new Set();
@@ -624,13 +624,13 @@ function processPhotos(photos, albumName, useThumbnails) {
 
 /**
 
- * Processes and transforms recorded files
- * @param
- * @param {Sheet} spreadsheet - The spreadsheet parameter
- * @param {File} processedFiles - The processedFiles parameter
- * @returns {any} The result
+  * Processes and transforms recorded files
+  * @param
+  * @param {Sheet} spreadsheet - The spreadsheet parameter
+  * @param {File} processedFiles - The processedFiles parameter
+  * @returns {any} The result
 
- */
+  */
 
 function recordProcessedFiles(spreadsheet, processedFiles) {
   let sheet = spreadsheet.getSheetByName("Processed") || spreadsheet.insertSheet("Processed");
@@ -643,10 +643,10 @@ function recordProcessedFiles(spreadsheet, processedFiles) {
 
 /**
 
- * Sets re processed albums or configuration values
- * @returns {any} The result
+  * Sets re processed albums or configuration values
+  * @returns {any} The result
 
- */
+  */
 
 function resetProcessedAlbums() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -667,12 +667,12 @@ function resetProcessedAlbums() {
 
 /**
 
- * Creates new sort sheet by time or resources
- * @param
- * @param {Sheet} sheet - The sheet for creation
- * @returns {any} The newly created any
+  * Creates new sort sheet by time or resources
+  * @param
+  * @param {Sheet} sheet - The sheet for creation
+  * @returns {any} The newly created any
 
- */
+  */
 
 function sortSheetByCreateTime(sheet) {
   const lastRow = sheet.getLastRow();
@@ -683,16 +683,16 @@ function sortSheetByCreateTime(sheet) {
 
 /**
 
- * Updates existing album index
- * @param
- * @param {number} indexSheet - The indexSheet to update
- * @param {number} rowIndex - The rowIndex to update
- * @param {Sheet} sheet - The sheet to update
- * @param {string} tabName - The tabName to update
- * @param {number} fileCount - The fileCount to update
- * @returns {any} The result
+  * Updates existing album index
+  * @param
+  * @param {number} indexSheet - The indexSheet to update
+  * @param {number} rowIndex - The rowIndex to update
+  * @param {Sheet} sheet - The sheet to update
+  * @param {string} tabName - The tabName to update
+  * @param {number} fileCount - The fileCount to update
+  * @returns {any} The result
 
- */
+  */
 
 function updateAlbumIndex(indexSheet, rowIndex, sheet, tabName, fileCount) {
   const hyperlink = `= HYPERLINK("#gid= ${sheet.getSheetId()}","${tabName}")`;
@@ -703,14 +703,14 @@ function updateAlbumIndex(indexSheet, rowIndex, sheet, tabName, fileCount) {
 
 /**
 
- * Writes data to sheet to destination
- * @param
- * @param {Sheet} sheet - The sheet parameter
- * @param {Object} photoData - The photoData parameter
- * @param {any} headers - The headers parameter
- * @returns {any} The result
+  * Writes data to sheet to destination
+  * @param
+  * @param {Sheet} sheet - The sheet parameter
+  * @param {Object} photoData - The photoData parameter
+  * @param {any} headers - The headers parameter
+  * @returns {any} The result
 
- */
+  */
 
 function writeDataToSheet(sheet, photoData, headers) {
   // Create a mapping that properly handles spaces in header names
@@ -743,12 +743,12 @@ function writeDataToSheet(sheet, photoData, headers) {
 
 /**
 
- * Cleans and sanitizes input
- * @param
- * @param {string} name - The name to use
- * @returns {any} The result
+  * Cleans and sanitizes input
+  * @param
+  * @param {string} name - The name to use
+  * @returns {any} The result
 
- */
+  */
 
 function sanitizeSheetName(name) {
   return name.replace(/ [\[\]* / \\?]/ g, "_").slice(0, 31);

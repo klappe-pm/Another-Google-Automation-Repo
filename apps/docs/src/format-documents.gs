@@ -1,48 +1,48 @@
 /**
- * Script Name: format- documents
- *
- * Script Summary:
- * Manages files for automated workflow processing.
- *
- * Script Purpose:
- * - Apply formatting to documents
- * - Standardize appearance and structure
- * - Improve readability and organization
- *
- * Script Steps:
- * 1. Access Drive file system
- * 2. Fetch source data
- * 3. Validate input data
- * 4. Apply filters and criteria
- * 5. Write results to destination
- *
- * Script Functions:
- * - updateFormatting(): Updates existing formatting
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DocumentApp: For document manipulation
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- */
+  * Script Name: format- documents
+  *
+  * Script Summary:
+  * Manages files for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Apply formatting to documents
+  * - Standardize appearance and structure
+  * - Improve readability and organization
+  *
+  * Script Steps:
+  * 1. Access Drive file system
+  * 2. Fetch source data
+  * 3. Validate input data
+  * 4. Apply filters and criteria
+  * 5. Write results to destination
+  *
+  * Script Functions:
+  * - updateFormatting(): Updates existing formatting
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DocumentApp: For document manipulation
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  */
 
 // Main Functions
 
 /**
 
- * Updates existing formatting
- * @returns {any} The result
+  * Updates existing formatting
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Updates existing formatting
- * @returns {any} The result
+  * Updates existing formatting
+  * @returns {any} The result
 
- */
+  */
 
 function updateFormatting() {
   let folder = DriveApp.getFolderById('folder_id_here');

@@ -1,68 +1,68 @@
 /**
- * Script Name: dedupe- rows
- *
- * Script Summary:
- * Imports spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Validate input data
- * 4. Sort data by relevant fields
- *
- * Script Functions:
- * - calculateMetrics(): Performs calculations on metrics
- * - createDashboard(): Creates new dashboard or resources
- * - createEnhancedSheet(): Creates new enhanced sheet or resources
- * - deduplicateRideData(): Works with spreadsheet data
- * - extractHour(): Extracts specific information
- * - getTimeCategory(): Gets specific time category or configuration
- * - onOpen(): Performs specialized operations
- *
- * Script Helper Functions:
- * - getDayOfWeek(): Gets specific day of week or configuration
- * - parseCost(): Parses and extracts cost
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: dedupe- rows
+  *
+  * Script Summary:
+  * Imports spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Validate input data
+  * 4. Sort data by relevant fields
+  *
+  * Script Functions:
+  * - calculateMetrics(): Performs calculations on metrics
+  * - createDashboard(): Creates new dashboard or resources
+  * - createEnhancedSheet(): Creates new enhanced sheet or resources
+  * - deduplicateRideData(): Works with spreadsheet data
+  * - extractHour(): Extracts specific information
+  * - getTimeCategory(): Gets specific time category or configuration
+  * - onOpen(): Performs specialized operations
+  *
+  * Script Helper Functions:
+  * - getDayOfWeek(): Gets specific day of week or configuration
+  * - parseCost(): Parses and extracts cost
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 /**
- * Helper function to get day of week
- *// * *
- * Helper function to extract hour from time string
- *// * *
- * Helper function to determine time category based on hour
- *// * *
- * Helper function to parse cost from string
- *// * *
- * Creates a summary dashboard sheet with key metrics
- *// * *
- * Calculate metrics for the dashboard
- *// * *
- * Add menu to trigger the functions
- *// / Main Functions
+  * Helper function to get day of week
+  *// * *
+  * Helper function to extract hour from time string
+  *// * *
+  * Helper function to determine time category based on hour
+  *// * *
+  * Helper function to parse cost from string
+  *// * *
+  * Creates a summary dashboard sheet with key metrics
+  *// * *
+  * Calculate metrics for the dashboard
+  *// * *
+  * Add menu to trigger the functions
+  *// / Main Functions
 
 // Main Functions
 
 /**
 
- * Performs calculations on metrics
- * @param
- * @param {Object} data - The data object to process
- * @param {string} providerColIdx - The providerColIdx parameter
- * @param {string} totalCostColIdx - The totalCostColIdx parameter
- * @param {string} dayOfWeekColIdx - The dayOfWeekColIdx parameter
- * @param {string} timeCategoryColIdx - The timeCategoryColIdx parameter
- * @param {string} costPerMileColIdx - The costPerMileColIdx parameter
- * @returns {any} The result
+  * Performs calculations on metrics
+  * @param
+  * @param {Object} data - The data object to process
+  * @param {string} providerColIdx - The providerColIdx parameter
+  * @param {string} totalCostColIdx - The totalCostColIdx parameter
+  * @param {string} dayOfWeekColIdx - The dayOfWeekColIdx parameter
+  * @param {string} timeCategoryColIdx - The timeCategoryColIdx parameter
+  * @param {string} costPerMileColIdx - The costPerMileColIdx parameter
+  * @returns {any} The result
 
- */
+  */
 
 function calculateMetrics(data, providerColIdx, totalCostColIdx, dayOfWeekColIdx, timeCategoryColIdx, costPerMileColIdx) {
   let metrics = {
@@ -117,10 +117,10 @@ function calculateMetrics(data, providerColIdx, totalCostColIdx, dayOfWeekColIdx
 
 /**
 
- * Creates new dashboard or resources
- * @returns {any} The newly created any
+  * Creates new dashboard or resources
+  * @returns {any} The newly created any
 
- */
+  */
 
 function createDashboard() {
   let ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -200,14 +200,14 @@ function createDashboard() {
 
 /**
 
- * Creates new enhanced sheet or resources
- * @param
- * @param {any} ss - The ss for creation
- * @param {Array} deduplicatedRows - The deduplicatedRows for creation
- * @param {any} headers - The headers for creation
- * @returns {any} The newly created any
+  * Creates new enhanced sheet or resources
+  * @param
+  * @param {any} ss - The ss for creation
+  * @param {Array} deduplicatedRows - The deduplicatedRows for creation
+  * @param {any} headers - The headers for creation
+  * @returns {any} The newly created any
 
- */
+  */
 
 function createEnhancedSheet(ss, deduplicatedRows, headers) {
   let enhancedSheet = ss.insertSheet('Enhanced Rides Data');
@@ -273,10 +273,10 @@ function createEnhancedSheet(ss, deduplicatedRows, headers) {
 
 /**
 
- * Works with spreadsheet data
- * @returns {any} The result
+  * Works with spreadsheet data
+  * @returns {any} The result
 
- */
+  */
 
 function deduplicateRideData() {
   // Get the active spreadsheet and the sheet with the raw data
@@ -367,12 +367,12 @@ function deduplicateRideData() {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {any} timeStr - The timeStr parameter
- * @returns {any} The result
+  * Extracts specific information
+  * @param
+  * @param {any} timeStr - The timeStr parameter
+  * @returns {any} The result
 
- */
+  */
 
 function extractHour(timeStr) {
   if (! timeStr || timeStr = = = 'N/ A') {
@@ -388,12 +388,12 @@ function extractHour(timeStr) {
 
 /**
 
- * Gets specific time category or configuration
- * @param
- * @param {any} hour - The hour to retrieve
- * @returns {any} The requested any
+  * Gets specific time category or configuration
+  * @param
+  * @param {any} hour - The hour to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getTimeCategory(hour) {
   if (hour = = = '') {
@@ -411,10 +411,10 @@ function getTimeCategory(hour) {
 
 /**
 
- * Performs specialized operations
- * @returns {any} The result
+  * Performs specialized operations
+  * @returns {any} The result
 
- */
+  */
 
 function onOpen() {
   let ui = SpreadsheetApp.getUi();
@@ -428,12 +428,12 @@ function onOpen() {
 
 /**
 
- * Gets specific day of week or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day of week or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getDayOfWeek(date) {
   let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -442,12 +442,12 @@ function getDayOfWeek(date) {
 
 /**
 
- * Parses and extracts cost
- * @param
- * @param {any} costStr - The costStr parameter
- * @returns {any} The result
+  * Parses and extracts cost
+  * @param
+  * @param {any} costStr - The costStr parameter
+  * @returns {any} The result
 
- */
+  */
 
 function parseCost(costStr) {
   if (! costStr) return 0;

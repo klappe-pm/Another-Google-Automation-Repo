@@ -1,35 +1,35 @@
 /**
- * Script Name: rename- tabs
- *
- * Script Summary:
- * Processes Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Execute main operation
- * 4. Handle errors and edge cases
- * 5. Log completion status
- *
- * Script Functions:
- * - renameTabs(): Works with spreadsheet data
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: rename- tabs
+  *
+  * Script Summary:
+  * Processes Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Execute main operation
+  * 4. Handle errors and edge cases
+  * 5. Log completion status
+  *
+  * Script Functions:
+  * - renameTabs(): Works with spreadsheet data
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 // Main Functions
 
 /**
 
- * Works with spreadsheet data
+  * Works with spreadsheet data
 
- */
+  */
 
 function renameTabs() {
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();

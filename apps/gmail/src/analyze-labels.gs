@@ -1,51 +1,51 @@
 /**
- * Script Name: analyze- labels
- *
- * Script Summary:
- * Exports Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- * - Analyze labels patterns and trends
- * - Calculate statistics and metrics
- * - Generate insights and recommendations
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Sort data by relevant fields
- *
- * Script Functions:
- * - analyzeGmailLabels(): Analyzes gmail labels and generates insights
- * - calculateAverage(): Performs calculations on average
- * - calculateMedian(): Performs calculations on median
- *
- * Script Helper Functions:
- * - calculateMax(): Performs calculations on max
- * - calculateMin(): Performs calculations on min
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: analyze- labels
+  *
+  * Script Summary:
+  * Exports Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Analyze labels patterns and trends
+  * - Calculate statistics and metrics
+  * - Generate insights and recommendations
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Sort data by relevant fields
+  *
+  * Script Functions:
+  * - analyzeGmailLabels(): Analyzes gmail labels and generates insights
+  * - calculateAverage(): Performs calculations on average
+  * - calculateMedian(): Performs calculations on median
+  *
+  * Script Helper Functions:
+  * - calculateMax(): Performs calculations on max
+  * - calculateMin(): Performs calculations on min
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 /  / Helper function to calculate average
- // Helper function to calculate minimum
- // Helper function to calculate maximum
- // Helper function to calculate median
+  // Helper function to calculate minimum
+  // Helper function to calculate maximum
+  // Helper function to calculate median
 
 // Main Functions
 
 /**
 
- * Analyzes gmail labels and generates insights
- * @returns {number} The calculated value
+  * Analyzes gmail labels and generates insights
+  * @returns {number} The calculated value
 
- */
+  */
 
 function analyzeGmailLabels() {
   Logger.log('Starting Gmail label analysis...'); // Fetch all labels;
@@ -128,12 +128,12 @@ function analyzeGmailLabels() {
 
 /**
 
- * Performs calculations on average
- * @param
- * @param {Array} array - Array of elements
- * @returns {number} The calculated value
+  * Performs calculations on average
+  * @param
+  * @param {Array} array - Array of elements
+  * @returns {number} The calculated value
 
- */
+  */
 
 function calculateAverage(array) {
   if (array.length = = = 0) return 0;
@@ -143,12 +143,12 @@ function calculateAverage(array) {
 
 /**
 
- * Performs calculations on median
- * @param
- * @param {Array} array - Array of elements
- * @returns {number} The calculated value
+  * Performs calculations on median
+  * @param
+  * @param {Array} array - Array of elements
+  * @returns {number} The calculated value
 
- */
+  */
 
 function calculateMedian(array) {
   array.sort(function (a, b) { return a - b; });
@@ -164,12 +164,12 @@ function calculateMedian(array) {
 
 /**
 
- * Performs calculations on max
- * @param
- * @param {Array} array - Array of elements
- * @returns {number} The calculated value
+  * Performs calculations on max
+  * @param
+  * @param {Array} array - Array of elements
+  * @returns {number} The calculated value
 
- */
+  */
 
 function calculateMax(array) {
   return Math.max.apply(null, array);
@@ -177,12 +177,12 @@ function calculateMax(array) {
 
 /**
 
- * Performs calculations on min
- * @param
- * @param {Array} array - Array of elements
- * @returns {number} The calculated value
+  * Performs calculations on min
+  * @param
+  * @param {Array} array - Array of elements
+  * @returns {number} The calculated value
 
- */
+  */
 
 function calculateMin(array) {
   return Math.min.apply(null, array);

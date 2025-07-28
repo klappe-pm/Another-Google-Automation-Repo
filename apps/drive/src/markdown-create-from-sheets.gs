@@ -1,55 +1,55 @@
 /**
- * Script Name: markdown- create- from- sheets
- *
- * Script Summary:
- * Creates markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Validate input data
- * 5. Process and transform data
- * 6. Apply filters and criteria
- * 7. Format output for presentation
- * 8. Write results to destination
- *
- * Script Functions:
- * - applyStandardFormatting(): Formats apply standardting for display
- * - batchUpdateSheet(): Updates existing batch sheet
- * - createColumnMap(): Creates new column map or resources
- * - createConfigTemplate(): Creates new config template or resources
- * - createFile(): Creates new file or resources
- * - createSampleDataSheet(): Creates new sample data sheet or resources
- * - ensureStatusColumn(): Works with spreadsheet data
- * - generateContent(): Generates new content or reports
- * - generateMarkdownFiles(): Generates new content or reports
- * - generateSection(): Generates new content or reports
- * - getOrCreateSubfolder(): Gets specific or create subfolder or configuration
- * - loadConfiguration(): Loads configuration from storage
- * - onOpen(): Works with spreadsheet data
- * - processDataSheet(): Processes and transforms data sheet
- * - toKebabCase(): Performs specialized operations
- * - toSentenceCase(): Performs specialized operations
- * - toTitleCase(): Performs specialized operations
- *
- * Script Helper Functions:
- * - formatAllSheets(): Formats all sheets for display
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: markdown- create- from- sheets
+  *
+  * Script Summary:
+  * Creates markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Validate input data
+  * 5. Process and transform data
+  * 6. Apply filters and criteria
+  * 7. Format output for presentation
+  * 8. Write results to destination
+  *
+  * Script Functions:
+  * - applyStandardFormatting(): Formats apply standardting for display
+  * - batchUpdateSheet(): Updates existing batch sheet
+  * - createColumnMap(): Creates new column map or resources
+  * - createConfigTemplate(): Creates new config template or resources
+  * - createFile(): Creates new file or resources
+  * - createSampleDataSheet(): Creates new sample data sheet or resources
+  * - ensureStatusColumn(): Works with spreadsheet data
+  * - generateContent(): Generates new content or reports
+  * - generateMarkdownFiles(): Generates new content or reports
+  * - generateSection(): Generates new content or reports
+  * - getOrCreateSubfolder(): Gets specific or create subfolder or configuration
+  * - loadConfiguration(): Loads configuration from storage
+  * - onOpen(): Works with spreadsheet data
+  * - processDataSheet(): Processes and transforms data sheet
+  * - toKebabCase(): Performs specialized operations
+  * - toSentenceCase(): Performs specialized operations
+  * - toTitleCase(): Performs specialized operations
+  *
+  * Script Helper Functions:
+  * - formatAllSheets(): Formats all sheets for display
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 const DEFAULT_YAML_FIELDS = {
   "filename": "filename",
@@ -73,121 +73,121 @@ const DEFAULT_SECTION_ORDER = [
 ];
 
 /**
- * Main function that reads configuration and processes the data sheet to create files.
- * This is the primary entry point triggered by the user.
- *// * *
- * Processes all valid rows in the data sheet.
- *
- * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet The sheet containing the data to process.
- * @param {Object} config The configuration object.
- * @param {Object} folderCache A cache to store Drive Folder objects for this run.
- * @returns {{created: number, errors: number}} An object with counts of created files and errors.
- *// * *
- * Updates the spreadsheet in batches for better performance.
- *
- * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet The sheet to update.
- * @param {Array< Object> } updates An array of update objects.
- * @param {Object} config The configuration object.
- * @param {Object} colMap The column name to index map.
- *// * *
- * Generates the full markdown content for a single row based on configuration.
- * Applies specific formatting rules to YAML values.
- *
- * @param {Array< any> } row The data for the current row.
- * @param {Object} colMap The column name to index map.
- * @param {Object} config The configuration object.
- * @returns {string} The complete markdown content as a string.
- *// * *
- * Generates a single markdown section.
- *
- * @param {Object} section The configuration for the section.
- * @param {Array< any> } row The data for the current row.
- * @param {Object} colMap The column name to index map.
- * @param {Object} config The global configuration object.
- * @returns {string} The markdown for the generated section.
- *// * *
- * Creates a file in Drive, managing subfolders and handling duplicates.
- *
- * @param {string} filename The desired name for the file (without extension).
- * @param {string} content The content of the file.
- * @param {Object} config The configuration object.
- * @param {Array< any> } row The data for the current row, used for subfolder lookup.
- * @param {Object} colMap The column name to index map.
- * @param {Object} folderCache A cache holding the parent and subfolder Drive objects.
- * @returns {GoogleAppsScript.Drive.File} The newly created file object.
- * @throws {Error} If the parent Drive folder is inaccessible.
- *// * *
- * Gets a subfolder by name, or creates it if it doesn't exist.
- *
- * @param {GoogleAppsScript.Drive.Folder} parentFolder The parent folder to search within.
- * @param {string} name The name of the subfolder to find or create.
- * @returns {GoogleAppsScript.Drive.Folder} The existing or newly created subfolder.
- *// * *
- * Creates a mapping of column header names to their zero- based index.
- *
- * @param {Array< string> } headers An array of header strings from the sheet.
- * @param {Object} customMapping A mapping of sheet headers to desired keys.
- * @returns {Object} A map where keys are column names and values are their indices.
- *// * *
- * Ensures a column for status messages exists, creating it if necessary.
- *
- * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet The sheet to check.
- * @param {Object} config The configuration object containing the status column name.
- *// * *
- * Converts a string to Title Case.
- *
- * @param {string} str The input string to convert.
- * @returns {string} The Title Cased string, or 'Uncategorized' if the input is empty.
- *// * *
- * Converts a string to kebab- case (lowercase, spaces replaced with hyphens).
- * @param {string} str The string to convert.
- * @returns {string} The kebab- cased string.
- *// * *
- * Converts a string to Sentence case (capitalizes the first letter).
- * @param {string} str The string to convert.
- * @returns {string} The Sentence- cased string.
- *// * *
- * Creates the custom UI menu when the spreadsheet is opened.
- * Merges Markdown Generator and Custom Formatting functionality.
- *// * *
- * Creates the 'Config' sheet with default settings and descriptions.
- * Automatically applies standard formatting after creation.
- *// * *
- * Creates a sample data sheet with columns that exactly match the default JSON configuration.
- *
- * @throws {Error} If the configuration cannot be loaded to determine the sheet name.
- *// * *
- * Main formatting function that applies all formatting rules to every sheet.
- *// * *
- * Applies a standard set of formatting rules to a given sheet.
- * This is a reusable helper function.
- *
- * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet The sheet object to format.
- * @param {boolean} shouldResizeColumns If true, resizes all columns to 100px.
- *// / Main Functions
+  * Main function that reads configuration and processes the data sheet to create files.
+  * This is the primary entry point triggered by the user.
+  *// * *
+  * Processes all valid rows in the data sheet.
+  *
+  * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet The sheet containing the data to process.
+  * @param {Object} config The configuration object.
+  * @param {Object} folderCache A cache to store Drive Folder objects for this run.
+  * @returns {{created: number, errors: number}} An object with counts of created files and errors.
+  *// * *
+  * Updates the spreadsheet in batches for better performance.
+  *
+  * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet The sheet to update.
+  * @param {Array< Object> } updates An array of update objects.
+  * @param {Object} config The configuration object.
+  * @param {Object} colMap The column name to index map.
+  *// * *
+  * Generates the full markdown content for a single row based on configuration.
+  * Applies specific formatting rules to YAML values.
+  *
+  * @param {Array< any> } row The data for the current row.
+  * @param {Object} colMap The column name to index map.
+  * @param {Object} config The configuration object.
+  * @returns {string} The complete markdown content as a string.
+  *// * *
+  * Generates a single markdown section.
+  *
+  * @param {Object} section The configuration for the section.
+  * @param {Array< any> } row The data for the current row.
+  * @param {Object} colMap The column name to index map.
+  * @param {Object} config The global configuration object.
+  * @returns {string} The markdown for the generated section.
+  *// * *
+  * Creates a file in Drive, managing subfolders and handling duplicates.
+  *
+  * @param {string} filename The desired name for the file (without extension).
+  * @param {string} content The content of the file.
+  * @param {Object} config The configuration object.
+  * @param {Array< any> } row The data for the current row, used for subfolder lookup.
+  * @param {Object} colMap The column name to index map.
+  * @param {Object} folderCache A cache holding the parent and subfolder Drive objects.
+  * @returns {GoogleAppsScript.Drive.File} The newly created file object.
+  * @throws {Error} If the parent Drive folder is inaccessible.
+  *// * *
+  * Gets a subfolder by name, or creates it if it doesn't exist.
+  *
+  * @param {GoogleAppsScript.Drive.Folder} parentFolder The parent folder to search within.
+  * @param {string} name The name of the subfolder to find or create.
+  * @returns {GoogleAppsScript.Drive.Folder} The existing or newly created subfolder.
+  *// * *
+  * Creates a mapping of column header names to their zero- based index.
+  *
+  * @param {Array< string> } headers An array of header strings from the sheet.
+  * @param {Object} customMapping A mapping of sheet headers to desired keys.
+  * @returns {Object} A map where keys are column names and values are their indices.
+  *// * *
+  * Ensures a column for status messages exists, creating it if necessary.
+  *
+  * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet The sheet to check.
+  * @param {Object} config The configuration object containing the status column name.
+  *// * *
+  * Converts a string to Title Case.
+  *
+  * @param {string} str The input string to convert.
+  * @returns {string} The Title Cased string, or 'Uncategorized' if the input is empty.
+  *// * *
+  * Converts a string to kebab- case (lowercase, spaces replaced with hyphens).
+  * @param {string} str The string to convert.
+  * @returns {string} The kebab- cased string.
+  *// * *
+  * Converts a string to Sentence case (capitalizes the first letter).
+  * @param {string} str The string to convert.
+  * @returns {string} The Sentence- cased string.
+  *// * *
+  * Creates the custom UI menu when the spreadsheet is opened.
+  * Merges Markdown Generator and Custom Formatting functionality.
+  *// * *
+  * Creates the 'Config' sheet with default settings and descriptions.
+  * Automatically applies standard formatting after creation.
+  *// * *
+  * Creates a sample data sheet with columns that exactly match the default JSON configuration.
+  *
+  * @throws {Error} If the configuration cannot be loaded to determine the sheet name.
+  *// * *
+  * Main formatting function that applies all formatting rules to every sheet.
+  *// * *
+  * Applies a standard set of formatting rules to a given sheet.
+  * This is a reusable helper function.
+  *
+  * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet The sheet object to format.
+  * @param {boolean} shouldResizeColumns If true, resizes all columns to 100px.
+  *// / Main Functions
 
 // Main Functions
 
 /**
 
- * Formats apply standardting for display
- * @param
- * @param {Sheet} sheet - The sheet parameter
- * @param {number} shouldResizeColumns - The shouldResizeColumns parameter
- * @returns {any} The result
+  * Formats apply standardting for display
+  * @param
+  * @param {Sheet} sheet - The sheet parameter
+  * @param {number} shouldResizeColumns - The shouldResizeColumns parameter
+  * @returns {any} The result
 
- */
+  */
 
 function applyStandardFormatting(sheet, shouldResizeColumns) {
   const dataRange = sheet.getDataRange();
 
   // Set font to Helvetica Neue, size 11 for all cells
   dataRange.setFontFamily("Helvetica Neue")
-           .setFontSize(11);
+            .setFontSize(11);
 
   // Set horizontal alignment to left and vertical alignment to top for all cells
   dataRange.setHorizontalAlignment("left")
-           .setVerticalAlignment("top");
+            .setVerticalAlignment("top");
 
   // Make the top row bold
   const topRow = sheet.getRange(1, 1, 1, sheet.getLastColumn());
@@ -210,15 +210,15 @@ function applyStandardFormatting(sheet, shouldResizeColumns) {
 
 /**
 
- * Updates existing batch sheet
- * @param
- * @param {Sheet} sheet - The sheet to update
- * @param {any} updates - The updates to update
- * @param {Object} config - Configuration settings
- * @param {any} colMap - The colMap to update
- * @returns {any} The result
+  * Updates existing batch sheet
+  * @param
+  * @param {Sheet} sheet - The sheet to update
+  * @param {any} updates - The updates to update
+  * @param {Object} config - Configuration settings
+  * @param {any} colMap - The colMap to update
+  * @returns {any} The result
 
- */
+  */
 
 function batchUpdateSheet(sheet, updates, config, colMap) {
   const processedColIdx = config.processedColumn ? colMap[config.processedColumn] : - 1;
@@ -243,13 +243,13 @@ function batchUpdateSheet(sheet, updates, config, colMap) {
 
 /**
 
- * Creates new column map or resources
- * @param
- * @param {any} headers - The headers for creation
- * @param {any} customMapping - The customMapping for creation
- * @returns {any} The newly created any
+  * Creates new column map or resources
+  * @param
+  * @param {any} headers - The headers for creation
+  * @param {any} customMapping - The customMapping for creation
+  * @returns {any} The newly created any
 
- */
+  */
 
 function createColumnMap(headers, customMapping) {
   const map = {};
@@ -267,10 +267,10 @@ function createColumnMap(headers, customMapping) {
 
 /**
 
- * Creates new config template or resources
- * @returns {any} The newly created any
+  * Creates new config template or resources
+  * @returns {any} The newly created any
 
- */
+  */
 
 function createConfigTemplate() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -317,17 +317,17 @@ function createConfigTemplate() {
 
 /**
 
- * Creates new file or resources
- * @param
- * @param {string} filename - The filename for creation
- * @param {string} content - The content to process
- * @param {Object} config - Configuration settings
- * @param {any} row - The row for creation
- * @param {any} colMap - The colMap for creation
- * @param {Folder} folderCache - The folderCache for creation
- * @returns {any} The newly created any
+  * Creates new file or resources
+  * @param
+  * @param {string} filename - The filename for creation
+  * @param {string} content - The content to process
+  * @param {Object} config - Configuration settings
+  * @param {any} row - The row for creation
+  * @param {any} colMap - The colMap for creation
+  * @param {Folder} folderCache - The folderCache for creation
+  * @returns {any} The newly created any
 
- */
+  */
 
 function createFile(filename, content, config, row, colMap, folderCache) {
   // Use the cached parent folder object for this run
@@ -366,10 +366,10 @@ function createFile(filename, content, config, row, colMap, folderCache) {
 
 /**
 
- * Creates new sample data sheet or resources
- * @returns {any} The newly created any
+  * Creates new sample data sheet or resources
+  * @returns {any} The newly created any
 
- */
+  */
 
 function createSampleDataSheet() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -422,13 +422,13 @@ function createSampleDataSheet() {
 
 /**
 
- * Works with spreadsheet data
- * @param
- * @param {Sheet} sheet - The sheet parameter
- * @param {Object} config - Configuration settings
- * @returns {any} The result
+  * Works with spreadsheet data
+  * @param
+  * @param {Sheet} sheet - The sheet parameter
+  * @param {Object} config - Configuration settings
+  * @returns {any} The result
 
- */
+  */
 
 function ensureStatusColumn(sheet, config) {
   const statusColumnName = config.statusColumn || 'status';
@@ -443,14 +443,14 @@ function ensureStatusColumn(sheet, config) {
 
 /**
 
- * Generates new content or reports
- * @param
- * @param {any} row - The row parameter
- * @param {any} colMap - The colMap parameter
- * @param {Object} config - Configuration settings
- * @returns {any} The result
+  * Generates new content or reports
+  * @param
+  * @param {any} row - The row parameter
+  * @param {any} colMap - The colMap parameter
+  * @param {Object} config - Configuration settings
+  * @returns {any} The result
 
- */
+  */
 
 function generateContent(row, colMap, config) {
   let content = '';
@@ -525,10 +525,10 @@ function generateContent(row, colMap, config) {
 
 /**
 
- * Generates new content or reports
- * @returns {any} The result
+  * Generates new content or reports
+  * @returns {any} The result
 
- */
+  */
 
 function generateMarkdownFiles() {
   try {
@@ -568,15 +568,15 @@ function generateMarkdownFiles() {
 
 /**
 
- * Generates new content or reports
- * @param
- * @param {any} section - The section parameter
- * @param {any} row - The row parameter
- * @param {any} colMap - The colMap parameter
- * @param {Object} config - Configuration settings
- * @returns {any} The result
+  * Generates new content or reports
+  * @param
+  * @param {any} section - The section parameter
+  * @param {any} row - The row parameter
+  * @param {any} colMap - The colMap parameter
+  * @param {Object} config - Configuration settings
+  * @returns {any} The result
 
- */
+  */
 
 function generateSection(section, row, colMap, config) {
   const rawContent = section.column ? (row[colMap[section.column]] || '') : '';
@@ -615,13 +615,13 @@ function generateSection(section, row, colMap, config) {
 
 /**
 
- * Gets specific or create subfolder or configuration
- * @param
- * @param {Folder} parentFolder - The parentFolder to retrieve
- * @param {string} name - The name to use
- * @returns {any} The requested any
+  * Gets specific or create subfolder or configuration
+  * @param
+  * @param {Folder} parentFolder - The parentFolder to retrieve
+  * @param {string} name - The name to use
+  * @returns {any} The requested any
 
- */
+  */
 
 function getOrCreateSubfolder(parentFolder, name) {
   const folders = parentFolder.getFoldersByName(name);
@@ -634,10 +634,10 @@ function getOrCreateSubfolder(parentFolder, name) {
 
 /**
 
- * Loads configuration from storage
- * @returns {any} The result
+  * Loads configuration from storage
+  * @returns {any} The result
 
- */
+  */
 
 function loadConfiguration() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -672,10 +672,10 @@ function loadConfiguration() {
 
 /**
 
- * Works with spreadsheet data
- * @returns {any} The result
+  * Works with spreadsheet data
+  * @returns {any} The result
 
- */
+  */
 
 function onOpen() {
   SpreadsheetApp.getUi()
@@ -691,14 +691,14 @@ function onOpen() {
 
 /**
 
- * Processes and transforms data sheet
- * @param
- * @param {Sheet} sheet - The sheet parameter
- * @param {Object} config - Configuration settings
- * @param {Folder} folderCache - The folderCache parameter
- * @returns {any} The result
+  * Processes and transforms data sheet
+  * @param
+  * @param {Sheet} sheet - The sheet parameter
+  * @param {Object} config - Configuration settings
+  * @param {Folder} folderCache - The folderCache parameter
+  * @returns {any} The result
 
- */
+  */
 
 function processDataSheet(sheet, config, folderCache) {
   const data = sheet.getDataRange().getValues();
@@ -777,12 +777,12 @@ function processDataSheet(sheet, config, folderCache) {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {any} str - The str parameter
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {any} str - The str parameter
+  * @returns {any} The result
 
- */
+  */
 
 function toKebabCase(str) {
   if (! str || typeof str ! = = 'string') return '';
@@ -791,12 +791,12 @@ function toKebabCase(str) {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {any} str - The str parameter
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {any} str - The str parameter
+  * @returns {any} The result
 
- */
+  */
 
 function toSentenceCase(str) {
   if (! str || typeof str ! = = 'string') return '';
@@ -806,12 +806,12 @@ function toSentenceCase(str) {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {any} str - The str parameter
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {any} str - The str parameter
+  * @returns {any} The result
 
- */
+  */
 
 function toTitleCase(str) {
   if (! str || typeof str ! = = 'string') return 'Uncategorized';
@@ -824,10 +824,10 @@ function toTitleCase(str) {
 
 /**
 
- * Formats all sheets for display
- * @returns {any} The result
+  * Formats all sheets for display
+  * @returns {any} The result
 
- */
+  */
 
 function formatAllSheets() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();

@@ -1,59 +1,59 @@
 /**
- * Script Name: markdown- export- calendar- events
- *
- * Script Summary:
- * Exports markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Apply filters and criteria
- * 5. Sort data by relevant fields
- * 6. Format output for presentation
- *
- * Script Functions:
- * - createMarkdownFilesForTodaysEvents(): Creates new markdown files for todays events or resources
- * - createOrGetDailyNotesFolder(): Gets specific create or daily notes folder or configuration
- * - getOrCreateFolderPath(): Gets specific or create folder path or configuration
- * - onOpen(): Manages files and folders
- *
- * Script Helper Functions:
- * - getEventViewUrl(): Gets specific event view url or configuration
- * - getWeekNumber(): Gets specific week number or configuration
- * - isOwnedByMe(): Checks boolean condition
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - CalendarApp: For calendar and event management
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: markdown- export- calendar- events
+  *
+  * Script Summary:
+  * Exports markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Apply filters and criteria
+  * 5. Sort data by relevant fields
+  * 6. Format output for presentation
+  *
+  * Script Functions:
+  * - createMarkdownFilesForTodaysEvents(): Creates new markdown files for todays events or resources
+  * - createOrGetDailyNotesFolder(): Gets specific create or daily notes folder or configuration
+  * - getOrCreateFolderPath(): Gets specific or create folder path or configuration
+  * - onOpen(): Manages files and folders
+  *
+  * Script Helper Functions:
+  * - getEventViewUrl(): Gets specific event view url or configuration
+  * - getWeekNumber(): Gets specific week number or configuration
+  * - isOwnedByMe(): Checks boolean condition
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - CalendarApp: For calendar and event management
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 /  / Main function to create markdown files for today's events
- // Function to get or create the "Daily Notes / yyyy - {week number}" folder
- // Helper function to calculate week number
- // Function to get or create a folder by path
- // Function to get the Google Calendar View Event URL
- // Function to determine if the event is owned by the current user
+  // Function to get or create the "Daily Notes / yyyy - {week number}" folder
+  // Helper function to calculate week number
+  // Function to get or create a folder by path
+  // Function to get the Google Calendar View Event URL
+  // Function to determine if the event is owned by the current user
 
 // Main Functions
 
 /**
 
- * Creates new markdown files for todays events or resources
- * @returns {any} The newly created any
+  * Creates new markdown files for todays events or resources
+  * @returns {any} The newly created any
 
- */
+  */
 
 function createMarkdownFilesForTodaysEvents() {
   try {
@@ -102,7 +102,6 @@ aliases:
 tags: - - - `; // Markdown content
       const markdownContent = `${yamlContent}
 
-
 #### Todos - #### Attendees
 ${sortedAttendees}
 `; // Get or create the "Daily Notes / yyyy - {week number}" folder
@@ -119,10 +118,10 @@ ${sortedAttendees}
 
 /**
 
- * Gets specific create or daily notes folder or configuration
- * @returns {any} The requested any
+  * Gets specific create or daily notes folder or configuration
+  * @returns {any} The requested any
 
- */
+  */
 
 function createOrGetDailyNotesFolder() {
   const todayDate = new Date();
@@ -134,12 +133,12 @@ function createOrGetDailyNotesFolder() {
 
 /**
 
- * Gets specific or create folder path or configuration
- * @param
- * @param {string} path - The file path
- * @returns {any} The requested any
+  * Gets specific or create folder path or configuration
+  * @param
+  * @param {string} path - The file path
+  * @returns {any} The requested any
 
- */
+  */
 
 function getOrCreateFolderPath(path) {
   const folders = path.split(' / ');
@@ -158,10 +157,10 @@ function getOrCreateFolderPath(path) {
 
 /**
 
- * Manages files and folders
- * @returns {any} The result
+  * Manages files and folders
+  * @returns {any} The result
 
- */
+  */
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
@@ -174,13 +173,13 @@ function onOpen() {
 
 /**
 
- * Gets specific event view url or configuration
- * @param
- * @param {CalendarEvent} event - The event to retrieve
- * @param {string} calendarId - The calendarId to retrieve
- * @returns {any} The requested any
+  * Gets specific event view url or configuration
+  * @param
+  * @param {CalendarEvent} event - The event to retrieve
+  * @param {string} calendarId - The calendarId to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getEventViewUrl(event, calendarId) {
   const splitEventId = event.getId().split('@');
@@ -189,12 +188,12 @@ function getEventViewUrl(event, calendarId) {
 
 /**
 
- * Gets specific week number or configuration
- * @param
- * @param {any} d - The d to retrieve
- * @returns {any} The requested any
+  * Gets specific week number or configuration
+  * @param
+  * @param {any} d - The d to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getWeekNumber(d) {
   const startOfYear = new Date(d.getFullYear(), 0, 1);
@@ -205,12 +204,12 @@ function getWeekNumber(d) {
 
 /**
 
- * Checks boolean condition
- * @param
- * @param {CalendarEvent} event - The event parameter
- * @returns {any} True if condition is met, false otherwise
+  * Checks boolean condition
+  * @param
+  * @param {CalendarEvent} event - The event parameter
+  * @returns {any} True if condition is met, false otherwise
 
- */
+  */
 
 function isOwnedByMe(event) {
   const ownerEmail = event.getCreators().join(", ");

@@ -1,34 +1,34 @@
 /**
- * Script Name: export- calendar- after- date
- *
- * Script Summary:
- * Exports spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Extract calendar after date data from Google services
- * - Convert data to portable formats
- * - Generate reports and summaries
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Execute main operation
- * 4. Handle errors and edge cases
- * 5. Log completion status
- *
- * Script Functions:
- * - clearLog(): Logs clear or messages
- * - exportCalendarEvents(): Exports calendar events to external format
- * - main(): Handles calendar operations
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - CalendarApp: For calendar and event management
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: export- calendar- after- date
+  *
+  * Script Summary:
+  * Exports spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Extract calendar after date data from Google services
+  * - Convert data to portable formats
+  * - Generate reports and summaries
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Execute main operation
+  * 4. Handle errors and edge cases
+  * 5. Log completion status
+  *
+  * Script Functions:
+  * - clearLog(): Logs clear or messages
+  * - exportCalendarEvents(): Exports calendar events to external format
+  * - main(): Handles calendar operations
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - CalendarApp: For calendar and event management
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 1. Open Google Apps Script editor (script.google.com);
 2. Create a new project or open existing one
@@ -51,9 +51,9 @@
 
 /**
 
- * Logs clear or messages
+  * Logs clear or messages
 
- */
+  */
 
 function clearLog() {
   console.clear();
@@ -61,9 +61,9 @@ function clearLog() {
 
 /**
 
- * Exports calendar events to external format
+  * Exports calendar events to external format
 
- */
+  */
 
 function exportCalendarEvents() { // NEW: Added debug logging;
   Logger.log('Starting exportCalendarEvents function'); // Set the date range;
@@ -114,9 +114,9 @@ function exportCalendarEvents() { // NEW: Added debug logging;
 
 /**
 
- * Handles calendar operations
+  * Handles calendar operations
 
- */
+  */
 
 function main() {
   clearLog();

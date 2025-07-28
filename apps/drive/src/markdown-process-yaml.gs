@@ -1,47 +1,47 @@
 /**
- * Script Name: markdown- process- yaml
- *
- * Script Summary:
- * Processs markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- *
- * Script Steps:
- * 1. Access Drive file system
- * 2. Fetch source data
- * 3. Process and transform data
- * 4. Format output for presentation
- *
- * Script Functions:
- * - applyMarkdownFormatting(): Formats apply markdownting for display
- * - processFolder(): Processes and transforms folder
- * - updateYamlCategory(): Updates existing yaml category
- *
- * Script Helper Functions:
- * - formatMarkdownFile(): Formats markdown file for display
- * - formatMarkdownFiles(): Formats markdown files for display
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- */
+  * Script Name: markdown- process- yaml
+  *
+  * Script Summary:
+  * Processs markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  *
+  * Script Steps:
+  * 1. Access Drive file system
+  * 2. Fetch source data
+  * 3. Process and transform data
+  * 4. Format output for presentation
+  *
+  * Script Functions:
+  * - applyMarkdownFormatting(): Formats apply markdownting for display
+  * - processFolder(): Processes and transforms folder
+  * - updateYamlCategory(): Updates existing yaml category
+  *
+  * Script Helper Functions:
+  * - formatMarkdownFile(): Formats markdown file for display
+  * - formatMarkdownFiles(): Formats markdown files for display
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  */
 
 // Main Functions
 
 /**
 
- * Formats apply markdownting for display
- * @param
- * @param {string} content - The content to process
- * @returns {any} The result
+  * Formats apply markdownting for display
+  * @param
+  * @param {string} content - The content to process
+  * @returns {any} The result
 
- */
+  */
 
 function applyMarkdownFormatting(content) {
   let formattedContent = content.replace(/ \n{3,}/ g, '\n\n');
@@ -62,7 +62,7 @@ function applyMarkdownFormatting(content) {
         inParagraph = false;
       }
     } else if (! line.startsWith('- ') && ! line.startsWith('* ') &&
-               ! line.startsWith('[ ] ') && ! line.startsWith('[x] ')) {
+                ! line.startsWith('[ ] ') && ! line.startsWith('[x] ')) {
       if (! inParagraph) {
         formattedLines.push('');
       }
@@ -88,12 +88,12 @@ function applyMarkdownFormatting(content) {
 
 /**
 
- * Processes and transforms folder
- * @param
- * @param {Folder} folder - The folder parameter
- * @returns {any} The result
+  * Processes and transforms folder
+  * @param
+  * @param {Folder} folder - The folder parameter
+  * @returns {any} The result
 
- */
+  */
 
 function processFolder(folder) {
   const filesIterator = folder.getFiles();
@@ -122,13 +122,13 @@ function processFolder(folder) {
 
 /**
 
- * Updates existing yaml category
- * @param
- * @param {string} content - The content to process
- * @param {string} folderName - The folderName to update
- * @returns {any} The result
+  * Updates existing yaml category
+  * @param
+  * @param {string} content - The content to process
+  * @param {string} folderName - The folderName to update
+  * @returns {any} The result
 
- */
+  */
 
 function updateYamlCategory(content, folderName) {
   const yamlRegex = / ^- - - \n([\s\S]* ?)- - - \n/ ;
@@ -155,13 +155,13 @@ function updateYamlCategory(content, folderName) {
 
 /**
 
- * Formats markdown file for display
- * @param
- * @param {File} file - The file parameter
- * @param {string} folderName - The folderName parameter
- * @returns {any} The result
+  * Formats markdown file for display
+  * @param
+  * @param {File} file - The file parameter
+  * @param {string} folderName - The folderName parameter
+  * @returns {any} The result
 
- */
+  */
 
 function formatMarkdownFile(file, folderName) {
   const content = file.getBlob().getDataAsString();
@@ -172,10 +172,10 @@ function formatMarkdownFile(file, folderName) {
 
 /**
 
- * Formats markdown files for display
- * @returns {any} The result
+  * Formats markdown files for display
+  * @returns {any} The result
 
- */
+  */
 
 function formatMarkdownFiles() {
   const folderId = '';

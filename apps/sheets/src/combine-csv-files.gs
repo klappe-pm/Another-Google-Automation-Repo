@@ -1,46 +1,46 @@
 /**
- * Script Name: combine- csv- files
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Process and transform data
- *
- * Script Functions:
- * - processCSVFiles(): Processes and transforms c s v files
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: combine- csv- files
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Process and transform data
+  *
+  * Script Functions:
+  * - processCSVFiles(): Processes and transforms c s v files
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 /**
- * processCSVFiles()
- *
- * This function retrieves CSV files from the '% % % % % ' folder, parses their data,
- * creates new sheets in the active spreadsheet, and moves the processed files to the
- * 'processed' folder. It includes error handling for empty or malformed CSV files and
- * parsing errors.
- *// / Main Functions
+  * processCSVFiles()
+  *
+  * This function retrieves CSV files from the '% % % % % ' folder, parses their data,
+  * creates new sheets in the active spreadsheet, and moves the processed files to the
+  * 'processed' folder. It includes error handling for empty or malformed CSV files and
+  * parsing errors.
+  *// / Main Functions
 
 // Main Functions
 
 /**
 
- * Processes and transforms c s v files
+  * Processes and transforms c s v files
 
- */
+  */
 
 function processCSVFiles() {
   // Get the active spreadsheet

@@ -1,44 +1,44 @@
 /**
- * Script Name: analyze- labels- data
- *
- * Script Summary:
- * Exports Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- * - Analyze labels data patterns and trends
- * - Calculate statistics and metrics
- * - Generate insights and recommendations
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Validate input data
- * 5. Process and transform data
- * 6. Format output for presentation
- * 7. Write results to destination
- * 8. Send notifications or reports
- *
- * Script Functions:
- * - exportGmailLabelsToSheet(): Exports gmail labels to sheet to external format
- * - performLabelsExport(): Exports perform labels to external format
- * - resetConfiguration(): Sets re configuration or configuration values
- * - setupGmailLabelsExport(): Exports setup gmail labels to external format
- * - viewCurrentConfiguration(): Works with spreadsheet data
- *
- * Script Helper Functions:
- * - isValidGoogleId(): Checks boolean condition
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - PropertiesService: For storing script properties
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: analyze- labels- data
+  *
+  * Script Summary:
+  * Exports Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Analyze labels data patterns and trends
+  * - Calculate statistics and metrics
+  * - Generate insights and recommendations
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Validate input data
+  * 5. Process and transform data
+  * 6. Format output for presentation
+  * 7. Write results to destination
+  * 8. Send notifications or reports
+  *
+  * Script Functions:
+  * - exportGmailLabelsToSheet(): Exports gmail labels to sheet to external format
+  * - performLabelsExport(): Exports perform labels to external format
+  * - resetConfiguration(): Sets re configuration or configuration values
+  * - setupGmailLabelsExport(): Exports setup gmail labels to external format
+  * - viewCurrentConfiguration(): Works with spreadsheet data
+  *
+  * Script Helper Functions:
+  * - isValidGoogleId(): Checks boolean condition
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - PropertiesService: For storing script properties
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 GOOGLE_IDS: { // External spreadsheet ID - HIGH SECURITY RISK if hardcoded
     SPREADSHEET_ID: PropertiesService.getScriptProperties().getProperty('GMAIL_LABELS_SPREADSHEET_ID'),
@@ -59,10 +59,10 @@ GOOGLE_IDS: { // External spreadsheet ID - HIGH SECURITY RISK if hardcoded
 
 /**
 
- * Exports gmail labels to sheet to external format
- * @returns {number} The calculated value
+  * Exports gmail labels to sheet to external format
+  * @returns {number} The calculated value
 
- */
+  */
 
 function exportGmailLabelsToSheet() {
   Logger.log('Starting Gmail Labels Export...'); // Validate configuration exists;
@@ -117,10 +117,10 @@ function exportGmailLabelsToSheet() {
 
 /**
 
- * Exports perform labels to external format
- * @returns {number} The calculated value
+  * Exports perform labels to external format
+  * @returns {number} The calculated value
 
- */
+  */
 
 function performLabelsExport() {
   Logger.log('Performing labels export...'); // Open the spreadsheet;
@@ -186,10 +186,10 @@ function performLabelsExport() {
 
 /**
 
- * Sets re configuration or configuration values
- * @returns {number} The calculated value
+  * Sets re configuration or configuration values
+  * @returns {number} The calculated value
 
- */
+  */
 
 function resetConfiguration() {
   const confirm = Browser.msgBox(;
@@ -206,10 +206,10 @@ function resetConfiguration() {
 
 /**
 
- * Exports setup gmail labels to external format
- * @returns {number} The calculated value
+  * Exports setup gmail labels to external format
+  * @returns {number} The calculated value
 
- */
+  */
 
 function setupGmailLabelsExport() {
   Logger.log('Setting up Gmail Labels Export configuration...'); // Check if configuration already exists;
@@ -269,10 +269,10 @@ function setupGmailLabelsExport() {
 
 /**
 
- * Works with spreadsheet data
- * @returns {number} The calculated value
+  * Works with spreadsheet data
+  * @returns {number} The calculated value
 
- */
+  */
 
 function viewCurrentConfiguration() {
   const spreadsheetId = PropertiesService.getScriptProperties().getProperty('GMAIL_LABELS_SPREADSHEET_ID');
@@ -305,12 +305,12 @@ function viewCurrentConfiguration() {
 
 /**
 
- * Checks boolean condition
- * @param
- * @param {string} id - The unique identifier
- * @returns {number} True if condition is met, false otherwise
+  * Checks boolean condition
+  * @param
+  * @param {string} id - The unique identifier
+  * @returns {number} True if condition is met, false otherwise
 
- */
+  */
 
 function isValidGoogleId(id) { // Google IDs are typically 44 characters of alphanumeric, hyphens, and underscores
   const googleIdPattern = / ^[a - zA - Z0 - 9_ - ]{25,}$ / ; return googleIdPattern.test(id);

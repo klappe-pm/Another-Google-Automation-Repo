@@ -1,33 +1,33 @@
 /**
- * Script Name: export- labels- data
- *
- * Script Summary:
- * Exports Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- * - Extract labels data data from Google services
- * - Convert data to portable formats
- * - Generate reports and summaries
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Process and transform data
- * 5. Format output for presentation
- * 6. Send notifications or reports
- *
- * Script Functions:
- * - exportGmailLabelsToSheet(): Exports gmail labels to sheet to external format
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: export- labels- data
+  *
+  * Script Summary:
+  * Exports Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Extract labels data data from Google services
+  * - Convert data to portable formats
+  * - Generate reports and summaries
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Process and transform data
+  * 5. Format output for presentation
+  * 6. Send notifications or reports
+  *
+  * Script Functions:
+  * - exportGmailLabelsToSheet(): Exports gmail labels to sheet to external format
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 /**  * Main function to export Gmail labels information to a Google Sheet *// / Main Functions
 
@@ -35,9 +35,9 @@
 
 /**
 
- * Exports gmail labels to sheet to external format
+  * Exports gmail labels to sheet to external format
 
- */
+  */
 
 function exportGmailLabelsToSheet() {
   Logger.log('Entering exportGmailLabelsToSheet function'); // Define the spreadsheet ID and the sheet name;

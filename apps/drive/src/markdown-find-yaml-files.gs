@@ -1,54 +1,54 @@
 /**
- * Script Name: markdown- find- yaml- files
- *
- * Script Summary:
- * Finds markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Validate input data
- * 5. Process and transform data
- *
- * Script Functions:
- * - extractYamlFrontmatter(): Extracts specific information
- * - findFolderByName(): Finds matching folder by name
- * - findYamlFrontmatterInFolder(): Finds matching yaml frontmatter in folder
- * - findYamlFrontmatterInFolderById(): Finds matching yaml frontmatter in folder by id
- * - onOpen(): Manages files and folders
- * - processFolderInput(): Processes and transforms folder input
- * - showFolderInputForm(): Manages files and folders
- * - YAML(): Performs specialized operations
- *
- * Script Helper Functions:
- * - parseYaml(): Parses and extracts yaml
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - HtmlService: For serving HTML content
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: markdown- find- yaml- files
+  *
+  * Script Summary:
+  * Finds markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Validate input data
+  * 5. Process and transform data
+  *
+  * Script Functions:
+  * - extractYamlFrontmatter(): Extracts specific information
+  * - findFolderByName(): Finds matching folder by name
+  * - findYamlFrontmatterInFolder(): Finds matching yaml frontmatter in folder
+  * - findYamlFrontmatterInFolderById(): Finds matching yaml frontmatter in folder by id
+  * - onOpen(): Manages files and folders
+  * - processFolderInput(): Processes and transforms folder input
+  * - showFolderInputForm(): Manages files and folders
+  * - YAML(): Performs specialized operations
+  *
+  * Script Helper Functions:
+  * - parseYaml(): Parses and extracts yaml
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - HtmlService: For serving HTML content
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 // Main Functions
 
 /**
 
- * Extracts specific information
- * @param
- * @param {string} content - The content to process
- * @returns {any} The result
+  * Extracts specific information
+  * @param
+  * @param {string} content - The content to process
+  * @returns {any} The result
 
- */
+  */
 
 function extractYamlFrontmatter(content) {
   Logger.log('Entering extractYamlFrontmatter function');
@@ -76,12 +76,12 @@ function extractYamlFrontmatter(content) {
 
 /**
 
- * Finds matching folder by name
- * @param
- * @param {string} folderName - The folderName parameter
- * @returns {any} The result
+  * Finds matching folder by name
+  * @param
+  * @param {string} folderName - The folderName parameter
+  * @returns {any} The result
 
- */
+  */
 
 function findFolderByName(folderName) {
   Logger.log('Entering findFolderByName function');
@@ -100,12 +100,12 @@ function findFolderByName(folderName) {
 
 /**
 
- * Finds matching yaml frontmatter in folder
- * @param
- * @param {Folder} folder - The folder parameter
- * @returns {any} The result
+  * Finds matching yaml frontmatter in folder
+  * @param
+  * @param {Folder} folder - The folder parameter
+  * @returns {any} The result
 
- */
+  */
 
 function findYamlFrontmatterInFolder(folder) {
   Logger.log('Entering findYamlFrontmatterInFolder function');
@@ -145,12 +145,12 @@ function findYamlFrontmatterInFolder(folder) {
 
 /**
 
- * Finds matching yaml frontmatter in folder by id
- * @param
- * @param {string} folderId - The folderId parameter
- * @returns {any} The result
+  * Finds matching yaml frontmatter in folder by id
+  * @param
+  * @param {string} folderId - The folderId parameter
+  * @returns {any} The result
 
- */
+  */
 
 function findYamlFrontmatterInFolderById(folderId) {
   Logger.log('Entering findYamlFrontmatterInFolderById function');
@@ -168,10 +168,10 @@ function findYamlFrontmatterInFolderById(folderId) {
 
 /**
 
- * Manages files and folders
- * @returns {any} The result
+  * Manages files and folders
+  * @returns {any} The result
 
- */
+  */
 
 function onOpen() {
   Logger.log('Entering onOpen function');
@@ -189,13 +189,13 @@ function onOpen() {
 
 /**
 
- * Processes and transforms folder input
- * @param
- * @param {string} folderId - The folderId parameter
- * @param {string} folderName - The folderName parameter
- * @returns {any} The result
+  * Processes and transforms folder input
+  * @param
+  * @param {string} folderId - The folderId parameter
+  * @param {string} folderName - The folderName parameter
+  * @returns {any} The result
 
- */
+  */
 
 function processFolderInput(folderId, folderName) {
   Logger.log('Entering processFolderInput function');
@@ -226,10 +226,10 @@ function processFolderInput(folderId, folderName) {
 
 /**
 
- * Manages files and folders
- * @returns {any} The result
+  * Manages files and folders
+  * @returns {any} The result
 
- */
+  */
 
 function showFolderInputForm() {
   Logger.log('Entering showFolderInputForm function');
@@ -247,10 +247,10 @@ function showFolderInputForm() {
 
 /**
 
- * Performs specialized operations
- * @returns {any} The result
+  * Performs specialized operations
+  * @returns {any} The result
 
- */
+  */
 
 function YAML() {
   this.parse = function (yamlString) {
@@ -279,12 +279,12 @@ function YAML() {
 
 /**
 
- * Parses and extracts yaml
- * @param
- * @param {any} yamlString - The yamlString parameter
- * @returns {any} The result
+  * Parses and extracts yaml
+  * @param
+  * @param {any} yamlString - The yamlString parameter
+  * @returns {any} The result
 
- */
+  */
 
 function parseYaml(yamlString) {
   Logger.log('Entering parseYaml function');

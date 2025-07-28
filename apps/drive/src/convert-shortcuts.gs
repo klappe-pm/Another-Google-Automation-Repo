@@ -1,42 +1,42 @@
 /**
- * Script Name: convert- shortcuts
- *
- * Script Summary:
- * Creates files for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Access Drive file system
- * 2. Fetch source data
- * 3. Execute main operation
- * 4. Handle errors and edge cases
- * 5. Log completion status
- *
- * Script Functions:
- * - organizeShortcuts(): Manages files and folders
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- */
+  * Script Name: convert- shortcuts
+  *
+  * Script Summary:
+  * Creates files for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Access Drive file system
+  * 2. Fetch source data
+  * 3. Execute main operation
+  * 4. Handle errors and edge cases
+  * 5. Log completion status
+  *
+  * Script Functions:
+  * - organizeShortcuts(): Manages files and folders
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  */
 
 // Main Functions
 
 /**
 
- * Manages files and folders
+  * Manages files and folders
 
- */
+  */
 
 /**
 
- * Manages files and folders
+  * Manages files and folders
 
- */
+  */
 
 function organizeShortcuts() {
   const shortcutMimeType = 'application / vnd.google - apps.shortcut';

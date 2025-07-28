@@ -1,32 +1,32 @@
 /**
- * Script Name: extract- gmail- threadid
- *
- * Script Summary:
- * Creates Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Process and transform data
- * 5. Write results to destination
- *
- * Script Functions:
- * - extractThreadIdsFromLabels(): Extracts specific information
- * - onOpen(): Processes email data
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: extract- gmail- threadid
+  *
+  * Script Summary:
+  * Creates Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Process and transform data
+  * 5. Write results to destination
+  *
+  * Script Functions:
+  * - extractThreadIdsFromLabels(): Extracts specific information
+  * - onOpen(): Processes email data
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 /**  * Creates a custom menu when the spreadsheet opens *// / Main Functions
 
@@ -34,9 +34,9 @@
 
 /**
 
- * Extracts specific information
+  * Extracts specific information
 
- */
+  */
 
 function extractThreadIdsFromLabels() {
   try { // Access the active spreadsheet
@@ -181,9 +181,9 @@ function extractThreadIdsFromLabels() {
 
 /**
 
- * Processes email data
+  * Processes email data
 
- */
+  */
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();

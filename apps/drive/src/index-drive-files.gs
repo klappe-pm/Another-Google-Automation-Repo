@@ -1,44 +1,44 @@
 /**
- * Script Name: index- drive- files
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Validate input data
- * 5. Apply filters and criteria
- * 6. Sort data by relevant fields
- * 7. Write results to destination
- *
- * Script Functions:
- * - doGet(): Gets specific do or configuration
- * - getLastIndexedTime(): Gets specific last indexed time or configuration
- * - handleError(): Handles events or errors
- * - indexDrive(): Works with spreadsheet data
- * - logErrorToSheet(): Logs error to sheet or messages
- * - searchFiles(): Searches for specific files
- * - setupSpreadsheet(): Sets up spreadsheet or configuration values
- * - traverseFolder(): Works with spreadsheet data
- * - triggerIndexing(): Triggers actions or events
- * - writeBatchToSheet(): Writes batch to sheet to destination
- *
- * Script Dependencies:
- * - OAuth2 library
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - HtmlService: For serving HTML content
- * - Logger: For logging and debugging
- * - PropertiesService: For storing script properties
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: index- drive- files
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Validate input data
+  * 5. Apply filters and criteria
+  * 6. Sort data by relevant fields
+  * 7. Write results to destination
+  *
+  * Script Functions:
+  * - doGet(): Gets specific do or configuration
+  * - getLastIndexedTime(): Gets specific last indexed time or configuration
+  * - handleError(): Handles events or errors
+  * - indexDrive(): Works with spreadsheet data
+  * - logErrorToSheet(): Logs error to sheet or messages
+  * - searchFiles(): Searches for specific files
+  * - setupSpreadsheet(): Sets up spreadsheet or configuration values
+  * - traverseFolder(): Works with spreadsheet data
+  * - triggerIndexing(): Triggers actions or events
+  * - writeBatchToSheet(): Writes batch to sheet to destination
+  *
+  * Script Dependencies:
+  * - OAuth2 library
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - HtmlService: For serving HTML content
+  * - Logger: For logging and debugging
+  * - PropertiesService: For storing script properties
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 /  / Google Apps Script: Google Drive Folder Indexer // Indexes Google Drive files / folders and provides a search UI. // Configuration constants
 const SPREADSHEET_ID = '1k_ZARwFOi2kdHskPB3OIMkrXz6aXcbzX'; // Replace with your Google Sheet ID;
@@ -53,17 +53,17 @@ const DEBUG_LOG = true; // Enable detailed debugging logs / *  *  * Serves the w
 
 /**
 
- * Gets specific do or configuration
- * @returns {string} The requested string
+  * Gets specific do or configuration
+  * @returns {string} The requested string
 
- */
+  */
 
 /**
 
- * Gets specific do or configuration
- * @returns {string} The requested string
+  * Gets specific do or configuration
+  * @returns {string} The requested string
 
- */
+  */
 
 function doGet() {
   if (DEBUG_LOG) Logger.log('[doGet] Serving web UI');
@@ -73,17 +73,17 @@ function doGet() {
 
 /**
 
- * Gets specific last indexed time or configuration
- * @returns {string} The requested string
+  * Gets specific last indexed time or configuration
+  * @returns {string} The requested string
 
- */
+  */
 
 /**
 
- * Gets specific last indexed time or configuration
- * @returns {string} The requested string
+  * Gets specific last indexed time or configuration
+  * @returns {string} The requested string
 
- */
+  */
 
 function getLastIndexedTime() {
   if (DEBUG_LOG) Logger.log('[getLastIndexedTime] Fetching last indexed timestamp');
@@ -94,23 +94,23 @@ function getLastIndexedTime() {
 
 /**
 
- * Handles events or errors
- * @param
- * @param {any} error - The error parameter
- * @param {string} functionName - The functionName parameter
- * @returns {string} The formatted string
+  * Handles events or errors
+  * @param
+  * @param {any} error - The error parameter
+  * @param {string} functionName - The functionName parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Handles events or errors
- * @param
- * @param {any} error - The error parameter
- * @param {string} functionName - The functionName parameter
- * @returns {string} The formatted string
+  * Handles events or errors
+  * @param
+  * @param {any} error - The error parameter
+  * @param {string} functionName - The functionName parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function handleError(error, functionName) {
   if (DEBUG_LOG) Logger.log(`[handleError] Error in ${functionName}: ${error.message}`); // Handle specific error types;
@@ -127,21 +127,21 @@ function handleError(error, functionName) {
 
 /**
 
- * Works with spreadsheet data
- * @param
- * @param {any} isIncremental - The isIncremental parameter
- * @returns {string} The formatted string
+  * Works with spreadsheet data
+  * @param
+  * @param {any} isIncremental - The isIncremental parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Works with spreadsheet data
- * @param
- * @param {any} isIncremental - The isIncremental parameter
- * @returns {string} The formatted string
+  * Works with spreadsheet data
+  * @param
+  * @param {any} isIncremental - The isIncremental parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function indexDrive(isIncremental = false) {
   if (DEBUG_LOG) Logger.log(`[indexDrive] Starting ${isIncremental ? 'incremental' : 'full'} indexing`);
@@ -167,23 +167,23 @@ function indexDrive(isIncremental = false) {
 
 /**
 
- * Logs error to sheet or messages
- * @param
- * @param {any} error - The error parameter
- * @param {string} functionName - The functionName parameter
- * @returns {string} The formatted string
+  * Logs error to sheet or messages
+  * @param
+  * @param {any} error - The error parameter
+  * @param {string} functionName - The functionName parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Logs error to sheet or messages
- * @param
- * @param {any} error - The error parameter
- * @param {string} functionName - The functionName parameter
- * @returns {string} The formatted string
+  * Logs error to sheet or messages
+  * @param
+  * @param {any} error - The error parameter
+  * @param {string} functionName - The functionName parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function logErrorToSheet(error, functionName) {
   if (DEBUG_LOG) Logger.log(`[logErrorToSheet] Logging error for ${functionName}`);
@@ -205,21 +205,21 @@ function logErrorToSheet(error, functionName) {
 
 /**
 
- * Searches for specific files
- * @param
- * @param {Object} params - Parameters for the operation
- * @returns {string} The formatted string
+  * Searches for specific files
+  * @param
+  * @param {Object} params - Parameters for the operation
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Searches for specific files
- * @param
- * @param {Object} params - Parameters for the operation
- * @returns {string} The formatted string
+  * Searches for specific files
+  * @param
+  * @param {Object} params - Parameters for the operation
+  * @returns {string} The formatted string
 
- */
+  */
 
 function searchFiles(params) {
   if (DEBUG_LOG) Logger.log(`[searchFiles] Searching with params: ${JSON.stringify(params)}`);
@@ -280,17 +280,17 @@ function searchFiles(params) {
 
 /**
 
- * Sets up spreadsheet or configuration values
- * @returns {string} The formatted string
+  * Sets up spreadsheet or configuration values
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Sets up spreadsheet or configuration values
- * @returns {string} The formatted string
+  * Sets up spreadsheet or configuration values
+  * @returns {string} The formatted string
 
- */
+  */
 
 function setupSpreadsheet() {
   if (DEBUG_LOG) Logger.log('[setupSpreadsheet] Initializing spreadsheet');
@@ -315,27 +315,27 @@ function setupSpreadsheet() {
 
 /**
 
- * Works with spreadsheet data
- * @param
- * @param {Folder} folder - The folder parameter
- * @param {string} path - The file path
- * @param {number} lastIndexed - The lastIndexed parameter
- * @param {Sheet} sheet - The sheet parameter
- * @returns {string} The formatted string
+  * Works with spreadsheet data
+  * @param
+  * @param {Folder} folder - The folder parameter
+  * @param {string} path - The file path
+  * @param {number} lastIndexed - The lastIndexed parameter
+  * @param {Sheet} sheet - The sheet parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Works with spreadsheet data
- * @param
- * @param {Folder} folder - The folder parameter
- * @param {string} path - The file path
- * @param {number} lastIndexed - The lastIndexed parameter
- * @param {Sheet} sheet - The sheet parameter
- * @returns {string} The formatted string
+  * Works with spreadsheet data
+  * @param
+  * @param {Folder} folder - The folder parameter
+  * @param {string} path - The file path
+  * @param {number} lastIndexed - The lastIndexed parameter
+  * @param {Sheet} sheet - The sheet parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function traverseFolder(folder, path, lastIndexed, sheet) {
   if (DEBUG_LOG) Logger.log(`[traverseFolder] Processing folder: ${folder.getName()}`);
@@ -386,21 +386,21 @@ function traverseFolder(folder, path, lastIndexed, sheet) {
 
 /**
 
- * Triggers actions or events
- * @param
- * @param {any} isIncremental - The isIncremental parameter
- * @returns {string} The formatted string
+  * Triggers actions or events
+  * @param
+  * @param {any} isIncremental - The isIncremental parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Triggers actions or events
- * @param
- * @param {any} isIncremental - The isIncremental parameter
- * @returns {string} The formatted string
+  * Triggers actions or events
+  * @param
+  * @param {any} isIncremental - The isIncremental parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function triggerIndexing(isIncremental) {
   if (DEBUG_LOG) Logger.log(`[triggerIndexing] Triggering ${isIncremental ? 'incremental' : 'full'} indexing`);
@@ -415,23 +415,23 @@ function triggerIndexing(isIncremental) {
 
 /**
 
- * Writes batch to sheet to destination
- * @param
- * @param {Object} data - The data object to process
- * @param {Sheet} sheet - The sheet parameter
- * @returns {string} The formatted string
+  * Writes batch to sheet to destination
+  * @param
+  * @param {Object} data - The data object to process
+  * @param {Sheet} sheet - The sheet parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Writes batch to sheet to destination
- * @param
- * @param {Object} data - The data object to process
- * @param {Sheet} sheet - The sheet parameter
- * @returns {string} The formatted string
+  * Writes batch to sheet to destination
+  * @param
+  * @param {Object} data - The data object to process
+  * @param {Sheet} sheet - The sheet parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function writeBatchToSheet(data, sheet) {
   if (DEBUG_LOG) Logger.log(`[writeBatchToSheet] Writing ${data.length} rows`);

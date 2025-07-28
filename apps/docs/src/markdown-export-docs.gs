@@ -1,45 +1,45 @@
 /**
- * Script Name: markdown- export- docs
- *
- * Script Summary:
- * Exports markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Format output for presentation
- * 5. Send notifications or reports
- *
- * Script Functions:
- * - extractLinksFromElement(): Extracts specific information
- * - getFileTypeFromUrl(): Gets specific file type from url or configuration
- * - getHeadingLevelFromEnum(): Gets specific heading level from enum or configuration
- * - getOrCreateBacklinksSpreadsheet(): Gets specific or create backlinks spreadsheet or configuration
- * - onOpen(): Performs specialized operations
- * - sendToObsidian(): Sends to obsidian or communications
- *
- * Script Helper Functions:
- * - convertDocToMarkdown(): Converts between formats
- * - extractLinksFromDoc(): Extracts specific information
- * - getFileNameFromUrl(): Gets specific file name from url or configuration
- * - normalizeUrl(): Normalizes url format
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DocumentApp: For document manipulation
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: markdown- export- docs
+  *
+  * Script Summary:
+  * Exports markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Format output for presentation
+  * 5. Send notifications or reports
+  *
+  * Script Functions:
+  * - extractLinksFromElement(): Extracts specific information
+  * - getFileTypeFromUrl(): Gets specific file type from url or configuration
+  * - getHeadingLevelFromEnum(): Gets specific heading level from enum or configuration
+  * - getOrCreateBacklinksSpreadsheet(): Gets specific or create backlinks spreadsheet or configuration
+  * - onOpen(): Performs specialized operations
+  * - sendToObsidian(): Sends to obsidian or communications
+  *
+  * Script Helper Functions:
+  * - convertDocToMarkdown(): Converts between formats
+  * - extractLinksFromDoc(): Extracts specific information
+  * - getFileNameFromUrl(): Gets specific file name from url or configuration
+  * - normalizeUrl(): Normalizes url format
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DocumentApp: For document manipulation
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 1. Open Google Apps Script editor (script.google.com);
 2. Create a new project or open existing one
@@ -54,21 +54,21 @@
 
 /**
 
- * Extracts specific information
- * @param
- * @param {any} element - The element parameter
- * @returns {any} The result
+  * Extracts specific information
+  * @param
+  * @param {any} element - The element parameter
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Extracts specific information
- * @param
- * @param {any} element - The element parameter
- * @returns {any} The result
+  * Extracts specific information
+  * @param
+  * @param {any} element - The element parameter
+  * @returns {any} The result
 
- */
+  */
 
 function extractLinksFromElement(element) {
     let allLinks = [];
@@ -117,21 +117,21 @@ function extractLinksFromElement(element) {
 
 /**
 
- * Gets specific file type from url or configuration
- * @param
- * @param {string} url - The URL to access
- * @returns {any} The requested any
+  * Gets specific file type from url or configuration
+  * @param
+  * @param {string} url - The URL to access
+  * @returns {any} The requested any
 
- */
+  */
 
 /**
 
- * Gets specific file type from url or configuration
- * @param
- * @param {string} url - The URL to access
- * @returns {any} The requested any
+  * Gets specific file type from url or configuration
+  * @param
+  * @param {string} url - The URL to access
+  * @returns {any} The requested any
 
- */
+  */
 
 function getFileTypeFromUrl(url) {
     const match = url.match( / \ / (d|spreadsheets|presentation)\ // );
@@ -144,21 +144,21 @@ function getFileTypeFromUrl(url) {
 
 /**
 
- * Gets specific heading level from enum or configuration
- * @param
- * @param {any} headingEnum - The headingEnum to retrieve
- * @returns {any} The requested any
+  * Gets specific heading level from enum or configuration
+  * @param
+  * @param {any} headingEnum - The headingEnum to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 /**
 
- * Gets specific heading level from enum or configuration
- * @param
- * @param {any} headingEnum - The headingEnum to retrieve
- * @returns {any} The requested any
+  * Gets specific heading level from enum or configuration
+  * @param
+  * @param {any} headingEnum - The headingEnum to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getHeadingLevelFromEnum(headingEnum) {
     switch (headingEnum) {
@@ -181,17 +181,17 @@ function getHeadingLevelFromEnum(headingEnum) {
 
 /**
 
- * Gets specific or create backlinks spreadsheet or configuration
- * @returns {any} The requested any
+  * Gets specific or create backlinks spreadsheet or configuration
+  * @returns {any} The requested any
 
- */
+  */
 
 /**
 
- * Gets specific or create backlinks spreadsheet or configuration
- * @returns {any} The requested any
+  * Gets specific or create backlinks spreadsheet or configuration
+  * @returns {any} The requested any
 
- */
+  */
 
 function getOrCreateBacklinksSpreadsheet() {
     const backlinksSpreadsheetName = "Doc Backlinks";
@@ -207,17 +207,17 @@ function getOrCreateBacklinksSpreadsheet() {
 
 /**
 
- * Performs specialized operations
- * @returns {any} The result
+  * Performs specialized operations
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Performs specialized operations
- * @returns {any} The result
+  * Performs specialized operations
+  * @returns {any} The result
 
- */
+  */
 
 function onOpen() {
   DocumentApp.getUi().createMenu('Send to Obsidian');
@@ -227,17 +227,17 @@ function onOpen() {
 
 /**
 
- * Sends to obsidian or communications
- * @returns {any} The result
+  * Sends to obsidian or communications
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Sends to obsidian or communications
- * @returns {any} The result
+  * Sends to obsidian or communications
+  * @returns {any} The result
 
- */
+  */
 
 function sendToObsidian() {
   const doc = DocumentApp.getActiveDocument();
@@ -294,21 +294,21 @@ function sendToObsidian() {
 
 /**
 
- * Converts between formats
- * @param
- * @param {any} doc - The doc parameter
- * @returns {any} The result
+  * Converts between formats
+  * @param
+  * @param {any} doc - The doc parameter
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Converts between formats
- * @param
- * @param {any} doc - The doc parameter
- * @returns {any} The result
+  * Converts between formats
+  * @param
+  * @param {any} doc - The doc parameter
+  * @returns {any} The result
 
- */
+  */
 
 function convertDocToMarkdown(doc) {
     let markdown = "";
@@ -371,21 +371,21 @@ function convertDocToMarkdown(doc) {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {any} doc - The doc parameter
- * @returns {any} The result
+  * Extracts specific information
+  * @param
+  * @param {any} doc - The doc parameter
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Extracts specific information
- * @param
- * @param {any} doc - The doc parameter
- * @returns {any} The result
+  * Extracts specific information
+  * @param
+  * @param {any} doc - The doc parameter
+  * @returns {any} The result
 
- */
+  */
 
 function extractLinksFromDoc(doc) {
     const body = doc.getBody();
@@ -394,21 +394,21 @@ function extractLinksFromDoc(doc) {
 
 /**
 
- * Gets specific file name from url or configuration
- * @param
- * @param {string} url - The URL to access
- * @returns {any} The requested any
+  * Gets specific file name from url or configuration
+  * @param
+  * @param {string} url - The URL to access
+  * @returns {any} The requested any
 
- */
+  */
 
 /**
 
- * Gets specific file name from url or configuration
- * @param
- * @param {string} url - The URL to access
- * @returns {any} The requested any
+  * Gets specific file name from url or configuration
+  * @param
+  * @param {string} url - The URL to access
+  * @returns {any} The requested any
 
- */
+  */
 
 function getFileNameFromUrl(url) {
     const parts = url.split(" / ");
@@ -417,21 +417,21 @@ function getFileNameFromUrl(url) {
 
 /**
 
- * Normalizes url format
- * @param
- * @param {string} url - The URL to access
- * @returns {any} The result
+  * Normalizes url format
+  * @param
+  * @param {string} url - The URL to access
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Normalizes url format
- * @param
- * @param {string} url - The URL to access
- * @returns {any} The result
+  * Normalizes url format
+  * @param
+  * @param {string} url - The URL to access
+  * @returns {any} The result
 
- */
+  */
 
 function normalizeUrl(url) { // Remove potential hidden characters and trim whitespace;
     return url.replace( / [\u200B - \u200D\uFEFF] / g, '').trim();

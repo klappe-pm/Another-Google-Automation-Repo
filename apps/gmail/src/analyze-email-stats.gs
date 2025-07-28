@@ -1,35 +1,35 @@
 /**
- * Script Name: analyze- email- stats
- *
- * Script Summary:
- * Processes Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- * - Analyze email stats patterns and trends
- * - Calculate statistics and metrics
- * - Generate insights and recommendations
- *
- * Script Steps:
- * 1. Connect to Gmail service
- * 2. Fetch source data
- * 3. Process and transform data
- * 4. Sort data by relevant fields
- * 5. Send notifications or reports
- *
- * Script Functions:
- * - getGmailStats(): Gets specific gmail stats or configuration
- * - logStats(): Logs stats or messages
- *
- * Script Helper Functions:
- * - extractEmailAddress(): Extracts specific information
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- */
+  * Script Name: analyze- email- stats
+  *
+  * Script Summary:
+  * Processes Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Analyze email stats patterns and trends
+  * - Calculate statistics and metrics
+  * - Generate insights and recommendations
+  *
+  * Script Steps:
+  * 1. Connect to Gmail service
+  * 2. Fetch source data
+  * 3. Process and transform data
+  * 4. Sort data by relevant fields
+  * 5. Send notifications or reports
+  *
+  * Script Functions:
+  * - getGmailStats(): Gets specific gmail stats or configuration
+  * - logStats(): Logs stats or messages
+  *
+  * Script Helper Functions:
+  * - extractEmailAddress(): Extracts specific information
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  */
 
 const MAX_THREADS = 100; // Maximum number of threads to process;
 
@@ -37,12 +37,12 @@ const MAX_THREADS = 100; // Maximum number of threads to process;
 
 /**
 
- * Gets specific gmail stats or configuration
- * @param
- * @param {number} maxThreads - The maxThreads to retrieve
- * @returns {Array} The requested array
+  * Gets specific gmail stats or configuration
+  * @param
+  * @param {number} maxThreads - The maxThreads to retrieve
+  * @returns {Array} The requested array
 
- */
+  */
 
 function getGmailStats(maxThreads = MAX_THREADS) {
   try { // Retrieve inbox threads
@@ -83,12 +83,12 @@ function getGmailStats(maxThreads = MAX_THREADS) {
 
 /**
 
- * Logs stats or messages
- * @param
- * @param {string} emailStats - The emailStats parameter
- * @returns {Array} Array of results
+  * Logs stats or messages
+  * @param
+  * @param {string} emailStats - The emailStats parameter
+  * @returns {Array} Array of results
 
- */
+  */
 
 function logStats(emailStats) {
   try {
@@ -136,12 +136,12 @@ function logStats(emailStats) {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {any} sender - The sender parameter
- * @returns {Array} Array of results
+  * Extracts specific information
+  * @param
+  * @param {any} sender - The sender parameter
+  * @returns {Array} Array of results
 
- */
+  */
 
 function extractEmailAddress(sender) {
   const emailMatch = sender.match( / < (. + ?) > / );

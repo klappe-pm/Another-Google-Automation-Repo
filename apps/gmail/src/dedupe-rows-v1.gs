@@ -1,28 +1,28 @@
 /**
- * Script Name: dedupe- rows- v1
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Execute main operation
- * 4. Handle errors and edge cases
- * 5. Log completion status
- *
- * Script Functions:
- * - deduplicateRideEmails(): Works with spreadsheet data
- * - onOpen(): Performs specialized operations
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: dedupe- rows- v1
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Execute main operation
+  * 4. Handle errors and edge cases
+  * 5. Log completion status
+  *
+  * Script Functions:
+  * - deduplicateRideEmails(): Works with spreadsheet data
+  * - onOpen(): Performs specialized operations
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 /  / Create custom menu
 
@@ -30,9 +30,9 @@
 
 /**
 
- * Works with spreadsheet data
+  * Works with spreadsheet data
 
- */
+  */
 
 function deduplicateRideEmails() { // Get the "RideReceipts" sheet
   let sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('RideReceipts');
@@ -105,9 +105,9 @@ function deduplicateRideEmails() { // Get the "RideReceipts" sheet
 
 /**
 
- * Performs specialized operations
+  * Performs specialized operations
 
- */
+  */
 
 function onOpen() {
   SpreadsheetApp.getUi();

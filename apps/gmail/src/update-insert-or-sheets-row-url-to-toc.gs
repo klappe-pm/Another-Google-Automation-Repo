@@ -1,35 +1,35 @@
 /**
- * Script Name: update- insert- or- sheets- row- url- to- toc
- *
- * Script Summary:
- * Creates Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Execute main operation
- * 4. Handle errors and edge cases
- * 5. Log completion status
- *
- * Script Functions:
- * - updateHyperlinkToTOC(): Updates existing hyperlink to t o c
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: update- insert- or- sheets- row- url- to- toc
+  *
+  * Script Summary:
+  * Creates Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Execute main operation
+  * 4. Handle errors and edge cases
+  * 5. Log completion status
+  *
+  * Script Functions:
+  * - updateHyperlinkToTOC(): Updates existing hyperlink to t o c
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 // Main Functions
 
 /**
 
- * Updates existing hyperlink to t o c
+  * Updates existing hyperlink to t o c
 
- */
+  */
 
 function updateHyperlinkToTOC() {
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();

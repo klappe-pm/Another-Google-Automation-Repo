@@ -35,10 +35,10 @@ class RepositoryAnalyzer {
     }
     this.config = config;
   }
-  
+
   analyzeFiles(files) {
     const sortedFiles = sortByProperty(files, 'lastModified');
-    
+
     return {
       timestamp: formatDate(new Date()),
       totalFiles: files.length,

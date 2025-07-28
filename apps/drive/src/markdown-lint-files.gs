@@ -1,47 +1,47 @@
 /**
- * Script Name: markdown- lint- files
- *
- * Script Summary:
- * Lints markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Process and transform data
- * 5. Format output for presentation
- * 6. Write results to destination
- *
- * Script Functions:
- * - debug(): Performs specialized operations
- * - getFolderFromInput(): Gets specific folder from input or configuration
- * - initializeLinting(): Initializes resources or configuration
- * - lintTextFile(): Performs specialized operations
- * - logAction(): Logs action or messages
- * - onOpen(): Manages files and folders
- * - processFolder(): Processes and transforms folder
- * - promptForFolderInput(): Manages files and folders
- * - promptForLintingOptions(): Performs specialized operations
- * - removeExtraLinesAfterHeaders(): Removes extra lines after headers from collection
- * - setupLogging(): Sets up logging or configuration values
- *
- * Script Helper Functions:
- * - formatTextContent(): Formats text content for display
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: markdown- lint- files
+  *
+  * Script Summary:
+  * Lints markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Process and transform data
+  * 5. Format output for presentation
+  * 6. Write results to destination
+  *
+  * Script Functions:
+  * - debug(): Performs specialized operations
+  * - getFolderFromInput(): Gets specific folder from input or configuration
+  * - initializeLinting(): Initializes resources or configuration
+  * - lintTextFile(): Performs specialized operations
+  * - logAction(): Logs action or messages
+  * - onOpen(): Manages files and folders
+  * - processFolder(): Processes and transforms folder
+  * - promptForFolderInput(): Manages files and folders
+  * - promptForLintingOptions(): Performs specialized operations
+  * - removeExtraLinesAfterHeaders(): Removes extra lines after headers from collection
+  * - setupLogging(): Sets up logging or configuration values
+  *
+  * Script Helper Functions:
+  * - formatTextContent(): Formats text content for display
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 /  / Global variables;
 let logSheet; // Spreadsheet used for logging linting actions;
@@ -51,12 +51,12 @@ let DEBUG = true; // Flag to enable or disable detailed debugging output / *  * 
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {string} message - The message content
- * @returns {string} The formatted string
+  * Performs specialized operations
+  * @param
+  * @param {string} message - The message content
+  * @returns {string} The formatted string
 
- */
+  */
 
 function debug(message) {
   if (DEBUG) {
@@ -66,12 +66,12 @@ function debug(message) {
 
 /**
 
- * Gets specific folder from input or configuration
- * @param
- * @param {any} input - The input to retrieve
- * @returns {string} The requested string
+  * Gets specific folder from input or configuration
+  * @param
+  * @param {any} input - The input to retrieve
+  * @returns {string} The requested string
 
- */
+  */
 
 function getFolderFromInput(input) {
   debug(`Attempting to get folder from input: ${input}`);
@@ -86,10 +86,10 @@ function getFolderFromInput(input) {
 
 /**
 
- * Initializes resources or configuration
- * @returns {string} The formatted string
+  * Initializes resources or configuration
+  * @returns {string} The formatted string
 
- */
+  */
 
 function initializeLinting() {
   debug("Initializing unified linting process");
@@ -121,14 +121,14 @@ function initializeLinting() {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {File} file - The file parameter
- * @param {Object} options - Configuration options
- * @param {any} forceUpdate - The forceUpdate parameter
- * @returns {string} The formatted string
+  * Performs specialized operations
+  * @param
+  * @param {File} file - The file parameter
+  * @param {Object} options - Configuration options
+  * @param {any} forceUpdate - The forceUpdate parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function lintTextFile(file, options, forceUpdate = false) {
   debug(`Linting file: ${file.getName()}`);
@@ -176,14 +176,14 @@ function lintTextFile(file, options, forceUpdate = false) {
 
 /**
 
- * Logs action or messages
- * @param
- * @param {any} level - The level parameter
- * @param {string} fileName - The fileName parameter
- * @param {string} message - The message content
- * @returns {string} The formatted string
+  * Logs action or messages
+  * @param
+  * @param {any} level - The level parameter
+  * @param {string} fileName - The fileName parameter
+  * @param {string} message - The message content
+  * @returns {string} The formatted string
 
- */
+  */
 
 function logAction(level, fileName, message) {
   const timestamp = new Date().toISOString();
@@ -196,10 +196,10 @@ function logAction(level, fileName, message) {
 
 /**
 
- * Manages files and folders
- * @returns {string} The formatted string
+  * Manages files and folders
+  * @returns {string} The formatted string
 
- */
+  */
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
@@ -211,13 +211,13 @@ function onOpen() {
 
 /**
 
- * Processes and transforms folder
- * @param
- * @param {Folder} folder - The folder parameter
- * @param {Function} processingFunction - The processingFunction parameter
- * @returns {string} The formatted string
+  * Processes and transforms folder
+  * @param
+  * @param {Folder} folder - The folder parameter
+  * @param {Function} processingFunction - The processingFunction parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function processFolder(folder, processingFunction) {
   debug(`Processing folder: ${folder.getName()}`);
@@ -241,12 +241,12 @@ function processFolder(folder, processingFunction) {
 
 /**
 
- * Manages files and folders
- * @param
- * @param {any} operation - The operation parameter
- * @returns {string} The formatted string
+  * Manages files and folders
+  * @param
+  * @param {any} operation - The operation parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function promptForFolderInput(operation) {
   debug(`Prompting for folder input for operation: ${operation}`);
@@ -276,10 +276,10 @@ function promptForFolderInput(operation) {
 
 /**
 
- * Performs specialized operations
- * @returns {string} The formatted string
+  * Performs specialized operations
+  * @returns {string} The formatted string
 
- */
+  */
 
 function promptForLintingOptions() {
   const ui = SpreadsheetApp.getUi();
@@ -309,12 +309,12 @@ function promptForLintingOptions() {
 
 /**
 
- * Removes extra lines after headers from collection
- * @param
- * @param {string} content - The content to process
- * @returns {string} The formatted string
+  * Removes extra lines after headers from collection
+  * @param
+  * @param {string} content - The content to process
+  * @returns {string} The formatted string
 
- */
+  */
 
 function removeExtraLinesAfterHeaders(content) {
   debug("Removing extra lines after headers");
@@ -349,10 +349,10 @@ function removeExtraLinesAfterHeaders(content) {
 
 /**
 
- * Sets up logging or configuration values
- * @returns {string} The formatted string
+  * Sets up logging or configuration values
+  * @returns {string} The formatted string
 
- */
+  */
 
 function setupLogging() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -366,13 +366,13 @@ function setupLogging() {
 
 /**
 
- * Formats text content for display
- * @param
- * @param {string} content - The content to process
- * @param {any} isMarkdown - The isMarkdown parameter
- * @returns {string} The formatted string
+  * Formats text content for display
+  * @param
+  * @param {string} content - The content to process
+  * @param {any} isMarkdown - The isMarkdown parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function formatTextContent(content, isMarkdown) {
   debug("Formatting text content");

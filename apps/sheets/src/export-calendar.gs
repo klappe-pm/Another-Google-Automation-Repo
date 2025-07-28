@@ -1,80 +1,62 @@
 /**
- * Script Name: export- calendar
- *
- * Script Summary:
- * Exports spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Extract calendar data from Google services
- * - Convert data to portable formats
- * - Generate reports and summaries
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Process and transform data
- * 4. Apply filters and criteria
- * 5. Format output for presentation
- *
- * Script Functions:
- * - chunkArray(): Performs specialized operations
- * - exportAllCalendarEvents(): Exports all calendar events to external format
- * - getDayOfYear(): Gets specific day of year or configuration
- * - getDistancesFromGoogleMaps(): Gets specific distances from google maps or configuration
- * - getLocationForDate(): Gets specific location for date or configuration
- * - getQuarter(): Gets specific quarter or configuration
- * - roundToQuarterHour(): Performs specialized operations
- * - setConfig(): Sets config or configuration values
- *
- * Script Helper Functions:
- * - formatValue(): Formats value for display
- * - getDayOfWeek(): Gets specific day of week or configuration
- * - getNameDayWeek(): Gets specific name day week or configuration
- * - getNameMonth(): Gets specific name month or configuration
- * - getNameQuarter(): Gets specific name quarter or configuration
- * - getWeekNumber(): Gets specific week number or configuration
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - CalendarApp: For calendar and event management
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - UrlFetchApp: For HTTP requests to external services
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: export- calendar
+  *
+  * Script Summary:
+  * Exports spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Extract calendar data from Google services
+  * - Convert data to portable formats
+  * - Generate reports and summaries
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Process and transform data
+  * 4. Apply filters and criteria
+  * 5. Format output for presentation
+  *
+  * Script Functions:
+  * - chunkArray(): Performs specialized operations
+  * - exportAllCalendarEvents(): Exports all calendar events to external format
+  * - getDayOfYear(): Gets specific day of year or configuration
+  * - getDistancesFromGoogleMaps(): Gets specific distances from google maps or configuration
+  * - getLocationForDate(): Gets specific location for date or configuration
+  * - getQuarter(): Gets specific quarter or configuration
+  * - roundToQuarterHour(): Performs specialized operations
+  * - setConfig(): Sets config or configuration values
+  *
+  * Script Helper Functions:
+  * - formatValue(): Formats value for display
+  * - getDayOfWeek(): Gets specific day of week or configuration
+  * - getNameDayWeek(): Gets specific name day week or configuration
+  * - getNameMonth(): Gets specific name month or configuration
+  * - getNameQuarter(): Gets specific name quarter or configuration
+  * - getWeekNumber(): Gets specific week number or configuration
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - CalendarApp: For calendar and event management
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - UrlFetchApp: For HTTP requests to external services
+  * - Utilities: For utility functions and encoding
+  */
 
 // Main Functions
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {Array} array - Array of elements
- * @param {number} size - The size limit
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {Array} array - Array of elements
+  * @param {number} size - The size limit
+  * @returns {any} The result
 
- */
-
-function chunkArray(array, size) {
-    const chunks = [];
-    for (let i = 0; i < array.length; i + = size) {
-      chunks.push(array.slice(i, i + size));
-    }
-    return chunks;
-  }
-
-/**
-
- * Performs specialized operations
- * @param
- * @param {Array} array - Array of elements
- * @param {number} size - The size limit
- * @returns {any} The result
-
- */
+  */
 
 function chunkArray(array, size) {
     const chunks = [];
@@ -86,13 +68,13 @@ function chunkArray(array, size) {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {Array} array - Array of elements
- * @param {number} size - The size limit
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {Array} array - Array of elements
+  * @param {number} size - The size limit
+  * @returns {any} The result
 
- */
+  */
 
 function chunkArray(array, size) {
     const chunks = [];
@@ -104,10 +86,28 @@ function chunkArray(array, size) {
 
 /**
 
- * Exports all calendar events to external format
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {Array} array - Array of elements
+  * @param {number} size - The size limit
+  * @returns {any} The result
 
- */
+  */
+
+function chunkArray(array, size) {
+    const chunks = [];
+    for (let i = 0; i < array.length; i + = size) {
+      chunks.push(array.slice(i, i + size));
+    }
+    return chunks;
+  }
+
+/**
+
+  * Exports all calendar events to external format
+  * @returns {any} The result
+
+  */
 
 function exportAllCalendarEvents() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -187,11 +187,11 @@ function exportAllCalendarEvents() {
 
   // Helper functions
   / * *
-   * Gets specific quarter or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
-   */
+    * Gets specific quarter or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
+    */
   function getQuarter(date) {
     const key = date.toISOString().split('T')[0];
     if (! dateCache[key]) {
@@ -210,12 +210,12 @@ function exportAllCalendarEvents() {
 
   / * *
 
-   * Gets specific week number or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+    * Gets specific week number or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
-   */
+    */
 
   function getWeekNumber(date) {
     const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
@@ -226,12 +226,12 @@ function exportAllCalendarEvents() {
 
   / * *
 
-   * Gets specific day of year or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+    * Gets specific day of year or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
-   */
+    */
 
   function getDayOfYear(date) {
     const start = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
@@ -241,12 +241,12 @@ function exportAllCalendarEvents() {
 
   / * *
 
-   * Gets specific day of week or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+    * Gets specific day of week or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
-   */
+    */
 
   function getDayOfWeek(date) {
     const day = date.getUTCDay();
@@ -255,12 +255,12 @@ function exportAllCalendarEvents() {
 
   / * *
 
-   * Gets specific name quarter or configuration
- * @param
- * @param {any} quarter - The quarter to retrieve
- * @returns {any} The requested any
+    * Gets specific name quarter or configuration
+  * @param
+  * @param {any} quarter - The quarter to retrieve
+  * @returns {any} The requested any
 
-   */
+    */
 
   function getNameQuarter(quarter) {
     return `Q${quarter}`;
@@ -268,12 +268,12 @@ function exportAllCalendarEvents() {
 
   / * *
 
-   * Gets specific name month or configuration
- * @param
- * @param {any} month - The month to retrieve
- * @returns {any} The requested any
+    * Gets specific name month or configuration
+  * @param
+  * @param {any} month - The month to retrieve
+  * @returns {any} The requested any
 
-   */
+    */
 
   function getNameMonth(month) {
     const months = [
@@ -285,12 +285,12 @@ function exportAllCalendarEvents() {
 
   / * *
 
-   * Gets specific name day week or configuration
- * @param
- * @param {any} day - The day to retrieve
- * @returns {any} The requested any
+    * Gets specific name day week or configuration
+  * @param
+  * @param {any} day - The day to retrieve
+  * @returns {any} The requested any
 
-   */
+    */
 
   function getNameDayWeek(day) {
     const days = [
@@ -301,13 +301,13 @@ function exportAllCalendarEvents() {
 
   / * *
 
-   * Gets specific location for date or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @param {Object} configLocations - The configLocations to retrieve
- * @returns {any} The requested any
+    * Gets specific location for date or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @param {Object} configLocations - The configLocations to retrieve
+  * @returns {any} The requested any
 
-   */
+    */
 
   function getLocationForDate(date, configLocations) {
     for (const loc of configLocations) {
@@ -320,13 +320,13 @@ function exportAllCalendarEvents() {
 
   / * *
 
-   * Performs specialized operations
- * @param
- * @param {Array} array - Array of elements
- * @param {number} size - The size limit
- * @returns {any} The result
+    * Performs specialized operations
+  * @param
+  * @param {Array} array - Array of elements
+  * @param {number} size - The size limit
+  * @returns {any} The result
 
-   */
+    */
 
   function chunkArray(array, size) {
     const chunks = [];
@@ -338,12 +338,12 @@ function exportAllCalendarEvents() {
 
   / * *
 
-   * Performs specialized operations
- * @param
- * @param {string|any} value - The value to set
- * @returns {any} The result
+    * Performs specialized operations
+  * @param
+  * @param {string|any} value - The value to set
+  * @returns {any} The result
 
-   */
+    */
 
   function roundToQuarterHour(value) {
     if (typeof value ! = = 'number' || isNaN(value)) return "";
@@ -354,13 +354,13 @@ function exportAllCalendarEvents() {
 
   / * *
 
-   * Formats value for display
- * @param
- * @param {string|any} value - The value to set
- * @param {any} decimals - The decimals parameter
- * @returns {any} The result
+    * Formats value for display
+  * @param
+  * @param {string|any} value - The value to set
+  * @param {any} decimals - The decimals parameter
+  * @returns {any} The result
 
-   */
+    */
 
   function formatValue(value, decimals = 2) {
     return typeof value = = = 'number' && ! isNaN(value) ? value.toFixed(decimals) : "";
@@ -368,14 +368,14 @@ function exportAllCalendarEvents() {
 
   / * *
 
-   * Gets specific distances from google maps or configuration
- * @param
- * @param {any} origins - The origins to retrieve
- * @param {any} destinations - The destinations to retrieve
- * @param {string} apiKey - The apiKey to retrieve
- * @returns {any} The requested any
+    * Gets specific distances from google maps or configuration
+  * @param
+  * @param {any} origins - The origins to retrieve
+  * @param {any} destinations - The destinations to retrieve
+  * @param {string} apiKey - The apiKey to retrieve
+  * @returns {any} The requested any
 
-   */
+    */
 
   function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
     const cacheKey = JSON.stringify({ origins, destinations });
@@ -604,27 +604,12 @@ function exportAllCalendarEvents() {
 
 /**
 
- * Gets specific day of year or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day of year or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
-
-function getDayOfYear(date) {
-    const start = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
-    const diff = date - start;
-    return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
-  }
-
-/**
-
- * Gets specific day of year or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
-
- */
+  */
 
 function getDayOfYear(date) {
     const start = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
@@ -634,12 +619,12 @@ function getDayOfYear(date) {
 
 /**
 
- * Gets specific day of year or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day of year or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getDayOfYear(date) {
     const start = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
@@ -649,14 +634,29 @@ function getDayOfYear(date) {
 
 /**
 
- * Gets specific distances from google maps or configuration
- * @param
- * @param {any} origins - The origins to retrieve
- * @param {any} destinations - The destinations to retrieve
- * @param {string} apiKey - The apiKey to retrieve
- * @returns {any} The requested any
+  * Gets specific day of year or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
+
+function getDayOfYear(date) {
+    const start = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+    const diff = date - start;
+    return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
+  }
+
+/**
+
+  * Gets specific distances from google maps or configuration
+  * @param
+  * @param {any} origins - The origins to retrieve
+  * @param {any} destinations - The destinations to retrieve
+  * @param {string} apiKey - The apiKey to retrieve
+  * @returns {any} The requested any
+
+  */
 
 function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
     const cacheKey = JSON.stringify({ origins, destinations });
@@ -720,85 +720,14 @@ function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
 
 /**
 
- * Gets specific distances from google maps or configuration
- * @param
- * @param {any} origins - The origins to retrieve
- * @param {any} destinations - The destinations to retrieve
- * @param {string} apiKey - The apiKey to retrieve
- * @returns {any} The requested any
+  * Gets specific distances from google maps or configuration
+  * @param
+  * @param {any} origins - The origins to retrieve
+  * @param {any} destinations - The destinations to retrieve
+  * @param {string} apiKey - The apiKey to retrieve
+  * @returns {any} The requested any
 
- */
-
-function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
-    const cacheKey = JSON.stringify({ origins, destinations });
-    if (distanceCache[cacheKey]) {
-      return distanceCache[cacheKey];
-    }
-
-    // Chunk origins to avoid URL length limit and timeouts
-    const CHUNK_SIZE = 5;
-    const originChunks = chunkArray(origins, CHUNK_SIZE);
-    const results = Array(origins.length).fill().map(() = > Array(destinations.length).fill({ distance: "", duration: "" }));
-
-    const MAX_RETRIES = 3;
-    try {
-      originChunks.forEach((chunk, chunkIndex) = > {
-        const chunkOrigins = chunk;
-        let attempts = 0;
-        while (attempts < MAX_RETRIES) {
-          try {
-            const originsEncoded = encodeURIComponent(chunkOrigins.join("|"));
-            const destinationsEncoded = encodeURIComponent(destinations.join("|"));
-            const url = `https:// maps.googleapis.com/ maps/ api/ distancematrix/ json?units= imperial&origins= ${originsEncoded}&destinations= ${destinationsEncoded}&key= ${apiKey}`;
-            Logger.log(`Fetching Distance Matrix for chunk ${chunkIndex + 1}/ ${originChunks.length}, attempt ${attempts + 1}`);
-            const response = UrlFetchApp.fetch(url, { muteHttpExceptions: true });
-            const data = JSON.parse(response.getContentText());
-
-            if (data.status = = = "OK") {
-              chunkOrigins.forEach((_, i) = > {
-                const row = data.rows[i].elements;
-                row.forEach((element, j) = > {
-                  const originIndex = chunkIndex * CHUNK_SIZE + i;
-                  if (originIndex < origins.length) {
-                    results[originIndex][j] = {
-                      distance: element.distance ? element.distance.value / 1609.34 : "",
-                      duration: element.duration ? element.duration.value / 3600 : ""
-                    };
-                  }
-                });
-              });
-              break; // Success, exit retry loop
-            } else {
-              errors.push(`Distance Matrix API error for chunk ${chunkIndex + 1}: ${data.error_message || 'Unknown error'}`);
-              attempts+ + ;
-              if (attempts < MAX_RETRIES) Utilities.sleep(100); // Wait before retry
-            }
-          } catch (e) {
-            errors.push(`Distance Matrix API call failed for chunk ${chunkIndex + 1}: ${e.message}`);
-            attempts+ + ;
-            if (attempts < MAX_RETRIES) Utilities.sleep(100);
-          }
-        }
-      });
-
-      distanceCache[cacheKey] = results;
-      return results;
-    } catch (e) {
-      errors.push(`Distance Matrix API call failed: ${e.message}`);
-      return Array(origins.length).fill(Array(destinations.length).fill({ distance: "", duration: "" }));
-    }
-  }
-
-/**
-
- * Gets specific distances from google maps or configuration
- * @param
- * @param {any} origins - The origins to retrieve
- * @param {any} destinations - The destinations to retrieve
- * @param {string} apiKey - The apiKey to retrieve
- * @returns {any} The requested any
-
- */
+  */
 
 function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
     const cacheKey = JSON.stringify({ origins, destinations });
@@ -862,13 +791,84 @@ function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
 
 /**
 
- * Gets specific location for date or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @param {Object} configLocations - The configLocations to retrieve
- * @returns {any} The requested any
+  * Gets specific distances from google maps or configuration
+  * @param
+  * @param {any} origins - The origins to retrieve
+  * @param {any} destinations - The destinations to retrieve
+  * @param {string} apiKey - The apiKey to retrieve
+  * @returns {any} The requested any
 
- */
+  */
+
+function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
+    const cacheKey = JSON.stringify({ origins, destinations });
+    if (distanceCache[cacheKey]) {
+      return distanceCache[cacheKey];
+    }
+
+    // Chunk origins to avoid URL length limit and timeouts
+    const CHUNK_SIZE = 5;
+    const originChunks = chunkArray(origins, CHUNK_SIZE);
+    const results = Array(origins.length).fill().map(() = > Array(destinations.length).fill({ distance: "", duration: "" }));
+
+    const MAX_RETRIES = 3;
+    try {
+      originChunks.forEach((chunk, chunkIndex) = > {
+        const chunkOrigins = chunk;
+        let attempts = 0;
+        while (attempts < MAX_RETRIES) {
+          try {
+            const originsEncoded = encodeURIComponent(chunkOrigins.join("|"));
+            const destinationsEncoded = encodeURIComponent(destinations.join("|"));
+            const url = `https:// maps.googleapis.com/ maps/ api/ distancematrix/ json?units= imperial&origins= ${originsEncoded}&destinations= ${destinationsEncoded}&key= ${apiKey}`;
+            Logger.log(`Fetching Distance Matrix for chunk ${chunkIndex + 1}/ ${originChunks.length}, attempt ${attempts + 1}`);
+            const response = UrlFetchApp.fetch(url, { muteHttpExceptions: true });
+            const data = JSON.parse(response.getContentText());
+
+            if (data.status = = = "OK") {
+              chunkOrigins.forEach((_, i) = > {
+                const row = data.rows[i].elements;
+                row.forEach((element, j) = > {
+                  const originIndex = chunkIndex * CHUNK_SIZE + i;
+                  if (originIndex < origins.length) {
+                    results[originIndex][j] = {
+                      distance: element.distance ? element.distance.value / 1609.34 : "",
+                      duration: element.duration ? element.duration.value / 3600 : ""
+                    };
+                  }
+                });
+              });
+              break; // Success, exit retry loop
+            } else {
+              errors.push(`Distance Matrix API error for chunk ${chunkIndex + 1}: ${data.error_message || 'Unknown error'}`);
+              attempts+ + ;
+              if (attempts < MAX_RETRIES) Utilities.sleep(100); // Wait before retry
+            }
+          } catch (e) {
+            errors.push(`Distance Matrix API call failed for chunk ${chunkIndex + 1}: ${e.message}`);
+            attempts+ + ;
+            if (attempts < MAX_RETRIES) Utilities.sleep(100);
+          }
+        }
+      });
+
+      distanceCache[cacheKey] = results;
+      return results;
+    } catch (e) {
+      errors.push(`Distance Matrix API call failed: ${e.message}`);
+      return Array(origins.length).fill(Array(destinations.length).fill({ distance: "", duration: "" }));
+    }
+  }
+
+/**
+
+  * Gets specific location for date or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @param {Object} configLocations - The configLocations to retrieve
+  * @returns {any} The requested any
+
+  */
 
 function getLocationForDate(date, configLocations) {
     for (const loc of configLocations) {
@@ -881,32 +881,13 @@ function getLocationForDate(date, configLocations) {
 
 /**
 
- * Gets specific location for date or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @param {Object} configLocations - The configLocations to retrieve
- * @returns {any} The requested any
+  * Gets specific location for date or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @param {Object} configLocations - The configLocations to retrieve
+  * @returns {any} The requested any
 
- */
-
-function getLocationForDate(date, configLocations) {
-    for (const loc of configLocations) {
-      if (date > = loc.start && date < = loc.end) {
-        return { address: loc.address, index: loc.index };
-      }
-    }
-    return null;
-  }
-
-/**
-
- * Gets specific location for date or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @param {Object} configLocations - The configLocations to retrieve
- * @returns {any} The requested any
-
- */
+  */
 
 function getLocationForDate(date, configLocations) {
     for (const loc of configLocations) {
@@ -919,12 +900,31 @@ function getLocationForDate(date, configLocations) {
 
 /**
 
- * Gets specific quarter or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific location for date or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @param {Object} configLocations - The configLocations to retrieve
+  * @returns {any} The requested any
 
- */
+  */
+
+function getLocationForDate(date, configLocations) {
+    for (const loc of configLocations) {
+      if (date > = loc.start && date < = loc.end) {
+        return { address: loc.address, index: loc.index };
+      }
+    }
+    return null;
+  }
+
+/**
+
+  * Gets specific quarter or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
+
+  */
 
 function getQuarter(date) {
     const key = date.toISOString().split('T')[0];
@@ -944,37 +944,12 @@ function getQuarter(date) {
 
 /**
 
- * Gets specific quarter or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific quarter or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
-
-function getQuarter(date) {
-    const key = date.toISOString().split('T')[0];
-    if (! dateCache[key]) {
-      dateCache[key] = {
-        quarter: Math.floor(date.getUTCMonth() / 3) + 1,
-        week: getWeekNumber(date),
-        dayOfYear: getDayOfYear(date),
-        dayOfWeek: getDayOfWeek(date),
-        dayOfMonth: date.getUTCDate(),
-        month: date.getUTCMonth() + 1,
-        year: date.getUTCFullYear()
-      };
-    }
-    return dateCache[key].quarter;
-  }
-
-/**
-
- * Gets specific quarter or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
-
- */
+  */
 
 function getQuarter(date) {
     const key = date.toISOString().split('T')[0];
@@ -994,12 +969,37 @@ function getQuarter(date) {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {string|any} value - The value to set
- * @returns {any} The result
+  * Gets specific quarter or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
+
+function getQuarter(date) {
+    const key = date.toISOString().split('T')[0];
+    if (! dateCache[key]) {
+      dateCache[key] = {
+        quarter: Math.floor(date.getUTCMonth() / 3) + 1,
+        week: getWeekNumber(date),
+        dayOfYear: getDayOfYear(date),
+        dayOfWeek: getDayOfWeek(date),
+        dayOfMonth: date.getUTCDate(),
+        month: date.getUTCMonth() + 1,
+        year: date.getUTCFullYear()
+      };
+    }
+    return dateCache[key].quarter;
+  }
+
+/**
+
+  * Performs specialized operations
+  * @param
+  * @param {string|any} value - The value to set
+  * @returns {any} The result
+
+  */
 
 function roundToQuarterHour(value) {
     if (typeof value ! = = 'number' || isNaN(value)) return "";
@@ -1010,28 +1010,12 @@ function roundToQuarterHour(value) {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {string|any} value - The value to set
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {string|any} value - The value to set
+  * @returns {any} The result
 
- */
-
-function roundToQuarterHour(value) {
-    if (typeof value ! = = 'number' || isNaN(value)) return "";
-    const minutes = value * 60; // Convert hours to minutes
-    const roundedMinutes = Math.ceil(minutes / 15) * 15; // Round up to nearest 15 minutes
-    return (roundedMinutes / 60).toFixed(2); // Convert back to hours
-  }
-
-/**
-
- * Performs specialized operations
- * @param
- * @param {string|any} value - The value to set
- * @returns {any} The result
-
- */
+  */
 
 function roundToQuarterHour(value) {
     if (typeof value ! = = 'number' || isNaN(value)) return "";
@@ -1042,10 +1026,26 @@ function roundToQuarterHour(value) {
 
 /**
 
- * Sets config or configuration values
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {string|any} value - The value to set
+  * @returns {any} The result
 
- */
+  */
+
+function roundToQuarterHour(value) {
+    if (typeof value ! = = 'number' || isNaN(value)) return "";
+    const minutes = value * 60; // Convert hours to minutes
+    const roundedMinutes = Math.ceil(minutes / 15) * 15; // Round up to nearest 15 minutes
+    return (roundedMinutes / 60).toFixed(2); // Convert back to hours
+  }
+
+/**
+
+  * Sets config or configuration values
+  * @returns {any} The result
+
+  */
 
 function setConfig() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -1079,27 +1079,13 @@ function setConfig() {
 
 /**
 
- * Formats value for display
- * @param
- * @param {string|any} value - The value to set
- * @param {any} decimals - The decimals parameter
- * @returns {any} The result
+  * Formats value for display
+  * @param
+  * @param {string|any} value - The value to set
+  * @param {any} decimals - The decimals parameter
+  * @returns {any} The result
 
- */
-
-function formatValue(value, decimals = 2) {
-    return typeof value = = = 'number' && ! isNaN(value) ? value.toFixed(decimals) : "";
-  }
-
-/**
-
- * Formats value for display
- * @param
- * @param {string|any} value - The value to set
- * @param {any} decimals - The decimals parameter
- * @returns {any} The result
-
- */
+  */
 
 function formatValue(value, decimals = 2) {
     return typeof value = = = 'number' && ! isNaN(value) ? value.toFixed(decimals) : "";
@@ -1107,13 +1093,13 @@ function formatValue(value, decimals = 2) {
 
 /**
 
- * Formats value for display
- * @param
- * @param {string|any} value - The value to set
- * @param {any} decimals - The decimals parameter
- * @returns {any} The result
+  * Formats value for display
+  * @param
+  * @param {string|any} value - The value to set
+  * @param {any} decimals - The decimals parameter
+  * @returns {any} The result
 
- */
+  */
 
 function formatValue(value, decimals = 2) {
     return typeof value = = = 'number' && ! isNaN(value) ? value.toFixed(decimals) : "";
@@ -1121,12 +1107,26 @@ function formatValue(value, decimals = 2) {
 
 /**
 
- * Gets specific day of week or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Formats value for display
+  * @param
+  * @param {string|any} value - The value to set
+  * @param {any} decimals - The decimals parameter
+  * @returns {any} The result
 
- */
+  */
+
+function formatValue(value, decimals = 2) {
+    return typeof value = = = 'number' && ! isNaN(value) ? value.toFixed(decimals) : "";
+  }
+
+/**
+
+  * Gets specific day of week or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
+
+  */
 
 function getDayOfWeek(date) {
     const day = date.getUTCDay();
@@ -1135,26 +1135,12 @@ function getDayOfWeek(date) {
 
 /**
 
- * Gets specific day of week or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day of week or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
-
-function getDayOfWeek(date) {
-    const day = date.getUTCDay();
-    return day = = = 0 ? 1 : day + 1; // Sunday= 1, Monday= 2, etc.
-  }
-
-/**
-
- * Gets specific day of week or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
-
- */
+  */
 
 function getDayOfWeek(date) {
     const day = date.getUTCDay();
@@ -1163,12 +1149,26 @@ function getDayOfWeek(date) {
 
 /**
 
- * Gets specific name day week or configuration
- * @param
- * @param {any} day - The day to retrieve
- * @returns {any} The requested any
+  * Gets specific day of week or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
+
+function getDayOfWeek(date) {
+    const day = date.getUTCDay();
+    return day = = = 0 ? 1 : day + 1; // Sunday= 1, Monday= 2, etc.
+  }
+
+/**
+
+  * Gets specific name day week or configuration
+  * @param
+  * @param {any} day - The day to retrieve
+  * @returns {any} The requested any
+
+  */
 
 function getNameDayWeek(day) {
     const days = [
@@ -1179,28 +1179,12 @@ function getNameDayWeek(day) {
 
 /**
 
- * Gets specific name day week or configuration
- * @param
- * @param {any} day - The day to retrieve
- * @returns {any} The requested any
+  * Gets specific name day week or configuration
+  * @param
+  * @param {any} day - The day to retrieve
+  * @returns {any} The requested any
 
- */
-
-function getNameDayWeek(day) {
-    const days = [
-      "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-    ];
-    return days[day - 1] || "";
-  }
-
-/**
-
- * Gets specific name day week or configuration
- * @param
- * @param {any} day - The day to retrieve
- * @returns {any} The requested any
-
- */
+  */
 
 function getNameDayWeek(day) {
     const days = [
@@ -1211,12 +1195,28 @@ function getNameDayWeek(day) {
 
 /**
 
- * Gets specific name month or configuration
- * @param
- * @param {any} month - The month to retrieve
- * @returns {any} The requested any
+  * Gets specific name day week or configuration
+  * @param
+  * @param {any} day - The day to retrieve
+  * @returns {any} The requested any
 
- */
+  */
+
+function getNameDayWeek(day) {
+    const days = [
+      "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+    ];
+    return days[day - 1] || "";
+  }
+
+/**
+
+  * Gets specific name month or configuration
+  * @param
+  * @param {any} month - The month to retrieve
+  * @returns {any} The requested any
+
+  */
 
 function getNameMonth(month) {
     const months = [
@@ -1228,29 +1228,12 @@ function getNameMonth(month) {
 
 /**
 
- * Gets specific name month or configuration
- * @param
- * @param {any} month - The month to retrieve
- * @returns {any} The requested any
+  * Gets specific name month or configuration
+  * @param
+  * @param {any} month - The month to retrieve
+  * @returns {any} The requested any
 
- */
-
-function getNameMonth(month) {
-    const months = [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
-    ];
-    return months[month - 1] || "";
-  }
-
-/**
-
- * Gets specific name month or configuration
- * @param
- * @param {any} month - The month to retrieve
- * @returns {any} The requested any
-
- */
+  */
 
 function getNameMonth(month) {
     const months = [
@@ -1262,12 +1245,29 @@ function getNameMonth(month) {
 
 /**
 
- * Gets specific name quarter or configuration
- * @param
- * @param {any} quarter - The quarter to retrieve
- * @returns {any} The requested any
+  * Gets specific name month or configuration
+  * @param
+  * @param {any} month - The month to retrieve
+  * @returns {any} The requested any
 
- */
+  */
+
+function getNameMonth(month) {
+    const months = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    return months[month - 1] || "";
+  }
+
+/**
+
+  * Gets specific name quarter or configuration
+  * @param
+  * @param {any} quarter - The quarter to retrieve
+  * @returns {any} The requested any
+
+  */
 
 function getNameQuarter(quarter) {
     return `Q${quarter}`;
@@ -1275,25 +1275,12 @@ function getNameQuarter(quarter) {
 
 /**
 
- * Gets specific name quarter or configuration
- * @param
- * @param {any} quarter - The quarter to retrieve
- * @returns {any} The requested any
+  * Gets specific name quarter or configuration
+  * @param
+  * @param {any} quarter - The quarter to retrieve
+  * @returns {any} The requested any
 
- */
-
-function getNameQuarter(quarter) {
-    return `Q${quarter}`;
-  }
-
-/**
-
- * Gets specific name quarter or configuration
- * @param
- * @param {any} quarter - The quarter to retrieve
- * @returns {any} The requested any
-
- */
+  */
 
 function getNameQuarter(quarter) {
     return `Q${quarter}`;
@@ -1301,12 +1288,25 @@ function getNameQuarter(quarter) {
 
 /**
 
- * Gets specific week number or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific name quarter or configuration
+  * @param
+  * @param {any} quarter - The quarter to retrieve
+  * @returns {any} The requested any
 
- */
+  */
+
+function getNameQuarter(quarter) {
+    return `Q${quarter}`;
+  }
+
+/**
+
+  * Gets specific week number or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
+
+  */
 
 function getWeekNumber(date) {
     const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
@@ -1317,12 +1317,12 @@ function getWeekNumber(date) {
 
 /**
 
- * Gets specific week number or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific week number or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getWeekNumber(date) {
     const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
@@ -1333,12 +1333,12 @@ function getWeekNumber(date) {
 
 /**
 
- * Gets specific week number or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific week number or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getWeekNumber(date) {
     const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));

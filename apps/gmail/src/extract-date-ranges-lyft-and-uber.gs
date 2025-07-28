@@ -1,55 +1,55 @@
 /**
- * Script Name: extract- date- ranges- lyft- and- uber
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Validate input data
- * 5. Process and transform data
- * 6. Format output for presentation
- * 7. Send notifications or reports
- *
- * Script Functions:
- * - appendToSheet(): Appends to sheet to existing content
- * - createMapsLink(): Creates new maps link or resources
- * - extractReceiptFromMessage(): Extracts specific information
- * - extractReceiptsFromGmailDateRange(): Extracts specific information
- * - getExistingMessageIds(): Gets specific existing message ids or configuration
- * - processRideReceiptsDateRange(): Processes and transforms ride receipts date range
- *
- * Script Helper Functions:
- * - cleanAddress(): Performs specialized operations
- * - convertTo24Hour(): Converts between formats
- * - formatDate(): Formats date for display
- * - formatDuration(): Formats duration for display
- * - parseTime(): Sets parime or configuration values
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: extract- date- ranges- lyft- and- uber
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Validate input data
+  * 5. Process and transform data
+  * 6. Format output for presentation
+  * 7. Send notifications or reports
+  *
+  * Script Functions:
+  * - appendToSheet(): Appends to sheet to existing content
+  * - createMapsLink(): Creates new maps link or resources
+  * - extractReceiptFromMessage(): Extracts specific information
+  * - extractReceiptsFromGmailDateRange(): Extracts specific information
+  * - getExistingMessageIds(): Gets specific existing message ids or configuration
+  * - processRideReceiptsDateRange(): Processes and transforms ride receipts date range
+  *
+  * Script Helper Functions:
+  * - cleanAddress(): Performs specialized operations
+  * - convertTo24Hour(): Converts between formats
+  * - formatDate(): Formats date for display
+  * - formatDuration(): Formats duration for display
+  * - parseTime(): Sets parime or configuration values
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 // Main Functions
 
 /**
 
- * Appends to sheet to existing content
- * @param
- * @param {any} receipts - The receipts parameter
- * @returns {Array} Array of results
+  * Appends to sheet to existing content
+  * @param
+  * @param {any} receipts - The receipts parameter
+  * @returns {Array} Array of results
 
- */
+  */
 
 function appendToSheet(receipts) {
   try {
@@ -116,12 +116,12 @@ function appendToSheet(receipts) {
 
 /**
 
- * Creates new maps link or resources
- * @param
- * @param {any} address - The address for creation
- * @returns {Array} The newly created array
+  * Creates new maps link or resources
+  * @param
+  * @param {any} address - The address for creation
+  * @returns {Array} The newly created array
 
- */
+  */
 
 function createMapsLink(address) {
   if (! address || address = = = 'N / A') return 'N / A'; // Encode the address for a URL;
@@ -131,13 +131,13 @@ function createMapsLink(address) {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {string} message - The message content
- * @param {string} defaultProvider - The defaultProvider parameter
- * @returns {Array} Array of results
+  * Extracts specific information
+  * @param
+  * @param {string} message - The message content
+  * @param {string} defaultProvider - The defaultProvider parameter
+  * @returns {Array} Array of results
 
- */
+  */
 
 function extractReceiptFromMessage(message, defaultProvider) {
   const body = message.getPlainBody().replace( / \r\n / g, '\n').replace( / \n +  / g, '\n').trim();
@@ -317,14 +317,14 @@ function extractReceiptFromMessage(message, defaultProvider) {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {string} existingMessageIds - The existingMessageIds parameter
- * @param {any} startDate - The startDate parameter
- * @param {any} endDate - The endDate parameter
- * @returns {Array} Array of results
+  * Extracts specific information
+  * @param
+  * @param {string} existingMessageIds - The existingMessageIds parameter
+  * @param {any} startDate - The startDate parameter
+  * @param {any} endDate - The endDate parameter
+  * @returns {Array} Array of results
 
- */
+  */
 
 function extractReceiptsFromGmailDateRange(existingMessageIds, startDate, endDate) {
   const receipts = [];
@@ -379,10 +379,10 @@ function extractReceiptsFromGmailDateRange(existingMessageIds, startDate, endDat
 
 /**
 
- * Gets specific existing message ids or configuration
- * @returns {Array} The requested array
+  * Gets specific existing message ids or configuration
+  * @returns {Array} The requested array
 
- */
+  */
 
 function getExistingMessageIds() {
   const messageIds = new Set();
@@ -409,10 +409,10 @@ function getExistingMessageIds() {
 
 /**
 
- * Processes and transforms ride receipts date range
- * @returns {Array} Array of results
+  * Processes and transforms ride receipts date range
+  * @returns {Array} Array of results
 
- */
+  */
 
 function processRideReceiptsDateRange() {
   const startTime = Date.now(); // Define the date range;
@@ -437,12 +437,12 @@ function processRideReceiptsDateRange() {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {any} address - The address parameter
- * @returns {Array} Array of results
+  * Performs specialized operations
+  * @param
+  * @param {any} address - The address parameter
+  * @returns {Array} Array of results
 
- */
+  */
 
 function cleanAddress(address) { // Split by double new line and take only the first part
   const parts = address.split( / \n\s * \n / );
@@ -451,12 +451,12 @@ function cleanAddress(address) { // Split by double new line and take only the f
 
 /**
 
- * Converts between formats
- * @param
- * @param {any} timeStr - The timeStr parameter
- * @returns {Array} Array of results
+  * Converts between formats
+  * @param
+  * @param {any} timeStr - The timeStr parameter
+  * @returns {Array} Array of results
 
- */
+  */
 
 function convertTo24Hour(timeStr) {
   try {
@@ -476,12 +476,12 @@ function convertTo24Hour(timeStr) {
 
 /**
 
- * Formats date for display
- * @param
- * @param {any} date - The date parameter
- * @returns {Array} Array of results
+  * Formats date for display
+  * @param
+  * @param {any} date - The date parameter
+  * @returns {Array} Array of results
 
- */
+  */
 
 function formatDate(date) { // Return date in "Month DD, YYYY" format
   const months = [;
@@ -493,12 +493,12 @@ function formatDate(date) { // Return date in "Month DD, YYYY" format
 
 /**
 
- * Formats duration for display
- * @param
- * @param {any} durationStr - The durationStr parameter
- * @returns {Array} Array of results
+  * Formats duration for display
+  * @param
+  * @param {any} durationStr - The durationStr parameter
+  * @returns {Array} Array of results
 
- */
+  */
 
 function formatDuration(durationStr) {
   if (durationStr = = = 'N / A') return 0; // Extract minutes from various formats;
@@ -526,12 +526,12 @@ function formatDuration(durationStr) {
 
 /**
 
- * Sets parime or configuration values
- * @param
- * @param {any} timeStr - The timeStr parameter
- * @returns {Array} Array of results
+  * Sets parime or configuration values
+  * @param
+  * @param {any} timeStr - The timeStr parameter
+  * @returns {Array} Array of results
 
- */
+  */
 
 function parseTime(timeStr) {
   const match = timeStr.match( / (\d{2}):(\d{2}) / );

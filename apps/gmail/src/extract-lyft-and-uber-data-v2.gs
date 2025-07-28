@@ -1,58 +1,58 @@
 /**
- * Script Name: extract- lyft- and- uber- data- v2
- *
- * Script Summary:
- * Creates Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Process and transform data
- * 5. Format output for presentation
- * 6. Write results to destination
- *
- * Script Functions:
- * - createMapsLink(): Creates new maps link or resources
- * - extractReceiptFromMessage(): Extracts specific information
- * - extractReceiptsFromGmail(): Extracts specific information
- * - processRideReceipts(): Processes and transforms ride receipts
- * - writeToSheet(): Writes to sheet to destination
- *
- * Script Helper Functions:
- * - cleanAddress(): Performs specialized operations
- * - convertTo24Hour(): Converts between formats
- * - formatDate(): Formats date for display
- * - formatDuration(): Formats duration for display
- * - parseTime(): Sets parime or configuration values
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: extract- lyft- and- uber- data- v2
+  *
+  * Script Summary:
+  * Creates Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Process and transform data
+  * 5. Format output for presentation
+  * 6. Write results to destination
+  *
+  * Script Functions:
+  * - createMapsLink(): Creates new maps link or resources
+  * - extractReceiptFromMessage(): Extracts specific information
+  * - extractReceiptsFromGmail(): Extracts specific information
+  * - processRideReceipts(): Processes and transforms ride receipts
+  * - writeToSheet(): Writes to sheet to destination
+  *
+  * Script Helper Functions:
+  * - cleanAddress(): Performs specialized operations
+  * - convertTo24Hour(): Converts between formats
+  * - formatDate(): Formats date for display
+  * - formatDuration(): Formats duration for display
+  * - parseTime(): Sets parime or configuration values
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 /*
- * Main Functions
- */
+  * Main Functions
+  */
 
 // Main Functions
 
 /**
 
- * Creates new maps link or resources
- * @param
- * @param {any} address - The address for creation
- * @returns {string} The newly created string
+  * Creates new maps link or resources
+  * @param
+  * @param {any} address - The address for creation
+  * @returns {string} The newly created string
 
- */
+  */
 
 function createMapsLink(address) {
   if (! address || address = = = 'N / A') return 'N / A'; // Encode the address for a URL;
@@ -62,13 +62,13 @@ function createMapsLink(address) {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {string} message - The message content
- * @param {string} defaultProvider - The defaultProvider parameter
- * @returns {string} The formatted string
+  * Extracts specific information
+  * @param
+  * @param {string} message - The message content
+  * @param {string} defaultProvider - The defaultProvider parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function extractReceiptFromMessage(message, defaultProvider) {
   const body = message.getPlainBody().replace( / \r\n / g, '\n').replace( / \n +  / g, '\n').trim();
@@ -215,10 +215,10 @@ function extractReceiptFromMessage(message, defaultProvider) {
 
 /**
 
- * Extracts specific information
- * @returns {string} The formatted string
+  * Extracts specific information
+  * @returns {string} The formatted string
 
- */
+  */
 
 function extractReceiptsFromGmail() {
   const receipts = [];
@@ -309,10 +309,10 @@ function extractReceiptsFromGmail() {
 
 /**
 
- * Processes and transforms ride receipts
- * @returns {string} The formatted string
+  * Processes and transforms ride receipts
+  * @returns {string} The formatted string
 
- */
+  */
 
 function processRideReceipts() {
   const startTime = Date.now();
@@ -325,12 +325,12 @@ function processRideReceipts() {
 
 /**
 
- * Writes to sheet to destination
- * @param
- * @param {any} receipts - The receipts parameter
- * @returns {string} The formatted string
+  * Writes to sheet to destination
+  * @param
+  * @param {any} receipts - The receipts parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function writeToSheet(receipts) {
   try {
@@ -398,12 +398,12 @@ function writeToSheet(receipts) {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {any} address - The address parameter
- * @returns {string} The formatted string
+  * Performs specialized operations
+  * @param
+  * @param {any} address - The address parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function cleanAddress(address) { // Split by double new line and take only the first part
   const parts = address.split( / \n\s * \n / );
@@ -412,12 +412,12 @@ function cleanAddress(address) { // Split by double new line and take only the f
 
 /**
 
- * Converts between formats
- * @param
- * @param {any} timeStr - The timeStr parameter
- * @returns {string} The formatted string
+  * Converts between formats
+  * @param
+  * @param {any} timeStr - The timeStr parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function convertTo24Hour(timeStr) {
   try {
@@ -437,12 +437,12 @@ function convertTo24Hour(timeStr) {
 
 /**
 
- * Formats date for display
- * @param
- * @param {any} date - The date parameter
- * @returns {string} The formatted string
+  * Formats date for display
+  * @param
+  * @param {any} date - The date parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function formatDate(date) { // Return date in "Month DD, YYYY" format
   const months = [;
@@ -454,12 +454,12 @@ function formatDate(date) { // Return date in "Month DD, YYYY" format
 
 /**
 
- * Formats duration for display
- * @param
- * @param {any} durationStr - The durationStr parameter
- * @returns {string} The formatted string
+  * Formats duration for display
+  * @param
+  * @param {any} durationStr - The durationStr parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function formatDuration(durationStr) {
   if (durationStr = = = 'N / A') return 0; // Extract minutes from various formats;
@@ -487,12 +487,12 @@ function formatDuration(durationStr) {
 
 /**
 
- * Sets parime or configuration values
- * @param
- * @param {any} timeStr - The timeStr parameter
- * @returns {string} The formatted string
+  * Sets parime or configuration values
+  * @param
+  * @param {any} timeStr - The timeStr parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function parseTime(timeStr) {
   const match = timeStr.match( / (\d{2}):(\d{2}) / );

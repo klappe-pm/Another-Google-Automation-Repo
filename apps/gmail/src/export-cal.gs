@@ -1,81 +1,81 @@
 /**
- * Script Name: export- cal
- *
- * Script Summary:
- * Exports spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Extract cal data from Google services
- * - Convert data to portable formats
- * - Generate reports and summaries
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Access Drive file system
- * 4. Fetch source data
- * 5. Validate input data
- * 6. Process and transform data
- * 7. Apply filters and criteria
- * 8. Sort data by relevant fields
- *
- * Script Functions:
- * - chunkArray(): Performs specialized operations
- * - debugLog(): Logs debug or messages
- * - exportAllCalendarEvents(): Exports all calendar events to external format
- * - exportLogs(): Exports logs to external format
- * - extractEmailDataWithGemini(): Extracts specific information
- * - fetchCalendarEvents(): Retrieves calendar events from service
- * - getDayOfYear(): Gets specific day of year or configuration
- * - getDistancesFromGoogleMaps(): Gets specific distances from google maps or configuration
- * - getLocationForDate(): Gets specific location for date or configuration
- * - getQuarter(): Gets specific quarter or configuration
- * - loadConfiguration(): Loads configuration from storage
- * - processEmails(): Processes and transforms emails
- * - processEventsData(): Processes and transforms events data
- * - roundToQuarterHour(): Performs specialized operations
- * - setConfig(): Sets config or configuration values
- * - testAllComponents(): Processes email data
- * - testCalendarAccess(): Works with spreadsheet data
- * - testEmailExtraction(): Extracts specific information
- * - testGeminiApiKey(): Performs specialized operations
- * - testGmailAccess(): Processes email data
- * - testMapsApiKey(): Performs specialized operations
- * - writeEventsSheet(): Writes events sheet to destination
- *
- * Script Helper Functions:
- * - formatValue(): Formats value for display
- * - getDayOfWeek(): Gets specific day of week or configuration
- * - getNameDayWeek(): Gets specific name day week or configuration
- * - getNameMonth(): Gets specific name month or configuration
- * - getNameQuarter(): Gets specific name quarter or configuration
- * - getWeekNumber(): Gets specific week number or configuration
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - CalendarApp: For calendar and event management
- * - DriveApp: For file and folder management
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - PropertiesService: For storing script properties
- * - SpreadsheetApp: For spreadsheet operations
- * - UrlFetchApp: For HTTP requests to external services
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: export- cal
+  *
+  * Script Summary:
+  * Exports spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Extract cal data from Google services
+  * - Convert data to portable formats
+  * - Generate reports and summaries
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Access Drive file system
+  * 4. Fetch source data
+  * 5. Validate input data
+  * 6. Process and transform data
+  * 7. Apply filters and criteria
+  * 8. Sort data by relevant fields
+  *
+  * Script Functions:
+  * - chunkArray(): Performs specialized operations
+  * - debugLog(): Logs debug or messages
+  * - exportAllCalendarEvents(): Exports all calendar events to external format
+  * - exportLogs(): Exports logs to external format
+  * - extractEmailDataWithGemini(): Extracts specific information
+  * - fetchCalendarEvents(): Retrieves calendar events from service
+  * - getDayOfYear(): Gets specific day of year or configuration
+  * - getDistancesFromGoogleMaps(): Gets specific distances from google maps or configuration
+  * - getLocationForDate(): Gets specific location for date or configuration
+  * - getQuarter(): Gets specific quarter or configuration
+  * - loadConfiguration(): Loads configuration from storage
+  * - processEmails(): Processes and transforms emails
+  * - processEventsData(): Processes and transforms events data
+  * - roundToQuarterHour(): Performs specialized operations
+  * - setConfig(): Sets config or configuration values
+  * - testAllComponents(): Processes email data
+  * - testCalendarAccess(): Works with spreadsheet data
+  * - testEmailExtraction(): Extracts specific information
+  * - testGeminiApiKey(): Performs specialized operations
+  * - testGmailAccess(): Processes email data
+  * - testMapsApiKey(): Performs specialized operations
+  * - writeEventsSheet(): Writes events sheet to destination
+  *
+  * Script Helper Functions:
+  * - formatValue(): Formats value for display
+  * - getDayOfWeek(): Gets specific day of week or configuration
+  * - getNameDayWeek(): Gets specific name day week or configuration
+  * - getNameMonth(): Gets specific name month or configuration
+  * - getNameQuarter(): Gets specific name quarter or configuration
+  * - getWeekNumber(): Gets specific week number or configuration
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - CalendarApp: For calendar and event management
+  * - DriveApp: For file and folder management
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - PropertiesService: For storing script properties
+  * - SpreadsheetApp: For spreadsheet operations
+  * - UrlFetchApp: For HTTP requests to external services
+  * - Utilities: For utility functions and encoding
+  */
 
 // Main Functions
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {Array} array - Array of elements
- * @param {number} size - The size limit
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {Array} array - Array of elements
+  * @param {number} size - The size limit
+  * @returns {any} The result
 
- */
+  */
 
 function chunkArray(array, size) {
   const chunks = [];
@@ -87,14 +87,14 @@ function chunkArray(array, size) {
 
 /**
 
- * Logs debug or messages
- * @param
- * @param {any} level - The level parameter
- * @param {string} functionName - The functionName parameter
- * @param {string} message - The message content
- * @returns {any} The result
+  * Logs debug or messages
+  * @param
+  * @param {any} level - The level parameter
+  * @param {string} functionName - The functionName parameter
+  * @param {string} message - The message content
+  * @returns {any} The result
 
- */
+  */
 
 function debugLog(level, functionName, message) {
   const timestamp = new Date().toISOString();
@@ -112,10 +112,10 @@ function debugLog(level, functionName, message) {
 
 /**
 
- * Exports all calendar events to external format
- * @returns {any} The result
+  * Exports all calendar events to external format
+  * @returns {any} The result
 
- */
+  */
 
 function exportAllCalendarEvents() {
   const functionName = 'exportAllCalendarEvents';
@@ -275,10 +275,10 @@ function exportAllCalendarEvents() {
 
 /**
 
- * Exports logs to external format
- * @returns {any} The result
+  * Exports logs to external format
+  * @returns {any} The result
 
- */
+  */
 
 function exportLogs() {
   const functionName = 'exportLogs';
@@ -296,13 +296,13 @@ function exportLogs() {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {string} emailHtml - The emailHtml parameter
- * @param {string} geminiApiKey - The geminiApiKey parameter
- * @returns {any} The result
+  * Extracts specific information
+  * @param
+  * @param {string} emailHtml - The emailHtml parameter
+  * @param {string} geminiApiKey - The geminiApiKey parameter
+  * @returns {any} The result
 
- */
+  */
 
 function extractEmailDataWithGemini(emailHtml, geminiApiKey) {
   const functionName = 'extractEmailDataWithGemini';
@@ -356,19 +356,19 @@ Return the result in JSON format with keys: sender_email, subject, total_fare, t
 
 /**
 
- * Retrieves calendar events from service
- * @param
- * @param {string} calendarId - The calendarId parameter
- * @param {number} timeMin - The timeMin parameter
- * @param {number} timeMax - The timeMax parameter
- * @param {string} processedEventIds - The processedEventIds parameter
- * @param {any} dateCache - The dateCache parameter
- * @param {any} locations - The locations parameter
- * @param {any} logEntries - The logEntries parameter
- * @param {any} errors - The errors parameter
- * @returns {any} The result
+  * Retrieves calendar events from service
+  * @param
+  * @param {string} calendarId - The calendarId parameter
+  * @param {number} timeMin - The timeMin parameter
+  * @param {number} timeMax - The timeMax parameter
+  * @param {string} processedEventIds - The processedEventIds parameter
+  * @param {any} dateCache - The dateCache parameter
+  * @param {any} locations - The locations parameter
+  * @param {any} logEntries - The logEntries parameter
+  * @param {any} errors - The errors parameter
+  * @returns {any} The result
 
- */
+  */
 
 function fetchCalendarEvents(calendarId, timeMin, timeMax, processedEventIds, dateCache, locations, logEntries, errors) {
   const functionName = 'fetchCalendarEvents';
@@ -495,12 +495,12 @@ function fetchCalendarEvents(calendarId, timeMin, timeMax, processedEventIds, da
 
 /**
 
- * Gets specific day of year or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day of year or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getDayOfYear(date) {
   const start = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
@@ -510,14 +510,14 @@ function getDayOfYear(date) {
 
 /**
 
- * Gets specific distances from google maps or configuration
- * @param
- * @param {any} origins - The origins to retrieve
- * @param {any} destinations - The destinations to retrieve
- * @param {string} apiKey - The apiKey to retrieve
- * @returns {any} The requested any
+  * Gets specific distances from google maps or configuration
+  * @param
+  * @param {any} origins - The origins to retrieve
+  * @param {any} destinations - The destinations to retrieve
+  * @param {string} apiKey - The apiKey to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
   const functionName = 'getDistancesFromGoogleMaps';
@@ -593,13 +593,13 @@ function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
 
 /**
 
- * Gets specific location for date or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @param {Object} configLocations - The configLocations to retrieve
- * @returns {any} The requested any
+  * Gets specific location for date or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @param {Object} configLocations - The configLocations to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getLocationForDate(date, configLocations) {
   const functionName = 'getLocationForDate';
@@ -615,12 +615,12 @@ function getLocationForDate(date, configLocations) {
 
 /**
 
- * Gets specific quarter or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific quarter or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getQuarter(date) {
   const key = date.toISOString().split('T')[0];
@@ -641,12 +641,12 @@ function getQuarter(date) {
 
 /**
 
- * Loads configuration from storage
- * @param
- * @param {Sheet} spreadsheet - The spreadsheet parameter
- * @returns {any} The result
+  * Loads configuration from storage
+  * @param
+  * @param {Sheet} spreadsheet - The spreadsheet parameter
+  * @returns {any} The result
 
- */
+  */
 
 function loadConfiguration(spreadsheet) {
   const functionName = 'loadConfiguration';
@@ -695,16 +695,16 @@ function loadConfiguration(spreadsheet) {
 
 /**
 
- * Processes and transforms emails
- * @param
- * @param {Sheet} spreadsheet - The spreadsheet parameter
- * @param {Sheet} invoiceSheet - The invoiceSheet parameter
- * @param {string} geminiApiKey - The geminiApiKey parameter
- * @param {any} today - The today parameter
- * @param {any} errors - The errors parameter
- * @returns {any} The result
+  * Processes and transforms emails
+  * @param
+  * @param {Sheet} spreadsheet - The spreadsheet parameter
+  * @param {Sheet} invoiceSheet - The invoiceSheet parameter
+  * @param {string} geminiApiKey - The geminiApiKey parameter
+  * @param {any} today - The today parameter
+  * @param {any} errors - The errors parameter
+  * @returns {any} The result
 
- */
+  */
 
 function processEmails(spreadsheet, invoiceSheet, geminiApiKey, today, errors) {
   const functionName = 'processEmails';
@@ -770,17 +770,17 @@ function processEmails(spreadsheet, invoiceSheet, geminiApiKey, today, errors) {
 
 /**
 
- * Processes and transforms events data
- * @param
- * @param {CalendarEvent} allEvents - The allEvents parameter
- * @param {Array} distanceResults - The distanceResults parameter
- * @param {any} dateCache - The dateCache parameter
- * @param {any} headers - The headers parameter
- * @param {any} logEntries - The logEntries parameter
- * @param {any} errors - The errors parameter
- * @returns {any} The result
+  * Processes and transforms events data
+  * @param
+  * @param {CalendarEvent} allEvents - The allEvents parameter
+  * @param {Array} distanceResults - The distanceResults parameter
+  * @param {any} dateCache - The dateCache parameter
+  * @param {any} headers - The headers parameter
+  * @param {any} logEntries - The logEntries parameter
+  * @param {any} errors - The errors parameter
+  * @returns {any} The result
 
- */
+  */
 
 function processEventsData(allEvents, distanceResults, dateCache, headers, logEntries, errors) {
   const functionName = 'processEventsData';
@@ -864,12 +864,12 @@ function processEventsData(allEvents, distanceResults, dateCache, headers, logEn
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {string|any} value - The value to set
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {string|any} value - The value to set
+  * @returns {any} The result
 
- */
+  */
 
 function roundToQuarterHour(value) {
   if (typeof value ! = = 'number' || isNaN(value)) return "";
@@ -880,10 +880,10 @@ function roundToQuarterHour(value) {
 
 /**
 
- * Sets config or configuration values
- * @returns {any} The result
+  * Sets config or configuration values
+  * @returns {any} The result
 
- */
+  */
 
 function setConfig() {
   const functionName = 'setConfig';
@@ -952,10 +952,10 @@ function setConfig() {
 
 /**
 
- * Processes email data
- * @returns {any} The result
+  * Processes email data
+  * @returns {any} The result
 
- */
+  */
 
 function testAllComponents() {
   const functionName = 'testAllComponents';
@@ -970,10 +970,10 @@ function testAllComponents() {
 
 /**
 
- * Works with spreadsheet data
- * @returns {any} The result
+  * Works with spreadsheet data
+  * @returns {any} The result
 
- */
+  */
 
 function testCalendarAccess() {
   const functionName = 'testCalendarAccess';
@@ -1011,10 +1011,10 @@ function testCalendarAccess() {
 
 /**
 
- * Extracts specific information
- * @returns {any} The result
+  * Extracts specific information
+  * @returns {any} The result
 
- */
+  */
 
 function testEmailExtraction() {
   const functionName = 'testEmailExtraction';
@@ -1038,10 +1038,10 @@ function testEmailExtraction() {
 
 /**
 
- * Performs specialized operations
- * @returns {any} The result
+  * Performs specialized operations
+  * @returns {any} The result
 
- */
+  */
 
 function testGeminiApiKey() {
   const functionName = 'testGeminiApiKey';
@@ -1068,10 +1068,10 @@ function testGeminiApiKey() {
 
 /**
 
- * Processes email data
- * @returns {any} The result
+  * Processes email data
+  * @returns {any} The result
 
- */
+  */
 
 function testGmailAccess() {
   const functionName = 'testGmailAccess';
@@ -1086,10 +1086,10 @@ function testGmailAccess() {
 
 /**
 
- * Performs specialized operations
- * @returns {any} The result
+  * Performs specialized operations
+  * @returns {any} The result
 
- */
+  */
 
 function testMapsApiKey() {
   const functionName = 'testMapsApiKey';
@@ -1107,14 +1107,14 @@ function testMapsApiKey() {
 
 /**
 
- * Writes events sheet to destination
- * @param
- * @param {Sheet} spreadsheet - The spreadsheet parameter
- * @param {Object} data - The data object to process
- * @param {any} headers - The headers parameter
- * @returns {any} The result
+  * Writes events sheet to destination
+  * @param
+  * @param {Sheet} spreadsheet - The spreadsheet parameter
+  * @param {Object} data - The data object to process
+  * @param {any} headers - The headers parameter
+  * @returns {any} The result
 
- */
+  */
 
 function writeEventsSheet(spreadsheet, data, headers) {
   const functionName = 'writeEventsSheet';
@@ -1145,13 +1145,13 @@ function writeEventsSheet(spreadsheet, data, headers) {
 
 /**
 
- * Formats value for display
- * @param
- * @param {string|any} value - The value to set
- * @param {any} decimals - The decimals parameter
- * @returns {any} The result
+  * Formats value for display
+  * @param
+  * @param {string|any} value - The value to set
+  * @param {any} decimals - The decimals parameter
+  * @returns {any} The result
 
- */
+  */
 
 function formatValue(value, decimals = 2) {
   return typeof value = = = 'number' && ! isNaN(value) ? value.toFixed(decimals) : "";
@@ -1159,12 +1159,12 @@ function formatValue(value, decimals = 2) {
 
 /**
 
- * Gets specific day of week or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day of week or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getDayOfWeek(date) {
   const day = date.getUTCDay();
@@ -1173,12 +1173,12 @@ function getDayOfWeek(date) {
 
 /**
 
- * Gets specific name day week or configuration
- * @param
- * @param {any} day - The day to retrieve
- * @returns {any} The requested any
+  * Gets specific name day week or configuration
+  * @param
+  * @param {any} day - The day to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getNameDayWeek(day) {
   const days = [;
@@ -1189,12 +1189,12 @@ function getNameDayWeek(day) {
 
 /**
 
- * Gets specific name month or configuration
- * @param
- * @param {any} month - The month to retrieve
- * @returns {any} The requested any
+  * Gets specific name month or configuration
+  * @param
+  * @param {any} month - The month to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getNameMonth(month) {
   const months = [;
@@ -1206,12 +1206,12 @@ function getNameMonth(month) {
 
 /**
 
- * Gets specific name quarter or configuration
- * @param
- * @param {any} quarter - The quarter to retrieve
- * @returns {any} The requested any
+  * Gets specific name quarter or configuration
+  * @param
+  * @param {any} quarter - The quarter to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getNameQuarter(quarter) {
   return `Q${quarter}`;
@@ -1219,12 +1219,12 @@ function getNameQuarter(quarter) {
 
 /**
 
- * Gets specific week number or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific week number or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getWeekNumber(date) {
   const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));

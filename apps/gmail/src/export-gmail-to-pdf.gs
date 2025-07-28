@@ -1,57 +1,57 @@
 /**
- * Script Name: export- gmail- to- pdf
- *
- * Script Summary:
- * Exports Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- * - Extract gmail to pdf data from Google services
- * - Convert data to portable formats
- * - Generate reports and summaries
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Access Drive file system
- * 4. Fetch source data
- * 5. Process and transform data
- * 6. Apply filters and criteria
- * 7. Format output for presentation
- * 8. Send notifications or reports
- *
- * Script Functions:
- * - createPdfFromMessage(): Creates new pdf from message or resources
- * - extractEmail(): Extracts specific information
- * - extractName(): Extracts specific information
- * - getProcessedIds(): Gets specific processed ids or configuration
- * - grokExportEmailsToPDF(): Exports grok emails to p d f to external format
- * - insertDataIntoSheet(): Inserts data into sheet at specific position
- * - processEmailBatches(): Processes and transforms email batches
- * - processSingleEmail(): Processes and transforms single email
- * - safeOperation(): Performs specialized operations
- * - setupLabelsSheet(): Sets up labels sheet or configuration values
- * - setupOutputSheet(): Sets up output sheet or configuration values
- * - setupProcessedSheet(): Sets up processed sheet or configuration values
- * - updateLabelsSheet(): Updates existing labels sheet
- * - updateProcessedSheet(): Updates existing processed sheet
- *
- * Script Helper Functions:
- * - createFolderStructure(): Creates new folder structure or resources
- * - getNextLabelToProcess(): Gets specific next label to process or configuration
- * - getOrCreateFolder(): Gets specific or create folder or configuration
- * - getOrCreateGmailLabel(): Gets specific or create gmail label or configuration
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: export- gmail- to- pdf
+  *
+  * Script Summary:
+  * Exports Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Extract gmail to pdf data from Google services
+  * - Convert data to portable formats
+  * - Generate reports and summaries
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Access Drive file system
+  * 4. Fetch source data
+  * 5. Process and transform data
+  * 6. Apply filters and criteria
+  * 7. Format output for presentation
+  * 8. Send notifications or reports
+  *
+  * Script Functions:
+  * - createPdfFromMessage(): Creates new pdf from message or resources
+  * - extractEmail(): Extracts specific information
+  * - extractName(): Extracts specific information
+  * - getProcessedIds(): Gets specific processed ids or configuration
+  * - grokExportEmailsToPDF(): Exports grok emails to p d f to external format
+  * - insertDataIntoSheet(): Inserts data into sheet at specific position
+  * - processEmailBatches(): Processes and transforms email batches
+  * - processSingleEmail(): Processes and transforms single email
+  * - safeOperation(): Performs specialized operations
+  * - setupLabelsSheet(): Sets up labels sheet or configuration values
+  * - setupOutputSheet(): Sets up output sheet or configuration values
+  * - setupProcessedSheet(): Sets up processed sheet or configuration values
+  * - updateLabelsSheet(): Updates existing labels sheet
+  * - updateProcessedSheet(): Updates existing processed sheet
+  *
+  * Script Helper Functions:
+  * - createFolderStructure(): Creates new folder structure or resources
+  * - getNextLabelToProcess(): Gets specific next label to process or configuration
+  * - getOrCreateFolder(): Gets specific or create folder or configuration
+  * - getOrCreateGmailLabel(): Gets specific or create gmail label or configuration
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 /  / Constants
 const ROOT_FOLDER_NAME = "Lappe vs. Anton LLC - Lappe Files";
@@ -64,18 +64,18 @@ const PROCESSED_LABEL_NAME = "0processed";
 const THREAD_FETCH_LIMIT = 100;
 const SLEEP_INTERVAL = 500; // 0.5s // Main function with progress logging and status update;
 
- // Fixed setupOutputSheet function
+  // Fixed setupOutputSheet function
 
 // Main Functions
 
 /**
 
- * Creates new pdf from message or resources
- * @param
- * @param {string} message - The message content
- * @returns {string} The newly created string
+  * Creates new pdf from message or resources
+  * @param
+  * @param {string} message - The message content
+  * @returns {string} The newly created string
 
- */
+  */
 
 function createPdfFromMessage(message) {
   const subject = message.getSubject();
@@ -90,12 +90,12 @@ function createPdfFromMessage(message) {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {any} fromString - The fromString parameter
- * @returns {string} The formatted string
+  * Extracts specific information
+  * @param
+  * @param {any} fromString - The fromString parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function extractEmail(fromString) {
   const emailMatch = fromString.match( / < (. + ?) > / );
@@ -106,12 +106,12 @@ function extractEmail(fromString) {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {any} fromString - The fromString parameter
- * @returns {string} The formatted string
+  * Extracts specific information
+  * @param
+  * @param {any} fromString - The fromString parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function extractName(fromString) {
   const emailMatch = fromString.match( / < (. + ?) > / );
@@ -122,12 +122,12 @@ function extractName(fromString) {
 
 /**
 
- * Gets specific processed ids or configuration
- * @param
- * @param {Sheet} sheet - The sheet to retrieve
- * @returns {string} The requested string
+  * Gets specific processed ids or configuration
+  * @param
+  * @param {Sheet} sheet - The sheet to retrieve
+  * @returns {string} The requested string
 
- */
+  */
 
 function getProcessedIds(sheet) {
   if (sheet.getLastRow() < = 1) return { threadIds: new Set(), emailIds: new Set() };
@@ -137,10 +137,10 @@ function getProcessedIds(sheet) {
 
 /**
 
- * Exports grok emails to p d f to external format
- * @returns {string} The formatted string
+  * Exports grok emails to p d f to external format
+  * @returns {string} The formatted string
 
- */
+  */
 
 function grokExportEmailsToPDF() {
   const startTime = Date.now();
@@ -210,14 +210,14 @@ function grokExportEmailsToPDF() {
 
 /**
 
- * Inserts data into sheet at specific position
- * @param
- * @param {string} emailData - The emailData parameter
- * @param {string} sheetName - The sheetName parameter
- * @param {Sheet} sheet - The sheet parameter
- * @returns {string} The formatted string
+  * Inserts data into sheet at specific position
+  * @param
+  * @param {string} emailData - The emailData parameter
+  * @param {string} sheetName - The sheetName parameter
+  * @param {Sheet} sheet - The sheet parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function insertDataIntoSheet(emailData, sheetName, sheet) {
   const headers = ["Thread ID", "Email ID", "Date Received", "Time Received", "Metadata", "Subject", "Snippet", "Gmail Link", "PDF Link", "Sender Email", "Email Recipients", "Sender Domain", "Sender Display Name", ...Array(10).fill().map((_, i) = > `Attach Link ${i + 1}`)];
@@ -250,16 +250,16 @@ function insertDataIntoSheet(emailData, sheetName, sheet) {
 
 /**
 
- * Processes and transforms email batches
- * @param
- * @param {GmailLabel} label - The label parameter
- * @param {string} processedIds - The processedIds parameter
- * @param {Folder} folders - The folders parameter
- * @param {any} startTime - The startTime parameter
- * @param {GmailLabel} processedLabel - The processedLabel parameter
- * @returns {string} The formatted string
+  * Processes and transforms email batches
+  * @param
+  * @param {GmailLabel} label - The label parameter
+  * @param {string} processedIds - The processedIds parameter
+  * @param {Folder} folders - The folders parameter
+  * @param {any} startTime - The startTime parameter
+  * @param {GmailLabel} processedLabel - The processedLabel parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function processEmailBatches(label, processedIds, folders, startTime, processedLabel) {
   const emailDataBatch = [];
@@ -323,13 +323,13 @@ function processEmailBatches(label, processedIds, folders, startTime, processedL
 
 /**
 
- * Processes and transforms single email
- * @param
- * @param {string} message - The message content
- * @param {Folder} folders - The folders parameter
- * @returns {string} The formatted string
+  * Processes and transforms single email
+  * @param
+  * @param {string} message - The message content
+  * @param {Folder} folders - The folders parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function processSingleEmail(message, folders) {
   const emailId = message.getId();
@@ -392,14 +392,14 @@ function processSingleEmail(message, folders) {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {any} operation - The operation parameter
- * @param {any} fallback - The fallback parameter
- * @param {any} retries - The retries parameter
- * @returns {string} The formatted string
+  * Performs specialized operations
+  * @param
+  * @param {any} operation - The operation parameter
+  * @param {any} fallback - The fallback parameter
+  * @param {any} retries - The retries parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function safeOperation(operation, fallback = null, retries = 3) {
   let delay = 500;
@@ -417,12 +417,12 @@ function safeOperation(operation, fallback = null, retries = 3) {
 
 /**
 
- * Sets up labels sheet or configuration values
- * @param
- * @param {Sheet} sheet - The sheet to set
- * @returns {string} The formatted string
+  * Sets up labels sheet or configuration values
+  * @param
+  * @param {Sheet} sheet - The sheet to set
+  * @returns {string} The formatted string
 
- */
+  */
 
 function setupLabelsSheet(sheet) {
   if (sheet.getLastRow() = = = 0) {
@@ -439,13 +439,13 @@ function setupLabelsSheet(sheet) {
 
 /**
 
- * Sets up output sheet or configuration values
- * @param
- * @param {Sheet} spreadsheet - The spreadsheet to set
- * @param {GmailLabel} label - The label to set
- * @returns {string} The formatted string
+  * Sets up output sheet or configuration values
+  * @param
+  * @param {Sheet} spreadsheet - The spreadsheet to set
+  * @param {GmailLabel} label - The label to set
+  * @returns {string} The formatted string
 
- */
+  */
 
 function setupOutputSheet(spreadsheet, label) {
   let sheet = spreadsheet.getSheetByName(label);
@@ -460,12 +460,12 @@ function setupOutputSheet(spreadsheet, label) {
 
 /**
 
- * Sets up processed sheet or configuration values
- * @param
- * @param {Sheet} sheet - The sheet to set
- * @returns {string} The formatted string
+  * Sets up processed sheet or configuration values
+  * @param
+  * @param {Sheet} sheet - The sheet to set
+  * @returns {string} The formatted string
 
- */
+  */
 
 function setupProcessedSheet(sheet) {
   if (sheet.getLastRow() = = = 0) {
@@ -478,18 +478,18 @@ function setupProcessedSheet(sheet) {
 
 /**
 
- * Updates existing labels sheet
- * @param
- * @param {Sheet} sheet - The sheet to update
- * @param {any} row - The row to update
- * @param {GmailLabel} label - The label to update
- * @param {Folder} folder - The folder to update
- * @param {number} count - The number of items
- * @param {any} allProcessed - The allProcessed to update
- * @param {any} executionDate - The executionDate to update
- * @returns {string} The formatted string
+  * Updates existing labels sheet
+  * @param
+  * @param {Sheet} sheet - The sheet to update
+  * @param {any} row - The row to update
+  * @param {GmailLabel} label - The label to update
+  * @param {Folder} folder - The folder to update
+  * @param {number} count - The number of items
+  * @param {any} allProcessed - The allProcessed to update
+  * @param {any} executionDate - The executionDate to update
+  * @returns {string} The formatted string
 
- */
+  */
 
 function updateLabelsSheet(sheet, row, label, folder, count, allProcessed, executionDate) {
   const folderLink = `= HYPERLINK("${folder.getUrl()}", "Export Folder")`;
@@ -500,13 +500,13 @@ function updateLabelsSheet(sheet, row, label, folder, count, allProcessed, execu
 
 /**
 
- * Updates existing processed sheet
- * @param
- * @param {Sheet} sheet - The sheet to update
- * @param {any} processedBatch - The processedBatch to update
- * @returns {string} The formatted string
+  * Updates existing processed sheet
+  * @param
+  * @param {Sheet} sheet - The sheet to update
+  * @param {any} processedBatch - The processedBatch to update
+  * @returns {string} The formatted string
 
- */
+  */
 
 function updateProcessedSheet(sheet, processedBatch) {
   if (processedBatch.length) {
@@ -519,12 +519,12 @@ function updateProcessedSheet(sheet, processedBatch) {
 
 /**
 
- * Creates new folder structure or resources
- * @param
- * @param {GmailLabel} label - The label for creation
- * @returns {string} The newly created string
+  * Creates new folder structure or resources
+  * @param
+  * @param {GmailLabel} label - The label for creation
+  * @returns {string} The newly created string
 
- */
+  */
 
 function createFolderStructure(label) {
   const rootFolder = getOrCreateFolder(ROOT_FOLDER_NAME);
@@ -536,12 +536,12 @@ function createFolderStructure(label) {
 
 /**
 
- * Gets specific next label to process or configuration
- * @param
- * @param {Sheet} sheet - The sheet to retrieve
- * @returns {string} The requested string
+  * Gets specific next label to process or configuration
+  * @param
+  * @param {Sheet} sheet - The sheet to retrieve
+  * @returns {string} The requested string
 
- */
+  */
 
 function getNextLabelToProcess(sheet) {
   const labelsData = sheet.getRange("A2:G" + sheet.getLastRow()).getValues();
@@ -551,13 +551,13 @@ function getNextLabelToProcess(sheet) {
 
 /**
 
- * Gets specific or create folder or configuration
- * @param
- * @param {string} folderName - The folderName to retrieve
- * @param {Folder} parentFolder - The parentFolder to retrieve
- * @returns {string} The requested string
+  * Gets specific or create folder or configuration
+  * @param
+  * @param {string} folderName - The folderName to retrieve
+  * @param {Folder} parentFolder - The parentFolder to retrieve
+  * @returns {string} The requested string
 
- */
+  */
 
 function getOrCreateFolder(folderName, parentFolder) {
   const folders = (parentFolder || DriveApp).getFoldersByName(folderName);
@@ -566,12 +566,12 @@ function getOrCreateFolder(folderName, parentFolder) {
 
 /**
 
- * Gets specific or create gmail label or configuration
- * @param
- * @param {string} labelName - The labelName to retrieve
- * @returns {string} The requested string
+  * Gets specific or create gmail label or configuration
+  * @param
+  * @param {string} labelName - The labelName to retrieve
+  * @returns {string} The requested string
 
- */
+  */
 
 function getOrCreateGmailLabel(labelName) {
   return safeOperation(() = > GmailApp.getUserLabelByName(labelName) || GmailApp.createLabel(labelName));

@@ -1,46 +1,46 @@
 /**
- * Script Name: export- docs- file- list- to- sheets
- *
- * Script Summary:
- * Processes spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Extract docs file list to sheets data from Google services
- * - Convert data to portable formats
- * - Generate reports and summaries
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Process and transform data
- *
- * Script Functions:
- * - listFilesInFolder(): Checks boolean condition
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DocumentApp: For document manipulation
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: export- docs- file- list- to- sheets
+  *
+  * Script Summary:
+  * Processes spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Extract docs file list to sheets data from Google services
+  * - Convert data to portable formats
+  * - Generate reports and summaries
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Process and transform data
+  *
+  * Script Functions:
+  * - listFilesInFolder(): Checks boolean condition
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DocumentApp: For document manipulation
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 // Main Functions
 
 /**
 
- * Checks boolean condition
+  * Checks boolean condition
 
- */
+  */
 
 /**
 
- * Checks boolean condition
+  * Checks boolean condition
 
- */
+  */
 
 function listFilesInFolder() { //  - - - Configuration - - - const folderId = 'folder id here'; // ID of the Drive folder;
   const spreadsheetId = 'sheet id here'; // ID of the Google Sheet;

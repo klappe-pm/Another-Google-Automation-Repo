@@ -1,68 +1,68 @@
 /**
- * Script Name: markdown- generate- weekly- notes
- *
- * Script Summary:
- * Generates markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- * - Support scheduled automation
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Validate input data
- * 5. Process and transform data
- * 6. Apply filters and criteria
- * 7. Sort data by relevant fields
- * 8. Format output for presentation
- *
- * Script Functions:
- * - checkCalendarAppAvailability(): Checks conditions or status
- * - clearLog(): Logs clear or messages
- * - countEventsByStatus(): Counts events by status or occurrences
- * - countUniqueAttendees(): Counts unique attendees or occurrences
- * - createInitialWeeklyNoteContent(): Creates new initial weekly note content or resources
- * - createInitialYamlFrontmatter(): Creates new initial yaml frontmatter or resources
- * - createOrUpdateWeeklyNote(): Creates new or update weekly note or resources
- * - createTriggers(): Creates new triggers or resources
- * - fridayTrigger(): Triggers actions or events
- * - getEventsForDay(): Gets specific events for day or configuration
- * - getEventStatus(): Gets specific event status or configuration
- * - getOrCreateFolderPath(): Gets specific or create folder path or configuration
- * - main(): Performs specialized operations
- * - mondayTrigger(): Triggers actions or events
- * - onCalendarChange(): Handles calendar operations
- * - onOpen(): Performs specialized operations
- * - processEventsForDay(): Processes and transforms events for day
- * - processEventsForWeek(): Processes and transforms events for week
- * - updateYamlFrontmatter(): Updates existing yaml frontmatter
- *
- * Script Helper Functions:
- * - calculateTotalEventMinutes(): Performs calculations on total event minutes
- * - countNewEvents(): Counts new events or occurrences
- * - countTotalAttendees(): Counts total attendees or occurrences
- * - formatDate(): Formats date for display
- * - getOrCreateWeeklyFolder(): Gets specific or create weekly folder or configuration
- * - getWeekNumber(): Gets specific week number or configuration
- * - getWeekStart(): Gets specific week start or configuration
- * - parseYaml(): Parses and extracts yaml
- * - stringifyYaml(): Performs specialized operations
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - CalendarApp: For calendar and event management
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- * - ScriptApp: For script management and triggers
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: markdown- generate- weekly- notes
+  *
+  * Script Summary:
+  * Generates markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  * - Support scheduled automation
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Validate input data
+  * 5. Process and transform data
+  * 6. Apply filters and criteria
+  * 7. Sort data by relevant fields
+  * 8. Format output for presentation
+  *
+  * Script Functions:
+  * - checkCalendarAppAvailability(): Checks conditions or status
+  * - clearLog(): Logs clear or messages
+  * - countEventsByStatus(): Counts events by status or occurrences
+  * - countUniqueAttendees(): Counts unique attendees or occurrences
+  * - createInitialWeeklyNoteContent(): Creates new initial weekly note content or resources
+  * - createInitialYamlFrontmatter(): Creates new initial yaml frontmatter or resources
+  * - createOrUpdateWeeklyNote(): Creates new or update weekly note or resources
+  * - createTriggers(): Creates new triggers or resources
+  * - fridayTrigger(): Triggers actions or events
+  * - getEventsForDay(): Gets specific events for day or configuration
+  * - getEventStatus(): Gets specific event status or configuration
+  * - getOrCreateFolderPath(): Gets specific or create folder path or configuration
+  * - main(): Performs specialized operations
+  * - mondayTrigger(): Triggers actions or events
+  * - onCalendarChange(): Handles calendar operations
+  * - onOpen(): Performs specialized operations
+  * - processEventsForDay(): Processes and transforms events for day
+  * - processEventsForWeek(): Processes and transforms events for week
+  * - updateYamlFrontmatter(): Updates existing yaml frontmatter
+  *
+  * Script Helper Functions:
+  * - calculateTotalEventMinutes(): Performs calculations on total event minutes
+  * - countNewEvents(): Counts new events or occurrences
+  * - countTotalAttendees(): Counts total attendees or occurrences
+  * - formatDate(): Formats date for display
+  * - getOrCreateWeeklyFolder(): Gets specific or create weekly folder or configuration
+  * - getWeekNumber(): Gets specific week number or configuration
+  * - getWeekStart(): Gets specific week start or configuration
+  * - parseYaml(): Parses and extracts yaml
+  * - stringifyYaml(): Performs specialized operations
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - CalendarApp: For calendar and event management
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  * - ScriptApp: For script management and triggers
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 /  / Title: Weekly Notes Generator / * Script Summary: - This Google Apps Script automates the creation and updating of weekly notes based on calendar events. - It creates a custom menu in Google Sheets to trigger the note creation / update process, and sets up time - based and calendar change triggers. - The script categorizes events, generates YAML front matter with event statistics, and creates a structured markdown document for each week.
 
@@ -110,41 +110,41 @@ Key features:
 8. Process events for the entire week and update the content.
 9. Save the updated content to the file.
 const TIMEZONE = "America / Los_Angeles"; // Function to create and add the custom menu to the Google Sheets UI;
- // Main function to create or update the weekly note
- // Function to create initial YAML front matter
- // Function to update YAML front matter
- // Function to create initial weekly note content
- // Function to process events for the entire week
- // Function to process events for a single day
- // Helper functions // Function to get the week number for a given date
- // Function to get the start of the week for a given date
- // Function to format a date as YYYY - MM - DD
- // Function to get events for a specific day
- // Function to get the status of an event
- // Function to count events by status
- // Function to calculate total event minutes
- // Function to count new events for the week
- // Function to count total attendees for the week
- // Function to count unique attendees for the week
- // Function to get or create the weekly folder
- // Function to get or create a folder path
- // Custom YAML parsing and stringifying functions
+  // Main function to create or update the weekly note
+  // Function to create initial YAML front matter
+  // Function to update YAML front matter
+  // Function to create initial weekly note content
+  // Function to process events for the entire week
+  // Function to process events for a single day
+  // Helper functions // Function to get the week number for a given date
+  // Function to get the start of the week for a given date
+  // Function to format a date as YYYY - MM - DD
+  // Function to get events for a specific day
+  // Function to get the status of an event
+  // Function to count events by status
+  // Function to calculate total event minutes
+  // Function to count new events for the week
+  // Function to count total attendees for the week
+  // Function to count unique attendees for the week
+  // Function to get or create the weekly folder
+  // Function to get or create a folder path
+  // Custom YAML parsing and stringifying functions
 
- // Trigger functions
+  // Trigger functions
 
- // Set up triggers
- // New function to check if CalendarApp is available
- // New function to clear the log
- // New main function to run the createOrUpdateWeeklyNote with log clearing
+  // Set up triggers
+  // New function to check if CalendarApp is available
+  // New function to clear the log
+  // New main function to run the createOrUpdateWeeklyNote with log clearing
 
 // Main Functions
 
 /**
 
- * Checks conditions or status
- * @returns {Object} The result object
+  * Checks conditions or status
+  * @returns {Object} The result object
 
- */
+  */
 
 function checkCalendarAppAvailability() {
   if (typeof CalendarApp = = = 'undefined') {
@@ -155,10 +155,10 @@ function checkCalendarAppAvailability() {
 
 /**
 
- * Logs clear or messages
- * @returns {Object} The result object
+  * Logs clear or messages
+  * @returns {Object} The result object
 
- */
+  */
 
 function clearLog() {
   console.clear();
@@ -166,12 +166,12 @@ function clearLog() {
 
 /**
 
- * Counts events by status or occurrences
- * @param
- * @param {CalendarEvent} events - The events parameter
- * @returns {Object} The total count
+  * Counts events by status or occurrences
+  * @param
+  * @param {CalendarEvent} events - The events parameter
+  * @returns {Object} The total count
 
- */
+  */
 
 function countEventsByStatus(events) {
   let accepted = 0, declined = 0, total = events.length;
@@ -187,12 +187,12 @@ function countEventsByStatus(events) {
 
 /**
 
- * Counts unique attendees or occurrences
- * @param
- * @param {any} weekStart - The weekStart parameter
- * @returns {Object} The total count
+  * Counts unique attendees or occurrences
+  * @param
+  * @param {any} weekStart - The weekStart parameter
+  * @returns {Object} The total count
 
- */
+  */
 
 function countUniqueAttendees(weekStart) {
   const weekEnd = new Date(weekStart.getTime() + 7 * 24 * 60 * 60 * 1000);
@@ -206,13 +206,13 @@ function countUniqueAttendees(weekStart) {
 
 /**
 
- * Creates new initial weekly note content or resources
- * @param
- * @param {any} weekNumber - The weekNumber for creation
- * @param {any} weekStart - The weekStart for creation
- * @returns {Object} The newly created object
+  * Creates new initial weekly note content or resources
+  * @param
+  * @param {any} weekNumber - The weekNumber for creation
+  * @param {any} weekStart - The weekStart for creation
+  * @returns {Object} The newly created object
 
- */
+  */
 
 function createInitialWeeklyNoteContent(weekNumber, weekStart) {
   let content = `# ${weekNumber} Weekly Note\n\n`;
@@ -227,13 +227,13 @@ function createInitialWeeklyNoteContent(weekNumber, weekStart) {
 
 /**
 
- * Creates new initial yaml frontmatter or resources
- * @param
- * @param {any} weekNumber - The weekNumber for creation
- * @param {any} weekStart - The weekStart for creation
- * @returns {Object} The newly created object
+  * Creates new initial yaml frontmatter or resources
+  * @param
+  * @param {any} weekNumber - The weekNumber for creation
+  * @param {any} weekStart - The weekStart for creation
+  * @returns {Object} The newly created object
 
- */
+  */
 
 function createInitialYamlFrontmatter(weekNumber, weekStart) {
   const now = new Date();
@@ -266,10 +266,10 @@ function createInitialYamlFrontmatter(weekNumber, weekStart) {
 
 /**
 
- * Creates new or update weekly note or resources
- * @returns {Object} The newly created object
+  * Creates new or update weekly note or resources
+  * @returns {Object} The newly created object
 
- */
+  */
 
 function createOrUpdateWeeklyNote() {
   try {
@@ -310,10 +310,10 @@ function createOrUpdateWeeklyNote() {
 
 /**
 
- * Creates new triggers or resources
- * @returns {Object} The newly created object
+  * Creates new triggers or resources
+  * @returns {Object} The newly created object
 
- */
+  */
 
 function createTriggers() {
   ScriptApp.newTrigger('mondayTrigger');
@@ -336,10 +336,10 @@ function createTriggers() {
 
 /**
 
- * Triggers actions or events
- * @returns {Object} The result object
+  * Triggers actions or events
+  * @returns {Object} The result object
 
- */
+  */
 
 function fridayTrigger() {
   createOrUpdateWeeklyNote();
@@ -347,12 +347,12 @@ function fridayTrigger() {
 
 /**
 
- * Gets specific events for day or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {Object} The requested object
+  * Gets specific events for day or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {Object} The requested object
 
- */
+  */
 
 function getEventsForDay(date) {
   try {
@@ -370,12 +370,12 @@ function getEventsForDay(date) {
 
 /**
 
- * Gets specific event status or configuration
- * @param
- * @param {CalendarEvent} event - The event to retrieve
- * @returns {Object} The requested object
+  * Gets specific event status or configuration
+  * @param
+  * @param {CalendarEvent} event - The event to retrieve
+  * @returns {Object} The requested object
 
- */
+  */
 
 function getEventStatus(event) {
   try {
@@ -404,12 +404,12 @@ function getEventStatus(event) {
 
 /**
 
- * Gets specific or create folder path or configuration
- * @param
- * @param {string} path - The file path
- * @returns {Object} The requested object
+  * Gets specific or create folder path or configuration
+  * @param
+  * @param {string} path - The file path
+  * @returns {Object} The requested object
 
- */
+  */
 
 function getOrCreateFolderPath(path) {
   const folders = path.split(' / ');
@@ -428,10 +428,10 @@ function getOrCreateFolderPath(path) {
 
 /**
 
- * Performs specialized operations
- * @returns {Object} The result object
+  * Performs specialized operations
+  * @returns {Object} The result object
 
- */
+  */
 
 function main() {
   clearLog();
@@ -440,10 +440,10 @@ function main() {
 
 /**
 
- * Triggers actions or events
- * @returns {Object} The result object
+  * Triggers actions or events
+  * @returns {Object} The result object
 
- */
+  */
 
 function mondayTrigger() {
   createOrUpdateWeeklyNote();
@@ -451,12 +451,12 @@ function mondayTrigger() {
 
 /**
 
- * Handles calendar operations
- * @param
- * @param {any} e - The e parameter
- * @returns {Object} The result object
+  * Handles calendar operations
+  * @param
+  * @param {any} e - The e parameter
+  * @returns {Object} The result object
 
- */
+  */
 
 function onCalendarChange(e) {
   if (e.calendarId = = = CalendarApp.getDefaultCalendar().getId()) {
@@ -466,10 +466,10 @@ function onCalendarChange(e) {
 
 /**
 
- * Performs specialized operations
- * @returns {Object} The result object
+  * Performs specialized operations
+  * @returns {Object} The result object
 
- */
+  */
 
 function onOpen() {
   try {
@@ -485,13 +485,13 @@ function onOpen() {
 
 /**
 
- * Processes and transforms events for day
- * @param
- * @param {CalendarEvent} events - The events parameter
- * @param {any} date - The date parameter
- * @returns {Object} The result object
+  * Processes and transforms events for day
+  * @param
+  * @param {CalendarEvent} events - The events parameter
+  * @param {any} date - The date parameter
+  * @returns {Object} The result object
 
- */
+  */
 
 function processEventsForDay(events, date) {
   let content = '';
@@ -527,14 +527,14 @@ function processEventsForDay(events, date) {
 
 /**
 
- * Processes and transforms events for week
- * @param
- * @param {any} weekStart - The weekStart parameter
- * @param {string} content - The content to process
- * @param {File} file - The file parameter
- * @returns {Object} The result object
+  * Processes and transforms events for week
+  * @param
+  * @param {any} weekStart - The weekStart parameter
+  * @param {string} content - The content to process
+  * @param {File} file - The file parameter
+  * @returns {Object} The result object
 
- */
+  */
 
 function processEventsForWeek(weekStart, content, file) {
   for (let i = 0; i < 5; i + + ) {
@@ -559,12 +559,12 @@ function processEventsForWeek(weekStart, content, file) {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {any} obj - The obj parameter
- * @returns {Object} The result object
+  * Performs specialized operations
+  * @param
+  * @param {any} obj - The obj parameter
+  * @returns {Object} The result object
 
- */
+  */
 
 function stringifyYaml(obj) {
   return Object.entries(obj);
@@ -574,13 +574,13 @@ function stringifyYaml(obj) {
 
 /**
 
- * Updates existing yaml frontmatter
- * @param
- * @param {string} content - The content to process
- * @param {any} weekStart - The weekStart to update
- * @returns {Object} The result object
+  * Updates existing yaml frontmatter
+  * @param
+  * @param {string} content - The content to process
+  * @param {any} weekStart - The weekStart to update
+  * @returns {Object} The result object
 
- */
+  */
 
 function updateYamlFrontmatter(content, weekStart) {
   let yaml = content.split(' - - - ')[1];
@@ -612,12 +612,12 @@ function updateYamlFrontmatter(content, weekStart) {
 
 /**
 
- * Performs calculations on total event minutes
- * @param
- * @param {CalendarEvent} events - The events parameter
- * @returns {Object} The result object
+  * Performs calculations on total event minutes
+  * @param
+  * @param {CalendarEvent} events - The events parameter
+  * @returns {Object} The result object
 
- */
+  */
 
 function calculateTotalEventMinutes(events) {
   return events.reduce((total, event) = > {
@@ -628,12 +628,12 @@ function calculateTotalEventMinutes(events) {
 
 /**
 
- * Counts new events or occurrences
- * @param
- * @param {any} weekStart - The weekStart parameter
- * @returns {Object} The total count
+  * Counts new events or occurrences
+  * @param
+  * @param {any} weekStart - The weekStart parameter
+  * @returns {Object} The total count
 
- */
+  */
 
 function countNewEvents(weekStart) {
   const weekEnd = new Date(weekStart.getTime() + 7 * 24 * 60 * 60 * 1000);
@@ -643,12 +643,12 @@ function countNewEvents(weekStart) {
 
 /**
 
- * Counts total attendees or occurrences
- * @param
- * @param {any} weekStart - The weekStart parameter
- * @returns {Object} The total count
+  * Counts total attendees or occurrences
+  * @param
+  * @param {any} weekStart - The weekStart parameter
+  * @returns {Object} The total count
 
- */
+  */
 
 function countTotalAttendees(weekStart) {
   const weekEnd = new Date(weekStart.getTime() + 7 * 24 * 60 * 60 * 1000);
@@ -658,12 +658,12 @@ function countTotalAttendees(weekStart) {
 
 /**
 
- * Formats date for display
- * @param
- * @param {any} date - The date parameter
- * @returns {Object} The result object
+  * Formats date for display
+  * @param
+  * @param {any} date - The date parameter
+  * @returns {Object} The result object
 
- */
+  */
 
 function formatDate(date) {
   return Utilities.formatDate(date, TIMEZONE, 'yyyy - MM - dd');
@@ -671,12 +671,12 @@ function formatDate(date) {
 
 /**
 
- * Gets specific or create weekly folder or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {Object} The requested object
+  * Gets specific or create weekly folder or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {Object} The requested object
 
- */
+  */
 
 function getOrCreateWeeklyFolder(date) {
   const year = date.getFullYear();
@@ -687,12 +687,12 @@ function getOrCreateWeeklyFolder(date) {
 
 /**
 
- * Gets specific week number or configuration
- * @param
- * @param {any} d - The d to retrieve
- * @returns {Object} The requested object
+  * Gets specific week number or configuration
+  * @param
+  * @param {any} d - The d to retrieve
+  * @returns {Object} The requested object
 
- */
+  */
 
 function getWeekNumber(d) {
   d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
@@ -704,12 +704,12 @@ function getWeekNumber(d) {
 
 /**
 
- * Gets specific week start or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {Object} The requested object
+  * Gets specific week start or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {Object} The requested object
 
- */
+  */
 
 function getWeekStart(date) {
   const d = new Date(date);
@@ -720,12 +720,12 @@ function getWeekStart(date) {
 
 /**
 
- * Parses and extracts yaml
- * @param
- * @param {any} yaml - The yaml parameter
- * @returns {Object} The result object
+  * Parses and extracts yaml
+  * @param
+  * @param {any} yaml - The yaml parameter
+  * @returns {Object} The result object
 
- */
+  */
 
 function parseYaml(yaml) {
   const lines = yaml.trim().split('\n');

@@ -1,27 +1,27 @@
 /**
- * Script Name: index- sheets- tabs- moc
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Apply filters and criteria
- * 4. Sort data by relevant fields
- *
- * Script Functions:
- * - generateTableOfContents(): Generates new content or reports
- * - onOpen(): Works with spreadsheet data
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: index- sheets- tabs- moc
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Apply filters and criteria
+  * 4. Sort data by relevant fields
+  *
+  * Script Functions:
+  * - generateTableOfContents(): Generates new content or reports
+  * - onOpen(): Works with spreadsheet data
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 Summary: Generates a table of contents in a Google Sheets tab named "Table of Contents". - Lists all sheets in alphabetical order. - Column A: Sheet name as a hyperlink to cell A1 of the sheet. - Column B: Count of populated rows in each sheet ("GMail Counts"). - Column C: Date the table of contents was last updated ("Last Update"). - Adds a custom menu to trigger the function. *// / Main Functions
 
@@ -29,10 +29,10 @@ Summary: Generates a table of contents in a Google Sheets tab named "Table of Co
 
 /**
 
- * Generates new content or reports
- * @returns {Object} The result object
+  * Generates new content or reports
+  * @returns {Object} The result object
 
- */
+  */
 
 function generateTableOfContents() {
   try { // Get the active spreadsheet
@@ -92,10 +92,10 @@ function generateTableOfContents() {
 
 /**
 
- * Works with spreadsheet data
- * @returns {Object} The result object
+  * Works with spreadsheet data
+  * @returns {Object} The result object
 
- */
+  */
 
 function onOpen() {
   let ui = SpreadsheetApp.getUi();

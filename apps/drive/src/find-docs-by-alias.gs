@@ -1,60 +1,60 @@
 /**
- * Script Name: find- docs- by- alias
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Validate input data
- * 4. Apply filters and criteria
- * 5. Format output for presentation
- * 6. Send notifications or reports
- *
- * Script Functions:
- * - checkDriveApiAuthorization(): Checks conditions or status
- * - checkIfFilesFound(): Checks conditions or status
- * - createOrGetOutputSheet(): Gets specific create or output sheet or configuration
- * - findAndPrintDocs(): Finds matching and print docs
- * - printResultsToSheet(): Manages files and folders
- * - promptForOwnerEmail(): Performs specialized operations
- * - searchOwnedFiles(): Searches for specific owned files
- * - searchSharedFiles(): Searches for specific shared files
- *
- * Script Helper Functions:
- * - filterFilesByOwner(): Filters files by owner by criteria
- * - getCharacterCount(): Gets specific character count or configuration
- * - getWordCount(): Gets specific word count or configuration
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DocumentApp: For document manipulation
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: find- docs- by- alias
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Validate input data
+  * 4. Apply filters and criteria
+  * 5. Format output for presentation
+  * 6. Send notifications or reports
+  *
+  * Script Functions:
+  * - checkDriveApiAuthorization(): Checks conditions or status
+  * - checkIfFilesFound(): Checks conditions or status
+  * - createOrGetOutputSheet(): Gets specific create or output sheet or configuration
+  * - findAndPrintDocs(): Finds matching and print docs
+  * - printResultsToSheet(): Manages files and folders
+  * - promptForOwnerEmail(): Performs specialized operations
+  * - searchOwnedFiles(): Searches for specific owned files
+  * - searchSharedFiles(): Searches for specific shared files
+  *
+  * Script Helper Functions:
+  * - filterFilesByOwner(): Filters files by owner by criteria
+  * - getCharacterCount(): Gets specific character count or configuration
+  * - getWordCount(): Gets specific word count or configuration
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DocumentApp: For document manipulation
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 // Main Functions
 
 /**
 
- * Checks conditions or status
- * @returns {string} The formatted string
+  * Checks conditions or status
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Checks conditions or status
- * @returns {string} The formatted string
+  * Checks conditions or status
+  * @returns {string} The formatted string
 
- */
+  */
 
 function checkDriveApiAuthorization() {
   if (! Drive.Files) {
@@ -64,21 +64,21 @@ function checkDriveApiAuthorization() {
 
 /**
 
- * Checks conditions or status
- * @param
- * @param {File} filteredFiles - The filteredFiles parameter
- * @returns {string} The formatted string
+  * Checks conditions or status
+  * @param
+  * @param {File} filteredFiles - The filteredFiles parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Checks conditions or status
- * @param
- * @param {File} filteredFiles - The filteredFiles parameter
- * @returns {string} The formatted string
+  * Checks conditions or status
+  * @param
+  * @param {File} filteredFiles - The filteredFiles parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function checkIfFilesFound(filteredFiles) {
   if (filteredFiles.length = = = 0) {
@@ -89,21 +89,21 @@ function checkIfFilesFound(filteredFiles) {
 
 /**
 
- * Gets specific create or output sheet or configuration
- * @param
- * @param {string} ownerEmails - The ownerEmails to retrieve
- * @returns {string} The requested string
+  * Gets specific create or output sheet or configuration
+  * @param
+  * @param {string} ownerEmails - The ownerEmails to retrieve
+  * @returns {string} The requested string
 
- */
+  */
 
 /**
 
- * Gets specific create or output sheet or configuration
- * @param
- * @param {string} ownerEmails - The ownerEmails to retrieve
- * @returns {string} The requested string
+  * Gets specific create or output sheet or configuration
+  * @param
+  * @param {string} ownerEmails - The ownerEmails to retrieve
+  * @returns {string} The requested string
 
- */
+  */
 
 function createOrGetOutputSheet(ownerEmails) {
   let ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -127,17 +127,17 @@ function createOrGetOutputSheet(ownerEmails) {
 
 /**
 
- * Finds matching and print docs
- * @returns {string} The formatted string
+  * Finds matching and print docs
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Finds matching and print docs
- * @returns {string} The formatted string
+  * Finds matching and print docs
+  * @returns {string} The formatted string
 
- */
+  */
 
 function findAndPrintDocs() {
   try { // 1. Prompt for the owner's email addresses
@@ -160,23 +160,23 @@ function findAndPrintDocs() {
 
 /**
 
- * Manages files and folders
- * @param
- * @param {File} filteredFiles - The filteredFiles parameter
- * @param {Sheet} sheet - The sheet parameter
- * @returns {string} The formatted string
+  * Manages files and folders
+  * @param
+  * @param {File} filteredFiles - The filteredFiles parameter
+  * @param {Sheet} sheet - The sheet parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Manages files and folders
- * @param
- * @param {File} filteredFiles - The filteredFiles parameter
- * @param {Sheet} sheet - The sheet parameter
- * @returns {string} The formatted string
+  * Manages files and folders
+  * @param
+  * @param {File} filteredFiles - The filteredFiles parameter
+  * @param {Sheet} sheet - The sheet parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function printResultsToSheet(filteredFiles, sheet) {
   for (let i = 0; i < filteredFiles.length; i + + ) {
@@ -203,17 +203,17 @@ function printResultsToSheet(filteredFiles, sheet) {
 
 /**
 
- * Performs specialized operations
- * @returns {string} The formatted string
+  * Performs specialized operations
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Performs specialized operations
- * @returns {string} The formatted string
+  * Performs specialized operations
+  * @returns {string} The formatted string
 
- */
+  */
 
 function promptForOwnerEmail() {
   let ownerEmailsInput = Browser.inputBox("Enter the owner's email addresses (comma - separated):"); // Validate and split email input;
@@ -235,21 +235,21 @@ function promptForOwnerEmail() {
 
 /**
 
- * Searches for specific owned files
- * @param
- * @param {string} ownerEmails - The ownerEmails parameter
- * @returns {string} The formatted string
+  * Searches for specific owned files
+  * @param
+  * @param {string} ownerEmails - The ownerEmails parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Searches for specific owned files
- * @param
- * @param {string} ownerEmails - The ownerEmails parameter
- * @returns {string} The formatted string
+  * Searches for specific owned files
+  * @param
+  * @param {string} ownerEmails - The ownerEmails parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function searchOwnedFiles(ownerEmails) { // Construct the query to search for files owned by any of the provided emails
   let queryParts = ownerEmails.map(function (email) {
@@ -272,17 +272,17 @@ function searchOwnedFiles(ownerEmails) { // Construct the query to search for fi
 
 /**
 
- * Searches for specific shared files
- * @returns {string} The formatted string
+  * Searches for specific shared files
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Searches for specific shared files
- * @returns {string} The formatted string
+  * Searches for specific shared files
+  * @returns {string} The formatted string
 
- */
+  */
 
 function searchSharedFiles() { // Use 'sharedWithMe' to find files shared with the user
   let query = "mimeType = 'application / vnd.google - apps.document' and sharedWithMe";
@@ -310,25 +310,25 @@ function searchSharedFiles() { // Use 'sharedWithMe' to find files shared with t
 
 /**
 
- * Filters files by owner by criteria
- * @param
- * @param {File} ownedFiles - The ownedFiles parameter
- * @param {File} sharedFiles - The sharedFiles parameter
- * @param {string} ownerEmails - The ownerEmails parameter
- * @returns {string} The formatted string
+  * Filters files by owner by criteria
+  * @param
+  * @param {File} ownedFiles - The ownedFiles parameter
+  * @param {File} sharedFiles - The sharedFiles parameter
+  * @param {string} ownerEmails - The ownerEmails parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Filters files by owner by criteria
- * @param
- * @param {File} ownedFiles - The ownedFiles parameter
- * @param {File} sharedFiles - The sharedFiles parameter
- * @param {string} ownerEmails - The ownerEmails parameter
- * @returns {string} The formatted string
+  * Filters files by owner by criteria
+  * @param
+  * @param {File} ownedFiles - The ownedFiles parameter
+  * @param {File} sharedFiles - The sharedFiles parameter
+  * @param {string} ownerEmails - The ownerEmails parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function filterFilesByOwner(ownedFiles, sharedFiles, ownerEmails) {
   let allFiles = ownedFiles.concat(sharedFiles);
@@ -341,21 +341,21 @@ function filterFilesByOwner(ownedFiles, sharedFiles, ownerEmails) {
 
 /**
 
- * Gets specific character count or configuration
- * @param
- * @param {string} text - The text content
- * @returns {string} The requested string
+  * Gets specific character count or configuration
+  * @param
+  * @param {string} text - The text content
+  * @returns {string} The requested string
 
- */
+  */
 
 /**
 
- * Gets specific character count or configuration
- * @param
- * @param {string} text - The text content
- * @returns {string} The requested string
+  * Gets specific character count or configuration
+  * @param
+  * @param {string} text - The text content
+  * @returns {string} The requested string
 
- */
+  */
 
 function getCharacterCount(text) {
   return text.length;
@@ -363,21 +363,21 @@ function getCharacterCount(text) {
 
 /**
 
- * Gets specific word count or configuration
- * @param
- * @param {string} text - The text content
- * @returns {string} The requested string
+  * Gets specific word count or configuration
+  * @param
+  * @param {string} text - The text content
+  * @returns {string} The requested string
 
- */
+  */
 
 /**
 
- * Gets specific word count or configuration
- * @param
- * @param {string} text - The text content
- * @returns {string} The requested string
+  * Gets specific word count or configuration
+  * @param
+  * @param {string} text - The text content
+  * @returns {string} The requested string
 
- */
+  */
 
 function getWordCount(text) {
   return text.split( / \s +  / ).filter(function (word) { return word ! = = ""; }).length;

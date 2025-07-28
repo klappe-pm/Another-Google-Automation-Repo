@@ -1,42 +1,42 @@
 /**
- * Script Name: markdown- categorize- yaml- folders
- *
- * Script Summary:
- * Categorizes markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- *
- * Script Steps:
- * 1. Access Drive file system
- * 2. Fetch source data
- * 3. Process and transform data
- *
- * Script Functions:
- * - addYamlFrontmatter(): Manages files and folders
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- */
+  * Script Name: markdown- categorize- yaml- folders
+  *
+  * Script Summary:
+  * Categorizes markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  *
+  * Script Steps:
+  * 1. Access Drive file system
+  * 2. Fetch source data
+  * 3. Process and transform data
+  *
+  * Script Functions:
+  * - addYamlFrontmatter(): Manages files and folders
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  */
 
 // Main Functions
 
 /**
 
- * Manages files and folders
+  * Manages files and folders
 
- */
+  */
 
 /**
 
- * Manages files and folders
+  * Manages files and folders
 
- */
+  */
 
 function addYamlFrontmatter() {
   const folderId = '';

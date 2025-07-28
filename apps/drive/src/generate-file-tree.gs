@@ -1,36 +1,36 @@
 /**
- * Script Name: generate- file- tree
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Validate input data
- * 5. Process and transform data
- * 6. Sort data by relevant fields
- * 7. Format output for presentation
- * 8. Write results to destination
- *
- * Script Functions:
- * - generateTree(): Generates new content or reports
- * - onOpen(): Manages files and folders
- * - processFolder(): Processes and transforms folder
- * - runFileTreeGenerator(): Executes main process
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: generate- file- tree
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Validate input data
+  * 5. Process and transform data
+  * 6. Sort data by relevant fields
+  * 7. Format output for presentation
+  * 8. Write results to destination
+  *
+  * Script Functions:
+  * - generateTree(): Generates new content or reports
+  * - onOpen(): Manages files and folders
+  * - processFolder(): Processes and transforms folder
+  * - runFileTreeGenerator(): Executes main process
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 /**  * Main function to initiate the file tree generation process. * Prompts the user for the root folder ID and starts the recursive processing. *// *  *  * Generates the file tree structure in the active sheet starting from the given root folder. * @param {Folder} rootFolder The Google Drive Folder object to start from. *// *  *  * Recursively processes a folder, adding file information to the output array, * and then calling itself for subfolders. *  * @param {GoogleAppsScript.Drive.Folder} folder The current folder to process. * @param {Array < GoogleAppsScript.Drive.Folder > } pathArray An array of FOLDER objects representing the path from the root to the current 'folder'. * @param {Array < Array < Object >  > } outputData The main array collecting row data (as RichTextValue objects). * @param {string} timezone The timezone string for date formatting. * @param {string} dateFormat The desired date format string. *// / Main Functions
 
@@ -38,19 +38,19 @@
 
 /**
 
- * Generates new content or reports
- * @param
- * @param {Folder} rootFolder - The rootFolder parameter
+  * Generates new content or reports
+  * @param
+  * @param {Folder} rootFolder - The rootFolder parameter
 
- */
+  */
 
 /**
 
- * Generates new content or reports
- * @param
- * @param {Folder} rootFolder - The rootFolder parameter
+  * Generates new content or reports
+  * @param
+  * @param {Folder} rootFolder - The rootFolder parameter
 
- */
+  */
 
 function generateTree(rootFolder) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -95,33 +95,33 @@ function generateTree(rootFolder) {
     finalOutput.push(paddedRow);
   }); //  - - - Write Data to Sheet - - - if (finalOutput.length > 1) { // Check if there's data beyond the header;
     sheet.getRange(1, 1, finalOutput.length, maxColumns);
-         .setRichTextValues(finalOutput); // Use setRichTextValues for hyperlinks //  - - - Formatting (Optional) - - -  // Autofit columns for better readability (can be slow on very large datasets);
-     try { // Wrap in try - catch as autofit can sometimes fail
-       sheet.autoResizeColumns(1, maxColumns);
-     } catch (e) {
-       Logger.log("Could not auto - resize columns: " + e);
-     } // Set date columns to Date format (helps with sorting)
-     sheet.getRange(2, maxColumns - 1, sheet.getLastRow() - 1 , 2).setNumberFormat(dateFormat); // Freeze Header row;
-     sheet.setFrozenRows(1);
+          .setRichTextValues(finalOutput); // Use setRichTextValues for hyperlinks //  - - - Formatting (Optional) - - -  // Autofit columns for better readability (can be slow on very large datasets);
+      try { // Wrap in try - catch as autofit can sometimes fail
+        sheet.autoResizeColumns(1, maxColumns);
+      } catch (e) {
+        Logger.log("Could not auto - resize columns: " + e);
+      } // Set date columns to Date format (helps with sorting)
+      sheet.getRange(2, maxColumns - 1, sheet.getLastRow() - 1 , 2).setNumberFormat(dateFormat); // Freeze Header row;
+      sheet.setFrozenRows(1);
 
   } else { // Only write header if no files were found but processing happened
-     sheet.getRange(1, 1, 1, headerRow.length).setRichTextValues([headerRow]);
-     sheet.getRange("A2").setValue("No files found in the specified folder or its subfolders.");
+      sheet.getRange(1, 1, 1, headerRow.length).setRichTextValues([headerRow]);
+      sheet.getRange("A2").setValue("No files found in the specified folder or its subfolders.");
   }
 
 }
 
 /**
 
- * Manages files and folders
+  * Manages files and folders
 
- */
+  */
 
 /**
 
- * Manages files and folders
+  * Manages files and folders
 
- */
+  */
 
 function onOpen() {
   SpreadsheetApp.getUi();
@@ -132,27 +132,27 @@ function onOpen() {
 
 /**
 
- * Processes and transforms folder
- * @param
- * @param {Folder} folder - The folder parameter
- * @param {string} pathArray - The pathArray parameter
- * @param {Object} outputData - The outputData parameter
- * @param {any} timezone - The timezone parameter
- * @param {any} dateFormat - The dateFormat parameter
+  * Processes and transforms folder
+  * @param
+  * @param {Folder} folder - The folder parameter
+  * @param {string} pathArray - The pathArray parameter
+  * @param {Object} outputData - The outputData parameter
+  * @param {any} timezone - The timezone parameter
+  * @param {any} dateFormat - The dateFormat parameter
 
- */
+  */
 
 /**
 
- * Processes and transforms folder
- * @param
- * @param {Folder} folder - The folder parameter
- * @param {string} pathArray - The pathArray parameter
- * @param {Object} outputData - The outputData parameter
- * @param {any} timezone - The timezone parameter
- * @param {any} dateFormat - The dateFormat parameter
+  * Processes and transforms folder
+  * @param
+  * @param {Folder} folder - The folder parameter
+  * @param {string} pathArray - The pathArray parameter
+  * @param {Object} outputData - The outputData parameter
+  * @param {any} timezone - The timezone parameter
+  * @param {any} dateFormat - The dateFormat parameter
 
- */
+  */
 
 function processFolder(folder, pathArray, outputData, timezone, dateFormat) {
   const currentFolderName = folder.getName();
@@ -194,15 +194,15 @@ function processFolder(folder, pathArray, outputData, timezone, dateFormat) {
 
 /**
 
- * Executes main process
+  * Executes main process
 
- */
+  */
 
 /**
 
- * Executes main process
+  * Executes main process
 
- */
+  */
 
 function runFileTreeGenerator() {
   const ui = SpreadsheetApp.getUi();
@@ -224,9 +224,9 @@ function runFileTreeGenerator() {
     } catch (e) {
       Logger.log(e); // Log the error for debugging // Try to provide a more user - friendly error message;
       if (e.message.includes("Access denied") || e.message.includes("not found")) {
-         ui.alert('Error', `Could not access folder with ID "${folderId}". Please check the ID and your permissions.`, ui.ButtonSet.OK);
+          ui.alert('Error', `Could not access folder with ID "${folderId}". Please check the ID and your permissions.`, ui.ButtonSet.OK);
       } else {
-         ui.alert('Error', `An error occurred: ${e.message}`, ui.ButtonSet.OK);
+          ui.alert('Error', `An error occurred: ${e.message}`, ui.ButtonSet.OK);
       }
     }
   } else {

@@ -1,40 +1,40 @@
 /**
- * Script Name: extract- subject
- *
- * Script Summary:
- * Processes spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Process and transform data
- *
- * Script Functions:
- * - addEmailSubjectColumn(): Works with spreadsheet data
- * - getMessageSubject(): Gets specific message subject or configuration
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: extract- subject
+  *
+  * Script Summary:
+  * Processes spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Process and transform data
+  *
+  * Script Functions:
+  * - addEmailSubjectColumn(): Works with spreadsheet data
+  * - getMessageSubject(): Gets specific message subject or configuration
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 // Main Functions
 
 /**
 
- * Works with spreadsheet data
- * @returns {string} The formatted string
+  * Works with spreadsheet data
+  * @returns {string} The formatted string
 
- */
+  */
 
 function addEmailSubjectColumn() {
   const startTime = Date.now();
@@ -103,12 +103,12 @@ function addEmailSubjectColumn() {
 
 /**
 
- * Gets specific message subject or configuration
- * @param
- * @param {string} messageId - The messageId to retrieve
- * @returns {string} The requested string
+  * Gets specific message subject or configuration
+  * @param
+  * @param {string} messageId - The messageId to retrieve
+  * @returns {string} The requested string
 
- */
+  */
 
 function getMessageSubject(messageId) {
   try { // Try to find the message by ID

@@ -1,34 +1,34 @@
 /**
- * Script Name: export- calendar- date- range
- *
- * Script Summary:
- * Exports spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Extract calendar date range data from Google services
- * - Convert data to portable formats
- * - Generate reports and summaries
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Execute main operation
- * 4. Handle errors and edge cases
- * 5. Log completion status
- *
- * Script Functions:
- * - clearLog(): Logs clear or messages
- * - exportCalendarEvents(): Exports calendar events to external format
- * - main(): Handles calendar operations
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - CalendarApp: For calendar and event management
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: export- calendar- date- range
+  *
+  * Script Summary:
+  * Exports spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Extract calendar date range data from Google services
+  * - Convert data to portable formats
+  * - Generate reports and summaries
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Execute main operation
+  * 4. Handle errors and edge cases
+  * 5. Log completion status
+  *
+  * Script Functions:
+  * - clearLog(): Logs clear or messages
+  * - exportCalendarEvents(): Exports calendar events to external format
+  * - main(): Handles calendar operations
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - CalendarApp: For calendar and event management
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 1. main(): Clears the log and runs the exportCalendarEvents function.;
 2. clearLog(): Clears the console log.;
@@ -41,15 +41,15 @@
 6. Iterate through each calendar and retrieve events within the date range.
 7. Append each event's details to the spreadsheet.
 8. Autofit columns in the spreadsheet.
- // NEW: Added a main function to run the export with log clearing
+  // NEW: Added a main function to run the export with log clearing
 
 // Main Functions
 
 /**
 
- * Logs clear or messages
+  * Logs clear or messages
 
- */
+  */
 
 function clearLog() {
   console.clear();
@@ -57,9 +57,9 @@ function clearLog() {
 
 /**
 
- * Exports calendar events to external format
+  * Exports calendar events to external format
 
- */
+  */
 
 function exportCalendarEvents() { // NEW: Added debug logging;
   Logger.log('Starting exportCalendarEvents function'); // Set the date range;
@@ -110,9 +110,9 @@ function exportCalendarEvents() { // NEW: Added debug logging;
 
 /**
 
- * Handles calendar operations
+  * Handles calendar operations
 
- */
+  */
 
 function main() {
   clearLog();

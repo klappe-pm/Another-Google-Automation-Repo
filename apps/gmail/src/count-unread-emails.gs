@@ -1,31 +1,31 @@
 /**
- * Script Name: count- unread- emails
- *
- * Script Summary:
- * Creates Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Process and transform data
- * 5. Sort data by relevant fields
- * 6. Format output for presentation
- *
- * Script Functions:
- * - listGmailLabelsToSheet(): Checks boolean condition
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: count- unread- emails
+  *
+  * Script Summary:
+  * Creates Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Process and transform data
+  * 5. Sort data by relevant fields
+  * 6. Format output for presentation
+  *
+  * Script Functions:
+  * - listGmailLabelsToSheet(): Checks boolean condition
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 const END_DATE = '2023 - 10 - 31'; // Format: yyyy - MM - dd;
 
@@ -33,10 +33,10 @@ const END_DATE = '2023 - 10 - 31'; // Format: yyyy - MM - dd;
 
 /**
 
- * Checks boolean condition
- * @returns {Array} True if condition is met, false otherwise
+  * Checks boolean condition
+  * @returns {Array} True if condition is met, false otherwise
 
- */
+  */
 
 function listGmailLabelsToSheet() {
   try { // Format dates for Gmail search

@@ -18,7 +18,6 @@ Directory organization and file naming conventions
 ### MULTI_AGENT_FRAMEWORK.md
 Complete agent system architecture
 
-
 ## Usage Instructions
 
 Navigate to specific subdirectories for detailed documentation and implementation guides.
@@ -38,15 +37,14 @@ function generateSystemDiagram(components) {
 
 \`\`\`mermaid
 graph TD`;
-  
-  const nodes = components.map(comp => 
+
+  const nodes = components.map(comp =>
     `    ${comp.id}[${capitalizeWords(comp.name)}]`
   ).join('\n');
-  
+
   return header + nodes + '\n\`\`\`';
 }
 ```
-
 
 ## Cross-links
 

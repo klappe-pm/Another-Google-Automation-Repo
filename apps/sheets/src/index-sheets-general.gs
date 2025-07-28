@@ -1,53 +1,53 @@
 /**
- * Script Name: index- sheets- general
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Sort data by relevant fields
- * 4. Format output for presentation
- *
- * Script Functions:
- * - createIndexV2(): Creates new index v2 or resources
- * - extractCategory(): Extracts specific information
- *
- * Script Helper Functions:
- * - formatSheet(): Formats sheet for display
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: index- sheets- general
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Sort data by relevant fields
+  * 4. Format output for presentation
+  *
+  * Script Functions:
+  * - createIndexV2(): Creates new index v2 or resources
+  * - extractCategory(): Extracts specific information
+  *
+  * Script Helper Functions:
+  * - formatSheet(): Formats sheet for display
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 /**
- * Extracts the category from the sheet name (lowercase values preceding the first capital letter in PascalCase).
- * For example, "salesData" will return "sales".
- * @param {string} sheetName - The name of the sheet.
- * @returns {string} - The extracted category.
- *// * *
- * Applies uniform formatting to a sheet:
- * - Sets the font to Helvetica, size 10.
- * - Makes the first row bold and wraps its text.
- * - Freezes the first row.
- * - Aligns all cells to the left and top.
- * @param {Sheet} sheet - The sheet to format.
- *// / Main Functions
+  * Extracts the category from the sheet name (lowercase values preceding the first capital letter in PascalCase).
+  * For example, "salesData" will return "sales".
+  * @param {string} sheetName - The name of the sheet.
+  * @returns {string} - The extracted category.
+  *// * *
+  * Applies uniform formatting to a sheet:
+  * - Sets the font to Helvetica, size 10.
+  * - Makes the first row bold and wraps its text.
+  * - Freezes the first row.
+  * - Aligns all cells to the left and top.
+  * @param {Sheet} sheet - The sheet to format.
+  *// / Main Functions
 
 // Main Functions
 
 /**
 
- * Creates new index v2 or resources
- * @returns {string} The newly created string
+  * Creates new index v2 or resources
+  * @returns {string} The newly created string
 
- */
+  */
 
 function createIndexV2() {
   const ss = SpreadsheetApp.getActiveSpreadsheet(); // Get the active spreadsheet
@@ -106,12 +106,12 @@ function createIndexV2() {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {string} sheetName - The sheetName parameter
- * @returns {string} The formatted string
+  * Extracts specific information
+  * @param
+  * @param {string} sheetName - The sheetName parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function extractCategory(sheetName) {
   const match = sheetName.match(/ ^[a- z]+ / ); // Match lowercase letters at the start of the string
@@ -122,12 +122,12 @@ function extractCategory(sheetName) {
 
 /**
 
- * Formats sheet for display
- * @param
- * @param {Sheet} sheet - The sheet parameter
- * @returns {string} The formatted string
+  * Formats sheet for display
+  * @param
+  * @param {Sheet} sheet - The sheet parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function formatSheet(sheet) {
   // Set font to Helvetica, size 10 for the entire sheet

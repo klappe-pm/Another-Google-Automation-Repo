@@ -32,8 +32,8 @@ class MasterFixer {
       const formatterPath = path.join(__dirname, 'fix-gas-formatting.js');
       
       try {
-        execSync(`node ${headerFixerPath}`, { cwd: this.repoRoot, stdio: 'inherit' });
-        execSync(`node ${formatterPath}`, { cwd: this.repoRoot, stdio: 'inherit' });
+        execSync(`node "${headerFixerPath}"`, { cwd: this.repoRoot, stdio: 'inherit' });
+        execSync(`node "${formatterPath}"`, { cwd: this.repoRoot, stdio: 'inherit' });
         this.fixedCount += files.length;
       } catch (error) {
         console.error('Error fixing GAS files:', error.message);
@@ -55,7 +55,7 @@ class MasterFixer {
       const readmeFixerPath = path.join(__dirname, 'fix-readme.js');
       
       try {
-        execSync(`node ${readmeFixerPath}`, { cwd: this.repoRoot, stdio: 'inherit' });
+        execSync(`node "${readmeFixerPath}"`, { cwd: this.repoRoot, stdio: 'inherit' });
         this.fixedCount += files.length;
       } catch (error) {
         console.error('Error fixing README files:', error.message);
@@ -69,7 +69,7 @@ class MasterFixer {
     const filenameFixerPath = path.join(__dirname, 'fix-filenames.js');
     
     try {
-      execSync(`node ${filenameFixerPath}`, { cwd: this.repoRoot, stdio: 'inherit' });
+      execSync(`node "${filenameFixerPath}"`, { cwd: this.repoRoot, stdio: 'inherit' });
     } catch (error) {
       console.error('Error fixing filenames:', error.message);
     }

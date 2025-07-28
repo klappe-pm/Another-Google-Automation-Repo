@@ -1,65 +1,65 @@
 /**
- * Script Name: export- emails
- *
- * Script Summary:
- * Exports spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Extract emails data from Google services
- * - Convert data to portable formats
- * - Generate reports and summaries
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Process and transform data
- * 4. Format output for presentation
- *
- * Script Functions:
- * - exportAllCalendarEvents(): Exports all calendar events to external format
- * - geocodeAddress(): Performs specialized operations
- * - getRouteInfo(): Gets specific route info or configuration
- * - logError(): Logs error or messages
- *
- * Script Helper Functions:
- * - getDayOfWeek(): Gets specific day of week or configuration
- * - getDayOfYear(): Gets specific day of year or configuration
- * - getQuarter(): Gets specific quarter or configuration
- * - getWeekNumber(): Gets specific week number or configuration
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - CalendarApp: For calendar and event management
- * - Logger: For logging and debugging
- * - PropertiesService: For storing script properties
- * - SpreadsheetApp: For spreadsheet operations
- * - UrlFetchApp: For HTTP requests to external services
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: export- emails
+  *
+  * Script Summary:
+  * Exports spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Extract emails data from Google services
+  * - Convert data to portable formats
+  * - Generate reports and summaries
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Process and transform data
+  * 4. Format output for presentation
+  *
+  * Script Functions:
+  * - exportAllCalendarEvents(): Exports all calendar events to external format
+  * - geocodeAddress(): Performs specialized operations
+  * - getRouteInfo(): Gets specific route info or configuration
+  * - logError(): Logs error or messages
+  *
+  * Script Helper Functions:
+  * - getDayOfWeek(): Gets specific day of week or configuration
+  * - getDayOfYear(): Gets specific day of year or configuration
+  * - getQuarter(): Gets specific quarter or configuration
+  * - getWeekNumber(): Gets specific week number or configuration
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - CalendarApp: For calendar and event management
+  * - Logger: For logging and debugging
+  * - PropertiesService: For storing script properties
+  * - SpreadsheetApp: For spreadsheet operations
+  * - UrlFetchApp: For HTTP requests to external services
+  * - Utilities: For utility functions and encoding
+  */
 
 /  / Function to geocode an address
- // Function to get route information between two points using the Routes API
- // Function to calculate quarter
+  // Function to get route information between two points using the Routes API
+  // Function to calculate quarter
 
- // Function to log errors;
+  // Function to log errors;
 
 // Main Functions
 
 /**
 
- * Exports all calendar events to external format
- * @returns {any} The result
+  * Exports all calendar events to external format
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Exports all calendar events to external format
- * @returns {any} The result
+  * Exports all calendar events to external format
+  * @returns {any} The result
 
- */
+  */
 
 function exportAllCalendarEvents() {
   Logger.log("🚀 Starting script execution..."); // Reset the API unavailable log flag at the start of each run;
@@ -194,23 +194,23 @@ function exportAllCalendarEvents() {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {string} apiKey - The apiKey parameter
- * @param {any} address - The address parameter
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {string} apiKey - The apiKey parameter
+  * @param {any} address - The address parameter
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {string} apiKey - The apiKey parameter
- * @param {any} address - The address parameter
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {string} apiKey - The apiKey parameter
+  * @param {any} address - The address parameter
+  * @returns {any} The result
 
- */
+  */
 
 function geocodeAddress(apiKey, address) {
   if (! address.trim()) return null;
@@ -232,25 +232,25 @@ function geocodeAddress(apiKey, address) {
 
 /**
 
- * Gets specific route info or configuration
- * @param
- * @param {string} apiKey - The apiKey to retrieve
- * @param {any} origin - The origin to retrieve
- * @param {any} destination - The destination to retrieve
- * @returns {any} The requested any
+  * Gets specific route info or configuration
+  * @param
+  * @param {string} apiKey - The apiKey to retrieve
+  * @param {any} origin - The origin to retrieve
+  * @param {any} destination - The destination to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 /**
 
- * Gets specific route info or configuration
- * @param
- * @param {string} apiKey - The apiKey to retrieve
- * @param {any} origin - The origin to retrieve
- * @param {any} destination - The destination to retrieve
- * @returns {any} The requested any
+  * Gets specific route info or configuration
+  * @param
+  * @param {string} apiKey - The apiKey to retrieve
+  * @param {any} origin - The origin to retrieve
+  * @param {any} destination - The destination to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getRouteInfo(apiKey, origin, destination) {
   try {
@@ -325,21 +325,21 @@ function getRouteInfo(apiKey, origin, destination) {
 
 /**
 
- * Logs error or messages
- * @param
- * @param {string} message - The message content
- * @returns {any} The result
+  * Logs error or messages
+  * @param
+  * @param {string} message - The message content
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Logs error or messages
- * @param
- * @param {string} message - The message content
- * @returns {any} The result
+  * Logs error or messages
+  * @param
+  * @param {string} message - The message content
+  * @returns {any} The result
 
- */
+  */
 
 function logError(message) {
   Logger.log(`❌ ERROR: ${message}`);
@@ -358,80 +358,80 @@ function logError(message) {
 
 /**
 
- * Gets specific day of week or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day of week or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 /**
 
- * Gets specific day of week or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day of week or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getDayOfWeek(date) { return date.getUTCDay() || 7; }
 
 /**
 
- * Gets specific day of year or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day of year or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 /**
 
- * Gets specific day of year or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day of year or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getDayOfYear(date) { return Math.floor((date - new Date(date.getUTCFullYear(), 0, 1)) / 86400000) + 1; }
 
 /**
 
- * Gets specific quarter or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific quarter or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 /**
 
- * Gets specific quarter or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific quarter or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getQuarter(date) { return Math.floor(date.getUTCMonth() / 3) + 1; }
 
 /**
 
- * Gets specific week number or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific week number or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 /**
 
- * Gets specific week number or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific week number or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getWeekNumber(date) { return Math.ceil(((date - new Date(date.getUTCFullYear(), 0, 1)) / 86400000 + 1) / 7); }

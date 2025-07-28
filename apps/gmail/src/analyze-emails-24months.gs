@@ -1,40 +1,40 @@
 /**
- * Script Name: analyze- emails- 24months
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Analyze emails 24months patterns and trends
- * - Calculate statistics and metrics
- * - Generate insights and recommendations
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Sort data by relevant fields
- * 5. Send notifications or reports
- *
- * Script Functions:
- * - createEmailCountSpreadsheet(): Creates new email count spreadsheet or resources
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: analyze- emails- 24months
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Analyze emails 24months patterns and trends
+  * - Calculate statistics and metrics
+  * - Generate insights and recommendations
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Sort data by relevant fields
+  * 5. Send notifications or reports
+  *
+  * Script Functions:
+  * - createEmailCountSpreadsheet(): Creates new email count spreadsheet or resources
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 // Main Functions
 
 /**
 
- * Creates new email count spreadsheet or resources
+  * Creates new email count spreadsheet or resources
 
- */
+  */
 
 function createEmailCountSpreadsheet() { // Calculate the date 180 days ago
   let cutoffDate = new Date();

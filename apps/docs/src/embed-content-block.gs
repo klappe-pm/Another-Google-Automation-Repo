@@ -1,40 +1,40 @@
 /**
- * Script Name: embed- content- block
- *
- * Script Summary:
- * Manages data for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Fetch source data
- * 2. Execute main operation
- * 3. Handle errors and edge cases
- * 4. Log completion status
- *
- * Script Functions:
- * - updateDocument(): Updates existing document
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DocumentApp: For document manipulation
- */
+  * Script Name: embed- content- block
+  *
+  * Script Summary:
+  * Manages data for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Fetch source data
+  * 2. Execute main operation
+  * 3. Handle errors and edge cases
+  * 4. Log completion status
+  *
+  * Script Functions:
+  * - updateDocument(): Updates existing document
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DocumentApp: For document manipulation
+  */
 
 // Main Functions
 
 /**
 
- * Updates existing document
+  * Updates existing document
 
- */
+  */
 
 /**
 
- * Updates existing document
+  * Updates existing document
 
- */
+  */
 
 function updateDocument() { // Source document details;
 let sourceDocId = 'YOUR_SOURCE_DOCUMENT_ID'; // Replace with your source document ID;

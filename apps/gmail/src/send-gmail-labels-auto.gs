@@ -1,43 +1,43 @@
 /**
- * Script Name: send- gmail- labels- auto
- *
- * Script Summary:
- * Creates Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Process and transform data
- * 5. Format output for presentation
- * 6. Send notifications or reports
- *
- * Script Functions:
- * - applySenderLabels(): Sends applyer labels or communications
- * - extractAndSanitizeSender(): Extracts specific information
- * - getMonthDates(): Gets specific month dates or configuration
- * - getMonthsToProcess(): Gets specific months to process or configuration
- * - getOrCreateLabel(): Gets specific or create label or configuration
- * - logError(): Logs error or messages
- * - onOpen(): Processes email data
- * - processMonth(): Processes and transforms month
- *
- * Script Helper Functions:
- * - isValidLabelName(): Checks boolean condition
- * - sanitizeLabelName(): Cleans and sanitizes input
- *
- * Script Dependencies:
- * - Underscore.js library
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: send- gmail- labels- auto
+  *
+  * Script Summary:
+  * Creates Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Process and transform data
+  * 5. Format output for presentation
+  * 6. Send notifications or reports
+  *
+  * Script Functions:
+  * - applySenderLabels(): Sends applyer labels or communications
+  * - extractAndSanitizeSender(): Extracts specific information
+  * - getMonthDates(): Gets specific month dates or configuration
+  * - getMonthsToProcess(): Gets specific months to process or configuration
+  * - getOrCreateLabel(): Gets specific or create label or configuration
+  * - logError(): Logs error or messages
+  * - onOpen(): Processes email data
+  * - processMonth(): Processes and transforms month
+  *
+  * Script Helper Functions:
+  * - isValidLabelName(): Checks boolean condition
+  * - sanitizeLabelName(): Cleans and sanitizes input
+  *
+  * Script Dependencies:
+  * - Underscore.js library
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 const CONFIG = {
   BATCH_SIZE: 50, // Threads per batch
@@ -62,9 +62,9 @@ const CONFIG = {
 
 /**
 
- * Processes gmail emails
+  * Processes gmail emails
 
- */
+  */
 
 function processGmailEmails() {
   try {
@@ -107,12 +107,12 @@ function processGmailEmails() {
 
 /**
 
- * Sends applyer labels or communications
- * @param
- * @param {GmailThread} thread - The thread parameter
- * @returns {boolean} True if successful, false otherwise
+  * Sends applyer labels or communications
+  * @param
+  * @param {GmailThread} thread - The thread parameter
+  * @returns {boolean} True if successful, false otherwise
 
- */
+  */
 
 function applySenderLabels(thread) {
   try {
@@ -146,12 +146,12 @@ function applySenderLabels(thread) {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {any} from - The from parameter
- * @returns {boolean} True if successful, false otherwise
+  * Extracts specific information
+  * @param
+  * @param {any} from - The from parameter
+  * @returns {boolean} True if successful, false otherwise
 
- */
+  */
 
 function extractAndSanitizeSender(from) {
   try {
@@ -167,13 +167,13 @@ function extractAndSanitizeSender(from) {
 
 /**
 
- * Gets specific month dates or configuration
- * @param
- * @param {any} year - The year to retrieve
- * @param {any} month - The month to retrieve
- * @returns {boolean} True if found, false otherwise
+  * Gets specific month dates or configuration
+  * @param
+  * @param {any} year - The year to retrieve
+  * @param {any} month - The month to retrieve
+  * @returns {boolean} True if found, false otherwise
 
- */
+  */
 
 function getMonthDates(year, month) {
   const startDate = new Date(year, month, 1);
@@ -188,13 +188,13 @@ function getMonthDates(year, month) {
 
 /**
 
- * Gets specific months to process or configuration
- * @param
- * @param {any} startDate - The startDate to retrieve
- * @param {any} endDate - The endDate to retrieve
- * @returns {boolean} True if found, false otherwise
+  * Gets specific months to process or configuration
+  * @param
+  * @param {any} startDate - The startDate to retrieve
+  * @param {any} endDate - The endDate to retrieve
+  * @returns {boolean} True if found, false otherwise
 
- */
+  */
 
 function getMonthsToProcess(startDate, endDate) {
   const months = [];
@@ -211,12 +211,12 @@ function getMonthsToProcess(startDate, endDate) {
 
 /**
 
- * Gets specific or create label or configuration
- * @param
- * @param {string} labelName - The labelName to retrieve
- * @returns {boolean} True if found, false otherwise
+  * Gets specific or create label or configuration
+  * @param
+  * @param {string} labelName - The labelName to retrieve
+  * @returns {boolean} True if found, false otherwise
 
- */
+  */
 
 function getOrCreateLabel(labelName) {
   if (! isValidLabelName(labelName)) {
@@ -253,22 +253,22 @@ function getOrCreateLabel(labelName) {
 
 /**
 
- * Logs error or messages
- * @param
- * @param {any} error - The error parameter
- * @param {string} context - The context parameter
- * @returns {boolean} True if successful, false otherwise
+  * Logs error or messages
+  * @param
+  * @param {any} error - The error parameter
+  * @param {string} context - The context parameter
+  * @returns {boolean} True if successful, false otherwise
 
- */
+  */
 
 function logError(error, context = {}
 
 /**
 
- * Processes email data
- * @returns {boolean} True if successful, false otherwise
+  * Processes email data
+  * @returns {boolean} True if successful, false otherwise
 
- */
+  */
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
@@ -279,12 +279,12 @@ function onOpen() {
 
 /**
 
- * Processes and transforms month
- * @param
- * @param {any} monthDate - The monthDate parameter
- * @returns {boolean} True if successful, false otherwise
+  * Processes and transforms month
+  * @param
+  * @param {any} monthDate - The monthDate parameter
+  * @returns {boolean} True if successful, false otherwise
 
- */
+  */
 
 function processMonth(monthDate) {
   const dates = getMonthDates(monthDate.getFullYear(), monthDate.getMonth());
@@ -320,12 +320,12 @@ function processMonth(monthDate) {
 
 /**
 
- * Checks boolean condition
- * @param
- * @param {string} name - The name to use
- * @returns {boolean} True if condition is met, false otherwise
+  * Checks boolean condition
+  * @param
+  * @param {string} name - The name to use
+  * @returns {boolean} True if condition is met, false otherwise
 
- */
+  */
 
 function isValidLabelName(name) {
   if (! name || name.length > 40) {
@@ -344,12 +344,12 @@ function isValidLabelName(name) {
 
 /**
 
- * Cleans and sanitizes input
- * @param
- * @param {string} name - The name to use
- * @returns {boolean} True if successful, false otherwise
+  * Cleans and sanitizes input
+  * @param
+  * @param {string} name - The name to use
+  * @returns {boolean} True if successful, false otherwise
 
- */
+  */
 
 function sanitizeLabelName(name) {
   if (! name) return null;

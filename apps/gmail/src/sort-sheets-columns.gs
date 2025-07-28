@@ -1,43 +1,43 @@
 /**
- * Script Name: sort- sheets- columns
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Process and transform data
- * 4. Sort data by relevant fields
- * 5. Format output for presentation
- *
- * Script Functions:
- * - onOpen(): Processes email data
- * - sortTabs(): Sorts and orders tabs
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: sort- sheets- columns
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Process and transform data
+  * 4. Sort data by relevant fields
+  * 5. Format output for presentation
+  *
+  * Script Functions:
+  * - onOpen(): Processes email data
+  * - sortTabs(): Sorts and orders tabs
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 /**
- * Creates a custom menu in the Google Sheets UI when the spreadsheet opens.
- * This function adds a new menu item "Sort Tabs" with a sub- item
- * that runs the sortTabs function when clicked.
- *// / Main Functions
+  * Creates a custom menu in the Google Sheets UI when the spreadsheet opens.
+  * This function adds a new menu item "Sort Tabs" with a sub- item
+  * that runs the sortTabs function when clicked.
+  *// / Main Functions
 
 // Main Functions
 
 /**
 
- * Processes email data
- * @returns {any} The result
+  * Processes email data
+  * @returns {any} The result
 
- */
+  */
 
 function onOpen() {
   let ui = SpreadsheetApp.getUi();
@@ -48,10 +48,10 @@ function onOpen() {
 
 /**
 
- * Sorts and orders tabs
- * @returns {any} The result
+  * Sorts and orders tabs
+  * @returns {any} The result
 
- */
+  */
 
 function sortTabs() {
   // Get the active spreadsheet

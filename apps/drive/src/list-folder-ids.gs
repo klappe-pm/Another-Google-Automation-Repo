@@ -1,33 +1,33 @@
 /**
- * Script Name: list- folder- ids
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Process and transform data
- * 5. Format output for presentation
- *
- * Script Functions:
- * - getFoldersRecursively(): Gets specific folders recursively or configuration
- * - listFolderIds(): Checks boolean condition
- * - logError(): Logs error or messages
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: list- folder- ids
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Process and transform data
+  * 5. Format output for presentation
+  *
+  * Script Functions:
+  * - getFoldersRecursively(): Gets specific folders recursively or configuration
+  * - listFolderIds(): Checks boolean condition
+  * - logError(): Logs error or messages
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 1. Recursive folder traversal from specified root
   2. Automatic spreadsheet generation with headers
@@ -54,13 +54,13 @@ const CONFIG = {
   Logger.log(`ERROR: ${JSON.stringify(errorDetails, null, 2)}`);
 } // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = // Main Functions // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
 
- // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = // Menu Integration // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
+  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = // Menu Integration // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
 
 /**
 
- * Performs a specific operation
+  * Performs a specific operation
 
- */
+  */
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
@@ -73,23 +73,23 @@ function onOpen() {
 
 /**
 
- * Gets specific folders recursively or configuration
- * @param
- * @param {Folder} folder - The folder to retrieve
- * @param {Object} folderData - The folderData to retrieve
- * @param {string} parentPath - The parentPath to retrieve
+  * Gets specific folders recursively or configuration
+  * @param
+  * @param {Folder} folder - The folder to retrieve
+  * @param {Object} folderData - The folderData to retrieve
+  * @param {string} parentPath - The parentPath to retrieve
 
- */
+  */
 
 /**
 
- * Gets specific folders recursively or configuration
- * @param
- * @param {Folder} folder - The folder to retrieve
- * @param {Object} folderData - The folderData to retrieve
- * @param {string} parentPath - The parentPath to retrieve
+  * Gets specific folders recursively or configuration
+  * @param
+  * @param {Folder} folder - The folder to retrieve
+  * @param {Object} folderData - The folderData to retrieve
+  * @param {string} parentPath - The parentPath to retrieve
 
- */
+  */
 
 function getFoldersRecursively(folder, folderData, parentPath = '') {
   try { // Add current folder to the data array
@@ -124,15 +124,15 @@ function getFoldersRecursively(folder, folderData, parentPath = '') {
 
 /**
 
- * Checks boolean condition
+  * Checks boolean condition
 
- */
+  */
 
 /**
 
- * Checks boolean condition
+  * Checks boolean condition
 
- */
+  */
 
 function listFolderIds() {
   try { // Get the active spreadsheet and the sheet named "folderIDs"

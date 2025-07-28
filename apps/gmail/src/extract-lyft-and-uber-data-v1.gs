@@ -1,58 +1,58 @@
 /**
- * Script Name: extract- lyft- and- uber- data- v1
- *
- * Script Summary:
- * Processes Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Validate input data
- * 5. Process and transform data
- * 6. Format output for presentation
- * 7. Write results to destination
- * 8. Send notifications or reports
- *
- * Script Functions:
- * - extractReceiptFromMessage(): Extracts specific information
- * - extractReceiptsFromGmail(): Extracts specific information
- * - processRideReceipts(): Processes and transforms ride receipts
- * - writeToSheet(): Writes to sheet to destination
- *
- * Script Helper Functions:
- * - convertTo24Hour(): Converts between formats
- * - formatDate(): Formats date for display
- * - parseTime(): Sets parime or configuration values
- * - validateAndCleanReceipts(): Validates and clean receipts integrity
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: extract- lyft- and- uber- data- v1
+  *
+  * Script Summary:
+  * Processes Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Validate input data
+  * 5. Process and transform data
+  * 6. Format output for presentation
+  * 7. Write results to destination
+  * 8. Send notifications or reports
+  *
+  * Script Functions:
+  * - extractReceiptFromMessage(): Extracts specific information
+  * - extractReceiptsFromGmail(): Extracts specific information
+  * - processRideReceipts(): Processes and transforms ride receipts
+  * - writeToSheet(): Writes to sheet to destination
+  *
+  * Script Helper Functions:
+  * - convertTo24Hour(): Converts between formats
+  * - formatDate(): Formats date for display
+  * - parseTime(): Sets parime or configuration values
+  * - validateAndCleanReceipts(): Validates and clean receipts integrity
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 /*
- * Main Functions
- */
+  * Main Functions
+  */
 
 // Main Functions
 
 /**
 
- * Extracts specific information
- * @param
- * @param {string} message - The message content
- * @param {string} defaultProvider - The defaultProvider parameter
- * @returns {any} The result
+  * Extracts specific information
+  * @param
+  * @param {string} message - The message content
+  * @param {string} defaultProvider - The defaultProvider parameter
+  * @returns {any} The result
 
- */
+  */
 
 function extractReceiptFromMessage(message, defaultProvider) {
   const body = message.getPlainBody().replace( / \r\n / g, '\n').replace( / \n +  / g, '\n').trim();
@@ -284,12 +284,12 @@ function extractReceiptFromMessage(message, defaultProvider) {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {number} maxThreads - The maxThreads parameter
- * @returns {any} The result
+  * Extracts specific information
+  * @param
+  * @param {number} maxThreads - The maxThreads parameter
+  * @returns {any} The result
 
- */
+  */
 
 function extractReceiptsFromGmail(maxThreads) {
   const receipts = [];
@@ -364,10 +364,10 @@ function extractReceiptsFromGmail(maxThreads) {
 
 /**
 
- * Processes and transforms ride receipts
- * @returns {any} The result
+  * Processes and transforms ride receipts
+  * @returns {any} The result
 
- */
+  */
 
 function processRideReceipts() {
   const maxThreads = 50;
@@ -382,12 +382,12 @@ function processRideReceipts() {
 
 /**
 
- * Writes to sheet to destination
- * @param
- * @param {any} receipts - The receipts parameter
- * @returns {any} The result
+  * Writes to sheet to destination
+  * @param
+  * @param {any} receipts - The receipts parameter
+  * @returns {any} The result
 
- */
+  */
 
 function writeToSheet(receipts) {
   try {
@@ -463,12 +463,12 @@ function writeToSheet(receipts) {
 
 /**
 
- * Converts between formats
- * @param
- * @param {any} timeStr - The timeStr parameter
- * @returns {any} The result
+  * Converts between formats
+  * @param
+  * @param {any} timeStr - The timeStr parameter
+  * @returns {any} The result
 
- */
+  */
 
 function convertTo24Hour(timeStr) {
   try {
@@ -488,12 +488,12 @@ function convertTo24Hour(timeStr) {
 
 /**
 
- * Formats date for display
- * @param
- * @param {any} date - The date parameter
- * @returns {any} The result
+  * Formats date for display
+  * @param
+  * @param {any} date - The date parameter
+  * @returns {any} The result
 
- */
+  */
 
 function formatDate(date) { // Return date in "Month DD, YYYY" format
   const months = [;
@@ -505,12 +505,12 @@ function formatDate(date) { // Return date in "Month DD, YYYY" format
 
 /**
 
- * Sets parime or configuration values
- * @param
- * @param {any} timeStr - The timeStr parameter
- * @returns {any} The result
+  * Sets parime or configuration values
+  * @param
+  * @param {any} timeStr - The timeStr parameter
+  * @returns {any} The result
 
- */
+  */
 
 function parseTime(timeStr) {
   const match = timeStr.match( / (\d{2}):(\d{2}) / );
@@ -522,12 +522,12 @@ function parseTime(timeStr) {
 
 /**
 
- * Validates and clean receipts integrity
- * @param
- * @param {any} receipts - The receipts parameter
- * @returns {any} The result
+  * Validates and clean receipts integrity
+  * @param
+  * @param {any} receipts - The receipts parameter
+  * @returns {any} The result
 
- */
+  */
 
 function validateAndCleanReceipts(receipts) {
   return receipts.map((receipt, index) = > {

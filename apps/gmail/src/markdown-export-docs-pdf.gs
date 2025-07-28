@@ -1,44 +1,44 @@
 /**
- * Script Name: markdown- export- docs- pdf
- *
- * Script Summary:
- * Exports markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Access Drive file system
- * 4. Fetch source data
- * 5. Validate input data
- * 6. Apply filters and criteria
- * 7. Format output for presentation
- * 8. Write results to destination
- *
- * Script Functions:
- * - exportEmailsToPDF(): Exports emails to p d f to external format
- * - extractDisplayNameOrEmail(): Extracts specific information
- * - insertDataIntoSheet(): Inserts data into sheet at specific position
- *
- * Script Helper Functions:
- * - getOrCreateFolder(): Gets specific or create folder or configuration
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DocumentApp: For document manipulation
- * - DriveApp: For file and folder management
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - UrlFetchApp: For HTTP requests to external services
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: markdown- export- docs- pdf
+  *
+  * Script Summary:
+  * Exports markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Access Drive file system
+  * 4. Fetch source data
+  * 5. Validate input data
+  * 6. Apply filters and criteria
+  * 7. Format output for presentation
+  * 8. Write results to destination
+  *
+  * Script Functions:
+  * - exportEmailsToPDF(): Exports emails to p d f to external format
+  * - extractDisplayNameOrEmail(): Extracts specific information
+  * - insertDataIntoSheet(): Inserts data into sheet at specific position
+  *
+  * Script Helper Functions:
+  * - getOrCreateFolder(): Gets specific or create folder or configuration
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DocumentApp: For document manipulation
+  * - DriveApp: For file and folder management
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - UrlFetchApp: For HTTP requests to external services
+  * - Utilities: For utility functions and encoding
+  */
 
 const GmailUtils = {
   eachMessage: function (query, limit, callback) {
@@ -253,18 +253,18 @@ const GmailUtils = {
       .reduce((str, chr) = > str + (chr < 0 ? chr + 256 : chr).toString(16).padStart(2, '0'), '');
   }
 }; / *// Function to extract display name from the "From" field
-   *//  / Main function to export emails as PDFs
- // Helper function to get or create a folder
- // Helper function to insert data into Google Sheet
+    *//  / Main function to export emails as PDFs
+  // Helper function to get or create a folder
+  // Helper function to insert data into Google Sheet
 
 // Main Functions
 
 /**
 
- * Exports emails to p d f to external format
- * @returns {string} The formatted string
+  * Exports emails to p d f to external format
+  * @returns {string} The formatted string
 
- */
+  */
 
 function exportEmailsToPDF() {
   try {
@@ -362,12 +362,12 @@ function exportEmailsToPDF() {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {any} fromField - The fromField parameter
- * @returns {string} True if condition is met, false otherwise
+  * Extracts specific information
+  * @param
+  * @param {any} fromField - The fromField parameter
+  * @returns {string} True if condition is met, false otherwise
 
- */
+  */
 
 function extractDisplayNameOrEmail(fromField) {
   const match = fromField.match( / ^([^ < ] + ) < / );
@@ -381,14 +381,14 @@ function extractDisplayNameOrEmail(fromField) {
 
 /**
 
- * Inserts data into sheet at specific position
- * @param
- * @param {string} emailData - The emailData parameter
- * @param {string} spreadsheetId - The spreadsheetId parameter
- * @param {string} sheetName - The sheetName parameter
- * @returns {string} The formatted string
+  * Inserts data into sheet at specific position
+  * @param
+  * @param {string} emailData - The emailData parameter
+  * @param {string} spreadsheetId - The spreadsheetId parameter
+  * @param {string} sheetName - The sheetName parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function insertDataIntoSheet(emailData, spreadsheetId, sheetName) {
   const spreadsheet = SpreadsheetApp.openById(spreadsheetId);
@@ -466,13 +466,13 @@ function insertDataIntoSheet(emailData, spreadsheetId, sheetName) {
 
 /**
 
- * Gets specific or create folder or configuration
- * @param
- * @param {string} folderName - The folderName to retrieve
- * @param {Folder} parentFolder - The parentFolder to retrieve
- * @returns {string} The requested string
+  * Gets specific or create folder or configuration
+  * @param
+  * @param {string} folderName - The folderName to retrieve
+  * @param {Folder} parentFolder - The parentFolder to retrieve
+  * @returns {string} The requested string
 
- */
+  */
 
 function getOrCreateFolder(folderName, parentFolder) {
   const folders = (parentFolder || DriveApp).getFoldersByName(folderName);

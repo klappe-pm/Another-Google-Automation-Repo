@@ -1,40 +1,40 @@
 /**
- * Script Name: markdown- export- docs- alt
- *
- * Script Summary:
- * Exports markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- *
- * Script Steps:
- * 1. Access Drive file system
- * 2. Fetch source data
- * 3. Process and transform data
- * 4. Write results to destination
- *
- * Script Functions:
- * - addYamlFrontmatter(): Performs specialized operations
- * - exportAllDocsInFolderToMarkdown(): Exports all docs in folder to markdown to external format
- * - getDocMetadata(): Gets specific doc metadata or configuration
- * - getOrCreateFolder(): Gets specific or create folder or configuration
- * - processElement(): Processes and transforms element
- * - saveMarkdownToFile(): Saves markdown to file persistently
- *
- * Script Helper Functions:
- * - convertBodyToMarkdown(): Converts between formats
- * - saveImage(): Saves image persistently
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DocumentApp: For document manipulation
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- */
+  * Script Name: markdown- export- docs- alt
+  *
+  * Script Summary:
+  * Exports markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  *
+  * Script Steps:
+  * 1. Access Drive file system
+  * 2. Fetch source data
+  * 3. Process and transform data
+  * 4. Write results to destination
+  *
+  * Script Functions:
+  * - addYamlFrontmatter(): Performs specialized operations
+  * - exportAllDocsInFolderToMarkdown(): Exports all docs in folder to markdown to external format
+  * - getDocMetadata(): Gets specific doc metadata or configuration
+  * - getOrCreateFolder(): Gets specific or create folder or configuration
+  * - processElement(): Processes and transforms element
+  * - saveMarkdownToFile(): Saves markdown to file persistently
+  *
+  * Script Helper Functions:
+  * - convertBodyToMarkdown(): Converts between formats
+  * - saveImage(): Saves image persistently
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DocumentApp: For document manipulation
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  */
 
 1. Open Google Apps Script editor (script.google.com);
 2. Create a new project or open existing one
@@ -47,23 +47,23 @@
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {Object} metadata - The metadata parameter
- * @param {string} content - The content to process
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {Object} metadata - The metadata parameter
+  * @param {string} content - The content to process
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {Object} metadata - The metadata parameter
- * @param {string} content - The content to process
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {Object} metadata - The metadata parameter
+  * @param {string} content - The content to process
+  * @returns {any} The result
 
- */
+  */
 
 function addYamlFrontmatter(metadata, content) {
     let yaml = ' - - - \n';
@@ -82,17 +82,17 @@ function addYamlFrontmatter(metadata, content) {
 
 /**
 
- * Exports all docs in folder to markdown to external format
- * @returns {any} The result
+  * Exports all docs in folder to markdown to external format
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Exports all docs in folder to markdown to external format
- * @returns {any} The result
+  * Exports all docs in folder to markdown to external format
+  * @returns {any} The result
 
- */
+  */
 
 function exportAllDocsInFolderToMarkdown() {
   let sourceFolderId = 'YOUR_SOURCE_FOLDER_ID'; // Replace with your source folder ID;
@@ -117,23 +117,23 @@ function exportAllDocsInFolderToMarkdown() {
 
 /**
 
- * Gets specific doc metadata or configuration
- * @param
- * @param {any} doc - The doc to retrieve
- * @param {File} file - The file to retrieve
- * @returns {any} The requested any
+  * Gets specific doc metadata or configuration
+  * @param
+  * @param {any} doc - The doc to retrieve
+  * @param {File} file - The file to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 /**
 
- * Gets specific doc metadata or configuration
- * @param
- * @param {any} doc - The doc to retrieve
- * @param {File} file - The file to retrieve
- * @returns {any} The requested any
+  * Gets specific doc metadata or configuration
+  * @param
+  * @param {any} doc - The doc to retrieve
+  * @param {File} file - The file to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getDocMetadata(doc, file) {
   let owner = DriveApp.getFileById(doc.getId()).getOwner().getName();
@@ -156,21 +156,21 @@ function getDocMetadata(doc, file) {
 
 /**
 
- * Gets specific or create folder or configuration
- * @param
- * @param {string} folderName - The folderName to retrieve
- * @returns {any} The requested any
+  * Gets specific or create folder or configuration
+  * @param
+  * @param {string} folderName - The folderName to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 /**
 
- * Gets specific or create folder or configuration
- * @param
- * @param {string} folderName - The folderName to retrieve
- * @returns {any} The requested any
+  * Gets specific or create folder or configuration
+  * @param
+  * @param {string} folderName - The folderName to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getOrCreateFolder(folderName) {
     let folders = DriveApp.getFoldersByName(folderName);
@@ -183,21 +183,21 @@ function getOrCreateFolder(folderName) {
 
 /**
 
- * Processes and transforms element
- * @param
- * @param {any} element - The element parameter
- * @returns {any} The result
+  * Processes and transforms element
+  * @param
+  * @param {any} element - The element parameter
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Processes and transforms element
- * @param
- * @param {any} element - The element parameter
- * @returns {any} The result
+  * Processes and transforms element
+  * @param
+  * @param {any} element - The element parameter
+  * @returns {any} The result
 
- */
+  */
 
 function processElement(element) {
     let markdown = '';
@@ -261,25 +261,25 @@ function processElement(element) {
 
 /**
 
- * Saves markdown to file persistently
- * @param
- * @param {string} markdownContent - The markdownContent parameter
- * @param {string} fileName - The fileName parameter
- * @param {Folder} folder - The folder parameter
- * @returns {any} The result
+  * Saves markdown to file persistently
+  * @param
+  * @param {string} markdownContent - The markdownContent parameter
+  * @param {string} fileName - The fileName parameter
+  * @param {Folder} folder - The folder parameter
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Saves markdown to file persistently
- * @param
- * @param {string} markdownContent - The markdownContent parameter
- * @param {string} fileName - The fileName parameter
- * @param {Folder} folder - The folder parameter
- * @returns {any} The result
+  * Saves markdown to file persistently
+  * @param
+  * @param {string} markdownContent - The markdownContent parameter
+  * @param {string} fileName - The fileName parameter
+  * @param {Folder} folder - The folder parameter
+  * @returns {any} The result
 
- */
+  */
 
 function saveMarkdownToFile(markdownContent, fileName, folder) {
     let file = folder.createFile(fileName + '.md', markdownContent);
@@ -290,21 +290,21 @@ function saveMarkdownToFile(markdownContent, fileName, folder) {
 
 /**
 
- * Converts between formats
- * @param
- * @param {string} body - The body content
- * @returns {any} The result
+  * Converts between formats
+  * @param
+  * @param {string} body - The body content
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Converts between formats
- * @param
- * @param {string} body - The body content
- * @returns {any} The result
+  * Converts between formats
+  * @param
+  * @param {string} body - The body content
+  * @returns {any} The result
 
- */
+  */
 
 function convertBodyToMarkdown(body) {
     let markdown = '';
@@ -320,23 +320,23 @@ function convertBodyToMarkdown(body) {
 
 /**
 
- * Saves image persistently
- * @param
- * @param {any} blob - The blob parameter
- * @param {string} fileName - The fileName parameter
- * @returns {any} The result
+  * Saves image persistently
+  * @param
+  * @param {any} blob - The blob parameter
+  * @param {string} fileName - The fileName parameter
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Saves image persistently
- * @param
- * @param {any} blob - The blob parameter
- * @param {string} fileName - The fileName parameter
- * @returns {any} The result
+  * Saves image persistently
+  * @param
+  * @param {any} blob - The blob parameter
+  * @param {string} fileName - The fileName parameter
+  * @returns {any} The result
 
- */
+  */
 
 function saveImage(blob, fileName) {
     let folder = getOrCreateFolder('MTDR Map');

@@ -1,59 +1,59 @@
 /**
- * Script Name: process- labels- by- date
- *
- * Script Summary:
- * Creates Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- * - Process labels by date data transformations
- * - Apply business rules and logic
- * - Ensure data consistency
- *
- * Script Steps:
- * 1. Connect to Gmail service
- * 2. Fetch source data
- * 3. Process and transform data
- * 4. Format output for presentation
- * 5. Send notifications or reports
- *
- * Script Functions:
- * - applySenderLabels(): Sends applyer labels or communications
- * - extractAndSanitizeSender(): Extracts specific information
- * - getMonthsToProcess(): Gets specific months to process or configuration
- * - getOrCreateLabel(): Gets specific or create label or configuration
- * - processGmailEmails(): Processes and transforms gmail emails
- * - processMonth(): Processes and transforms month
- *
- * Script Helper Functions:
- * - getMonthDates(): Gets specific month dates or configuration
- * - isValidLabelName(): Checks boolean condition
- * - sanitizeLabelName(): Cleans and sanitizes input
- *
- * Script Dependencies:
- * - Underscore.js library
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: process- labels- by- date
+  *
+  * Script Summary:
+  * Creates Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Process labels by date data transformations
+  * - Apply business rules and logic
+  * - Ensure data consistency
+  *
+  * Script Steps:
+  * 1. Connect to Gmail service
+  * 2. Fetch source data
+  * 3. Process and transform data
+  * 4. Format output for presentation
+  * 5. Send notifications or reports
+  *
+  * Script Functions:
+  * - applySenderLabels(): Sends applyer labels or communications
+  * - extractAndSanitizeSender(): Extracts specific information
+  * - getMonthsToProcess(): Gets specific months to process or configuration
+  * - getOrCreateLabel(): Gets specific or create label or configuration
+  * - processGmailEmails(): Processes and transforms gmail emails
+  * - processMonth(): Processes and transforms month
+  *
+  * Script Helper Functions:
+  * - getMonthDates(): Gets specific month dates or configuration
+  * - isValidLabelName(): Checks boolean condition
+  * - sanitizeLabelName(): Cleans and sanitizes input
+  *
+  * Script Dependencies:
+  * - Underscore.js library
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - Utilities: For utility functions and encoding
+  */
 
 /  / Function to generate an array of month dates from start to end
- // Function to process emails for a given month
- // Function to generate start and end dates for a given month
- // Function to apply labels based on sender name
- // Existing labeling functions remain unchanged
+  // Function to process emails for a given month
+  // Function to generate start and end dates for a given month
+  // Function to apply labels based on sender name
+  // Existing labeling functions remain unchanged
 
 // Main Functions
 
 /**
 
- * Sends applyer labels or communications
- * @param
- * @param {GmailThread} thread - The thread parameter
- * @returns {any} The result
+  * Sends applyer labels or communications
+  * @param
+  * @param {GmailThread} thread - The thread parameter
+  * @returns {any} The result
 
- */
+  */
 
 function applySenderLabels(thread) {
   let messages = thread.getMessages();
@@ -78,13 +78,13 @@ function applySenderLabels(thread) {
 
 /**
 
- * Gets specific months to process or configuration
- * @param
- * @param {any} startDate - The startDate to retrieve
- * @param {any} endDate - The endDate to retrieve
- * @returns {any} The requested any
+  * Gets specific months to process or configuration
+  * @param
+  * @param {any} startDate - The startDate to retrieve
+  * @param {any} endDate - The endDate to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getMonthsToProcess(startDate, endDate) {
   let months = [];
@@ -100,12 +100,12 @@ function getMonthsToProcess(startDate, endDate) {
 
 /**
 
- * Gets specific or create label or configuration
- * @param
- * @param {string} labelName - The labelName to retrieve
- * @returns {any} The requested any
+  * Gets specific or create label or configuration
+  * @param
+  * @param {string} labelName - The labelName to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getOrCreateLabel(labelName) {
   if (! isValidLabelName(labelName)) {
@@ -133,10 +133,10 @@ function getOrCreateLabel(labelName) {
 
 /**
 
- * Processes and transforms gmail emails
- * @returns {any} The result
+  * Processes and transforms gmail emails
+  * @returns {any} The result
 
- */
+  */
 
 function processGmailEmails() {
   Logger.log('Starting email processing...'); // Define the date range;
@@ -153,12 +153,12 @@ function processGmailEmails() {
 
 /**
 
- * Processes and transforms month
- * @param
- * @param {any} monthDate - The monthDate parameter
- * @returns {any} The result
+  * Processes and transforms month
+  * @param
+  * @param {any} monthDate - The monthDate parameter
+  * @returns {any} The result
 
- */
+  */
 
 function processMonth(monthDate) {
   let dates = getMonthDates(monthDate.getFullYear(), monthDate.getMonth());
@@ -175,12 +175,12 @@ function processMonth(monthDate) {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {any} from - The from parameter
- * @returns {any} The result
+  * Extracts specific information
+  * @param
+  * @param {any} from - The from parameter
+  * @returns {any} The result
 
- */
+  */
 
 function extractAndSanitizeSender(from) { // Extract the sender's name from the 'From' field
   let nameMatch = from.match( / ^. * ?(?= < ) / );
@@ -190,13 +190,13 @@ function extractAndSanitizeSender(from) { // Extract the sender's name from the 
 
 /**
 
- * Gets specific month dates or configuration
- * @param
- * @param {any} year - The year to retrieve
- * @param {any} month - The month to retrieve
- * @returns {any} The requested any
+  * Gets specific month dates or configuration
+  * @param
+  * @param {any} year - The year to retrieve
+  * @param {any} month - The month to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getMonthDates(year, month) {
   let startDate = new Date(year, month, 1);
@@ -210,12 +210,12 @@ function getMonthDates(year, month) {
 
 /**
 
- * Checks boolean condition
- * @param
- * @param {string} name - The name to use
- * @returns {any} True if condition is met, false otherwise
+  * Checks boolean condition
+  * @param
+  * @param {string} name - The name to use
+  * @returns {any} True if condition is met, false otherwise
 
- */
+  */
 
 function isValidLabelName(name) {
   if (name.length > 40) {
@@ -231,12 +231,12 @@ function isValidLabelName(name) {
 
 /**
 
- * Cleans and sanitizes input
- * @param
- * @param {string} name - The name to use
- * @returns {any} The result
+  * Cleans and sanitizes input
+  * @param
+  * @param {string} name - The name to use
+  * @returns {any} The result
 
- */
+  */
 
 function sanitizeLabelName(name) { // Replace invalid characters with ' - '
   name = name.replace( / [^a - zA - Z0 - 9_. - ] / g, ' - '); // Remove leading / trailing invalid characters;

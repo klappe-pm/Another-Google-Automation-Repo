@@ -129,7 +129,7 @@ The system supports environment-specific configurations located in `config/envir
 
 - **`default.json`**: Base configuration for all environments
 - **`development.json`**: Development-specific overrides
-- **`production.json`**: Production-specific overrides  
+- **`production.json`**: Production-specific overrides
 - **`staging.json`**: Staging-specific overrides
 
 ### Configuration Structure

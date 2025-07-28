@@ -1,27 +1,27 @@
 /**
- * Script Name: export-gmail-simple-refactored
- *
- * Script Summary:
- * Example of a refactored Gmail export script using shared utilities.
- * This demonstrates how to use the shared utility library.
- *
- * Script Purpose:
- * - Show practical usage of shared utilities
- * - Demonstrate code reduction and improved functionality
- * - Serve as a template for refactoring other scripts
- *
- * Script Dependencies:
- * - email-utils.gs
- * - drive-utils.gs
- * - sheet-utils.gs
- * - error-utils.gs
- * - common-utils.gs
- *
- * Google Services:
- * - GmailApp: For accessing email messages
- * - DriveApp: For file operations
- * - SpreadsheetApp: For logging results
- */
+  * Script Name: export-gmail-simple-refactored
+  *
+  * Script Summary:
+  * Example of a refactored Gmail export script using shared utilities.
+  * This demonstrates how to use the shared utility library.
+  *
+  * Script Purpose:
+  * - Show practical usage of shared utilities
+  * - Demonstrate code reduction and improved functionality
+  * - Serve as a template for refactoring other scripts
+  *
+  * Script Dependencies:
+  * - email-utils.gs
+  * - drive-utils.gs
+  * - sheet-utils.gs
+  * - error-utils.gs
+  * - common-utils.gs
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages
+  * - DriveApp: For file operations
+  * - SpreadsheetApp: For logging results
+  */
 
 // ============================================
 // COPY SHARED UTILITIES HERE
@@ -32,24 +32,24 @@
 // Main export function using shared utilities
 function exportGmailToSheets() {
   const startTime = Date.now();
-  
+
   // Use error handling wrapper
   return withErrorHandling(() => {
     // Setup spreadsheet using sheet-utils
     const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
     const sheet = createOrGetSheet(spreadsheet, 'Email Exports', true);
-    
+
     const headers = [
-      'Date', 'Time', 'From', 'From Name', 'Subject', 
+      'Date', 'Time', 'From', 'From Name', 'Subject',
       'Recipients', 'Has Attachments', 'Labels', 'Folder Link'
     ];
-    
+
     setupSheet(sheet, headers, {
       freezeRows: 1,
       headerBackground: '#4285F4',
       fontSize: 10
     });
-    
+
     // Create folder structure using drive-utils
     const folderStructure = createFolderStructure({
       'Email Exports': {
@@ -59,45 +59,45 @@ function exportGmailToSheets() {
         }
       }
     });
-    
+
     // Get today's export folder
     const dateFolder = formatDate(new Date(), 'FILENAME');
     const exportFolder = folderStructure[`Email Exports/${dateFolder}`];
     const pdfFolder = folderStructure[`Email Exports/${dateFolder}/PDFs`];
     const attachmentFolder = folderStructure[`Email Exports/${dateFolder}/Attachments`];
-    
+
     // Process emails
     const threads = GmailApp.search('in:inbox is:unread', 0, 50);
     const exportData = [];
-    
+
     Logger.log(`Processing ${threads.length} threads`);
-    
+
     threads.forEach((thread, index) => {
       // Process with retry logic
       const result = safeOperation(() => {
         return processThread(thread, pdfFolder, attachmentFolder);
       }, null, 3);
-      
+
       if (result) {
         exportData.push(...result);
       }
-      
+
       // Log progress
       if ((index + 1) % 10 === 0) {
         Logger.log(`Processed ${index + 1}/${threads.length} threads`);
       }
     });
-    
+
     // Insert data into sheet using sheet-utils
     if (exportData.length > 0) {
       insertDataIntoSheet(sheet, exportData, null, {
         startRow: 2,
         autoResize: true
       });
-      
+
       Logger.log(`Exported ${exportData.length} emails`);
     }
-    
+
     // Add summary row
     const summaryData = [[
       formatDate(new Date(), 'FRIENDLY_TIME'),
@@ -110,15 +110,15 @@ function exportGmailToSheets() {
       '',
       exportFolder.getUrl()
     ]];
-    
+
     appendDataToSheet(sheet, summaryData);
-    
+
     return {
       success: true,
       emailsProcessed: exportData.length,
       folderUrl: exportFolder.getUrl()
     };
-    
+
   }, 'exportGmailToSheets');
 }
 
@@ -126,26 +126,26 @@ function exportGmailToSheets() {
 function processThread(thread, pdfFolder, attachmentFolder) {
   const messages = thread.getMessages();
   const threadData = [];
-  
+
   messages.forEach(message => {
     try {
       // Parse email using email-utils
       const emailData = parseEmailData(message);
-      
+
       // Create PDF with safe operation
       const pdfBlob = createEmailPdf(message);
       const pdfFile = safeCreateFile(pdfFolder, pdfBlob);
-      
+
       // Process attachments
       let attachmentCount = 0;
       if (emailData.hasAttachments) {
         attachmentCount = processAttachments(
-          message.getAttachments(), 
+          message.getAttachments(),
           attachmentFolder,
           emailData.subject
         );
       }
-      
+
       // Format row data using utilities
       const rowData = [
         formatDate(emailData.date, 'DATE_ONLY'),
@@ -158,9 +158,9 @@ function processThread(thread, pdfFolder, attachmentFolder) {
         emailData.labels.join(', '),
         pdfFile ? pdfFile.getUrl() : 'Error'
       ];
-      
+
       threadData.push(rowData);
-      
+
     } catch (error) {
       // Log error with context
       handleError(error, 'processThread', {
@@ -169,7 +169,7 @@ function processThread(thread, pdfFolder, attachmentFolder) {
       });
     }
   });
-  
+
   return threadData;
 }
 
@@ -198,7 +198,7 @@ function createEmailPdf(message) {
       </body>
     </html>
   `;
-  
+
   const blob = Utilities.newBlob(html, 'text/html', `${subject}.html`);
   return blob.getAs('application/pdf').setName(`${subject}.pdf`);
 }
@@ -206,24 +206,24 @@ function createEmailPdf(message) {
 // Process email attachments
 function processAttachments(attachments, folder, emailSubject) {
   let savedCount = 0;
-  
+
   attachments.forEach((attachment, index) => {
     try {
       const filename = sanitizeFileName(
         `${emailSubject}_${index + 1}_${attachment.getName()}`
       );
-      
+
       const blob = attachment.copyBlob().setName(filename);
-      
+
       // Check file size
       if (blob.getBytes().length > 25 * 1024 * 1024) {
         Logger.log(`Attachment too large: ${filename}`);
         return;
       }
-      
+
       const file = safeCreateFile(folder, blob);
       if (file) savedCount++;
-      
+
     } catch (error) {
       logError(error, ErrorSeverity.WARNING, {
         context: 'processAttachments',
@@ -231,7 +231,7 @@ function processAttachments(attachments, folder, emailSubject) {
       });
     }
   });
-  
+
   return savedCount;
 }
 
@@ -239,15 +239,15 @@ function processAttachments(attachments, folder, emailSubject) {
 function generateExportSummary() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = spreadsheet.getSheetByName('Email Exports');
-  
+
   if (!sheet) {
     Logger.log('No export data found');
     return;
   }
-  
+
   // Convert sheet data to objects for analysis
   const data = getSheetDataAsObjects(sheet);
-  
+
   // Analyze data
   const summary = {
     totalEmails: data.length,
@@ -258,24 +258,24 @@ function generateExportSummary() {
       totalAttachments: 0
     }
   };
-  
+
   data.forEach(row => {
     // Count by date
     const date = row['Date'];
     summary.emailsByDate[date] = (summary.emailsByDate[date] || 0) + 1;
-    
+
     // Count by sender
     const sender = row['From'];
     summary.emailsBySender[sender] = (summary.emailsBySender[sender] || 0) + 1;
-    
+
     // Attachment stats
     if (row['Has Attachments'] && row['Has Attachments'].startsWith('Yes')) {
       summary.attachmentStats.withAttachments++;
     }
   });
-  
+
   Logger.log('Export Summary:');
   Logger.log(JSON.stringify(summary, null, 2));
-  
+
   return summary;
 }

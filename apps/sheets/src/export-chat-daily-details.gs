@@ -1,46 +1,46 @@
 /**
- * Script Name: export- chat- daily- details
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Extract chat daily details data from Google services
- * - Convert data to portable formats
- * - Generate reports and summaries
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Process and transform data
- * 4. Apply filters and criteria
- * 5. Sort data by relevant fields
- * 6. Write results to destination
- * 7. Send notifications or reports
- *
- * Script Functions:
- * - analyzeChat(): Analyzes chat and generates insights
- * - analyzeChatUsage(): Analyzes chat usage and generates insights
- * - calculateMedianWaitTime(): Performs calculations on median wait time
- * - debugLog(): Logs debug or messages
- * - fetchMessagesForSpace(): Retrieves messages for space from service
- * - fetchSpaces(): Retrieves spaces from service
- * - getChatData(): Gets specific chat data or configuration
- * - writeAnalysisToSheet(): Writes analysis to sheet to destination
- *
- * Script Helper Functions:
- * - countEmojis(): Checks boolean condition
- * - getUniqueEmojis(): Gets specific unique emojis or configuration
- *
- * Script Dependencies:
- * - OAuth2 library
- *
- * Google Services:
- * - Logger: For logging and debugging
- * - ScriptApp: For script management and triggers
- * - SpreadsheetApp: For spreadsheet operations
- * - UrlFetchApp: For HTTP requests to external services
- */
+  * Script Name: export- chat- daily- details
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Extract chat daily details data from Google services
+  * - Convert data to portable formats
+  * - Generate reports and summaries
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Process and transform data
+  * 4. Apply filters and criteria
+  * 5. Sort data by relevant fields
+  * 6. Write results to destination
+  * 7. Send notifications or reports
+  *
+  * Script Functions:
+  * - analyzeChat(): Analyzes chat and generates insights
+  * - analyzeChatUsage(): Analyzes chat usage and generates insights
+  * - calculateMedianWaitTime(): Performs calculations on median wait time
+  * - debugLog(): Logs debug or messages
+  * - fetchMessagesForSpace(): Retrieves messages for space from service
+  * - fetchSpaces(): Retrieves spaces from service
+  * - getChatData(): Gets specific chat data or configuration
+  * - writeAnalysisToSheet(): Writes analysis to sheet to destination
+  *
+  * Script Helper Functions:
+  * - countEmojis(): Checks boolean condition
+  * - getUniqueEmojis(): Gets specific unique emojis or configuration
+  *
+  * Script Dependencies:
+  * - OAuth2 library
+  *
+  * Google Services:
+  * - Logger: For logging and debugging
+  * - ScriptApp: For script management and triggers
+  * - SpreadsheetApp: For spreadsheet operations
+  * - UrlFetchApp: For HTTP requests to external services
+  */
 
 Key Features:
 1. Fetches chat data for each day of the previous work week
@@ -50,26 +50,26 @@ Key Features:
 5. Includes comprehensive error handling and debug logging
 6. Calculates per - person statistics and communication patterns *//  / Global variable for logging
 let DEBUG = true; // Function for debug logging;
- // Main function to analyze chat usage
- // Function to fetch chat data for a specific date
- // Function to fetch all chat spaces
- // Function to fetch messages for a specific space and time range
- // Function to analyze chat data
- // Function to write analysis results to the spreadsheet
- // Function to count emojis in a text
- // Function to get unique emojis in a text
- // Function to calculate median wait time between messages
+  // Main function to analyze chat usage
+  // Function to fetch chat data for a specific date
+  // Function to fetch all chat spaces
+  // Function to fetch messages for a specific space and time range
+  // Function to analyze chat data
+  // Function to write analysis results to the spreadsheet
+  // Function to count emojis in a text
+  // Function to get unique emojis in a text
+  // Function to calculate median wait time between messages
 
 // Main Functions
 
 /**
 
- * Analyzes chat and generates insights
- * @param
- * @param {Object} chatData - The chatData parameter
- * @returns {any} The result
+  * Analyzes chat and generates insights
+  * @param
+  * @param {Object} chatData - The chatData parameter
+  * @returns {any} The result
 
- */
+  */
 
 function analyzeChat(chatData) {
   let analysis = {
@@ -170,10 +170,10 @@ function analyzeChat(chatData) {
 
 /**
 
- * Analyzes chat usage and generates insights
- * @returns {any} The result
+  * Analyzes chat usage and generates insights
+  * @returns {any} The result
 
- */
+  */
 
 function analyzeChatUsage() {
   debugLog("Starting analyzeChatUsage function"); // Set up spreadsheet
@@ -224,12 +224,12 @@ function analyzeChatUsage() {
 
 /**
 
- * Performs calculations on median wait time
- * @param
- * @param {string} messages - The messages parameter
- * @returns {any} The result
+  * Performs calculations on median wait time
+  * @param
+  * @param {string} messages - The messages parameter
+  * @returns {any} The result
 
- */
+  */
 
 function calculateMedianWaitTime(messages) {
   const waitTimes = [];
@@ -244,12 +244,12 @@ function calculateMedianWaitTime(messages) {
 
 /**
 
- * Logs debug or messages
- * @param
- * @param {string} message - The message content
- * @returns {any} The result
+  * Logs debug or messages
+  * @param
+  * @param {string} message - The message content
+  * @returns {any} The result
 
- */
+  */
 
 function debugLog(message) {
   if (DEBUG) {
@@ -259,14 +259,14 @@ function debugLog(message) {
 
 /**
 
- * Retrieves messages for space from service
- * @param
- * @param {string} spaceName - The spaceName parameter
- * @param {any} startTime - The startTime parameter
- * @param {any} endTime - The endTime parameter
- * @returns {any} The result
+  * Retrieves messages for space from service
+  * @param
+  * @param {string} spaceName - The spaceName parameter
+  * @param {any} startTime - The startTime parameter
+  * @param {any} endTime - The endTime parameter
+  * @returns {any} The result
 
- */
+  */
 
 function fetchMessagesForSpace(spaceName, startTime, endTime) {
   let messages = [];
@@ -299,10 +299,10 @@ function fetchMessagesForSpace(spaceName, startTime, endTime) {
 
 /**
 
- * Retrieves spaces from service
- * @returns {any} The result
+  * Retrieves spaces from service
+  * @returns {any} The result
 
- */
+  */
 
 function fetchSpaces() {
   let spaces = [];
@@ -335,12 +335,12 @@ function fetchSpaces() {
 
 /**
 
- * Gets specific chat data or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific chat data or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getChatData(date) {
   debugLog("Starting getChatData for " + date.toISOString().split('T')[0]);
@@ -369,14 +369,14 @@ function getChatData(date) {
 
 /**
 
- * Writes analysis to sheet to destination
- * @param
- * @param {Sheet} sheet - The sheet parameter
- * @param {any} date - The date parameter
- * @param {any} analysis - The analysis parameter
- * @returns {any} True if condition is met, false otherwise
+  * Writes analysis to sheet to destination
+  * @param
+  * @param {Sheet} sheet - The sheet parameter
+  * @param {any} date - The date parameter
+  * @param {any} analysis - The analysis parameter
+  * @returns {any} True if condition is met, false otherwise
 
- */
+  */
 
 function writeAnalysisToSheet(sheet, date, analysis) {
   let row = [date.toISOString().split('T')[0]];
@@ -393,12 +393,12 @@ function writeAnalysisToSheet(sheet, date, analysis) {
 
 /**
 
- * Checks boolean condition
- * @param
- * @param {string} text - The text content
- * @returns {any} The total count
+  * Checks boolean condition
+  * @param
+  * @param {string} text - The text content
+  * @returns {any} The total count
 
- */
+  */
 
 function countEmojis(text) {
   let emojiRegex = / [\u{1F600} - \u{1F64F}\u{1F300} - \u{1F5FF}\u{1F680} - \u{1F6FF}\u{1F1E0} - \u{1F1FF}\u{2600} - \u{26FF}\u{2700} - \u{27BF}] / gu;
@@ -407,12 +407,12 @@ function countEmojis(text) {
 
 /**
 
- * Gets specific unique emojis or configuration
- * @param
- * @param {string} text - The text content
- * @returns {any} The requested any
+  * Gets specific unique emojis or configuration
+  * @param
+  * @param {string} text - The text content
+  * @returns {any} The requested any
 
- */
+  */
 
 function getUniqueEmojis(text) {
   let emojiRegex = / [\u{1F600} - \u{1F64F}\u{1F300} - \u{1F5FF}\u{1F680} - \u{1F6FF}\u{1F1E0} - \u{1F1FF}\u{2600} - \u{26FF}\u{2700} - \u{27BF}] / gu;

@@ -1,55 +1,55 @@
 /**
- * Script Name: markdown- export- emails
- *
- * Script Summary:
- * Exports markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Access Drive file system
- * 4. Fetch source data
- * 5. Validate input data
- * 6. Process and transform data
- * 7. Apply filters and criteria
- * 8. Format output for presentation
- *
- * Script Functions:
- * - getExistingMessageIds(): Gets specific existing message ids or configuration
- * - getOrCreateSheet(): Gets specific or create sheet or configuration
- * - loadConfig(): Loads config from storage
- * - logMessage(): Logs message or messages
- * - onOpen(): Performs specialized operations
- * - processEmails(): Processes and transforms emails
- * - processMessage(): Processes and transforms message
- * - processTransportationEmails(): Processes and transforms transportation emails
- *
- * Script Helper Functions:
- * - convertTo24HourFormat(): Formats convert to24 hour for display
- * - createMarkdownContent(): Creates new markdown content or resources
- * - createMarkdownFile(): Creates new markdown file or resources
- * - extractValue(): Extracts specific information
- * - formatCurrency(): Formats currency for display
- * - getOrCreateFolder(): Gets specific or create folder or configuration
- * - parseEmailBody(): Parses and extracts email body
- * - validateRowData(): Validates row data integrity
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: markdown- export- emails
+  *
+  * Script Summary:
+  * Exports markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Access Drive file system
+  * 4. Fetch source data
+  * 5. Validate input data
+  * 6. Process and transform data
+  * 7. Apply filters and criteria
+  * 8. Format output for presentation
+  *
+  * Script Functions:
+  * - getExistingMessageIds(): Gets specific existing message ids or configuration
+  * - getOrCreateSheet(): Gets specific or create sheet or configuration
+  * - loadConfig(): Loads config from storage
+  * - logMessage(): Logs message or messages
+  * - onOpen(): Performs specialized operations
+  * - processEmails(): Processes and transforms emails
+  * - processMessage(): Processes and transforms message
+  * - processTransportationEmails(): Processes and transforms transportation emails
+  *
+  * Script Helper Functions:
+  * - convertTo24HourFormat(): Formats convert to24 hour for display
+  * - createMarkdownContent(): Creates new markdown content or resources
+  * - createMarkdownFile(): Creates new markdown file or resources
+  * - extractValue(): Extracts specific information
+  * - formatCurrency(): Formats currency for display
+  * - getOrCreateFolder(): Gets specific or create folder or configuration
+  * - parseEmailBody(): Parses and extracts email body
+  * - validateRowData(): Validates row data integrity
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 /  / Hardcoded regex parsers for Uber and Lyft (extensible for other services);
 const PARSERS = {
@@ -77,12 +77,12 @@ const PARSERS = {
 
 /**
 
- * Gets specific existing message ids or configuration
- * @param
- * @param {Sheet} sheet - The sheet to retrieve
- * @returns {Object} The requested object
+  * Gets specific existing message ids or configuration
+  * @param
+  * @param {Sheet} sheet - The sheet to retrieve
+  * @returns {Object} The requested object
 
- */
+  */
 
 function getExistingMessageIds(sheet) {
   if (sheet.getLastRow() < 2) return new Set();
@@ -92,12 +92,12 @@ function getExistingMessageIds(sheet) {
 
 /**
 
- * Gets specific or create sheet or configuration
- * @param
- * @param {string} sheetName - The sheetName to retrieve
- * @returns {Object} The requested object
+  * Gets specific or create sheet or configuration
+  * @param
+  * @param {string} sheetName - The sheetName to retrieve
+  * @returns {Object} The requested object
 
- */
+  */
 
 function getOrCreateSheet(sheetName) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -115,10 +115,10 @@ function getOrCreateSheet(sheetName) {
 
 /**
 
- * Loads config from storage
- * @returns {Object} The result object
+  * Loads config from storage
+  * @returns {Object} The result object
 
- */
+  */
 
 function loadConfig() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -167,15 +167,15 @@ function loadConfig() {
 
 /**
 
- * Logs message or messages
- * @param
- * @param {string} message - The message content
- * @param {any} level - The level parameter
- * @param {string} context - The context parameter
- * @param {any} logLevel - The logLevel parameter
- * @returns {Object} The result object
+  * Logs message or messages
+  * @param
+  * @param {string} message - The message content
+  * @param {any} level - The level parameter
+  * @param {string} context - The context parameter
+  * @param {any} logLevel - The logLevel parameter
+  * @returns {Object} The result object
 
- */
+  */
 
 function logMessage(message, level, context, logLevel) {
   const levels = { DEBUG: 0, INFO: 1, ERROR: 2 };
@@ -187,10 +187,10 @@ function logMessage(message, level, context, logLevel) {
 
 /**
 
- * Performs specialized operations
- * @returns {Object} The result object
+  * Performs specialized operations
+  * @returns {Object} The result object
 
- */
+  */
 
 function onOpen() {
   SpreadsheetApp.getUi();
@@ -201,17 +201,17 @@ function onOpen() {
 
 /**
 
- * Processes and transforms emails
- * @param
- * @param {GmailLabel} label - The label parameter
- * @param {Object} config - Configuration settings
- * @param {string} existingMessageIds - The existingMessageIds parameter
- * @param {any} dateProcessed - The dateProcessed parameter
- * @param {Folder} folder - The folder parameter
- * @param {Sheet} sheet - The sheet parameter
- * @returns {Object} The result object
+  * Processes and transforms emails
+  * @param
+  * @param {GmailLabel} label - The label parameter
+  * @param {Object} config - Configuration settings
+  * @param {string} existingMessageIds - The existingMessageIds parameter
+  * @param {any} dateProcessed - The dateProcessed parameter
+  * @param {Folder} folder - The folder parameter
+  * @param {Sheet} sheet - The sheet parameter
+  * @returns {Object} The result object
 
- */
+  */
 
 function processEmails(label, config, existingMessageIds, dateProcessed, folder, sheet) {
   let start = 0;
@@ -239,18 +239,18 @@ function processEmails(label, config, existingMessageIds, dateProcessed, folder,
 
 /**
 
- * Processes and transforms message
- * @param
- * @param {string} message - The message content
- * @param {string} existingMessageIds - The existingMessageIds parameter
- * @param {any} dateProcessed - The dateProcessed parameter
- * @param {Folder} folder - The folder parameter
- * @param {Sheet} sheet - The sheet parameter
- * @param {GmailLabel} label - The label parameter
- * @param {Object} config - Configuration settings
- * @returns {Object} The result object
+  * Processes and transforms message
+  * @param
+  * @param {string} message - The message content
+  * @param {string} existingMessageIds - The existingMessageIds parameter
+  * @param {any} dateProcessed - The dateProcessed parameter
+  * @param {Folder} folder - The folder parameter
+  * @param {Sheet} sheet - The sheet parameter
+  * @param {GmailLabel} label - The label parameter
+  * @param {Object} config - Configuration settings
+  * @returns {Object} The result object
 
- */
+  */
 
 function processMessage(message, existingMessageIds, dateProcessed, folder, sheet, label, config) {
   const messageId = message.getId();
@@ -298,10 +298,10 @@ function processMessage(message, existingMessageIds, dateProcessed, folder, shee
 
 /**
 
- * Processes and transforms transportation emails
- * @returns {Object} The result object
+  * Processes and transforms transportation emails
+  * @returns {Object} The result object
 
- */
+  */
 
 function processTransportationEmails() {
   try {
@@ -333,12 +333,12 @@ function processTransportationEmails() {
 
 /**
 
- * Formats convert to24 hour for display
- * @param
- * @param {any} time - The time parameter
- * @returns {Object} The result object
+  * Formats convert to24 hour for display
+  * @param
+  * @param {any} time - The time parameter
+  * @returns {Object} The result object
 
- */
+  */
 
 function convertTo24HourFormat(time) {
   const match = time.match( / (\d{1,2}):(\d{2})\s * (AM|PM) / i);
@@ -356,13 +356,13 @@ function convertTo24HourFormat(time) {
 
 /**
 
- * Creates new markdown content or resources
- * @param
- * @param {Object} data - The data object to process
- * @param {string} body - The body content
- * @returns {Object} The newly created object
+  * Creates new markdown content or resources
+  * @param
+  * @param {Object} data - The data object to process
+  * @param {string} body - The body content
+  * @returns {Object} The newly created object
 
- */
+  */
 
 function createMarkdownContent(data, body) {
   const yamlFrontMatter = ` - - - ${Object.entries(data).map(([key, value]) = > `${key}: ${value}`).join('\n')} - - - `;
@@ -372,14 +372,14 @@ function createMarkdownContent(data, body) {
 
 /**
 
- * Creates new markdown file or resources
- * @param
- * @param {string} content - The content to process
- * @param {string} filename - The filename for creation
- * @param {Folder} folder - The folder for creation
- * @returns {Object} The newly created object
+  * Creates new markdown file or resources
+  * @param
+  * @param {string} content - The content to process
+  * @param {string} filename - The filename for creation
+  * @param {Folder} folder - The folder for creation
+  * @returns {Object} The newly created object
 
- */
+  */
 
 function createMarkdownFile(content, filename, folder) {
   const blob = Utilities.newBlob(content, 'text / markdown', `${filename}.md`);
@@ -389,13 +389,13 @@ function createMarkdownFile(content, filename, folder) {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {string} body - The body content
- * @param {any} regex - The regex parameter
- * @returns {Object} The result object
+  * Extracts specific information
+  * @param
+  * @param {string} body - The body content
+  * @param {any} regex - The regex parameter
+  * @returns {Object} The result object
 
- */
+  */
 
 function extractValue(body, regex) {
   const match = body.match(regex);
@@ -404,12 +404,12 @@ function extractValue(body, regex) {
 
 /**
 
- * Formats currency for display
- * @param
- * @param {string|any} value - The value to set
- * @returns {Object} The result object
+  * Formats currency for display
+  * @param
+  * @param {string|any} value - The value to set
+  * @returns {Object} The result object
 
- */
+  */
 
 function formatCurrency(value) {
   if (! value) return '';
@@ -418,13 +418,13 @@ function formatCurrency(value) {
 
 /**
 
- * Gets specific or create folder or configuration
- * @param
- * @param {Folder} parentFolder - The parentFolder to retrieve
- * @param {string} folderName - The folderName to retrieve
- * @returns {Object} The requested object
+  * Gets specific or create folder or configuration
+  * @param
+  * @param {Folder} parentFolder - The parentFolder to retrieve
+  * @param {string} folderName - The folderName to retrieve
+  * @returns {Object} The requested object
 
- */
+  */
 
 function getOrCreateFolder(parentFolder, folderName) {
   const folders = parentFolder.getFoldersByName(folderName);
@@ -433,17 +433,17 @@ function getOrCreateFolder(parentFolder, folderName) {
 
 /**
 
- * Parses and extracts email body
- * @param
- * @param {string} body - The body content
- * @param {string} emailDate - The emailDate parameter
- * @param {any} sender - The sender parameter
- * @param {string} subject - The subject line
- * @param {any} dateProcessed - The dateProcessed parameter
- * @param {string} parserKey - The parserKey parameter
- * @returns {Object} The result object
+  * Parses and extracts email body
+  * @param
+  * @param {string} body - The body content
+  * @param {string} emailDate - The emailDate parameter
+  * @param {any} sender - The sender parameter
+  * @param {string} subject - The subject line
+  * @param {any} dateProcessed - The dateProcessed parameter
+  * @param {string} parserKey - The parserKey parameter
+  * @returns {Object} The result object
 
- */
+  */
 
 function parseEmailBody(body, emailDate, sender, subject, dateProcessed, parserKey) {
   const data = {
@@ -491,13 +491,13 @@ function parseEmailBody(body, emailDate, sender, subject, dateProcessed, parserK
 
 /**
 
- * Validates row data integrity
- * @param
- * @param {Object} data - The data object to process
- * @param {any} requiredFields - The requiredFields parameter
- * @returns {Object} The result object
+  * Validates row data integrity
+  * @param
+  * @param {Object} data - The data object to process
+  * @param {any} requiredFields - The requiredFields parameter
+  * @returns {Object} The result object
 
- */
+  */
 
 function validateRowData(data, requiredFields) {
   return requiredFields.every(field = > data[field] && data[field] ! = = '');

@@ -1,44 +1,44 @@
 /**
- * Script Name: markdown- create- weekly- daily- notes
- *
- * Script Summary:
- * Creates markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- *
- * Script Steps:
- * 1. Access Drive file system
- * 2. Fetch source data
- * 3. Process and transform data
- * 4. Format output for presentation
- *
- * Script Functions:
- * - createSingleDailyNote(): Creates new single daily note or resources
- * - createWeeklyDailyNotes(): Creates new weekly daily notes or resources
- * - ensureWeekFolderPath(): Manages files and folders
- * - findOrCreateFolder(): Creates new find or folder or resources
- * - generateDailyNoteContent(): Generates new content or reports
- * - generateEventTable(): Generates new content or reports
- * - getEventsForDay(): Gets specific events for day or configuration
- *
- * Script Helper Functions:
- * - formatDate(): Formats date for display
- * - getDayName(): Gets specific day name or configuration
- * - getMonthName(): Gets specific month name or configuration
- * - getNextMonday(): Gets specific next monday or configuration
- * - getWeekNumber(): Gets specific week number or configuration
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - CalendarApp: For calendar and event management
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- */
+  * Script Name: markdown- create- weekly- daily- notes
+  *
+  * Script Summary:
+  * Creates markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  *
+  * Script Steps:
+  * 1. Access Drive file system
+  * 2. Fetch source data
+  * 3. Process and transform data
+  * 4. Format output for presentation
+  *
+  * Script Functions:
+  * - createSingleDailyNote(): Creates new single daily note or resources
+  * - createWeeklyDailyNotes(): Creates new weekly daily notes or resources
+  * - ensureWeekFolderPath(): Manages files and folders
+  * - findOrCreateFolder(): Creates new find or folder or resources
+  * - generateDailyNoteContent(): Generates new content or reports
+  * - generateEventTable(): Generates new content or reports
+  * - getEventsForDay(): Gets specific events for day or configuration
+  *
+  * Script Helper Functions:
+  * - formatDate(): Formats date for display
+  * - getDayName(): Gets specific day name or configuration
+  * - getMonthName(): Gets specific month name or configuration
+  * - getNextMonday(): Gets specific next monday or configuration
+  * - getWeekNumber(): Gets specific week number or configuration
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - CalendarApp: For calendar and event management
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  */
 
 / * Script Summary: - This script automates the creation of daily notes for the upcoming work week. - It creates a folder structure organized by year, month, and week, and generates a Markdown file for each day. - Each daily note includes metadata, navigation links, and a table of calendar events.;
 
@@ -69,13 +69,13 @@ Key features:
 
 /**
 
- * Creates new single daily note or resources
- * @param
- * @param {any} date - The date for creation
- * @param {Folder} rootNotesFolder - The rootNotesFolder for creation
- * @returns {any} The newly created any
+  * Creates new single daily note or resources
+  * @param
+  * @param {any} date - The date for creation
+  * @param {Folder} rootNotesFolder - The rootNotesFolder for creation
+  * @returns {any} The newly created any
 
- */
+  */
 
 function createSingleDailyNote(date, rootNotesFolder) {
   Logger.log('Creating daily note for ' + date.toISOString());
@@ -100,10 +100,10 @@ function createSingleDailyNote(date, rootNotesFolder) {
 
 /**
 
- * Creates new weekly daily notes or resources
- * @returns {any} The newly created any
+  * Creates new weekly daily notes or resources
+  * @returns {any} The newly created any
 
- */
+  */
 
 function createWeeklyDailyNotes() {
   const NOTES_FOLDER_NAME = 'notes';
@@ -130,13 +130,13 @@ function createWeeklyDailyNotes() {
 
 /**
 
- * Manages files and folders
- * @param
- * @param {any} date - The date parameter
- * @param {Folder} rootFolder - The rootFolder parameter
- * @returns {any} The result
+  * Manages files and folders
+  * @param
+  * @param {any} date - The date parameter
+  * @param {Folder} rootFolder - The rootFolder parameter
+  * @returns {any} The result
 
- */
+  */
 
 function ensureWeekFolderPath(date, rootFolder) {
   const year = date.getFullYear();
@@ -152,13 +152,13 @@ function ensureWeekFolderPath(date, rootFolder) {
 
 /**
 
- * Creates new find or folder or resources
- * @param
- * @param {Folder} parentFolder - The parentFolder for creation
- * @param {string} folderName - The folderName for creation
- * @returns {any} The newly created any
+  * Creates new find or folder or resources
+  * @param
+  * @param {Folder} parentFolder - The parentFolder for creation
+  * @param {string} folderName - The folderName for creation
+  * @returns {any} The newly created any
 
- */
+  */
 
 function findOrCreateFolder(parentFolder, folderName) {
   const folders = parentFolder.getFoldersByName(folderName);
@@ -172,12 +172,12 @@ function findOrCreateFolder(parentFolder, folderName) {
 
 /**
 
- * Generates new content or reports
- * @param
- * @param {any} date - The date parameter
- * @returns {any} The result
+  * Generates new content or reports
+  * @param
+  * @param {any} date - The date parameter
+  * @returns {any} The result
 
- */
+  */
 
 function generateDailyNoteContent(date) {
   Logger.log('Generating content for ' + date.toISOString());
@@ -203,12 +203,12 @@ ${generateEventTable(date)}`;
 
 /**
 
- * Generates new content or reports
- * @param
- * @param {any} date - The date parameter
- * @returns {any} The result
+  * Generates new content or reports
+  * @param
+  * @param {any} date - The date parameter
+  * @returns {any} The result
 
- */
+  */
 
 function generateEventTable(date) {
   Logger.log('Generating event table for ' + date.toISOString());
@@ -248,12 +248,12 @@ function generateEventTable(date) {
 
 /**
 
- * Gets specific events for day or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific events for day or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getEventsForDay(date) {
   Logger.log('Getting events for ' + date.toISOString());
@@ -272,13 +272,13 @@ function getEventsForDay(date) {
 
 /**
 
- * Formats date for display
- * @param
- * @param {any} date - The date parameter
- * @param {any} format - The format parameter
- * @returns {any} The result
+  * Formats date for display
+  * @param
+  * @param {any} date - The date parameter
+  * @param {any} format - The format parameter
+  * @returns {any} The result
 
- */
+  */
 
 function formatDate(date, format) {
   const year = date.getFullYear();
@@ -297,12 +297,12 @@ function formatDate(date, format) {
 
 /**
 
- * Gets specific day name or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day name or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getDayName(date) {
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -311,12 +311,12 @@ function getDayName(date) {
 
 /**
 
- * Gets specific month name or configuration
- * @param
- * @param {any} month - The month to retrieve
- * @returns {any} The requested any
+  * Gets specific month name or configuration
+  * @param
+  * @param {any} month - The month to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getMonthName(month) {
   const months = ['January', 'February', 'March', 'April', 'May', 'June',
@@ -326,12 +326,12 @@ function getMonthName(month) {
 
 /**
 
- * Gets specific next monday or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific next monday or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getNextMonday(date) {
   const dayOfWeek = date.getDay();
@@ -341,12 +341,12 @@ function getNextMonday(date) {
 
 /**
 
- * Gets specific week number or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific week number or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getWeekNumber(date) {
   const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));

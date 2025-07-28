@@ -1,38 +1,38 @@
 /**
- * Script Name: extract- gmail- snippets
- *
- * Script Summary:
- * Processes spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Process and transform data
- * 5. Send notifications or reports
- *
- * Script Functions:
- * - extractEmailSnippets(): Extracts specific information
- * - setColumnHeaders(): Sets column headers or configuration values
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: extract- gmail- snippets
+  *
+  * Script Summary:
+  * Processes spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Process and transform data
+  * 5. Send notifications or reports
+  *
+  * Script Functions:
+  * - extractEmailSnippets(): Extracts specific information
+  * - setColumnHeaders(): Sets column headers or configuration values
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 // Main Functions
 
 /**
 
- * Extracts specific information
+  * Extracts specific information
 
- */
+  */
 
 function extractEmailSnippets() { // Initialize logging;
   Logger.log("Starting extractEmailSnippets execution"); // Get the active spreadsheet and "GMail" sheet;
@@ -71,11 +71,11 @@ function extractEmailSnippets() { // Initialize logging;
 
 /**
 
- * Sets column headers or configuration values
- * @param
- * @param {Sheet} sheet - The sheet to set
+  * Sets column headers or configuration values
+  * @param
+  * @param {Sheet} sheet - The sheet to set
 
- */
+  */
 
 function setColumnHeaders(sheet) {
   Logger.log("Setting column headers");

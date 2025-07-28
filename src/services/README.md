@@ -127,7 +127,7 @@ All services include built-in rate limiting to prevent quota exhaustion:
 
 Services support batch processing for efficiency:
 - GmailService: 100 items per batch (default)
-- DriveService: 100 items per batch (default)  
+- DriveService: 100 items per batch (default)
 - SheetsService: 1000 rows per batch (default)
 - DocsService: 50 documents per batch (default)
 
@@ -149,10 +149,10 @@ function exportGmailLabels() {
   var labels = GmailApp.getUserLabels();
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = spreadsheet.getSheetByName("Gmail Labels") || spreadsheet.insertSheet("Gmail Labels");
-  
+
   sheet.clear();
   sheet.appendRow(["Labels", "Total Threads", "Total Emails"]);
-  
+
   labels.forEach(function(label) {
     var threads = label.getThreads();
     var totalEmails = 0;
@@ -169,17 +169,17 @@ function exportGmailLabels() {
 function exportGmailLabels() {
   var gmailService = WorkspaceAutomation.Services.getGmailService();
   var sheetsService = WorkspaceAutomation.Services.getSheetsService();
-  
+
   var spreadsheetId = SpreadsheetApp.getActiveSpreadsheet().getId();
   var headers = ["Label Name", "Thread Count", "Email Count"];
-  
+
   sheetsService.setupSheet(spreadsheetId, "Gmail Labels", headers);
-  
+
   var labelStats = gmailService.getLabelStats();
   var sheetData = labelStats.map(function(stat) {
     return [stat.name, stat.threadCount, stat.emailCount];
   });
-  
+
   sheetsService.insertDataIntoSheet(spreadsheetId, "Gmail Labels", sheetData, headers, {
     clearExisting: true,
     autoResize: true

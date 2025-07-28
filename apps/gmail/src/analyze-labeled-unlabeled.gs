@@ -1,39 +1,39 @@
 /**
- * Script Name: analyze- labeled- unlabeled
- *
- * Script Summary:
- * Processes Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- * - Analyze labeled unlabeled patterns and trends
- * - Calculate statistics and metrics
- * - Generate insights and recommendations
- *
- * Script Steps:
- * 1. Connect to Gmail service
- * 2. Fetch source data
- * 3. Format output for presentation
- * 4. Send notifications or reports
- *
- * Script Functions:
- * - countEmailsWithAndWithoutLabels(): Counts emails with and without labels or occurrences
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: analyze- labeled- unlabeled
+  *
+  * Script Summary:
+  * Processes Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Analyze labeled unlabeled patterns and trends
+  * - Calculate statistics and metrics
+  * - Generate insights and recommendations
+  *
+  * Script Steps:
+  * 1. Connect to Gmail service
+  * 2. Fetch source data
+  * 3. Format output for presentation
+  * 4. Send notifications or reports
+  *
+  * Script Functions:
+  * - countEmailsWithAndWithoutLabels(): Counts emails with and without labels or occurrences
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - Utilities: For utility functions and encoding
+  */
 
 // Main Functions
 
 /**
 
- * Counts emails with and without labels or occurrences
+  * Counts emails with and without labels or occurrences
 
- */
+  */
 
 function countEmailsWithAndWithoutLabels() { // Set the start date;
   let startDate = new Date('2023 - 10 - 01');

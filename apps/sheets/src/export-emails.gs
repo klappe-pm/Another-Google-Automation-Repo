@@ -1,73 +1,73 @@
 /**
- * Script Name: export- emails
- *
- * Script Summary:
- * Exports spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Extract emails data from Google services
- * - Convert data to portable formats
- * - Generate reports and summaries
- * - Support scheduled automation
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Validate input data
- * 4. Process and transform data
- * 5. Apply filters and criteria
- * 6. Format output for presentation
- * 7. Write results to destination
- *
- * Script Functions:
- * - exportAllCalendarEvents(): Exports all calendar events to external format
- * - fetchCalendarEvents(): Retrieves calendar events from service
- * - geocodeAddress(): Performs specialized operations
- * - getDestinationLocations(): Gets specific destination locations or configuration
- * - getFixedDepartureTime(): Gets specific fixed departure time or configuration
- * - getHeaders(): Gets specific headers or configuration
- * - getRouteInfo(): Gets specific route info or configuration
- * - getSheetName(): Gets specific sheet name or configuration
- * - initializeSheet(): Initializes resources or configuration
- * - logError(): Logs error or messages
- * - processEvent(): Processes and transforms event
- * - resetProgressTracking(): Sets re progress tracking or configuration values
- * - saveDataToSheet(): Saves data to sheet persistently
- * - saveProgress(): Saves progress persistently
- * - scheduleRestart(): Performs specialized operations
- * - shouldSaveProgress(): Saves should progress persistently
- *
- * Script Helper Functions:
- * - areLocationsEqual(): Performs specialized operations
- * - getDateRange(): Gets specific date range or configuration
- * - getDayOfWeek(): Gets specific day of week or configuration
- * - getDayOfYear(): Gets specific day of year or configuration
- * - getQuarter(): Gets specific quarter or configuration
- * - getScriptProperty(): Gets specific script property or configuration
- * - getTargetCalendars(): Gets specific target calendars or configuration
- * - getWeekNumber(): Gets specific week number or configuration
- * - isSameLocationApproximate(): Checks boolean condition
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - CalendarApp: For calendar and event management
- * - Logger: For logging and debugging
- * - PropertiesService: For storing script properties
- * - SpreadsheetApp: For spreadsheet operations
- * - UrlFetchApp: For HTTP requests to external services
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: export- emails
+  *
+  * Script Summary:
+  * Exports spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Extract emails data from Google services
+  * - Convert data to portable formats
+  * - Generate reports and summaries
+  * - Support scheduled automation
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Validate input data
+  * 4. Process and transform data
+  * 5. Apply filters and criteria
+  * 6. Format output for presentation
+  * 7. Write results to destination
+  *
+  * Script Functions:
+  * - exportAllCalendarEvents(): Exports all calendar events to external format
+  * - fetchCalendarEvents(): Retrieves calendar events from service
+  * - geocodeAddress(): Performs specialized operations
+  * - getDestinationLocations(): Gets specific destination locations or configuration
+  * - getFixedDepartureTime(): Gets specific fixed departure time or configuration
+  * - getHeaders(): Gets specific headers or configuration
+  * - getRouteInfo(): Gets specific route info or configuration
+  * - getSheetName(): Gets specific sheet name or configuration
+  * - initializeSheet(): Initializes resources or configuration
+  * - logError(): Logs error or messages
+  * - processEvent(): Processes and transforms event
+  * - resetProgressTracking(): Sets re progress tracking or configuration values
+  * - saveDataToSheet(): Saves data to sheet persistently
+  * - saveProgress(): Saves progress persistently
+  * - scheduleRestart(): Performs specialized operations
+  * - shouldSaveProgress(): Saves should progress persistently
+  *
+  * Script Helper Functions:
+  * - areLocationsEqual(): Performs specialized operations
+  * - getDateRange(): Gets specific date range or configuration
+  * - getDayOfWeek(): Gets specific day of week or configuration
+  * - getDayOfYear(): Gets specific day of year or configuration
+  * - getQuarter(): Gets specific quarter or configuration
+  * - getScriptProperty(): Gets specific script property or configuration
+  * - getTargetCalendars(): Gets specific target calendars or configuration
+  * - getWeekNumber(): Gets specific week number or configuration
+  * - isSameLocationApproximate(): Checks boolean condition
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - CalendarApp: For calendar and event management
+  * - Logger: For logging and debugging
+  * - PropertiesService: For storing script properties
+  * - SpreadsheetApp: For spreadsheet operations
+  * - UrlFetchApp: For HTTP requests to external services
+  * - Utilities: For utility functions and encoding
+  */
 
 // Main Functions
 
 /**
 
- * Exports all calendar events to external format
- * @returns {any} The result
+  * Exports all calendar events to external format
+  * @returns {any} The result
 
- */
+  */
 
 function exportAllCalendarEvents() {
   Logger.log("🚀 Starting script execution...");
@@ -155,14 +155,14 @@ function exportAllCalendarEvents() {
 
 /**
 
- * Retrieves calendar events from service
- * @param
- * @param {any} calendar - The calendar parameter
- * @param {number} timeMin - The timeMin parameter
- * @param {number} timeMax - The timeMax parameter
- * @returns {any} The result
+  * Retrieves calendar events from service
+  * @param
+  * @param {any} calendar - The calendar parameter
+  * @param {number} timeMin - The timeMin parameter
+  * @param {number} timeMax - The timeMax parameter
+  * @returns {any} The result
 
- */
+  */
 
 function fetchCalendarEvents(calendar, timeMin, timeMax) {
   const options = { timeMin, timeMax, singleEvents: true, orderBy: "startTime", fields: "items(id, start, end, summary, location)" };
@@ -178,13 +178,13 @@ function fetchCalendarEvents(calendar, timeMin, timeMax) {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {string} apiKey - The apiKey parameter
- * @param {any} address - The address parameter
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {string} apiKey - The apiKey parameter
+  * @param {any} address - The address parameter
+  * @returns {any} The result
 
- */
+  */
 
 function geocodeAddress(apiKey, address) {
   if (! address.trim()) return null;
@@ -202,10 +202,10 @@ function geocodeAddress(apiKey, address) {
 
 /**
 
- * Gets specific destination locations or configuration
- * @returns {any} The requested any
+  * Gets specific destination locations or configuration
+  * @returns {any} The requested any
 
- */
+  */
 
 function getDestinationLocations() {
   const destinationsProperty = getScriptProperty('DESTINATION_LOCATIONS');
@@ -223,10 +223,10 @@ function getDestinationLocations() {
 
 /**
 
- * Gets specific fixed departure time or configuration
- * @returns {any} The requested any
+  * Gets specific fixed departure time or configuration
+  * @returns {any} The requested any
 
- */
+  */
 
 function getFixedDepartureTime() {
   const fixedDepartureTime = new Date();
@@ -239,10 +239,10 @@ function getFixedDepartureTime() {
 
 /**
 
- * Gets specific headers or configuration
- * @returns {any} The requested any
+  * Gets specific headers or configuration
+  * @returns {any} The requested any
 
- */
+  */
 
 function getHeaders() {
   const destinationsProperty = getScriptProperty('DESTINATION_LOCATIONS');
@@ -257,15 +257,15 @@ function getHeaders() {
 
 /**
 
- * Gets specific route info or configuration
- * @param
- * @param {string} apiKey - The apiKey to retrieve
- * @param {any} origin - The origin to retrieve
- * @param {any} destination - The destination to retrieve
- * @param {any} departureTime - The departureTime to retrieve
- * @returns {any} The requested any
+  * Gets specific route info or configuration
+  * @param
+  * @param {string} apiKey - The apiKey to retrieve
+  * @param {any} origin - The origin to retrieve
+  * @param {any} destination - The destination to retrieve
+  * @param {any} departureTime - The departureTime to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getRouteInfo(apiKey, origin, destination, departureTime) {
   if (! origin?.geometry?.location || ! destination?.geometry?.location) {
@@ -342,10 +342,10 @@ function getRouteInfo(apiKey, origin, destination, departureTime) {
 
 /**
 
- * Gets specific sheet name or configuration
- * @returns {any} The requested any
+  * Gets specific sheet name or configuration
+  * @returns {any} The requested any
 
- */
+  */
 
 function getSheetName() {
   const today = new Date();
@@ -354,12 +354,12 @@ function getSheetName() {
 
 /**
 
- * Initializes resources or configuration
- * @param
- * @param {string} sheetName - The sheetName parameter
- * @returns {any} The result
+  * Initializes resources or configuration
+  * @param
+  * @param {string} sheetName - The sheetName parameter
+  * @returns {any} The result
 
- */
+  */
 
 function initializeSheet(sheetName) {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -398,12 +398,12 @@ function initializeSheet(sheetName) {
 
 /**
 
- * Logs error or messages
- * @param
- * @param {string} message - The message content
- * @returns {any} The result
+  * Logs error or messages
+  * @param
+  * @param {string} message - The message content
+  * @returns {any} The result
 
- */
+  */
 
 function logError(message) {
   Logger.log(`❌ ERROR: ${message}`);
@@ -418,14 +418,14 @@ function logError(message) {
 
 /**
 
- * Processes and transforms event
- * @param
- * @param {CalendarEvent} event - The event parameter
- * @param {any} destinationLocations - The destinationLocations parameter
- * @param {string} API_KEY - The API_KEY parameter
- * @returns {any} The result
+  * Processes and transforms event
+  * @param
+  * @param {CalendarEvent} event - The event parameter
+  * @param {any} destinationLocations - The destinationLocations parameter
+  * @param {string} API_KEY - The API_KEY parameter
+  * @returns {any} The result
 
- */
+  */
 
 function processEvent(event, destinationLocations, API_KEY) {
   const eventDate = new Date(event.start?.dateTime || event.start?.date);
@@ -464,10 +464,10 @@ function processEvent(event, destinationLocations, API_KEY) {
 
 /**
 
- * Sets re progress tracking or configuration values
- * @returns {any} The result
+  * Sets re progress tracking or configuration values
+  * @returns {any} The result
 
- */
+  */
 
 function resetProgressTracking() {
   PropertiesService.getScriptProperties().setProperty('IS_PROCESSING', 'false');
@@ -475,14 +475,14 @@ function resetProgressTracking() {
 
 /**
 
- * Saves data to sheet persistently
- * @param
- * @param {Sheet} spreadsheet - The spreadsheet parameter
- * @param {string} sheetName - The sheetName parameter
- * @param {Object} data - The data object to process
- * @returns {any} The result
+  * Saves data to sheet persistently
+  * @param
+  * @param {Sheet} spreadsheet - The spreadsheet parameter
+  * @param {string} sheetName - The sheetName parameter
+  * @param {Object} data - The data object to process
+  * @returns {any} The result
 
- */
+  */
 
 function saveDataToSheet(spreadsheet, sheetName, data) {
   if (data.length = = = 0) return;
@@ -501,14 +501,14 @@ function saveDataToSheet(spreadsheet, sheetName, data) {
 
 /**
 
- * Saves progress persistently
- * @param
- * @param {number} calendarIndex - The calendarIndex parameter
- * @param {number} eventIndex - The eventIndex parameter
- * @param {string} processedEventIDs - The processedEventIDs parameter
- * @returns {any} The result
+  * Saves progress persistently
+  * @param
+  * @param {number} calendarIndex - The calendarIndex parameter
+  * @param {number} eventIndex - The eventIndex parameter
+  * @param {string} processedEventIDs - The processedEventIDs parameter
+  * @returns {any} The result
 
- */
+  */
 
 function saveProgress(calendarIndex, eventIndex, processedEventIDs) {
   PropertiesService.getScriptProperties().setProperty('LAST_CALENDAR_INDEX', calendarIndex.toString());
@@ -518,10 +518,10 @@ function saveProgress(calendarIndex, eventIndex, processedEventIDs) {
 
 /**
 
- * Performs specialized operations
- * @returns {any} The result
+  * Performs specialized operations
+  * @returns {any} The result
 
- */
+  */
 
 function scheduleRestart() {
   Logger.log("⏰ MAX RUNTIME REACHED: Please manually run the script again to continue processing.");
@@ -531,13 +531,13 @@ function scheduleRestart() {
 
 /**
 
- * Saves should progress persistently
- * @param
- * @param {any} startTime - The startTime parameter
- * @param {any} lastSaveTime - The lastSaveTime parameter
- * @returns {any} The result
+  * Saves should progress persistently
+  * @param
+  * @param {any} startTime - The startTime parameter
+  * @param {any} lastSaveTime - The lastSaveTime parameter
+  * @returns {any} The result
 
- */
+  */
 
 function shouldSaveProgress(startTime, lastSaveTime) {
   const currentTime = new Date().getTime();
@@ -553,13 +553,13 @@ function shouldSaveProgress(startTime, lastSaveTime) {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {any} loc1 - The loc1 parameter
- * @param {any} loc2 - The loc2 parameter
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {any} loc1 - The loc1 parameter
+  * @param {any} loc2 - The loc2 parameter
+  * @returns {any} The result
 
- */
+  */
 
 function areLocationsEqual(loc1, loc2) {
   return loc1.lat = = = loc2.lat && loc1.lng = = = loc2.lng;
@@ -567,10 +567,10 @@ function areLocationsEqual(loc1, loc2) {
 
 /**
 
- * Gets specific date range or configuration
- * @returns {any} The requested any
+  * Gets specific date range or configuration
+  * @returns {any} The requested any
 
- */
+  */
 
 function getDateRange() {
   const startDate = new Date('2023- 10- 01T00:00:00Z');
@@ -581,45 +581,45 @@ function getDateRange() {
 
 /**
 
- * Gets specific day of week or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day of week or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getDayOfWeek(date) { return date.getUTCDay() || 7; }
 
 /**
 
- * Gets specific day of year or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day of year or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getDayOfYear(date) { return Math.floor((date - new Date(date.getUTCFullYear(), 0, 1)) / 86400000) + 1; }
 
 /**
 
- * Gets specific quarter or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific quarter or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getQuarter(date) { return Math.floor(date.getUTCMonth() / 3) + 1; }
 
 /**
 
- * Gets specific script property or configuration
- * @param
- * @param {string} key - The key to look up
- * @returns {any} The requested any
+  * Gets specific script property or configuration
+  * @param
+  * @param {string} key - The key to look up
+  * @returns {any} The requested any
 
- */
+  */
 
 function getScriptProperty(key) {
   return PropertiesService.getScriptProperties().getProperty(key);
@@ -627,10 +627,10 @@ function getScriptProperty(key) {
 
 /**
 
- * Gets specific target calendars or configuration
- * @returns {any} The requested any
+  * Gets specific target calendars or configuration
+  * @returns {any} The requested any
 
- */
+  */
 
 function getTargetCalendars() {
   const targetCalendarNames = ["Kevin's Calendar", "Kevin's mTBI Calendar", "Kevin mTBI Calendar", "Kevin Calendar"];
@@ -641,24 +641,24 @@ function getTargetCalendars() {
 
 /**
 
- * Gets specific week number or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific week number or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getWeekNumber(date) { return Math.ceil(((date - new Date(date.getUTCFullYear(), 0, 1)) / 86400000 + 1) / 7); }
 
 /**
 
- * Checks boolean condition
- * @param
- * @param {any} loc1 - The loc1 parameter
- * @param {any} loc2 - The loc2 parameter
- * @returns {any} True if condition is met, false otherwise
+  * Checks boolean condition
+  * @param
+  * @param {any} loc1 - The loc1 parameter
+  * @param {any} loc2 - The loc2 parameter
+  * @returns {any} True if condition is met, false otherwise
 
- */
+  */
 
 function isSameLocationApproximate(loc1, loc2) {
   const R = 6371e3; // Earth radius in meters

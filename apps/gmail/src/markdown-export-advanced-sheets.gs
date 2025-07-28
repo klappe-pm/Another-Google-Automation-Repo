@@ -1,43 +1,43 @@
 /**
- * Script Name: markdown- export- advanced- sheets
- *
- * Script Summary:
- * Exports markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Access Drive file system
- * 4. Fetch source data
- * 5. Process and transform data
- * 6. Sort data by relevant fields
- * 7. Format output for presentation
- * 8. Send notifications or reports
- *
- * Script Functions:
- * - onOpen(): Performs specialized operations
- * - searchAndExportEmails(): Exports search and emails to external format
- * - showDialog(): Logs show dia or messages
- *
- * Script Helper Functions:
- * - formatDate(): Formats date for display
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - GmailApp: For accessing email messages and labels
- * - HtmlService: For serving HTML content
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: markdown- export- advanced- sheets
+  *
+  * Script Summary:
+  * Exports markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Access Drive file system
+  * 4. Fetch source data
+  * 5. Process and transform data
+  * 6. Sort data by relevant fields
+  * 7. Format output for presentation
+  * 8. Send notifications or reports
+  *
+  * Script Functions:
+  * - onOpen(): Performs specialized operations
+  * - searchAndExportEmails(): Exports search and emails to external format
+  * - showDialog(): Logs show dia or messages
+  *
+  * Script Helper Functions:
+  * - formatDate(): Formats date for display
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - GmailApp: For accessing email messages and labels
+  * - HtmlService: For serving HTML content
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 / * Summary:
 This Google Apps Script automates the process of searching for emails based on various criteria,
@@ -54,18 +54,18 @@ Key features:
 6. Updating a Google Sheets spreadsheet with exported file details and extracted information
 7. Sorting of exported emails by date
 8. Sharing of the export folder with view access *//  / Function to create and add the custom menu to the Google Sheets UI
- // Function to display the dialog box for user input
- // Main function to search and export emails based on user input
- // Helper function to format dates for the email search query
+  // Function to display the dialog box for user input
+  // Main function to search and export emails based on user input
+  // Helper function to format dates for the email search query
 
 // Main Functions
 
 /**
 
- * Performs specialized operations
- * @returns {string} The formatted string
+  * Performs specialized operations
+  * @returns {string} The formatted string
 
- */
+  */
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
@@ -76,16 +76,16 @@ function onOpen() {
 
 /**
 
- * Exports search and emails to external format
- * @param
- * @param {any} searchTerm - The searchTerm parameter
- * @param {GmailLabel} label - The label parameter
- * @param {string} keyword - The keyword parameter
- * @param {any} startDate - The startDate parameter
- * @param {any} endDate - The endDate parameter
- * @returns {string} The formatted string
+  * Exports search and emails to external format
+  * @param
+  * @param {any} searchTerm - The searchTerm parameter
+  * @param {GmailLabel} label - The label parameter
+  * @param {string} keyword - The keyword parameter
+  * @param {any} startDate - The startDate parameter
+  * @param {any} endDate - The endDate parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function searchAndExportEmails(searchTerm, label, keyword, startDate, endDate) {
   const queryParts = [];
@@ -98,8 +98,8 @@ function searchAndExportEmails(searchTerm, label, keyword, startDate, endDate) {
   const folderName = 'Charges Test';
   const sheetName = query.replace( / [: ] / g, ' - '); // Rename sheet using search operators // Create or get the folder;
   let folder = DriveApp.getFoldersByName(folderName).hasNext();
-               ? DriveApp.getFoldersByName(folderName).next();
-               : DriveApp.createFolder(folderName);
+                ? DriveApp.getFoldersByName(folderName).next();
+                : DriveApp.createFolder(folderName);
   Logger.log(`Folder ID: ${folder.getId()}`); // Create or get the spreadsheet;
   let ss = SpreadsheetApp.getActiveSpreadsheet();
   if (! ss) {
@@ -154,10 +154,10 @@ function searchAndExportEmails(searchTerm, label, keyword, startDate, endDate) {
 
 /**
 
- * Logs show dia or messages
- * @returns {string} The formatted string
+  * Logs show dia or messages
+  * @returns {string} The formatted string
 
- */
+  */
 
 function showDialog() {
   const html = HtmlService.createHtmlOutputFromFile('dialog.html');
@@ -170,12 +170,12 @@ function showDialog() {
 
 /**
 
- * Formats date for display
- * @param
- * @param {any} date - The date parameter
- * @returns {string} The formatted string
+  * Formats date for display
+  * @param
+  * @param {any} date - The date parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function formatDate(date) {
   return Utilities.formatDate(new Date(date), Session.getScriptTimeZone(), 'yyyy / MM / dd');

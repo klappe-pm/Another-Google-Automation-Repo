@@ -1,42 +1,42 @@
 /**
- * Script Name: style- tabs
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Format output for presentation
- *
- * Script Functions:
- * - onOpen(): Works with spreadsheet data
- *
- * Script Helper Functions:
- * - formatAllSheets(): Formats all sheets for display
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: style- tabs
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Format output for presentation
+  *
+  * Script Functions:
+  * - onOpen(): Works with spreadsheet data
+  *
+  * Script Helper Functions:
+  * - formatAllSheets(): Formats all sheets for display
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 /**
- * Creates a custom menu in the Google Sheets UI when the spreadsheet opens.
- * This function adds a new menu item "Custom Formatting" with a sub- item
- * that runs the formatAllSheets function when clicked.
- *// / Main Functions
+  * Creates a custom menu in the Google Sheets UI when the spreadsheet opens.
+  * This function adds a new menu item "Custom Formatting" with a sub- item
+  * that runs the formatAllSheets function when clicked.
+  *// / Main Functions
 
 // Main Functions
 
 /**
 
- * Works with spreadsheet data
+  * Works with spreadsheet data
 
- */
+  */
 
 function onOpen() {
   let ui = SpreadsheetApp.getUi();
@@ -49,9 +49,9 @@ function onOpen() {
 
 /**
 
- * Formats all sheets for display
+  * Formats all sheets for display
 
- */
+  */
 
 function formatAllSheets() {
   // Get the active spreadsheet
@@ -69,11 +69,11 @@ function formatAllSheets() {
 
     // Set font to Helvetica Neue, size 11 for all cells
     dataRange.setFontFamily("Helvetica Neue")
-             .setFontSize(11);
+              .setFontSize(11);
 
     // Set horizontal alignment to left and vertical alignment to top for all cells
     dataRange.setHorizontalAlignment("left")
-             .setVerticalAlignment("top");
+              .setVerticalAlignment("top");
 
     // Make the top row bold
     let topRow = sheet.getRange(1, 1, 1, sheet.getLastColumn());

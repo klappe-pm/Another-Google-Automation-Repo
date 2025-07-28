@@ -1,41 +1,41 @@
 /**
- * Script Name: export- tasks- obsidian
- *
- * Script Summary:
- * Exports tasks for automated workflow processing.
- *
- * Script Purpose:
- * - Extract tasks obsidian data from Google services
- * - Convert data to portable formats
- * - Generate reports and summaries
- *
- * Script Steps:
- * 1. Access Drive file system
- * 2. Fetch source data
- * 3. Execute main operation
- * 4. Handle errors and edge cases
- * 5. Log completion status
- *
- * Script Functions:
- * - exportTasksToMarkdown(): Exports tasks to markdown to external format
- * - getOrCreateFolderId(): Gets specific or create folder id or configuration
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - Tasks: For task list operations
- */
+  * Script Name: export- tasks- obsidian
+  *
+  * Script Summary:
+  * Exports tasks for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Extract tasks obsidian data from Google services
+  * - Convert data to portable formats
+  * - Generate reports and summaries
+  *
+  * Script Steps:
+  * 1. Access Drive file system
+  * 2. Fetch source data
+  * 3. Execute main operation
+  * 4. Handle errors and edge cases
+  * 5. Log completion status
+  *
+  * Script Functions:
+  * - exportTasksToMarkdown(): Exports tasks to markdown to external format
+  * - getOrCreateFolderId(): Gets specific or create folder id or configuration
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - Tasks: For task list operations
+  */
 
 // Main Functions
 
 /**
 
- * Exports tasks to markdown to external format
- * @returns {any} The result
+  * Exports tasks to markdown to external format
+  * @returns {any} The result
 
- */
+  */
 
 function exportTasksToMarkdown() {
   try {
@@ -81,12 +81,12 @@ function exportTasksToMarkdown() {
 
 /**
 
- * Gets specific or create folder id or configuration
- * @param
- * @param {string} folderName - The folderName to retrieve
- * @returns {any} The requested any
+  * Gets specific or create folder id or configuration
+  * @param
+  * @param {string} folderName - The folderName to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getOrCreateFolderId(folderName) {
   try {

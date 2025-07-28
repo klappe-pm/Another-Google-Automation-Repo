@@ -1,52 +1,52 @@
 /**
- * Script Name: export- docs- comments- sheets
- *
- * Script Summary:
- * Exports spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Extract docs comments sheets data from Google services
- * - Convert data to portable formats
- * - Generate reports and summaries
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Validate input data
- * 5. Process and transform data
- * 6. Format output for presentation
- * 7. Write results to destination
- *
- * Script Functions:
- * - exportComments(): Exports comments to external format
- * - processComment(): Processes and transforms comment
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: export- docs- comments- sheets
+  *
+  * Script Summary:
+  * Exports spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Extract docs comments sheets data from Google services
+  * - Convert data to portable formats
+  * - Generate reports and summaries
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Validate input data
+  * 5. Process and transform data
+  * 6. Format output for presentation
+  * 7. Write results to destination
+  *
+  * Script Functions:
+  * - exportComments(): Exports comments to external format
+  * - processComment(): Processes and transforms comment
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 // Main Functions
 
 /**
 
- * Exports comments to external format
- * @returns {Array} Array of results
+  * Exports comments to external format
+  * @returns {Array} Array of results
 
- */
+  */
 
 /**
 
- * Exports comments to external format
- * @returns {Array} Array of results
+  * Exports comments to external format
+  * @returns {Array} Array of results
 
- */
+  */
 
 function exportComments() {
   try { // Get document ID from user input
@@ -84,21 +84,21 @@ function exportComments() {
 
 /**
 
- * Processes and transforms comment
- * @param
- * @param {any} comment - The comment parameter
- * @returns {Array} Array of results
+  * Processes and transforms comment
+  * @param
+  * @param {any} comment - The comment parameter
+  * @returns {Array} Array of results
 
- */
+  */
 
 /**
 
- * Processes and transforms comment
- * @param
- * @param {any} comment - The comment parameter
- * @returns {Array} Array of results
+  * Processes and transforms comment
+  * @param
+  * @param {any} comment - The comment parameter
+  * @returns {Array} Array of results
 
- */
+  */
 
 function processComment(comment) {
   let createdDate = new Date(comment.createdDate); // We can't calculate elapsed time here anymore since we fetch replies separately;

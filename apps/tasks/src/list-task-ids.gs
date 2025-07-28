@@ -1,33 +1,33 @@
 /**
- * Script Name: list- task- ids
- *
- * Script Summary:
- * Manages tasks for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Execute main operation
- * 2. Handle errors and edge cases
- * 3. Log completion status
- *
- * Script Functions:
- * - listTaskLists(): Checks boolean condition
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - Tasks: For task list operations
- */
+  * Script Name: list- task- ids
+  *
+  * Script Summary:
+  * Manages tasks for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Execute main operation
+  * 2. Handle errors and edge cases
+  * 3. Log completion status
+  *
+  * Script Functions:
+  * - listTaskLists(): Checks boolean condition
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - Tasks: For task list operations
+  */
 
 // Main Functions
 
 /**
 
- * Checks boolean condition
+  * Checks boolean condition
 
- */
+  */
 
 function listTaskLists() {
   try {

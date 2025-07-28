@@ -1,30 +1,30 @@
 /**
- * Script Name: markdown- update- metadata
- *
- * Script Summary:
- * Updates markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- *
- * Script Steps:
- * 1. Access Drive file system
- * 2. Fetch source data
- * 3. Process and transform data
- *
- * Script Functions:
- * - moveMarkdownFiles(): Manages files and folders
- * - updateYamlFrontmatterToFile(): Updates existing yaml frontmatter to file
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- */
+  * Script Name: markdown- update- metadata
+  *
+  * Script Summary:
+  * Updates markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  *
+  * Script Steps:
+  * 1. Access Drive file system
+  * 2. Fetch source data
+  * 3. Process and transform data
+  *
+  * Script Functions:
+  * - moveMarkdownFiles(): Manages files and folders
+  * - updateYamlFrontmatterToFile(): Updates existing yaml frontmatter to file
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  */
 
 /**  * Main function to move Markdown files and update their YAML frontmatter. *// *  *  * Enhanced function to handle existing metadata and update YAML frontmatter. * @param {File} file - The Google Drive file to process. *// / Main Functions
 
@@ -32,9 +32,9 @@
 
 /**
 
- * Manages files and folders
+  * Manages files and folders
 
- */
+  */
 
 function moveMarkdownFiles() {
   const folderIdToMoveInto = ""; // Target folder ID (add the target folder ID here);
@@ -66,11 +66,11 @@ function moveMarkdownFiles() {
 
 /**
 
- * Updates existing yaml frontmatter to file
- * @param
- * @param {File} file - The file to update
+  * Updates existing yaml frontmatter to file
+  * @param
+  * @param {File} file - The file to update
 
- */
+  */
 
 function updateYamlFrontmatterToFile(file) {
   const fileName = file.getName();

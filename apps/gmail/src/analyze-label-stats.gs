@@ -1,43 +1,43 @@
 /**
- * Script Name: analyze- label- stats
- *
- * Script Summary:
- * Exports Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- * - Analyze label stats patterns and trends
- * - Calculate statistics and metrics
- * - Generate insights and recommendations
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Process and transform data
- * 5. Sort data by relevant fields
- * 6. Format output for presentation
- *
- * Script Functions:
- * - analyzeGmailLabels(): Analyzes gmail labels and generates insights
- * - calculateAverage(): Performs calculations on average
- * - calculateMedian(): Performs calculations on median
- * - exportToSheet(): Exports to sheet to external format
- * - logError(): Logs error or messages
- * - onOpen(): Processes email data
- *
- * Script Helper Functions:
- * - calculateMax(): Performs calculations on max
- * - calculateMin(): Performs calculations on min
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: analyze- label- stats
+  *
+  * Script Summary:
+  * Exports Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Analyze label stats patterns and trends
+  * - Calculate statistics and metrics
+  * - Generate insights and recommendations
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Process and transform data
+  * 5. Sort data by relevant fields
+  * 6. Format output for presentation
+  *
+  * Script Functions:
+  * - analyzeGmailLabels(): Analyzes gmail labels and generates insights
+  * - calculateAverage(): Performs calculations on average
+  * - calculateMedian(): Performs calculations on median
+  * - exportToSheet(): Exports to sheet to external format
+  * - logError(): Logs error or messages
+  * - onOpen(): Processes email data
+  *
+  * Script Helper Functions:
+  * - calculateMax(): Performs calculations on max
+  * - calculateMin(): Performs calculations on min
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 1. Complete label analysis with thread and message counts
   2. Attachment statistics per label
@@ -67,19 +67,19 @@ const CONFIG = {
   Logger.log(`ERROR: ${JSON.stringify(errorDetails, null, 2)}`);
 } // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = // Main Analysis Function // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
 
- // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = // Statistical Helper Functions // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
+  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = // Statistical Helper Functions // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
 
- // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = // Export Functions // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
+  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = // Export Functions // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
 
- // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = // Menu Integration // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
+  // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = // Menu Integration // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
 
 /**
 
- * Processes label
- * @param {GmailLabel} label - The label parameter
- * @returns {Array} Array of results
+  * Processes label
+  * @param {GmailLabel} label - The label parameter
+  * @returns {Array} Array of results
 
- */
+  */
 
 function processLabel(label) {
   const labelName = label.getName();
@@ -141,10 +141,10 @@ function processLabel(label) {
 
 /**
 
- * Analyzes gmail labels and generates insights
- * @returns {Array} Array of results
+  * Analyzes gmail labels and generates insights
+  * @returns {Array} Array of results
 
- */
+  */
 
 function analyzeGmailLabels() {
   try {
@@ -184,12 +184,12 @@ function analyzeGmailLabels() {
 
 /**
 
- * Performs calculations on average
- * @param
- * @param {Array} array - Array of elements
- * @returns {Array} Array of results
+  * Performs calculations on average
+  * @param
+  * @param {Array} array - Array of elements
+  * @returns {Array} Array of results
 
- */
+  */
 
 function calculateAverage(array) {
   if (array.length = = = 0) return 0;
@@ -199,12 +199,12 @@ function calculateAverage(array) {
 
 /**
 
- * Performs calculations on median
- * @param
- * @param {Array} array - Array of elements
- * @returns {Array} Array of results
+  * Performs calculations on median
+  * @param
+  * @param {Array} array - Array of elements
+  * @returns {Array} Array of results
 
- */
+  */
 
 function calculateMedian(array) {
   if (array.length = = = 0) return 0;
@@ -221,12 +221,12 @@ function calculateMedian(array) {
 
 /**
 
- * Exports to sheet to external format
- * @param
- * @param {Object} labelData - The labelData parameter
- * @returns {Array} Array of results
+  * Exports to sheet to external format
+  * @param
+  * @param {Object} labelData - The labelData parameter
+  * @returns {Array} Array of results
 
- */
+  */
 
 function exportToSheet(labelData) {
   try {
@@ -277,22 +277,22 @@ function exportToSheet(labelData) {
 
 /**
 
- * Logs error or messages
- * @param
- * @param {any} error - The error parameter
- * @param {string} context - The context parameter
- * @returns {Array} Array of results
+  * Logs error or messages
+  * @param
+  * @param {any} error - The error parameter
+  * @param {string} context - The context parameter
+  * @returns {Array} Array of results
 
- */
+  */
 
 function logError(error, context = {}
 
 /**
 
- * Processes email data
- * @returns {Array} Array of results
+  * Processes email data
+  * @returns {Array} Array of results
 
- */
+  */
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
@@ -305,12 +305,12 @@ function onOpen() {
 
 /**
 
- * Performs calculations on max
- * @param
- * @param {Array} array - Array of elements
- * @returns {Array} Array of results
+  * Performs calculations on max
+  * @param
+  * @param {Array} array - Array of elements
+  * @returns {Array} Array of results
 
- */
+  */
 
 function calculateMax(array) {
   return array.length > 0 ? Math.max(...array) : 0;
@@ -318,12 +318,12 @@ function calculateMax(array) {
 
 /**
 
- * Performs calculations on min
- * @param
- * @param {Array} array - Array of elements
- * @returns {Array} Array of results
+  * Performs calculations on min
+  * @param
+  * @param {Array} array - Array of elements
+  * @returns {Array} Array of results
 
- */
+  */
 
 function calculateMin(array) {
   return array.length > 0 ? Math.min(...array) : 0;

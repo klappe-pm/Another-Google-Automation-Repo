@@ -1,40 +1,40 @@
 /**
- * Script Name: export- labels- gmail
- *
- * Script Summary:
- * Exports Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- * - Extract labels gmail data from Google services
- * - Convert data to portable formats
- * - Generate reports and summaries
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Sort data by relevant fields
- * 5. Send notifications or reports
- *
- * Script Functions:
- * - exportGmailLabels(): Exports gmail labels to external format
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: export- labels- gmail
+  *
+  * Script Summary:
+  * Exports Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Extract labels gmail data from Google services
+  * - Convert data to portable formats
+  * - Generate reports and summaries
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Sort data by relevant fields
+  * 5. Send notifications or reports
+  *
+  * Script Functions:
+  * - exportGmailLabels(): Exports gmail labels to external format
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 // Main Functions
 
 /**
 
- * Exports gmail labels to external format
- * @returns {Array} Array of results
+  * Exports gmail labels to external format
+  * @returns {Array} Array of results
 
- */
+  */
 
 function exportGmailLabels() { // Get the active spreadsheet
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();

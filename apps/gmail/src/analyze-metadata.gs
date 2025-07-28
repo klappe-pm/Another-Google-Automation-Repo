@@ -1,41 +1,41 @@
 /**
- * Script Name: analyze- metadata
- *
- * Script Summary:
- * Processes email messages for automated workflow processing.
- *
- * Script Purpose:
- * - Analyze metadata patterns and trends
- * - Calculate statistics and metrics
- * - Generate insights and recommendations
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Connect to Gmail service
- * 2. Fetch source data
- * 3. Process and transform data
- * 4. Send notifications or reports
- *
- * Script Functions:
- * - markAllEmailsAsRead(): Reads mark all emails as from source
- * - testGmailAccess(): Processes email data
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- */
+  * Script Name: analyze- metadata
+  *
+  * Script Summary:
+  * Processes email messages for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Analyze metadata patterns and trends
+  * - Calculate statistics and metrics
+  * - Generate insights and recommendations
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Connect to Gmail service
+  * 2. Fetch source data
+  * 3. Process and transform data
+  * 4. Send notifications or reports
+  *
+  * Script Functions:
+  * - markAllEmailsAsRead(): Reads mark all emails as from source
+  * - testGmailAccess(): Processes email data
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  */
 
 // Main Functions
 
 /**
 
- * Reads mark all emails as from source
- * @returns {string} The formatted string
+  * Reads mark all emails as from source
+  * @returns {string} The formatted string
 
- */
+  */
 
 function markAllEmailsAsRead() {
   try { // Initialize logging
@@ -117,10 +117,10 @@ function markAllEmailsAsRead() {
 
 /**
 
- * Processes email data
- * @returns {string} The formatted string
+  * Processes email data
+  * @returns {string} The formatted string
 
- */
+  */
 
 function testGmailAccess() {
   Logger.log('\n= = = Gmail Access Test - Start = = = ');

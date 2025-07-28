@@ -1,57 +1,57 @@
 /**
- * Script Name: markdown- index- comprehensive
- *
- * Script Summary:
- * Indexs markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Validate input data
- * 5. Process and transform data
- * 6. Apply filters and criteria
- * 7. Sort data by relevant fields
- * 8. Format output for presentation
- *
- * Script Functions:
- * - addToSheet(): Works with spreadsheet data
- * - buildFolderHierarchy(): Constructs complex folder hierarchy structures
- * - clearProcessedFilesCache(): Processes and transforms cleared files cache
- * - createConfigTemplate(): Creates new config template or resources
- * - createDriveIndexMerged(): Creates new drive index merged or resources
- * - finalizeSheets(): Works with spreadsheet data
- * - getFilePath(): Gets specific file path or configuration
- * - getOrCreateSheet(): Gets specific or create sheet or configuration
- * - listFolderTreeMerged(): Combines multiple list folder treed sources
- * - loadConfig(): Loads config from storage
- * - logDebug(): Logs debug or messages
- * - logStatus(): Logs status or messages
- * - onOpen(): Manages files and folders
- * - processFolder(): Processes and transforms folder
- * - setHeaders(): Sets headers or configuration values
- * - setupSheets(): Sets up sheets or configuration values
- * - shouldProcessFile(): Processes and transforms should file
- * - showAlert(): Performs specialized operations
- *
- * Script Helper Functions:
- * - formatDate(): Formats date for display
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - PropertiesService: For storing script properties
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: markdown- index- comprehensive
+  *
+  * Script Summary:
+  * Indexs markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Validate input data
+  * 5. Process and transform data
+  * 6. Apply filters and criteria
+  * 7. Sort data by relevant fields
+  * 8. Format output for presentation
+  *
+  * Script Functions:
+  * - addToSheet(): Works with spreadsheet data
+  * - buildFolderHierarchy(): Constructs complex folder hierarchy structures
+  * - clearProcessedFilesCache(): Processes and transforms cleared files cache
+  * - createConfigTemplate(): Creates new config template or resources
+  * - createDriveIndexMerged(): Creates new drive index merged or resources
+  * - finalizeSheets(): Works with spreadsheet data
+  * - getFilePath(): Gets specific file path or configuration
+  * - getOrCreateSheet(): Gets specific or create sheet or configuration
+  * - listFolderTreeMerged(): Combines multiple list folder treed sources
+  * - loadConfig(): Loads config from storage
+  * - logDebug(): Logs debug or messages
+  * - logStatus(): Logs status or messages
+  * - onOpen(): Manages files and folders
+  * - processFolder(): Processes and transforms folder
+  * - setHeaders(): Sets headers or configuration values
+  * - setupSheets(): Sets up sheets or configuration values
+  * - shouldProcessFile(): Processes and transforms should file
+  * - showAlert(): Performs specialized operations
+  *
+  * Script Helper Functions:
+  * - formatDate(): Formats date for display
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - PropertiesService: For storing script properties
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 /  / = = = = = = = = GLOBAL CONSTANTS = = = = = = = = const CONFIG_SHEET_NAME = 'Config';
 const FOLDER_TREE_SHEET_NAME = 'FolderTree';
@@ -71,14 +71,14 @@ const DEFAULT_MAX_EXECUTION_TIME_MINUTES = 5; // = = = = = = = = UI FUNCTIONS = 
 
 /**
 
- * Works with spreadsheet data
- * @param
- * @param {Sheet} sheet - The sheet parameter
- * @param {File} file - The file parameter
- * @param {any} type - The type parameter
- * @returns {any} The result
+  * Works with spreadsheet data
+  * @param
+  * @param {Sheet} sheet - The sheet parameter
+  * @param {File} file - The file parameter
+  * @param {any} type - The type parameter
+  * @returns {any} The result
 
- */
+  */
 
 function addToSheet(sheet, file, type) {
   try {
@@ -105,16 +105,16 @@ function addToSheet(sheet, file, type) {
 
 /**
 
- * Constructs complex folder hierarchy structures
- * @param
- * @param {Folder} folder - The folder parameter
- * @param {number} maxDepth - The maxDepth parameter
- * @param {string} currentPath - The currentPath parameter
- * @param {any} currentLevel - The currentLevel parameter
- * @param {Object} allFolderData - The allFolderData parameter
- * @returns {any} The result
+  * Constructs complex folder hierarchy structures
+  * @param
+  * @param {Folder} folder - The folder parameter
+  * @param {number} maxDepth - The maxDepth parameter
+  * @param {string} currentPath - The currentPath parameter
+  * @param {any} currentLevel - The currentLevel parameter
+  * @param {Object} allFolderData - The allFolderData parameter
+  * @returns {any} The result
 
- */
+  */
 
 function buildFolderHierarchy(folder, maxDepth, currentPath, currentLevel, allFolderData) {
   const config = loadConfig();
@@ -147,10 +147,10 @@ function buildFolderHierarchy(folder, maxDepth, currentPath, currentLevel, allFo
 
 /**
 
- * Processes and transforms cleared files cache
- * @returns {any} The result
+  * Processes and transforms cleared files cache
+  * @returns {any} The result
 
- */
+  */
 
 function clearProcessedFilesCache() {
   const ui = SpreadsheetApp.getUi();
@@ -179,10 +179,10 @@ function clearProcessedFilesCache() {
 
 /**
 
- * Creates new config template or resources
- * @returns {any} The newly created any
+  * Creates new config template or resources
+  * @returns {any} The newly created any
 
- */
+  */
 
 function createConfigTemplate() {
   try {
@@ -220,10 +220,10 @@ function createConfigTemplate() {
 
 /**
 
- * Creates new drive index merged or resources
- * @returns {any} The newly created any
+  * Creates new drive index merged or resources
+  * @returns {any} The newly created any
 
- */
+  */
 
 function createDriveIndexMerged() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -278,13 +278,13 @@ function createDriveIndexMerged() {
 
 /**
 
- * Works with spreadsheet data
- * @param
- * @param {any} ss - The ss parameter
- * @param {any} tabOrder - The tabOrder parameter
- * @returns {any} The result
+  * Works with spreadsheet data
+  * @param
+  * @param {any} ss - The ss parameter
+  * @param {any} tabOrder - The tabOrder parameter
+  * @returns {any} The result
 
- */
+  */
 
 function finalizeSheets(ss, tabOrder) {
   try { // Reorder sheets
@@ -315,12 +315,12 @@ function finalizeSheets(ss, tabOrder) {
 
 /**
 
- * Gets specific file path or configuration
- * @param
- * @param {File} file - The file to retrieve
- * @returns {any} The requested any
+  * Gets specific file path or configuration
+  * @param
+  * @param {File} file - The file to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getFilePath(file) {
   const cache = PropertiesService.getScriptProperties();
@@ -357,13 +357,13 @@ function getFilePath(file) {
 
 /**
 
- * Gets specific or create sheet or configuration
- * @param
- * @param {any} ss - The ss to retrieve
- * @param {string} sheetName - The sheetName to retrieve
- * @returns {any} The requested any
+  * Gets specific or create sheet or configuration
+  * @param
+  * @param {any} ss - The ss to retrieve
+  * @param {string} sheetName - The sheetName to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getOrCreateSheet(ss, sheetName) {
   let sheet = ss.getSheetByName(sheetName);
@@ -375,10 +375,10 @@ function getOrCreateSheet(ss, sheetName) {
 
 /**
 
- * Combines multiple list folder treed sources
- * @returns {any} True if condition is met, false otherwise
+  * Combines multiple list folder treed sources
+  * @returns {any} True if condition is met, false otherwise
 
- */
+  */
 
 function listFolderTreeMerged() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -433,10 +433,10 @@ function listFolderTreeMerged() {
 
 /**
 
- * Loads config from storage
- * @returns {any} The result
+  * Loads config from storage
+  * @returns {any} The result
 
- */
+  */
 
 function loadConfig() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -489,13 +489,13 @@ function loadConfig() {
 
 /**
 
- * Logs debug or messages
- * @param
- * @param {string} message - The message content
- * @param {any} debugMode - The debugMode parameter
- * @returns {any} The result
+  * Logs debug or messages
+  * @param
+  * @param {string} message - The message content
+  * @param {any} debugMode - The debugMode parameter
+  * @returns {any} The result
 
- */
+  */
 
 function logDebug(message, debugMode) {
   if (debugMode) {
@@ -506,14 +506,14 @@ function logDebug(message, debugMode) {
 
 /**
 
- * Logs status or messages
- * @param
- * @param {Sheet} sheet - The sheet parameter
- * @param {string} message - The message content
- * @param {any} isError - The isError parameter
- * @returns {any} The result
+  * Logs status or messages
+  * @param
+  * @param {Sheet} sheet - The sheet parameter
+  * @param {string} message - The message content
+  * @param {any} isError - The isError parameter
+  * @returns {any} The result
 
- */
+  */
 
 function logStatus(sheet, message, isError = false) {
   try {
@@ -527,10 +527,10 @@ function logStatus(sheet, message, isError = false) {
 
 /**
 
- * Manages files and folders
- * @returns {any} The result
+  * Manages files and folders
+  * @returns {any} The result
 
- */
+  */
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
@@ -546,19 +546,19 @@ function onOpen() {
 
 /**
 
- * Processes and transforms folder
- * @param
- * @param {Folder} folder - The folder parameter
- * @param {any} allowedTypes - The allowedTypes parameter
- * @param {Sheet} sheets - The sheets parameter
- * @param {File} processedFiles - The processedFiles parameter
- * @param {any} queue - The queue parameter
- * @param {Object} config - Configuration settings
- * @param {any} startTime - The startTime parameter
- * @param {number} maxExecutionTimeMs - The maxExecutionTimeMs parameter
- * @returns {any} The result
+  * Processes and transforms folder
+  * @param
+  * @param {Folder} folder - The folder parameter
+  * @param {any} allowedTypes - The allowedTypes parameter
+  * @param {Sheet} sheets - The sheets parameter
+  * @param {File} processedFiles - The processedFiles parameter
+  * @param {any} queue - The queue parameter
+  * @param {Object} config - Configuration settings
+  * @param {any} startTime - The startTime parameter
+  * @param {number} maxExecutionTimeMs - The maxExecutionTimeMs parameter
+  * @returns {any} The result
 
- */
+  */
 
 function processFolder(folder, allowedTypes, sheets, processedFiles, queue, config, startTime, maxExecutionTimeMs) {
   const { debugMode } = config;
@@ -613,13 +613,13 @@ function processFolder(folder, allowedTypes, sheets, processedFiles, queue, conf
 
 /**
 
- * Sets headers or configuration values
- * @param
- * @param {Range} range - The range to set
- * @param {Array} headersArray - The headersArray to set
- * @returns {any} The result
+  * Sets headers or configuration values
+  * @param
+  * @param {Range} range - The range to set
+  * @param {Array} headersArray - The headersArray to set
+  * @returns {any} The result
 
- */
+  */
 
 function setHeaders(range, headersArray) {
   range.setValues([headersArray]);
@@ -631,14 +631,14 @@ function setHeaders(range, headersArray) {
 
 /**
 
- * Sets up sheets or configuration values
- * @param
- * @param {any} ss - The ss to set
- * @param {any} allowedTypes - The allowedTypes to set
- * @param {Object} config - Configuration settings
- * @returns {any} The result
+  * Sets up sheets or configuration values
+  * @param
+  * @param {any} ss - The ss to set
+  * @param {any} allowedTypes - The allowedTypes to set
+  * @param {Object} config - Configuration settings
+  * @returns {any} The result
 
- */
+  */
 
 function setupSheets(ss, allowedTypes, config) {
   const sheets = {};
@@ -663,16 +663,16 @@ function setupSheets(ss, allowedTypes, config) {
 
 /**
 
- * Processes and transforms should file
- * @param
- * @param {File} file - The file parameter
- * @param {any} extensions - The extensions parameter
- * @param {File} processedFiles - The processedFiles parameter
- * @param {any} debugMode - The debugMode parameter
- * @param {any} mimeType - The mimeType parameter
- * @returns {any} The result
+  * Processes and transforms should file
+  * @param
+  * @param {File} file - The file parameter
+  * @param {any} extensions - The extensions parameter
+  * @param {File} processedFiles - The processedFiles parameter
+  * @param {any} debugMode - The debugMode parameter
+  * @param {any} mimeType - The mimeType parameter
+  * @returns {any} The result
 
- */
+  */
 
 function shouldProcessFile(file, extensions, processedFiles, debugMode, mimeType) {
   if (processedFiles.has(file.getId())) {
@@ -699,14 +699,14 @@ function shouldProcessFile(file, extensions, processedFiles, debugMode, mimeType
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {any} title - The title parameter
- * @param {string} message - The message content
- * @param {any} buttonSet - The buttonSet parameter
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {any} title - The title parameter
+  * @param {string} message - The message content
+  * @param {any} buttonSet - The buttonSet parameter
+  * @returns {any} The result
 
- */
+  */
 
 function showAlert(title, message, buttonSet) {
   try {
@@ -720,12 +720,12 @@ function showAlert(title, message, buttonSet) {
 
 /**
 
- * Formats date for display
- * @param
- * @param {any} date - The date parameter
- * @returns {any} The result
+  * Formats date for display
+  * @param
+  * @param {any} date - The date parameter
+  * @returns {any} The result
 
- */
+  */
 
 function formatDate(date) {
   if (! (date instanceof Date) || isNaN(date.getTime())) {

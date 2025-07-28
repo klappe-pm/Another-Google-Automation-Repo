@@ -1,64 +1,64 @@
 /**
- * Script Name: create- sheets- tree- diagram
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Generate new sheets tree diagram items
- * - Set up required structure and metadata
- * - Apply formatting and organization
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Process and transform data
- * 4. Sort data by relevant fields
- * 5. Format output for presentation
- *
- * Script Functions:
- * - createIndexV2(): Creates new index v2 or resources
- *
- * Script Helper Functions:
- * - extractCategory(): Extracts specific information
- * - formatSheet(): Formats sheet for display
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: create- sheets- tree- diagram
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Generate new sheets tree diagram items
+  * - Set up required structure and metadata
+  * - Apply formatting and organization
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Process and transform data
+  * 4. Sort data by relevant fields
+  * 5. Format output for presentation
+  *
+  * Script Functions:
+  * - createIndexV2(): Creates new index v2 or resources
+  *
+  * Script Helper Functions:
+  * - extractCategory(): Extracts specific information
+  * - formatSheet(): Formats sheet for display
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 /**
- * Extracts the category from a sheet name using PascalCase convention
- *
- * @param {string} sheetName - The name of the sheet to process
- * @returns {string} The extracted category or empty string if no category found
- *
- * Example:
- * - "salesData" returns "sales"
- * - "UserProfile" returns "user"
- * - "DATA" returns ""
- *// * *
- * Applies standardized formatting to a sheet
- *
- * @param {Sheet} sheet - The Google Sheets sheet object to format
- *
- * Formatting applied:
- * - Font: Helvetica, 10pt
- * - First row: Bold, wrapped text, frozen
- * - All cells: Left and top aligned
- *// / Main Functions
+  * Extracts the category from a sheet name using PascalCase convention
+  *
+  * @param {string} sheetName - The name of the sheet to process
+  * @returns {string} The extracted category or empty string if no category found
+  *
+  * Example:
+  * - "salesData" returns "sales"
+  * - "UserProfile" returns "user"
+  * - "DATA" returns ""
+  *// * *
+  * Applies standardized formatting to a sheet
+  *
+  * @param {Sheet} sheet - The Google Sheets sheet object to format
+  *
+  * Formatting applied:
+  * - Font: Helvetica, 10pt
+  * - First row: Bold, wrapped text, frozen
+  * - All cells: Left and top aligned
+  *// / Main Functions
 
 // Main Functions
 
 /**
 
- * Creates new index v2 or resources
- * @returns {any} The newly created any
+  * Creates new index v2 or resources
+  * @returns {any} The newly created any
 
- */
+  */
 
 function createIndexV2() {
   console.log("= = = Sheet Index Generator Started = = = ");
@@ -145,12 +145,12 @@ function createIndexV2() {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {string} sheetName - The sheetName parameter
- * @returns {any} The result
+  * Extracts specific information
+  * @param
+  * @param {string} sheetName - The sheetName parameter
+  * @returns {any} The result
 
- */
+  */
 
 function extractCategory(sheetName) {
   console.log(`Extracting category from sheet name: "${sheetName}"`);
@@ -162,12 +162,12 @@ function extractCategory(sheetName) {
 
 /**
 
- * Formats sheet for display
- * @param
- * @param {Sheet} sheet - The sheet parameter
- * @returns {any} The result
+  * Formats sheet for display
+  * @param
+  * @param {Sheet} sheet - The sheet parameter
+  * @returns {any} The result
 
- */
+  */
 
 function formatSheet(sheet) {
   const sheetName = sheet.getName();

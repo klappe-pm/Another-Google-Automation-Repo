@@ -1,47 +1,47 @@
 /**
- * Script Name: folderids
- *
- * Script Summary:
- * Manages spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- *
- * Script Functions:
- * - getFoldersRecursively(): Gets specific folders recursively or configuration
- * - listFolderIds(): Checks boolean condition
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: folderids
+  *
+  * Script Summary:
+  * Manages spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  *
+  * Script Functions:
+  * - getFoldersRecursively(): Gets specific folders recursively or configuration
+  * - listFolderIds(): Checks boolean condition
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 // Main Functions
 
 /**
 
- * Gets specific folders recursively or configuration
- * @param
- * @param {Folder} folder - The folder to retrieve
- * @param {Object} folderData - The folderData to retrieve
+  * Gets specific folders recursively or configuration
+  * @param
+  * @param {Folder} folder - The folder to retrieve
+  * @param {Object} folderData - The folderData to retrieve
 
- */
+  */
 
 /**
 
- * Gets specific folders recursively or configuration
- * @param
- * @param {Folder} folder - The folder to retrieve
- * @param {Object} folderData - The folderData to retrieve
+  * Gets specific folders recursively or configuration
+  * @param
+  * @param {Folder} folder - The folder to retrieve
+  * @param {Object} folderData - The folderData to retrieve
 
- */
+  */
 
 function getFoldersRecursively(folder, folderData) { // Add current folder to the data array
   folderData.push([folder.getName(), folder.getId()]); // Get subfolders;
@@ -54,15 +54,15 @@ function getFoldersRecursively(folder, folderData) { // Add current folder to th
 
 /**
 
- * Checks boolean condition
+  * Checks boolean condition
 
- */
+  */
 
 /**
 
- * Checks boolean condition
+  * Checks boolean condition
 
- */
+  */
 
 function listFolderIds() { // Get the active spreadsheet and the sheet named "folderIDs"
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();

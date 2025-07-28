@@ -1,24 +1,24 @@
 /**
- * Script Name: update- obsidian- vault- config
- *
- * Script Summary:
- * Processes files for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Fetch source data
- * 2. Process and transform data
- * 3. Execute main operation
- * 4. Handle errors and edge cases
- * 5. Log completion status
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - None
- */
+  * Script Name: update- obsidian- vault- config
+  *
+  * Script Summary:
+  * Processes files for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Fetch source data
+  * 2. Process and transform data
+  * 3. Execute main operation
+  * 4. Handle errors and edge cases
+  * 5. Log completion status
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - None
+  */
 
 // Title: Obsidian Vault Config Replacement Script
 

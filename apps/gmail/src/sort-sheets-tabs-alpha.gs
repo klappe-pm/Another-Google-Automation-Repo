@@ -1,36 +1,36 @@
 /**
- * Script Name: sort- sheets- tabs- alpha
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Process and transform data
- * 4. Sort data by relevant fields
- *
- * Script Functions:
- * - onOpen(): Works with spreadsheet data
- * - sortSheetsAlphabetically(): Sorts and orders sheets alphabetically
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: sort- sheets- tabs- alpha
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Process and transform data
+  * 4. Sort data by relevant fields
+  *
+  * Script Functions:
+  * - onOpen(): Works with spreadsheet data
+  * - sortSheetsAlphabetically(): Sorts and orders sheets alphabetically
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 // Main Functions
 
 /**
 
- * Works with spreadsheet data
- * @returns {any} The result
+  * Works with spreadsheet data
+  * @returns {any} The result
 
- */
+  */
 
 function onOpen() {
   let ui = SpreadsheetApp.getUi();
@@ -41,10 +41,10 @@ function onOpen() {
 
 /**
 
- * Sorts and orders sheets alphabetically
- * @returns {any} The result
+  * Sorts and orders sheets alphabetically
+  * @returns {any} The result
 
- */
+  */
 
 function sortSheetsAlphabetically() {
   try {

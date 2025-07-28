@@ -1,50 +1,50 @@
 /**
- * Script Name: generate- folder- tree
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Process and transform data
- * 5. Format output for presentation
- *
- * Script Functions:
- * - generateFolderIndex(): Generates new content or reports
- * - onOpen(): Manages files and folders
- * - processFolderBatch(): Processes and transforms folder batch
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- * - PropertiesService: For storing script properties
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: generate- folder- tree
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Process and transform data
+  * 5. Format output for presentation
+  *
+  * Script Functions:
+  * - generateFolderIndex(): Generates new content or reports
+  * - onOpen(): Manages files and folders
+  * - processFolderBatch(): Processes and transforms folder batch
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  * - PropertiesService: For storing script properties
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 // Main Functions
 
 /**
 
- * Generates new content or reports
- * @returns {boolean} True if successful, false otherwise
+  * Generates new content or reports
+  * @returns {boolean} True if successful, false otherwise
 
- */
+  */
 
 /**
 
- * Generates new content or reports
- * @returns {boolean} True if successful, false otherwise
+  * Generates new content or reports
+  * @returns {boolean} True if successful, false otherwise
 
- */
+  */
 
 function generateFolderIndex() {
   Logger.log('Script started: generateFolderIndex'); // Get the active spreadsheet;
@@ -120,17 +120,17 @@ function generateFolderIndex() {
 
 /**
 
- * Manages files and folders
- * @returns {boolean} True if successful, false otherwise
+  * Manages files and folders
+  * @returns {boolean} True if successful, false otherwise
 
- */
+  */
 
 /**
 
- * Manages files and folders
- * @returns {boolean} True if successful, false otherwise
+  * Manages files and folders
+  * @returns {boolean} True if successful, false otherwise
 
- */
+  */
 
 function onOpen() {
   let ui = SpreadsheetApp.getUi();
@@ -141,29 +141,29 @@ function onOpen() {
 
 /**
 
- * Processes and transforms folder batch
- * @param
- * @param {Folder} folder - The folder parameter
- * @param {string} path - The file path
- * @param {Folder} folderMap - The folderMap parameter
- * @param {number} maxDepth - The maxDepth parameter
- * @param {Folder} excludedFolders - The excludedFolders parameter
- * @returns {boolean} True if successful, false otherwise
+  * Processes and transforms folder batch
+  * @param
+  * @param {Folder} folder - The folder parameter
+  * @param {string} path - The file path
+  * @param {Folder} folderMap - The folderMap parameter
+  * @param {number} maxDepth - The maxDepth parameter
+  * @param {Folder} excludedFolders - The excludedFolders parameter
+  * @returns {boolean} True if successful, false otherwise
 
- */
+  */
 
 /**
 
- * Processes and transforms folder batch
- * @param
- * @param {Folder} folder - The folder parameter
- * @param {string} path - The file path
- * @param {Folder} folderMap - The folderMap parameter
- * @param {number} maxDepth - The maxDepth parameter
- * @param {Folder} excludedFolders - The excludedFolders parameter
- * @returns {boolean} True if successful, false otherwise
+  * Processes and transforms folder batch
+  * @param
+  * @param {Folder} folder - The folder parameter
+  * @param {string} path - The file path
+  * @param {Folder} folderMap - The folderMap parameter
+  * @param {number} maxDepth - The maxDepth parameter
+  * @param {Folder} excludedFolders - The excludedFolders parameter
+  * @returns {boolean} True if successful, false otherwise
 
- */
+  */
 
 function processFolderBatch(folder, path, folderMap, maxDepth, excludedFolders) {
   const folderId = folder.getId();

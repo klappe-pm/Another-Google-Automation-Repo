@@ -1,37 +1,37 @@
 /**
- * Script Name: markdown- index- tree- legacy
- *
- * Script Summary:
- * Indexs markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Process and transform data
- * 5. Format output for presentation
- * 6. Write results to destination
- *
- * Script Functions:
- * - listFilesInFolder(): Checks boolean condition
- * - onOpen(): Manages files and folders
- * - processFolder(): Processes and transforms folder
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- * - PropertiesService: For storing script properties
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: markdown- index- tree- legacy
+  *
+  * Script Summary:
+  * Indexs markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Process and transform data
+  * 5. Format output for presentation
+  * 6. Write results to destination
+  *
+  * Script Functions:
+  * - listFilesInFolder(): Checks boolean condition
+  * - onOpen(): Manages files and folders
+  * - processFolder(): Processes and transforms folder
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  * - PropertiesService: For storing script properties
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 /  / Hardcoded input for the top - level folder ID (replace with your folder ID or leave empty for My Drive);
 let TOP_LEVEL_FOLDER_ID = ''; // Example: '1FM6FHK3HmkF15RIhKa8Y8oh4JYT - yL47' / *  *  * Creates custom menu items when the spreadsheet is opened * Automatically triggered by Google Sheets *// *  *  * Main function that initiates the folder indexing process * Creates a new dated sheet and starts recursive folder processing *// *  *  * Recursively processes a folder and all its contents * @param {Folder} folder - The Google Drive folder object to process * @param {Array} pathArray - Array of folder names representing the current path * @param {number} depth - Current depth level in the folder hierarchy * @param {Sheet} sheet - The Google Sheets sheet to write data to * @param {Array} processedIds - Array of already processed file / folder IDs * @returns {Array} Updated array of processed IDs *// / Main Functions
@@ -40,9 +40,9 @@ let TOP_LEVEL_FOLDER_ID = ''; // Example: '1FM6FHK3HmkF15RIhKa8Y8oh4JYT - yL47' 
 
 /**
 
- * Checks boolean condition
+  * Checks boolean condition
 
- */
+  */
 
 function listFilesInFolder() {
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -59,9 +59,9 @@ function listFilesInFolder() {
     sheet.appendRow(headers); // Set formatting for the entire sheet;
     let range = sheet.getRange("A:DZ"); // Cover a large number of columns to ensure all are formatted;
     range.setFontFamily("Helvetica");
-         .setFontSize(11);
-         .setHorizontalAlignment("left");
-         .setVerticalAlignment("top"); // Format date columns specifically for consistent date display;
+          .setFontSize(11);
+          .setHorizontalAlignment("left");
+          .setVerticalAlignment("top"); // Format date columns specifically for consistent date display;
     sheet.getRange("H:I").setNumberFormat("yyyy - MM - dd"); // Set formatting for header row;
     let headerRange = sheet.getRange("A1:K1");
     headerRange.setFontWeight("bold");
@@ -78,9 +78,9 @@ function listFilesInFolder() {
 
 /**
 
- * Manages files and folders
+  * Manages files and folders
 
- */
+  */
 
 function onOpen() { // Add a custom menu to the spreadsheet;
   let ui = SpreadsheetApp.getUi();
@@ -92,15 +92,15 @@ function onOpen() { // Add a custom menu to the spreadsheet;
 
 /**
 
- * Processes and transforms folder
- * @param
- * @param {Folder} folder - The folder parameter
- * @param {string} pathArray - The pathArray parameter
- * @param {any} depth - The depth parameter
- * @param {Sheet} sheet - The sheet parameter
- * @param {string} processedIds - The processedIds parameter
+  * Processes and transforms folder
+  * @param
+  * @param {Folder} folder - The folder parameter
+  * @param {string} pathArray - The pathArray parameter
+  * @param {any} depth - The depth parameter
+  * @param {Sheet} sheet - The sheet parameter
+  * @param {string} processedIds - The processedIds parameter
 
- */
+  */
 
 function processFolder(folder, pathArray, depth, sheet, processedIds) {
   let files = folder.getFiles();

@@ -1,118 +1,118 @@
 /**
- * Script Name: markdown- gmail- analysis- yaml
- *
- * Script Summary:
- * Gmails markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Access Drive file system
- * 4. Fetch source data
- * 5. Validate input data
- * 6. Process and transform data
- * 7. Format output for presentation
- * 8. Write results to destination
- *
- * Script Functions:
- * - createBracketedMarkdownFile_(): Creates new bracketed markdown file_ or resources
- * - createMarkdown_(): Creates new markdown_ or resources
- * - createMarkdownFile_(): Creates new markdown file_ or resources
- * - createPDF_(): Creates new p d f_ or resources
- * - debug(): Performs specialized operations
- * - getExistingMessageIds(): Gets specific existing message ids or configuration
- * - getOrCreateFolder_(): Gets specific or create folder_ or configuration
- * - getOrCreateSheet_(): Gets specific or create sheet_ or configuration
- * - processEmails(): Processes and transforms emails
- * - processEmailsByIds(): Processes and transforms emails by ids
- * - processMessage(): Processes and transforms message
- *
- * Script Helper Functions:
- * - parseEmailBody_(): Parses and extracts email body_
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: markdown- gmail- analysis- yaml
+  *
+  * Script Summary:
+  * Gmails markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Access Drive file system
+  * 4. Fetch source data
+  * 5. Validate input data
+  * 6. Process and transform data
+  * 7. Format output for presentation
+  * 8. Write results to destination
+  *
+  * Script Functions:
+  * - createBracketedMarkdownFile_(): Creates new bracketed markdown file_ or resources
+  * - createMarkdown_(): Creates new markdown_ or resources
+  * - createMarkdownFile_(): Creates new markdown file_ or resources
+  * - createPDF_(): Creates new p d f_ or resources
+  * - debug(): Performs specialized operations
+  * - getExistingMessageIds(): Gets specific existing message ids or configuration
+  * - getOrCreateFolder_(): Gets specific or create folder_ or configuration
+  * - getOrCreateSheet_(): Gets specific or create sheet_ or configuration
+  * - processEmails(): Processes and transforms emails
+  * - processEmailsByIds(): Processes and transforms emails by ids
+  * - processMessage(): Processes and transforms message
+  *
+  * Script Helper Functions:
+  * - parseEmailBody_(): Parses and extracts email body_
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 const DEBUG = true;
 
 /**
- * Processes emails based on a search query
- *// * *
- * Processes specific emails by their IDs
- *// * *
- * Processes a single email message
- *// * *
- * Gets or creates a folder in Google Drive
- * @param {Folder} parentFolder - The parent folder
- * @param {string} folderName - The name of the folder to get or create
- * @returns {Folder} The existing or newly created folder
- *// * *
- * Gets or creates a sheet in the active spreadsheet
- * @param {string} sheetName - The name of the sheet to get or create
- * @returns {Sheet} The existing or newly created sheet
- *// * *
- * Gets existing message IDs from the sheet
- * @param {Sheet} sheet - The sheet to check for existing message IDs
- * @returns {Set} A set of existing message IDs
- *// * *
- * Creates a PDF file from HTML content
- * @param {string} htmlBody - The HTML content to convert to PDF
- * @param {string} filename - The name for the PDF file
- * @param {Folder} folder - The folder to save the PDF in
- * @returns {File} The created PDF file
- *// * *
- * Parses the email body and extracts relevant information
- * @param {string} body - The plain text body of the email
- * @param {Date} emailDate - The date of the email
- * @param {string} sender - The sender of the email
- * @param {string} subject - The subject of the email
- * @param {Date} dateProcessed - The date when the email was processed
- * @returns {Array} An array containing the parsed email data
- *// * *
- * Creates Markdown content from the email data
- * @param {Array} rowData - The parsed email data
- * @param {string} body - The full body of the email
- * @param {string} query - The search query used to find this email
- * @returns {string} The Markdown content
- *// * *
- * Creates a Markdown file in Google Drive
- * @param {string} markdownContent - The Markdown content
- * @param {string} filename - The name for the Markdown file
- * @param {Folder} folder - The folder to save the Markdown file in
- * @returns {File} The created Markdown file
- *// * *
- * Creates a bracketed Markdown file in Google Drive
- * @param {string} markdownContent - The Markdown content
- * @param {string} filename - The name for the Markdown file (without extension)
- * @param {Folder} folder - The folder to save the Markdown file in
- * @returns {File} The created bracketed Markdown file
- *// / Main Functions
+  * Processes emails based on a search query
+  *// * *
+  * Processes specific emails by their IDs
+  *// * *
+  * Processes a single email message
+  *// * *
+  * Gets or creates a folder in Google Drive
+  * @param {Folder} parentFolder - The parent folder
+  * @param {string} folderName - The name of the folder to get or create
+  * @returns {Folder} The existing or newly created folder
+  *// * *
+  * Gets or creates a sheet in the active spreadsheet
+  * @param {string} sheetName - The name of the sheet to get or create
+  * @returns {Sheet} The existing or newly created sheet
+  *// * *
+  * Gets existing message IDs from the sheet
+  * @param {Sheet} sheet - The sheet to check for existing message IDs
+  * @returns {Set} A set of existing message IDs
+  *// * *
+  * Creates a PDF file from HTML content
+  * @param {string} htmlBody - The HTML content to convert to PDF
+  * @param {string} filename - The name for the PDF file
+  * @param {Folder} folder - The folder to save the PDF in
+  * @returns {File} The created PDF file
+  *// * *
+  * Parses the email body and extracts relevant information
+  * @param {string} body - The plain text body of the email
+  * @param {Date} emailDate - The date of the email
+  * @param {string} sender - The sender of the email
+  * @param {string} subject - The subject of the email
+  * @param {Date} dateProcessed - The date when the email was processed
+  * @returns {Array} An array containing the parsed email data
+  *// * *
+  * Creates Markdown content from the email data
+  * @param {Array} rowData - The parsed email data
+  * @param {string} body - The full body of the email
+  * @param {string} query - The search query used to find this email
+  * @returns {string} The Markdown content
+  *// * *
+  * Creates a Markdown file in Google Drive
+  * @param {string} markdownContent - The Markdown content
+  * @param {string} filename - The name for the Markdown file
+  * @param {Folder} folder - The folder to save the Markdown file in
+  * @returns {File} The created Markdown file
+  *// * *
+  * Creates a bracketed Markdown file in Google Drive
+  * @param {string} markdownContent - The Markdown content
+  * @param {string} filename - The name for the Markdown file (without extension)
+  * @param {Folder} folder - The folder to save the Markdown file in
+  * @returns {File} The created bracketed Markdown file
+  *// / Main Functions
 
 // Main Functions
 
 /**
 
- * Creates new bracketed markdown file_ or resources
- * @param
- * @param {string} markdownContent - The markdownContent for creation
- * @param {string} filename - The filename for creation
- * @param {Folder} folder - The folder for creation
- * @returns {any} The newly created any
+  * Creates new bracketed markdown file_ or resources
+  * @param
+  * @param {string} markdownContent - The markdownContent for creation
+  * @param {string} filename - The filename for creation
+  * @param {Folder} folder - The folder for creation
+  * @returns {any} The newly created any
 
- */
+  */
 
 function createBracketedMarkdownFile_(markdownContent, filename, folder) {
   try {
@@ -129,14 +129,14 @@ function createBracketedMarkdownFile_(markdownContent, filename, folder) {
 
 /**
 
- * Creates new markdown_ or resources
- * @param
- * @param {Object} rowData - The rowData for creation
- * @param {string} body - The body content
- * @param {string} query - The search query
- * @returns {any} The newly created any
+  * Creates new markdown_ or resources
+  * @param
+  * @param {Object} rowData - The rowData for creation
+  * @param {string} body - The body content
+  * @param {string} query - The search query
+  * @returns {any} The newly created any
 
- */
+  */
 
 function createMarkdown_(rowData, body, query) {
   try {
@@ -157,14 +157,14 @@ function createMarkdown_(rowData, body, query) {
 
 /**
 
- * Creates new markdown file_ or resources
- * @param
- * @param {string} markdownContent - The markdownContent for creation
- * @param {string} filename - The filename for creation
- * @param {Folder} folder - The folder for creation
- * @returns {any} The newly created any
+  * Creates new markdown file_ or resources
+  * @param
+  * @param {string} markdownContent - The markdownContent for creation
+  * @param {string} filename - The filename for creation
+  * @param {Folder} folder - The folder for creation
+  * @returns {any} The newly created any
 
- */
+  */
 
 function createMarkdownFile_(markdownContent, filename, folder) {
   try {
@@ -180,14 +180,14 @@ function createMarkdownFile_(markdownContent, filename, folder) {
 
 /**
 
- * Creates new p d f_ or resources
- * @param
- * @param {string} htmlBody - The htmlBody for creation
- * @param {string} filename - The filename for creation
- * @param {Folder} folder - The folder for creation
- * @returns {any} The newly created any
+  * Creates new p d f_ or resources
+  * @param
+  * @param {string} htmlBody - The htmlBody for creation
+  * @param {string} filename - The filename for creation
+  * @param {Folder} folder - The folder for creation
+  * @returns {any} The newly created any
 
- */
+  */
 
 function createPDF_(htmlBody, filename, folder) {
   try {
@@ -204,12 +204,12 @@ function createPDF_(htmlBody, filename, folder) {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {string} message - The message content
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {string} message - The message content
+  * @returns {any} The result
 
- */
+  */
 
 function debug(message) {
   if (DEBUG) {
@@ -219,12 +219,12 @@ function debug(message) {
 
 /**
 
- * Gets specific existing message ids or configuration
- * @param
- * @param {Sheet} sheet - The sheet to retrieve
- * @returns {any} The requested any
+  * Gets specific existing message ids or configuration
+  * @param
+  * @param {Sheet} sheet - The sheet to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getExistingMessageIds(sheet) {
   try {
@@ -244,13 +244,13 @@ function getExistingMessageIds(sheet) {
 
 /**
 
- * Gets specific or create folder_ or configuration
- * @param
- * @param {Folder} parentFolder - The parentFolder to retrieve
- * @param {string} folderName - The folderName to retrieve
- * @returns {any} The requested any
+  * Gets specific or create folder_ or configuration
+  * @param
+  * @param {Folder} parentFolder - The parentFolder to retrieve
+  * @param {string} folderName - The folderName to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getOrCreateFolder_(parentFolder, folderName) {
   try {
@@ -271,12 +271,12 @@ function getOrCreateFolder_(parentFolder, folderName) {
 
 /**
 
- * Gets specific or create sheet_ or configuration
- * @param
- * @param {string} sheetName - The sheetName to retrieve
- * @returns {any} The requested any
+  * Gets specific or create sheet_ or configuration
+  * @param
+  * @param {string} sheetName - The sheetName to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getOrCreateSheet_(sheetName) {
   try {
@@ -299,12 +299,12 @@ function getOrCreateSheet_(sheetName) {
 
 /**
 
- * Processes and transforms emails
- * @param
- * @param {string} query - The search query
- * @returns {any} The result
+  * Processes and transforms emails
+  * @param
+  * @param {string} query - The search query
+  * @returns {any} The result
 
- */
+  */
 
 function processEmails(query) {
   try {
@@ -342,12 +342,12 @@ function processEmails(query) {
 
 /**
 
- * Processes and transforms emails by ids
- * @param
- * @param {string} messageIds - The messageIds parameter
- * @returns {any} The result
+  * Processes and transforms emails by ids
+  * @param
+  * @param {string} messageIds - The messageIds parameter
+  * @returns {any} The result
 
- */
+  */
 
 function processEmailsByIds(messageIds) {
   try {
@@ -383,18 +383,18 @@ function processEmailsByIds(messageIds) {
 
 /**
 
- * Processes and transforms message
- * @param
- * @param {string} message - The message content
- * @param {string} existingMessageIds - The existingMessageIds parameter
- * @param {any} dateProcessed - The dateProcessed parameter
- * @param {Folder} folder - The folder parameter
- * @param {Sheet} sheet - The sheet parameter
- * @param {File} markdownFiles - The markdownFiles parameter
- * @param {string} query - The search query
- * @returns {any} The result
+  * Processes and transforms message
+  * @param
+  * @param {string} message - The message content
+  * @param {string} existingMessageIds - The existingMessageIds parameter
+  * @param {any} dateProcessed - The dateProcessed parameter
+  * @param {Folder} folder - The folder parameter
+  * @param {Sheet} sheet - The sheet parameter
+  * @param {File} markdownFiles - The markdownFiles parameter
+  * @param {string} query - The search query
+  * @returns {any} The result
 
- */
+  */
 
 function processMessage(message, existingMessageIds, dateProcessed, folder, sheet, markdownFiles, query) {
   try {
@@ -453,16 +453,16 @@ function processMessage(message, existingMessageIds, dateProcessed, folder, shee
 
 /**
 
- * Parses and extracts email body_
- * @param
- * @param {string} body - The body content
- * @param {string} emailDate - The emailDate parameter
- * @param {any} sender - The sender parameter
- * @param {string} subject - The subject line
- * @param {any} dateProcessed - The dateProcessed parameter
- * @returns {any} The result
+  * Parses and extracts email body_
+  * @param
+  * @param {string} body - The body content
+  * @param {string} emailDate - The emailDate parameter
+  * @param {any} sender - The sender parameter
+  * @param {string} subject - The subject line
+  * @param {any} dateProcessed - The dateProcessed parameter
+  * @returns {any} The result
 
- */
+  */
 
 function parseEmailBody_(body, emailDate, sender, subject, dateProcessed) {
   try {

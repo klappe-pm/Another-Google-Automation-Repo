@@ -1,48 +1,48 @@
 /**
- * Script Name: append- time- received
- *
- * Script Summary:
- * Processes spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Process and transform data
- * 5. Format output for presentation
- *
- * Script Functions:
- * - addTimeForSingleRow(): Works with spreadsheet data
- * - addTimeReceivedColumn(): Works with spreadsheet data
- * - addTimeReceivedInChunks(): Works with spreadsheet data
- * - columnToLetter(): Performs specialized operations
- * - getMessageReceivedTime(): Gets specific message received time or configuration
- * - resetTimeReceivedProcessing(): Sets re time received processing or configuration values
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - PropertiesService: For storing script properties
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: append- time- received
+  *
+  * Script Summary:
+  * Processes spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Process and transform data
+  * 5. Format output for presentation
+  *
+  * Script Functions:
+  * - addTimeForSingleRow(): Works with spreadsheet data
+  * - addTimeReceivedColumn(): Works with spreadsheet data
+  * - addTimeReceivedInChunks(): Works with spreadsheet data
+  * - columnToLetter(): Performs specialized operations
+  * - getMessageReceivedTime(): Gets specific message received time or configuration
+  * - resetTimeReceivedProcessing(): Sets re time received processing or configuration values
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - PropertiesService: For storing script properties
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 // Main Functions
 
 /**
 
- * Works with spreadsheet data
- * @param
- * @param {any} rowNumber - The rowNumber parameter
- * @returns {any} The result
+  * Works with spreadsheet data
+  * @param
+  * @param {any} rowNumber - The rowNumber parameter
+  * @returns {any} The result
 
- */
+  */
 
 function addTimeForSingleRow(rowNumber) {
   try {
@@ -89,10 +89,10 @@ function addTimeForSingleRow(rowNumber) {
 
 /**
 
- * Works with spreadsheet data
- * @returns {any} The result
+  * Works with spreadsheet data
+  * @returns {any} The result
 
- */
+  */
 
 function addTimeReceivedColumn() {
   const startTime = Date.now();
@@ -180,10 +180,10 @@ function addTimeReceivedColumn() {
 
 /**
 
- * Works with spreadsheet data
- * @returns {any} The result
+  * Works with spreadsheet data
+  * @returns {any} The result
 
- */
+  */
 
 function addTimeReceivedInChunks() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -270,12 +270,12 @@ function addTimeReceivedInChunks() {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {any} column - The column parameter
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {any} column - The column parameter
+  * @returns {any} The result
 
- */
+  */
 
 function columnToLetter(column) {
   let letter = '';
@@ -289,12 +289,12 @@ function columnToLetter(column) {
 
 /**
 
- * Gets specific message received time or configuration
- * @param
- * @param {string} messageId - The messageId to retrieve
- * @returns {any} The requested any
+  * Gets specific message received time or configuration
+  * @param
+  * @param {string} messageId - The messageId to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getMessageReceivedTime(messageId) {
   try {
@@ -323,10 +323,10 @@ function getMessageReceivedTime(messageId) {
 
 /**
 
- * Sets re time received processing or configuration values
- * @returns {any} The result
+  * Sets re time received processing or configuration values
+  * @returns {any} The result
 
- */
+  */
 
 function resetTimeReceivedProcessing() {
   const scriptProperties = PropertiesService.getScriptProperties();

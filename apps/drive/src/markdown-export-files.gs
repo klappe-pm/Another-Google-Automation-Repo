@@ -1,34 +1,34 @@
 /**
- * Script Name: markdown- export- files
- *
- * Script Summary:
- * Exports markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Validate input data
- * 4. Process and transform data
- *
- * Script Functions:
- * - generateMarkdownFiles(): Generates new content or reports
- * - loadConfiguration(): Loads configuration from storage
- * - logError(): Logs error or messages
- * - onOpen(): Works with spreadsheet data
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: markdown- export- files
+  *
+  * Script Summary:
+  * Exports markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Validate input data
+  * 4. Process and transform data
+  *
+  * Script Functions:
+  * - generateMarkdownFiles(): Generates new content or reports
+  * - loadConfiguration(): Loads configuration from storage
+  * - logError(): Logs error or messages
+  * - onOpen(): Works with spreadsheet data
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 const CONFIG = {
   BATCH_SIZE: 50,
@@ -73,11 +73,11 @@ const DEFAULT_SECTION_ORDER = [
 }
 
 /**
- * Main function that reads configuration and processes the data sheet to create files.
- * This is the primary entry point triggered by the user.
- *// * *
- * Process a single row of data to create a markdown file
- */
+  * Main function that reads configuration and processes the data sheet to create files.
+  * This is the primary entry point triggered by the user.
+  *// * *
+  * Process a single row of data to create a markdown file
+  */
 
 function processRow(row, headers, config) {
   // Implementation would continue with the existing logic...
@@ -88,10 +88,10 @@ function processRow(row, headers, config) {
 
 /**
 
- * Generates new content or reports
- * @returns {any} The result
+  * Generates new content or reports
+  * @returns {any} The result
 
- */
+  */
 
 function generateMarkdownFiles() {
   try {
@@ -155,10 +155,10 @@ function generateMarkdownFiles() {
 
 /**
 
- * Loads configuration from storage
- * @returns {any} The result
+  * Loads configuration from storage
+  * @returns {any} The result
 
- */
+  */
 
 function loadConfiguration() {
   try {
@@ -199,22 +199,22 @@ function loadConfiguration() {
 
 /**
 
- * Logs error or messages
- * @param
- * @param {any} error - The error parameter
- * @param {string} context - The context parameter
- * @returns {any} The result
+  * Logs error or messages
+  * @param
+  * @param {any} error - The error parameter
+  * @param {string} context - The context parameter
+  * @returns {any} The result
 
- */
+  */
 
 function logError(error, context = {}
 
 /**
 
- * Works with spreadsheet data
- * @returns {any} The result
+  * Works with spreadsheet data
+  * @returns {any} The result
 
- */
+  */
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();

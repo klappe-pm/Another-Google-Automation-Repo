@@ -1,40 +1,40 @@
 /**
- * Script Name: append- date- received
- *
- * Script Summary:
- * Processes spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Process and transform data
- *
- * Script Functions:
- * - addDateReceivedColumn(): Works with spreadsheet data
- * - getMessageReceivedDate(): Gets specific message received date or configuration
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: append- date- received
+  *
+  * Script Summary:
+  * Processes spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Process and transform data
+  *
+  * Script Functions:
+  * - addDateReceivedColumn(): Works with spreadsheet data
+  * - getMessageReceivedDate(): Gets specific message received date or configuration
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 // Main Functions
 
 /**
 
- * Works with spreadsheet data
- * @returns {string} The formatted string
+  * Works with spreadsheet data
+  * @returns {string} The formatted string
 
- */
+  */
 
 function addDateReceivedColumn() {
   const startTime = Date.now();
@@ -126,12 +126,12 @@ function addDateReceivedColumn() {
 
 /**
 
- * Gets specific message received date or configuration
- * @param
- * @param {string} messageId - The messageId to retrieve
- * @returns {string} The requested string
+  * Gets specific message received date or configuration
+  * @param
+  * @param {string} messageId - The messageId to retrieve
+  * @returns {string} The requested string
 
- */
+  */
 
 function getMessageReceivedDate(messageId) {
   try {

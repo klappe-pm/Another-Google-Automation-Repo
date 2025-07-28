@@ -1,24 +1,24 @@
 /**
- * Standard Header Template for Google Apps Scripts
- * Use this template for all new scripts and updates
- */
+  * Standard Header Template for Google Apps Scripts
+  * Use this template for all new scripts and updates
+  */
 
 /**
- * Title: [Descriptive Script Name]
- * Service: [Gmail|Calendar|Drive|Docs|Sheets|Tasks|Chat|Photos|Slides]
- * Purpose: [Brief description of the script's main functionality]
- * Created: YYYY-MM-DD
- * Updated: YYYY-MM-DD
- * Author: Kevin Lappe
- * Contact: kevin@averageintelligence.ai
- * License: MIT
- * Usage: https://github.com/kevinlappe/workspace-automation/docs/[service]/[script-name].md
- * Timeout Strategy: Batch processing with 100 items per batch
- * Batch Processing: Standard batch size of 100 items
- * Cache Strategy: Cache results for 1 hour
- * Security: Implements API key rotation and rate limiting
- * Performance: Optimized for batch processing and caching
- */
+  * Title: [Descriptive Script Name]
+  * Service: [Gmail|Calendar|Drive|Docs|Sheets|Tasks|Chat|Photos|Slides]
+  * Purpose: [Brief description of the script's main functionality]
+  * Created: YYYY-MM-DD
+  * Updated: YYYY-MM-DD
+  * Author: Kevin Lappe
+  * Contact: kevin@averageintelligence.ai
+  * License: MIT
+  * Usage: https://github.com/kevinlappe/workspace-automation/docs/[service]/[script-name].md
+  * Timeout Strategy: Batch processing with 100 items per batch
+  * Batch Processing: Standard batch size of 100 items
+  * Cache Strategy: Cache results for 1 hour
+  * Security: Implements API key rotation and rate limiting
+  * Performance: Optimized for batch processing and caching
+  */
 
 /*
 Script Summary:
@@ -56,7 +56,7 @@ function logError(error, context = {}) {
     timestamp: new Date().toISOString(),
     scriptName: '[SCRIPT_NAME]'
   };
-  
+
   console.error('Script Error:', JSON.stringify(errorDetails, null, 2));
   Logger.log(`ERROR: ${JSON.stringify(errorDetails, null, 2)}`);
 }
@@ -74,7 +74,7 @@ function handlePartialFailure(error, batch) {
 function processInBatches(items, processFunction) {
   const batchSize = CONFIG.BATCH_SIZE;
   const results = [];
-  
+
   for (let i = 0; i < items.length; i += batchSize) {
     const batch = items.slice(i, i + batchSize);
     try {
@@ -88,7 +88,7 @@ function processInBatches(items, processFunction) {
       }
     }
   }
-  
+
   return results;
 }
 
@@ -110,7 +110,7 @@ function processBatch(batch, processFunction) {
 function getCachedData(cacheKey, fetchFunction) {
   const cache = CacheService.getScriptCache();
   const cached = cache.get(cacheKey);
-  
+
   if (cached) {
     try {
       return JSON.parse(cached);
@@ -118,14 +118,14 @@ function getCachedData(cacheKey, fetchFunction) {
       logError(error, { cacheKey });
     }
   }
-  
+
   const data = fetchFunction();
   try {
     cache.put(cacheKey, JSON.stringify(data), CONFIG.CACHE_DURATION);
   } catch (error) {
     logError(error, { cacheKey, operation: 'cache_put' });
   }
-  
+
   return data;
 }
 

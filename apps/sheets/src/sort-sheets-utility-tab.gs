@@ -1,28 +1,28 @@
 /**
- * Script Name: sort- sheets- utility- tab
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Apply filters and criteria
- * 4. Sort data by relevant fields
- *
- * Script Functions:
- * - onOpen(): Works with spreadsheet data
- * - sortSheetsAlphabetically(): Sorts and orders sheets alphabetically
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: sort- sheets- utility- tab
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Apply filters and criteria
+  * 4. Sort data by relevant fields
+  *
+  * Script Functions:
+  * - onOpen(): Works with spreadsheet data
+  * - sortSheetsAlphabetically(): Sorts and orders sheets alphabetically
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 let pinnedSheets = [
   { name: "Sheet1", position: 1 },
@@ -34,10 +34,10 @@ let pinnedSheets = [
 
 /**
 
- * Works with spreadsheet data
- * @returns {boolean} True if successful, false otherwise
+  * Works with spreadsheet data
+  * @returns {boolean} True if successful, false otherwise
 
- */
+  */
 
 function onOpen() {
   let ui = SpreadsheetApp.getUi();
@@ -48,10 +48,10 @@ function onOpen() {
 
 /**
 
- * Sorts and orders sheets alphabetically
- * @returns {boolean} True if successful, false otherwise
+  * Sorts and orders sheets alphabetically
+  * @returns {boolean} True if successful, false otherwise
 
- */
+  */
 
 function sortSheetsAlphabetically() {
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();

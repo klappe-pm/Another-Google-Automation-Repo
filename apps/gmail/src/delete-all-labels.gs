@@ -1,37 +1,37 @@
 /**
- * Script Name: delete- all- labels
- *
- * Script Summary:
- * Creates Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- *
- * Script Functions:
- * - deleteAllGmailLabels(): Removes all gmail labels or data
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DocumentApp: For document manipulation
- * - FormApp: For form creation and responses
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: delete- all- labels
+  *
+  * Script Summary:
+  * Creates Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  *
+  * Script Functions:
+  * - deleteAllGmailLabels(): Removes all gmail labels or data
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DocumentApp: For document manipulation
+  * - FormApp: For form creation and responses
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 // Main Functions
 
 /**
 
- * Removes all gmail labels or data
+  * Removes all gmail labels or data
 
- */
+  */
 
 function deleteAllGmailLabels() { // Use Browser.msgBox for a more prominent and blocking confirmation // The UI class also offers similar functionality (Ui.alert), often preferred in add - ons;
   const ui = SpreadsheetApp.getUi(); // Or DocumentApp.getUi(), FormApp.getUi() etc. if script is bound to them;

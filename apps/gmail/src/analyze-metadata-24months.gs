@@ -1,36 +1,36 @@
 /**
- * Script Name: analyze- metadata- 24months
- *
- * Script Summary:
- * Processes spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Analyze metadata 24months patterns and trends
- * - Calculate statistics and metrics
- * - Generate insights and recommendations
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Process and transform data
- * 5. Sort data by relevant fields
- * 6. Format output for presentation
- * 7. Send notifications or reports
- *
- * Script Functions:
- * - getContactList(): Gets specific contact list or configuration
- * - getDateXMonthsAgo(): Gets specific date x months ago or configuration
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: analyze- metadata- 24months
+  *
+  * Script Summary:
+  * Processes spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Analyze metadata 24months patterns and trends
+  * - Calculate statistics and metrics
+  * - Generate insights and recommendations
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Process and transform data
+  * 5. Sort data by relevant fields
+  * 6. Format output for presentation
+  * 7. Send notifications or reports
+  *
+  * Script Functions:
+  * - getContactList(): Gets specific contact list or configuration
+  * - getDateXMonthsAgo(): Gets specific date x months ago or configuration
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 /**  * Main function to extract contact information from Gmail and populate a spreadsheet. *// *  *  * Calculates the date X months ago from the current date. * @param {number} months - The number of months to subtract from the current date. * @return {string} A formatted date string in the format "yyyy / MM / dd". *// / Main Functions
 
@@ -38,10 +38,10 @@
 
 /**
 
- * Gets specific contact list or configuration
- * @returns {string} The requested string
+  * Gets specific contact list or configuration
+  * @returns {string} The requested string
 
- */
+  */
 
 function getContactList() {
   let sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
@@ -141,12 +141,12 @@ function getContactList() {
 
 /**
 
- * Gets specific date x months ago or configuration
- * @param
- * @param {any} months - The months to retrieve
- * @returns {string} The requested string
+  * Gets specific date x months ago or configuration
+  * @param
+  * @param {any} months - The months to retrieve
+  * @returns {string} The requested string
 
- */
+  */
 
 function getDateXMonthsAgo(months) {
   let date = new Date();

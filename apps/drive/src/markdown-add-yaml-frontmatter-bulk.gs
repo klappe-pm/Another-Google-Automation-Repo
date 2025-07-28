@@ -1,42 +1,42 @@
 /**
- * Script Name: markdown- add- yaml- frontmatter- bulk
- *
- * Script Summary:
- * Adds markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- * - Handle bulk operations efficiently
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Process and transform data
- * 5. Format output for presentation
- *
- * Script Functions:
- * - addYamlFrontmatter(): Manages files and folders
- * - addYamlToFile(): Manages files and folders
- * - debug(): Works with spreadsheet data
- * - onOpen(): Performs specialized operations
- * - promptForYamlValues(): Performs specialized operations
- * - viewDebugLog(): Logs view debug or messages
- *
- * Script Helper Functions:
- * - formatDate(): Formats date for display
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - HtmlService: For serving HTML content
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: markdown- add- yaml- frontmatter- bulk
+  *
+  * Script Summary:
+  * Adds markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  * - Handle bulk operations efficiently
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Process and transform data
+  * 5. Format output for presentation
+  *
+  * Script Functions:
+  * - addYamlFrontmatter(): Manages files and folders
+  * - addYamlToFile(): Manages files and folders
+  * - debug(): Works with spreadsheet data
+  * - onOpen(): Performs specialized operations
+  * - promptForYamlValues(): Performs specialized operations
+  * - viewDebugLog(): Logs view debug or messages
+  *
+  * Script Helper Functions:
+  * - formatDate(): Formats date for display
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - HtmlService: For serving HTML content
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 / * Summary:
 This Google Apps Script adds YAML frontmatter to markdown files stored in a Google Drive folder.
@@ -52,28 +52,28 @@ Key features:
 5. Debug logging with sheet - based and in - memory options
 6. Error handling and user feedback */ const DEBUG = true;
 let debugLog = []; // Function to create and add the custom menu to the Google Sheets UI;
- // Main function to add YAML frontmatter to markdown files
- // Function to prompt the user for YAML values
- // Function to add YAML frontmatter to a single file
- // Helper function to format dates for YAML frontmatter
- // Debug logging function
- // Function to display the debug log in the UI
+  // Main function to add YAML frontmatter to markdown files
+  // Function to prompt the user for YAML values
+  // Function to add YAML frontmatter to a single file
+  // Helper function to format dates for YAML frontmatter
+  // Debug logging function
+  // Function to display the debug log in the UI
 
 // Main Functions
 
 /**
 
- * Manages files and folders
- * @returns {any} The result
+  * Manages files and folders
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Manages files and folders
- * @returns {any} The result
+  * Manages files and folders
+  * @returns {any} The result
 
- */
+  */
 
 function addYamlFrontmatter() {
   debug('Starting addYamlFrontmatter function');
@@ -146,23 +146,23 @@ function addYamlFrontmatter() {
 
 /**
 
- * Manages files and folders
- * @param
- * @param {File} file - The file parameter
- * @param {string|any} yamlValues - The yamlValues parameter
- * @returns {any} The result
+  * Manages files and folders
+  * @param
+  * @param {File} file - The file parameter
+  * @param {string|any} yamlValues - The yamlValues parameter
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Manages files and folders
- * @param
- * @param {File} file - The file parameter
- * @param {string|any} yamlValues - The yamlValues parameter
- * @returns {any} The result
+  * Manages files and folders
+  * @param
+  * @param {File} file - The file parameter
+  * @param {string|any} yamlValues - The yamlValues parameter
+  * @returns {any} The result
 
- */
+  */
 
 function addYamlToFile(file, yamlValues) {
   debug(`Starting addYamlToFile function for file: ${file.getName()}`);
@@ -187,21 +187,21 @@ tags: - - - `;
 
 /**
 
- * Works with spreadsheet data
- * @param
- * @param {string} message - The message content
- * @returns {any} The result
+  * Works with spreadsheet data
+  * @param
+  * @param {string} message - The message content
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Works with spreadsheet data
- * @param
- * @param {string} message - The message content
- * @returns {any} The result
+  * Works with spreadsheet data
+  * @param
+  * @param {string} message - The message content
+  * @returns {any} The result
 
- */
+  */
 
 function debug(message) {
   if (DEBUG) {
@@ -222,21 +222,21 @@ function debug(message) {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {any} e - The e parameter
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {any} e - The e parameter
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {any} e - The e parameter
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {any} e - The e parameter
+  * @returns {any} The result
 
- */
+  */
 
 function onOpen(e) {
   debug("onOpen function started");
@@ -268,21 +268,21 @@ function onOpen(e) {
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {any} ui - The ui parameter
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {any} ui - The ui parameter
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Performs specialized operations
- * @param
- * @param {any} ui - The ui parameter
- * @returns {any} The result
+  * Performs specialized operations
+  * @param
+  * @param {any} ui - The ui parameter
+  * @returns {any} The result
 
- */
+  */
 
 function promptForYamlValues(ui) {
   debug('Starting promptForYamlValues function');
@@ -314,17 +314,17 @@ function promptForYamlValues(ui) {
 
 /**
 
- * Logs view debug or messages
- * @returns {any} The result
+  * Logs view debug or messages
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Logs view debug or messages
- * @returns {any} The result
+  * Logs view debug or messages
+  * @returns {any} The result
 
- */
+  */
 
 function viewDebugLog() {
   const ui = SpreadsheetApp.getUi();
@@ -344,21 +344,21 @@ function viewDebugLog() {
 
 /**
 
- * Formats date for display
- * @param
- * @param {any} date - The date parameter
- * @returns {any} The result
+  * Formats date for display
+  * @param
+  * @param {any} date - The date parameter
+  * @returns {any} The result
 
- */
+  */
 
 /**
 
- * Formats date for display
- * @param
- * @param {any} date - The date parameter
- * @returns {any} The result
+  * Formats date for display
+  * @param
+  * @param {any} date - The date parameter
+  * @returns {any} The result
 
- */
+  */
 
 function formatDate(date) {
   const year = date.getFullYear();

@@ -1,48 +1,48 @@
 /**
- * Script Name: analyze- events- duration- distance
- *
- * Script Summary:
- * Exports spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Analyze events duration distance patterns and trends
- * - Calculate statistics and metrics
- * - Generate insights and recommendations
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Process and transform data
- * 4. Format output for presentation
- * 5. Write results to destination
- *
- * Script Functions:
- * - exportAllCalendarEvents(): Exports all calendar events to external format
- * - getDayOfWeek(): Gets specific day of week or configuration
- * - getDayOfYear(): Gets specific day of year or configuration
- *
- * Script Helper Functions:
- * - getQuarter(): Gets specific quarter or configuration
- * - getWeekNumber(): Gets specific week number or configuration
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - CalendarApp: For calendar and event management
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: analyze- events- duration- distance
+  *
+  * Script Summary:
+  * Exports spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Analyze events duration distance patterns and trends
+  * - Calculate statistics and metrics
+  * - Generate insights and recommendations
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Process and transform data
+  * 4. Format output for presentation
+  * 5. Write results to destination
+  *
+  * Script Functions:
+  * - exportAllCalendarEvents(): Exports all calendar events to external format
+  * - getDayOfWeek(): Gets specific day of week or configuration
+  * - getDayOfYear(): Gets specific day of year or configuration
+  *
+  * Script Helper Functions:
+  * - getQuarter(): Gets specific quarter or configuration
+  * - getWeekNumber(): Gets specific week number or configuration
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - CalendarApp: For calendar and event management
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 // Main Functions
 
 /**
 
- * Exports all calendar events to external format
- * @returns {any} The result
+  * Exports all calendar events to external format
+  * @returns {any} The result
 
- */
+  */
 
 function exportAllCalendarEvents() { // Enable Advanced Calendar Service // Go to Resources > Advanced Google Services and enable Calendar API // Get today's date in UTC and set to 00:00:00
   let today = new Date();
@@ -57,11 +57,11 @@ function exportAllCalendarEvents() { // Enable Advanced Calendar Service // Go t
   let headers = ["Calendar Name", "Event Date", "Event Name", "Event Location", "Start Time", "End Time", "Duration", "Year", "Quarter", "Month", "Week", "Day of Year", "Day of Week"];
   let data = [headers]; // Helper functions;
   / * *
-   * Gets specific quarter or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
-   */
+    * Gets specific quarter or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
+    */
   function getQuarter(date) {
     let month = date.getUTCMonth();
     return Math.floor(month / 3) + 1;
@@ -69,12 +69,12 @@ function exportAllCalendarEvents() { // Enable Advanced Calendar Service // Go t
 
   / * *
 
-   * Gets specific week number or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+    * Gets specific week number or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
-   */
+    */
 
   function getWeekNumber(date) {
     let d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
@@ -85,12 +85,12 @@ function exportAllCalendarEvents() { // Enable Advanced Calendar Service // Go t
 
   / * *
 
-   * Gets specific day of year or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+    * Gets specific day of year or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
-   */
+    */
 
   function getDayOfYear(date) {
     let start = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
@@ -101,12 +101,12 @@ function exportAllCalendarEvents() { // Enable Advanced Calendar Service // Go t
 
   / * *
 
-   * Gets specific day of week or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+    * Gets specific day of week or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
-   */
+    */
 
   function getDayOfWeek(date) {
     let day = date.getUTCDay();
@@ -196,30 +196,12 @@ function exportAllCalendarEvents() { // Enable Advanced Calendar Service // Go t
 
 /**
 
- * Gets specific day of week or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day of week or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
-
-function getDayOfWeek(date) {
-    let day = date.getUTCDay();
-    if (day = = = 0) {
-      return 7;
-    } else {
-      return day;
-    }
-  }
-
-/**
-
- * Gets specific day of week or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
-
- */
+  */
 
 function getDayOfWeek(date) {
     let day = date.getUTCDay();
@@ -232,12 +214,12 @@ function getDayOfWeek(date) {
 
 /**
 
- * Gets specific day of week or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day of week or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getDayOfWeek(date) {
     let day = date.getUTCDay();
@@ -250,12 +232,30 @@ function getDayOfWeek(date) {
 
 /**
 
- * Gets specific day of year or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day of week or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
+
+function getDayOfWeek(date) {
+    let day = date.getUTCDay();
+    if (day = = = 0) {
+      return 7;
+    } else {
+      return day;
+    }
+  }
+
+/**
+
+  * Gets specific day of year or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
+
+  */
 
 function getDayOfYear(date) {
     let start = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
@@ -266,12 +266,12 @@ function getDayOfYear(date) {
 
 /**
 
- * Gets specific day of year or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day of year or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getDayOfYear(date) {
     let start = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
@@ -282,12 +282,12 @@ function getDayOfYear(date) {
 
 /**
 
- * Gets specific day of year or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific day of year or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getDayOfYear(date) {
     let start = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
@@ -300,26 +300,12 @@ function getDayOfYear(date) {
 
 /**
 
- * Gets specific quarter or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific quarter or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
-
-function getQuarter(date) {
-    let month = date.getUTCMonth();
-    return Math.floor(month / 3) + 1;
-  }
-
-/**
-
- * Gets specific quarter or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
-
- */
+  */
 
 function getQuarter(date) {
     let month = date.getUTCMonth();
@@ -328,12 +314,12 @@ function getQuarter(date) {
 
 /**
 
- * Gets specific quarter or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific quarter or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getQuarter(date) {
     let month = date.getUTCMonth();
@@ -342,12 +328,26 @@ function getQuarter(date) {
 
 /**
 
- * Gets specific week number or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific quarter or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
+
+function getQuarter(date) {
+    let month = date.getUTCMonth();
+    return Math.floor(month / 3) + 1;
+  }
+
+/**
+
+  * Gets specific week number or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
+
+  */
 
 function getWeekNumber(date) {
     let d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
@@ -358,12 +358,12 @@ function getWeekNumber(date) {
 
 /**
 
- * Gets specific week number or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific week number or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getWeekNumber(date) {
     let d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
@@ -374,12 +374,12 @@ function getWeekNumber(date) {
 
 /**
 
- * Gets specific week number or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {any} The requested any
+  * Gets specific week number or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {any} The requested any
 
- */
+  */
 
 function getWeekNumber(date) {
     let d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));

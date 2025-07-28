@@ -1,53 +1,53 @@
 /**
- * Script Name: send- gmail- labels- create
- *
- * Script Summary:
- * Creates Gmail labels for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Connect to Gmail service
- * 2. Fetch source data
- * 3. Process and transform data
- * 4. Format output for presentation
- * 5. Send notifications or reports
- *
- * Script Functions:
- * - applySenderLabels(): Sends applyer labels or communications
- * - extractAndSanitizeSender(): Extracts specific information
- * - getLastProcessedMonth(): Gets specific last processed month or configuration
- * - getMonthsToProcess(): Gets specific months to process or configuration
- * - getOrCreateLabel(): Gets specific or create label or configuration
- * - processGmailEmails(): Processes and transforms gmail emails
- * - processMonth(): Processes and transforms month
- * - setLastProcessedMonth(): Sets last processed month or configuration values
- *
- * Script Helper Functions:
- * - getMonthDates(): Gets specific month dates or configuration
- * - isValidLabelName(): Checks boolean condition
- * - sanitizeLabelName(): Cleans and sanitizes input
- *
- * Script Dependencies:
- * - Underscore.js library
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - PropertiesService: For storing script properties
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: send- gmail- labels- create
+  *
+  * Script Summary:
+  * Creates Gmail labels for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Connect to Gmail service
+  * 2. Fetch source data
+  * 3. Process and transform data
+  * 4. Format output for presentation
+  * 5. Send notifications or reports
+  *
+  * Script Functions:
+  * - applySenderLabels(): Sends applyer labels or communications
+  * - extractAndSanitizeSender(): Extracts specific information
+  * - getLastProcessedMonth(): Gets specific last processed month or configuration
+  * - getMonthsToProcess(): Gets specific months to process or configuration
+  * - getOrCreateLabel(): Gets specific or create label or configuration
+  * - processGmailEmails(): Processes and transforms gmail emails
+  * - processMonth(): Processes and transforms month
+  * - setLastProcessedMonth(): Sets last processed month or configuration values
+  *
+  * Script Helper Functions:
+  * - getMonthDates(): Gets specific month dates or configuration
+  * - isValidLabelName(): Checks boolean condition
+  * - sanitizeLabelName(): Cleans and sanitizes input
+  *
+  * Script Dependencies:
+  * - Underscore.js library
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - PropertiesService: For storing script properties
+  * - Utilities: For utility functions and encoding
+  */
 
 // Main Functions
 
 /**
 
- * Sends applyer labels or communications
- * @param
- * @param {GmailThread} thread - The thread parameter
- * @returns {Object} The result object
+  * Sends applyer labels or communications
+  * @param
+  * @param {GmailThread} thread - The thread parameter
+  * @returns {Object} The result object
 
- */
+  */
 
 function applySenderLabels(thread) {
   let messages = thread.getMessages();
@@ -72,10 +72,10 @@ function applySenderLabels(thread) {
 
 /**
 
- * Gets specific last processed month or configuration
- * @returns {Object} The requested object
+  * Gets specific last processed month or configuration
+  * @returns {Object} The requested object
 
- */
+  */
 
 function getLastProcessedMonth() {
   let properties = PropertiesService.getUserProperties();
@@ -89,13 +89,13 @@ function getLastProcessedMonth() {
 
 /**
 
- * Gets specific months to process or configuration
- * @param
- * @param {any} startDate - The startDate to retrieve
- * @param {any} endDate - The endDate to retrieve
- * @returns {Object} The requested object
+  * Gets specific months to process or configuration
+  * @param
+  * @param {any} startDate - The startDate to retrieve
+  * @param {any} endDate - The endDate to retrieve
+  * @returns {Object} The requested object
 
- */
+  */
 
 function getMonthsToProcess(startDate, endDate) {
   let months = [];
@@ -112,12 +112,12 @@ function getMonthsToProcess(startDate, endDate) {
 
 /**
 
- * Gets specific or create label or configuration
- * @param
- * @param {string} labelName - The labelName to retrieve
- * @returns {Object} The requested object
+  * Gets specific or create label or configuration
+  * @param
+  * @param {string} labelName - The labelName to retrieve
+  * @returns {Object} The requested object
 
- */
+  */
 
 function getOrCreateLabel(labelName) {
   if (! isValidLabelName(labelName)) {
@@ -145,10 +145,10 @@ function getOrCreateLabel(labelName) {
 
 /**
 
- * Processes and transforms gmail emails
- * @returns {Object} The result object
+  * Processes and transforms gmail emails
+  * @returns {Object} The result object
 
- */
+  */
 
 function processGmailEmails() {
   Logger.log('Starting Gmail email processing...');
@@ -188,12 +188,12 @@ function processGmailEmails() {
 
 /**
 
- * Processes and transforms month
- * @param
- * @param {any} monthDate - The monthDate parameter
- * @returns {Object} The result object
+  * Processes and transforms month
+  * @param
+  * @param {any} monthDate - The monthDate parameter
+  * @returns {Object} The result object
 
- */
+  */
 
 function processMonth(monthDate) {
   Logger.log('Processing month: ' + monthDate);
@@ -210,12 +210,12 @@ function processMonth(monthDate) {
 
 /**
 
- * Sets last processed month or configuration values
- * @param
- * @param {any} monthDate - The monthDate to set
- * @returns {Object} The result object
+  * Sets last processed month or configuration values
+  * @param
+  * @param {any} monthDate - The monthDate to set
+  * @returns {Object} The result object
 
- */
+  */
 
 function setLastProcessedMonth(monthDate) {
   let properties = PropertiesService.getUserProperties();
@@ -226,12 +226,12 @@ function setLastProcessedMonth(monthDate) {
 
 /**
 
- * Extracts specific information
- * @param
- * @param {any} from - The from parameter
- * @returns {Object} The result object
+  * Extracts specific information
+  * @param
+  * @param {any} from - The from parameter
+  * @returns {Object} The result object
 
- */
+  */
 
 function extractAndSanitizeSender(from) {
   // Extract the sender's name from the 'From' field
@@ -242,13 +242,13 @@ function extractAndSanitizeSender(from) {
 
 /**
 
- * Gets specific month dates or configuration
- * @param
- * @param {any} year - The year to retrieve
- * @param {any} month - The month to retrieve
- * @returns {Object} The requested object
+  * Gets specific month dates or configuration
+  * @param
+  * @param {any} year - The year to retrieve
+  * @param {any} month - The month to retrieve
+  * @returns {Object} The requested object
 
- */
+  */
 
 function getMonthDates(year, month) {
   let startDate = new Date(year, month, 1);
@@ -262,12 +262,12 @@ function getMonthDates(year, month) {
 
 /**
 
- * Checks boolean condition
- * @param
- * @param {string} name - The name to use
- * @returns {Object} True if condition is met, false otherwise
+  * Checks boolean condition
+  * @param
+  * @param {string} name - The name to use
+  * @returns {Object} True if condition is met, false otherwise
 
- */
+  */
 
 function isValidLabelName(name) {
   if (name.length > 40) {
@@ -286,12 +286,12 @@ function isValidLabelName(name) {
 
 /**
 
- * Cleans and sanitizes input
- * @param
- * @param {string} name - The name to use
- * @returns {Object} The result object
+  * Cleans and sanitizes input
+  * @param
+  * @param {string} name - The name to use
+  * @returns {Object} The result object
 
- */
+  */
 
 function sanitizeLabelName(name) {
   // Replace invalid characters with '- '

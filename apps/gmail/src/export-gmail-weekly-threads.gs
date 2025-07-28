@@ -1,37 +1,37 @@
 /**
- * Script Name: export- gmail- weekly- threads
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Extract gmail weekly threads data from Google services
- * - Convert data to portable formats
- * - Generate reports and summaries
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Connect to Gmail service
- * 3. Fetch source data
- * 4. Process and transform data
- * 5. Sort data by relevant fields
- * 6. Format output for presentation
- * 7. Send notifications or reports
- *
- * Script Functions:
- * - listEmails(): Checks boolean condition
- *
- * Script Helper Functions:
- * - getWeekNumber(): Gets specific week number or configuration
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - GmailApp: For accessing email messages and labels
- * - Logger: For logging and debugging
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: export- gmail- weekly- threads
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Extract gmail weekly threads data from Google services
+  * - Convert data to portable formats
+  * - Generate reports and summaries
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Connect to Gmail service
+  * 3. Fetch source data
+  * 4. Process and transform data
+  * 5. Sort data by relevant fields
+  * 6. Format output for presentation
+  * 7. Send notifications or reports
+  *
+  * Script Functions:
+  * - listEmails(): Checks boolean condition
+  *
+  * Script Helper Functions:
+  * - getWeekNumber(): Gets specific week number or configuration
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - GmailApp: For accessing email messages and labels
+  * - Logger: For logging and debugging
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 /**  * Gets the ISO week number of the given date. * @param {Date} date The date for which to get the week number. * @return {string} The ISO week number in 'WW' format. *// / Main Functions
 
@@ -39,10 +39,10 @@
 
 /**
 
- * Checks boolean condition
- * @returns {string} True if condition is met, false otherwise
+  * Checks boolean condition
+  * @returns {string} True if condition is met, false otherwise
 
- */
+  */
 
 function listEmails() { // Get the current date and the date 7 days ago.;
   let today = new Date();
@@ -88,12 +88,12 @@ function listEmails() { // Get the current date and the date 7 days ago.;
 
 /**
 
- * Gets specific week number or configuration
- * @param
- * @param {any} date - The date to retrieve
- * @returns {string} The requested string
+  * Gets specific week number or configuration
+  * @param
+  * @param {any} date - The date to retrieve
+  * @returns {string} The requested string
 
- */
+  */
 
 function getWeekNumber(date) {
   let d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));

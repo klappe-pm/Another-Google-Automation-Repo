@@ -1,30 +1,30 @@
 /**
- * Script Name: create- album- hyperlinks
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- * - Generate new album hyperlinks items
- * - Set up required structure and metadata
- * - Apply formatting and organization
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Fetch source data
- * 3. Process and transform data
- * 4. Format output for presentation
- *
- * Script Functions:
- * - addPhotoAlbumLinks(): Works with spreadsheet data
- * - onOpen(): Performs specialized operations
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: create- album- hyperlinks
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  * - Generate new album hyperlinks items
+  * - Set up required structure and metadata
+  * - Apply formatting and organization
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Fetch source data
+  * 3. Process and transform data
+  * 4. Format output for presentation
+  *
+  * Script Functions:
+  * - addPhotoAlbumLinks(): Works with spreadsheet data
+  * - onOpen(): Performs specialized operations
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 /**  * Main function that adds hyperlinks to Google Photos albums in the spreadsheet. * The function uses album IDs in column B to create links to the corresponding albums. *// *  *  * Creates a custom menu in the Google Sheets UI when the spreadsheet opens. * This function adds a menu item to run the photo album linking function. *// / Main Functions
 
@@ -32,9 +32,9 @@
 
 /**
 
- * Works with spreadsheet data
+  * Works with spreadsheet data
 
- */
+  */
 
 function addPhotoAlbumLinks() { // Get the active spreadsheet;
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet(); // Get all sheets in the spreadsheet;
@@ -75,9 +75,9 @@ function addPhotoAlbumLinks() { // Get the active spreadsheet;
 
 /**
 
- * Performs specialized operations
+  * Performs specialized operations
 
- */
+  */
 
 function onOpen() {
   let ui = SpreadsheetApp.getUi(); // Create a menu entry;

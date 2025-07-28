@@ -1,65 +1,65 @@
 /**
- * Script Name: index- docs- files
- *
- * Script Summary:
- * Creates spreadsheet data for automated workflow processing.
- *
- * Script Purpose:
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Validate input data
- * 5. Process and transform data
- * 6. Sort data by relevant fields
- * 7. Format output for presentation
- *
- * Script Functions:
- * - addToSheet(): Works with spreadsheet data
- * - docsIndex(): Works with spreadsheet data
- * - finalizeSheet(): Works with spreadsheet data
- * - getFilePath(): Gets specific file path or configuration
- * - getOrCreateSheet(): Gets specific or create sheet or configuration
- * - setHeaders(): Sets headers or configuration values
- *
- * Script Helper Functions:
- * - formatDate(): Formats date for display
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - Logger: For logging and debugging
- * - PropertiesService: For storing script properties
- * - SpreadsheetApp: For spreadsheet operations
- * - Utilities: For utility functions and encoding
- */
+  * Script Name: index- docs- files
+  *
+  * Script Summary:
+  * Creates spreadsheet data for automated workflow processing.
+  *
+  * Script Purpose:
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Validate input data
+  * 5. Process and transform data
+  * 6. Sort data by relevant fields
+  * 7. Format output for presentation
+  *
+  * Script Functions:
+  * - addToSheet(): Works with spreadsheet data
+  * - docsIndex(): Works with spreadsheet data
+  * - finalizeSheet(): Works with spreadsheet data
+  * - getFilePath(): Gets specific file path or configuration
+  * - getOrCreateSheet(): Gets specific or create sheet or configuration
+  * - setHeaders(): Sets headers or configuration values
+  *
+  * Script Helper Functions:
+  * - formatDate(): Formats date for display
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - Logger: For logging and debugging
+  * - PropertiesService: For storing script properties
+  * - SpreadsheetApp: For spreadsheet operations
+  * - Utilities: For utility functions and encoding
+  */
 
 // Main Functions
 
 /**
 
- * Works with spreadsheet data
- * @param
- * @param {Sheet} sheet - The sheet parameter
- * @param {File} file - The file parameter
- * @param {any} type - The type parameter
- * @returns {string} The formatted string
+  * Works with spreadsheet data
+  * @param
+  * @param {Sheet} sheet - The sheet parameter
+  * @param {File} file - The file parameter
+  * @param {any} type - The type parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Works with spreadsheet data
- * @param
- * @param {Sheet} sheet - The sheet parameter
- * @param {File} file - The file parameter
- * @param {any} type - The type parameter
- * @returns {string} The formatted string
+  * Works with spreadsheet data
+  * @param
+  * @param {Sheet} sheet - The sheet parameter
+  * @param {File} file - The file parameter
+  * @param {any} type - The type parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function addToSheet(sheet, file, type) {
   const filePath = getFilePath(file);
@@ -89,17 +89,17 @@ function addToSheet(sheet, file, type) {
 
 /**
 
- * Works with spreadsheet data
- * @returns {string} The formatted string
+  * Works with spreadsheet data
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Works with spreadsheet data
- * @returns {string} The formatted string
+  * Works with spreadsheet data
+  * @returns {string} The formatted string
 
- */
+  */
 
 function docsIndex() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -148,21 +148,21 @@ function docsIndex() {
 
 /**
 
- * Works with spreadsheet data
- * @param
- * @param {Sheet} sheet - The sheet parameter
- * @returns {string} The formatted string
+  * Works with spreadsheet data
+  * @param
+  * @param {Sheet} sheet - The sheet parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Works with spreadsheet data
- * @param
- * @param {Sheet} sheet - The sheet parameter
- * @returns {string} The formatted string
+  * Works with spreadsheet data
+  * @param
+  * @param {Sheet} sheet - The sheet parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function finalizeSheet(sheet) {
   const lastRow = sheet.getLastRow();
@@ -174,21 +174,21 @@ function finalizeSheet(sheet) {
 
 /**
 
- * Gets specific file path or configuration
- * @param
- * @param {File} file - The file to retrieve
- * @returns {string} The requested string
+  * Gets specific file path or configuration
+  * @param
+  * @param {File} file - The file to retrieve
+  * @returns {string} The requested string
 
- */
+  */
 
 /**
 
- * Gets specific file path or configuration
- * @param
- * @param {File} file - The file to retrieve
- * @returns {string} The requested string
+  * Gets specific file path or configuration
+  * @param
+  * @param {File} file - The file to retrieve
+  * @returns {string} The requested string
 
- */
+  */
 
 function getFilePath(file) {
   const pathParts = [];
@@ -202,23 +202,23 @@ function getFilePath(file) {
 
 /**
 
- * Gets specific or create sheet or configuration
- * @param
- * @param {any} ss - The ss to retrieve
- * @param {string} sheetName - The sheetName to retrieve
- * @returns {string} The requested string
+  * Gets specific or create sheet or configuration
+  * @param
+  * @param {any} ss - The ss to retrieve
+  * @param {string} sheetName - The sheetName to retrieve
+  * @returns {string} The requested string
 
- */
+  */
 
 /**
 
- * Gets specific or create sheet or configuration
- * @param
- * @param {any} ss - The ss to retrieve
- * @param {string} sheetName - The sheetName to retrieve
- * @returns {string} The requested string
+  * Gets specific or create sheet or configuration
+  * @param
+  * @param {any} ss - The ss to retrieve
+  * @param {string} sheetName - The sheetName to retrieve
+  * @returns {string} The requested string
 
- */
+  */
 
 function getOrCreateSheet(ss, sheetName) {
   let sheet = ss.getSheetByName(sheetName);
@@ -230,21 +230,21 @@ function getOrCreateSheet(ss, sheetName) {
 
 /**
 
- * Sets headers or configuration values
- * @param
- * @param {Sheet} sheet - The sheet to set
- * @returns {string} The formatted string
+  * Sets headers or configuration values
+  * @param
+  * @param {Sheet} sheet - The sheet to set
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Sets headers or configuration values
- * @param
- * @param {Sheet} sheet - The sheet to set
- * @returns {string} The formatted string
+  * Sets headers or configuration values
+  * @param
+  * @param {Sheet} sheet - The sheet to set
+  * @returns {string} The formatted string
 
- */
+  */
 
 function setHeaders(sheet) {
   const headers = ['Clean - up', 'File Link', 'File Name', 'Created Date', 'Last Modified', 'File Age', 'Modified Age', 'File Type', 'File Path'];
@@ -256,21 +256,21 @@ function setHeaders(sheet) {
 
 /**
 
- * Formats date for display
- * @param
- * @param {any} date - The date parameter
- * @returns {string} The formatted string
+  * Formats date for display
+  * @param
+  * @param {any} date - The date parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 /**
 
- * Formats date for display
- * @param
- * @param {any} date - The date parameter
- * @returns {string} The formatted string
+  * Formats date for display
+  * @param
+  * @param {any} date - The date parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function formatDate(date) {
   return Utilities.formatDate(date, Session.getScriptTimeZone(), 'yyyy - MM - dd');

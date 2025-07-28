@@ -1,82 +1,82 @@
 /**
- * Script Name: markdown- find- yaml
- *
- * Script Summary:
- * Finds markdown content for documentation and note- taking workflows.
- *
- * Script Purpose:
- * - Generate markdown documentation
- * - Format content for note- taking systems
- * - Maintain consistent documentation structure
- *
- * Script Steps:
- * 1. Initialize spreadsheet connection
- * 2. Access Drive file system
- * 3. Fetch source data
- * 4. Validate input data
- * 5. Process and transform data
- *
- * Script Functions:
- * - extractYamlFrontmatter(): Extracts specific information
- * - findFolderByName(): Finds matching folder by name
- * - findYamlFrontmatterInFolder(): Finds matching yaml frontmatter in folder
- * - findYamlFrontmatterInFolderById(): Finds matching yaml frontmatter in folder by id
- * - onOpen(): Manages files and folders
- * - processFolderInput(): Processes and transforms folder input
- * - showFolderInputForm(): Manages files and folders
- * - YAML(): Performs specialized operations
- *
- * Script Helper Functions:
- * - parseYaml(): Parses and extracts yaml
- *
- * Script Dependencies:
- * - None (standalone script)
- *
- * Google Services:
- * - DriveApp: For file and folder management
- * - HtmlService: For serving HTML content
- * - SpreadsheetApp: For spreadsheet operations
- */
+  * Script Name: markdown- find- yaml
+  *
+  * Script Summary:
+  * Finds markdown content for documentation and note- taking workflows.
+  *
+  * Script Purpose:
+  * - Generate markdown documentation
+  * - Format content for note- taking systems
+  * - Maintain consistent documentation structure
+  *
+  * Script Steps:
+  * 1. Initialize spreadsheet connection
+  * 2. Access Drive file system
+  * 3. Fetch source data
+  * 4. Validate input data
+  * 5. Process and transform data
+  *
+  * Script Functions:
+  * - extractYamlFrontmatter(): Extracts specific information
+  * - findFolderByName(): Finds matching folder by name
+  * - findYamlFrontmatterInFolder(): Finds matching yaml frontmatter in folder
+  * - findYamlFrontmatterInFolderById(): Finds matching yaml frontmatter in folder by id
+  * - onOpen(): Manages files and folders
+  * - processFolderInput(): Processes and transforms folder input
+  * - showFolderInputForm(): Manages files and folders
+  * - YAML(): Performs specialized operations
+  *
+  * Script Helper Functions:
+  * - parseYaml(): Parses and extracts yaml
+  *
+  * Script Dependencies:
+  * - None (standalone script)
+  *
+  * Google Services:
+  * - DriveApp: For file and folder management
+  * - HtmlService: For serving HTML content
+  * - SpreadsheetApp: For spreadsheet operations
+  */
 
 /**
- * Shows the HTML form to accept folder input from the user.
- *// * *
- * Processes the folder input from the user and finds YAML frontmatter properties.
- * @param {string} folderId - The folder ID input by the user.
- * @param {string} folderName - The folder name input by the user.
- *// * *
- * Finds a folder by name.
- * @param {string} folderName - The name of the folder.
- * @return {Folder} The folder with the specified name, or null if not found.
- *// * *
- * Finds and logs all YAML frontmatter properties in text files within a specified folder.
- * @param {Folder} folder - The folder to search for YAML frontmatter properties.
- *// * *
- * Finds and logs all YAML frontmatter properties in text files within a folder specified by ID.
- * @param {string} folderId - The ID of the folder to search.
- *// * *
- * Extracts YAML frontmatter from the content of a text file.
- * @param {string} content - The content of the text file.
- * @return {Object} An object containing the YAML frontmatter properties.
- *// * *
- * Parses a YAML string into an object.
- * @param {string} yamlString - The YAML string.
- * @return {Object} The parsed YAML object.
- *// * *
- * A simple YAML parser.
- * Note: For more complex YAML, consider using an external library.
- *// / Main Functions
+  * Shows the HTML form to accept folder input from the user.
+  *// * *
+  * Processes the folder input from the user and finds YAML frontmatter properties.
+  * @param {string} folderId - The folder ID input by the user.
+  * @param {string} folderName - The folder name input by the user.
+  *// * *
+  * Finds a folder by name.
+  * @param {string} folderName - The name of the folder.
+  * @return {Folder} The folder with the specified name, or null if not found.
+  *// * *
+  * Finds and logs all YAML frontmatter properties in text files within a specified folder.
+  * @param {Folder} folder - The folder to search for YAML frontmatter properties.
+  *// * *
+  * Finds and logs all YAML frontmatter properties in text files within a folder specified by ID.
+  * @param {string} folderId - The ID of the folder to search.
+  *// * *
+  * Extracts YAML frontmatter from the content of a text file.
+  * @param {string} content - The content of the text file.
+  * @return {Object} An object containing the YAML frontmatter properties.
+  *// * *
+  * Parses a YAML string into an object.
+  * @param {string} yamlString - The YAML string.
+  * @return {Object} The parsed YAML object.
+  *// * *
+  * A simple YAML parser.
+  * Note: For more complex YAML, consider using an external library.
+  *// / Main Functions
 
 // Main Functions
 
 /**
 
- * Extracts specific information
- * @param
- * @param {string} content - The content to process
- * @returns {string} The formatted string
+  * Extracts specific information
+  * @param
+  * @param {string} content - The content to process
+  * @returns {string} The formatted string
 
- */
+  */
 
 function extractYamlFrontmatter(content) {
   console.log('Entering extractYamlFrontmatter function');
@@ -104,12 +104,12 @@ function extractYamlFrontmatter(content) {
 
 /**
 
- * Finds matching folder by name
- * @param
- * @param {string} folderName - The folderName parameter
- * @returns {string} The formatted string
+  * Finds matching folder by name
+  * @param
+  * @param {string} folderName - The folderName parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function findFolderByName(folderName) {
   console.log('Entering findFolderByName function');
@@ -128,12 +128,12 @@ function findFolderByName(folderName) {
 
 /**
 
- * Finds matching yaml frontmatter in folder
- * @param
- * @param {Folder} folder - The folder parameter
- * @returns {string} The formatted string
+  * Finds matching yaml frontmatter in folder
+  * @param
+  * @param {Folder} folder - The folder parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function findYamlFrontmatterInFolder(folder) {
   console.log('Entering findYamlFrontmatterInFolder function');
@@ -175,12 +175,12 @@ function findYamlFrontmatterInFolder(folder) {
 
 /**
 
- * Finds matching yaml frontmatter in folder by id
- * @param
- * @param {string} folderId - The folderId parameter
- * @returns {string} The formatted string
+  * Finds matching yaml frontmatter in folder by id
+  * @param
+  * @param {string} folderId - The folderId parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function findYamlFrontmatterInFolderById(folderId) {
   console.log('Entering findYamlFrontmatterInFolderById function');
@@ -198,10 +198,10 @@ function findYamlFrontmatterInFolderById(folderId) {
 
 /**
 
- * Manages files and folders
- * @returns {string} The formatted string
+  * Manages files and folders
+  * @returns {string} The formatted string
 
- */
+  */
 
 function onOpen() {
   console.log('Entering onOpen function');
@@ -219,13 +219,13 @@ function onOpen() {
 
 /**
 
- * Processes and transforms folder input
- * @param
- * @param {string} folderId - The folderId parameter
- * @param {string} folderName - The folderName parameter
- * @returns {string} The formatted string
+  * Processes and transforms folder input
+  * @param
+  * @param {string} folderId - The folderId parameter
+  * @param {string} folderName - The folderName parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function processFolderInput(folderId, folderName) {
   console.log('Entering processFolderInput function');
@@ -256,10 +256,10 @@ function processFolderInput(folderId, folderName) {
 
 /**
 
- * Manages files and folders
- * @returns {string} The formatted string
+  * Manages files and folders
+  * @returns {string} The formatted string
 
- */
+  */
 
 function showFolderInputForm() {
   console.log('Entering showFolderInputForm function');
@@ -277,10 +277,10 @@ function showFolderInputForm() {
 
 /**
 
- * Performs specialized operations
- * @returns {string} The formatted string
+  * Performs specialized operations
+  * @returns {string} The formatted string
 
- */
+  */
 
 function YAML() {
   this.parse = function (yamlString) {
@@ -309,12 +309,12 @@ function YAML() {
 
 /**
 
- * Parses and extracts yaml
- * @param
- * @param {any} yamlString - The yamlString parameter
- * @returns {string} The formatted string
+  * Parses and extracts yaml
+  * @param
+  * @param {any} yamlString - The yamlString parameter
+  * @returns {string} The formatted string
 
- */
+  */
 
 function parseYaml(yamlString) {
   console.log('Entering parseYaml function');
