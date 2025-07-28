@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- index- folders- files
  *
  * Script Summary:
@@ -42,7 +42,7 @@
  * - Utilities: For utility functions and encoding
  * /
 
-/ * *
+/**
  * Main function to create a Drive index in the bound Google Sheets spreadsheet.
  * / / * *
  * Sets up sheets for each file type in the bound spreadsheet.
@@ -90,7 +90,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param
@@ -131,7 +131,7 @@ function addToSheet(sheet, file, type) {
   }
 }
 
-/ * *
+/**
 
  * Creates new drive index or resources
  * @returns {string} The newly created string
@@ -185,7 +185,7 @@ function createDriveIndex() {
   }
 }
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param
@@ -217,7 +217,7 @@ function finalizeSheets(ss) {
   });
 }
 
-/ * *
+/**
 
  * Gets specific file path or configuration
  * @param
@@ -236,7 +236,7 @@ function getFilePath(file) {
   return pathParts.join('/ ') + '/ ' + file.getName();
 }
 
-/ * *
+/**
 
  * Gets specific or create sheet or configuration
  * @param
@@ -254,7 +254,7 @@ function getOrCreateSheet(ss, sheetName) {
   return sheet;
 }
 
-/ * *
+/**
 
  * Processes and transforms folder
  * @param
@@ -289,7 +289,7 @@ function processFolder(folder, allowedTypes, sheets, processedFiles, queue) {
   }
 }
 
-/ * *
+/**
 
  * Sets headers or configuration values
  * @param
@@ -304,7 +304,7 @@ function setHeaders(sheet) {
   sheet.setFrozenRows(1);
 }
 
-/ * *
+/**
 
  * Sets up sheets or configuration values
  * @param
@@ -326,7 +326,7 @@ function setupSheets(ss, allowedTypes) {
   return sheets;
 }
 
-/ * *
+/**
 
  * Processes and transforms should file
  * @param
@@ -346,7 +346,7 @@ function shouldProcessFile(file, extensions, processedFiles) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Formats date for display
  * @param

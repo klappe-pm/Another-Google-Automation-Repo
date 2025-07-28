@@ -1,0 +1,172 @@
+{
+  "project": {
+    "name": "Workspace Automation",
+    "version": "2.0.0",
+    "description": "Google Apps Script automation framework for workspace productivity",
+    "created": "2024-01-01",
+    "lastUpdated": "2025-07-27",
+    "maintainer": "Kevin Lappe",
+    "repository": "https://github.com/kevinlappe/workspace-automation"
+  },
+  "statistics": {
+    "totalFiles": 148,
+    "services": {
+      "calendar": 8,
+      "chat": 1,
+      "docs": 6,
+      "drive": 27,
+      "gmail": 55,
+      "photos": 1,
+      "sheets": 8,
+      "tasks": 3,
+      "utility": 39
+    },
+    "codeMetrics": {
+      "totalLines": 45000,
+      "avgLinesPerFile": 304,
+      "largestFile": "drive-manager-comprehensive-indexer.gs",
+      "smallestFile": "chat-export-daily-details.gs"
+    },
+    "qualityMetrics": {
+      "lintingCompliance": 100,
+      "headerStandardization": 100,
+      "namingConvention": 100,
+      "documentationCoverage": 70,
+      "testCoverage": 0
+    }
+  },
+  "infrastructure": {
+    "deployment": {
+      "local": {
+        "script": "automation/deploy-local.sh",
+        "status": "operational",
+        "dependencies": ["clasp", "npm", "bash"]
+      },
+      "cloud": {
+        "provider": "Google Cloud Build",
+        "config": "cloudbuild.yaml",
+        "project": "workspace-automation-466800",
+        "status": "operational"
+      }
+    },
+    "configuration": {
+      "projectMapping": "project-mapping.json",
+      "eslintConfig": ".eslintrc.json",
+      "claspConfig": ".clasp.json",
+      "gitIgnore": ".gitignore",
+      "gcloudIgnore": ".gcloudignore"
+    },
+    "automation": {
+      "preCommitHooks": true,
+      "autoFormatting": true,
+      "continuousIntegration": false,
+      "continuousDeployment": false
+    }
+  },
+  "dependencies": {
+    "runtime": {
+      "googleAppsScript": "ES6",
+      "googleWorkspaceAPIs": [
+        "Calendar",
+        "Drive",
+        "Gmail",
+        "Docs",
+        "Sheets",
+        "Tasks"
+      ]
+    },
+    "development": {
+      "node": "18.x",
+      "npm": "9.x",
+      "clasp": "2.4.2",
+      "eslint": "8.x",
+      "typescript": "5.x"
+    }
+  },
+  "apiUsage": {
+    "calendar": {
+      "methods": ["list", "get", "insert", "update", "delete"],
+      "quotaImpact": "medium"
+    },
+    "drive": {
+      "methods": ["list", "get", "create", "update", "delete", "copy", "export"],
+      "quotaImpact": "high"
+    },
+    "gmail": {
+      "methods": ["list", "get", "send", "modify", "trash", "labels"],
+      "quotaImpact": "high"
+    },
+    "sheets": {
+      "methods": ["get", "batchUpdate", "append", "clear"],
+      "quotaImpact": "medium"
+    }
+  },
+  "knownIssues": {
+    "technical": [
+      "No shared library implementation",
+      "Duplicate code across services",
+      "Limited error recovery",
+      "No caching mechanism",
+      "API calls in loops"
+    ],
+    "operational": [
+      "Manual deployment required for some changes",
+      "No monitoring or alerting",
+      "Limited rollback capabilities",
+      "No performance metrics"
+    ]
+  },
+  "futureEnhancements": {
+    "phase2": [
+      "Shared utility library",
+      "Unit testing framework",
+      "Performance optimization",
+      "Advanced error handling"
+    ],
+    "phase3": [
+      "Monitoring dashboard",
+      "Automated scaling",
+      "Multi-tenant support",
+      "API gateway"
+    ]
+  },
+  "documentation": {
+    "structure": {
+      "root": "/docs",
+      "categories": [
+        "foundation",
+        "architecture", 
+        "development",
+        "deployment",
+        "diagrams",
+        "policies"
+      ]
+    },
+    "keyFiles": [
+      "FOUNDATION_OVERVIEW.md",
+      "ARCHITECTURE.md",
+      "DEVELOPMENT_GUIDE.md",
+      "DEPLOYMENT_GUIDE.md",
+      "TROUBLESHOOTING.md"
+    ],
+    "coverage": {
+      "apiReference": 60,
+      "userGuides": 40,
+      "developerDocs": 80,
+      "troubleshooting": 30
+    }
+  },
+  "securityProfile": {
+    "authentication": "Google OAuth 2.0",
+    "authorization": "Google Workspace permissions",
+    "secrets": {
+      "storage": "Google Secret Manager",
+      "rotation": "manual",
+      "access": "service account based"
+    },
+    "vulnerabilities": {
+      "known": 0,
+      "lastScan": "2025-07-27"
+    }
+  }
+}

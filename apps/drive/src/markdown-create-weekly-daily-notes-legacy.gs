@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- create- weekly- daily- notes- legacy
  *
  * Script Summary:
@@ -39,11 +39,11 @@
  * - Logger: For logging and debugging
  * /
 
-/ * *  * Main function to create daily notes for the upcoming week * / / / Main Functions
+/**  * Main function to create daily notes for the upcoming week * / / / Main Functions
 
 / / Main Functions
 
-/ * *
+/**
 
  * Creates new single daily note or resources
  * @param
@@ -74,7 +74,7 @@ function createSingleDailyNote(date, rootNotesFolder) {
     }
   }
 
-/ * *
+/**
 
  * Creates new single daily note or resources
  * @param
@@ -105,7 +105,7 @@ function createSingleDailyNote(date, rootNotesFolder) {
     }
   }
 
-/ * *
+/**
 
  * Creates new single daily note or resources
  * @param
@@ -136,7 +136,7 @@ function createSingleDailyNote(date, rootNotesFolder) {
     }
   }
 
-/ * *
+/**
 
  * Creates new weekly daily notes or resources
  * @returns {any} The newly created any
@@ -298,7 +298,7 @@ ${generateEventTable(date)}`;
   }
 }
 
-/ * *
+/**
 
  * Manages files and folders
  * @param
@@ -320,7 +320,7 @@ function ensureWeekFolderPath(date, rootFolder) {
     return weekFolder;
   }
 
-/ * *
+/**
 
  * Manages files and folders
  * @param
@@ -342,7 +342,7 @@ function ensureWeekFolderPath(date, rootFolder) {
     return weekFolder;
   }
 
-/ * *
+/**
 
  * Manages files and folders
  * @param
@@ -364,7 +364,7 @@ function ensureWeekFolderPath(date, rootFolder) {
     return weekFolder;
   }
 
-/ * *
+/**
 
  * Creates new find or folder or resources
  * @param
@@ -384,7 +384,7 @@ function findOrCreateFolder(parentFolder, folderName) {
     }
   }
 
-/ * *
+/**
 
  * Creates new find or folder or resources
  * @param
@@ -404,7 +404,7 @@ function findOrCreateFolder(parentFolder, folderName) {
     }
   }
 
-/ * *
+/**
 
  * Creates new find or folder or resources
  * @param
@@ -424,7 +424,7 @@ function findOrCreateFolder(parentFolder, folderName) {
     }
   }
 
-/ * *
+/**
 
  * Generates new content or reports
  * @param
@@ -455,7 +455,7 @@ ${generateEventTable(date)}`;
     return content;
   }
 
-/ * *
+/**
 
  * Generates new content or reports
  * @param
@@ -486,7 +486,7 @@ ${generateEventTable(date)}`;
     return content;
   }
 
-/ * *
+/**
 
  * Generates new content or reports
  * @param
@@ -517,7 +517,7 @@ ${generateEventTable(date)}`;
     return content;
   }
 
-/ * *
+/**
 
  * Generates new content or reports
  * @param
@@ -562,7 +562,7 @@ function generateEventTable(date) {
     return tableContent;
   }
 
-/ * *
+/**
 
  * Generates new content or reports
  * @param
@@ -607,7 +607,7 @@ function generateEventTable(date) {
     return tableContent;
   }
 
-/ * *
+/**
 
  * Generates new content or reports
  * @param
@@ -652,7 +652,7 @@ function generateEventTable(date) {
     return tableContent;
   }
 
-/ * *
+/**
 
  * Gets specific events for day or configuration
  * @param
@@ -674,7 +674,7 @@ function getEventsForDay(date) {
     return events;
   }
 
-/ * *
+/**
 
  * Gets specific events for day or configuration
  * @param
@@ -696,7 +696,7 @@ function getEventsForDay(date) {
     return events;
   }
 
-/ * *
+/**
 
  * Gets specific events for day or configuration
  * @param
@@ -720,7 +720,7 @@ function getEventsForDay(date) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Formats date for display
  * @param
@@ -745,7 +745,7 @@ function formatDate(date, format) {
       .replace('mm', minutes);
   }
 
-/ * *
+/**
 
  * Formats date for display
  * @param
@@ -770,7 +770,7 @@ function formatDate(date, format) {
       .replace('mm', minutes);
   }
 
-/ * *
+/**
 
  * Formats date for display
  * @param
@@ -795,7 +795,7 @@ function formatDate(date, format) {
       .replace('mm', minutes);
   }
 
-/ * *
+/**
 
  * Gets specific day name or configuration
  * @param
@@ -809,7 +809,7 @@ function getDayName(date) {
     return days[date.getDay()];
   }
 
-/ * *
+/**
 
  * Gets specific day name or configuration
  * @param
@@ -823,7 +823,7 @@ function getDayName(date) {
     return days[date.getDay()];
   }
 
-/ * *
+/**
 
  * Gets specific day name or configuration
  * @param
@@ -837,7 +837,7 @@ function getDayName(date) {
     return days[date.getDay()];
   }
 
-/ * *
+/**
 
  * Gets specific month name or configuration
  * @param
@@ -852,7 +852,7 @@ function getMonthName(month) {
     return months[month - 1];
   }
 
-/ * *
+/**
 
  * Gets specific month name or configuration
  * @param
@@ -867,7 +867,7 @@ function getMonthName(month) {
     return months[month - 1];
   }
 
-/ * *
+/**
 
  * Gets specific month name or configuration
  * @param
@@ -882,7 +882,7 @@ function getMonthName(month) {
     return months[month - 1];
   }
 
-/ * *
+/**
 
  * Gets specific next monday or configuration
  * @param
@@ -897,7 +897,7 @@ function getNextMonday(date) {
     return new Date(date.getTime() + daysUntilMonday * 24 * 60 * 60 * 1000);
   }
 
-/ * *
+/**
 
  * Gets specific next monday or configuration
  * @param
@@ -912,7 +912,7 @@ function getNextMonday(date) {
     return new Date(date.getTime() + daysUntilMonday * 24 * 60 * 60 * 1000);
   }
 
-/ * *
+/**
 
  * Gets specific next monday or configuration
  * @param
@@ -927,7 +927,7 @@ function getNextMonday(date) {
     return new Date(date.getTime() + daysUntilMonday * 24 * 60 * 60 * 1000);
   }
 
-/ * *
+/**
 
  * Gets specific week number or configuration
  * @param
@@ -944,7 +944,7 @@ function getWeekNumber(date) {
     return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
   }
 
-/ * *
+/**
 
  * Gets specific week number or configuration
  * @param
@@ -961,7 +961,7 @@ function getWeekNumber(date) {
     return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
   }
 
-/ * *
+/**
 
  * Gets specific week number or configuration
  * @param

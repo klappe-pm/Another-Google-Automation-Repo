@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: analyze- metadata- 24months
  *
  * Script Summary:
@@ -32,11 +32,11 @@
  * - Utilities: For utility functions and encoding
  * /
 
-/ *  *  * Main function to extract contact information from Gmail and populate a spreadsheet. * / / *  *  * Calculates the date X months ago from the current date. * @param {number} months - The number of months to subtract from the current date. * @return {string} A formatted date string in the format "yyyy / MM / dd". * / / / Main Functions
+/**  * Main function to extract contact information from Gmail and populate a spreadsheet. * / / *  *  * Calculates the date X months ago from the current date. * @param {number} months - The number of months to subtract from the current date. * @return {string} A formatted date string in the format "yyyy / MM / dd". * / / / Main Functions
 
 / / Main Functions
 
-/ * *
+/**
 
  * Gets specific contact list or configuration
  * @returns {string} The requested string
@@ -139,7 +139,7 @@ function getContactList() {
   }
 }
 
-/ * *
+/**
 
  * Gets specific date x months ago or configuration
  * @param

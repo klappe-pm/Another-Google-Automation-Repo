@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- export- docs- alt
  *
  * Script Summary:
@@ -45,7 +45,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -55,7 +55,7 @@
 
  * /
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -80,14 +80,14 @@ function addYamlFrontmatter(metadata, content) {
     return yaml + content;
   }
 
-/ * *
+/**
 
  * Exports all docs in folder to markdown to external format
  * @returns {any} The result
 
  * /
 
-/ * *
+/**
 
  * Exports all docs in folder to markdown to external format
  * @returns {any} The result
@@ -115,7 +115,7 @@ function exportAllDocsInFolderToMarkdown() {
   Logger.log("Script completed successfully.");
 }
 
-/ * *
+/**
 
  * Gets specific doc metadata or configuration
  * @param
@@ -125,7 +125,7 @@ function exportAllDocsInFolderToMarkdown() {
 
  * /
 
-/ * *
+/**
 
  * Gets specific doc metadata or configuration
  * @param
@@ -154,7 +154,7 @@ function getDocMetadata(doc, file) {
     };
   }
 
-/ * *
+/**
 
  * Gets specific or create folder or configuration
  * @param
@@ -163,7 +163,7 @@ function getDocMetadata(doc, file) {
 
  * /
 
-/ * *
+/**
 
  * Gets specific or create folder or configuration
  * @param
@@ -181,7 +181,7 @@ function getOrCreateFolder(folderName) {
     }
   }
 
-/ * *
+/**
 
  * Processes and transforms element
  * @param
@@ -190,7 +190,7 @@ function getOrCreateFolder(folderName) {
 
  * /
 
-/ * *
+/**
 
  * Processes and transforms element
  * @param
@@ -259,7 +259,7 @@ function processElement(element) {
     return markdown;
   }
 
-/ * *
+/**
 
  * Saves markdown to file persistently
  * @param
@@ -270,7 +270,7 @@ function processElement(element) {
 
  * /
 
-/ * *
+/**
 
  * Saves markdown to file persistently
  * @param
@@ -288,7 +288,7 @@ function saveMarkdownToFile(markdownContent, fileName, folder) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Converts between formats
  * @param
@@ -297,7 +297,7 @@ function saveMarkdownToFile(markdownContent, fileName, folder) {
 
  * /
 
-/ * *
+/**
 
  * Converts between formats
  * @param
@@ -318,7 +318,7 @@ function convertBodyToMarkdown(body) {
     return markdown;
   }
 
-/ * *
+/**
 
  * Saves image persistently
  * @param
@@ -328,7 +328,7 @@ function convertBodyToMarkdown(body) {
 
  * /
 
-/ * *
+/**
 
  * Saves image persistently
  * @param

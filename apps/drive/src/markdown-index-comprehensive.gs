@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- index- comprehensive
  *
  * Script Summary:
@@ -69,7 +69,7 @@ const DEFAULT_MAX_EXECUTION_TIME_MINUTES = 5; / / = = = = = = = = UI FUNCTIONS =
 
 / / Main Functions
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param
@@ -103,7 +103,7 @@ function addToSheet(sheet, file, type) {
   }
 }
 
-/ * *
+/**
 
  * Constructs complex folder hierarchy structures
  * @param
@@ -145,7 +145,7 @@ function buildFolderHierarchy(folder, maxDepth, currentPath, currentLevel, allFo
   }
 }
 
-/ * *
+/**
 
  * Processes and transforms cleared files cache
  * @returns {any} The result
@@ -177,7 +177,7 @@ function clearProcessedFilesCache() {
   }
 }
 
-/ * *
+/**
 
  * Creates new config template or resources
  * @returns {any} The newly created any
@@ -218,7 +218,7 @@ function createConfigTemplate() {
   }
 }
 
-/ * *
+/**
 
  * Creates new drive index merged or resources
  * @returns {any} The newly created any
@@ -276,7 +276,7 @@ function createDriveIndexMerged() {
   }
 }
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param
@@ -313,7 +313,7 @@ function finalizeSheets(ss, tabOrder) {
   }
 }
 
-/ * *
+/**
 
  * Gets specific file path or configuration
  * @param
@@ -355,7 +355,7 @@ function getFilePath(file) {
   }
 }
 
-/ * *
+/**
 
  * Gets specific or create sheet or configuration
  * @param
@@ -373,7 +373,7 @@ function getOrCreateSheet(ss, sheetName) {
   return sheet;
 }
 
-/ * *
+/**
 
  * Combines multiple list folder treed sources
  * @returns {any} True if condition is met, false otherwise
@@ -431,7 +431,7 @@ function listFolderTreeMerged() {
   }
 }
 
-/ * *
+/**
 
  * Loads config from storage
  * @returns {any} The result
@@ -487,7 +487,7 @@ function loadConfig() {
   return config;
 }
 
-/ * *
+/**
 
  * Logs debug or messages
  * @param
@@ -504,7 +504,7 @@ function logDebug(message, debugMode) {
   }
 }
 
-/ * *
+/**
 
  * Logs status or messages
  * @param
@@ -525,7 +525,7 @@ function logStatus(sheet, message, isError = false) {
   }
 }
 
-/ * *
+/**
 
  * Manages files and folders
  * @returns {any} The result
@@ -544,7 +544,7 @@ function onOpen() {
     .addToUi();
 }
 
-/ * *
+/**
 
  * Processes and transforms folder
  * @param
@@ -611,7 +611,7 @@ function processFolder(folder, allowedTypes, sheets, processedFiles, queue, conf
   }
 }
 
-/ * *
+/**
 
  * Sets headers or configuration values
  * @param
@@ -629,7 +629,7 @@ function setHeaders(range, headersArray) {
   range.getSheet().setFrozenRows(range.getRow());
 }
 
-/ * *
+/**
 
  * Sets up sheets or configuration values
  * @param
@@ -661,7 +661,7 @@ function setupSheets(ss, allowedTypes, config) {
   return sheets;
 }
 
-/ * *
+/**
 
  * Processes and transforms should file
  * @param
@@ -697,7 +697,7 @@ function shouldProcessFile(file, extensions, processedFiles, debugMode, mimeType
   return true;
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -718,7 +718,7 @@ function showAlert(title, message, buttonSet) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Formats date for display
  * @param

@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- export- basic- sheets
  *
  * Script Summary:
@@ -66,7 +66,7 @@ Key features:
 
 / / Main Functions
 
-/ * *
+/**
 
  * Performs specialized operations
  * @returns {string} The formatted string
@@ -80,7 +80,7 @@ function onOpen() {
   .addToUi();
 }
 
-/ * *
+/**
 
  * Exports search and emails to external format
  * @param
@@ -158,7 +158,7 @@ function searchAndExportEmails(searchTerm, label, keyword, startDate, endDate) {
       Logger.log('Folder shared with anyone with the link.');
     }
 
-/ * *
+/**
 
  * Logs show dia or messages
  * @returns {string} The formatted string
@@ -174,7 +174,7 @@ function showDialog() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Formats date for display
  * @param

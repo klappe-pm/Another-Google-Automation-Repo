@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- add- yaml- frontmatter- multi
  *
  * Script Summary:
@@ -39,11 +39,11 @@
  * - Utilities: For utility functions and encoding
  * /
 
-/ * *  * Creates a custom menu in the Google Sheets UI when the spreadsheet is opened. * / / *  *  * Displays a dialog for user input to control YAML addition. * / / *  *  * Processes the user's YAML addition request based on form data. * @param {Object} formData - The form data submitted by the user. * @return {Object} An object indicating success or failure and a message. * / / *  *  * Extracts the file ID from a Google Drive URL. * @param {string} url - The Google Drive URL. * @return {string|null} The extracted file ID or null if not found. * / / *  *  * Adds YAML frontmatter to a file if it doesn't already exist. * @param {string} fileId - The ID of the file to process. * @param {Object} formData - The form data containing YAML information. * @return {Object} An object indicating success or failure and a message. * / / *  *  * Generates YAML frontmatter based on file properties and form data. * @param {File} file - The Google Drive file object. * @param {Object} formData - The form data containing YAML information. * @return {string} The generated YAML frontmatter. * / / *  *  * Retrieves all markdown files in a given folder that are owned by the current user. * @param {string} folderId - The ID of the folder to search. * @return {Array} An array of file IDs for markdown files in the folder. * / / *  *  * Logs the results of YAML addition to a 'YAML Logs' sheet in the active spreadsheet. * @param {Array} results - An array of result objects from YAML addition attempts. * / / / Main Functions
+/**  * Creates a custom menu in the Google Sheets UI when the spreadsheet is opened. * / / *  *  * Displays a dialog for user input to control YAML addition. * / / *  *  * Processes the user's YAML addition request based on form data. * @param {Object} formData - The form data submitted by the user. * @return {Object} An object indicating success or failure and a message. * / / *  *  * Extracts the file ID from a Google Drive URL. * @param {string} url - The Google Drive URL. * @return {string|null} The extracted file ID or null if not found. * / / *  *  * Adds YAML frontmatter to a file if it doesn't already exist. * @param {string} fileId - The ID of the file to process. * @param {Object} formData - The form data containing YAML information. * @return {Object} An object indicating success or failure and a message. * / / *  *  * Generates YAML frontmatter based on file properties and form data. * @param {File} file - The Google Drive file object. * @param {Object} formData - The form data containing YAML information. * @return {string} The generated YAML frontmatter. * / / *  *  * Retrieves all markdown files in a given folder that are owned by the current user. * @param {string} folderId - The ID of the folder to search. * @return {Array} An array of file IDs for markdown files in the folder. * / / *  *  * Logs the results of YAML addition to a 'YAML Logs' sheet in the active spreadsheet. * @param {Array} results - An array of result objects from YAML addition attempts. * / / / Main Functions
 
 / / Main Functions
 
-/ * *
+/**
 
  * Manages files and folders
  * @param
@@ -53,7 +53,7 @@
 
  * /
 
-/ * *
+/**
 
  * Manages files and folders
  * @param
@@ -88,7 +88,7 @@ function addYamlToFile(fileId, formData) {
   }
 }
 
-/ * *
+/**
 
  * Generates new content or reports
  * @param
@@ -98,7 +98,7 @@ function addYamlToFile(fileId, formData) {
 
  * /
 
-/ * *
+/**
 
  * Generates new content or reports
  * @param
@@ -128,7 +128,7 @@ function generateYaml(file, formData) {
   return yaml;
 }
 
-/ * *
+/**
 
  * Gets specific markdown files in folder or configuration
  * @param
@@ -137,7 +137,7 @@ function generateYaml(file, formData) {
 
  * /
 
-/ * *
+/**
 
  * Gets specific markdown files in folder or configuration
  * @param
@@ -162,7 +162,7 @@ function getMarkdownFilesInFolder(folderId) {
   return markdownFiles;
 }
 
-/ * *
+/**
 
  * Logs results or messages
  * @param
@@ -171,7 +171,7 @@ function getMarkdownFilesInFolder(folderId) {
 
  * /
 
-/ * *
+/**
 
  * Logs results or messages
  * @param
@@ -218,14 +218,14 @@ function logResults(results) {
   });
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @returns {string} The formatted string
 
  * /
 
-/ * *
+/**
 
  * Performs specialized operations
  * @returns {string} The formatted string
@@ -239,7 +239,7 @@ function onOpen() {
     .addToUi();
 }
 
-/ * *
+/**
 
  * Processes and transforms yaml request
  * @param
@@ -248,7 +248,7 @@ function onOpen() {
 
  * /
 
-/ * *
+/**
 
  * Processes and transforms yaml request
  * @param
@@ -289,14 +289,14 @@ function processYamlRequest(formData) {
   };
 }
 
-/ * *
+/**
 
  * Logs show yaml dia or messages
  * @returns {string} The formatted string
 
  * /
 
-/ * *
+/**
 
  * Logs show yaml dia or messages
  * @returns {string} The formatted string
@@ -312,7 +312,7 @@ function showYamlDialog() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Gets specific id from url or configuration
  * @param
@@ -321,7 +321,7 @@ function showYamlDialog() {
 
  * /
 
-/ * *
+/**
 
  * Gets specific id from url or configuration
  * @param

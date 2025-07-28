@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: export- calendar
  *
  * Script Summary:
@@ -48,7 +48,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -66,7 +66,7 @@ function chunkArray(array, size) {
     return chunks;
   }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -84,7 +84,7 @@ function chunkArray(array, size) {
     return chunks;
   }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -102,7 +102,7 @@ function chunkArray(array, size) {
     return chunks;
   }
 
-/ * *
+/**
 
  * Exports all calendar events to external format
  * @returns {any} The result
@@ -602,7 +602,7 @@ function exportAllCalendarEvents() {
   }
 }
 
-/ * *
+/**
 
  * Gets specific day of year or configuration
  * @param
@@ -617,7 +617,7 @@ function getDayOfYear(date) {
     return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
   }
 
-/ * *
+/**
 
  * Gets specific day of year or configuration
  * @param
@@ -632,7 +632,7 @@ function getDayOfYear(date) {
     return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
   }
 
-/ * *
+/**
 
  * Gets specific day of year or configuration
  * @param
@@ -647,7 +647,7 @@ function getDayOfYear(date) {
     return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
   }
 
-/ * *
+/**
 
  * Gets specific distances from google maps or configuration
  * @param
@@ -718,7 +718,7 @@ function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
     }
   }
 
-/ * *
+/**
 
  * Gets specific distances from google maps or configuration
  * @param
@@ -789,7 +789,7 @@ function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
     }
   }
 
-/ * *
+/**
 
  * Gets specific distances from google maps or configuration
  * @param
@@ -860,7 +860,7 @@ function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
     }
   }
 
-/ * *
+/**
 
  * Gets specific location for date or configuration
  * @param
@@ -879,7 +879,7 @@ function getLocationForDate(date, configLocations) {
     return null;
   }
 
-/ * *
+/**
 
  * Gets specific location for date or configuration
  * @param
@@ -898,7 +898,7 @@ function getLocationForDate(date, configLocations) {
     return null;
   }
 
-/ * *
+/**
 
  * Gets specific location for date or configuration
  * @param
@@ -917,7 +917,7 @@ function getLocationForDate(date, configLocations) {
     return null;
   }
 
-/ * *
+/**
 
  * Gets specific quarter or configuration
  * @param
@@ -942,7 +942,7 @@ function getQuarter(date) {
     return dateCache[key].quarter;
   }
 
-/ * *
+/**
 
  * Gets specific quarter or configuration
  * @param
@@ -967,7 +967,7 @@ function getQuarter(date) {
     return dateCache[key].quarter;
   }
 
-/ * *
+/**
 
  * Gets specific quarter or configuration
  * @param
@@ -992,7 +992,7 @@ function getQuarter(date) {
     return dateCache[key].quarter;
   }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -1008,7 +1008,7 @@ function roundToQuarterHour(value) {
     return (roundedMinutes / 60).toFixed(2); / / Convert back to hours
   }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -1024,7 +1024,7 @@ function roundToQuarterHour(value) {
     return (roundedMinutes / 60).toFixed(2); / / Convert back to hours
   }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -1040,7 +1040,7 @@ function roundToQuarterHour(value) {
     return (roundedMinutes / 60).toFixed(2); / / Convert back to hours
   }
 
-/ * *
+/**
 
  * Sets config or configuration values
  * @returns {any} The result
@@ -1077,7 +1077,7 @@ function setConfig() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Formats value for display
  * @param
@@ -1091,7 +1091,7 @@ function formatValue(value, decimals = 2) {
     return typeof value = = = 'number' && ! isNaN(value) ? value.toFixed(decimals) : "";
   }
 
-/ * *
+/**
 
  * Formats value for display
  * @param
@@ -1105,7 +1105,7 @@ function formatValue(value, decimals = 2) {
     return typeof value = = = 'number' && ! isNaN(value) ? value.toFixed(decimals) : "";
   }
 
-/ * *
+/**
 
  * Formats value for display
  * @param
@@ -1119,7 +1119,7 @@ function formatValue(value, decimals = 2) {
     return typeof value = = = 'number' && ! isNaN(value) ? value.toFixed(decimals) : "";
   }
 
-/ * *
+/**
 
  * Gets specific day of week or configuration
  * @param
@@ -1133,7 +1133,7 @@ function getDayOfWeek(date) {
     return day = = = 0 ? 1 : day + 1; / / Sunday= 1, Monday= 2, etc.
   }
 
-/ * *
+/**
 
  * Gets specific day of week or configuration
  * @param
@@ -1147,7 +1147,7 @@ function getDayOfWeek(date) {
     return day = = = 0 ? 1 : day + 1; / / Sunday= 1, Monday= 2, etc.
   }
 
-/ * *
+/**
 
  * Gets specific day of week or configuration
  * @param
@@ -1161,7 +1161,7 @@ function getDayOfWeek(date) {
     return day = = = 0 ? 1 : day + 1; / / Sunday= 1, Monday= 2, etc.
   }
 
-/ * *
+/**
 
  * Gets specific name day week or configuration
  * @param
@@ -1177,7 +1177,7 @@ function getNameDayWeek(day) {
     return days[day - 1] || "";
   }
 
-/ * *
+/**
 
  * Gets specific name day week or configuration
  * @param
@@ -1193,7 +1193,7 @@ function getNameDayWeek(day) {
     return days[day - 1] || "";
   }
 
-/ * *
+/**
 
  * Gets specific name day week or configuration
  * @param
@@ -1209,7 +1209,7 @@ function getNameDayWeek(day) {
     return days[day - 1] || "";
   }
 
-/ * *
+/**
 
  * Gets specific name month or configuration
  * @param
@@ -1226,7 +1226,7 @@ function getNameMonth(month) {
     return months[month - 1] || "";
   }
 
-/ * *
+/**
 
  * Gets specific name month or configuration
  * @param
@@ -1243,7 +1243,7 @@ function getNameMonth(month) {
     return months[month - 1] || "";
   }
 
-/ * *
+/**
 
  * Gets specific name month or configuration
  * @param
@@ -1260,7 +1260,7 @@ function getNameMonth(month) {
     return months[month - 1] || "";
   }
 
-/ * *
+/**
 
  * Gets specific name quarter or configuration
  * @param
@@ -1273,7 +1273,7 @@ function getNameQuarter(quarter) {
     return `Q${quarter}`;
   }
 
-/ * *
+/**
 
  * Gets specific name quarter or configuration
  * @param
@@ -1286,7 +1286,7 @@ function getNameQuarter(quarter) {
     return `Q${quarter}`;
   }
 
-/ * *
+/**
 
  * Gets specific name quarter or configuration
  * @param
@@ -1299,7 +1299,7 @@ function getNameQuarter(quarter) {
     return `Q${quarter}`;
   }
 
-/ * *
+/**
 
  * Gets specific week number or configuration
  * @param
@@ -1315,7 +1315,7 @@ function getWeekNumber(date) {
     return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
   }
 
-/ * *
+/**
 
  * Gets specific week number or configuration
  * @param
@@ -1331,7 +1331,7 @@ function getWeekNumber(date) {
     return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
   }
 
-/ * *
+/**
 
  * Gets specific week number or configuration
  * @param

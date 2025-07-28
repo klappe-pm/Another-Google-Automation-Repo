@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: export- chat- daily- details
  *
  * Script Summary:
@@ -62,7 +62,7 @@ let DEBUG = true; / / Function for debug logging;
 
 / / Main Functions
 
-/ * *
+/**
 
  * Analyzes chat and generates insights
  * @param
@@ -168,7 +168,7 @@ function analyzeChat(chatData) {
   return analysis;
 }
 
-/ * *
+/**
 
  * Analyzes chat usage and generates insights
  * @returns {any} The result
@@ -222,7 +222,7 @@ function analyzeChatUsage() {
   debugLog("Analysis complete for all dates");
 }
 
-/ * *
+/**
 
  * Performs calculations on median wait time
  * @param
@@ -242,7 +242,7 @@ function calculateMedianWaitTime(messages) {
   return waitTimes.length % 2 = = = 0 ? (waitTimes[middle - 1] + waitTimes[middle]) / 2 : waitTimes[middle];
 }
 
-/ * *
+/**
 
  * Logs debug or messages
  * @param
@@ -257,7 +257,7 @@ function debugLog(message) {
   }
 }
 
-/ * *
+/**
 
  * Retrieves messages for space from service
  * @param
@@ -297,7 +297,7 @@ function fetchMessagesForSpace(spaceName, startTime, endTime) {
   return messages;
 }
 
-/ * *
+/**
 
  * Retrieves spaces from service
  * @returns {any} The result
@@ -333,7 +333,7 @@ function fetchSpaces() {
   return spaces;
 }
 
-/ * *
+/**
 
  * Gets specific chat data or configuration
  * @param
@@ -367,7 +367,7 @@ function getChatData(date) {
   }
 }
 
-/ * *
+/**
 
  * Writes analysis to sheet to destination
  * @param
@@ -391,7 +391,7 @@ function writeAnalysisToSheet(sheet, date, analysis) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Checks boolean condition
  * @param
@@ -405,7 +405,7 @@ function countEmojis(text) {
   return (text.match(emojiRegex) || []).length;
 }
 
-/ * *
+/**
 
  * Gets specific unique emojis or configuration
  * @param

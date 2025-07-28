@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- export- pdf
  *
  * Script Summary:
@@ -258,7 +258,7 @@ const GmailUtils = {
 
 / / Main Functions
 
-/ * *
+/**
 
  * Exports emails to p d f to external format
  * @returns {string} The formatted string
@@ -359,7 +359,7 @@ function exportEmailsToPDF() {
   }
 }
 
-/ * *
+/**
 
  * Inserts data into sheet at specific position
  * @param
@@ -444,7 +444,7 @@ function insertDataIntoSheet(emailData, spreadsheetId, sheetName) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Gets specific or create folder or configuration
  * @param

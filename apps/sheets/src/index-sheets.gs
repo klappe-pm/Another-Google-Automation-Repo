@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: index- sheets
  *
  * Script Summary:
@@ -26,7 +26,7 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/ * *
+/**
  * Applies uniform formatting to a sheet:
  * - Sets the font to Helvetica, size 10.
  * - Makes the first row bold and wraps its text.
@@ -37,7 +37,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Creates new index v2 or resources
  * @returns {string} The newly created string
@@ -99,7 +99,7 @@ function createIndexV2() {
   SpreadsheetApp.getUi().alert("Sheet index created successfully! "); / / Notify the user
 }
 
-/ * *
+/**
 
  * Extracts specific information
  * @param
@@ -115,7 +115,7 @@ function extractCategory(sheetName) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Formats sheet for display
  * @param

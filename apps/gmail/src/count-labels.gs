@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: count- labels
  *
  * Script Summary:
@@ -26,7 +26,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Counts emails with and without labels or occurrences
 

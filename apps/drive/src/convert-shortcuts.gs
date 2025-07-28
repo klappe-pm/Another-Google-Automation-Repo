@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: convert- shortcuts
  *
  * Script Summary:
@@ -26,13 +26,13 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Manages files and folders
 
  * /
 
-/ * *
+/**
 
  * Manages files and folders
 

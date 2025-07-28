@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- add- yaml- frontmatter- bulk
  *
  * Script Summary:
@@ -61,14 +61,14 @@ let debugLog = []; / / Function to create and add the custom menu to the Google 
 
 / / Main Functions
 
-/ * *
+/**
 
  * Manages files and folders
  * @returns {any} The result
 
  * /
 
-/ * *
+/**
 
  * Manages files and folders
  * @returns {any} The result
@@ -144,7 +144,7 @@ function addYamlFrontmatter() {
   ui.alert('YAML Frontmatter Added', `Processed ${processedCount} markdown files. ${errorCount} errors occurred. Check the debug log for details.`, ui.ButtonSet.OK);
 }
 
-/ * *
+/**
 
  * Manages files and folders
  * @param
@@ -154,7 +154,7 @@ function addYamlFrontmatter() {
 
  * /
 
-/ * *
+/**
 
  * Manages files and folders
  * @param
@@ -185,7 +185,7 @@ tags: - - - `;
   }
 }
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param
@@ -194,7 +194,7 @@ tags: - - - `;
 
  * /
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param
@@ -220,7 +220,7 @@ function debug(message) {
   }
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -229,7 +229,7 @@ function debug(message) {
 
  * /
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -266,7 +266,7 @@ function onOpen(e) {
   }
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -275,7 +275,7 @@ function onOpen(e) {
 
  * /
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -312,14 +312,14 @@ function promptForYamlValues(ui) {
   return yamlValues;
 }
 
-/ * *
+/**
 
  * Logs view debug or messages
  * @returns {any} The result
 
  * /
 
-/ * *
+/**
 
  * Logs view debug or messages
  * @returns {any} The result
@@ -342,7 +342,7 @@ function viewDebugLog() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Formats date for display
  * @param
@@ -351,7 +351,7 @@ function viewDebugLog() {
 
  * /
 
-/ * *
+/**
 
  * Formats date for display
  * @param

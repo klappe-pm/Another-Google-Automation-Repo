@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: generate- file- tree
  *
  * Script Summary:
@@ -32,11 +32,11 @@
  * - Utilities: For utility functions and encoding
  * /
 
-/ * *  * Main function to initiate the file tree generation process. * Prompts the user for the root folder ID and starts the recursive processing. * / / *  *  * Generates the file tree structure in the active sheet starting from the given root folder. * @param {Folder} rootFolder The Google Drive Folder object to start from. * / / *  *  * Recursively processes a folder, adding file information to the output array, * and then calling itself for subfolders. *  * @param {GoogleAppsScript.Drive.Folder} folder The current folder to process. * @param {Array < GoogleAppsScript.Drive.Folder > } pathArray An array of FOLDER objects representing the path from the root to the current 'folder'. * @param {Array < Array < Object >  > } outputData The main array collecting row data (as RichTextValue objects). * @param {string} timezone The timezone string for date formatting. * @param {string} dateFormat The desired date format string. * / / / Main Functions
+/**  * Main function to initiate the file tree generation process. * Prompts the user for the root folder ID and starts the recursive processing. * / / *  *  * Generates the file tree structure in the active sheet starting from the given root folder. * @param {Folder} rootFolder The Google Drive Folder object to start from. * / / *  *  * Recursively processes a folder, adding file information to the output array, * and then calling itself for subfolders. *  * @param {GoogleAppsScript.Drive.Folder} folder The current folder to process. * @param {Array < GoogleAppsScript.Drive.Folder > } pathArray An array of FOLDER objects representing the path from the root to the current 'folder'. * @param {Array < Array < Object >  > } outputData The main array collecting row data (as RichTextValue objects). * @param {string} timezone The timezone string for date formatting. * @param {string} dateFormat The desired date format string. * / / / Main Functions
 
 / / Main Functions
 
-/ * *
+/**
 
  * Generates new content or reports
  * @param
@@ -44,7 +44,7 @@
 
  * /
 
-/ * *
+/**
 
  * Generates new content or reports
  * @param
@@ -111,13 +111,13 @@ function generateTree(rootFolder) {
 
 }
 
-/ * *
+/**
 
  * Manages files and folders
 
  * /
 
-/ * *
+/**
 
  * Manages files and folders
 
@@ -130,7 +130,7 @@ function onOpen() {
       .addToUi();
 }
 
-/ * *
+/**
 
  * Processes and transforms folder
  * @param
@@ -142,7 +142,7 @@ function onOpen() {
 
  * /
 
-/ * *
+/**
 
  * Processes and transforms folder
  * @param
@@ -192,13 +192,13 @@ function processFolder(folder, pathArray, outputData, timezone, dateFormat) {
   }
 }
 
-/ * *
+/**
 
  * Executes main process
 
  * /
 
-/ * *
+/**
 
  * Executes main process
 

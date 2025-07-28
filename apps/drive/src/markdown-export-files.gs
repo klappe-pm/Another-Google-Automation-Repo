@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- export- files
  *
  * Script Summary:
@@ -72,7 +72,7 @@ const DEFAULT_SECTION_ORDER = [
   Logger.log(`ERROR: ${JSON.stringify(errorDetails, null, 2)}`);
 }
 
-/ * *
+/**
  * Main function that reads configuration and processes the data sheet to create files.
  * This is the primary entry point triggered by the user.
  * / / * *
@@ -86,7 +86,7 @@ function processRow(row, headers, config) {
 
 / / Main Functions
 
-/ * *
+/**
 
  * Generates new content or reports
  * @returns {any} The result
@@ -153,7 +153,7 @@ function generateMarkdownFiles() {
   }
 }
 
-/ * *
+/**
 
  * Loads configuration from storage
  * @returns {any} The result
@@ -197,7 +197,7 @@ function loadConfiguration() {
   }
 }
 
-/ * *
+/**
 
  * Logs error or messages
  * @param
@@ -209,7 +209,7 @@ function loadConfiguration() {
 
 function logError(error, context = {}
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @returns {any} The result

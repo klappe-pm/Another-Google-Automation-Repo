@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: check- api- key
  *
  * Script Summary:
@@ -26,7 +26,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Checks conditions or status
 

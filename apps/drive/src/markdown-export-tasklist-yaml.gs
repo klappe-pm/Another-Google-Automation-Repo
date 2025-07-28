@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- export- tasklist- yaml
  *
  * Script Summary:
@@ -46,7 +46,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -101,7 +101,7 @@ function categorizeTasks(tasks) {
   return categories;
 }
 
-/ * *
+/**
 
  * Creates new y a m l frontmatter or resources
  * @param
@@ -127,7 +127,7 @@ function createYAMLFrontmatter(categorizedTasks) {
   return yaml;
 }
 
-/ * *
+/**
 
  * Exports tasks to markdown to external format
  * @param
@@ -162,7 +162,7 @@ function exportTasksToMarkdown(tasklistId) {
   }
 }
 
-/ * *
+/**
 
  * Extracts specific information
  * @param
@@ -182,7 +182,7 @@ function extractCountsFromYAML(yaml) {
   return counts;
 }
 
-/ * *
+/**
 
  * Gets specific or create file or configuration
  * @param
@@ -203,7 +203,7 @@ function getOrCreateFile(folder, fileName) {
   }
 }
 
-/ * *
+/**
 
  * Gets specific or create folder or configuration
  * @param
@@ -224,7 +224,7 @@ function getOrCreateFolder(folderName) {
   }
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @returns {any} The result
@@ -239,7 +239,7 @@ function onOpen() {
   Logger.log('Custom menu added to the spreadsheet');
 }
 
-/ * *
+/**
 
  * Checks boolean condition
  * @returns {any} True if condition is met, false otherwise
@@ -265,7 +265,7 @@ function showTasklistPrompt() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Counts new todos or occurrences
  * @param
@@ -282,7 +282,7 @@ function countNewTodos(categorizedTasks) {
          categorizedTasks.noDueDate.length;
 }
 
-/ * *
+/**
 
  * Formats categorized tasks for display
  * @param
@@ -304,7 +304,7 @@ function formatCategorizedTasks(categorizedTasks, yamlFrontmatter) {
   return markdown;
 }
 
-/ * *
+/**
 
  * Formats category for display
  * @param
@@ -327,7 +327,7 @@ function formatCategory(header, tasks, count) {
   return markdown + '\n';
 }
 
-/ * *
+/**
 
  * Formats date for display
  * @param
@@ -340,7 +340,7 @@ function formatDate(date) {
   return `${date.getFullYear()}- ${String(date.getMonth() + 1).padStart(2, '0')}- ${String(date.getDate()).padStart(2, '0')}`;
 }
 
-/ * *
+/**
 
  * Formats task for display
  * @param

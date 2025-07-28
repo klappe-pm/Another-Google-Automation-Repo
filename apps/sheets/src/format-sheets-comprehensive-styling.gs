@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: format- sheets- comprehensive- styling
  *
  * Script Summary:
@@ -27,7 +27,7 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/ * *
+/**
  * Main formatting function that applies all formatting rules to every sheet
  * in the active spreadsheet. It formats font to Helvetica Neue size 11,
  * aligns cells left and top, makes the top row bold, sets text wrapping to clip,
@@ -40,7 +40,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Works with spreadsheet data
 
@@ -55,7 +55,7 @@ function onOpen() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Formats all sheets for display
 

@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: create- sheets- tree- diagram
  *
  * Script Summary:
@@ -30,7 +30,7 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/ * *
+/**
  * Extracts the category from a sheet name using PascalCase convention
  *
  * @param {string} sheetName - The name of the sheet to process
@@ -53,7 +53,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Creates new index v2 or resources
  * @returns {any} The newly created any
@@ -143,7 +143,7 @@ function createIndexV2() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Extracts specific information
  * @param
@@ -160,7 +160,7 @@ function extractCategory(sheetName) {
   return category;
 }
 
-/ * *
+/**
 
  * Formats sheet for display
  * @param

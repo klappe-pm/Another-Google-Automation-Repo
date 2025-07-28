@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: add- yaml- frontmatter
  *
  * Script Summary:
@@ -23,7 +23,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Manages files and folders
  * @param

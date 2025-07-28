@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: find- docs- by- alias
  *
  * Script Summary:
@@ -42,14 +42,14 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Checks conditions or status
  * @returns {string} The formatted string
 
  * /
 
-/ * *
+/**
 
  * Checks conditions or status
  * @returns {string} The formatted string
@@ -62,7 +62,7 @@ function checkDriveApiAuthorization() {
   }
 }
 
-/ * *
+/**
 
  * Checks conditions or status
  * @param
@@ -71,7 +71,7 @@ function checkDriveApiAuthorization() {
 
  * /
 
-/ * *
+/**
 
  * Checks conditions or status
  * @param
@@ -87,7 +87,7 @@ function checkIfFilesFound(filteredFiles) {
   }
 }
 
-/ * *
+/**
 
  * Gets specific create or output sheet or configuration
  * @param
@@ -96,7 +96,7 @@ function checkIfFilesFound(filteredFiles) {
 
  * /
 
-/ * *
+/**
 
  * Gets specific create or output sheet or configuration
  * @param
@@ -125,14 +125,14 @@ function createOrGetOutputSheet(ownerEmails) {
   return sheet;
 }
 
-/ * *
+/**
 
  * Finds matching and print docs
  * @returns {string} The formatted string
 
  * /
 
-/ * *
+/**
 
  * Finds matching and print docs
  * @returns {string} The formatted string
@@ -158,7 +158,7 @@ function findAndPrintDocs() {
   }
 }
 
-/ * *
+/**
 
  * Manages files and folders
  * @param
@@ -168,7 +168,7 @@ function findAndPrintDocs() {
 
  * /
 
-/ * *
+/**
 
  * Manages files and folders
  * @param
@@ -201,14 +201,14 @@ function printResultsToSheet(filteredFiles, sheet) {
   }
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @returns {string} The formatted string
 
  * /
 
-/ * *
+/**
 
  * Performs specialized operations
  * @returns {string} The formatted string
@@ -233,7 +233,7 @@ function promptForOwnerEmail() {
   return ownerEmails;
 }
 
-/ * *
+/**
 
  * Searches for specific owned files
  * @param
@@ -242,7 +242,7 @@ function promptForOwnerEmail() {
 
  * /
 
-/ * *
+/**
 
  * Searches for specific owned files
  * @param
@@ -270,14 +270,14 @@ function searchOwnedFiles(ownerEmails) { / / Construct the query to search for f
   return files;
 }
 
-/ * *
+/**
 
  * Searches for specific shared files
  * @returns {string} The formatted string
 
  * /
 
-/ * *
+/**
 
  * Searches for specific shared files
  * @returns {string} The formatted string
@@ -308,7 +308,7 @@ function searchSharedFiles() { / / Use 'sharedWithMe' to find files shared with 
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Filters files by owner by criteria
  * @param
@@ -319,7 +319,7 @@ function searchSharedFiles() { / / Use 'sharedWithMe' to find files shared with 
 
  * /
 
-/ * *
+/**
 
  * Filters files by owner by criteria
  * @param
@@ -339,7 +339,7 @@ function filterFilesByOwner(ownedFiles, sharedFiles, ownerEmails) {
   });
 }
 
-/ * *
+/**
 
  * Gets specific character count or configuration
  * @param
@@ -348,7 +348,7 @@ function filterFilesByOwner(ownedFiles, sharedFiles, ownerEmails) {
 
  * /
 
-/ * *
+/**
 
  * Gets specific character count or configuration
  * @param
@@ -361,7 +361,7 @@ function getCharacterCount(text) {
   return text.length;
 }
 
-/ * *
+/**
 
  * Gets specific word count or configuration
  * @param
@@ -370,7 +370,7 @@ function getCharacterCount(text) {
 
  * /
 
-/ * *
+/**
 
  * Gets specific word count or configuration
  * @param

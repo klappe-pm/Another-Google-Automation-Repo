@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: send- gmail- labels- auto
  *
  * Script Summary:
@@ -60,7 +60,7 @@ const CONFIG = {
   Logger.log(`ERROR: ${JSON.stringify(errorDetails, null, 2)}`);
 }
 
-/ * *
+/**
 
  * Processes gmail emails
 
@@ -105,7 +105,7 @@ function processGmailEmails() {
 
 / / Main Functions
 
-/ * *
+/**
 
  * Sends applyer labels or communications
  * @param
@@ -144,7 +144,7 @@ function applySenderLabels(thread) {
   }
 }
 
-/ * *
+/**
 
  * Extracts specific information
  * @param
@@ -165,7 +165,7 @@ function extractAndSanitizeSender(from) {
   }
 }
 
-/ * *
+/**
 
  * Gets specific month dates or configuration
  * @param
@@ -186,7 +186,7 @@ function getMonthDates(year, month) {
   };
 }
 
-/ * *
+/**
 
  * Gets specific months to process or configuration
  * @param
@@ -209,7 +209,7 @@ function getMonthsToProcess(startDate, endDate) {
   return months;
 }
 
-/ * *
+/**
 
  * Gets specific or create label or configuration
  * @param
@@ -251,7 +251,7 @@ function getOrCreateLabel(labelName) {
   }
 }
 
-/ * *
+/**
 
  * Logs error or messages
  * @param
@@ -263,7 +263,7 @@ function getOrCreateLabel(labelName) {
 
 function logError(error, context = {}
 
-/ * *
+/**
 
  * Processes email data
  * @returns {boolean} True if successful, false otherwise
@@ -277,7 +277,7 @@ function onOpen() {
     .addToUi();
 }
 
-/ * *
+/**
 
  * Processes and transforms month
  * @param
@@ -318,7 +318,7 @@ function processMonth(monthDate) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Checks boolean condition
  * @param
@@ -342,7 +342,7 @@ function isValidLabelName(name) {
   return / ^[a- zA- Z0- 9 _\- \.\/ ]+ $/ .test(name);
 }
 
-/ * *
+/**
 
  * Cleans and sanitizes input
  * @param

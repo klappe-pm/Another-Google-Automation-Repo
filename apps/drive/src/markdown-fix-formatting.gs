@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- fix- formatting
  *
  * Script Summary:
@@ -46,7 +46,7 @@
 let logSheet; / / Spreadsheet used for logging linting actions
 let DEBUG = true; / / Flag to enable or disable detailed debugging output
 
-/ * *
+/**
  * Creates the 'Linters' menu in the Google Sheets UI.
  * / / * *
  * Initializes the linting process by prompting for folder input and linting options.
@@ -88,7 +88,7 @@ let DEBUG = true; / / Flag to enable or disable detailed debugging output
 
 / / Main Functions
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -103,7 +103,7 @@ function debug(message) {
   }
 }
 
-/ * *
+/**
 
  * Gets specific folder from input or configuration
  * @param
@@ -123,7 +123,7 @@ function getFolderFromInput(input) {
   }
 }
 
-/ * *
+/**
 
  * Initializes resources or configuration
  * @returns {string} The formatted string
@@ -159,7 +159,7 @@ function initializeLinting() {
   Logger.log("Linting process completed successfully.");
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -214,7 +214,7 @@ function lintTextFile(file, options, forceUpdate = false) {
   return changes.length > 0;
 }
 
-/ * *
+/**
 
  * Logs action or messages
  * @param
@@ -234,7 +234,7 @@ function logAction(level, fileName, message) {
   debug(logMessage);
 }
 
-/ * *
+/**
 
  * Manages files and folders
  * @returns {string} The formatted string
@@ -249,7 +249,7 @@ function onOpen() {
   debug("'Linters' menu created with unified linting option");
 }
 
-/ * *
+/**
 
  * Processes and transforms folder
  * @param
@@ -279,7 +279,7 @@ function processFolder(folder, processingFunction) {
   }
 }
 
-/ * *
+/**
 
  * Manages files and folders
  * @param
@@ -314,7 +314,7 @@ function promptForFolderInput(operation) {
   return { folder: folder, name: folder.getName() };
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @returns {string} The formatted string
@@ -352,7 +352,7 @@ function promptForLintingOptions() {
   };
 }
 
-/ * *
+/**
 
  * Removes extra lines after headers from collection
  * @param
@@ -395,7 +395,7 @@ function removeExtraLinesAfterHeaders(content) {
   return { content: modifiedLines.join("\n").trim() + "\n", changes };
 }
 
-/ * *
+/**
 
  * Sets up logging or configuration values
  * @returns {string} The formatted string
@@ -412,7 +412,7 @@ function setupLogging() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Formats text content for display
  * @param

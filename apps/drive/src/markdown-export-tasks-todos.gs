@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- export- tasks- todos
  *
  * Script Summary:
@@ -47,7 +47,7 @@
 
 let DEBUG = true;
 
-/ * *
+/**
  * Creates a custom menu in the Google Sheets UI when the spreadsheet is opened.
  * / / * *
  * Displays a prompt for the user to enter a tasklist ID.
@@ -98,7 +98,7 @@ let DEBUG = true;
 
 / / Main Functions
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -156,7 +156,7 @@ function categorizeTasks(tasks) {
   return categories;
 }
 
-/ * *
+/**
 
  * Creates new y a m l frontmatter or resources
  * @param
@@ -184,7 +184,7 @@ function createYAMLFrontmatter(categorizedTasks) {
   return yaml;
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -199,7 +199,7 @@ function debug(message) {
   }
 }
 
-/ * *
+/**
 
  * Exports tasks to markdown to external format
  * @param
@@ -237,7 +237,7 @@ function exportTasksToMarkdown(tasklistId) {
   }
 }
 
-/ * *
+/**
 
  * Extracts specific information
  * @param
@@ -259,7 +259,7 @@ function extractCountsFromYAML(yaml) {
   return counts;
 }
 
-/ * *
+/**
 
  * Gets specific or create file or configuration
  * @param
@@ -281,7 +281,7 @@ function getOrCreateFile(folder, fileName) {
   }
 }
 
-/ * *
+/**
 
  * Gets specific or create folder or configuration
  * @param
@@ -303,7 +303,7 @@ function getOrCreateFolder(folderName) {
   }
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @returns {number} The calculated value
@@ -319,7 +319,7 @@ function onOpen() {
   debug('Custom menu added to the spreadsheet');
 }
 
-/ * *
+/**
 
  * Checks boolean condition
  * @returns {number} True if condition is met, false otherwise
@@ -346,7 +346,7 @@ function showTasklistPrompt() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Counts new todos or occurrences
  * @param
@@ -364,7 +364,7 @@ function countNewTodos(categorizedTasks) {
          categorizedTasks.noDueDate.length;
 }
 
-/ * *
+/**
 
  * Formats categorized tasks for display
  * @param
@@ -388,7 +388,7 @@ function formatCategorizedTasks(categorizedTasks, yamlFrontmatter) {
   return markdown;
 }
 
-/ * *
+/**
 
  * Formats category for display
  * @param
@@ -412,7 +412,7 @@ function formatCategory(header, tasks, count) {
   return markdown + '\n';
 }
 
-/ * *
+/**
 
  * Formats date for display
  * @param
@@ -426,7 +426,7 @@ function formatDate(date) {
   return `${date.getFullYear()}- ${String(date.getMonth() + 1).padStart(2, '0')}- ${String(date.getDate()).padStart(2, '0')}`;
 }
 
-/ * *
+/**
 
  * Formats task for display
  * @param

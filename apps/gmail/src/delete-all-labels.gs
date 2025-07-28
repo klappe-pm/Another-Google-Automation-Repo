@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: delete- all- labels
  *
  * Script Summary:
@@ -27,7 +27,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Removes all gmail labels or data
 

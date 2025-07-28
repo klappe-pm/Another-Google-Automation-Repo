@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: create- album- hyperlinks
  *
  * Script Summary:
@@ -26,11 +26,11 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/ * *  * Main function that adds hyperlinks to Google Photos albums in the spreadsheet. * The function uses album IDs in column B to create links to the corresponding albums. * / / *  *  * Creates a custom menu in the Google Sheets UI when the spreadsheet opens. * This function adds a menu item to run the photo album linking function. * / / / Main Functions
+/**  * Main function that adds hyperlinks to Google Photos albums in the spreadsheet. * The function uses album IDs in column B to create links to the corresponding albums. * / / *  *  * Creates a custom menu in the Google Sheets UI when the spreadsheet opens. * This function adds a menu item to run the photo album linking function. * / / / Main Functions
 
 / / Main Functions
 
-/ * *
+/**
 
  * Works with spreadsheet data
 
@@ -73,7 +73,7 @@ function addPhotoAlbumLinks() { / / Get the active spreadsheet;
   SpreadsheetApp.getUi().alert('Added hyperlinks to ' + totalLinks + ' Google Photos albums successfully! ');
 }
 
-/ * *
+/**
 
  * Performs specialized operations
 

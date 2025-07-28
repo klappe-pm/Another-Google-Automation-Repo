@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: index- sheets- general
  *
  * Script Summary:
@@ -26,7 +26,7 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/ * *
+/**
  * Extracts the category from the sheet name (lowercase values preceding the first capital letter in PascalCase).
  * For example, "salesData" will return "sales".
  * @param {string} sheetName - The name of the sheet.
@@ -42,7 +42,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Creates new index v2 or resources
  * @returns {string} The newly created string
@@ -104,7 +104,7 @@ function createIndexV2() {
   SpreadsheetApp.getUi().alert("Sheet index created successfully! "); / / Notify the user
 }
 
-/ * *
+/**
 
  * Extracts specific information
  * @param
@@ -120,7 +120,7 @@ function extractCategory(sheetName) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Formats sheet for display
  * @param

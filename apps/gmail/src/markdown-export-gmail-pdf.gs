@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- export- gmail- pdf
  *
  * Script Summary:
@@ -37,7 +37,7 @@
  * - Utilities: For utility functions and encoding
  * /
 
-/ * *
+/**
  * Creates a custom menu in the Google Sheets UI
  * This function runs automatically when the spreadsheet is opened
  * / / * *
@@ -61,7 +61,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Performs specialized operations
  * @returns {any} The result
@@ -85,7 +85,7 @@ function onOpen() {
   console.log('Exiting onOpen function');
 }
 
-/ * *
+/**
 
  * Exports search and emails to external format
  * @param
@@ -199,7 +199,7 @@ function searchAndExportEmails(searchTerm, label, keyword, startDate, endDate) {
   console.log('Exiting searchAndExportEmails function');
 }
 
-/ * *
+/**
 
  * Logs show dia or messages
  * @returns {any} The result
@@ -225,7 +225,7 @@ function showDialog() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Formats date for display
  * @param

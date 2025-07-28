@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: index- sheets- folders- files
  *
  * Script Summary:
@@ -39,7 +39,7 @@
  * - Utilities: For utility functions and encoding
  * /
 
-/ * *
+/**
  * Sets up sheets for each file type in the bound spreadsheet.
  * @param {object} ss - The bound spreadsheet.
  * @param {array} allowedTypes - The types of files to process.
@@ -85,7 +85,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param
@@ -96,7 +96,7 @@
 
  * /
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param
@@ -137,14 +137,14 @@ function addToSheet(sheet, file, type) {
   }
 }
 
-/ * *
+/**
 
  * Creates new drive index or resources
  * @returns {string} The newly created string
 
  * /
 
-/ * *
+/**
 
  * Creates new drive index or resources
  * @returns {string} The newly created string
@@ -198,7 +198,7 @@ function createDriveIndex() {
   }
 }
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param
@@ -207,7 +207,7 @@ function createDriveIndex() {
 
  * /
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param
@@ -239,7 +239,7 @@ function finalizeSheets(ss) {
   });
 }
 
-/ * *
+/**
 
  * Gets specific file path or configuration
  * @param
@@ -248,7 +248,7 @@ function finalizeSheets(ss) {
 
  * /
 
-/ * *
+/**
 
  * Gets specific file path or configuration
  * @param
@@ -267,7 +267,7 @@ function getFilePath(file) {
   return pathParts.join('/ ') + '/ ' + file.getName();
 }
 
-/ * *
+/**
 
  * Gets specific or create sheet or configuration
  * @param
@@ -277,7 +277,7 @@ function getFilePath(file) {
 
  * /
 
-/ * *
+/**
 
  * Gets specific or create sheet or configuration
  * @param
@@ -295,7 +295,7 @@ function getOrCreateSheet(ss, sheetName) {
   return sheet;
 }
 
-/ * *
+/**
 
  * Processes and transforms folder
  * @param
@@ -308,7 +308,7 @@ function getOrCreateSheet(ss, sheetName) {
 
  * /
 
-/ * *
+/**
 
  * Processes and transforms folder
  * @param
@@ -343,7 +343,7 @@ function processFolder(folder, allowedTypes, sheets, processedFiles, queue) {
   }
 }
 
-/ * *
+/**
 
  * Sets headers or configuration values
  * @param
@@ -352,7 +352,7 @@ function processFolder(folder, allowedTypes, sheets, processedFiles, queue) {
 
  * /
 
-/ * *
+/**
 
  * Sets headers or configuration values
  * @param
@@ -367,7 +367,7 @@ function setHeaders(sheet) {
   sheet.setFrozenRows(1);
 }
 
-/ * *
+/**
 
  * Sets up sheets or configuration values
  * @param
@@ -377,7 +377,7 @@ function setHeaders(sheet) {
 
  * /
 
-/ * *
+/**
 
  * Sets up sheets or configuration values
  * @param
@@ -399,7 +399,7 @@ function setupSheets(ss, allowedTypes) {
   return sheets;
 }
 
-/ * *
+/**
 
  * Processes and transforms should file
  * @param
@@ -410,7 +410,7 @@ function setupSheets(ss, allowedTypes) {
 
  * /
 
-/ * *
+/**
 
  * Processes and transforms should file
  * @param
@@ -430,7 +430,7 @@ function shouldProcessFile(file, extensions, processedFiles) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Formats date for display
  * @param
@@ -439,7 +439,7 @@ function shouldProcessFile(file, extensions, processedFiles) {
 
  * /
 
-/ * *
+/**
 
  * Formats date for display
  * @param

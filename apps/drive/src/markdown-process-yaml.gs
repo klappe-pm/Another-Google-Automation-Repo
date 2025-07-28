@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- process- yaml
  *
  * Script Summary:
@@ -34,7 +34,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Formats apply markdownting for display
  * @param
@@ -86,7 +86,7 @@ function applyMarkdownFormatting(content) {
   return formattedContent;
 }
 
-/ * *
+/**
 
  * Processes and transforms folder
  * @param
@@ -120,7 +120,7 @@ function processFolder(folder) {
   }
 }
 
-/ * *
+/**
 
  * Updates existing yaml category
  * @param
@@ -153,7 +153,7 @@ function updateYamlCategory(content, folderName) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Formats markdown file for display
  * @param
@@ -170,7 +170,7 @@ function formatMarkdownFile(file, folderName) {
   file.setContent(updatedContent);
 }
 
-/ * *
+/**
 
  * Formats markdown files for display
  * @returns {any} The result

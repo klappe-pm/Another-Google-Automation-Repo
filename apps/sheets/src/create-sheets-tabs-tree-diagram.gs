@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: create- sheets- tabs- tree- diagram
  *
  * Script Summary:
@@ -30,7 +30,7 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/ * *
+/**
 * Google Sheets Tab Index Generator and Formatter
 *
 * Script Summary:
@@ -130,7 +130,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Creates new index v2 or resources
  * @returns {boolean} The newly created boolean
@@ -220,7 +220,7 @@ function createIndexV2() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Extracts specific information
  * @param
@@ -237,7 +237,7 @@ function extractCategory(sheetName) {
         return category;
       }
 
-/ * *
+/**
 
  * Formats sheet for display
  * @param

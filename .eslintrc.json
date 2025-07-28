@@ -1,0 +1,34 @@
+{
+  "env": {
+    "es6": true,
+    "googleappsscript/googleappsscript": true
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "plugins": [
+    "googleappsscript"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "script"
+  },
+  "globals": {
+    "WorkspaceAutomation": "writable"
+  },
+  "rules": {
+    "no-unused-vars": ["error", { "varsIgnorePattern": "^(WorkspaceAutomation)$" }],
+    "no-undef": "error",
+    "prefer-const": "error",
+    "no-var": "off",
+    "googleappsscript/no-browser-globals": "error"
+  },
+  "overrides": [
+    {
+      "files": ["src/**/*.js"],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ]
+}

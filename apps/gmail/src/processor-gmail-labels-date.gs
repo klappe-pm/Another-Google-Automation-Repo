@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: processor- gmail- labels- date
  *
  * Script Summary:
@@ -37,7 +37,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Sends applyer labels or communications
  * @param
@@ -67,7 +67,7 @@ function applySenderLabels(thread) {
   }
 }
 
-/ * *
+/**
 
  * Gets specific months to process or configuration
  * @param
@@ -90,7 +90,7 @@ function getMonthsToProcess(startDate, endDate) {
   return months;
 }
 
-/ * *
+/**
 
  * Gets specific or create label or configuration
  * @param
@@ -123,7 +123,7 @@ function getOrCreateLabel(labelName) {
   }
 }
 
-/ * *
+/**
 
  * Processes and transforms gmail emails
  * @returns {any} The result
@@ -149,7 +149,7 @@ function processGmailEmails() {
   Logger.log('Email processing completed successfully.');
 }
 
-/ * *
+/**
 
  * Processes and transforms month
  * @param
@@ -172,7 +172,7 @@ function processMonth(monthDate) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Extracts specific information
  * @param
@@ -188,7 +188,7 @@ function extractAndSanitizeSender(from) {
   return sanitizeLabelName(senderName);
 }
 
-/ * *
+/**
 
  * Gets specific month dates or configuration
  * @param
@@ -208,7 +208,7 @@ function getMonthDates(year, month) {
   };
 }
 
-/ * *
+/**
 
  * Checks boolean condition
  * @param
@@ -232,7 +232,7 @@ function isValidLabelName(name) {
   return / ^[a- zA- Z0- 9 _\- \.\/ ]+ $/ .test(name);
 }
 
-/ * *
+/**
 
  * Cleans and sanitizes input
  * @param

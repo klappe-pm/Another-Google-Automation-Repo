@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: process- sheets- date- automation
  *
  * Script Summary:
@@ -26,7 +26,7 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/ * *
+/**
  * Triggers when a cell is edited in the spreadsheet.
  * Sets or clears dates based on checkbox status in specific columns.
  *
@@ -49,7 +49,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -68,7 +68,7 @@ function columnToLetter(column) {
   return letter;
 }
 
-/ * *
+/**
 
  * Logs change or messages
  * @param
@@ -103,7 +103,7 @@ function logChange(sheetName, row, inputColumn, outputColumn, action) {
   ]);
 }
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param

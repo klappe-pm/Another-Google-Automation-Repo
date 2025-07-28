@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: export- calendar- distance- time
  *
  * Script Summary:
@@ -40,7 +40,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Exports all calendar events to external format
  * @returns {any} The result
@@ -301,7 +301,7 @@ function exportAllCalendarEvents() { / / Enable Advanced Calendar Service / / Go
   SpreadsheetApp.getUi().alert('Events exported successfully to "Events" sheet.');
 }
 
-/ * *
+/**
 
  * Gets specific day of week or configuration
  * @param
@@ -319,7 +319,7 @@ function getDayOfWeek(date) {
     }
   }
 
-/ * *
+/**
 
  * Gets specific day of week or configuration
  * @param
@@ -337,7 +337,7 @@ function getDayOfWeek(date) {
     }
   }
 
-/ * *
+/**
 
  * Gets specific day of week or configuration
  * @param
@@ -355,7 +355,7 @@ function getDayOfWeek(date) {
     }
   }
 
-/ * *
+/**
 
  * Gets specific day of year or configuration
  * @param
@@ -371,7 +371,7 @@ function getDayOfYear(date) {
     return Math.floor(diff / oneDay) + 1;
   }
 
-/ * *
+/**
 
  * Gets specific day of year or configuration
  * @param
@@ -387,7 +387,7 @@ function getDayOfYear(date) {
     return Math.floor(diff / oneDay) + 1;
   }
 
-/ * *
+/**
 
  * Gets specific day of year or configuration
  * @param
@@ -403,7 +403,7 @@ function getDayOfYear(date) {
     return Math.floor(diff / oneDay) + 1;
   }
 
-/ * *
+/**
 
  * Gets specific distances from google maps or configuration
  * @param
@@ -443,7 +443,7 @@ function getDistancesFromGoogleMaps(apiKey, origins, destinations) {
     }
   }
 
-/ * *
+/**
 
  * Gets specific distances from google maps or configuration
  * @param
@@ -483,7 +483,7 @@ function getDistancesFromGoogleMaps(apiKey, origins, destinations) {
     }
   }
 
-/ * *
+/**
 
  * Gets specific distances from google maps or configuration
  * @param
@@ -525,7 +525,7 @@ function getDistancesFromGoogleMaps(apiKey, origins, destinations) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Formats value for display
  * @param
@@ -538,7 +538,7 @@ function formatValue(value) {
     return typeof value = = = 'number' && ! isNaN(value) ? value.toFixed(2) : "";
   }
 
-/ * *
+/**
 
  * Formats value for display
  * @param
@@ -551,7 +551,7 @@ function formatValue(value) {
     return typeof value = = = 'number' && ! isNaN(value) ? value.toFixed(2) : "";
   }
 
-/ * *
+/**
 
  * Formats value for display
  * @param
@@ -564,7 +564,7 @@ function formatValue(value) {
     return typeof value = = = 'number' && ! isNaN(value) ? value.toFixed(2) : "";
   }
 
-/ * *
+/**
 
  * Gets specific quarter or configuration
  * @param
@@ -578,7 +578,7 @@ function getQuarter(date) {
     return Math.floor(month / 3) + 1;
   }
 
-/ * *
+/**
 
  * Gets specific quarter or configuration
  * @param
@@ -592,7 +592,7 @@ function getQuarter(date) {
     return Math.floor(month / 3) + 1;
   }
 
-/ * *
+/**
 
  * Gets specific quarter or configuration
  * @param
@@ -606,7 +606,7 @@ function getQuarter(date) {
     return Math.floor(month / 3) + 1;
   }
 
-/ * *
+/**
 
  * Gets specific week number or configuration
  * @param
@@ -622,7 +622,7 @@ function getWeekNumber(date) {
     return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
   }
 
-/ * *
+/**
 
  * Gets specific week number or configuration
  * @param
@@ -638,7 +638,7 @@ function getWeekNumber(date) {
     return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
   }
 
-/ * *
+/**
 
  * Gets specific week number or configuration
  * @param

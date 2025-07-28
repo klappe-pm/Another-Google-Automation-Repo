@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: sort- sheets- tabs- alphabetically
  *
  * Script Summary:
@@ -26,7 +26,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @returns {any} The result
@@ -44,7 +44,7 @@ function onOpen() {
     .addToUi();
 }
 
-/ * *
+/**
 
  * Sorts and orders sheets alphabetically
  * @returns {any} The result

@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- process- blank- links
  *
  * Script Summary:
@@ -34,11 +34,11 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/ * *  * Main function to remove blank lines after headers in Markdown files. * Prompts the user for a folder input, finds the folder, and processes all Markdown files within. * / / *  *  * Prompts the user to enter a folder name or ID. *  * @return {string|null} The user's input, or null if cancelled. * / / *  *  * Attempts to find a folder based on the user's input. * First tries to find by ID, then by name if ID fails. *  * @param {string} input - The folder name or ID provided by the user. * @return {Folder|null} The folder object if found, null otherwise. * / / *  *  * Recursively processes a folder and its subfolders. * Finds all Markdown files and processes them. *  * @param {Folder} folder - The Google Drive folder to process. * / / *  *  * Processes a single Markdown file. * Removes extra blank lines after headers and ensures consistent formatting. *  * @param {File} file - The Google Drive file to process. * / / / Main Functions
+/**  * Main function to remove blank lines after headers in Markdown files. * Prompts the user for a folder input, finds the folder, and processes all Markdown files within. * / / *  *  * Prompts the user to enter a folder name or ID. *  * @return {string|null} The user's input, or null if cancelled. * / / *  *  * Attempts to find a folder based on the user's input. * First tries to find by ID, then by name if ID fails. *  * @param {string} input - The folder name or ID provided by the user. * @return {Folder|null} The folder object if found, null otherwise. * / / *  *  * Recursively processes a folder and its subfolders. * Finds all Markdown files and processes them. *  * @param {Folder} folder - The Google Drive folder to process. * / / *  *  * Processes a single Markdown file. * Removes extra blank lines after headers and ensures consistent formatting. *  * @param {File} file - The Google Drive file to process. * / / / Main Functions
 
 / / Main Functions
 
-/ * *
+/**
 
  * Gets specific folder from input or configuration
  * @param
@@ -62,7 +62,7 @@ function getFolderFromInput(input) {
   return null;
 }
 
-/ * *
+/**
 
  * Processes and transforms file
  * @param
@@ -97,7 +97,7 @@ function processFile(file) {
   Logger.log("File processed: " + file.getName());
 }
 
-/ * *
+/**
 
  * Processes and transforms folder
  * @param
@@ -126,7 +126,7 @@ function processFolder(folder) {
   }
 }
 
-/ * *
+/**
 
  * Manages files and folders
  * @returns {string} The formatted string
@@ -152,7 +152,7 @@ function promptForFolderInput() {
   }
 }
 
-/ * *
+/**
 
  * Removes blank lines after headers from collection
  * @returns {string} The formatted string

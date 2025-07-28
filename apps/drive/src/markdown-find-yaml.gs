@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- find- yaml
  *
  * Script Summary:
@@ -38,7 +38,7 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/ * *
+/**
  * Shows the HTML form to accept folder input from the user.
  * / / * *
  * Processes the folder input from the user and finds YAML frontmatter properties.
@@ -69,7 +69,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Extracts specific information
  * @param
@@ -102,7 +102,7 @@ function extractYamlFrontmatter(content) {
   return parsedYaml;
 }
 
-/ * *
+/**
 
  * Finds matching folder by name
  * @param
@@ -126,7 +126,7 @@ function findFolderByName(folderName) {
   return folder;
 }
 
-/ * *
+/**
 
  * Finds matching yaml frontmatter in folder
  * @param
@@ -173,7 +173,7 @@ function findYamlFrontmatterInFolder(folder) {
   console.log('Exiting findYamlFrontmatterInFolder function');
 }
 
-/ * *
+/**
 
  * Finds matching yaml frontmatter in folder by id
  * @param
@@ -196,7 +196,7 @@ function findYamlFrontmatterInFolderById(folderId) {
   console.log('Exiting findYamlFrontmatterInFolderById function');
 }
 
-/ * *
+/**
 
  * Manages files and folders
  * @returns {string} The formatted string
@@ -217,7 +217,7 @@ function onOpen() {
   console.log('Exiting onOpen function');
 }
 
-/ * *
+/**
 
  * Processes and transforms folder input
  * @param
@@ -254,7 +254,7 @@ function processFolderInput(folderId, folderName) {
   console.log('Exiting processFolderInput function');
 }
 
-/ * *
+/**
 
  * Manages files and folders
  * @returns {string} The formatted string
@@ -275,7 +275,7 @@ function showFolderInputForm() {
   console.log('Exiting showFolderInputForm function');
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @returns {string} The formatted string
@@ -307,7 +307,7 @@ function YAML() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Parses and extracts yaml
  * @param

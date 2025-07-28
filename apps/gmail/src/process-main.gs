@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: process- main
  *
  * Script Summary:
@@ -24,13 +24,13 @@
  * - None
  * /
 
-/ * *
+/**
  * Perform run operation
  * / / / Main Functions
 
 / / Main Functions
 
-/ * *
+/**
 
  * Executes main process
 

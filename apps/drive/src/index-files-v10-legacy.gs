@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: index- files- v10- legacy
  *
  * Script Summary:
@@ -31,14 +31,14 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Generates new content or reports
  * @returns {boolean} True if successful, false otherwise
 
  * /
 
-/ * *
+/**
 
  * Generates new content or reports
  * @returns {boolean} True if successful, false otherwise
@@ -117,7 +117,7 @@ function generateFolderIndex() {
   SpreadsheetApp.getUi().alert('Folder index generation completed successfully.');
 }
 
-/ * *
+/**
 
  * Processes and transforms folder batch
  * @param
@@ -130,7 +130,7 @@ function generateFolderIndex() {
 
  * /
 
-/ * *
+/**
 
  * Processes and transforms folder batch
  * @param

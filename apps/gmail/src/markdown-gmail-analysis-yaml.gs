@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- gmail- analysis- yaml
  *
  * Script Summary:
@@ -48,7 +48,7 @@
 
 const DEBUG = true;
 
-/ * *
+/**
  * Processes emails based on a search query
  * / / * *
  * Processes specific emails by their IDs
@@ -103,7 +103,7 @@ const DEBUG = true;
 
 / / Main Functions
 
-/ * *
+/**
 
  * Creates new bracketed markdown file_ or resources
  * @param
@@ -127,7 +127,7 @@ function createBracketedMarkdownFile_(markdownContent, filename, folder) {
   }
 }
 
-/ * *
+/**
 
  * Creates new markdown_ or resources
  * @param
@@ -155,7 +155,7 @@ function createMarkdown_(rowData, body, query) {
   }
 }
 
-/ * *
+/**
 
  * Creates new markdown file_ or resources
  * @param
@@ -178,7 +178,7 @@ function createMarkdownFile_(markdownContent, filename, folder) {
   }
 }
 
-/ * *
+/**
 
  * Creates new p d f_ or resources
  * @param
@@ -202,7 +202,7 @@ function createPDF_(htmlBody, filename, folder) {
   }
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -217,7 +217,7 @@ function debug(message) {
   }
 }
 
-/ * *
+/**
 
  * Gets specific existing message ids or configuration
  * @param
@@ -242,7 +242,7 @@ function getExistingMessageIds(sheet) {
   }
 }
 
-/ * *
+/**
 
  * Gets specific or create folder_ or configuration
  * @param
@@ -269,7 +269,7 @@ function getOrCreateFolder_(parentFolder, folderName) {
   }
 }
 
-/ * *
+/**
 
  * Gets specific or create sheet_ or configuration
  * @param
@@ -297,7 +297,7 @@ function getOrCreateSheet_(sheetName) {
   }
 }
 
-/ * *
+/**
 
  * Processes and transforms emails
  * @param
@@ -340,7 +340,7 @@ function processEmails(query) {
   }
 }
 
-/ * *
+/**
 
  * Processes and transforms emails by ids
  * @param
@@ -381,7 +381,7 @@ function processEmailsByIds(messageIds) {
   }
 }
 
-/ * *
+/**
 
  * Processes and transforms message
  * @param
@@ -451,7 +451,7 @@ function processMessage(message, existingMessageIds, dateProcessed, folder, shee
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Parses and extracts email body_
  * @param

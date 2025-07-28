@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: automate- date- checkboxes
  *
  * Script Summary:
@@ -23,7 +23,7 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/ * *
+/**
  * Logs changes to the "Change Log" sheet.
  * Creates the log sheet if it doesn't exist.
  *
@@ -41,7 +41,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -60,7 +60,7 @@ function columnToLetter(column) {
   return letter;
 }
 
-/ * *
+/**
 
  * Logs change or messages
  * @param
@@ -95,7 +95,7 @@ function logChange(sheetName, row, inputColumn, outputColumn, action) {
   ]);
 }
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param

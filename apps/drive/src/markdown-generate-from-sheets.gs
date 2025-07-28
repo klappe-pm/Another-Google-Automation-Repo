@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- generate- from- sheets
  *
  * Script Summary:
@@ -202,7 +202,7 @@ const DEFAULT_YAML_FIELDS = {
 
 / / Main Functions
 
-/ * *
+/**
 
  * Formats apply standardting for display
  * @param
@@ -242,7 +242,7 @@ function applyStandardFormatting(sheet, shouldResizeColumns) {
                               }
                             }
 
-/ * *
+/**
 
  * Updates existing batch sheet
  * @param
@@ -275,7 +275,7 @@ function batchUpdateSheet(sheet, updates, config, colMap) {
                 SpreadsheetApp.flush(); / / Apply all pending changes at once
               }
 
-/ * *
+/**
 
  * Creates new column map or resources
  * @param
@@ -299,7 +299,7 @@ function createColumnMap(headers, customMapping) {
                             return map;
                           }
 
-/ * *
+/**
 
  * Creates new config template or resources
  * @returns {any} The newly created any
@@ -349,7 +349,7 @@ function createConfigTemplate() {
                             SpreadsheetApp.getUi().alert('The "Config" sheet has been created and formatted. Please update the folderId.');
                           }
 
-/ * *
+/**
 
  * Creates new file or resources
  * @param
@@ -398,7 +398,7 @@ function createFile(filename, content, config, row, colMap, folderCache) {
                           return parentFolder.createFile(fullName, content, MimeType.PLAIN_TEXT);
                         }
 
-/ * *
+/**
 
  * Creates new sample data sheet or resources
  * @returns {any} The newly created any
@@ -454,7 +454,7 @@ function createSampleDataSheet() {
                             SpreadsheetApp.getUi().alert(`Sample data sheet "${dataSheetName}" has been created and formatted to match the default JSON.`);
                           }
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param
@@ -475,7 +475,7 @@ function ensureStatusColumn(sheet, config) {
                             }
                           }
 
-/ * *
+/**
 
  * Generates new content or reports
  * @param
@@ -557,7 +557,7 @@ function generateContent(row, colMap, config) {
                         return content;
                       }
 
-/ * *
+/**
 
  * Generates new content or reports
  * @returns {any} The result
@@ -600,7 +600,7 @@ function generateMarkdownFiles() {
           }
         }
 
-/ * *
+/**
 
  * Generates new content or reports
  * @param
@@ -647,7 +647,7 @@ function generateSection(section, row, colMap, config) {
                           return sectionContent + '\n';
                         }
 
-/ * *
+/**
 
  * Gets specific or create subfolder or configuration
  * @param
@@ -666,7 +666,7 @@ function getOrCreateSubfolder(parentFolder, name) {
                           return parentFolder.createFolder(name);
                         }
 
-/ * *
+/**
 
  * Loads configuration from storage
  * @returns {any} The result
@@ -704,7 +704,7 @@ function loadConfiguration() {
         return config;
       }
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @returns {any} The result
@@ -723,7 +723,7 @@ function onOpen() {
                             .addToUi();
                           }
 
-/ * *
+/**
 
  * Processes and transforms data sheet
  * @param
@@ -809,7 +809,7 @@ function processDataSheet(sheet, config, folderCache) {
               return { created, errors };
             }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -823,7 +823,7 @@ function toKebabCase(str) {
                             return str.trim().toLowerCase().replace(/ \s+ / g, '- ');
                           }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -838,7 +838,7 @@ function toSentenceCase(str) {
                             return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
                           }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -856,7 +856,7 @@ function toTitleCase(str) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Formats all sheets for display
  * @returns {any} The result

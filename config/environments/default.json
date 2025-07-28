@@ -1,0 +1,68 @@
+{
+  "app": {
+    "name": "Workspace Automation",
+    "version": "2.0.0",
+    "timeout": 30000,
+    "maxRetries": 3,
+    "batchSize": 100
+  },
+  "logging": {
+    "level": "info",
+    "maxLogs": 1000,
+    "enableConsole": true,
+    "enableFile": false
+  },
+  "services": {
+    "gmail": {
+      "enabled": true,
+      "batchSize": 50,
+      "timeout": 15000
+    },
+    "drive": {
+      "enabled": true,
+      "batchSize": 25,
+      "timeout": 20000
+    },
+    "calendar": {
+      "enabled": true,
+      "batchSize": 100,
+      "timeout": 10000
+    },
+    "sheets": {
+      "enabled": true,
+      "batchSize": 1000,
+      "timeout": 25000
+    },
+    "docs": {
+      "enabled": true,
+      "batchSize": 10,
+      "timeout": 30000
+    }
+  },
+  "features": {
+    "experimental": false,
+    "debugMode": false,
+    "enhancedLogging": false,
+    "batchProcessing": true,
+    "cachingEnabled": true,
+    "asyncOperations": false,
+    "enhancedSecurity": true,
+    "auditLogging": false
+  },
+  "cache": {
+    "enabled": true,
+    "ttl": 3600,
+    "maxSize": 1000
+  },
+  "security": {
+    "enableRateLimit": true,
+    "rateLimitRequests": 100,
+    "rateLimitWindow": 60000,
+    "enableEncryption": false
+  },
+  "performance": {
+    "enableOptimizations": true,
+    "parallelProcessing": false,
+    "memoryThreshold": 0.8
+  }
+}

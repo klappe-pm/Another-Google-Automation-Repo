@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: sort- sheets- utility- tab
  *
  * Script Summary:
@@ -32,7 +32,7 @@ let pinnedSheets = [
 
 / / Main Functions
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @returns {boolean} True if successful, false otherwise
@@ -46,7 +46,7 @@ function onOpen() {
     .addToUi();
 }
 
-/ * *
+/**
 
  * Sorts and orders sheets alphabetically
  * @returns {boolean} True if successful, false otherwise

@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: assist- calendar- events
  *
  * Script Summary:

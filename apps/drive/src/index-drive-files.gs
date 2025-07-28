@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: index- drive- files
  *
  * Script Summary:
@@ -51,14 +51,14 @@ const DEBUG_LOG = true; / / Enable detailed debugging logs / *  *  * Serves the 
 
 / / Main Functions
 
-/ * *
+/**
 
  * Gets specific do or configuration
  * @returns {string} The requested string
 
  * /
 
-/ * *
+/**
 
  * Gets specific do or configuration
  * @returns {string} The requested string
@@ -71,14 +71,14 @@ function doGet() {
     .setTitle('Google Drive Folder Indexer');
 }
 
-/ * *
+/**
 
  * Gets specific last indexed time or configuration
  * @returns {string} The requested string
 
  * /
 
-/ * *
+/**
 
  * Gets specific last indexed time or configuration
  * @returns {string} The requested string
@@ -92,7 +92,7 @@ function getLastIndexedTime() {
   return timestamp;
 }
 
-/ * *
+/**
 
  * Handles events or errors
  * @param
@@ -102,7 +102,7 @@ function getLastIndexedTime() {
 
  * /
 
-/ * *
+/**
 
  * Handles events or errors
  * @param
@@ -125,7 +125,7 @@ function handleError(error, functionName) {
   logErrorToSheet(error, functionName);
 }
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param
@@ -134,7 +134,7 @@ function handleError(error, functionName) {
 
  * /
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param
@@ -165,7 +165,7 @@ function indexDrive(isIncremental = false) {
   }
 }
 
-/ * *
+/**
 
  * Logs error to sheet or messages
  * @param
@@ -175,7 +175,7 @@ function indexDrive(isIncremental = false) {
 
  * /
 
-/ * *
+/**
 
  * Logs error to sheet or messages
  * @param
@@ -203,7 +203,7 @@ function logErrorToSheet(error, functionName) {
   }
 }
 
-/ * *
+/**
 
  * Searches for specific files
  * @param
@@ -212,7 +212,7 @@ function logErrorToSheet(error, functionName) {
 
  * /
 
-/ * *
+/**
 
  * Searches for specific files
  * @param
@@ -278,14 +278,14 @@ function searchFiles(params) {
   }
 }
 
-/ * *
+/**
 
  * Sets up spreadsheet or configuration values
  * @returns {string} The formatted string
 
  * /
 
-/ * *
+/**
 
  * Sets up spreadsheet or configuration values
  * @returns {string} The formatted string
@@ -313,7 +313,7 @@ function setupSpreadsheet() {
   }
 }
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param
@@ -325,7 +325,7 @@ function setupSpreadsheet() {
 
  * /
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param
@@ -384,7 +384,7 @@ function traverseFolder(folder, path, lastIndexed, sheet) {
   }
 }
 
-/ * *
+/**
 
  * Triggers actions or events
  * @param
@@ -393,7 +393,7 @@ function traverseFolder(folder, path, lastIndexed, sheet) {
 
  * /
 
-/ * *
+/**
 
  * Triggers actions or events
  * @param
@@ -413,7 +413,7 @@ function triggerIndexing(isIncremental) {
   }
 }
 
-/ * *
+/**
 
  * Writes batch to sheet to destination
  * @param
@@ -423,7 +423,7 @@ function triggerIndexing(isIncremental) {
 
  * /
 
-/ * *
+/**
 
  * Writes batch to sheet to destination
  * @param

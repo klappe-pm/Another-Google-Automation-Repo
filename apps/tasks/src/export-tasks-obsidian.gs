@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: export- tasks- obsidian
  *
  * Script Summary:
@@ -30,7 +30,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Exports tasks to markdown to external format
  * @returns {any} The result
@@ -79,7 +79,7 @@ function exportTasksToMarkdown() {
   }
 }
 
-/ * *
+/**
 
  * Gets specific or create folder id or configuration
  * @param

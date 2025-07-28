@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: analyze- labels
  *
  * Script Summary:
@@ -40,7 +40,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Analyzes gmail labels and generates insights
  * @returns {number} The calculated value
@@ -126,7 +126,7 @@ function analyzeGmailLabels() {
   Logger.log('Gmail label analysis completed successfully.');
 }
 
-/ * *
+/**
 
  * Performs calculations on average
  * @param
@@ -141,7 +141,7 @@ function calculateAverage(array) {
   return sum / array.length;
 }
 
-/ * *
+/**
 
  * Performs calculations on median
  * @param
@@ -162,7 +162,7 @@ function calculateMedian(array) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Performs calculations on max
  * @param
@@ -175,7 +175,7 @@ function calculateMax(array) {
   return Math.max.apply(null, array);
 }
 
-/ * *
+/**
 
  * Performs calculations on min
  * @param

@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: export- photos- and- videos
  *
  * Script Summary:
@@ -70,7 +70,7 @@ const DEFAULT_CONFIG = {
   ]
 };
 
-/ * *
+/**
  * Main export function
  * / / * *
  * Creates an index sheet if it doesn't exist
@@ -132,7 +132,7 @@ const DEFAULT_CONFIG = {
   return { error: "Max retries exceeded" };
 }
 
-/ * *
+/**
  * Sanitizes a sheet name
  * / / * *
  * Creates a new sheet with all available Google Photos albums and their IDs
@@ -167,7 +167,7 @@ function getConfigFromSheet(spreadsheet) {
 
 / / Main Functions
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @returns {any} The result
@@ -220,7 +220,7 @@ function addSelectedAlbumsToIndex() {
   }
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @returns {any} The result
@@ -233,7 +233,7 @@ function clearAlbumsCache() {
   notify("Albums cache cleared. Run 'Export Next Album' to refresh data.");
 }
 
-/ * *
+/**
 
  * Creates new index sheet or resources
  * @param
@@ -251,7 +251,7 @@ function createIndexSheet(spreadsheet) {
   return sheet;
 }
 
-/ * *
+/**
 
  * Exports photo albums to sheets to external format
  * @returns {any} The result
@@ -305,7 +305,7 @@ function exportPhotoAlbumsToSheets() {
   notify(`Completed: ${album.title || "Untitled"}. ${fileCount} photos exported.`);
 }
 
-/ * *
+/**
 
  * Retrieves with retry from service
  * @param
@@ -318,7 +318,7 @@ function exportPhotoAlbumsToSheets() {
 
 function fetchWithRetry(url, options = {}
 
-/ * *
+/**
 
  * Processes and transforms find next uned album
  * @param
@@ -359,7 +359,7 @@ function findNextUnprocessedAlbum(data, allAlbums) {
   return null;
 }
 
-/ * *
+/**
 
  * Gets specific google photos albums or configuration
  * @returns {any} The requested any
@@ -424,7 +424,7 @@ function getGooglePhotosAlbums() {
   return albums;
 }
 
-/ * *
+/**
 
  * Gets specific photos from album or configuration
  * @param
@@ -468,7 +468,7 @@ function getPhotosFromAlbum(albumId, maxResults) {
   return photos;
 }
 
-/ * *
+/**
 
  * Checks boolean condition
  * @returns {any} True if condition is met, false otherwise
@@ -522,7 +522,7 @@ function listAllAlbums() {
   SpreadsheetApp.getUi().alert("Album list created! Check the boxes in column D for albums you want to add to your index, then click 'Add Selected Albums to Index' from the Photo Albums menu.");
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -545,7 +545,7 @@ function notify(message, isError = false) {
   }
 }
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @returns {any} The result
@@ -563,7 +563,7 @@ function onOpen() {
     .addToUi();
 }
 
-/ * *
+/**
 
  * Processes and transforms photo item
  * @param
@@ -596,7 +596,7 @@ function processPhotoItem(mediaItem, albumName, useThumbnails) {
   }
 }
 
-/ * *
+/**
 
  * Processes and transforms photos
  * @param
@@ -622,7 +622,7 @@ function processPhotos(photos, albumName, useThumbnails) {
   return { photoData, fileCount: fileIds.size };
 }
 
-/ * *
+/**
 
  * Processes and transforms recorded files
  * @param
@@ -641,7 +641,7 @@ function recordProcessedFiles(spreadsheet, processedFiles) {
   sheet.getRange(sheet.getLastRow() + 1, 1, data.length, DEFAULT_CONFIG.processedHeaders.length).setValues(data);
 }
 
-/ * *
+/**
 
  * Sets re processed albums or configuration values
  * @returns {any} The result
@@ -665,7 +665,7 @@ function resetProcessedAlbums() {
   notify("Reset completed.");
 }
 
-/ * *
+/**
 
  * Creates new sort sheet by time or resources
  * @param
@@ -681,7 +681,7 @@ function sortSheetByCreateTime(sheet) {
   }
 }
 
-/ * *
+/**
 
  * Updates existing album index
  * @param
@@ -701,7 +701,7 @@ function updateAlbumIndex(indexSheet, rowIndex, sheet, tabName, fileCount) {
   indexSheet.getRange(rowIndex, 1).setValue(true);
 }
 
-/ * *
+/**
 
  * Writes data to sheet to destination
  * @param
@@ -741,7 +741,7 @@ function writeDataToSheet(sheet, photoData, headers) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Cleans and sanitizes input
  * @param

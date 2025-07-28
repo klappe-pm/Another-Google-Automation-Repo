@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- lint- line- spacing
  *
  * Script Summary:
@@ -34,7 +34,7 @@
  * - SpreadsheetApp: For spreadsheet operations
  * /
 
-/ * *
+/**
  * Prompts the user to enter a folder name or ID.
  *
  * @return {string|null} The user's input, or null if cancelled.
@@ -58,7 +58,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Gets specific folder from input or configuration
  * @param
@@ -85,7 +85,7 @@ function getFolderFromInput(input) {
   return null;
 }
 
-/ * *
+/**
 
  * Processes and transforms file
  * @param
@@ -124,7 +124,7 @@ function processFile(file) {
   Logger.log("File processed: " + file.getName());
 }
 
-/ * *
+/**
 
  * Processes and transforms folder
  * @param
@@ -153,7 +153,7 @@ function processFolder(folder) {
   }
 }
 
-/ * *
+/**
 
  * Manages files and folders
  * @returns {string} The formatted string
@@ -181,7 +181,7 @@ function promptForFolderInput() {
   }
 }
 
-/ * *
+/**
 
  * Removes blank lines after headers from collection
  * @returns {string} The formatted string

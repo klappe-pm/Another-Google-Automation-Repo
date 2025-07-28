@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- index- files- legacy
  *
  * Script Summary:
@@ -39,7 +39,7 @@ let TOP_LEVEL_FOLDER_ID = ''; / / Example: '1FM6FHK3HmkF15RIhKa8Y8oh4JYT - yL47'
 
 / / Main Functions
 
-/ * *
+/**
 
  * Executes main process
  * @returns {any} The result
@@ -53,7 +53,7 @@ function clearPreviousRuns() {
   SpreadsheetApp.getUi().alert('Previous run tracking has been cleared.');
 }
 
-/ * *
+/**
 
  * Checks boolean condition
  * @returns {any} True if condition is met, false otherwise
@@ -92,7 +92,7 @@ function listFilesInFolder() {
   Logger.log('Indexing complete.');
 }
 
-/ * *
+/**
 
  * Manages files and folders
  * @returns {any} The result
@@ -107,7 +107,7 @@ function onOpen() { / / Add a custom menu to the spreadsheet;
     .addToUi();
 }
 
-/ * *
+/**
 
  * Processes and transforms folder
  * @param

@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: append- time- received
  *
  * Script Summary:
@@ -35,7 +35,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @param
@@ -87,7 +87,7 @@ function addTimeForSingleRow(rowNumber) {
   }
 }
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @returns {any} The result
@@ -178,7 +178,7 @@ function addTimeReceivedColumn() {
   }
 }
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @returns {any} The result
@@ -268,7 +268,7 @@ function addTimeReceivedInChunks() {
   Logger.log(`Processed rows ${startRow} to ${endRow} in ${(Date.now() - startTime) / 1000} seconds`);
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -287,7 +287,7 @@ function columnToLetter(column) {
   return letter;
 }
 
-/ * *
+/**
 
  * Gets specific message received time or configuration
  * @param
@@ -321,7 +321,7 @@ function getMessageReceivedTime(messageId) {
   }
 }
 
-/ * *
+/**
 
  * Sets re time received processing or configuration values
  * @returns {any} The result

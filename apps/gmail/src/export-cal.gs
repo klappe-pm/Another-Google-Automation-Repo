@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: export- cal
  *
  * Script Summary:
@@ -67,7 +67,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -85,7 +85,7 @@ function chunkArray(array, size) {
   return chunks;
 }
 
-/ * *
+/**
 
  * Logs debug or messages
  * @param
@@ -110,7 +110,7 @@ function debugLog(level, functionName, message) {
   }
 }
 
-/ * *
+/**
 
  * Exports all calendar events to external format
  * @returns {any} The result
@@ -273,7 +273,7 @@ function exportAllCalendarEvents() {
   debugLog('INFO', functionName, 'Execution completed');
 }
 
-/ * *
+/**
 
  * Exports logs to external format
  * @returns {any} The result
@@ -294,7 +294,7 @@ function exportLogs() {
   }
 }
 
-/ * *
+/**
 
  * Extracts specific information
  * @param
@@ -354,7 +354,7 @@ Return the result in JSON format with keys: sender_email, subject, total_fare, t
   return null;
 }
 
-/ * *
+/**
 
  * Retrieves calendar events from service
  * @param
@@ -493,7 +493,7 @@ function fetchCalendarEvents(calendarId, timeMin, timeMax, processedEventIds, da
   return allEvents;
 }
 
-/ * *
+/**
 
  * Gets specific day of year or configuration
  * @param
@@ -508,7 +508,7 @@ function getDayOfYear(date) {
   return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
 }
 
-/ * *
+/**
 
  * Gets specific distances from google maps or configuration
  * @param
@@ -591,7 +591,7 @@ function getDistancesFromGoogleMaps(origins, destinations, apiKey) {
   }
 }
 
-/ * *
+/**
 
  * Gets specific location for date or configuration
  * @param
@@ -613,7 +613,7 @@ function getLocationForDate(date, configLocations) {
   return null;
 }
 
-/ * *
+/**
 
  * Gets specific quarter or configuration
  * @param
@@ -639,7 +639,7 @@ function getQuarter(date) {
   return dateCache[key].quarter;
 }
 
-/ * *
+/**
 
  * Loads configuration from storage
  * @param
@@ -693,7 +693,7 @@ function loadConfiguration(spreadsheet) {
   return { calendarIds, locations };
 }
 
-/ * *
+/**
 
  * Processes and transforms emails
  * @param
@@ -768,7 +768,7 @@ function processEmails(spreadsheet, invoiceSheet, geminiApiKey, today, errors) {
   return threadsProcessed;
 }
 
-/ * *
+/**
 
  * Processes and transforms events data
  * @param
@@ -862,7 +862,7 @@ function processEventsData(allEvents, distanceResults, dateCache, headers, logEn
   return data;
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @param
@@ -878,7 +878,7 @@ function roundToQuarterHour(value) {
   return (roundedMinutes / 60).toFixed(2);
 }
 
-/ * *
+/**
 
  * Sets config or configuration values
  * @returns {any} The result
@@ -950,7 +950,7 @@ function setConfig() {
   ui.alert('Configuration sheets created. Populate "config - calendars" with calendar IDs (e.g., your.email@gmail.com) and "config - locations" with addresses and date ranges (yyyy - MM - dd). API keys set.');
 }
 
-/ * *
+/**
 
  * Processes email data
  * @returns {any} The result
@@ -968,7 +968,7 @@ function testAllComponents() {
   debugLog('INFO', functionName, 'Component tests completed');
 }
 
-/ * *
+/**
 
  * Works with spreadsheet data
  * @returns {any} The result
@@ -1009,7 +1009,7 @@ function testCalendarAccess() {
   }
 }
 
-/ * *
+/**
 
  * Extracts specific information
  * @returns {any} The result
@@ -1036,7 +1036,7 @@ function testEmailExtraction() {
   }
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @returns {any} The result
@@ -1066,7 +1066,7 @@ function testGeminiApiKey() {
   }
 }
 
-/ * *
+/**
 
  * Processes email data
  * @returns {any} The result
@@ -1084,7 +1084,7 @@ function testGmailAccess() {
   }
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @returns {any} The result
@@ -1105,7 +1105,7 @@ function testMapsApiKey() {
   }
 }
 
-/ * *
+/**
 
  * Writes events sheet to destination
  * @param
@@ -1143,7 +1143,7 @@ function writeEventsSheet(spreadsheet, data, headers) {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Formats value for display
  * @param
@@ -1157,7 +1157,7 @@ function formatValue(value, decimals = 2) {
   return typeof value = = = 'number' && ! isNaN(value) ? value.toFixed(decimals) : "";
 }
 
-/ * *
+/**
 
  * Gets specific day of week or configuration
  * @param
@@ -1171,7 +1171,7 @@ function getDayOfWeek(date) {
   return day = = = 0 ? 1 : day + 1;
 }
 
-/ * *
+/**
 
  * Gets specific name day week or configuration
  * @param
@@ -1187,7 +1187,7 @@ function getNameDayWeek(day) {
   return days[day - 1] || "";
 }
 
-/ * *
+/**
 
  * Gets specific name month or configuration
  * @param
@@ -1204,7 +1204,7 @@ function getNameMonth(month) {
   return months[month - 1] || "";
 }
 
-/ * *
+/**
 
  * Gets specific name quarter or configuration
  * @param
@@ -1217,7 +1217,7 @@ function getNameQuarter(quarter) {
   return `Q${quarter}`;
 }
 
-/ * *
+/**
 
  * Gets specific week number or configuration
  * @param

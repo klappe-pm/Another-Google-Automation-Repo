@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- find- yaml- files
  *
  * Script Summary:
@@ -41,7 +41,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Extracts specific information
  * @param
@@ -74,7 +74,7 @@ function extractYamlFrontmatter(content) {
   return parsedYaml;
 }
 
-/ * *
+/**
 
  * Finds matching folder by name
  * @param
@@ -98,7 +98,7 @@ function findFolderByName(folderName) {
   return folder;
 }
 
-/ * *
+/**
 
  * Finds matching yaml frontmatter in folder
  * @param
@@ -143,7 +143,7 @@ function findYamlFrontmatterInFolder(folder) {
   Logger.log('Exiting findYamlFrontmatterInFolder function');
 }
 
-/ * *
+/**
 
  * Finds matching yaml frontmatter in folder by id
  * @param
@@ -166,7 +166,7 @@ function findYamlFrontmatterInFolderById(folderId) {
   Logger.log('Exiting findYamlFrontmatterInFolderById function');
 }
 
-/ * *
+/**
 
  * Manages files and folders
  * @returns {any} The result
@@ -187,7 +187,7 @@ function onOpen() {
   Logger.log('Exiting onOpen function');
 }
 
-/ * *
+/**
 
  * Processes and transforms folder input
  * @param
@@ -224,7 +224,7 @@ function processFolderInput(folderId, folderName) {
   Logger.log('Exiting processFolderInput function');
 }
 
-/ * *
+/**
 
  * Manages files and folders
  * @returns {any} The result
@@ -245,7 +245,7 @@ function showFolderInputForm() {
   Logger.log('Exiting showFolderInputForm function');
 }
 
-/ * *
+/**
 
  * Performs specialized operations
  * @returns {any} The result
@@ -277,7 +277,7 @@ function YAML() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Parses and extracts yaml
  * @param

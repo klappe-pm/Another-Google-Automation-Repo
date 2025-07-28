@@ -1,0 +1,42 @@
+{
+  "logging": {
+    "level": "debug",
+    "maxLogs": 5000,
+    "enableConsole": true,
+    "enableFile": true
+  },
+  "features": {
+    "experimental": true,
+    "debugMode": true,
+    "enhancedLogging": true,
+    "auditLogging": true,
+    "asyncOperations": true
+  },
+  "services": {
+    "gmail": {
+      "timeout": 30000
+    },
+    "drive": {
+      "timeout": 45000
+    },
+    "calendar": {
+      "timeout": 20000
+    },
+    "sheets": {
+      "timeout": 60000
+    }
+  },
+  "cache": {
+    "ttl": 300,
+    "maxSize": 500
+  },
+  "security": {
+    "enableRateLimit": false,
+    "enableEncryption": false
+  },
+  "performance": {
+    "enableOptimizations": false,
+    "parallelProcessing": true,
+    "memoryThreshold": 0.9
+  }
+}

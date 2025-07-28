@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: markdown- export- calendar- events
  *
  * Script Summary:
@@ -48,7 +48,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Creates new markdown files for todays events or resources
  * @returns {any} The newly created any
@@ -117,7 +117,7 @@ ${sortedAttendees}
   }
 }
 
-/ * *
+/**
 
  * Gets specific create or daily notes folder or configuration
  * @returns {any} The requested any
@@ -132,7 +132,7 @@ function createOrGetDailyNotesFolder() {
   return getOrCreateFolderPath(folderPath);
 }
 
-/ * *
+/**
 
  * Gets specific or create folder path or configuration
  * @param
@@ -156,7 +156,7 @@ function getOrCreateFolderPath(path) {
   return parent;
 }
 
-/ * *
+/**
 
  * Manages files and folders
  * @returns {any} The result
@@ -172,7 +172,7 @@ function onOpen() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Gets specific event view url or configuration
  * @param
@@ -187,7 +187,7 @@ function getEventViewUrl(event, calendarId) {
   return "https: / / www.google.com / calendar / event?eid= " + Utilities.base64Encode(splitEventId[0] + " " + calendarId).replace("= = ", '');
 }
 
-/ * *
+/**
 
  * Gets specific week number or configuration
  * @param
@@ -203,7 +203,7 @@ function getWeekNumber(d) {
   return weekNumber;
 }
 
-/ * *
+/**
 
  * Checks boolean condition
  * @param

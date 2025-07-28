@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: format- documents
  *
  * Script Summary:
@@ -30,14 +30,14 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Updates existing formatting
  * @returns {any} The result
 
  * /
 
-/ * *
+/**
 
  * Updates existing formatting
  * @returns {any} The result

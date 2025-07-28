@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: analyze- label- stats
  *
  * Script Summary:
@@ -73,7 +73,7 @@ const CONFIG = {
 
  / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = / / Menu Integration / / = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ;
 
-/ * *
+/**
 
  * Processes label
  * @param {GmailLabel} label - The label parameter
@@ -139,7 +139,7 @@ function processLabel(label) {
 
 / / Main Functions
 
-/ * *
+/**
 
  * Analyzes gmail labels and generates insights
  * @returns {Array} Array of results
@@ -182,7 +182,7 @@ function analyzeGmailLabels() {
   }
 }
 
-/ * *
+/**
 
  * Performs calculations on average
  * @param
@@ -197,7 +197,7 @@ function calculateAverage(array) {
   return sum / array.length;
 }
 
-/ * *
+/**
 
  * Performs calculations on median
  * @param
@@ -219,7 +219,7 @@ function calculateMedian(array) {
   }
 }
 
-/ * *
+/**
 
  * Exports to sheet to external format
  * @param
@@ -275,7 +275,7 @@ function exportToSheet(labelData) {
   }
 }
 
-/ * *
+/**
 
  * Logs error or messages
  * @param
@@ -287,7 +287,7 @@ function exportToSheet(labelData) {
 
 function logError(error, context = {}
 
-/ * *
+/**
 
  * Processes email data
  * @returns {Array} Array of results
@@ -303,7 +303,7 @@ function onOpen() {
 
 / / Helper Functions
 
-/ * *
+/**
 
  * Performs calculations on max
  * @param
@@ -316,7 +316,7 @@ function calculateMax(array) {
   return array.length > 0 ? Math.max(...array) : 0;
 }
 
-/ * *
+/**
 
  * Performs calculations on min
  * @param

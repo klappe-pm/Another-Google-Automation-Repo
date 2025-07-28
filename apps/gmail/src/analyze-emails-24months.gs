@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: analyze- emails- 24months
  *
  * Script Summary:
@@ -30,7 +30,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Creates new email count spreadsheet or resources
 

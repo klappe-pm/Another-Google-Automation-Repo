@@ -1,4 +1,4 @@
-/ * *
+/**
  * Script Name: combine- csv- files
  *
  * Script Summary:
@@ -25,7 +25,7 @@
  * - Utilities: For utility functions and encoding
  * /
 
-/ * *
+/**
  * processCSVFiles()
  *
  * This function retrieves CSV files from the '% % % % % ' folder, parses their data,
@@ -36,7 +36,7 @@
 
 / / Main Functions
 
-/ * *
+/**
 
  * Processes and transforms c s v files
 
