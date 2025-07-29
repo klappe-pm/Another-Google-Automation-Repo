@@ -69,12 +69,14 @@ credentials.json
 service-account.json
 secrets.json
 config.json
-.clasp.json
 .clasprc.json
+# Don't ignore .clasp.json files in apps directory
+!apps/**/.clasp.json
 
 # Logs
 *.log
-logs/
+logs/*.log
+!logs/.gitkeep
 
 # Temporary files
 tmp/
