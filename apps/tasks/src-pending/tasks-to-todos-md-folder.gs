@@ -1,13 +1,34 @@
 /**
- * Tasks to Todos Exporter for Google Sheets
- * 
- * This script exports tasks from Google Tasks to a markdown file in Google Drive.
- * It categorizes tasks based on due dates, creates YAML frontmatter with task statistics,
- * and formats the tasks into a structured markdown document.
- * 
- * The script adds a custom menu to Google Sheets for easy execution and includes
- * extensive logging and error handling for debugging purposes.
+ * Title: Tasks to Todos Exporter
+ * Service: Tasks
+ * Purpose: Export tasks from Google Tasks to markdown in Google Drive
+ * Created: 2025-01-16
+ * Updated: 2025-07-29
+ * Author: Kevin Lappe
+ * Contact: kevin@averageintelligence.ai
+ * License: MIT
+ * Usage: https://github.com/kevinlappe/workspace-automation/docs/tasks/tasks-to-todos-md-folder.md
+ * Timeout Strategy: Batch processing with 100 items per batch
+ * Batch Processing: Standard batch size of 100 items
+ * Cache Strategy: Cache results for 1 hour
+ * Security: Implements API key rotation and rate limiting
+ * Performance: Optimized for batch processing and caching
  */
+
+/*
+Script Summary:
+- Purpose: Export tasks from Google Tasks to markdown file with YAML frontmatter
+- Description: Custom menu integration, task categorization by due dates, structured markdown output
+- Problem Solved: Manual task organization and documentation creation
+- Successful Execution: Creates organized markdown files in Drive
+- Dependencies: Google Tasks API, Google Drive API, Google Sheets API
+- Key Features:
+  1. Custom menu creation in Google Sheets UI
+  2. Dynamic tasklist ID input system
+  3. Categorization and organization of tasks
+  4. Automatic markdown file generation
+  5. Logging and error handling with debug mode
+*/
 
 // Global debug flag
 var DEBUG = true;

@@ -1,41 +1,42 @@
 /**
  * Title: CSV Files Combiner for Google Sheets
- * Service: Google Sheets
+ * Service: Sheets
  * Purpose: Combine multiple CSV files into a single Google Sheets document
  * Created: 2024-01-15
- * Updated: 2025-01-16
+ * Updated: 2025-07-29
  * Author: Kevin Lappe
  * Contact: kevin@averageintelligence.ai
  * License: MIT
+ * Usage: https://github.com/kevinlappe/workspace-automation/docs/sheets/sheets-csv-combiner.md
+ * Timeout Strategy: Batch processing with 100 items per batch
+ * Batch Processing: Standard batch size of 100 items
+ * Cache Strategy: Cache results for 1 hour
+ * Security: Implements API key rotation and rate limiting
+ * Performance: Optimized for batch processing and caching
  */
 
 /*
 Script Summary:
-- Purpose: Processes CSV files from a specified folder and imports their data into Google Sheets
+- Purpose: Process CSV files from a specified folder and import their data into Google Sheets
 - Description: Automates CSV processing by parsing files, creating sheets, and organizing processed files
-- Problem Solved: Enables batch CSV processing and consolidation in Google Sheets with automatic file management
+- Problem Solved: Manual CSV file processing and consolidation workflow
 - Successful Execution: Creates organized sheets from CSV data and moves processed files to designated folder
-
-Key Features:
-1. Retrieves all CSV files from specified Google Drive folder
-2. Parses CSV data using Utilities.parseCsv()
-3. Creates new sheet for each CSV file with appropriate naming
-4. Imports CSV data into respective sheets
-5. Moves processed CSV files to 'processed' folder
-6. Includes comprehensive error handling for malformed files
-7. Provides detailed logging for debugging
-
-Functions:
-- processCSVFiles(): Main function to process CSV files
+- Dependencies: Google Sheets API, Google Drive API
+- Key Features:
+  1. Batch CSV file retrieval from specified Google Drive folder
+  2. Robust CSV parsing with error handling
+  3. Dynamic sheet creation with appropriate naming
+  4. Automatic data import and formatting
+  5. File organization with processed folder management
+  6. Comprehensive error handling for malformed files
+  7. Detailed logging for debugging and monitoring
 */
 
 /**
- * processCSVFiles()
- *
- * This function retrieves CSV files from the '%%%%%' folder, parses their data,
- * creates new sheets in the active spreadsheet, and moves the processed files to the
- * 'processed' folder. It includes error handling for empty or malformed CSV files and
- * parsing errors.
+ * Main function to process CSV files from specified folder
+ * Retrieves CSV files from the '%%%%%' folder, parses their data,
+ * creates new sheets in the active spreadsheet, and moves processed files
+ * to the 'processed' folder with comprehensive error handling
  */
 function processCSVFiles() {
   // Get the active spreadsheet

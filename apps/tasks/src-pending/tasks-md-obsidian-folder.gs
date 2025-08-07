@@ -1,3 +1,39 @@
+/**
+ * Title: Tasks to Markdown for Obsidian
+ * Service: Tasks
+ * Purpose: Export Google Tasks to markdown format optimized for Obsidian
+ * Created: 2025-01-16
+ * Updated: 2025-07-29
+ * Author: Kevin Lappe
+ * Contact: kevin@averageintelligence.ai
+ * License: MIT
+ * Usage: https://github.com/kevinlappe/workspace-automation/docs/tasks/tasks-md-obsidian-folder.md
+ * Timeout Strategy: Batch processing with 100 items per batch
+ * Batch Processing: Standard batch size of 100 items
+ * Cache Strategy: Cache results for 1 hour
+ * Security: Implements API key rotation and rate limiting
+ * Performance: Optimized for batch processing and caching
+ */
+
+/*
+Script Summary:
+- Purpose: Export Google Tasks to markdown format specifically for Obsidian note-taking system
+- Description: Retrieves tasks from 'My Tasks' list and formats them as markdown checkboxes
+- Problem Solved: Manual synchronization between Google Tasks and Obsidian notes
+- Successful Execution: Creates markdown file in _todos folder with formatted task list
+- Dependencies: Google Tasks API, Google Drive API
+- Key Features:
+  1. Automatic task list detection (My Tasks)
+  2. Markdown checkbox formatting
+  3. Completed task status preservation
+  4. Automatic folder creation in Drive
+  5. Error handling and logging
+*/
+
+/**
+ * Main function to export tasks from Google Tasks to markdown format
+ * Specifically designed for Obsidian integration
+ */
 function exportTasksToMarkdown() {
   try {
     // List all task lists
@@ -40,6 +76,11 @@ function exportTasksToMarkdown() {
   }
 }
 
+/**
+ * Helper function to get or create a folder in Google Drive
+ * @param {string} folderName - The name of the folder to find or create
+ * @returns {string} The ID of the found or created folder
+ */
 function getOrCreateFolderId(folderName) {
   try {
     let folders = DriveApp.getFoldersByName(folderName);

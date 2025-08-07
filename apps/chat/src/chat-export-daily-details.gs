@@ -1,41 +1,54 @@
 /**
  * Title: Google Chat Daily Usage Analytics
- * Service: Google Chat
+ * Service: Chat
  * Purpose: Analyze chat usage patterns and export weekly statistics
  * Created: 2024-01-15
- * Updated: 2025-01-16
+ * Updated: 2025-07-29
  * Author: Kevin Lappe
  * Contact: kevin@averageintelligence.ai
  * License: MIT
+ * Usage: https://github.com/kevinlappe/workspace-automation/docs/chat/chat-export-daily-details.md
+ * Timeout Strategy: Batch processing with 100 items per batch
+ * Batch Processing: Standard batch size of 100 items
+ * Cache Strategy: Cache results for 1 hour
+ * Security: Implements API key rotation and rate limiting
+ * Performance: Optimized for batch processing and caching
  */
 
 /*
 Script Summary:
-- Purpose: Analyzes Google Chat usage data for the previous work week
+- Purpose: Analyze Google Chat usage data for the previous work week with comprehensive metrics
 - Description: Fetches chat data from Google Chat API, processes communication metrics, and exports statistics to Google Sheets
-- Problem Solved: Provides insights into team communication patterns, response times, and engagement metrics
-- Successful Execution: Creates comprehensive weekly analytics in Google Sheets with message counts, emoji usage, wait times, and text statistics
-
-Key Features:
-1. Fetches chat data for each day of the previous work week
-2. Analyzes communication metrics (message counts, emoji usage, wait times)
-3. Writes detailed analysis results to Google Sheets spreadsheet
-4. Handles API pagination for large datasets
-5. Includes comprehensive error handling and debug logging
-6. Calculates per-person statistics and communication patterns
+- Problem Solved: Manual analysis of team communication patterns, response times, and engagement metrics
+- Successful Execution: Creates comprehensive weekly analytics in Google Sheets with detailed communication insights
+- Dependencies: Google Chat API, Google Sheets API
+- Key Features:
+  1. Work week chat data retrieval with API pagination
+  2. Advanced communication metrics analysis (messages, emojis, wait times)
+  3. Automated spreadsheet export with structured data
+  4. Robust error handling for API failures
+  5. Debug logging for monitoring and troubleshooting
+  6. Per-person and aggregate statistics calculation
+  7. Text analysis including punctuation and formatting patterns
 */
 
 // Global variable for logging
 var DEBUG = true;
 
-// Function for debug logging
+/**
+ * Debug logging function that logs messages when DEBUG is enabled
+ * @param {string} message - The message to log
+ */
 function debugLog(message) {
   if (DEBUG) {
     Logger.log(message);
   }
 }
 
-// Main function to analyze chat usage
+/**
+ * Main function to analyze chat usage for the previous work week
+ * Fetches chat data, processes metrics, and exports to Google Sheets
+ */
 function analyzeChatUsage() {
   debugLog("Starting analyzeChatUsage function");
   
@@ -94,7 +107,11 @@ function analyzeChatUsage() {
   debugLog("Analysis complete for all dates");
 }
 
-// Function to fetch chat data for a specific date
+/**
+ * Fetches chat data for a specific date from all available spaces
+ * @param {Date} date - The date to fetch chat data for
+ * @returns {Object} Object containing spaces and messages for the date
+ */
 function getChatData(date) {
   debugLog("Starting getChatData for " + date.toISOString().split('T')[0]);
   
@@ -120,7 +137,10 @@ function getChatData(date) {
   }
 }
 
-// Function to fetch all chat spaces
+/**
+ * Fetches all available chat spaces using pagination
+ * @returns {Array} Array of chat space objects
+ */
 function fetchSpaces() {
   var spaces = [];
   var pageToken;
@@ -151,7 +171,13 @@ function fetchSpaces() {
   return spaces;
 }
 
-// Function to fetch messages for a specific space and time range
+/**
+ * Fetches messages for a specific space within a time range
+ * @param {string} spaceName - The name/ID of the chat space
+ * @param {Date} startTime - Start time for message retrieval
+ * @param {Date} endTime - End time for message retrieval
+ * @returns {Array} Array of message objects
+ */
 function fetchMessagesForSpace(spaceName, startTime, endTime) {
   var messages = [];
   var pageToken;
@@ -183,7 +209,11 @@ function fetchMessagesForSpace(spaceName, startTime, endTime) {
   return messages;
 }
 
-// Function to analyze chat data
+/**
+ * Analyzes chat data to extract comprehensive communication metrics
+ * @param {Object} chatData - Object containing spaces and messages data
+ * @returns {Object} Analysis results with various metrics and statistics
+ */
 function analyzeChat(chatData) {
   let analysis = {
     typeChat: "space",
@@ -281,7 +311,12 @@ function analyzeChat(chatData) {
   return analysis;
 }
 
-// Function to write analysis results to the spreadsheet
+/**
+ * Writes analysis results to the spreadsheet
+ * @param {Sheet} sheet - The Google Sheets sheet object
+ * @param {Date} date - The date being analyzed
+ * @param {Object} analysis - The analysis results object
+ */
 function writeAnalysisToSheet(sheet, date, analysis) {
   var row = [date.toISOString().split('T')[0]];
   
@@ -293,19 +328,31 @@ function writeAnalysisToSheet(sheet, date, analysis) {
   sheet.appendRow(row);
 }
 
-// Function to count emojis in a text
+/**
+ * Counts the number of emojis in a text string
+ * @param {string} text - The text to count emojis in
+ * @returns {number} The number of emojis found
+ */
 function countEmojis(text) {
   var emojiRegex = /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu;
   return (text.match(emojiRegex) || []).length;
 }
 
-// Function to get unique emojis in a text
+/**
+ * Gets unique emojis from a text string
+ * @param {string} text - The text to extract emojis from
+ * @returns {Array} Array of unique emoji characters
+ */
 function getUniqueEmojis(text) {
   var emojiRegex = /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu;
   return [...new Set(text.match(emojiRegex) || [])];
 }
 
-// Function to calculate median wait time between messages
+/**
+ * Calculates the median wait time between messages
+ * @param {Array} messages - Array of message objects
+ * @returns {number} The median wait time in milliseconds
+ */
 function calculateMedianWaitTime(messages) {
   const waitTimes = [];
   for (let i = 1; i < messages.length; i++) {

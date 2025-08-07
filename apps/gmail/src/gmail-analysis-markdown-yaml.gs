@@ -1,16 +1,43 @@
 /**
- * Email Processing Script
- * 
- * This script processes Gmail messages based on a search query or specific message IDs.
- * It creates PDF and Markdown versions of emails, stores them in Google Drive,
- * and logs email metadata in a Google Sheets spreadsheet.
- * 
- * Main functions:
- * - processEmails(query): Processes emails matching a search query
- * - processEmailsByIds(messageIds): Processes specific emails by their IDs
- * 
- * Created: [Insert creation date]
- * Last updated: [Insert last update date]
+ * Title: Gmail Email Processing with Markdown 4DA PDF Export
+ * Service: Gmail + Google Drive + Google Sheets
+ * Purpose: Process Gmail messages to create PDF/Markdown files and log metadata
+ * Created: 2023-01-01
+ * Updated: 2025-07-29
+ * Author: Kevin Lappe
+ * Contact: kevin@averageintelligence.ai
+ * License: MIT
+ *
+ * Script Summary:
+ * - This script processes Gmail messages based on search queries or specific message IDs
+ * - Creates PDF and Markdown versions of emails with YAML frontmatter
+ * - Stores files in Google Drive and logs metadata in Google Sheets
+ * - Supports both query-based and ID-based email processing
+ *
+ * Key Features:
+ * 1. Dual processing modes: query-based and ID-based email selection
+ * 2. PDF generation from HTML email content
+ * 3. Markdown files with YAML frontmatter
+ * 4. Bracketed markdown files for Obsidian compatibility
+ * 5. Comprehensive error handling and debug logging
+ * 6. Duplicate message detection and skipping
+ * 7. Organized file storage in Drive folders
+ * 8. Spreadsheet logging with hyperlinks
+ *
+ * Functions:
+ * - processEmails(query): Process emails matching search query
+ * - processEmailsByIds(messageIds): Process specific emails by IDs
+ * - processMessage(): Core message processing logic
+ * - createPDF_(): Generate PDF from HTML content
+ * - createMarkdown_(): Create Markdown with YAML frontmatter
+ * - parseEmailBody_(): Extract and format email data
+ *
+ * Processing Logic:
+ * 1. Search for emails using query or retrieve by IDs
+ * 2. Create organized folder structure in Drive
+ * 3. Process each message: PDF, Markdown, metadata extraction
+ * 4. Log results in spreadsheet with file links
+ * 5. Skip already processed messages to avoid duplicates
  */
 
 // Enable advanced logging

@@ -1,12 +1,18 @@
 /**
  * Title: Calendar Export with Distance and Time
- * Service: Google Calendar
+ * Service: Calendar
  * Purpose: Export calendar events with Google Maps distance/time calculations
  * Created: 2025-01-16
- * Updated: 2025-07-16
+ * Updated: 2025-07-29
  * Author: Kevin Lappe
  * Contact: kevin@averageintelligence.ai
  * License: MIT
+ * Usage: https://github.com/kevinlappe/workspace-automation/docs/calendar/calendar-export-distance-time.md
+ * Timeout Strategy: Batch processing with 100 items per batch
+ * Batch Processing: Standard batch size of 100 items
+ * Cache Strategy: Cache results for 1 hour
+ * Security: Implements API key rotation and rate limiting
+ * Performance: Optimized for batch processing and caching
  */
 
 /*
@@ -15,8 +21,22 @@ Script Summary:
 - Description: Retrieves calendar events and calculates travel distances/times to/from multiple locations
 - Problem Solved: Automates travel planning and time estimation for calendar events
 - Successful Execution: Creates spreadsheet with events plus distance/time data for travel planning
+- Dependencies: Google Calendar API, Google Maps API, Google Sheets API
+- Key Features:
+  1. Multi-calendar event retrieval (18 months historical data)
+  2. Google Maps distance matrix calculations
+  3. Bidirectional travel time calculations (to/from locations)
+  4. Comprehensive date/time analytics (quarter, week, day calculations)
+  5. Automatic spreadsheet formatting and hyperlinks
+  6. Error handling for API failures
+  7. Batch processing for large datasets
 */
 
+/**
+ * Main function to export all calendar events with distance and time calculations
+ * Retrieves events from all calendars for the past 18 months and calculates travel distances/times
+ * to/from predefined locations using Google Maps Distance Matrix API
+ */
 function exportAllCalendarEvents() {
   // Enable Advanced Calendar Service
   // Go to Resources > Advanced Google Services and enable Calendar API

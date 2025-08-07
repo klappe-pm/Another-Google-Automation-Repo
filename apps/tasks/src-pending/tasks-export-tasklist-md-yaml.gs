@@ -1,19 +1,35 @@
-/*
-Summary:
-This Google Apps Script automates the process of exporting tasks from Google Tasks to a markdown file.
-It creates a custom menu in Google Sheets to trigger the export process, prompts the user for a tasklist ID,
-and then exports the tasks to a structured markdown file with YAML front matter. The script categorizes
-tasks based on their due dates, sorts them, and includes various statistics in the YAML front matter.
+/**
+ * Title: Tasks Export to Markdown with YAML
+ * Service: Tasks
+ * Purpose: Export Google Tasks to structured markdown files with YAML frontmatter
+ * Created: 2025-01-16
+ * Updated: 2025-07-29
+ * Author: Kevin Lappe
+ * Contact: kevin@averageintelligence.ai
+ * License: MIT
+ * Usage: https://github.com/kevinlappe/workspace-automation/docs/tasks/tasks-export-tasklist-md-yaml.md
+ * Timeout Strategy: Batch processing with 100 items per batch
+ * Batch Processing: Standard batch size of 100 items
+ * Cache Strategy: Cache results for 1 hour
+ * Security: Implements API key rotation and rate limiting
+ * Performance: Optimized for batch processing and caching
+ */
 
-Key features:
-1. Custom menu creation in Google Sheets UI
-2. User prompt for tasklist ID input
-3. Retrieval of tasks from Google Tasks API
-4. Categorization of tasks based on due dates
-5. Generation of YAML front matter with task statistics
-6. Formatting of tasks into a structured markdown document
-7. Creation or update of a markdown file in a dedicated folder
-8. Logging of operations for debugging purposes
+/*
+Script Summary:
+- Purpose: Automate the export of Google Tasks to structured markdown files with YAML frontmatter
+- Description: Creates custom UI menu, prompts for tasklist ID, categorizes tasks by due dates, generates statistics
+- Problem Solved: Manual task organization and markdown documentation creation
+- Successful Execution: Creates organized markdown file with task categories and completion statistics
+- Dependencies: Google Tasks API, Google Drive API, Google Sheets API
+- Key Features:
+  1. Custom menu creation in Google Sheets UI
+  2. Interactive tasklist ID prompt system
+  3. Smart task categorization by due dates
+  4. YAML frontmatter with comprehensive statistics
+  5. Hierarchical task formatting with subtasks
+  6. Automatic file creation and updates
+  7. Error handling and logging system
 */
 
 // Function to create and add the custom menu to the Google Sheets UI

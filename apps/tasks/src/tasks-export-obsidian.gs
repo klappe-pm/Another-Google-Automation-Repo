@@ -1,12 +1,18 @@
 /**
  * Title: Google Tasks to Obsidian Export
- * Service: Google Tasks
+ * Service: Tasks
  * Purpose: Export tasks to Obsidian-compatible markdown format
  * Created: 2024-01-15
- * Updated: 2025-01-16
+ * Updated: 2025-07-29
  * Author: Kevin Lappe
  * Contact: kevin@averageintelligence.ai
  * License: MIT
+ * Usage: https://github.com/kevinlappe/workspace-automation/docs/tasks/tasks-export-obsidian.md
+ * Timeout Strategy: Batch processing with 100 items per batch
+ * Batch Processing: Standard batch size of 100 items
+ * Cache Strategy: Cache results for 1 hour
+ * Security: Implements API key rotation and rate limiting
+ * Performance: Optimized for batch processing and caching
  */
 
 /*
@@ -15,16 +21,20 @@ Script Summary:
 - Description: Finds 'My Tasks' tasklist and exports to markdown with Obsidian-compatible formatting
 - Problem Solved: Enables seamless integration between Google Tasks and Obsidian workflows
 - Successful Execution: Creates markdown file in Google Drive with task checkboxes and proper formatting
-
-Key Features:
-1. Targets 'My Tasks' tasklist by default
-2. Creates Obsidian-compatible markdown format
-3. Includes task metadata and completion status
-4. Supports task checkbox format (- [ ] and - [x])
-5. Organized folder structure for Obsidian vaults
-6. Automatic file creation in Google Drive
+- Dependencies: Google Tasks API, Google Drive API
+- Key Features:
+  1. Targets 'My Tasks' tasklist by default
+  2. Creates Obsidian-compatible markdown format
+  3. Includes task metadata and completion status
+  4. Supports task checkbox format (- [ ] and - [x])
+  5. Organized folder structure for Obsidian vaults
+  6. Automatic file creation in Google Drive
 */
 
+/**
+ * Main function to export tasks from 'My Tasks' to Obsidian-compatible markdown
+ * Creates a markdown file with task checkboxes in the _todos folder
+ */
 function exportTasksToMarkdown() {
   try {
     // List all task lists
@@ -67,6 +77,11 @@ function exportTasksToMarkdown() {
   }
 }
 
+/**
+ * Helper function to get or create a folder in Google Drive
+ * @param {string} folderName - The name of the folder to find or create
+ * @returns {string} The ID of the found or created folder
+ */
 function getOrCreateFolderId(folderName) {
   try {
     let folders = DriveApp.getFoldersByName(folderName);

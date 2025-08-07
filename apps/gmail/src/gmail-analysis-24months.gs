@@ -1,6 +1,39 @@
 /**
- * Creates a spreadsheet with email counts for the last 180 days
- * This function searches Gmail, counts emails by sender, and creates a sorted spreadsheet of the results
+ * Title: Gmail 24-Month Email Analysis
+ * Service: Gmail + Google Sheets
+ * Purpose: Generate email count statistics by sender for the last 180 days
+ * Created: 2024-01-01
+ * Updated: 2025-01-29
+ * Author: Kevin Lappe
+ * Contact: kevin@averageintelligence.ai
+ * License: MIT
+ * 
+ * Script Summary:
+ * - Purpose: Analyze email volume by sender over the last 180 days
+ * - Description: Searches Gmail within date range, aggregates by sender, creates sorted spreadsheet
+ * - Problem Solved: Manual email volume analysis and sender frequency tracking
+ * - Successful Execution: Creates new spreadsheet with sender counts sorted by frequency
+ * - Dependencies: Gmail API, Sheets API
+ * 
+ * Key Features:
+ * 1. 180-day lookback period for email analysis
+ * 2. Email count aggregation by sender address
+ * 3. Automatic spreadsheet creation with descriptive title
+ * 4. Thread-based email processing for accuracy
+ * 5. Descending sort by email count for priority insights
+ * 6. Auto-resized columns for readability
+ * 7. URL logging for easy spreadsheet access
+ * 
+ * Functions:
+ * - createEmailCountSpreadsheet(): Main function to create email count analysis
+ * 
+ * Processing Logic:
+ * 1. Calculate cutoff date (180 days ago)
+ * 2. Search Gmail for emails after cutoff date using ISO date format
+ * 3. Iterate through threads and messages to count by sender
+ * 4. Create new spreadsheet with descriptive title
+ * 5. Set headers and populate sender data
+ * 6. Sort by count (descending) and format for readability
  */
 function createEmailCountSpreadsheet() {
   // Calculate the date 180 days ago

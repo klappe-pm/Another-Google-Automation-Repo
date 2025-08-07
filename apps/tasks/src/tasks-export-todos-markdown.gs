@@ -1,12 +1,18 @@
 /**
  * Title: Google Tasks to Todo Markdown Export
- * Service: Google Tasks
- * Purpose: Convert tasks to todo-style markdown with category organization
+ * Service: Tasks
+ * Purpose: Convert Google Tasks to todo-style markdown with category organization
  * Created: 2024-01-15
- * Updated: 2025-01-16
+ * Updated: 2025-07-29
  * Author: Kevin Lappe
  * Contact: kevin@averageintelligence.ai
  * License: MIT
+ * Usage: https://github.com/kevinlappe/workspace-automation/docs/tasks/tasks-export-todos-markdown.md
+ * Timeout Strategy: Batch processing with 100 items per batch
+ * Batch Processing: Standard batch size of 100 items
+ * Cache Strategy: Cache results for 1 hour
+ * Security: Implements API key rotation and rate limiting
+ * Performance: Optimized for batch processing and caching
  */
 
 /*
@@ -15,15 +21,15 @@ Script Summary:
 - Description: Creates custom Google Sheets menu, categorizes tasks by due dates, and exports with YAML frontmatter
 - Problem Solved: Enables organized task management with markdown-based todo systems
 - Successful Execution: Creates categorized markdown file with todo checkboxes and comprehensive task statistics
-
-Key Features:
-1. Category-based task organization (overdue, today, week, month, future)
-2. YAML frontmatter with detailed task statistics
-3. Todo checkbox format (- [ ] and - [x])
-4. Due date categorization and sorting
-5. Custom Google Sheets menu integration
-6. Comprehensive logging and error handling
-7. Automatic file creation in Google Drive
+- Dependencies: Google Tasks API, Google Drive API, Google Sheets API
+- Key Features:
+  1. Category-based task organization (overdue, today, week, month, future)
+  2. YAML frontmatter with detailed task statistics
+  3. Todo checkbox format (- [ ] and - [x])
+  4. Due date categorization and sorting
+  5. Custom Google Sheets menu integration
+  6. Comprehensive logging and error handling
+  7. Automatic file creation in Google Drive
 */
 
 // Global debug flag

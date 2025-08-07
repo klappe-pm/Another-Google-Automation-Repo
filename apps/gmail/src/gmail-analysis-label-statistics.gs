@@ -1,52 +1,35 @@
 /**
- * Script Title: Gmail Label Analysis
- * 
- * GitHub: https://github.com/klappe-pm/GMail-Label-Management-Suite/blob/main/gmail-labels-analysis
+ * Title: Gmail Label Analysis
+ * Service: Gmail + Google Sheets
+ * Purpose: Analyze Gmail labels and provide statistics about threads and messages
+ * Created: 2023-01-01
+ * Updated: 2025-07-29
+ * Author: Kevin Lappe
+ * Contact: kevin@averageintelligence.ai
+ * License: MIT
  *
  * Script Summary:
- * This script analyzes Gmail labels to provide statistics about the threads and messages within each label.
- * The purpose of the script is to give users insights into their email organization by summarizing key metrics
- * such as the number of threads, messages, attachments, and various statistical measures (average, min, max, median)
- * of messages per thread for each label.
+ * - This script analyzes Gmail labels to provide statistics, summarizing key metrics such as the number of threads, messages, and various statistical measures.
+ * - It provides insights into email organization and supports further analysis by exporting data to a Google Sheet named 'LabelStats'.
+ * - Solves the problem of manual counting and analyzing email data.
  *
- * The script solves the problem of manually counting and analyzing email threads and messages, providing an automated
- * way to gather this information and export it to a Google Sheet for further analysis.
+ * Key Features:
+ * 1. Comprehensive Gmail label analysis.
+ * 2. Statistical measures: average, min, max, median.
+ * 3. Google Sheet export for further analysis.
+ * 4. Log progress and results for debugging and verification.
  *
- * A successful script execution involves fetching all Gmail labels, processing each label to gather the required
- * statistics, and exporting the data to a Google Sheet named 'LabelStats'. The script logs progress and results to
- * the Google Apps Script IDE for debugging and verification.
+ * Functions:
+ * - analyzeGmailLabels(): Analyze labels and export data.
+ * - calculateAverage(array): Calculate the average number.
+ * - calculateMax(array): Determine the maximum value.
+ * - calculateMedian(array): Find the median value.
+ * - calculateMin(array): Identify the minimum value.
  *
- * Functions-Alphabetical:
- * - analyzeGmailLabels(): Main function to analyze Gmail labels and export data to a Google Sheet.
- * - calculateAverage(array): Calculates the average of an array of numbers.
- * - calculateMax(array): Calculates the maximum value in an array of numbers.
- * - calculateMedian(array): Calculates the median of an array of numbers.
- * - calculateMin(array): Calculates the minimum value in an array of numbers.
- *
- * Functions-Ordered:
- * 1. analyzeGmailLabels(): Main function to analyze Gmail labels and export data to a Google Sheet.
- * 2. calculateAverage(array): Calculates the average of an array of numbers.
- * 3. calculateMax(array): Calculates the maximum value in an array of numbers.
- * 4. calculateMedian(array): Calculates the median of an array of numbers.
- * 5. calculateMin(array): Calculates the minimum value in an array of numbers.
- *
- * Script-Steps:
+ * Processing Logic:
  * 1. Fetch all Gmail labels.
- * 2. Initialize an array to hold data for each label.
- * 3. Process each label to gather statistics about threads and messages.
- * 4. For each label, get all threads and initialize counters for threads, messages, and attachments.
- * 5. Process each thread to count messages and check for attachments.
- * 6. Calculate statistical measures (average, min, max, median) for messages per thread.
- * 7. Collect data for each label and append it to the data array.
- * 8. Prepare headers for the Google Sheet.
- * 9. Output data to a Google Sheet named 'LabelStats'.
- * 10. Log progress and results to the Google Apps Script IDE.
- *
- * Helper Functions:
- * - calculateAverage(array): Calculates the average of an array of numbers.
- * - calculateMax(array): Calculates the maximum value in an array of numbers.
- * - calculateMedian(array): Calculates the median of an array of numbers.
- * - calculateMin(array): Calculates the minimum value in an array of numbers.
+ * 2. Process each label and gather statistics.
+ * 3. Export data to 'LabelStats' sheet.
  */
 
 function analyzeGmailLabels() {

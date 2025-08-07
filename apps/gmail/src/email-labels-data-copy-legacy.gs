@@ -1,17 +1,39 @@
 /**
- * Gmail Labels Export Script
+ * Title: Gmail Labels Export Script (Legacy Copy)
+ * Service: Gmail + Google Sheets
+ * Purpose: Export Gmail label information with thread and email counts to Google Sheets
+ * Created: 2023-01-01
+ * Updated: 2025-01-29
+ * Author: Kevin Lappe
+ * Contact: kevin@averageintelligence.ai
+ * License: MIT
  * 
- * This script exports information about Gmail labels to a Google Sheet.
- * It includes the label name, total number of threads, and total number of emails for each label.
+ * Script Summary:
+ * - Purpose: Export Gmail labels data including thread/email counts to spreadsheet
+ * - Description: Connects to specific sheet, processes all user labels, exports statistics
+ * - Problem Solved: Manual tracking of Gmail label usage and email organization metrics
+ * - Successful Execution: Creates/updates sheet with current label statistics and counts
+ * - Dependencies: Gmail API, Sheets API
  * 
- * Key features:
- * 1. Connects to a specific Google Sheet
- * 2. Creates a new sheet if it doesn't exist
- * 3. Clears existing data to ensure fresh information
- * 4. Retrieves all user-created Gmail labels
- * 5. Counts threads and emails for each label
- * 6. Exports data to the sheet
- * 7. Includes error handling and logging
+ * Key Features:
+ * 1. Hardcoded spreadsheet ID connection for consistent output
+ * 2. Automatic sheet creation if target sheet doesn't exist
+ * 3. Data refresh with existing content clearing
+ * 4. User-created label retrieval and processing
+ * 5. Thread and email count aggregation per label
+ * 6. Comprehensive error handling and console logging
+ * 7. Progress tracking for large label sets
+ * 
+ * Functions:
+ * - exportGmailLabelsToSheet(): Main function to export label data
+ * 
+ * Processing Logic:
+ * 1. Open target spreadsheet by hardcoded ID
+ * 2. Create or access 'GMail Labels' sheet
+ * 3. Clear existing data and set headers
+ * 4. Retrieve all user Gmail labels
+ * 5. Process each label to count threads and messages
+ * 6. Export aggregated data to sheet
  */
 
 /**

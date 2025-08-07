@@ -1,20 +1,33 @@
 /**
- * Email Export and Conversion Script
+ * Title: Email Export and Conversion Script
+ * Service: Gmail + Google Sheets
+ * Purpose: Export Gmail emails to PDF and Markdown, summarize in spreadsheet
+ * Created: 2023-01-01
+ * Updated: 2025-07-21
+ * Author: Kevin Lappe
+ * Contact: kevin@averageintelligence.ai
+ * License: MIT
  * 
- * This script provides functionality to search for emails in Gmail,
- * export them as PDF and Markdown files, and create a summary spreadsheet.
+ * Script Summary:
+ * - Purpose: Export emails and convert them to PDF/Markdown, with spreadsheet summary
+ * - Description: Includes UI for input, searches emails, converts, and documents exports
+ * - Problem Solved: Automates archival of emails as PDFs/Markdowns, tracks exports
+ * - Successful Execution: Creates folders/files, updates spreadsheet, and logs processes
+ * - Dependencies: Gmail API, Drive API, Sheets API
  * 
- * Key features:
- * 1. Custom UI menu in Google Sheets for easy access
- * 2. Dialog box for inputting search criteria
- * 3. Email search based on various parameters (term, label, keyword, date range)
- * 4. Conversion of emails to PDF and Markdown formats
- * 5. Creation of a summary spreadsheet with links to exported files
- * 6. Extraction of potential charge amounts from email content
- * 7. Sorting of results by date
- * 8. Sharing of the export folder for easy access
+ * Key Features:
+ * 1. Custom UI menu and dialog interactions
+ * 2. Configurable search criteria (term, label, keyword, date range)
+ * 3. PDF and Markdown file conversion
+ * 4. Spreadsheet summarization with links and data
+ * 5. Charge amount extraction from email body
+ * 6. Date-sorted results
+ * 7. Export folder sharing and logging
  * 
- * The script includes extensive logging for debugging purposes.
+ * Functions:
+ * - onOpen(): Sets up the custom UI menu
+ * - showDialog(): Displays dialog for input
+ * - searchAndExportEmails(): Main function for processing and exporting
  */
 
 /**
