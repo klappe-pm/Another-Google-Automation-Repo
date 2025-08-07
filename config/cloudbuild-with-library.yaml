@@ -1,0 +1,253 @@
+# Cloud Build Configuration with Library Support
+# This configuration handles deployment of the Common Library and all services
+timeout: 1200s
+
+substitutions:
+  _LIBRARY_SCRIPT_ID: '${LIBRARY_SCRIPT_ID}'  # Set in Cloud Build trigger
+
+steps:
+# Step 1: Check for library changes
+- name: 'gcr.io/cloud-builders/git'
+  id: 'check-library-changes'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      echo "🔍 Checking for library changes..."
+      
+      # Check if this is the first build or if library has changed
+      if [ -z "$$(git rev-parse HEAD~1 2>/dev/null)" ]; then
+        echo "First build detected"
+        echo "true" > /workspace/library-changed.txt
+      elif git diff --name-only HEAD~1 HEAD | grep -q "apps/common-library"; then
+        echo "Library changes detected"
+        echo "true" > /workspace/library-changed.txt
+      else
+        echo "No library changes"
+        echo "false" > /workspace/library-changed.txt
+      fi
+
+# Step 2: Setup environment
+- name: 'node:18'
+  id: 'setup-environment'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      echo "🔧 Setting up environment..."
+      npm install -g @google/clasp
+      echo "✅ Clasp installed: $$(clasp --version)"
+
+# Step 3: Setup authentication
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
+  id: 'setup-auth'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      set -e
+      
+      # Install Node.js
+      apk add --no-cache nodejs npm
+      npm install -g @google/clasp
+      
+      echo "🔐 Setting up authentication..."
+      gcloud secrets versions access latest --secret="clasp-credentials" \
+        --project="$PROJECT_ID" > ~/.clasprc.json
+      chmod 600 ~/.clasprc.json
+      
+      # Verify authentication
+      if ! npx clasp login --status > /dev/null 2>&1; then
+        echo "❌ Authentication failed"
+        exit 1
+      fi
+      echo "✅ Authentication successful"
+
+# Step 4: Deploy library if changed
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
+  id: 'deploy-library'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      set -e
+      
+      # Setup environment
+      apk add --no-cache nodejs npm jq
+      npm install -g @google/clasp
+      
+      # Setup auth
+      gcloud secrets versions access latest --secret="clasp-credentials" \
+        --project="$PROJECT_ID" > ~/.clasprc.json
+      chmod 600 ~/.clasprc.json
+      
+      if [ "$$(cat /workspace/library-changed.txt)" = "true" ]; then
+        echo "📚 Deploying Common Library..."
+        
+        cd apps/common-library
+        
+        # Create .clasp.json if it doesn't exist
+        if [ ! -f .clasp.json ]; then
+          echo "Creating .clasp.json for library..."
+          echo '{
+            "scriptId": "${_LIBRARY_SCRIPT_ID}",
+            "rootDir": "./src"
+          }' > .clasp.json
+        fi
+        
+        # Push library code
+        npx clasp push --force
+        
+        # Create new version
+        VERSION_DESC="Build ${BUILD_ID} - ${SHORT_SHA}"
+        npx clasp version "$$VERSION_DESC"
+        
+        # Get the new version number
+        VERSION=$$(npx clasp versions | tail -1 | awk '{print $$1}')
+        echo $$VERSION > /workspace/library-version.txt
+        
+        echo "✅ Library deployed as version $$VERSION"
+        
+        cd ../..
+      else
+        echo "ℹ️ No library changes, skipping library deployment"
+        # Get current library version for reference
+        echo "1" > /workspace/library-version.txt
+      fi
+
+# Step 5: Update service dependencies if library changed
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
+  id: 'update-dependencies'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      set -e
+      
+      # Setup environment
+      apk add --no-cache nodejs npm jq
+      
+      if [ "$$(cat /workspace/library-changed.txt)" = "true" ]; then
+        VERSION=$$(cat /workspace/library-version.txt)
+        echo "📝 Updating services to use library version $$VERSION..."
+        
+        # Update all service manifests to use new library version
+        for manifest in apps/*/src/appsscript.json; do
+          if [ "$$manifest" != "apps/common-library/src/appsscript.json" ]; then
+            # Check if manifest has library dependency
+            if grep -q "libraries" "$$manifest" 2>/dev/null; then
+              echo "Updating $$manifest..."
+              
+              # Update library version and disable development mode
+              jq '.dependencies.libraries[0].version = "'$$VERSION'" | 
+                  .dependencies.libraries[0].developmentMode = false' \
+                  "$$manifest" > "$$manifest.tmp"
+              mv "$$manifest.tmp" "$$manifest"
+            fi
+          fi
+        done
+        
+        echo "✅ All services updated to library version $$VERSION"
+      fi
+
+# Step 6: Deploy all services
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
+  id: 'deploy-services'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      set -e
+      
+      # Setup environment
+      apk add --no-cache nodejs npm
+      npm install -g @google/clasp
+      
+      # Setup auth
+      gcloud secrets versions access latest --secret="clasp-credentials" \
+        --project="$PROJECT_ID" > ~/.clasprc.json
+      chmod 600 ~/.clasprc.json
+      
+      echo "📦 Deploying all services..."
+      
+      SERVICES=(
+        "apps/calendar" "apps/chat" "apps/docs" "apps/drive"
+        "apps/gmail" "apps/photos" "apps/sheets" "apps/slides"
+        "apps/tasks" "apps/utility"
+      )
+      
+      SUCCESS_COUNT=0
+      FAILED_COUNT=0
+      FAILED_SERVICES=""
+      
+      for SERVICE_DIR in "$${SERVICES[@]}"; do
+        if [ -d "$$SERVICE_DIR" ] && [ -f "$$SERVICE_DIR/.clasp.json" ]; then
+          SERVICE_NAME=$$(basename $$SERVICE_DIR)
+          echo ""
+          echo "📌 Deploying $$SERVICE_NAME..."
+          
+          cd "$$SERVICE_DIR"
+          
+          if npx clasp push --force; then
+            SUCCESS_COUNT=$$((SUCCESS_COUNT + 1))
+            echo "   ✅ $$SERVICE_NAME deployed successfully"
+          else
+            FAILED_COUNT=$$((FAILED_COUNT + 1))
+            FAILED_SERVICES="$$FAILED_SERVICES $$SERVICE_NAME"
+            echo "   ❌ $$SERVICE_NAME deployment failed"
+          fi
+          
+          cd ../..
+        fi
+      done
+      
+      echo ""
+      echo "================================================="
+      echo "📊 DEPLOYMENT SUMMARY"
+      echo "================================================="
+      echo "Library Version: $$(cat /workspace/library-version.txt)"
+      echo "Services Deployed: $$SUCCESS_COUNT"
+      echo "Services Failed: $$FAILED_COUNT"
+      
+      if [ $$FAILED_COUNT -gt 0 ]; then
+        echo "Failed Services:$$FAILED_SERVICES"
+        echo ""
+        echo "⚠️ Some deployments failed. Check logs above."
+        exit 1
+      else
+        echo ""
+        echo "🎉 ALL DEPLOYMENTS COMPLETED SUCCESSFULLY!"
+      fi
+
+# Step 7: Verify deployments
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
+  id: 'verify-deployments'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      echo "🔍 Verifying deployments..."
+      echo ""
+      echo "Build Information:"
+      echo "  Build ID: ${BUILD_ID}"
+      echo "  Commit SHA: ${SHORT_SHA}"
+      echo "  Branch: ${BRANCH_NAME}"
+      echo "  Trigger: ${TRIGGER_NAME}"
+      echo ""
+      echo "Library Status:"
+      echo "  Changed: $$(cat /workspace/library-changed.txt)"
+      echo "  Version: $$(cat /workspace/library-version.txt)"
+      echo ""
+      echo "✅ Deployment verification complete"
+
+options:
+  substitution_option: ALLOW_LOOSE
+  logging: CLOUD_LOGGING_ONLY
+  machineType: E2_HIGHCPU_8
+  
+# Artifacts to save
+artifacts:
+  objects:
+    location: 'gs://workspace-automation-artifacts/${BUILD_ID}'
+    paths:
+      - '/workspace/library-version.txt'
