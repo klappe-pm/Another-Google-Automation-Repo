@@ -4,7 +4,7 @@
  * Purpose: Apply standardized formatting to all non-empty sheets in a spreadsheet, optimized for performance.
  * Created: 2024-03-30
  * Updated: 2025-08-15
- * Author: Kevin Lappe
+ * Author: Kevin Lappe (Refactored by AI)
  * Contact: kevin@averageintelligence.ai
  * License: MIT
  */
@@ -60,7 +60,7 @@ function formatAllSheets() {
     // **REFACTOR:** Instead of resizing columns one-by-one in a loop,
     // this single command resizes all columns at once, which is much faster
     // for sheets with 100+ columns.
-    sheet.setColumnWidths(1, numColumns, 200);
+    sheet.setColumnWidths(1, numColumns, 300);
   }
   
   // Show a message when complete
