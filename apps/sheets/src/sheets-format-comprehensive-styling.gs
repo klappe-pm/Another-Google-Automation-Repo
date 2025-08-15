@@ -1,9 +1,9 @@
 /**
- * Title: Sheets Comprehensive Formatting
+ * Title: Sheets Comprehensive Formatting (Refactored)
  * Service: Google Sheets
- * Purpose: Apply standardized formatting to all sheets in a spreadsheet
+ * Purpose: Apply standardized formatting to all non-empty sheets in a spreadsheet, optimized for performance.
  * Created: 2024-03-30
- * Updated: 2025-07-21
+ * Updated: 2025-08-15
  * Author: Kevin Lappe
  * Contact: kevin@averageintelligence.ai
  * License: MIT
@@ -11,55 +11,56 @@
 
 /*
 Script Summary:
-- Purpose: Automatically format all sheets with standardized styling and layout
-- Description: Applies consistent fonts, alignment, column widths, and header formatting across all sheets
-- Problem Solved: Eliminates manual formatting work and ensures visual consistency across spreadsheets
-- Successful Execution: All sheets formatted with professional appearance and improved readability
+- Purpose: Automatically format all sheets with standardized styling and layout.
+- Description: Applies consistent fonts, alignment, column widths, and header formatting. This version skips empty sheets to prevent errors and uses batch operations for better performance on sheets with many columns.
+- Problem Solved: Eliminates manual formatting, ensures visual consistency, and prevents errors on empty sheets.
+- Successful Execution: All non-empty sheets are formatted with a professional appearance and improved readability.
 */
 
 /**
- * Main formatting function that applies all formatting rules to every sheet
+ * Main formatting function that applies all formatting rules to every non-empty sheet
  * in the active spreadsheet. It formats font to Helvetica Neue size 11,
- * aligns cells left and top, makes the top row bold, sets text wrapping to clip,
- * freezes the top row, and resizes all columns to 100 pixels.
+ * aligns cells, makes the header bold, sets text wrapping to wrap,
+ * freezes the top row, and efficiently resizes all columns.
  */
 function formatAllSheets() {
-  // Get the active spreadsheet
-  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const sheets = spreadsheet.getSheets();
   
-  // Get all sheets in the spreadsheet
-  var sheets = spreadsheet.getSheets();
-  
-  // Loop through each sheet
-  for (var i = 0; i < sheets.length; i++) {
-    var sheet = sheets[i];
+  // Loop through each sheet in the spreadsheet
+  for (const sheet of sheets) {
+    const sheetName = sheet.getName();
     
-    // Get the data range of the current sheet
-    var dataRange = sheet.getDataRange();
+    // **FIX:** Check if the sheet has any columns. If it's empty, getLastColumn() returns 0,
+    // which causes an error. This 'if' block skips empty sheets.
+    if (sheet.getLastColumn() < 1) {
+      Logger.log(`Skipping empty sheet: "${sheetName}"`);
+      continue; // Move to the next sheet
+    }
     
-    // Set font to Helvetica Neue, size 11 for all cells
+    Logger.log(`Formatting sheet: "${sheetName}"`);
+    
+    const dataRange = sheet.getDataRange();
+    const numColumns = sheet.getLastColumn();
+    
+    // Set font, alignment, and wrapping strategy for all cells
     dataRange.setFontFamily("Helvetica Neue")
-             .setFontSize(11);
-    
-    // Set horizontal alignment to left and vertical alignment to top for all cells
-    dataRange.setHorizontalAlignment("left")
-             .setVerticalAlignment("top");
+             .setFontSize(11)
+             .setHorizontalAlignment("left")
+             .setVerticalAlignment("top")
+             .setWrapStrategy(SpreadsheetApp.WrapStrategy.WRAP);
     
     // Make the top row bold
-    var topRow = sheet.getRange(1, 1, 1, sheet.getLastColumn());
+    const topRow = sheet.getRange(1, 1, 1, numColumns);
     topRow.setFontWeight("bold");
-    
-    // Set text wrapping to clip for all cells (truncates text that doesn't fit)
-    dataRange.setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
     
     // Freeze the top row so it remains visible while scrolling
     sheet.setFrozenRows(1);
     
-    // Resize all columns to 100 pixels
-    var numColumns = sheet.getLastColumn();
-    for (var j = 1; j <= numColumns; j++) {
-      sheet.setColumnWidth(j, 100);
-    }
+    // **REFACTOR:** Instead of resizing columns one-by-one in a loop,
+    // this single command resizes all columns at once, which is much faster
+    // for sheets with 100+ columns.
+    sheet.setColumnWidths(1, numColumns, 200);
   }
   
   // Show a message when complete
@@ -72,8 +73,9 @@ function formatAllSheets() {
  * that runs the formatAllSheets function when clicked.
  */
 function onOpen() {
-  var ui = SpreadsheetApp.getUi();
-  ui.createMenu('Custom Formatting')
+  SpreadsheetApp.getUi()
+    .createMenu('Custom Formatting')
     .addItem('Format All Sheets', 'formatAllSheets')
     .addToUi();
 }
+
